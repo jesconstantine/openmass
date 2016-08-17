@@ -21,6 +21,7 @@ dependencies:
 
   override:
     - composer install
+    - npm install
 
   cache_directories:
     - node_modules
@@ -36,4 +37,5 @@ test:
     - vendor/bin/phing build install migrate
 
   override:
+    - npm run linting
     - vendor/bin/phing test
