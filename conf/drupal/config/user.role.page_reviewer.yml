@@ -1,0 +1,11 @@
+uuid: 928d99fe-ec6a-4421-b252-db92f22fce5b
+langcode: en
+status: true
+dependencies: {  }
+id: page_reviewer
+label: 'Basic page Reviewer'
+weight: 3
+is_admin: null
+permissions:
+  - 'edit any page content'
+  - 'delete any page content'

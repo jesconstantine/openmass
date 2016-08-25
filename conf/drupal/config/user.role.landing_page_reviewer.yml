@@ -1,0 +1,11 @@
+uuid: d27025eb-e68b-47f3-b762-5ee44e5d06b1
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_reviewer
+label: 'Landing Page Reviewer'
+weight: 5
+is_admin: null
+permissions:
+  - 'edit any landing_page content'
+  - 'delete any landing_page content'
