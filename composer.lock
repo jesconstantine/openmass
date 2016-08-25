@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f9db9b8df8b4f790f6750f534f9bc97",
-    "content-hash": "ffffe4c1551c144635721fd1f4063cbb",
+    "hash": "eee62f45278fd62ef5839cd966a3b109",
+    "content-hash": "77fc3dc713b5175d60ff684d6d6eb3f9",
     "packages": [
         {
             "name": "acquia/lightning-project",
@@ -2998,6 +2998,31 @@
                 "xml"
             ],
             "time": "2016-05-10 14:11:45"
+        },
+        {
+            "name": "mikeyp/google_tag",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikeyp/google_tag.git",
+                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/4c35b508650f3268012abd4afbe4e309eb5297da",
+                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL 2.0+"
+            ],
+            "description": "Allows your website analytics to be managed using Google Tag Manager.",
+            "support": {
+                "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
+                "issues": "https://github.com/mikeyp/google_tag/issues"
+            },
+            "time": "2016-06-15 22:09:45"
         },
         {
             "name": "nikic/php-parser",
@@ -8420,6 +8445,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "composer/composer": 20,
         "dflydev/embedded-composer-console": 20,
