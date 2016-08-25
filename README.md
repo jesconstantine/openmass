@@ -90,7 +90,7 @@ Run `vendor/bin/phing test` or `vendor/bin/behat features/installation.feature`.
 
 ## Deployment
 
-`@todo: Add deployment documentation.`
+[Deploying a local install to Acquia](docs/deploy.md)
 
 ## Troubleshooting
 
