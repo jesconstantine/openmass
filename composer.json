@@ -25,15 +25,23 @@
             "url": "git@github.com:palantirnet/the-vagrant.git"
         },
         {
+            "type": "vcs",
+            "url": "git@github.com:mikeyp/google_tag.git"
+        },
+        {
             "type": "composer",
             "url": "https://packagist.drupal-composer.org"
         }
     ],
     "require": {
         "composer/installers": "^1.0",
+        "cweagans/composer-patches": "~1.0",
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
+        "drupal/metatag": "^8.1",
+        "drupal/pathauto": "^8.1",
+        "mikeyp/google_tag": "dev-8.x-1.x#db4430ac94e1a0c8bc9524bad2b0a811a68ad930",
         "palantirnet/the-build": "dev-master"
     },
     "require-dev": {
@@ -68,6 +76,11 @@
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "patches": {
+            "drupal/metatag": {
+                "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
+            }
         }
-    }    
+    }
 }
