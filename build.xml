@@ -10,6 +10,8 @@
     <import file="vendor/palantirnet/the-build/tasks/drupal.xml" />
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
 
+    <!-- Include theme.xml -->
+    <import file="build/theme.xml" />
 
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
@@ -20,6 +22,7 @@
     <!-- Target: install -->
     <target name="install" description="Install the application.">
         <phingcall target="drupal-install" />
+        <phingcall target="theme-install" />
     </target>
 
 
