@@ -1,10 +1,11 @@
-uuid: 1f43f5cb-30b8-40bd-822a-45d5da2e5b90
+uuid: 455bef66-4811-421b-9dae-090c69489629
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_test
     - field.field.node.page.panelizer
     - field.field.node.page.scheduled_update
     - node.type.page
@@ -39,6 +40,13 @@ content:
     weight: 7
     settings: {  }
     third_party_settings: {  }
+  field_test:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
   path:
     type: path
     weight: 5
