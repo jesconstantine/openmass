@@ -1,0 +1,19 @@
+uuid: 4a35b198-6e18-4d59-a108-6916d9d3c130
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_test
+    - node.type.page
+id: node.page.field_test
+field_name: field_test
+entity_type: node
+bundle: page
+label: test
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

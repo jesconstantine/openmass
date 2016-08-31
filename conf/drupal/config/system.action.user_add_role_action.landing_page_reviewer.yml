@@ -1,0 +1,14 @@
+uuid: 80057e05-8226-45e0-a7ca-f9d386f4e43c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_reviewer
+  module:
+    - user
+id: user_add_role_action.landing_page_reviewer
+label: 'Add the Landing Page Reviewer role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: landing_page_reviewer
