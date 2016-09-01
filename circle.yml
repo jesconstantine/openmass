@@ -3,8 +3,6 @@ machine:
     mass.local: 127.0.0.1
   php:
     version: 5.6.14
-  node:
-    version: 0.12.0
   environment:
     PALANTIR_ENVIRONMENT: circle
 
@@ -21,21 +19,17 @@ dependencies:
 
   override:
     - composer install
-    # - npm install
 
   cache_directories:
-    # - node_modules
     - vendor
     - web/core
     - web/modules/contrib
     - web/profiles/contrib
     - ~/.composer
-    - ~/.npm
 
 test:
   pre:
     - vendor/bin/phing build install migrate
 
   override:
-    # - npm run linting
     - vendor/bin/phing test
