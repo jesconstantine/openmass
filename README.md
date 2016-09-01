@@ -31,12 +31,6 @@ The primary reason for using Lightning is to give a baseline Panelizer configura
     vendor/bin/phing build install migrate
   ```
 
-1. To get Butler up and running (and build the site theme):
-  ```
-    npm install
-    npm run buttler
-  ```
-
 1. Visit [mass.local](http://mass.local) in your browser of choice.
 
 ## How do I work on this?
