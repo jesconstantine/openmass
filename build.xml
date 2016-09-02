@@ -21,12 +21,42 @@
     <target name="install" description="Install the application.">
         <phingcall target="drupal-install" />
         <exec command="drush cim -y" />
+
+        <drush command="pm-enable" assume="yes">
+            <param>devel</param>
+            <param>mass_types</param>
+            <param>migrate_tools</param>
+        </drush>
     </target>
 
 
     <!-- Target: migrate -->
     <target name="migrate" description="Run the migrations.">
-        <echo>Configure this target to load sample data and run the migrations.</echo>
+        <!-- Make sure the 'migration' user exists. -->
+        <drush command="user-create" haltonerror="false">
+            <param>migration</param>
+        </drush>
+        <drush command="user-block">
+            <param>migration</param>
+        </drush>
+        <drush command="user-add-role">
+            <param>administrator</param>
+            <param>migration</param>
+        </drush>
+
+        <!-- Reinstall the migration module to get the latest config. -->
+        <drush command="pm-uninstall" assume="yes">
+            <param>mass_content</param>
+        </drush>
+        <drush command="pm-enable" assume="yes">
+            <param>mass_content</param>
+        </drush>
+
+        <drush command="migrate-import">
+            <option name="group" value="mass_content" />
+            <option name="update" />
+            <option name="user" value="migration" />
+        </drush>
     </target>
 
 
