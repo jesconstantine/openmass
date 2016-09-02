@@ -4,73 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eee62f45278fd62ef5839cd966a3b109",
-    "content-hash": "77fc3dc713b5175d60ff684d6d6eb3f9",
+    "hash": "be564f97f68e9e6c1c96a0ab6d79bafc",
+    "content-hash": "d248643d4944ec3f1f079ff65864b892",
     "packages": [
-        {
-            "name": "acquia/lightning-project",
-            "version": "8.1.0-rc6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/acquia/lightning-project.git",
-                "reference": "0b8b017bcbb8b236e5f083a41be52bbb6466936b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning-project/zipball/0b8b017bcbb8b236e5f083a41be52bbb6466936b",
-                "reference": "0b8b017bcbb8b236e5f083a41be52bbb6466936b",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "^1.0",
-                "cweagans/composer-patches": "1.5.0",
-                "drupal-composer/drupal-scaffold": "^1.2",
-                "drupal/lightning": "8.1.*"
-            },
-            "require-dev": {
-                "behat/behat": "^3.1",
-                "behat/mink": "~1.6",
-                "behat/mink-goutte-driver": "~1.2",
-                "drupal/drupal-extension": "^3.1",
-                "jcalderonzumba/gastonjs": "~1.0.2",
-                "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-                "mikey179/vfsstream": "~1.2",
-                "phpunit/phpunit": "~4.8",
-                "symfony/css-selector": "2.7.*"
-            },
-            "type": "project",
-            "extra": {
-                "installer-paths": {
-                    "docroot/core": [
-                        "drupal/core"
-                    ],
-                    "docroot/modules/contrib/{$name}": [
-                        "type:drupal-module"
-                    ],
-                    "docroot/profiles/contrib/{$name}": [
-                        "type:drupal-profile"
-                    ],
-                    "docroot/themes/contrib/{$name}": [
-                        "type:drupal-theme"
-                    ],
-                    "drush/contrib/{$name}": [
-                        "type:drupal-drush"
-                    ]
-                },
-                "enable-patching": true
-            },
-            "autoload": {
-                "classmap": [
-                    "scripts/ScriptHandler.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
-            "time": "2016-06-02 18:39:44"
-        },
         {
             "name": "codegyre/robo",
             "version": "0.7.2",
@@ -1951,6 +1887,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
