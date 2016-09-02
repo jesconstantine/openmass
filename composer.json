@@ -25,22 +25,15 @@
             "url": "git@github.com:palantirnet/the-vagrant.git"
         },
         {
-            "type": "vcs",
-            "url": "git@github.com:mikeyp/google_tag.git"
-        },
-        {
             "type": "composer",
             "url": "https://packagist.drupal-composer.org"
         }
     ],
     "require": {
         "composer/installers": "^1.0",
-        "cweagans/composer-patches": "~1.0",
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
-        "drupal/lightning": "^8.1",
-        "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/the-build": "dev-master"
     },
     "require-dev": {
@@ -59,6 +52,7 @@
         "sculpin/sculpin-theme-composer-plugin": "dev-master as 1.0.0"
     },
     "suggest": {
+        "cweagans/composer-patches": "Try ^1.0. Apply patches to packages, especially Drupal.org contrib."
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -74,11 +68,6 @@
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
-        },
-        "patches": {
-            "drupal/metatag": {
-                "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
-            }
         }
-    }
+    }    
 }
