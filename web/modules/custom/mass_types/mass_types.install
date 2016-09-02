@@ -9,6 +9,9 @@
  * Implements hook_uninstall().
  */
 function mass_types_uninstall() {
+  \Drupal::configFactory()->getEditable('block.block.views_block__action_landing_pages_block_1')->delete();
+  \Drupal::configFactory()->getEditable('block.block.views_block__actions_block_1')->delete();
+  \Drupal::configFactory()->getEditable('block.block.views_block__secondary_landing_pages_block_1')->delete();
   \Drupal::configFactory()->getEditable('core.base_field_override.node.action_landing.promote')->delete();
   \Drupal::configFactory()->getEditable('core.base_field_override.node.action.promote')->delete();
   \Drupal::configFactory()->getEditable('core.base_field_override.node.agency.promote')->delete();
@@ -64,4 +67,7 @@ function mass_types_uninstall() {
   \Drupal::configFactory()->getEditable('node.type.agency')->delete();
   \Drupal::configFactory()->getEditable('node.type.primary_landing')->delete();
   \Drupal::configFactory()->getEditable('node.type.secondary_landing')->delete();
+  \Drupal::configFactory()->getEditable('views.view.action_landing_pages')->delete();
+  \Drupal::configFactory()->getEditable('views.view.actions')->delete();
+  \Drupal::configFactory()->getEditable('views.view.secondary_landing_pages')->delete();
 }
