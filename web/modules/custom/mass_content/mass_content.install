@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Uninstall config.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function mass_content_uninstall() {
+  \Drupal::configFactory()->getEditable('migrate_plus.migration_group.mass_content')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.example_action_landing')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.example_action')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.example_agency')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.example_primary_landing')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.example_secondary_landing')->delete();
+}
