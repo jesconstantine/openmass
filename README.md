@@ -11,12 +11,6 @@
 
 If you have been running a previous version of Vagrant you may need to do: `vagrant plugin update` to ensure that you can install the plugins.
 
-## Overview
-
-This install of Drupal is based on [Acquia's Lightning](https://www.drupal.org/project/lightning) distribution. Because of that, we're not using Palantir's standard base installation ([config_installer](https://www.drupal.org/project/config_installer)). We've added a [`drush cim -y`](/build.xml#L23) to our build process to import configuration.
-
-The primary reason for using Lightning is to give a baseline Panelizer configuration for the landing pages on the site.
-
 ## Getting Started
 
 1. From inside the project root, run:
