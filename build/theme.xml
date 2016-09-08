@@ -1,0 +1,40 @@
+<project name="theme" default="">
+
+    <property name="theme.artifact.root_dir.relative" value="./vendor/palantirnet/mayflower-artifacts/assets" />
+    <resolvepath propertyname="theme.artifact.root_dir" file="${theme.artifact.root_dir.relative}" />
+    <resolvepath propertyname="custom_theme" file="${drupal.root}/themes/custom/mass_theme" />
+
+    <target name="theme-install">
+        <phingcall target="theme-artifacts-install">
+            <property name="css_source" value="${theme.artifact.root_dir}/css" />
+            <property name="css_dest" value="${custom_theme}/css" />
+
+            <property name="js_source" value="${theme.artifact.root_dir}/js" />
+            <property name="js_dest" value="${custom_theme}/js" />
+
+            <property name="imgs_source" value="${theme.artifact.root_dir}/images" />
+            <property name="imgs_dest" value="${custom_theme}/images" />
+        </phingcall>
+    </target>
+
+    <target name="theme-artifacts-install">
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${css_source}" />
+            <property name="resource_dest" value="${css_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${js_source}" />
+            <property name="resource_dest" value="${js_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${imgs_source}" />
+            <property name="resource_dest" value="${imgs_dest}" />
+        </phing>
+    </target>
+
+</project>
