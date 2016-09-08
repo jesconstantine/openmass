@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b9866bf65751924967703936ee58e89c",
-    "content-hash": "59cac40e4d6784fa4fcb3ca157214a49",
+    "hash": "9e99260f6561616bad2525a351d58181",
+    "content-hash": "8347a8f7c6f647b1cb797810621102d0",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -1146,7 +1146,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/devel-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "930b7b89c2fa2047ebbb0fb3ba53f45a67409242",
                 "shasum": null
             },
             "require": {
@@ -1251,7 +1251,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/migrate_plus-8.x-2.0-beta2.zip",
-                "reference": null,
+                "reference": "fc622f3d89cb99151a372cbf3068c2c2617cb75f",
                 "shasum": null
             },
             "require": {
@@ -1309,7 +1309,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/migrate_source_csv-8.x-2.0-beta1.zip",
-                "reference": null,
+                "reference": "eb3336f04afe26f1d0d82954ef07d16cb0d17743",
                 "shasum": null
             },
             "require": {
@@ -1347,7 +1347,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/migrate_tools-8.x-2.0-beta1.zip",
-                "reference": null,
+                "reference": "e23d12cefc71fb35800878078fdb247d1b05307d",
                 "shasum": null
             },
             "require": {
@@ -2150,6 +2150,37 @@
                 "php"
             ],
             "time": "2016-04-19 13:41:41"
+        },
+        {
+            "name": "palantirnet/mayflower-artifacts",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:palantirnet/mayflower-artifacts.git",
+                "reference": "3101cf15f2d10cd83b6ccb21ecdc94355568be4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/palantirnet/mayflower-artifacts/zipball/3101cf15f2d10cd83b6ccb21ecdc94355568be4c",
+                "reference": "3101cf15f2d10cd83b6ccb21ecdc94355568be4c",
+                "shasum": ""
+            },
+            "type": "library",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mathew Peterson",
+                    "email": "peterson@palantir.net"
+                }
+            ],
+            "description": "This repository is the product of the built artifact from massgov/mayflower",
+            "support": {
+                "source": "https://github.com/palantirnet/mayflower-artifacts/tree/0.1.0",
+                "issues": "https://github.com/palantirnet/mayflower-artifacts/issues"
+            },
+            "time": "2016-08-24 16:17:45"
         },
         {
             "name": "palantirnet/the-build",
