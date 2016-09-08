@@ -39,9 +39,13 @@
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
+        "drupal/devel": "~8",
         "drupal/metatag": "^8.1",
+        "drupal/migrate_plus": "~8.2",
+        "drupal/migrate_source_csv": "~8.1",
+        "drupal/migrate_tools": "~8",
         "drupal/pathauto": "^8.1",
-        "mikeyp/google_tag": "dev-8.x-1.x#db4430ac94e1a0c8bc9524bad2b0a811a68ad930",
+        "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/the-build": "dev-master"
     },
     "require-dev": {
@@ -60,7 +64,6 @@
         "sculpin/sculpin-theme-composer-plugin": "dev-master as 1.0.0"
     },
     "suggest": {
-        "cweagans/composer-patches": "Try ^1.0. Apply patches to packages, especially Drupal.org contrib."
     },
     "conflict": {
         "drupal/drupal": "*"
