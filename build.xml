@@ -20,7 +20,6 @@
     <!-- Target: install -->
     <target name="install" description="Install the application.">
         <phingcall target="drupal-install" />
-        <exec command="drush cim -y" />
 
         <drush command="pm-enable" assume="yes">
             <param>devel</param>

@@ -9,14 +9,7 @@ dependencies:
     - field.field.node.action.field_lede
     - node.type.action
   module:
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 id: node.action.teaser
 targetEntityType: node
 bundle: action

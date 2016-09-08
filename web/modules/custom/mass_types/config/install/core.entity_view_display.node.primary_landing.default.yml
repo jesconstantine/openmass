@@ -6,14 +6,7 @@ dependencies:
     - field.field.node.primary_landing.field_lede
     - node.type.primary_landing
   module:
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 id: node.primary_landing.default
 targetEntityType: node
 bundle: primary_landing

@@ -9,14 +9,7 @@ dependencies:
     - field.field.node.agency.field_agency_phone
     - node.type.agency
   module:
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 id: node.agency.default
 targetEntityType: node
 bundle: agency

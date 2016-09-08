@@ -8,14 +8,7 @@ dependencies:
     - field.field.node.action_landing.field_secondary_landings
     - node.type.action_landing
   module:
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 id: node.action_landing.teaser
 targetEntityType: node
 bundle: action_landing

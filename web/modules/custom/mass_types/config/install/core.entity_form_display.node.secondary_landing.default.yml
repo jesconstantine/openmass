@@ -6,8 +6,6 @@ dependencies:
     - field.field.node.secondary_landing.field_lede
     - field.field.node.secondary_landing.field_primary_landing_parent
     - node.type.secondary_landing
-  module:
-    - workbench_moderation
 id: node.secondary_landing.default
 targetEntityType: node
 bundle: secondary_landing

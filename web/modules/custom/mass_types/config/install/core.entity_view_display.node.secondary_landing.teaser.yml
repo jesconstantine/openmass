@@ -8,14 +8,7 @@ dependencies:
     - field.field.node.secondary_landing.field_primary_landing_parent
     - node.type.secondary_landing
   module:
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 id: node.secondary_landing.teaser
 targetEntityType: node
 bundle: secondary_landing
