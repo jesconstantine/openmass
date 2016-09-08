@@ -5,8 +5,6 @@ dependencies:
     - field.field.node.primary_landing.field_actions
     - field.field.node.primary_landing.field_lede
     - node.type.primary_landing
-  module:
-    - workbench_moderation
 id: node.primary_landing.default
 targetEntityType: node
 bundle: primary_landing
