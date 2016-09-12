@@ -44,14 +44,16 @@
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
         "drupal/devel": "~8",
+        "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/metatag": "^8.1",
         "drupal/migrate_plus": "~8.2",
         "drupal/migrate_source_csv": "~8.1",
         "drupal/migrate_tools": "~8",
+        "drupal/paragraphs": "~8.1.0",
         "drupal/pathauto": "^8.1",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
-        "palantirnet/the-build": "dev-master",
-        "palantirnet/mayflower-artifacts": "0.1.0"
+        "palantirnet/mayflower-artifacts": "0.1.0",
+        "palantirnet/the-build": "dev-master"
     },
     "require-dev": {
         "behat/behat": "^3.1",
