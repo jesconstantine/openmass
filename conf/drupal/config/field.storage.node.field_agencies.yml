@@ -1,0 +1,21 @@
+uuid: 095344a3-dea4-4747-9116-32b27bc046a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: bSSgZ67XUs_NR04l9i91dqeg5S5iih4V5OxreZjOQvE
+id: node.field_agencies
+field_name: field_agencies
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,27 @@
+uuid: 40db8593-3c63-41b1-899a-944b7820f016
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_action_downloads
+    - node.type.action
+  module:
+    - file
+id: node.action.field_action_downloads
+field_name: field_action_downloads
+entity_type: node
+bundle: action
+label: 'Action Downloads'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: actions/files
+  file_extensions: 'txt pdf doc exe csv'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
