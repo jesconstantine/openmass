@@ -1,0 +1,23 @@
+uuid: 4493de7c-9c2e-4b0f-a88d-db3806d33ef1
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.primary_landing.field_actions
+    - field.field.node.primary_landing.field_lede
+    - node.type.primary_landing
+  module:
+    - user
+_core:
+  default_config_hash: IiQz8tt347t-O_9eQ8_1xB15bh3P9lGhWUMT1CX3axc
+id: node.primary_landing.teaser
+targetEntityType: node
+bundle: primary_landing
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_actions: true
+  field_lede: true
