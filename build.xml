@@ -13,9 +13,14 @@
     <!-- Include theme.xml -->
     <import file="build/theme.xml" />
 
+    <!-- Custom targets for this project. -->
+    <import file="build/mass.xml" />
+
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
         <phingcall target="drupal-build" />
+        <phingcall target="mass-install-libraries" />
+
         <phingcall target="theme-install" />
     </target>
 

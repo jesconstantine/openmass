@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eef5ed2571c1e27a790bb3b9959ec0f2",
-    "content-hash": "72a14611909c79b7f0e71650e5c132c6",
+    "hash": "a422000deeec39071b5662c38f639c78",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -414,6 +413,56 @@
             ],
             "description": "Provides a way to patch Composer packages.",
             "time": "2016-03-28 18:54:21"
+        },
+        {
+            "name": "desandro/imagesloaded",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/desandro/imagesloaded.git",
+                "reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/desandro/imagesloaded/zipball/0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
+                "reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
+                "shasum": ""
+            },
+            "type": "component",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David DeSandro",
+                    "homepage": "http://desandro.com/",
+                    "role": "developer"
+                }
+            ],
+            "description": "JavaScript is all like _You images done yet or what?_",
+            "homepage": "http://imagesloaded.desandro.com",
+            "keywords": [
+                "dom",
+                "images",
+                "javascript",
+                "jquery-plugin",
+                "library",
+                "loaded",
+                "ui"
+            ],
+            "time": "2016-09-02 02:03:18"
+        },
+        {
+            "name": "desandro/masonry",
+            "version": "4.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/desandro/masonry/archive/v4.1.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1185,6 +1234,171 @@
             "time": "2016-06-23 14:14:07"
         },
         {
+            "name": "drupal/dropzonejs",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/dropzonejs.git",
+                "reference": "e28bb330771319ed0b45fbd7cd9535a4ac019805"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/file": "8.*"
+            },
+            "replace": {
+                "drupal/dropzonejs_eb_widget": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/dropzonejs_eb_widget",
+                "drupal/entity_browser": "Required by drupal/dropzonejs_eb_widget",
+                "drupal/file": "Required by drupal/dropzonejs_eb_widget"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "DropzoneJS",
+            "homepage": "https://www.drupal.org/project/dropzonejs",
+            "time": "2016-08-02 19:13:00"
+        },
+        {
+            "name": "drupal/embed",
+            "version": "8.1.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/embed.git",
+                "reference": "135281965da85d0cfa04f3c0c77ce7821dfab662"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a framework for different types of embeds in text editors.",
+            "homepage": "https://www.drupal.org/project/embed",
+            "time": "2016-07-10 18:43:18"
+        },
+        {
+            "name": "drupal/entity_browser",
+            "version": "8.1.0-alpha9",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity_browser.git",
+                "reference": "8a7aeca9f32f17fb672a222bd79251a06647b2fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.0-alpha9.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/entity_browser_entity_form": "self.version",
+                "drupal/entity_browser_example": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/entity_browser_entity_form, drupal/entity_browser_example",
+                "drupal/field": "Required by drupal/entity_browser_example",
+                "drupal/file": "Required by drupal/entity_browser_example",
+                "drupal/inline_entity_form": "Required by drupal/entity_browser_entity_form",
+                "drupal/node": "Required by drupal/entity_browser_example",
+                "drupal/views": "Required by drupal/entity_browser_example"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Janez Urevc",
+                    "homepage": "https://github.com/slashrsm",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Primoz Hmeljak",
+                    "homepage": "https://github.com/primsi",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/1943336/committers",
+                    "role": "contributor"
+                }
+            ],
+            "description": "Provide a generic entity browser/picker/selector.",
+            "homepage": "http://drupal.org/project/entity_browser",
+            "time": "2016-09-14 08:29:31"
+        },
+        {
+            "name": "drupal/entity_embed",
+            "version": "8.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity_embed.git",
+                "reference": "1bc7daad0acb10bfa392bbb63b06e3ec06f0021c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/editor": "8.*",
+                "drupal/embed": "8.*",
+                "drupal/filter": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Allows entities to be embedded using a text editor.",
+            "homepage": "https://www.drupal.org/project/entity_embed",
+            "time": "2016-09-08 18:41:50"
+        },
+        {
             "name": "drupal/entity_reference_revisions",
             "version": "8.1.0",
             "source": {
@@ -1214,6 +1428,50 @@
             "description": "Adds a Entity Reference field type with revision support.",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "time": "2016-07-21 15:50:27"
+        },
+        {
+            "name": "drupal/file_browser",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/file_browser.git",
+                "reference": "ac6bde35e211f976d1e723edfb7f055b0c571601"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/dropzonejs": "8.*",
+                "drupal/dropzonejs_eb_widget": "8.*",
+                "drupal/entity_browser": "8.*",
+                "drupal/entity_embed": "8.*",
+                "drupal/entity_reference": "8.*",
+                "drupal/field": "8.*",
+                "drupal/file": "8.*",
+                "drupal/image": "8.*",
+                "drupal/menu_ui": "8.*",
+                "drupal/node": "8.*",
+                "drupal/path": "8.*",
+                "drupal/text": "8.*",
+                "drupal/views": "8.*"
+            },
+            "replace": {
+                "drupal/file_browser_example": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/file_browser_example"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a default Entity Browser for files, using Masonry and Imagesloaded.",
+            "homepage": "https://www.drupal.org/project/file_browser",
+            "time": "2016-08-29 22:54:08"
         },
         {
             "name": "drupal/metatag",
@@ -1730,6 +1988,17 @@
                 "validator"
             ],
             "time": "2016-07-03 21:52:18"
+        },
+        {
+            "name": "enyo/dropzone",
+            "version": "4.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/enyo/dropzone/archive/v4.3.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2268,12 +2537,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "bb78edcadafe1c3519f2f7ad738d3ec9e2dda8d1"
+                "reference": "8d0e39ca826f17f4fbe62878cba62c36fe1f55cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/bb78edcadafe1c3519f2f7ad738d3ec9e2dda8d1",
-                "reference": "bb78edcadafe1c3519f2f7ad738d3ec9e2dda8d1",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/8d0e39ca826f17f4fbe62878cba62c36fe1f55cb",
+                "reference": "8d0e39ca826f17f4fbe62878cba62c36fe1f55cb",
                 "shasum": ""
             },
             "require": {
@@ -2296,7 +2565,7 @@
                 "source": "https://github.com/palantirnet/the-build/tree/master",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-09-02 22:56:36"
+            "time": "2016-09-08 22:43:57"
         },
         {
             "name": "paragonie/random_compat",
@@ -5273,16 +5542,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "b49a006748a460f8dae6500ec80ed021501ce969"
+                "reference": "16422c4b1ac4286f7caecf5211136dc073191672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/b49a006748a460f8dae6500ec80ed021501ce969",
-                "reference": "b49a006748a460f8dae6500ec80ed021501ce969",
+                "url": "https://api.github.com/repos/composer/composer/zipball/16422c4b1ac4286f7caecf5211136dc073191672",
+                "reference": "16422c4b1ac4286f7caecf5211136dc073191672",
                 "shasum": ""
             },
             "require": {
@@ -5346,7 +5615,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-07-18 23:28:52"
+            "time": "2016-09-12 09:27:20"
         },
         {
             "name": "composer/spdx-licenses",
@@ -7592,6 +7861,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "desandro/imagesloaded": 20,
+        "drupal/file_browser": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "composer/composer": 20,
