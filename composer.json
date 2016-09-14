@@ -1,6 +1,6 @@
 {
-    "name": "palantirnet/drupal-skeleton",
-    "description": "A Drupal 8 project template.",
+    "name": "palantirnet/mass",
+    "description": "A Drupal 8 project for the Commonwealth of Massachusetts.",
     "type": "project",
     "license": "proprietary",
     "authors": [
