@@ -28,5 +28,6 @@ hidden:
   field_action_related: true
   field_actions: true
   field_agencies: true
+  field_hero: true
   field_hero_image: true
   field_lede: true

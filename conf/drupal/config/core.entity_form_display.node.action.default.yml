@@ -72,8 +72,8 @@ content:
       field_widget_remove: '1'
       selection_mode: selection_append
       view_mode: default
-      preview_image_style: thumbnail
       open: 0
+      preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
   field_lede:
@@ -92,6 +92,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_hero: true
   path: true
   promote: true
   sticky: true
