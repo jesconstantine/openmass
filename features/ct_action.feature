@@ -12,8 +12,10 @@ Feature: Action Content type
     | field-lede                       | textarea |          | false      |
     | field-hero-image                 | input    | submit   | false      |
     | field-action-related             | input    | text     | true       |
-    # the downloads field is multivalue but has no good way of testing for it.
+    # the following fields are multivalue but have no good way of testing for it.
     | field-action-downloads           | input    | submit   | false      |
+    | field-action-contacts            | input    | submit   | false      |
+    | field-action-details             | input    | submit   | false      |
 
     Given I am viewing an "action" with the title "Run the Test Suite"
     Then I am at "actions/run-test-suite"
