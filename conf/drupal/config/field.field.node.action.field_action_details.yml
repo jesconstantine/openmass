@@ -1,0 +1,55 @@
+uuid: 8367f2b3-b352-4bbc-845a-cf8e9a5e3422
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_action_details
+    - node.type.action
+    - paragraphs.paragraphs_type.action_step
+    - paragraphs.paragraphs_type.callout_link
+    - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.stat
+    - paragraphs.paragraphs_type.subhead
+  module:
+    - entity_reference_revisions
+id: node.action.field_action_details
+field_name: field_action_details
+entity_type: node
+bundle: action
+label: Details
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      action_step: action_step
+      callout_link: callout_link
+      iframe: iframe
+      rich_text: rich_text
+      stat: stat
+      subhead: subhead
+    target_bundles_drag_drop:
+      action_step:
+        enabled: true
+        weight: 7
+      callout_link:
+        enabled: true
+        weight: 8
+      iframe:
+        enabled: true
+        weight: 9
+      rich_text:
+        enabled: true
+        weight: 10
+      stat:
+        enabled: true
+        weight: 11
+      subhead:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.action.field_action_contacts
+    - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parents
     - field.field.node.action.field_action_related
@@ -12,6 +14,7 @@ dependencies:
     - field.field.node.action.field_lede
     - node.type.action
   module:
+    - entity_reference_revisions
     - file
     - image
     - user
@@ -22,6 +25,22 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
+  field_action_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 110
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_action_details:
+    type: entity_reference_revisions_entity_view
+    weight: 109
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_action_downloads:
     weight: 107
     label: above
