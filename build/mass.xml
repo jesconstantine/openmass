@@ -1,0 +1,39 @@
+<project name="ah-lib" default="tmp">
+
+    <fail unless="projectname" />
+    <fail unless="build.dir" />
+    <fail unless="build.env" />
+
+
+    <target name="tmp">
+        <echo>Mass.gov!</echo>
+    </target>
+
+
+    <target name="mass-install-libraries">
+        <delete dir="${build.dir}/${drupal.root}/libraries/" />
+        <mkdir dir="${build.dir}/${drupal.root}/libraries/" />
+
+        <resolvepath propertyname="vendor_path" file="vendor" />
+        <resolvepath propertyname="libraries_path" file="${drupal.root}/libraries" />
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/desandro/imagesloaded" />
+            <property name="resource_dest" value="${libraries_path}/imagesloaded" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/desandro/masonry" />
+            <property name="resource_dest" value="${libraries_path}/masonry" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/enyo/dropzone" />
+            <property name="resource_dest" value="${libraries_path}/dropzone" />
+        </phing>
+    </target>
+
+</project>

@@ -1,0 +1,21 @@
+uuid: b3b7b5a6-93de-48c8-9d64-687b79cb09bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lede
+    - node.type.action_landing
+_core:
+  default_config_hash: R5sjPtsYdA-tDbN_1SB_KhwR-QJr9OpcmJnO2RzbYwM
+id: node.action_landing.field_lede
+field_name: field_lede
+entity_type: node
+bundle: action_landing
+label: Lede
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
