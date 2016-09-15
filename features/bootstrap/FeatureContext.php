@@ -73,11 +73,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     // All content types have a title.
     $this->minkContext->assertElementOnPage('#edit-title-0-value');
     foreach ($fieldsTable->getHash() as $row) {
-      // Expand taxonomy field set so the sections field is visible.
-      if ($row['field'] == 'field-ref-sections') {
-        $this->minkContext->clickLink('Taxonomies');
-      }
-
       // Get all IDs that start with our field name. D8 prints fields
       // differently than D7, so this is necessary.
       $css_selector = '[id^=edit-' . $row['field'] . ']';
