@@ -1,0 +1,22 @@
+uuid: 2ec23c05-107c-4e6f-884a-9cc0ad8f3475
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.subhead.field_title
+    - paragraphs.paragraphs_type.subhead
+id: paragraph.subhead.default
+targetEntityType: paragraph
+bundle: subhead
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

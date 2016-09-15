@@ -1,0 +1,37 @@
+uuid: fe9a21fa-7020-4593-ba60-2e818b5e95d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.iframe.field_height
+    - field.field.paragraph.iframe.field_url
+    - paragraphs.paragraphs_type.iframe
+  module:
+    - link
+id: paragraph.iframe.default
+targetEntityType: paragraph
+bundle: iframe
+mode: default
+content:
+  field_height:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_url:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  created: true
+  uid: true
