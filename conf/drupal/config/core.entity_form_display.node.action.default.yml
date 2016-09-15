@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.action.field_action_contacts
+    - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parents
     - field.field.node.action.field_action_related
@@ -13,6 +15,7 @@ dependencies:
     - node.type.action
   module:
     - entity_browser
+    - paragraphs
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
@@ -20,6 +23,26 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
+  field_action_contacts:
+    type: entity_reference_paragraphs
+    weight: 40
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_action_details:
+    type: entity_reference_paragraphs
+    weight: 39
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
   field_action_downloads:
     weight: 37
     settings:
