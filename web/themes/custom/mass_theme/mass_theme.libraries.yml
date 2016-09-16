@@ -12,3 +12,7 @@ global-styling:
     js/index-generated.js: {}
   dependencies:
     - core/jquery
+js-header:
+  header: true
+  js:
+    js/vendor/modernizr.js: {}
