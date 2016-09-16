@@ -5,6 +5,7 @@ global-styling:
       https://cloud.typography.com/7638692/6594352/css/fonts.css: { type: external }
       css/index-generated.css: {}
       css/base-theme-generated.css: {}
+      css/pilot-generated.css: {}
   js:
     # This is in the styleguide, but not sure if we need it.
     # js/vendor-generated.js: {}
