@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby', 'class') }} class="ma__header__nav {{ attributes.class }}">
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('aria-labelledby', 'class') }} class="ma__header__nav {{ attributes.class }}">
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
@@ -69,7 +69,7 @@
       </section>
     </div>
     <div class="ma__header__main-nav">
-      <section class="ma__main-nav">
+      <section class="ma__main-nav" id="{{ heading_id }}">
       {# Menu. #}
       {% block content %}
         {{ content }}
