@@ -108,7 +108,7 @@
         "drupal/devel": "dev-8.x-1.x",
         "drupal/drupal-extension": "^3.1",
         "drush/drush": "^8.0",
-        "palantirnet/palantir-behat-extension": "dev-drupal8",
+        "palantirnet/palantir-behat-extension": "dev-drupal8"
     },
     "suggest": {
     },
