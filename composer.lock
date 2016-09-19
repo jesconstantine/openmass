@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9ba34d35d80302c0bc10ea979a256725",
-    "content-hash": "111e5703e09e56e2c55e26fbb33e6895",
+    "hash": "1b506d94744e6281a208bf1ae2eff927",
+    "content-hash": "2389f9ee91f152475ef662a1197ebbb8",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -7918,14 +7918,7 @@
             "time": "2014-04-23 09:31:03"
         }
     ],
-    "aliases": [
-        {
-            "alias": "1.0.0",
-            "alias_normalized": "1.0.0.0",
-            "version": "9999999-dev",
-            "package": "sculpin/sculpin-theme-composer-plugin"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "desandro/imagesloaded": 20,
@@ -7937,8 +7930,6 @@
         "dflydev/embedded-composer-core": 20,
         "drupal/devel": 20,
         "palantirnet/palantir-behat-extension": 20,
-        "palantirnet/the-vagrant": 20,
-        "sculpin/sculpin-theme-composer-plugin": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
