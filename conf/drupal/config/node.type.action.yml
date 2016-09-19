@@ -1,0 +1,19 @@
+uuid: 45a6c544-cd1b-484a-b581-1d3d2acf0417
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: MIEPOXSjmHs22jLWsHvsCMqX6JyMpoUGOptqPWCLKFc
+name: Action
+type: action
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

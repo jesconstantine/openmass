@@ -1,0 +1,76 @@
+uuid: 26dc8f08-facd-4524-99c7-a4a8a5d8d9a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_parents
+    - field.field.node.action.field_action_related
+    - field.field.node.action.field_actions
+    - field.field.node.action.field_agencies
+    - field.field.node.action.field_hero_image
+    - field.field.node.action.field_lede
+    - node.type.action
+  module:
+    - file
+    - image
+    - user
+_core:
+  default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
+id: node.action.default
+targetEntityType: node
+bundle: action
+mode: default
+content:
+  field_action_downloads:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  field_action_parents:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_action_related:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_actions:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_agencies:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_hero_image:
+    weight: 108
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_lede:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
