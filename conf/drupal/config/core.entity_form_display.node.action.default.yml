@@ -6,8 +6,6 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parents
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_actions
-    - field.field.node.action.field_agencies
     - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
     - node.type.action
@@ -42,22 +40,6 @@ content:
     type: entity_reference_autocomplete
   field_action_related:
     weight: 36
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-  field_actions:
-    weight: 33
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-  field_agencies:
-    weight: 34
     settings:
       match_operator: CONTAINS
       size: 60
