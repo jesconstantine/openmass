@@ -15,6 +15,7 @@
 
     <!-- Custom targets for this project. -->
     <import file="build/mass.xml" />
+    <import file="build/mass-build.xml" />
 
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
@@ -69,7 +70,7 @@
 
     <!-- Target: test -->
     <target name="test" description="Run all the tests.">
-        <echo>Configure this target to run the tests.</echo>
+        <phingcall target="mass-drupal-test" />
     </target>
 
 
