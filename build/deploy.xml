@@ -154,7 +154,7 @@ ${modified_files}
 
         <!-- This is standard -->
         <phing target="deploy" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
-            <property name="build.env" value="acquia" />
+            <property name="build.env" value="acquia-dev" />
             <property name="push" value="y" />
         </phing>
 
