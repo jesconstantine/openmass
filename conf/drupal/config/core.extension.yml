@@ -28,6 +28,7 @@ module:
   help: 0
   history: 0
   image: 0
+  inline_form_errors: 0
   link: 0
   mass_content: 0
   mass_types: 0
@@ -49,7 +50,6 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  tour: 0
   update: 0
   user: 0
   views_ui: 0
