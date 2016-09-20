@@ -1,0 +1,22 @@
+{% extends 'node.html.twig' %}
+
+{% block preContent %}
+  {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
+  {{ drupal_block('breadcrumbs') }}
+  {# include "organisms-page-header" #}
+  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+{% endblock %}
+{% block pageContent %}
+  {# @TODO include "organisms-action-details" #}
+  {{ content|without('field_action_related', 'field_action_downloads') }}
+{% endblock %}
+{% block sidebar %}
+  {# include "organisms-related-actions" #}
+  {{ content.field_action_related }}
+  {{ content.field_action_downloads}}
+  {# @TODO include "organisms-contact-us" #}
+{% endblock %}
+{% block postContent %}
+  {# include "organisms-breadcrumbs" #}
+  {{ drupal_block('breadcrumbs') }}
+{% endblock %}
