@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
-    - field.field.node.action.field_action_parents
+    - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_actions
     - field.field.node.action.field_agencies
@@ -47,7 +47,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
-  field_action_parents:
+  field_action_parent:
     weight: 102
     label: above
     settings:

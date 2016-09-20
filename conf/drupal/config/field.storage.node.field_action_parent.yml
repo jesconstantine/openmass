@@ -6,15 +6,15 @@ dependencies:
     - node
 _core:
   default_config_hash: 85IbbeZQ4mkO1C2xmiDmPdQ3NU-u8f0F9QO-GhBuDaI
-id: node.field_action_parents
-field_name: field_action_parents
+id: node.field_action_parent
+field_name: field_action_parent
 entity_type: node
 type: entity_reference
 settings:
   target_type: node
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

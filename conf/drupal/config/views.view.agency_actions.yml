@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_action_parents
+    - field.storage.node.field_action_parent
     - node.type.action
   module:
     - node
@@ -59,7 +59,7 @@ display:
         options:
           grouping:
             -
-              field: field_action_parents
+              field: field_action_parent
               rendered: true
               rendered_strip: false
           row_class: ''
@@ -72,10 +72,10 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
-        field_action_parents:
-          id: field_action_parents
-          table: node__field_action_parents
-          field: field_action_parents
+        field_action_parent:
+          id: field_action_parent
+          table: node__field_action_parent
+          field: field_action_parent
           relationship: none
           group_type: group
           admin_label: ''
@@ -268,7 +268,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_action_parents'
+        - 'config:field.storage.node.field_action_parent'
   block_1:
     display_plugin: block
     id: block_1
@@ -285,4 +285,4 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_action_parents'
+        - 'config:field.storage.node.field_action_parent'

@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
-    - field.field.node.action.field_action_parents
+    - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_actions
     - field.field.node.action.field_agencies
@@ -55,7 +55,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
-  field_action_parents:
+  field_action_parent:
     weight: 32
     settings:
       match_operator: CONTAINS
