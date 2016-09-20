@@ -78,7 +78,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $css_selector = '[id^=edit-' . $row['field'] . ']';
 
       $this->minkContext->assertElementOnPage($css_selector);
-      $this->assertFieldType($css_selector, $row['tag'], $row['type']);
+      $this->assertFieldType('edit-' . $row['field'], $row['tag'], $row['type']);
       $this->assertFieldMultivalue($row['field'], filter_var($row['multivalue'], FILTER_VALIDATE_BOOLEAN));
     }
   }
@@ -117,11 +117,11 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @throws \Exception
    */
   public function assertFieldType($field, $expectedTag, $expectedType = '') {
-    $validTags = array('textarea', 'input', 'select');
-    if (!in_array($expectedTag, $validTags)){
-      throw new Exception(sprintf('%s is not a field tag we know how to validate.', $expectedTag));
-    }
     $callback = 'assert' . ucfirst($expectedTag);
+    if (!method_exists($this, $callback)) {
+      throw new Exception(sprintf('%s is not a field tag we know how to validate.',
+        $expectedTag));
+    }
     $this->$callback($field, $expectedType);
   }
   /**
@@ -132,7 +132,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @throws Exception
    */
   public function assertTextarea($field, $expectedType) {
-    $element = $this->getSession()->getPage()->find('css', $field);
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . '-wrapper]');
     if (NULL == $element->find('css', 'textarea.form-textarea')) {
       throw new Exception(sprintf("Couldn't find %s of type textarea.", $field));
     }
@@ -145,8 +145,36 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @throws Exception
    */
   public function assertInput($field, $expectedType) {
-    $element = $this->getSession()->getPage()->find('css', $field);
-    if (NULL == $element->find('css', 'input[type="' . $expectedType . '"]')) {
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . ']');
+    if (NULL == $element || NULL == $element->find('css', 'input[type="' . $expectedType . '"]')) {
+      throw new Exception(sprintf("Couldn't find %s of type %s", $field, $expectedType));
+    }
+  }
+
+  /**
+   * Verify the field is an input field of the given type.
+   *
+   * @param $field
+   * @param $expectedType
+   * @throws Exception
+   */
+  public function assertTextfield($field, $expectedType) {
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . '-wrapper]');
+    if (NULL == $element || NULL == $element->find('css', 'input[type="' . $expectedType . '"]')) {
+      throw new Exception(sprintf("Couldn't find %s of type %s", $field, $expectedType));
+    }
+  }
+
+  /**
+   * Verify the field is an input field of the given type.
+   *
+   * @param $field
+   * @param $expectedType
+   * @throws Exception
+   */
+  public function assertFile($field, $expectedType) {
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . '-wrapper]');
+    if (NULL == $element || NULL == $element->find('css', 'input[type="file"]')) {
       throw new Exception(sprintf("Couldn't find %s of type %s", $field, $expectedType));
     }
   }
@@ -158,9 +186,28 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @throws Exception
    */
   public function assertSelect($field, $expectedType) {
-    $element = $this->getSession()->getPage()->find('css', $field);
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . '-wrapper]');
     if (NULL == $element->find('css', 'select.form-select')) {
       throw new Exception(sprintf("Couldn't find %s of type select.", $field));
+    }
+    // Verify that the select list is not part of a multivalue widget.
+    if (!$element->find('css', 'select.form-select')->isVisible()) {
+      throw new Exception(sprintf("Couldn't find %s of type select.", $field));
+    }
+  }
+
+  /**
+   * Verify the field is a paragraph field.
+   *
+   * @param $field
+   * @param $expectedType
+   * @throws Exception
+   */
+  public function assertParagraphs($field, $expectedType = '') {
+    $element = $this->getSession()->getPage()->find('css', '[id^=' . $field . '-wrapper]');
+
+    if (NULL == $element || NULL == $element->find('css', '[id^=' . $field . '-add-more-add-more-button-' . $expectedType . ']')) {
+      throw new Exception(sprintf("Couldn't find %s of paragraph type %s", $field, $field . '-add-more-add-more-button-' . $expectedType));
     }
   }
 }
