@@ -41,30 +41,76 @@
  *
  * @see template_preprocess_page()
  * @see html.html.twig
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<div class="layout-container">
-  <header role="banner">
-    {{ page.header }}
-  </header>
+<header class="ma__header">
+  <a href="#main-content" class="ma__header__skip-nav visually-hidden focusable">
+    {{ 'Skip navigation'|t }}
+  </a>
+  <div class="ma__header__backto">
+    <a href="http://www.mass.gov">Back to Mass.Gov</a>
+  </div>
+  <div class="ma__header__container">
+    <div class="ma__header__logo">
+      {# include "atoms-site-logo" #}
+      <div class="ma__site-logo">
+        <a href="/" title="Mass Gov home page">
+          <img src="{{ base_path ~ directory }}/images/logo.png" alt="Mass Gov" width="210" height="66" />
+        </a>
+      </div>
+      {# end "atoms-site-logo" #}
+    </div>
+    <div class="ma__header__search js-header-search-menu">
+      {# include "molecules-header-search" #}
+      <section class="ma__header-search">
+        <form action="#" class="js-header-search-form">
+          <label
+              for="header-search"
+              class="ma__header-search__label">Array</label>
+          <input
+              id="header-search"
+              class="ma__header-search__input"
+              placeholder="What can we help you find?"
+              type="text" />
+          <button type="submit" class="ma__button-search">
+        <span>Search</span>
+        <svg role="img" class="ma__button-search__icon">
+          <use xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#search"></use>
+        </svg>
+      </button>
+        </form>
+      </section>
+      {# end "molecules-header-search" #}
+    </div>
+  </div>
+  {{ page.header }}
+</header>
 
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
-  {{ page.help }}
-
+<main role="main">
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-  {{ page.content }}
+  <div class="layout-content">
+    {{ page.content }}
+  </div>{# /.layout-content #}
 
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
+  {% if page.sidebar_first %}
+    <aside class="layout-sidebar-first" role="complementary">
+      {{ page.sidebar_first }}
+    </aside>
   {% endif %}
 
-</div>{# /.layout-container #}
+  {% if page.sidebar_second %}
+    <aside class="layout-sidebar-second" role="complementary">
+      {{ page.sidebar_second }}
+    </aside>
+  {% endif %}
+
+</main>
+
+{% if page.footer %}
+  <footer role="contentinfo">
+    {{ page.footer }}
+  </footer>
+{% endif %}

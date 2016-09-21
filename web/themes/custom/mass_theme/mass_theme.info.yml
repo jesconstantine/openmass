@@ -5,13 +5,14 @@ package: Custom
 core: 8.x
 libraries:
   - mass_theme/global-styling
+  - mass_theme/js-header
 
 base theme: stable
 
 regions:
-  content: Content
   header: Header
   pre_content: Pre Content
+  content: Content
   sidebar: Sidebar
   post_content: Post Content
   footer: Footer

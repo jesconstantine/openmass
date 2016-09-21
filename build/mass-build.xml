@@ -1,0 +1,19 @@
+<project name="mass-build" default="status">
+
+  <target name="mass-drupal-test" description="Run Drupal tests.">
+      <property name="build.test_output" value="/dev/null" />
+
+      <if>
+          <available file="${build.test_output}" type="dir" />
+          <then>
+              <property name="behat.args" value="--strict --format=junit --out=${build.test_output}/behat" />
+          </then>
+          <else>
+              <property name="behat.args" value="" />
+          </else>
+      </if>
+
+      <exec command="vendor/bin/behat ${behat.args}" checkreturn="true" logoutput="true" />
+  </target>
+
+</project>
