@@ -8,8 +8,6 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_actions
-    - field.field.node.action.field_agencies
     - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
     - node.type.action
@@ -56,20 +54,6 @@ content:
     type: entity_reference_label
   field_action_related:
     weight: 106
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_actions:
-    weight: 103
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_agencies:
-    weight: 104
     label: above
     settings:
       link: true

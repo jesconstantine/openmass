@@ -1,0 +1,26 @@
+uuid: f8a3873f-490a-4e86-8599-4a250b6d3257
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.subtopic.body
+    - node.type.subtopic
+  module:
+    - text
+    - user
+id: node.subtopic.teaser
+targetEntityType: node
+bundle: subtopic
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden: {  }

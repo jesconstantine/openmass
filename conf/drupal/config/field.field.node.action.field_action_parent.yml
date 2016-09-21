@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_action_parent
     - node.type.action
-    - node.type.action_landing
+    - node.type.subtopic
 _core:
   default_config_hash: L0Xfot9Hqhr3g2YS5LnfiHFBLmnkOtMeAXrPHqckcZ4
 id: node.action.field_action_parent
@@ -22,9 +22,9 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      action_landing: action_landing
+      subtopic: subtopic
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: action_landing
 field_type: entity_reference

@@ -210,4 +210,26 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new Exception(sprintf("Couldn't find %s of paragraph type %s", $field, $field . '-add-more-add-more-button-' . $expectedType));
     }
   }
+
+  /**
+   *
+   * @Then the :region region contains the following links:
+   *
+   * @param String $region
+   * @param TableNode $links
+   *
+   * @throws \Exception
+   */
+  public function assertRegionLinks($region, $links) {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    foreach ($links->getHash() as $row) {
+      /*$this->minkContext->assertElementOnPage('#edit-' . $row['field'] );
+      $this->assertFieldType('#edit-' . $row['field'], $row['tag'], $row['type']);*/
+      $link = $regionObj->findLink($row['link']);
+      if (empty($link)) {
+        throw new \Exception(sprintf('The link "%s" was not found in the "%s" region on the page %s', $row['link'], $region, $this->getSession()->getCurrentUrl()));
+      }
+    }
+  }
 }

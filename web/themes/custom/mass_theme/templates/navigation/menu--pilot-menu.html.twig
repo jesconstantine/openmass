@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{#
+  Lots of customizations here, via: https://medium.com/integral-vision/drupal-8-twig-add-custom-css-classes-to-menus-based-on-menu-name-35b50142521a#.36j5bh2z4
+#}
+{{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level, parent) %}
+  {% import _self as menus %}
+  {%
+  set menu_classes = [
+    'ma__main-nav__items',
+    'js-main-nav'
+  ]
+  %}
+  {%
+    set submenu_classes = [
+      'ma__main-nav__container'
+    ]
+  %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass(menu_classes) }}>
+    {% else %}
+      <div class="ma__main-nav__subitems js-main-nav-content is-closed">
+        <ul {{ attributes.removeClass(menu_classes).addClass(submenu_classes) }}>
+          <li class="ma__main-nav__subitem">
+            {{
+              link(
+                parent.title,
+                parent.url,
+                parent.attributes.addClass("ma__main-nav__link").removeClass("ma__main-nav__top-link")
+              )
+            }}
+          </li>
+    {% endif %}
+    {% for item in items %}
+      {%
+        set item_classes = [
+          menu_level == 0 ? 'ma__main-nav__item',
+          menu_level > 0 ? 'ma__main-nav__subitem',
+          item.is_expanded ? 'has-subnav js-main-nav-toggle',
+          item.in_active_trail ? 'is-active'
+        ]
+      %}
+      <li{{ item.attributes.addClass(item_classes) }}>
+        {% set link_top = menu_level == 0 ? 'top-' %}
+        {{
+          link(
+            item.title,
+            item.url,
+            item.attributes.addClass('ma__main-nav__' ~ link_top ~ 'link').removeClass(item_classes)
+          )
+        }}
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, item) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

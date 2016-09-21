@@ -16,4 +16,5 @@ function mass_content_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.example_agency')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.example_primary_landing')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.example_secondary_landing')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.pilot_menu')->delete();
 }

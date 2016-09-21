@@ -3,6 +3,7 @@ default:
     default:
       contexts:
         - FeatureContext
+        - MassMarkupContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
@@ -26,3 +27,5 @@ default:
         log_out: 'Log out'
       region_map:
         anywhere: "*"
+        body: "body"
+        header: "header.ma__header"
