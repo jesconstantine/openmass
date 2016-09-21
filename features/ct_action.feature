@@ -15,5 +15,6 @@ Feature: Action Content type
     # the downloads field is multivalue but has no good way of testing for it.
     | field-action-downloads           | input    | submit   | false      |
 
+  Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"
     Then I am at "actions/run-test-suite"
