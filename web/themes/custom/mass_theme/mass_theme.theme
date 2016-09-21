@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the academyhealth theme.
+ */
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function mass_theme_preprocess_block(&$variables) {
+  // Get base_path into our block.twig templates
+  // http://data.agaric.com/how-get-base-path-your-drupal-8-site-twig-template
+  $variables['base_path'] = base_path();
+}
