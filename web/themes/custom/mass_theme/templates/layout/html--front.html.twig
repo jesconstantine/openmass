@@ -904,6 +904,15 @@
       <div class="ma__footer__copyright">
         <p><b>&copy; 2016 Commonwealth of Massachusetts.</b></p>
         <p>Mass.Gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</p>
+        {#
+          The log-out link is required to be on the page becuase the behat tests
+          rely on a logout link being present on the front page of the site
+          to determine log-in status. It is a little janky, but does reflect how
+          Drupal's simpletests check log-in status.
+        #}
+        {% if logged_in %}
+          <a href="/user/logout">Log out</a>
+        {% endif %}
       </div>
     </section>
   </div>
