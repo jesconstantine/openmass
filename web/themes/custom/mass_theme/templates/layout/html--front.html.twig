@@ -7,16 +7,16 @@
  */
 #}
 
-{% set link_unemployment = 'actions/file-for-unemployment' %}
-{% set link_masshealth = 'actions/apply-for-masshealth-coverage' %}
-{% set link_snap = 'actions/apply-for-snap-benefits' %}
-{% set link_jury_duty = 'actions/respond-jury-duty-summons' %}
+{% set link_unemployment = 'actions/file-unemployment-ma' %}
+{% set link_masshealth = 'actions/apply-masshealth-coverage' %}
+{% set link_snap = 'actions/apply-snap-benefits' %}
+{% set link_jury_duty = 'actions/respond-summons-jury-duty' %}
 {% set link_state_park = 'actions/find-state-park' %}
-{% set link_nursing_license = 'actions/apply-for-nursing-license' %}
-{% set link_child_support = 'actions/get-child-support-order' %}
-{% set link_fishing = 'actions/buy-freshwater-fishing-license' %}
+{% set link_nursing_license = 'actions/apply-nursing-license' %}
+{% set link_child_support = 'actions/arrangingpaying-child-support' %}
+{% set link_fishing = 'actions/apply-fresh-water-fishing-license' %}
 {% set link_state_job = 'actions/get-state-job' %}
-{% set link_register_business = 'actions/register-your-business' %}
+{% set link_register_business = 'actions/register-business' %}
 
 <!DOCTYPE html>
 <html class="pl" lang="en">
@@ -24,7 +24,7 @@
     <title>Mass Gov</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
-     
+
     <!-- TODO replace the fonts before launch to production with client's kit -->
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7638692/6594352/css/fonts.css" />
 
@@ -71,13 +71,13 @@
     <div class="ma__header__search js-header-search-menu">
       <section class="ma__header-search">
   <form action="#" class="js-header-search-form">
-    <label 
+    <label
         for="header-search"
         class="ma__header-search__label">Array</label>
-    <input 
-        id="header-search" 
+    <input
+        id="header-search"
         class="ma__header-search__input"
-        placeholder="What can we help you find?" 
+        placeholder="What can we help you find?"
         type="text" />
     <button type="submit" class="ma__button-search">
   <span>Search</span>
@@ -100,13 +100,13 @@
       <div class="ma__header__nav-search">
         <section class="ma__header-search">
   <form action="#" class="js-header-search-form">
-    <label 
+    <label
         for="header-search"
         class="ma__header-search__label">Array</label>
-    <input 
-        id="header-search" 
+    <input
+        id="header-search"
         class="ma__header-search__input"
-        placeholder="What can we help you find?" 
+        placeholder="What can we help you find?"
         type="text" />
     <button type="submit" class="ma__button-search">
   <span>Search</span>
@@ -144,15 +144,15 @@
               </li>
       </ul>
 </section>
- 
+
               </div>
       <div class="ma__header__utility-nav">
         <section class="ma__utility-nav js-util-nav">
   <ul class="ma__utility-nav__items">
     <li class="ma__utility-nav__item js-util-nav-toggle">
-      <a 
-        class="ma__utility-nav__link" 
-        href="#" 
+      <a
+        class="ma__utility-nav__link"
+        href="#"
         title="Site Settings">
         <svg focusable="false" role="presentation" class="svg-settings">
   <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#settings"></use>
@@ -191,12 +191,12 @@
       <div class="ma__settings-util__theme js-site-settings-theme">
         <section class="ma__dropdown js-dropdown">
   <label
-    for="color-select" 
+    for="color-select"
     class="ma__dropdown__label">Color Scheme:</label>
   <div class="ma__dropdown__field">
     <select
       name="color-select"
-      id="color-select" 
+      id="color-select"
       class="ma__dropdown__select js-dropdown-select">
       <option value="">Default color scheme</option>
       <option value="has-theme-black">White on Black scheme</option>
@@ -208,12 +208,12 @@
       <div class="ma__settings-util__lang js-site-settings-lang">
         <!-- <section class="ma__dropdown js-dropdown">
   <label
-    for="color-select" 
+    for="color-select"
     class="ma__dropdown__label">Color Scheme:</label>
   <div class="ma__dropdown__field">
     <select
       name="color-select"
-      id="color-select" 
+      id="color-select"
       class="ma__dropdown__select js-dropdown-select">
       <option value="">Default color scheme</option>
       <option value="has-theme-black">White on Black scheme</option>
@@ -223,8 +223,8 @@
   </div>
 </section> -->
         <section class="ma__dropdown js-dropdown">
-          <label 
-            for="lang-select" 
+          <label
+            for="lang-select"
             class="ma__dropdown__label">Language:</label>
           <div class="ma__dropdown__field">
             <select
@@ -250,15 +250,15 @@
 </svg>
       </button>
     </div>
-  </section> 
+  </section>
 </form>
           </div>
         </div>
       </div>
     </li>
     <li class="ma__utility-nav__item js-util-nav-toggle">
-      <a class="ma__utility-nav__link" 
-        href="#" 
+      <a class="ma__utility-nav__link"
+        href="#"
         title="Alerts">
         <svg focusable="false" role="presentation" class="svg-alerts">
   <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#alerts"></use>
@@ -297,8 +297,8 @@
       </div>
     </li>
     <li class="ma__utility-nav__item js-util-nav-toggle">
-      <a class="ma__utility-nav__link" 
-        href="#" 
+      <a class="ma__utility-nav__link"
+        href="#"
         title="State Services">
         <svg focusable="false" role="presentation" class="svg-building">
   <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#building"></use>
@@ -323,8 +323,8 @@
       </div>
     </li>
     <li class="ma__utility-nav__item js-util-nav-toggle">
-      <a class="ma__utility-nav__link" 
-        href="#" 
+      <a class="ma__utility-nav__link"
+        href="#"
         title="login to ...">
         <svg focusable="false" role="presentation" class="svg-login">
   <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#login"></use>
@@ -458,7 +458,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--blue">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-apple">
@@ -474,7 +474,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-apple">
@@ -490,7 +490,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--dark-gray">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-gavel">
@@ -506,7 +506,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--blue">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-campfire">
@@ -522,7 +522,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--green">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-certificate">
@@ -538,7 +538,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--dark-gray">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-family">
@@ -554,7 +554,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-id-card">
@@ -570,7 +570,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--green">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-bag-search">
@@ -586,7 +586,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
           <div class="ma__action-card__item js-clickable ma__action-card__item--blue">
         <div class="ma__action-card__icon">
           <svg focusable="false" role="presentation" class="svg-server-rack">
@@ -602,7 +602,7 @@
 </a>
           </h3>
         </div>
-      </div> 
+      </div>
       </div>
 </section>  <section class="ma__personal-message">
   <div class="ma__personal-message__container">
@@ -620,8 +620,8 @@
           <div class="ma__blog-feed__item">
         <div class="ma__blog-feed__image-wrapper">
           <a href="#" target="_blank">
-            <img 
-              src="/themes/custom/mass_theme/images/placeholder/320x180.png" 
+            <img
+              src="/themes/custom/mass_theme/images/placeholder/320x180.png"
               alt="something about this image"
               width="320"
               height="180" />
@@ -643,8 +643,8 @@
           <div class="ma__blog-feed__item">
         <div class="ma__blog-feed__image-wrapper">
           <a href="#" target="_blank">
-            <img 
-              src="/themes/custom/mass_theme/images/placeholder/320x180.png" 
+            <img
+              src="/themes/custom/mass_theme/images/placeholder/320x180.png"
               alt="something about this image"
               width="320"
               height="180" />
@@ -776,12 +776,12 @@
         <div class="ma__feedback-form__type">
           <section class="ma__select-box js-dropdown">
   <label
-    for="color-select" 
+    for="color-select"
     class="ma__select-box__label">Type of Feedback</label>
   <div class="ma__select-box__field">
     <select
       name="color-select"
-      id="color-select" 
+      id="color-select"
       class="ma__select-box__select js-dropdown-select">
               <option value="design">Visual Feedback</option>
               <option value="development">Functionality</option>
@@ -822,7 +822,7 @@
   </button>
   <div class="ma__footer__container">
     <div class="ma__footer__nav">
-      
+
   <section class="ma__footer-links">
     <ul class="ma__footer-links__items">
       <li class="ma__footer-links__item"><a href="#" class="ma__footer-links__link">Living</a></li>
@@ -908,7 +908,7 @@
     </section>
   </div>
 </footer>
-  
+
   <!--DO NOT REMOVE-->
   <script type="text/json" id="sg-pattern-data-footer" class="sg-pattern-data">
   {"cssEnabled":false,"lineage":[{"lineagePattern":"organisms-collage-header","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-action-card","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-personal-message","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-blog-feed","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-change-log","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-test-feed","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"},{"lineagePattern":"organisms-feedback-form","lineagePath":"..\/..\/patterns\/05-pages-pilot-home\/05-pages-pilot-home.html"}],"lineageR":[],"patternBreadcrumb":{"patternType":"pages"},"patternDesc":"","patternExtension":"twig","patternName":"pilot home","patternPartial":"pages-pilot-home","patternState":"","extraOutput":[]}
@@ -922,7 +922,7 @@
   * Licensed under the MIT license
   *
   */
-  
+
   var scriptLoader = {
     run: function(js,cb,target) {
       var s  = document.getElementById(target+'-'+cb);
@@ -967,7 +967,7 @@
     }
   })();
 </script>
-  
+
   <script src="/themes/custom/mass_theme/js/vendor-generated.js"></script>
   <script src="/themes/custom/mass_theme/js/index-generated.js"></script>
   </body>
