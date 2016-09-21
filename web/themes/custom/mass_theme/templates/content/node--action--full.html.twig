@@ -9,7 +9,7 @@
 {% endblock %}
 {% block pageContent %}
   {# @TODO include "organisms-action-details" #}
-  {{ content|without('field_action_related', 'field_action_downloads') }}
+  {{ content.field_action_details }}
 {% endblock %}
 {% block sidebar %}
   {# include "organisms-related-actions" #}
