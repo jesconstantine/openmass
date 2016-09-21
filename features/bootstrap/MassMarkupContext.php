@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+
 use Palantirnet\PalantirBehatExtension\Context\MarkupContext;
 /**
  * Defines markup features specific to Mass.gov.
