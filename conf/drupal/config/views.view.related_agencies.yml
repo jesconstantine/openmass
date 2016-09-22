@@ -174,10 +174,10 @@ display:
           entity_type: node
           plugin_id: entity_reverse
       arguments:
-        field_action_parents_target_id:
-          id: field_action_parents_target_id
-          table: node__field_action_parents
-          field: field_action_parents_target_id
+        field_action_parent_target_id:
+          id: field_action_parent_target_id
+          table: node__field_action_parent
+          field: field_action_parent_target_id
           relationship: reverse__node__field_agencies
           group_type: group
           admin_label: ''
