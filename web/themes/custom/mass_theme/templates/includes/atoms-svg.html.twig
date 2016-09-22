@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Partial for svg icons. Requires iconName to be passed.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<svg focusable="false" role="presentation" class="svg-{{iconName}}">
+  <use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#{{iconName}}"></use>
+</svg>
