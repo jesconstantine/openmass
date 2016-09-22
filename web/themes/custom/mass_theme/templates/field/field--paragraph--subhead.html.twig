@@ -39,7 +39,7 @@
  */
 #}
 {% for item in items %}
-  {% set title = item.content['#context'].value %}
+  {% set title = item.content|render %}
   {% set title_clean = title|lower|replace(' ','_') %}
   <a name="{{title_clean}}" id="{{title_clean}}"></a>
   <h3>{{title}}</h3>
