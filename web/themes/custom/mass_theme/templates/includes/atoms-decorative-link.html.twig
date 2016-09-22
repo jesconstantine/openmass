@@ -1,3 +1,11 @@
+{#
+/**
+ * @file
+ * Partial for decorative links. Requires decorativeLink to be passed.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
 <span class="ma__decorative-link">
   {% if decorativeLink.type == "external" %}
     <a href="{{decorativeLink.href}}" target="_blank">{{decorativeLink.text}}&nbsp;<svg focusable="false" role="presentation" class="svg-external-link"><use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#external-link"></use></svg></a>
