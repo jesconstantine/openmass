@@ -5,6 +5,8 @@
  * Functions to support theming in the academyhealth theme.
  */
 
+use Drupal\Component\Utility\Html;
+
 /**
  * Implements hook_preprocess_block().
  */
@@ -40,7 +42,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     if ($paragraph->getType() == 'subhead') {
       $title = $paragraph->field_title->value;
       $key = strtolower($title);
-      $key = str_replace(' ', '_', $key);
+      $key = Html::cleanCssIdentifier($key);
       $variables['subheads'][$key] = $title;
     }
     $delta++;
