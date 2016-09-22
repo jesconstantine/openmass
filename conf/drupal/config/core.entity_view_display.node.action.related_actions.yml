@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.related_actions
     - field.field.node.action.field_action_downloads
-    - field.field.node.action.field_action_parents
+    - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
@@ -27,7 +27,7 @@ content:
     type: basic_string
 hidden:
   field_action_downloads: true
-  field_action_parents: true
+  field_action_parent: true
   field_action_related: true
   field_hero_image: true
   links: true
