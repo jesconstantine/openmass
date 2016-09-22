@@ -40,5 +40,4 @@
 #}
 {% set title = content.field_title|field_value|render.__toString() %}
 {% set title_clean = title|lower|replace(' ','_') %}
-<a name="{{title_clean}}" id="{{title_clean}}"></a>
-<h3>{{title}}</h3>
+<h3><a name="{{title_clean}}" id="{{title_clean}}">{{title}}</a></h3>
