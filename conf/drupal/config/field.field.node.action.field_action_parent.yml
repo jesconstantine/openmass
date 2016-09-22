@@ -13,7 +13,7 @@ field_name: field_action_parent
 entity_type: node
 bundle: action
 label: Parent
-description: 'Action landing pages where this item should appear.'
+description: '<a href="/admin/content?status=All&type=subtopic&title=&langcode=All" target="_blank">Subtopic pages</a> where this item should appear.'
 required: false
 translatable: false
 default_value: {  }
