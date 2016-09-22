@@ -1,24 +1,24 @@
 <?php
-/**
- * @file
- * Contains \Drupal\mass_content\Plugin\migrate\process\MassMultiples.
- *
- * Generally we would use the 'explode' and then 'callback' functions to split
- * and trim items, but for some reason explode was getting a second value (NULL)
- * for some fields, I have no idea why. Maybe an issue with migrate_source_csv?
- */
 
 namespace Drupal\mass_content\Plugin\migrate\process;
+
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
-
 /**
+ * Deefine the process plugin.
+ *
+ * Generally we would use the 'explode' and then 'callback' functions to split
+ * and trim items, but for some reason explode was getting a second value (NULL)
+ * for some fields, I have no idea why. Maybe an issue with migrate_source_csv?
+ *
  * @MigrateProcessPlugin(
  *   id = "mass_multiples",
  *   handle_multiples = false
  * )
+ *
+ * (c) Copyright 2016 Palantir.net
  */
 class MassMultiples extends ProcessPluginBase {
 
