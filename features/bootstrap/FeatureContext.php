@@ -84,6 +84,31 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * Assert a paragraph has fields configured to the correct form widgets.
+   *
+   * @Then the :paragraph_type paragraph has the fields:
+   * | field      | widget      |
+   * | field-name | Textfield   |
+   *
+   * @param String $paragraph_type
+   * @param TableNode $fieldsTable
+   */
+  public function assertParagraphFields($paragraph_type, TableNode $fieldsTable) {
+    $this->minkContext->visitPath('admin/structure/paragraphs_type/' . $paragraph_type . '/form-display');
+
+    foreach ($fieldsTable->getHash() as $row) {
+      $id = 'edit-fields-' . $row['field'] . '-type';
+      $this->minkContext->assertElementOnPage("[id^={$id}]");
+
+      $widget = $this->getSession()->getPage()->find('css', "#{$id} option[selected='selected']")->getText();
+
+      if (strtolower($widget) !== strtolower($row['widget'])) {
+        throw new Exception(sprintf("Field %s has \"%s\" widget but should have \"%s\".", $row['field'], $widget, $row['widget']));
+      }
+    }
+  }
+
+  /**
    * @param $field
    * @param $multivalue
    * @throws \Exception
