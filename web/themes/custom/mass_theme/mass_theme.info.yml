@@ -11,8 +11,5 @@ base theme: stable
 
 regions:
   header: Header
-  pre_content: Pre Content
   content: Content
-  sidebar: Sidebar
-  post_content: Post Content
   footer: Footer
