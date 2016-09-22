@@ -25,3 +25,27 @@ function mass_theme_preprocess_html(&$variables) {
       break;
   }
  }
+
+/**
+ * Implements HOOK_preprocess_field().
+ */
+function mass_theme_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+
+  // Get the subheads for the action jump menu.
+  if($element['#field_name'] == 'field_action_details') {
+  $delta = 0;
+  while (!empty($element[$delta])) {
+    $paragraph = $element[$delta]['#paragraph'];
+    if ($paragraph->getType() == 'subhead') {
+      $title = $paragraph->field_title->value;
+      $key = strtolower($title);
+      $key = str_replace(' ', '_', $key);
+      $variables['subheads'][$key] = $title;
+    }
+    $delta++;
+  }
+
+  }
+
+}
