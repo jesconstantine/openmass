@@ -1,0 +1,33 @@
+uuid: 4226afe1-d252-477c-b63f-c100956841a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.related_actions
+    - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_parent
+    - field.field.node.action.field_action_related
+    - field.field.node.action.field_hero_image
+    - field.field.node.action.field_lede
+    - node.type.action
+  module:
+    - user
+_core:
+  default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
+id: node.action.related_actions
+targetEntityType: node
+bundle: action
+mode: related_actions
+content:
+  field_lede:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+hidden:
+  field_action_downloads: true
+  field_action_parent: true
+  field_action_related: true
+  field_hero_image: true
+  links: true

@@ -58,6 +58,20 @@ process:
     -
       plugin: migration
       migration: example_agency
+  field_action_related:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: 'Related Actions'
+    -
+      plugin: explode
+      delimiter: ';'
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: migration
+      migration: example_action
 
 destination:
   plugin: entity:node

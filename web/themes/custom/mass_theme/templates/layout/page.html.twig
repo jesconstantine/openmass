@@ -88,24 +88,11 @@
   {{ page.header }}
 </header>
 
-<main role="main">
+<main role="main">{# Keeping this for accessibility purposes #}
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-  <div class="layout-content">
-    {{ page.content }}
-  </div>{# /.layout-content #}
-
-  {% if page.sidebar_first %}
-    <aside class="layout-sidebar-first" role="complementary">
-      {{ page.sidebar_first }}
-    </aside>
-  {% endif %}
-
-  {% if page.sidebar_second %}
-    <aside class="layout-sidebar-second" role="complementary">
-      {{ page.sidebar_second }}
-    </aside>
-  {% endif %}
+  {# Content regions are all in the node templates #}
+  {{ page.content }}
 
 </main>
 
