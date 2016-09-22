@@ -1,0 +1,24 @@
+uuid: 6cb15f82-a4e4-47ad-a38a-715e9c95a15b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.subtopic.body
+    - node.type.subtopic
+  module:
+    - text
+    - user
+id: node.subtopic.default
+targetEntityType: node
+bundle: subtopic
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden: {  }

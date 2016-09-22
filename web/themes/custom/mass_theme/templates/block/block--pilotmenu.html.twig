@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Theme override for a menu block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: HTML attributes for the containing element.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: HTML attributes for the title element.
+ * - content_attributes: HTML attributes for the content element.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * Headings should be used on navigation menus that consistently appear on
+ * multiple pages. When this menu block's label is configured to not be
+ * displayed, it is automatically made invisible using the 'visually-hidden' CSS
+ * class, which still keeps it visible for screen-readers and assistive
+ * technology. Headings allow screen-reader and keyboard only users to navigate
+ * to or skip the links.
+ * See http://juicystudio.com/article/screen-readers-display-none.php and
+ * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('aria-labelledby', 'class') }} class="ma__header__nav {{ attributes.class }}">
+  {# Label. If not displayed, we still provide it for screen readers. #}
+  {% if not configuration.label_display %}
+    {% set title_attributes = title_attributes.addClass('visually-hidden') %}
+  {% endif %}
+  {{ title_prefix }}
+  <h2{{ title_attributes }}>{{ configuration.label }}</h2>
+  {{ title_suffix }}
+
+  <div class="ma__header__button-container js-sticky-header">
+    <button class="ma__header__back-button js-close-sub-nav"><span>Back</span></button>
+    <button class="ma__header__menu-button js-header-menu-button">
+      <span>Menu</span><span class="ma__header__menu-icon"></span>
+    </button>
+  </div>
+  <div class="ma__header__nav-container">
+    <div class="ma__header__nav-search">
+      <section class="ma__header-search">
+        <form action="#" class="js-header-search-form">
+          <label
+          for="header-search"
+          class="ma__header-search__label">Array</label>
+          <input
+          id="header-search"
+          class="ma__header-search__input"
+          placeholder="What can we help you find?"
+          type="text" />
+          <button type="submit" class="ma__button-search">
+            <span>Search</span>
+            <svg role="img" class="ma__button-search__icon">
+              <use xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#search"></use>
+            </svg>
+          </button>
+        </form>
+      </section>
+    </div>
+    <div class="ma__header__main-nav">
+      <section class="ma__main-nav" id="{{ heading_id }}">
+      {# Menu. #}
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+      </section>
+    </div>
+</nav>

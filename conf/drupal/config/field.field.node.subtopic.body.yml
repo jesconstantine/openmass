@@ -1,0 +1,22 @@
+uuid: 409e1fc4-faa1-496c-8b83-0a437671ee8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.subtopic
+  module:
+    - text
+id: node.subtopic.body
+field_name: body
+entity_type: node
+bundle: subtopic
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
