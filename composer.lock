@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f49372992006920d85e6bbb21f64810c",
-    "content-hash": "a2fd403b25ae2a87ee7688cd82a594be",
+    "hash": "4c7897a569ea5f2b3bc87da48105bd98",
+    "content-hash": "4560b423a54985123f39dc0644df5365",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -2548,6 +2548,40 @@
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
             "time": "2016-09-08 22:43:57"
+        },
+        {
+            "name": "palantirnet/the-vagrant",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:palantirnet/the-vagrant.git",
+                "reference": "497d35553180bfe81371f1aaa12203a9dc5f2fdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/497d35553180bfe81371f1aaa12203a9dc5f2fdf",
+                "reference": "497d35553180bfe81371f1aaa12203a9dc5f2fdf",
+                "shasum": ""
+            },
+            "require": {
+                "phing/phing": "^2.14"
+            },
+            "type": "library",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Palantir.net",
+                    "email": "info@palantir.net"
+                }
+            ],
+            "description": "Install a vagrant environment into a project.",
+            "support": {
+                "source": "https://github.com/palantirnet/the-vagrant/tree/master",
+                "issues": "https://github.com/palantirnet/the-vagrant/issues"
+            },
+            "time": "2016-08-30 13:18:31"
         },
         {
             "name": "palantirnet/workbench_tabs",
@@ -6851,6 +6885,7 @@
         "drupal/file_browser": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
+        "palantirnet/the-vagrant": 20,
         "palantirnet/workbench_tabs": 20,
         "composer/composer": 20,
         "dflydev/embedded-composer-console": 20,

@@ -100,6 +100,7 @@
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/mayflower-artifacts": "~0.3",
         "palantirnet/the-build": "dev-master",
+        "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x"
     },
     "require-dev": {
