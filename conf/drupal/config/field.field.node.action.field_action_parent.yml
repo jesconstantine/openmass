@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_action_parents
+    - field.storage.node.field_action_parent
     - node.type.action
     - node.type.subtopic
 _core:
   default_config_hash: L0Xfot9Hqhr3g2YS5LnfiHFBLmnkOtMeAXrPHqckcZ4
-id: node.action.field_action_parents
-field_name: field_action_parents
+id: node.action.field_action_parent
+field_name: field_action_parent
 entity_type: node
 bundle: action
-label: Parents
+label: Parent
 description: 'Action landing pages where this item should appear.'
 required: false
 translatable: false

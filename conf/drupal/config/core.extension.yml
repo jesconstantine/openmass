@@ -18,6 +18,7 @@ module:
   entity_browser: 0
   entity_embed: 0
   entity_reference: 0
+  entity_reference_revisions: 0
   field: 0
   field_ui: 0
   file: 0
@@ -40,12 +41,14 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  paragraphs: 0
   path: 0
   quickedit: 0
   rdf: 0
   shortcut: 0
   system: 0
   taxonomy: 0
+  telephone: 0
   text: 0
   token: 0
   toolbar: 0
