@@ -26,6 +26,8 @@ content:
     third_party_settings: {  }
     type: basic_string
 hidden:
+  field_action_contacts: true
+  field_action_details: true
   field_action_downloads: true
   field_action_parent: true
   field_action_related: true
