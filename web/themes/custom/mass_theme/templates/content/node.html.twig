@@ -71,20 +71,23 @@
  */
 #}
 
+{# Set our regions at the top so we can test their existence #}
 {% set _preContent = block('preContent') %}
+{% set _sidebar = block('sidebar') %}
+{% set _postContent = block('postContent') %}
+
 {% if _preContent is not empty %}
   <div class="pre-content">
     {{ _preContent|raw }}
   </div>
 {% endif %}
 
-<div class="main-content {{ sidebar ? 'main-content--two': ''}}">
+<div class="main-content {{ _sidebar is not empty ? 'main-content--two': ''}}">
   <div class="page-content">
     {% block pageContent %}
       {{ content }}
     {% endblock %}
   </div>
-  {% set _sidebar = block('sidebar') %}
   {% if _sidebar is not empty %}
     <div class="sidebar">
       {{ _sidebar|raw }}
@@ -92,7 +95,6 @@
   {% endif %}
 </div>
 
-{% set _postContent = block('postContent') %}
 {% if _postContent is not empty %}
   <div class="post-content">
     {{ _postContent|raw }}
