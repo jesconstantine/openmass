@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -130,18 +129,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_hero_image:
-    weight: 5
-    settings:
-      entity_browser: browse_files_modal
-      field_widget_edit: '1'
-      field_widget_remove: '1'
-      selection_mode: selection_append
-      view_mode: default
-      open: 0
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: entity_browser_file
   field_lede:
     weight: 2
     settings:
