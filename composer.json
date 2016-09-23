@@ -30,6 +30,10 @@
         },
         {
             "type": "vcs",
+            "url": "git@github.com:palantirnet/workbench_tabs.git"
+        },
+        {
+            "type": "vcs",
             "url": "git@github.com:mikeyp/google_tag.git"
         },
         {
@@ -92,11 +96,14 @@
         "drupal/migrate_tools": "~8",
         "drupal/paragraphs": "~8.1.0",
         "drupal/pathauto": "^8.1",
+        "drupal/twig_field_value": "^8.1",
+        "drupal/twig_tweak": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/mayflower-artifacts": "~0.3",
         "palantirnet/the-build": "dev-feature/code-quality-tools",
-        "palantirnet/the-vagrant": "dev-master"
+        "palantirnet/the-vagrant": "dev-master",
+        "palantirnet/workbench_tabs": "dev-8.x-1.x"
     },
     "require-dev": {
         "behat/behat": "^3.1",
