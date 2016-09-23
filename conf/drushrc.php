@@ -12,15 +12,10 @@ if (!empty($output)) {
 
   # Configure Drush for the current project.
   $options['root'] = "{$repo}/web";
-  $options['uri'] = "http://Drupal.local";
+  $options['uri'] = "http://mass.local";
+  $options['include'] = "{$repo}/artifacts/acquiacloud/.drush";
+  $options['alias-path'] = "{$repo}/artifacts/acquiacloud/.drush";
 }
-
-/**
- * Prevent certain modules from being enabled via config exports.
- */
-$command_specific['config-export'] = array(
-  'skip-modules' => 'devel',
-);
 
 /**
  * Using the flag "--structure-tables-key=common" on sql-dump and sql-sync will cause
