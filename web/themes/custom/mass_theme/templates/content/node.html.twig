@@ -84,7 +84,7 @@
   </div>
 {% endif %}
 
-<div class="main-content {{ _sidebar is not empty ? 'main-content--two': ''}}">
+<div class="main-content{{ _sidebar is not empty ? ' main-content--two': ''}}">
   <div class="page-content">
     {% block pageContent %}
       {{ content }}

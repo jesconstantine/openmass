@@ -40,11 +40,10 @@
 #}
 {%
 set classes = [
-'paragraph',
-'paragraph--type--' ~ paragraph.bundle|clean_class,
-view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-'ma__callout-link',
-'js-clickable'
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  'ma__callout-link'
 ]
 %}
 <div {{ attributes.addClass(classes) }}>
