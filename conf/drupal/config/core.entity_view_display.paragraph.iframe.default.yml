@@ -15,21 +15,19 @@ mode: default
 content:
   field_height:
     weight: 1
-    label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: number_integer
+    type: number_unformatted
   field_url:
     weight: 0
-    label: above
+    label: hidden
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      trim_length: null
+      url_only: true
+      url_plain: true
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     type: link
 hidden:
