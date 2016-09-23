@@ -1,20 +1,20 @@
 <?php
-/**
- * @file
- * Contains \Drupal\mass_content\Plugin\migrate\process\Dump.
- */
 
 namespace Drupal\mass_content\Plugin\migrate\process;
+
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
-
 /**
+ * Define the migraiton processing plugin.
+ *
  * @MigrateProcessPlugin(
  *   id = "dump",
  *   handle_multiples = true
  * )
+ *
+ * (c) Copyright 2016 Palantir.net
  */
 class Dump extends ProcessPluginBase {
 

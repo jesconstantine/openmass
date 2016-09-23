@@ -10,6 +10,11 @@
     <import file="vendor/palantirnet/the-build/tasks/drupal.xml" />
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
 
+    <!-- Code Quality tools -->
+    <import file="vendor/palantirnet/the-build/tasks/drupal_code_sniffer.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/phplint.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/phpmd.xml" />
+
     <!-- Include theme.xml -->
     <import file="build/theme.xml" />
 
@@ -70,6 +75,9 @@
 
     <!-- Target: test -->
     <target name="test" description="Run all the tests.">
+        <phingcall target="test-run-code-sniffer" />
+        <phingcall target="test-run-phpmd" />
+        <phingcall target="test-run-phplint" />
         <phingcall target="mass-drupal-test" />
     </target>
 

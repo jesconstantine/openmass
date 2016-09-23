@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.related_actions
+    - field.field.node.action.field_action_contacts
+    - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -31,5 +32,4 @@ hidden:
   field_action_downloads: true
   field_action_parent: true
   field_action_related: true
-  field_hero_image: true
   links: true

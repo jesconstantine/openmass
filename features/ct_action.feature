@@ -8,9 +8,8 @@ Feature: Action Content type
     Given I am logged in as a user with the "administrator" role
     Then the content type "action" has the fields:
     | field                            | tag        | type         | multivalue |
-    | field-action-parent              | input      | text         | false      |
+    | field-action-parent              | input      | text         | true      |
     | field-lede                       | textarea   |              | false      |
-    | field-hero-image                 | input      | submit       | false      |
     | field-action-related             | input      | text         | true       |
     # the following fields are multivalue but have no good way of testing for it.
     | field-action-downloads           | input      | submit       | false      |
