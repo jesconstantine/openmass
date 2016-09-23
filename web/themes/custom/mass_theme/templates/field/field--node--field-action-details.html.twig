@@ -43,7 +43,13 @@
 
   <div class="ma__action-details__content">
 
-    {# Jump menu goes here #}
+      {# Jump menu #}
+      <div class="ma__action-details__anchor-links js-scroll-anchors">
+          <button class="ma__action-details__toggle-link js-scroll-anchors-toggle">+</button>
+          {% for key,value in subheads %}
+              <a href="#{{key}}" class="{{loop.first ? 'is-active' : ''}}">{{value}}</a>
+          {% endfor %}
+      </div>
 
     {# Render action details #}
     {% for item in items %}
