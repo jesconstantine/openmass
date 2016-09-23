@@ -10,39 +10,80 @@
     <import file="vendor/palantirnet/the-build/tasks/drupal.xml" />
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
 
+    <!-- Code Quality tools -->
+    <import file="vendor/palantirnet/the-build/tasks/drupal_code_sniffer.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/phplint.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/phpmd.xml" />
+
+    <!-- Include theme.xml -->
+    <import file="build/theme.xml" />
+
+    <!-- Custom targets for this project. -->
+    <import file="build/mass.xml" />
+    <import file="build/mass-build.xml" />
 
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
         <phingcall target="drupal-build" />
+        <phingcall target="mass-install-libraries" />
+
+        <phingcall target="theme-install" />
     </target>
 
 
     <!-- Target: install -->
     <target name="install" description="Install the application.">
         <phingcall target="drupal-install" />
+
+        <drush command="pm-enable" assume="yes">
+            <param>devel</param>
+            <param>mass_types</param>
+            <param>migrate_tools</param>
+        </drush>
     </target>
 
 
     <!-- Target: migrate -->
     <target name="migrate" description="Run the migrations.">
-        <echo>Configure this target to load sample data and run the migrations.</echo>
+        <!-- Make sure the 'migration' user exists. -->
+        <drush command="user-create" haltonerror="false">
+            <param>migration</param>
+        </drush>
+        <drush command="user-block">
+            <param>migration</param>
+        </drush>
+        <drush command="user-add-role">
+            <param>administrator</param>
+            <param>migration</param>
+        </drush>
+
+        <!-- Reinstall the migration module to get the latest config. -->
+        <drush command="pm-uninstall" assume="yes">
+            <param>mass_content</param>
+        </drush>
+        <drush command="pm-enable" assume="yes">
+            <param>mass_content</param>
+        </drush>
+
+        <drush command="migrate-import">
+            <option name="group" value="mass_content" />
+            <option name="update" />
+            <option name="user" value="migration" />
+        </drush>
     </target>
 
 
     <!-- Target: test -->
     <target name="test" description="Run all the tests.">
-        <echo>Configure this target to run the tests.</echo>
+        <phingcall target="test-run-code-sniffer" />
+        <phingcall target="test-run-phpmd" />
+        <phingcall target="test-run-phplint" />
+        <phingcall target="mass-drupal-test" />
     </target>
 
 
     <!-- Target: deploy -->
     <target name="deploy" description="Build and deploy the application.">
-        <echo>Configure this target to build the production artifact; see the `deploy-to-acquia` target for an example.</echo>
-    </target>
-
-
-    <!-- Target: deploy-to-acquia -->
-    <target name="deploy-to-acquia">
         <phingcall target="check-deploy-env" />
         <phingcall target="acquia-build" />
         <phingcall target="build" />

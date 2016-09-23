@@ -25,12 +25,6 @@ If you have been running a previous version of Vagrant you may need to do: `vagr
     vendor/bin/phing build install migrate
   ```
 
-1. To get Butler up and running (and build the site theme):
-  ```
-    npm install
-    npm run buttler
-  ```
-
 1. Visit [mass.local](http://mass.local) in your browser of choice.
 
 ## How do I work on this?
@@ -87,6 +81,10 @@ Sometimes it is appropriate to configure specific Drupal variables in Drupal's `
 ### Behat
 
 Run `vendor/bin/phing test` or `vendor/bin/behat features/installation.feature`.
+
+## Deployment
+
+[Deploying a local install to Acquia](docs/deploy.md)
 
 ## Troubleshooting
 

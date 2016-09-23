@@ -3,6 +3,7 @@ default:
     default:
       contexts:
         - FeatureContext
+        - MassMarkupContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
@@ -14,7 +15,7 @@ default:
       goutte: ~
       selenium2:
         wd_host: "http://127.0.0.1:8643/wd/hub"
-      base_url: http://drupal-skeleton.local
+      base_url: http://mass.local
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drupal'
@@ -26,3 +27,5 @@ default:
         log_out: 'Log out'
       region_map:
         anywhere: "*"
+        body: "body"
+        header: "header.ma__header"

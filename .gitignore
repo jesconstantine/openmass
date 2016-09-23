@@ -20,6 +20,7 @@ web/core
 web/modules/contrib
 web/themes/contrib/
 web/profiles/contrib/
+web/libraries/
 
 # Ignore regular Composer dependencies
 /vendor/
@@ -36,3 +37,8 @@ styleguide/source/code/css/*.css
 # Ignore sculpin output
 styleguide/output_dev/
 styleguide/output_prod/
+
+# Ignore theme assets
+/web/themes/custom/mass_theme/css
+/web/themes/custom/mass_theme/js
+/web/themes/custom/mass_theme/images

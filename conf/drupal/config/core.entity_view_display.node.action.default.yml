@@ -1,0 +1,70 @@
+uuid: 26dc8f08-facd-4524-99c7-a4a8a5d8d9a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.action.field_action_contacts
+    - field.field.node.action.field_action_details
+    - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_parent
+    - field.field.node.action.field_action_related
+    - field.field.node.action.field_lede
+    - node.type.action
+  module:
+    - entity_reference_revisions
+    - file
+    - user
+_core:
+  default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
+id: node.action.default
+targetEntityType: node
+bundle: action
+mode: default
+content:
+  field_action_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 110
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_action_details:
+    type: entity_reference_revisions_entity_view
+    weight: 109
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_action_downloads:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  field_action_parent:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_action_related:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_lede:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
