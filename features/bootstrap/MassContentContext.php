@@ -5,12 +5,15 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 
-use FeatureContext;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\DrupalExtension\Context\MinkContext;
+use Drupal\DrupalExtension\Context\DrupalContext;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 /**
  * Defines content features specific to Mass.gov.
  */
-class MassMarkupContext extends FeatureContext {
+class MassContentContext extends RawDrupalContext {
 
   /**
    * @var Object[] Array of action nodes keyed on 'title'.
@@ -33,20 +36,28 @@ class MassMarkupContext extends FeatureContext {
   private $section_landings = [];
 
   /**
+   * @BeforeScenario
+   */
+  public function gatherContexts(BeforeScenarioScope $scope)
+  {
+    $environment = $scope->getEnvironment();
+    $this->drupalContext = $environment->getContext(DrupalContext::class);
+    $this->minkContext = $environment->getContext(MinkContext::class);
+  }
+
+  /**
    * Create default test actions.
    *
-   * @Given test actions exists
+   * @Given test actions exist
    */
   public function defaultActions() {
     $actions = [
       [
         'title' => 'Behat Test - Find a State Park',
-        'field-external-url' => NULL,
         'field-parent' => 'Nature & Outdoor Activities',
       ],
       [
         'title' => 'Behat Test - Get a State Park Pass',
-        'field-external-url' => NULL,
         'field-parent' => 'Nature & Outdoor Activities',
       ],
       [
@@ -99,7 +110,7 @@ class MassMarkupContext extends FeatureContext {
   /**
    * Create default test subtopics.
    *
-   * @Given test subtopics exists
+   * @Given test subtopics exist
    */
   public function defaultSubtopics() {
     $subtopics = [
@@ -131,11 +142,11 @@ class MassMarkupContext extends FeatureContext {
           [
             'title' => 'Hiking',
             'url' => '/subtopic/nature-outdoor-activities?filter=Hiking',
-          ]
+          ],
           [
             'title' => 'Biking',
             'url' => '/subtopic/nature-outdoor-activities?filter=Biking',
-          ]
+          ],
         ],
       ],
       [
@@ -196,7 +207,7 @@ class MassMarkupContext extends FeatureContext {
   /**
    * Create default test topics.
    *
-   * @Given test topics exists
+   * @Given test topics exist
    */
   public function defaultTopcis() {
     $topics = [
@@ -230,7 +241,7 @@ class MassMarkupContext extends FeatureContext {
   /**
    * Create default test section landings.
    *
-   * @Given test section landings exists
+   * @Given test section landings exist
    */
   public function defaultSectionLandings() {
     $section_landings = [
@@ -264,7 +275,29 @@ class MassMarkupContext extends FeatureContext {
     $node = $this->drupalContext->nodeCreate((object) $node);
     $this->{$type}[$node->title] = $node;
 
-    return $created;
+    return $node;
+  }
+
+  /**
+   * Visit a given test node.
+   *
+   * @When I visit the test :type :title
+   *
+   * @param $type The test content type
+   * @param $title The test node title
+   *
+   * @throws Exception
+   */
+  public function vistsTestNode($type, $title) {
+    if (empty($title)) {
+      throw new \Exception('The node type must be provided.');
+    }
+
+    if (empty($title)) {
+      throw new \Exception('The node titel must be provided.');
+    }
+
+
   }
 
   /**
