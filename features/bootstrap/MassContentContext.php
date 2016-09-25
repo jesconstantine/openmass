@@ -18,22 +18,22 @@ class MassContentContext extends RawDrupalContext {
   /**
    * @var Object[] Array of action nodes keyed on 'title'.
    */
-  private $actions = [];
+  private $action = [];
 
   /**
    * @var Object[] Array of subtopic nodes keyed on 'title'.
    */
-  private $subtopics = [];
+  private $subtopic = [];
 
   /**
    * @var Object[] Array of topic nodes keyed on 'title'.
    */
-  private $topoics = [];
+  private $topic = [];
 
   /**
    * @var Object[] Array of section landing nodes keyed on 'title'.
    */
-  private $section_landings = [];
+  private $section_landing = [];
 
   /**
    * @BeforeScenario
@@ -46,58 +46,80 @@ class MassContentContext extends RawDrupalContext {
   }
 
   /**
+   * Create all default content.
+   *
+   * @Given default test content exists
+   */
+  public function createDefaultTestContent() {
+    $this->defaultSectionLandings();
+    $this->defaultTopics();
+    $this->defaultSubtopics();
+    $this->defaultActions();
+
+    // Now that all the data structures exist, we need to go back through and
+    // add content dependencies.
+
+    // $this->updateDefaultTopics();
+    // $this->updateDefaultSubtopcis();
+    // $this->updateDefaultSectionLandings();
+  }
+
+  /**
    * Create default test actions.
+   *
+   * The Action Parent field is required, thus Subtopics must be created before
+   * these actions can be instantiated.
    *
    * @Given test actions exist
    */
   public function defaultActions() {
     $actions = [
       [
-        'title' => 'Behat Test - Find a State Park',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Find a State Park',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Get a State Park Pass',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Get a State Park Pass',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Reserve a Campsite (external)',
-        'field-external-url' => 'http://www.google.com',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Reserve a Campsite (external)',
+        'field_external-url' => 'http://www.google.com',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Find Scenic Viewing Areas',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Find Scenic Viewing Areas',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Find Horseback Riding Trails (external)',
-        'field-external-url' => 'http://www.google.com',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Find Horseback Riding Trails (external)',
+        'field_external-url' => 'http://www.google.com',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Download a Trail Map',
-        'field-parent' => 'Nature & Outdoor Activities',
+        'title' => 'Behat Test: Download a Trail Map',
+        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
       [
-        'title' => 'Behat Test - Get a Boating License',
-        'field-parent' => 'Recreational Licenses & Permits',
+        'title' => 'Behat Test: Get a Boating License',
+        'field_action_parent' => 'Behat Test: Recreational Licenses & Permits',
       ],
       [
-        'title' => 'Behat Test - Get a Fishing License (external)',
-        'field-external-url' => 'http://www.google.com',
-        'field-parent' => 'Recreational Licenses & Permits',
+        'title' => 'Behat Test: Get a Fishing License (external)',
+        'field_external-url' => 'http://www.google.com',
+        'field_action_parent' => 'Behat Test: Recreational Licenses & Permits',
       ],
       [
-        'title' => 'Behat Test - Get a Hunting License',
-        'field-parent' => 'Recreational Licenses & Permits',
+        'title' => 'Behat Test: Get a Hunting License',
+        'field_action_parent' => 'Behat Test: Recreational Licenses & Permits',
       ],
       [
-        'title' => 'Behat Test - Post a Job',
-        'field-parent' => 'Search Jobs',
+        'title' => 'Behat Test: Post a Job',
+        'field_action_parent' => 'Behat Test: Search Jobs',
       ],
       [
-        'title' => 'Behat Test - Find a State Job',
-        'field-parent' => 'Search Jobs',
+        'title' => 'Behat Test: Find a State Job',
+        'field_action_parent' => 'Behat Test: Search Jobs',
       ],
     ];
 
@@ -110,91 +132,64 @@ class MassContentContext extends RawDrupalContext {
   /**
    * Create default test subtopics.
    *
+   * Note: The "field_topic_parent" field is required, so Topics will need to be
+   * created before this content can be stubbed out.
+   *
+   * Note: The "featured_content" field is optional, so content relationships
+   * will need to be updated after all the stub data is created.
+   *
    * @Given test subtopics exist
    */
   public function defaultSubtopics() {
     $subtopics = [
       [
-        'title' => 'Behat Test - Nature & Outdoor Activities',
-        'field-parent' => 'Behat Test - State Parks & Recreation',
-        'field-featured-image' => NULL,
-        'field-lede' => 'The lede text for Nature & Outdoor Activities',
-        'field-description' => 'The description text for Nature & Outdoor Activities',
-        'field-featured-content' => [
-          'Behat Test - Find a State Park',
-          'Behat Test - Download a Trail Map',
-        ],
-        'field-agency-links' => [
-          [
-            'title' => 'MassParks',
-            'url' => 'http://www.google.com',
-          ],
-          [
-            'title' => 'Department of Fish and Game',
-            'url' => 'http://www.google.com',
-          ],
-        ],
-        'field-topic-callout-links' => [
-          [
-            'title' => 'Camping',
-            'url' => '/subtopic/nature-outdoor-activities?filter=Camping',
-          ],
-          [
-            'title' => 'Hiking',
-            'url' => '/subtopic/nature-outdoor-activities?filter=Hiking',
-          ],
-          [
-            'title' => 'Biking',
-            'url' => '/subtopic/nature-outdoor-activities?filter=Biking',
-          ],
-        ],
+        'title' => 'Behat Test: Nature & Outdoor Activities',
+        'field_topic_parent' => 'Behat Test: State Parks & Recreation',
+        'field_lede' => 'The lede text for Nature & Outdoor Activities',
+        'field_description' => 'The description text for Nature & Outdoor Activities',
+        // 'field_featured_content' => [
+        //   'Behat Test: Find a State Park',
+        //   'Behat Test: Download a Trail Map',
+        // ],
+        'field_agency_links' => implode(', ', [
+          'MassParks - http://www.google.com',
+          'Department of Fish - http://www.google.com',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Camping - /subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - /subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - /subtopic/nature-outdoor-activities?filter=Biking',
+        ]),
       ],
       [
-        'title' => 'Behat Test - Recreational Licenses & Permits',
-        'field-parent' => 'Behat Test - State Parks & Recreation',
-        'field-featured-image' => NULL,
-        'field-lede' => 'The lede text for Recreational Licenses & Permits',
-        'field-description' => 'The description text for Recreational Licenses & Permits',
-        'field-featured-content' => [
-          'Behat Test - Get a Boating License',
-        ],
-        'field-agency-links' => [
-          [
-            'title' => 'Department of Agricultural Resources',
-            'url' => 'http://www.google.com',
-          ],
-        ],
-        'field-topic-callout-links' => [],
+        'title' => 'Behat Test: Recreational Licenses & Permits',
+        'field_topic_parent' => 'Behat Test: State Parks & Recreation',
+        'field_lede' => 'The lede text for Recreational Licenses & Permits',
+        'field_description' => 'The description text for Recreational Licenses & Permits',
+        // 'field_featured_content' => [
+        //   'Behat Test: Get a Boating License',
+        // ],
+        'field_agency_links' => implode(', ', [
+          'Department of Agricultural Resources - http://www.google.com',
+        ]),
       ],
       [
-        'title' => 'Behat Test - Search Jobs',
-        'field-parent' => 'Behat Test - Finding a Job',
-        'field-featured-image' => NULL,
-        'field-lede' => 'The lede text for Search Jobs',
-        'field-description' => 'The description text for Search Jobs',
-        'field-featured-content' => [
-          'Behat Test - Find a State Job',
-        ],
-        'field-agency-links' => [
-          [
-            'title' => 'MassCareers',
-            'url' => 'http://www.google.com',
-          ],
-        ],
-        'field-topic-callout-links' => [
-          [
-            'title' => 'Education',
-            'url' => '/subtopic/search-jobs?filter=Education',
-          ],
-          [
-            'title' => 'Public Sector',
-            'url' => '/subtopic/search-jobs?filter=Public Sector',
-          ],
-          [
-            'title' => 'Public Safety',
-            'url' => '/subtopic/search-jobs?filter=Public Safety',
-          ],
-        ],
+        'title' => 'Behat Test: Search Jobs',
+        'field_topic_parent' => 'Behat Test: Finding a Job',
+        'field_lede' => 'The lede text for Search Jobs',
+        'field_description' => 'The description text for Search Jobs',
+        // 'field_featured_content' => [
+        //   'Behat Test: Find a State Job',
+        // ],
+        'field_agency_links' => implode(', ', [
+          'MassCareers - http://www.google.com',
+          'MassIT - http://www.google.com'
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Education - /subtopic/search-jobs?filter=Education',
+          'Public Sector - /subtopic/search-jobs?filter=Public Sector',
+          'Public Safety - /subtopic/search-jobs?filter=Public Safety',
+        ]),
       ],
     ];
 
@@ -207,30 +202,35 @@ class MassContentContext extends RawDrupalContext {
   /**
    * Create default test topics.
    *
+   * The Common Actions field here is optional, and the actions may or may not
+   * exist, so they should be created in a followup.
+   *
    * @Given test topics exist
    */
-  public function defaultTopcis() {
+  public function defaultTopics() {
     $topics = [
       [
-        'title' => 'Behat Test - State Parks & Recreation',
-        'field-section' => 'Behat Test - Visiting & Exploring',
-        'field-lede' => 'Lede text for State Parks & Rec.',
-        'field-icon' => 'camping',
-        'field-common-actions' => [
-          'Behat Test - Get a State Park Pass',
-          'Behat Test - Download a Trail Map',
-        ],
+        'title' => 'Behat Test: State Parks & Recreation',
+        'field_section' => 'Behat Test: Visiting & Exploring',
+        'field_lede' => 'Lede text for State Parks & Rec.',
+        'field_icon' => 'camping',
+        // 'field_common_actions' => [
+        //   'Behat Test: Get a State Park Pass',
+        //   'Behat Test: Download a Trail Map',
+        // ],
       ],
       [
-        'title' => 'Behat Test - Finding a Job',
-        'field-section' => 'Behat Test - Working',
-        'field-lede' => 'Lede text for Finding a Job',
-        'field-icon' => 'apple',
-        'field-common-actions' => [
-          'Behat Test - Post a Job',
-        ],
+        'title' => 'Behat Test: Finding a Job',
+        'field_section' => 'Behat Test: Working',
+        'field_lede' => 'Lede text for Finding a Job',
+        'field_icon' => 'apple',
+        // 'field_common_actions' => [
+        //   'Behat Test: Post a Job',
+        // ],
       ],
     ];
+
+    // var_dump($this->section_landing['Behat Test: Working']->nid);
 
     foreach ($topics as $topic) {
       $topic += ['type' => 'topic'];
@@ -246,12 +246,12 @@ class MassContentContext extends RawDrupalContext {
   public function defaultSectionLandings() {
     $section_landings = [
       [
-        'title' => 'Behat Test - Vising & Exploring',
-        'field-icon' => 'family',
+        'title' => 'Behat Test: Visiting & Exploring',
+        'field_icon' => 'family',
       ],
       [
-        'title' => 'Behat Test - Working',
-        'field-icon' => 'apple',
+        'title' => 'Behat Test: Working',
+        'field_icon' => 'apple',
       ],
     ];
 
@@ -273,7 +273,11 @@ class MassContentContext extends RawDrupalContext {
     $node['title'] = ($node['title']) ?: $this->randomTitle($type);
 
     $node = $this->drupalContext->nodeCreate((object) $node);
-    $this->{$type}[$node->title] = $node;
+
+    // Track the node as a local array entry for ease of reference.
+    if (is_array($this->{$type})) {
+      $this->{$type}[$node->title] = $node;
+    }
 
     return $node;
   }
@@ -297,7 +301,8 @@ class MassContentContext extends RawDrupalContext {
       throw new \Exception('The node titel must be provided.');
     }
 
-
+    // @todo Add logic here for setting the path; should be able to get it from
+    // the content arrays.
   }
 
   /**
