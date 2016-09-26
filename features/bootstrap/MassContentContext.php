@@ -295,7 +295,12 @@ class MassContentContext extends RawDrupalContext {
   }
 
 
-  /** Really, really bad ideas below... */
+  /**
+   * Update reference fields on nodes of a given type.
+   *
+   * @param string $type
+   *   The type of nodes to update.
+   */
   protected function updateNodes($type) {
     if (empty($this->{$type})) {
       return;
@@ -319,6 +324,18 @@ class MassContentContext extends RawDrupalContext {
     }
   }
 
+  /**
+   * Get node info for an entity reference field for a given node.
+   *
+   * @param $type
+   *   The type that has an entity reference.
+   * @param $title
+   *   The title of the node.
+   * @param $field
+   *   The entity reference node content will be saved to.
+   * @return array|void
+   *   The base node info for the entity reference.
+   */
   private function getDefaultValue($type, $title, $field) {
 
     $action = $this->defaultActions();
@@ -339,8 +356,6 @@ class MassContentContext extends RawDrupalContext {
     if (empty($lookups)) {
       return;
     }
-
-    //$return = [];
 
     foreach ($lookups as $lookup_title) {
       foreach (array_keys($this->relationshipFields()) as $lookup_type) {
