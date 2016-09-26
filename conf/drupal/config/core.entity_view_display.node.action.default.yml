@@ -8,13 +8,11 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
     - field.field.node.action.field_lede
     - node.type.action
   module:
     - entity_reference_revisions
     - file
-    - image
     - user
 _core:
   default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
@@ -59,14 +57,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_hero_image:
-    weight: 108
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
   field_lede:
     weight: 101
     label: above

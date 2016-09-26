@@ -1,16 +1,17 @@
-uuid: a3555674-22e6-436f-86ab-460474c7be08
+uuid: 1415c4cd-367f-4b2b-a473-bb7a5cc3b676
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_action_related
+    - field.storage.node.field_common_actions
     - node.type.action
-id: node.action.field_action_related
-field_name: field_action_related
+    - node.type.topic
+id: node.topic.field_common_actions
+field_name: field_common_actions
 entity_type: node
-bundle: action
-label: 'Related Actions'
-description: 'List other actions that relate to this one. Related Actions will show this Action in the sidebar.'
+bundle: topic
+label: 'Common Actions'
+description: ''
 required: false
 translatable: false
 default_value: {  }

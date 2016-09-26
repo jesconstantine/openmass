@@ -1,0 +1,47 @@
+uuid: f5d035f6-605f-4168-8eaf-4e2f630c61d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic.field_common_actions
+    - field.field.node.topic.field_icon
+    - field.field.node.topic.field_lede
+    - field.field.node.topic.field_section
+    - node.type.topic
+  module:
+    - options
+    - user
+id: node.topic.default
+targetEntityType: node
+bundle: topic
+mode: default
+content:
+  field_common_actions:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_icon:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_lede:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_section:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 100
+hidden: {  }

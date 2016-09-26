@@ -1,15 +1,15 @@
-uuid: f8a3873f-490a-4e86-8599-4a250b6d3257
+uuid: 66839860-15d3-4c27-82ab-b4a015be6376
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - node.type.subtopic
+    - node.type.topic
   module:
     - user
-id: node.subtopic.teaser
+id: node.topic.teaser
 targetEntityType: node
-bundle: subtopic
+bundle: topic
 mode: teaser
 content:
   links:

@@ -1,13 +1,11 @@
-uuid: ebd90074-21ee-4d8e-a9c5-5724a428e286
+uuid: f1316f34-5f9a-4c38-9547-76c7032f8598
 langcode: en
 status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: 85IbbeZQ4mkO1C2xmiDmPdQ3NU-u8f0F9QO-GhBuDaI
-id: node.field_action_parent
-field_name: field_action_parent
+id: node.field_topic_parent
+field_name: field_topic_parent
 entity_type: node
 type: entity_reference
 settings:
