@@ -9,6 +9,7 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\DrupalExtension\Context\MinkContext;
 use Drupal\DrupalExtension\Context\DrupalContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Drupal\node\Entity\Node;
 
 /**
  * Defines content features specific to Mass.gov.
@@ -51,17 +52,43 @@ class MassContentContext extends RawDrupalContext {
    * @Given default test content exists
    */
   public function createDefaultTestContent() {
-    $this->defaultSectionLandings();
-    $this->defaultTopics();
-    $this->defaultSubtopics();
-    $this->defaultActions();
+    $types = [
+      'section_landing' => $this->defaultSectionLandings(),
+      'topic' => $this->defaultTopics(),
+      'subtopic' => $this->defaultSubtopics(),
+      'action' => $this->defaultActions(),
+    ];
+
+    foreach ($types as $type => $nodes) {
+      foreach ($nodes as $node) {
+        $node += ['type' => $type];
+        $this->createNode($node);
+      }
+    }
 
     // Now that all the data structures exist, we need to go back through and
     // add content dependencies.
+    $this->updateNodes('subtopic');
+    // $this->updateNodes('topic');
+  }
 
-    // $this->updateDefaultTopics();
-    // $this->updateDefaultSubtopcis();
-    // $this->updateDefaultSectionLandings();
+  /**
+   * Get a list of fields that have content dependencies.
+   *
+   * @return Array
+   *   An array of fields with content dependencies keyed by node type.
+   */
+  public function relationshipFields() {
+    return [
+      'action' => [],
+      'subtopic' => [
+        'field_featured_content',
+      ],
+      'topic' => [
+        'field_common_actions',
+      ],
+      'section_landing' => [],
+    ];
   }
 
   /**
@@ -73,7 +100,7 @@ class MassContentContext extends RawDrupalContext {
    * @Given test actions exist
    */
   public function defaultActions() {
-    $actions = [
+    return [
       [
         'title' => 'Behat Test: Find a State Park',
         'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
@@ -122,11 +149,6 @@ class MassContentContext extends RawDrupalContext {
         'field_action_parent' => 'Behat Test: Search Jobs',
       ],
     ];
-
-    foreach ($actions as $action) {
-      $action += ['type' => 'action'];
-      $this->createNode($action);
-    }
   }
 
   /**
@@ -135,22 +157,22 @@ class MassContentContext extends RawDrupalContext {
    * Note: The "field_topic_parent" field is required, so Topics will need to be
    * created before this content can be stubbed out.
    *
-   * Note: The "featured_content" field is optional, so content relationships
+   * Note: The "field_featured_content" field is optional, so content relationships
    * will need to be updated after all the stub data is created.
    *
    * @Given test subtopics exist
    */
   public function defaultSubtopics() {
-    $subtopics = [
+    return [
       [
         'title' => 'Behat Test: Nature & Outdoor Activities',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Nature & Outdoor Activities',
         'field_description' => 'The description text for Nature & Outdoor Activities',
-        // 'field_featured_content' => [
-        //   'Behat Test: Find a State Park',
-        //   'Behat Test: Download a Trail Map',
-        // ],
+        'field_featured_content' => implode(', ', [
+          'Behat Test: Find a State Park',
+          'Behat Test: Download a Trail Map',
+        ]),
         'field_agency_links' => implode(', ', [
           'MassParks - http://www.google.com',
           'Department of Fish - http://www.google.com',
@@ -166,9 +188,9 @@ class MassContentContext extends RawDrupalContext {
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Recreational Licenses & Permits',
         'field_description' => 'The description text for Recreational Licenses & Permits',
-        // 'field_featured_content' => [
-        //   'Behat Test: Get a Boating License',
-        // ],
+        'field_featured_content' => implode(', ', [
+          'Behat Test: Get a Boating License',
+        ]),
         'field_agency_links' => implode(', ', [
           'Department of Agricultural Resources - http://www.google.com',
         ]),
@@ -178,9 +200,9 @@ class MassContentContext extends RawDrupalContext {
         'field_topic_parent' => 'Behat Test: Finding a Job',
         'field_lede' => 'The lede text for Search Jobs',
         'field_description' => 'The description text for Search Jobs',
-        // 'field_featured_content' => [
-        //   'Behat Test: Find a State Job',
-        // ],
+        'field_featured_content' => implode(', ', [
+          'Behat Test: Find a State Job',
+        ]),
         'field_agency_links' => implode(', ', [
           'MassCareers - http://www.google.com',
           'MassIT - http://www.google.com'
@@ -192,11 +214,6 @@ class MassContentContext extends RawDrupalContext {
         ]),
       ],
     ];
-
-    foreach ($subtopics as $subtopic) {
-      $subtopic += ['type' => 'subtopic'];
-      $this->createNode($subtopic);
-    }
   }
 
   /**
@@ -208,34 +225,27 @@ class MassContentContext extends RawDrupalContext {
    * @Given test topics exist
    */
   public function defaultTopics() {
-    $topics = [
+    return [
       [
         'title' => 'Behat Test: State Parks & Recreation',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
         'field_icon' => 'camping',
-        // 'field_common_actions' => [
-        //   'Behat Test: Get a State Park Pass',
-        //   'Behat Test: Download a Trail Map',
-        // ],
+        'field_common_actions' => implode(', ', [
+          'Behat Test: Get a State Park Pass',
+          'Behat Test: Download a Trail Map',
+        ]),
       ],
       [
         'title' => 'Behat Test: Finding a Job',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
         'field_icon' => 'apple',
-        // 'field_common_actions' => [
-        //   'Behat Test: Post a Job',
-        // ],
+        'field_common_actions' => implode(', ', [
+          'Behat Test: Post a Job',
+        ]),
       ],
     ];
-
-    // var_dump($this->section_landing['Behat Test: Working']->nid);
-
-    foreach ($topics as $topic) {
-      $topic += ['type' => 'topic'];
-      $this->createNode($topic);
-    }
   }
 
   /**
@@ -244,7 +254,7 @@ class MassContentContext extends RawDrupalContext {
    * @Given test section landings exist
    */
   public function defaultSectionLandings() {
-    $section_landings = [
+    return [
       [
         'title' => 'Behat Test: Visiting & Exploring',
         'field_icon' => 'family',
@@ -254,11 +264,6 @@ class MassContentContext extends RawDrupalContext {
         'field_icon' => 'apple',
       ],
     ];
-
-    foreach ($section_landings as $landing) {
-      $landing += ['type' => 'section_landing'];
-      $this->createNode($landing);
-    }
   }
 
   /**
@@ -272,6 +277,13 @@ class MassContentContext extends RawDrupalContext {
     // If there is not a title, set one.
     $node['title'] = ($node['title']) ?: $this->randomTitle($type);
 
+    // Strip out fields that cannot be created because of content dependencies.
+    if (!empty($this->relationshipFields()[$type])) {
+      foreach($this->relationshipFields()[$type] as $field) {
+        unset($node[$field]);
+      }
+    }
+
     $node = $this->drupalContext->nodeCreate((object) $node);
 
     // Track the node as a local array entry for ease of reference.
@@ -281,6 +293,63 @@ class MassContentContext extends RawDrupalContext {
 
     return $node;
   }
+
+
+  /** Really, really bad ideas below... */
+  protected function updateNodes($type) {
+    if (empty($this->{$type})) {
+      return;
+    }
+
+    if (empty($this->relationshipFields()[$type])) {
+      return;
+    }
+
+    foreach ($this->{$type} as $title => $old_node) {
+      $node = Node::load($old_node->nid);
+      foreach ($this->relationshipFields()[$type] as $field) {
+        if ($node->hasField($field)) {
+          $node->{$field}->target_id = $this->getDefaultValue($type, $node->title->value, $field);
+        }
+      }
+      $node->save();
+    }
+  }
+
+  private function getDefaultValue($type, $title, $field) {
+
+    $action = $this->defaultActions();
+    $subtopic = $this->defaultSubtopics();
+    $topic = $this->defaultTopics();
+    $section_landing = $this->defaultSectionLandings();
+
+    $lookups = [];
+
+    foreach ($$type as $default_node) {
+      if ($default_node['title'] == $title) {
+        $lookups = $default_node[$field];
+      }
+    }
+
+    $lookups = explode(', ', $lookups);
+
+    if (empty($lookups)) {
+      return;
+    }
+
+    $return = [];
+
+    foreach ($lookups as $lookup_title) {
+      foreach (array_keys($this->relationshipFields()) as $lookup_type) {
+        if (array_key_exists($lookup_title, $this->{$lookup_type})) {
+          $return[] = $this->{$lookup_type}[$lookup_title];
+        }
+      }
+    }
+
+    return $return;
+  }
+  /** end of really, really bad ideas... */
 
   /**
    * Visit a given test node.
