@@ -69,7 +69,7 @@ class MassContentContext extends RawDrupalContext {
     // Now that all the data structures exist, we need to go back through and
     // add content dependencies.
     $this->updateNodes('subtopic');
-    // $this->updateNodes('topic');
+    $this->updateNodes('topic');
   }
 
   /**
@@ -309,7 +309,10 @@ class MassContentContext extends RawDrupalContext {
       $node = Node::load($old_node->nid);
       foreach ($this->relationshipFields()[$type] as $field) {
         if ($node->hasField($field)) {
-          $node->{$field}->target_id = $this->getDefaultValue($type, $node->title->value, $field);
+          $refs = $this->getDefaultValue($type, $node->title->value, $field);
+          foreach ($refs as $ref) {
+            $node->{$field}->appendItem($ref->nid);
+          }
         }
       }
       $node->save();
@@ -337,7 +340,7 @@ class MassContentContext extends RawDrupalContext {
       return;
     }
 
-    $return = [];
+    //$return = [];
 
     foreach ($lookups as $lookup_title) {
       foreach (array_keys($this->relationshipFields()) as $lookup_type) {
