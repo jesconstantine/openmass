@@ -8,11 +8,13 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
     - entity_browser
     - field_group
+    - link
     - paragraphs
 third_party_settings:
   field_group:
@@ -37,7 +39,6 @@ third_party_settings:
         - field_action_related
         - field_action_downloads
         - field_action_contacts
-        - field_hero_image
       parent_name: group_form
       weight: 3
       label: 'Sidebar Content'
@@ -53,6 +54,7 @@ third_party_settings:
         - group_primary_content
         - group_details
         - group_sidebar
+        - group_external
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -70,6 +72,18 @@ third_party_settings:
       format_type: tab
       format_settings:
         formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_external:
+      children:
+        - field_external_url
+      parent_name: group_form
+      weight: 4
+      label: 'External Action'
+      format_type: fieldset
+      format_settings:
         description: ''
         classes: ''
         id: ''
@@ -129,6 +143,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_external_url:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
   field_lede:
     weight: 2
     settings:
