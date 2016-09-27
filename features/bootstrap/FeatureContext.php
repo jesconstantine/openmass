@@ -257,4 +257,18 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       }
     }
   }
+
+  /**
+   * @Then :content_type content can appear in the :menu menu
+   */
+  public function assertPlaceInMenu($content_type, $menu) {
+    // Visit the content type page and open to the menu section.
+    $this->getSession()->visit(sprintf('/admin/structure/types/manage/%s#edit-menu', $content_type));
+    // See if the box is checked for that menu.
+    $selector = sprintf("#edit-menu-options-%s[checked=checked]", $menu);
+    $element = $this->getSession()->getPage()->find('css', $selector);
+    if (is_null($element)) {
+      throw new \Exception(sprintf('Content of type "%s" cannot be placed in the menu "%s"', $content_type, $menu));
+    }
+  }
 }
