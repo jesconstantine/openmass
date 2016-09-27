@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
     - node.type.section_landing
   module:
+    - image
     - options
     - user
 id: node.section_landing.default
@@ -13,6 +15,14 @@ targetEntityType: node
 bundle: section_landing
 mode: default
 content:
+  field_featured_image:
+    weight: 103
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_icon:
     weight: 102
     label: above
