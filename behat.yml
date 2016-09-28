@@ -4,6 +4,7 @@ default:
       contexts:
         - FeatureContext
         - MassMarkupContext
+        - MassContentContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext

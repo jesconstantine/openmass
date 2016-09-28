@@ -1,0 +1,21 @@
+uuid: 470d6ed4-ab29-4500-816f-63f8c931cb05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_icon
+    - node.type.topic
+  module:
+    - options
+id: node.topic.field_icon
+field_name: field_icon
+entity_type: node
+bundle: topic
+label: Icon
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

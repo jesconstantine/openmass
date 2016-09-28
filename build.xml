@@ -58,7 +58,7 @@
         </drush>
 
         <!-- Reinstall the migration module to get the latest config. -->
-        <drush command="pm-uninstall" assume="yes">
+        <!-- <drush command="pm-uninstall" assume="yes">
             <param>mass_content</param>
         </drush>
         <drush command="pm-enable" assume="yes">
@@ -69,7 +69,7 @@
             <option name="group" value="mass_content" />
             <option name="update" />
             <option name="user" value="migration" />
-        </drush>
+        </drush> -->
     </target>
 
 

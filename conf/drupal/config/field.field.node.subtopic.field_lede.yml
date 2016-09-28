@@ -1,0 +1,19 @@
+uuid: 0f4b99c0-f782-468e-b679-a72bcddad9ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lede
+    - node.type.subtopic
+id: node.subtopic.field_lede
+field_name: field_lede
+entity_type: node
+bundle: subtopic
+label: Lede
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

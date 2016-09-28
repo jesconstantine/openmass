@@ -1,0 +1,28 @@
+uuid: 1415c4cd-367f-4b2b-a473-bb7a5cc3b676
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_common_actions
+    - node.type.action
+    - node.type.topic
+id: node.topic.field_common_actions
+field_name: field_common_actions
+entity_type: node
+bundle: topic
+label: 'Common Actions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      action: action
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

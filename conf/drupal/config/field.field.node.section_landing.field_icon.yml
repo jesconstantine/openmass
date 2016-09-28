@@ -1,0 +1,21 @@
+uuid: 09be67a9-ba45-4f35-b242-709e810b253a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_icon
+    - node.type.section_landing
+  module:
+    - options
+id: node.section_landing.field_icon
+field_name: field_icon
+entity_type: node
+bundle: section_landing
+label: Icon
+description: 'The section icon'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
