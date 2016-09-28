@@ -1,0 +1,24 @@
+uuid: e40e575d-8f01-451a-b441-5ba097dccc19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.section_landing.field_icon
+    - node.type.section_landing
+  module:
+    - options
+    - user
+id: node.section_landing.default
+targetEntityType: node
+bundle: section_landing
+mode: default
+content:
+  field_icon:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  links:
+    weight: 100
+hidden: {  }
