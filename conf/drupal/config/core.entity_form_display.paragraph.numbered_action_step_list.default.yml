@@ -1,0 +1,28 @@
+uuid: ec4ee3dc-145b-4eb6-87ec-5d11d63dd6a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.numbered_action_step_list.field_numbered_action_step_items
+    - paragraphs.paragraphs_type.numbered_action_step_list
+  module:
+    - paragraphs
+id: paragraph.numbered_action_step_list.default
+targetEntityType: paragraph
+bundle: numbered_action_step_list
+mode: default
+content:
+  field_numbered_action_step_items:
+    type: entity_reference_paragraphs
+    weight: 0
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

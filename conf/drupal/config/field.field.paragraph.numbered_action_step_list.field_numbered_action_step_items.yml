@@ -1,0 +1,54 @@
+uuid: 2e8ebc95-0703-4a0f-a0a9-4a32fe1e9fd4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_numbered_action_step_items
+    - paragraphs.paragraphs_type.numbered_action_step
+    - paragraphs.paragraphs_type.numbered_action_step_list
+  module:
+    - entity_reference_revisions
+id: paragraph.numbered_action_step_list.field_numbered_action_step_items
+field_name: field_numbered_action_step_items
+entity_type: paragraph
+bundle: numbered_action_step_list
+label: 'Numbered Action Step Items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      numbered_action_step: numbered_action_step
+    target_bundles_drag_drop:
+      action_step:
+        weight: 10
+        enabled: false
+      callout_link:
+        weight: 11
+        enabled: false
+      contact:
+        weight: 12
+        enabled: false
+      iframe:
+        weight: 13
+        enabled: false
+      numbered_action_step:
+        enabled: true
+        weight: 14
+      numbered_action_step_list:
+        weight: 15
+        enabled: false
+      rich_text:
+        weight: 16
+        enabled: false
+      stat:
+        weight: 17
+        enabled: false
+      subhead:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

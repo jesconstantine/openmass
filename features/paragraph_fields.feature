@@ -19,6 +19,12 @@ Feature: Paragraph type definitions
       | field-title   | Textfield                 |
       | field-content | Text area (multiple rows) |
 
+  Scenario: Verify that the numbered_action_step_list paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "numbered_action_step_list" paragraph has the fields:
+      | field                            | widget                    |
+      | field-numbered-action-step-items | Paragraphs                |
+
   Scenario: Verify that the callout_link paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "callout_link" paragraph has the fields:
