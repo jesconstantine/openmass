@@ -51,13 +51,13 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   /**
    * Asserts a content type has a title and
    * fields provided in the form of a given type:
-   * | field               | tag      | type  | multivalue |
-   * | body                | textarea |       | true       |
-   * | field-subheadline   | input    | text  | false      |
-   * | field-author        | input    | text  | false      |
-   * | field-summary       | textarea |       | true       |
-   * | field-full-text     | textarea |       | true       |
-   * | field-ref-sections  | select   |       | false      |
+   * | field               | tag      | type  | multivalue | required |
+   * | body                | textarea |       | true       |  true    |
+   * | field-subheadline   | input    | text  | false      |  false   |
+   * | field-author        | input    | text  | false      |  true    |
+   * | field-summary       | textarea |       | true       |  false   |
+   * | field-full-text     | textarea |       | true       |  false   |
+   * | field-ref-sections  | select   |       | false      |  false   |
    *
    * Assumes fields are targeted with #edit-<fieldname>. For example,
    * "body" checks for the existence of the element, "#edit-body". Note, for
@@ -80,6 +80,9 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $this->minkContext->assertElementOnPage($css_selector);
       $this->assertFieldType('edit-' . $row['field'], $row['tag'], $row['type']);
       $this->assertFieldMultivalue($row['field'], filter_var($row['multivalue'], FILTER_VALIDATE_BOOLEAN));
+      if (isset($row['required'])) {
+        $this->assertFieldRequired($row['field'], $row['tag'], filter_var($row['required'], FILTER_VALIDATE_BOOLEAN));
+      }
     }
   }
 
@@ -106,6 +109,32 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
         throw new Exception(sprintf("Field %s has \"%s\" widget but should have \"%s\".", $row['field'], $widget, $row['widget']));
       }
     }
+  }
+
+
+  /**
+   * Checks whether field is required.
+   *
+   * @param string $field
+   * @param string $tag
+   * @param bool $required
+   * @throws \Exception
+   */
+  public function assertFieldRequired($field, $tag, $required) {
+    $element_selector = $tag.'[id^=edit-' . $field . ']';
+//    $required_selector = '[required' . ($required ? '=' : '!=') . 'required]';
+    $element = $this->getSession()->getPage()->find('css', $element_selector);
+    if (NULL == $element) {
+      throw new Exception(sprintf('Could not find %s to determine whether it is required',$field));
+    }
+    $element_is_required = $element->hasAttribute('required');
+    if ($required && !$element_is_required) {
+      throw new Exception(sprintf('Field %s should be required and is not', $field));
+    }
+    if (!$required && $element_is_required) {
+      throw new Exception(sprintf('Field %s is required and should not be', $field));
+    }
+
   }
 
   /**
@@ -216,9 +245,11 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new Exception(sprintf("Couldn't find %s of type select.", $field));
     }
     // Verify that the select list is not part of a multivalue widget.
-    if (!$element->find('css', 'select.form-select')->isVisible()) {
-      throw new Exception(sprintf("Couldn't find %s of type select.", $field));
-    }
+    // The isVisible() method is not supported by the Goutte driver.
+    // @todo Refactor this to use a supported method.
+//    if (!$element->find('css', 'select.form-select')->isVisible()) {
+//      throw new Exception(sprintf("Couldn't find %s of type select.", $field));
+//    }
   }
 
   /**
