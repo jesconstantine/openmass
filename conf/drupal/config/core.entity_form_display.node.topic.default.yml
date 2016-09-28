@@ -1,0 +1,94 @@
+uuid: 4f73645a-f710-4b62-b0d7-4b6a363ebc7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic.field_common_content
+    - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_lede
+    - field.field.node.topic.field_node_icon
+    - field.field.node.topic.field_section
+    - node.type.topic
+  module:
+    - entity_browser
+    - path
+id: node.topic.default
+targetEntityType: node
+bundle: topic
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  field_common_content:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_featured_image:
+    weight: 2
+    settings:
+      entity_browser: browse_files_modal
+      field_widget_edit: '1'
+      field_widget_remove: '1'
+      selection_mode: selection_edit
+      view_mode: default
+      open: 0
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: entity_browser_file
+  field_lede:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+  field_node_icon:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_section:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  path:
+    type: path
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 9
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

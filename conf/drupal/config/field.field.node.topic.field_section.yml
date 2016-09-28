@@ -1,0 +1,29 @@
+uuid: a153ff7c-1926-4038-8818-43a0d1d9d221
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_section
+    - node.type.primary_landing
+    - node.type.topic
+id: node.topic.field_section
+field_name: field_section
+entity_type: node
+bundle: topic
+label: Section
+description: 'The Section to which this Topic relates.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      primary_landing: primary_landing
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
