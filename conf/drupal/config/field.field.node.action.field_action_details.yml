@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.numbered_action_step_list
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -33,6 +34,7 @@ settings:
       rich_text: rich_text
       stat: stat
       subhead: subhead
+      numbered_action_step_list: numbered_action_step_list
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -49,7 +51,16 @@ settings:
       stat:
         enabled: true
         weight: 11
+      contact:
+        weight: 12
+        enabled: false
       subhead:
         enabled: true
         weight: 12
+      numbered_action_step:
+        weight: 14
+        enabled: false
+      numbered_action_step_list:
+        enabled: true
+        weight: 15
 field_type: entity_reference_revisions
