@@ -1,0 +1,21 @@
+uuid: 39be577f-36d9-4c40-bbc3-d8635c8dc076
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.numbered_action_step
+  module:
+    - text
+id: paragraph.numbered_action_step.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: numbered_action_step
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
