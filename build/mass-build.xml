@@ -53,6 +53,18 @@
       <property name="deploy.site_alias" value="@massgovdemo.test" />
       <input propertyname="deploy.site_alias" validargs="@massgovdemo.dev,@massgovdemo.test">Acquia environment to pull from? </input>
 
+      <!-- Which environment will we be pulling from? -->
+      <input propertyname="deploy.backup_local" validargs="yes,no">Backup your local database? </input>
+
+      <if>
+          <istrue value="${deploy.backup_local}" />
+          <then>
+            <tstamp><format pattern="%Y-%m-%d_%H-%M-%S" property="build.time">  </format></tstamp>
+            <exec command="drush --nocolor --yes sql-dump > ${acquia.databases}/backup-db-${build.time}.sql" />
+            <echo>Local database backed up to ${acquia.databases}/backup-db-${build.time}.sql</echo>
+          </then>
+      </if>
+
       <!-- This cannot be a drush command because we cannot run it with the
            root parameter... exec works okay for this one-off. -->
       <echo>Downloading the database from Acquia.</echo>
@@ -110,6 +122,7 @@
            sourcedir="${deploy.file_source}"
            destinationdir="${deploy.file_dest}"
            options="-rltDvPh" />
+
   </target>
 
 </project>
