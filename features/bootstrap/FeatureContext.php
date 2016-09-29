@@ -122,7 +122,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function assertFieldRequired($field, $tag, $required) {
     $element_selector = $tag.'[id^=edit-' . $field . ']';
-//    $required_selector = '[required' . ($required ? '=' : '!=') . 'required]';
     $element = $this->getSession()->getPage()->find('css', $element_selector);
     if (NULL == $element) {
       throw new Exception(sprintf('Could not find %s to determine whether it is required',$field));
@@ -244,12 +243,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if (NULL == $element->find('css', 'select.form-select')) {
       throw new Exception(sprintf("Couldn't find %s of type select.", $field));
     }
-    // Verify that the select list is not part of a multivalue widget.
-    // The isVisible() method is not supported by the Goutte driver.
-    // @todo Refactor this to use a supported method.
-//    if (!$element->find('css', 'select.form-select')->isVisible()) {
-//      throw new Exception(sprintf("Couldn't find %s of type select.", $field));
-//    }
   }
 
   /**
@@ -286,6 +279,20 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       if (empty($link)) {
         throw new \Exception(sprintf('The link "%s" was not found in the "%s" region on the page %s', $row['link'], $region, $this->getSession()->getCurrentUrl()));
       }
+    }
+  }
+
+  /**
+   * @Then :content_type content can appear in the :menu menu
+   */
+  public function assertPlaceInMenu($content_type, $menu) {
+    // Visit the content type page and open to the menu section.
+    $this->getSession()->visit(sprintf('/admin/structure/types/manage/%s#edit-menu', $content_type));
+    // See if the box is checked for that menu.
+    $selector = sprintf("#edit-menu-options-%s[checked=checked]", $menu);
+    $element = $this->getSession()->getPage()->find('css', $selector);
+    if (is_null($element)) {
+      throw new \Exception(sprintf('Content of type "%s" cannot be placed in the menu "%s"', $content_type, $menu));
     }
   }
 }

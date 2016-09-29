@@ -18,6 +18,6 @@ Feature: Topic Content type
     | field-common-content   | input    |  text  | false      |  false    |
     # # Optional. Allows 4 items. Autocomplete entity ref to actions. Autocomplete should be limited to actions that reference subtopics that reference this topic.
 
-#  Scenario: Verify that pathauto patterns are applied to topic nodes.
-#    Given I am viewing a "topic" with the title "Run the Test Suite"
-#    Then I am at "topics/run-test-suite"
+  Scenario: Verify that pathauto patterns are applied to topic nodes.
+    Given I am viewing a "topic" with the title "Run the Test Suite"
+    Then I am at "topics/run-test-suite"
