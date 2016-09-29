@@ -5,8 +5,8 @@ dependencies:
   module:
     - entity_reference_revisions
     - paragraphs
-id: paragraph.field_numbered_action_step_items
-field_name: field_numbered_action_step_items
+id: paragraph.field_action_step_numbered_items
+field_name: field_action_step_numbered_items
 entity_type: paragraph
 type: entity_reference_revisions
 settings:

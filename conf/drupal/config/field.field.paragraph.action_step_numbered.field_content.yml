@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_content
-    - paragraphs.paragraphs_type.numbered_action_step
+    - paragraphs.paragraphs_type.action_step_numbered
   module:
     - text
-id: paragraph.numbered_action_step.field_content
+id: paragraph.action_step_numbered.field_content
 field_name: field_content
 entity_type: paragraph
-bundle: numbered_action_step
+bundle: action_step_numbered
 label: Content
 description: ''
 required: false

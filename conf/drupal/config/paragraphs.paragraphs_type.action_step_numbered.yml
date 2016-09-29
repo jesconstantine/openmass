@@ -2,5 +2,5 @@ uuid: f3e72fb2-f7cb-434d-9f79-4c465c34d392
 langcode: en
 status: true
 dependencies: {  }
-id: numbered_action_step
-label: 'Numbered Action Step'
+id: action_step_numbered
+label: 'Action Step - Numbered'

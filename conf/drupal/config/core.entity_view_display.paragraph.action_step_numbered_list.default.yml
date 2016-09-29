@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.numbered_action_step_list.field_numbered_action_step_items
-    - paragraphs.paragraphs_type.numbered_action_step_list
+    - field.field.paragraph.action_step_numbered_list.field_action_step_numbered_items
+    - paragraphs.paragraphs_type.action_step_numbered_list
   module:
     - entity_reference_revisions
-id: paragraph.numbered_action_step_list.default
+id: paragraph.action_step_numbered_list.default
 targetEntityType: paragraph
-bundle: numbered_action_step_list
+bundle: action_step_numbered_list
 mode: default
 content:
-  field_numbered_action_step_items:
+  field_action_step_numbered_items:
     type: entity_reference_revisions_entity_view
     weight: 0
     label: hidden

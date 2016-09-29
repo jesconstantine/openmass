@@ -8,7 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.iframe
-    - paragraphs.paragraphs_type.numbered_action_step_list
+    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -29,7 +29,7 @@ settings:
   handler_settings:
     target_bundles:
       action_step: action_step
-      numbered_action_step_list: numbered_action_step_list
+      action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
       iframe: iframe
       rich_text: rich_text
@@ -39,7 +39,7 @@ settings:
       action_step:
         enabled: true
         weight: -19
-      numbered_action_step_list:
+      action_step_numbered_list:
         enabled: true
         weight: -18
       callout_link:
@@ -60,7 +60,7 @@ settings:
       subhead:
         enabled: true
         weight: -12
-      numbered_action_step:
+      action_step_numbered:
         weight: -11
         enabled: false
 field_type: entity_reference_revisions

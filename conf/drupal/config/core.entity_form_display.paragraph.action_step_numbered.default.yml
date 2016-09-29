@@ -3,14 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.numbered_action_step.field_content
-    - field.field.paragraph.numbered_action_step.field_title
-    - paragraphs.paragraphs_type.numbered_action_step
+    - field.field.paragraph.action_step_numbered.field_content
+    - field.field.paragraph.action_step_numbered.field_title
+    - paragraphs.paragraphs_type.action_step_numbered
   module:
     - text
-id: paragraph.numbered_action_step.default
+id: paragraph.action_step_numbered.default
 targetEntityType: paragraph
-bundle: numbered_action_step
+bundle: action_step_numbered
 mode: default
 content:
   field_content:

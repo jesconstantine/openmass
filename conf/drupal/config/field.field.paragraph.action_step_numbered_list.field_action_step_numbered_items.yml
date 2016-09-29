@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_numbered_action_step_items
-    - paragraphs.paragraphs_type.numbered_action_step
-    - paragraphs.paragraphs_type.numbered_action_step_list
+    - field.storage.paragraph.field_action_step_numbered_items
+    - paragraphs.paragraphs_type.action_step_numbered
+    - paragraphs.paragraphs_type.action_step_numbered_list
   module:
     - entity_reference_revisions
-id: paragraph.numbered_action_step_list.field_numbered_action_step_items
-field_name: field_numbered_action_step_items
+id: paragraph.action_step_numbered_list.field_action_step_numbered_items
+field_name: field_action_step_numbered_items
 entity_type: paragraph
-bundle: numbered_action_step_list
-label: 'Numbered Action Step Items'
+bundle: action_step_numbered_list
+label: 'Action Step - Numbered Items'
 description: ''
 required: false
 translatable: false
@@ -22,7 +22,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      numbered_action_step: numbered_action_step
+      action_step_numbered: action_step_numbered
     target_bundles_drag_drop:
       action_step:
         weight: 10
@@ -36,10 +36,10 @@ settings:
       iframe:
         weight: 13
         enabled: false
-      numbered_action_step:
+      action_step_numbered:
         enabled: true
         weight: 14
-      numbered_action_step_list:
+      action_step_numbered_list:
         weight: 15
         enabled: false
       rich_text:
