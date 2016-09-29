@@ -54,7 +54,7 @@
       <input propertyname="deploy.site_alias" validargs="@massgovdemo.dev,@massgovdemo.test">Acquia environment to pull from? </input>
 
       <!-- Which environment will we be pulling from? -->
-      <input propertyname="deploy.backup_local" validargs="yes,no">Backup your local database? </input>
+      <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>
 
       <if>
           <istrue value="${deploy.backup_local}" />
@@ -122,6 +122,9 @@
            sourcedir="${deploy.file_source}"
            destinationdir="${deploy.file_dest}"
            options="-rltDvPh" />
+
+      <echo>Running `drush updb` now.</echo>
+      <drush command="updb" assume="yes" />
 
   </target>
 
