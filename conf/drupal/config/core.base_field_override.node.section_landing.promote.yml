@@ -1,15 +1,13 @@
-uuid: d9e9cebf-2686-4c5a-9f4f-45ac6b05e406
+uuid: e70da3ad-f83e-441a-b297-edf789b0f65e
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.secondary_landing
-_core:
-  default_config_hash: Kaa6tGSCD_oRi3GbolEHDRlmNvuRxHf0SdQlolpuWws
-id: node.secondary_landing.promote
+    - node.type.section_landing
+id: node.section_landing.promote
 field_name: promote
 entity_type: node
-bundle: secondary_landing
+bundle: section_landing
 label: 'Promoted to front page'
 description: ''
 required: false

@@ -1,13 +1,11 @@
-uuid: 87e0f663-3bb4-4eba-88ec-4d4c59386d0b
+uuid: a2af36a3-84f2-42ac-965a-a8a597029b67
 langcode: en
 status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: xSTlfn7Jw7uVbUvJK1-i9uanoersbSj7SWZGwzsWqVs
-id: node.field_action_landings
-field_name: field_action_landings
+id: node.field_common_actions
+field_name: field_common_actions
 entity_type: node
 type: entity_reference
 settings:

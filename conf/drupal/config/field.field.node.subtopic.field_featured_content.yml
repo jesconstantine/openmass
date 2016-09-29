@@ -1,18 +1,16 @@
-uuid: e726298b-da27-4547-a97e-5c063639adbf
+uuid: b1cd35dc-cc19-48ec-be13-9d05ff7602e8
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_actions
+    - field.storage.node.field_featured_content
     - node.type.action
-    - node.type.primary_landing
-_core:
-  default_config_hash: gDYa1ngefZV8LmaQSFfLdWqZhaf5n9OxcCruCD3kel8
-id: node.primary_landing.field_actions
-field_name: field_actions
+    - node.type.subtopic
+id: node.subtopic.field_featured_content
+field_name: field_featured_content
 entity_type: node
-bundle: primary_landing
-label: 'Common Actions'
+bundle: subtopic
+label: 'Featured Content'
 description: ''
 required: false
 translatable: false

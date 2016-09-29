@@ -1,19 +1,21 @@
-uuid: 0ab46098-067a-4a51-9259-e41828b4a568
+uuid: 470d6ed4-ab29-4500-816f-63f8c931cb05
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_lede
+    - field.storage.node.field_icon
     - node.type.topic
-id: node.topic.field_lede
-field_name: field_lede
+  module:
+    - options
+id: node.topic.field_icon
+field_name: field_icon
 entity_type: node
 bundle: topic
-label: Lede
+label: Icon
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string_long
+field_type: list_string

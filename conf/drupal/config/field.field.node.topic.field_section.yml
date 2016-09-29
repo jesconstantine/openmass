@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_section
-    - node.type.primary_landing
+    - node.type.section_landing
     - node.type.topic
 id: node.topic.field_section
 field_name: field_section
@@ -20,7 +20,7 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      primary_landing: primary_landing
+      section_landing: section_landing
     sort:
       field: title
       direction: ASC

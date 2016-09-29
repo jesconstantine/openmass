@@ -1,21 +1,19 @@
-uuid: c12bf6e8-0555-406e-8737-a8fd3df88cd5
+uuid: 1415c4cd-367f-4b2b-a473-bb7a5cc3b676
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_actions
+    - field.storage.node.field_common_actions
     - node.type.action
-    - node.type.action_landing
-_core:
-  default_config_hash: EJYAy6jZ4-r_RMjWITu_iXgankOkND-2BpX6JYkaP70
-id: node.action_landing.field_actions
-field_name: field_actions
+    - node.type.topic
+id: node.topic.field_common_actions
+field_name: field_common_actions
 entity_type: node
-bundle: action_landing
+bundle: topic
 label: 'Common Actions'
-description: 'Actions to display in the for this item.'
+description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

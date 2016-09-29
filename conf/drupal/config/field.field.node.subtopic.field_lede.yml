@@ -1,16 +1,14 @@
-uuid: ef4751e7-6b71-40af-95a3-aa63cf2b0ffc
+uuid: 0f4b99c0-f782-468e-b679-a72bcddad9ce
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_lede
-    - node.type.secondary_landing
-_core:
-  default_config_hash: c3_grnLx7wfWu5j-VPdjN8xMBvQrx4--1yLHxaCCRLc
-id: node.secondary_landing.field_lede
+    - node.type.subtopic
+id: node.subtopic.field_lede
 field_name: field_lede
 entity_type: node
-bundle: secondary_landing
+bundle: subtopic
 label: Lede
 description: ''
 required: false

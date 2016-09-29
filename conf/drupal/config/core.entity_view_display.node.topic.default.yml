@@ -1,16 +1,14 @@
-uuid: c21a74b4-45e3-4f7f-af1b-828a49a5e8a2
+uuid: f5d035f6-605f-4168-8eaf-4e2f630c61d2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.topic.field_common_content
-    - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_common_actions
+    - field.field.node.topic.field_icon
     - field.field.node.topic.field_lede
-    - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
     - node.type.topic
   module:
-    - image
     - options
     - user
 id: node.topic.default
@@ -18,43 +16,32 @@ targetEntityType: node
 bundle: topic
 mode: default
 content:
-  field_common_content:
-    weight: 4
-    label: hidden
+  field_common_actions:
+    weight: 104
+    label: above
     settings:
-      view_mode: teaser
-      link: false
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_featured_image:
-    weight: 0
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_lede:
-    weight: 1
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-  field_node_icon:
-    weight: 2
+    type: entity_reference_label
+  field_icon:
+    weight: 103
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+  field_lede:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_section:
-    weight: 3
+    weight: 101
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   links:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
+    weight: 100
 hidden: {  }
