@@ -38,44 +38,6 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<style>
-.ma__action-seq-list__items {
-  list-style: none;
-  margin-bottom: 0;
-  padding-left: 0;
-  counter-reset: li; }
-
-.ma__action-seq-list__item {
-  list-style: none;
-  padding-left: 60px;
-  position: relative; }
-  .ma__action-seq-list__item:before {
-    border: 3px solid;
-    border-radius: 50%;
-    content: counter(li);
-    counter-increment: li;
-    font-size: 20px;
-    font-size: 1.25rem;
-    height: 36px;
-    line-height: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    width: 36px; }
-
-.ma__action-seq-list__title {
-  margin-bottom: 0; }
-
-.ma__action-seq-list__item:before {
-  font-weight: 700;
-  font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif;
-  color: #43956f; }
-
-.ma__action-seq-list__title {
-  font-weight: 700;
-  font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif; }
-</style>
 
 <ol class="ma__action-seq-list__items">
   {# Render numbered action items #}
