@@ -46,6 +46,6 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 'ma__action-seq-list'
 ]
 %}
-<section class="ma__action-seq-list">
+<section {{ attributes.addClass(classes) }}>
   {{content}}
 </section>
