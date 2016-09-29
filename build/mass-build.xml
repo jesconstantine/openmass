@@ -42,10 +42,10 @@
       </if>
 
       <if>
-        <not><available file="${build.dir}/artifacts/databases" type="dir" /></not>
+        <not><available file="${acquia.databases}" type="dir" /></not>
         <then>
-          <echo>Please create a directory for databases at "${build.dir}/artifacts/databases".</echo>
-          <fail message="No database working directory." />
+          <echo>Created a database working directory at: ${acquia.databases}.</echo>
+          <mkdir dir="${acquia.databases}" />
         </then>
       </if>
 
