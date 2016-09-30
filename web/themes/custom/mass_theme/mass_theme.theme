@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\file\Entity\File;
 
 /**
  * Implements hook_preprocess_block().
@@ -61,4 +62,46 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out file information for file link template.
+ * Default template: file-link.html.twig.
+ */
+function mass_theme_preprocess_file_link(&$variables) {
+  // Get file attributes for ct.action file download links.
+  $file = $variables['file'];
+  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+
+  // Get the human readable file size.
+  $bytes = $file->getSize();
+  $readableSize = format_size($bytes);
+  $variables['download']['size'] = $readableSize;
+
+  // Use the description as the link text if available,
+  // if not, use the file name.
+  $filename = $file_entity->getFilename();
+  if (empty($variables['description'])) {
+    $variables['download']['linktext'] = $filename;
+  }
+  else {
+    $variables['download']['linktext'] = $variables['description'];
+  }
+
+  // Set the file link variable.
+  $variables['download']['link'] = file_create_url($file_entity->getFileUri());
+
+  // Get the file extension.
+  // see: http://php.net/manual/en/splfileinfo.getextension.php
+  $file_info = new SplFileInfo($filename);
+  $file_extension = $file_info->getExtension();
+
+  // Set the file type based on extesnion.
+  $variables['download']['filetype'] = $file_extension;
+
+  // Set the icon name.
+  $variables['download']['iconName'] = 'doc-' . $file_extension;
+
 }
