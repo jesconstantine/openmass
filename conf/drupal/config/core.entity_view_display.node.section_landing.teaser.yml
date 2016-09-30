@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
     - node.type.section_landing
   module:
@@ -15,5 +16,8 @@ mode: teaser
 content:
   links:
     weight: 100
+  workbench_moderation_control:
+    weight: -20
 hidden:
+  field_featured_image: true
   field_icon: true

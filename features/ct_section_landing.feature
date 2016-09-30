@@ -15,3 +15,7 @@ Feature: Section Landing Content type
   Scenario: Verify that pathauto patterns are applied to section landing nodes.
     Given I am viewing an "section_landing" with the title "Behat Test: Section Landing"
     Then I am at "behat-test-section-landing"
+
+  Scenario: The page banner has correct markup.
+    Given I am viewing a "section_landing" with the title "Behat Test: Section Landing"
+    Then I should see the correct markup for the page banner
