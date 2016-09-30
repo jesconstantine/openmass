@@ -86,7 +86,7 @@ third_party_settings:
       format_settings:
         label: 'External Action'
         formatter: closed
-        description: 'Hello World'
+        description: 'If this action doesn''t have details to be displayed on this site, please add the URL to where the action can be completed.'
         required_fields: true
         id: ''
         classes: ''
