@@ -7,6 +7,7 @@ dependencies:
     - node.type.action
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.callout_link
+    - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
@@ -29,6 +30,7 @@ settings:
     target_bundles:
       action_step: action_step
       callout_link: callout_link
+      file_download: file_download
       iframe: iframe
       rich_text: rich_text
       stat: stat
@@ -36,20 +38,26 @@ settings:
     target_bundles_drag_drop:
       action_step:
         enabled: true
-        weight: 7
+        weight: -17
       callout_link:
         enabled: true
-        weight: 8
+        weight: -16
+      file_download:
+        enabled: true
+        weight: -15
       iframe:
         enabled: true
-        weight: 9
+        weight: -14
       rich_text:
         enabled: true
-        weight: 10
+        weight: -13
       stat:
         enabled: true
-        weight: 11
+        weight: -12
+      contact:
+        weight: -11
+        enabled: false
       subhead:
         enabled: true
-        weight: 12
+        weight: -10
 field_type: entity_reference_revisions
