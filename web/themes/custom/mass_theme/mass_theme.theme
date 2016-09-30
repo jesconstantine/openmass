@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_block().
@@ -14,6 +15,34 @@ function mass_theme_preprocess_block(&$variables) {
   // Get base_path into our block.twig templates
   // http://data.agaric.com/how-get-base-path-your-drupal-8-site-twig-template
   $variables['base_path'] = base_path();
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  // Optionally, run node-type-specific preprocess functions, like
+  // foo_preprocess_node_page() or foo_preprocess_section_landing().
+  $function = __FUNCTION__ . '_' . $node->getType();
+  if (function_exists($function)) {
+    $function($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Preprocess our Section Landing node content.
+ */
+function mass_theme_preprocess_node_section_landing(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
 }
 
 /**

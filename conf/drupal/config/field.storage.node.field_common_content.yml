@@ -1,11 +1,11 @@
-uuid: a2af36a3-84f2-42ac-965a-a8a597029b67
+uuid: 2d9dcf05-3b5c-4f57-8f12-1ff0b184083d
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_common_actions
-field_name: field_common_actions
+id: node.field_common_content
+field_name: field_common_content
 entity_type: node
 type: entity_reference
 settings:
