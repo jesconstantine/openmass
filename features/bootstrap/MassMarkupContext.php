@@ -24,4 +24,15 @@ class MassMarkupContext extends MarkupContext
       $this->assertRegionElement('nav.ma__header__nav > .ma__header__nav-container > .ma__header__main-nav > .ma__main-nav > ul.ma__main-nav__items', 'header');
       $this->assertRegionElement('ul.ma__main-nav__items > li.ma__main-nav__item > a.ma__main-nav__top-link', 'header');
   }
+
+  /**
+   * @Then I should see the correct markup for the page banner
+   */
+  public function iShouldSeeTheCorrectMarkupForThePageBanner() {
+    $this->assertRegionElement('div.ma__breadcrumbs__container', 'breadcrumbs');
+    $this->assertRegionElement('style', 'page_banner');
+    $this->assertRegionElement('div.ma__page-banner__icon', 'page_banner');
+    $this->assertRegionElement('svg', 'page_banner');
+    $this->assertRegionElement('h1.ma__page-banner__title', 'page_banner');
+  }
 }

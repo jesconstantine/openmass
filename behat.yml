@@ -30,3 +30,5 @@ default:
         anywhere: "*"
         body: "body"
         header: "header.ma__header"
+        breadcrumbs: "section.ma__breadcrumbs"
+        page_banner: "section.ma__page-banner"

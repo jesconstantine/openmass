@@ -38,7 +38,11 @@ function mass_theme_preprocess_node(&$variables) {
  */
 function mass_theme_preprocess_node_section_landing(&$variables) {
   $node = $variables['node'];
-  $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
 }
 
 /**
