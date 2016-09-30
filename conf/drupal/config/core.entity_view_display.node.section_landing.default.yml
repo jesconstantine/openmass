@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
+    - image.style.hero800x400
     - node.type.section_landing
   module:
     - image
@@ -17,18 +18,24 @@ mode: default
 content:
   field_featured_image:
     weight: 103
-    label: above
+    label: hidden
     settings:
-      image_style: ''
+      image_style: hero800x400
       image_link: ''
     third_party_settings: {  }
     type: image
   field_icon:
     weight: 102
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }
