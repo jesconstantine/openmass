@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.file_download.field_file
+    - field.field.paragraph.file_download.field_downloads
     - paragraphs.paragraphs_type.file_download
   module:
     - entity_browser
@@ -13,6 +13,18 @@ targetEntityType: paragraph
 bundle: file_download
 mode: default
 content:
+  field_downloads:
+    type: entity_browser_file
+    weight: 0
+    settings:
+      entity_browser: browse_files_modal
+      field_widget_edit: '1'
+      field_widget_remove: '1'
+      open: '1'
+      selection_mode: selection_append
+      view_mode: default
+      preview_image_style: thumbnail
+    third_party_settings: {  }
   field_file:
     weight: 6
     settings:

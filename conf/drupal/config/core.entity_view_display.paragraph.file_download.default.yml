@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.file_download.field_file
+    - field.field.paragraph.file_download.field_downloads
     - paragraphs.paragraphs_type.file_download
   module:
     - file
@@ -12,6 +12,12 @@ targetEntityType: paragraph
 bundle: file_download
 mode: default
 content:
+  field_downloads:
+    type: file_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_file:
     weight: 0
     label: above

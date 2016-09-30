@@ -5,8 +5,8 @@ dependencies:
   module:
     - file
     - paragraphs
-id: paragraph.field_file
-field_name: field_file
+id: paragraph.field_downloads
+field_name: field_downloads
 entity_type: paragraph
 type: file
 settings:
