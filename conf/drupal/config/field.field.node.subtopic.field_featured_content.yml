@@ -16,10 +16,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: views
-  handler_settings:
-    view:
-      view_name: subtopic_featured_content
-      display_name: entity_reference_subtopic
-      arguments: {  }
+  handler: mass
+  handler_settings: {  }
 field_type: entity_reference
