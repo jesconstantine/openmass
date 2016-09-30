@@ -82,12 +82,14 @@ third_party_settings:
       parent_name: group_form
       weight: 4
       label: 'External Action'
-      format_type: fieldset
+      format_type: tab
       format_settings:
-        description: ''
-        classes: ''
-        id: ''
+        label: 'External Action'
+        formatter: closed
+        description: 'Hello World'
         required_fields: true
+        id: ''
+        classes: ''
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
