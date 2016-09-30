@@ -96,7 +96,7 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
- * Break out file information for file link template.
+ * Parse file attributes for file link template.
  * Default template: file-link.html.twig.
  */
 function mass_theme_preprocess_file_link(&$variables) {
