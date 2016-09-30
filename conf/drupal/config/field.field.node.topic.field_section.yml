@@ -1,4 +1,4 @@
-uuid: 5a602df7-c3c9-419c-bef5-a33fa0d2d9b1
+uuid: a153ff7c-1926-4038-8818-43a0d1d9d221
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ field_name: field_section
 entity_type: node
 bundle: topic
 label: Section
-description: ''
+description: 'The Section to which this Topic relates.'
 required: true
 translatable: false
 default_value: {  }

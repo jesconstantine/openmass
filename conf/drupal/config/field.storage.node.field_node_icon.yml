@@ -1,0 +1,117 @@
+uuid: f12febd4-433a-416b-b9b7-c747ba073dcf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_node_icon
+field_name: field_node_icon
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: alerts
+      label: Alerts
+    -
+      value: apple
+      label: Apple
+    -
+      value: arrow
+      label: Arrow
+    -
+      value: bag-search
+      label: 'Bag Search'
+    -
+      value: blog
+      label: Blog
+    -
+      value: building
+      label: Building
+    -
+      value: campfire
+      label: Campfire
+    -
+      value: camping
+      label: Camping
+    -
+      value: certificate
+      label: Certificate
+    -
+      value: external-link
+      label: 'External Link'
+    -
+      value: facebook
+      label: Facebook
+    -
+      value: family
+      label: Family
+    -
+      value: gavel
+      label: Gavel
+    -
+      value: id-card
+      label: 'Id Card'
+    -
+      value: instagram
+      label: Instagram
+    -
+      value: laptop
+      label: Laptop
+    -
+      value: linkedin
+      label: Linkedin
+    -
+      value: login
+      label: Login
+    -
+      value: mail
+      label: Mail
+    -
+      value: map
+      label: Map
+    -
+      value: page-test
+      label: 'Page Test'
+    -
+      value: phone
+      label: Phone
+    -
+      value: pig-bank
+      label: 'Pig Bank'
+    -
+      value: profile
+      label: Profile
+    -
+      value: quote
+      label: Quote
+    -
+      value: restore
+      label: Restore
+    -
+      value: search
+      label: Search
+    -
+      value: server-rack
+      label: 'Server Rack'
+    -
+      value: settings
+      label: Settings
+    -
+      value: twitter
+      label: Twitter
+    -
+      value: user-test
+      label: 'User Test'
+    -
+      value: youtube
+      label: Youtube
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
