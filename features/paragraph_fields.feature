@@ -12,14 +12,14 @@ Feature: Paragraph type definitions
       | field-title   | Textfield                 |
       | field-content | Text area (multiple rows) |
 
-  Scenario: Verify that the numbered_action_step paragraph type has the correct field configuration
+  Scenario: Verify that the action_step_numbered paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "action_step_numbered" paragraph has the fields:
       | field         | widget                    |
       | field-title   | Textfield                 |
       | field-content | Text area (multiple rows) |
 
-  Scenario: Verify that the numbered_action_step_list paragraph type has the correct field configuration
+  Scenario: Verify that the action_step_numbered_list paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "action_step_numbered_list" paragraph has the fields:
       | field                            | widget                    |
