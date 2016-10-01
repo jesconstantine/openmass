@@ -18,6 +18,12 @@ Feature: Paragraph type definitions
       | field      | widget |
       | field-link | Link   |
 
+  Scenario: Verify that the file_download paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "file_download" paragraph has the fields:
+      | field           | widget         |
+      | field-downloads | Entity browser |
+
   Scenario: Verify that the iframe paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "iframe" paragraph has the fields:
