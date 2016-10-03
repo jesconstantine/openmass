@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override to display the Full view mode of the Subtopic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{% extends 'node.html.twig' %}
+
+{% block preContent %}
+  {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+  {# include "organisms-page-header" #}
+  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+{% endblock %}
+{% block pageContent %}
+  
+{% endblock %}
+{% block postContent %}
+  {# include "organisms-breadcrumbs" #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+{% endblock %}
