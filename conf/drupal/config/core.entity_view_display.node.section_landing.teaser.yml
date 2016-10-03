@@ -1,0 +1,23 @@
+uuid: 61c4e4aa-bb22-43a5-a487-84eb4c997599
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.section_landing.field_featured_image
+    - field.field.node.section_landing.field_icon
+    - node.type.section_landing
+  module:
+    - user
+id: node.section_landing.teaser
+targetEntityType: node
+bundle: section_landing
+mode: teaser
+content:
+  links:
+    weight: 100
+  workbench_moderation_control:
+    weight: -20
+hidden:
+  field_featured_image: true
+  field_icon: true

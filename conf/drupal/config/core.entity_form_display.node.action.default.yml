@@ -8,12 +8,88 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
+    - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
     - entity_browser
+    - field_group
+    - link
     - paragraphs
+third_party_settings:
+  field_group:
+    group_primary_content:
+      children:
+        - title
+        - field_lede
+        - field_action_parent
+      parent_name: group_form
+      weight: 1
+      label: 'Primary Content'
+      format_type: tab
+      format_settings:
+        label: 'Primary Content'
+        formatter: open
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+    group_sidebar:
+      children:
+        - field_action_related
+        - field_action_downloads
+        - field_action_contacts
+      parent_name: group_form
+      weight: 3
+      label: 'Sidebar Content'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_form:
+      children:
+        - group_primary_content
+        - group_details
+        - group_sidebar
+        - group_external
+      parent_name: ''
+      weight: 0
+      label: 'Node Edit Form'
+      format_type: tabs
+      format_settings:
+        direction: vertical
+        classes: ''
+        id: ''
+    group_details:
+      children:
+        - field_action_details
+      parent_name: group_form
+      weight: 2
+      label: Details
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_external:
+      children:
+        - field_external_url
+      parent_name: group_form
+      weight: 4
+      label: 'External Action'
+      format_type: tab
+      format_settings:
+        label: 'External Action'
+        formatter: closed
+        description: 'If this action doesn''t have details to be displayed on this site, please add the URL to where the action can be completed.'
+        required_fields: true
+        id: ''
+        classes: ''
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
@@ -23,26 +99,26 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_paragraphs
-    weight: 40
+    weight: 4
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: Contact
+      title_plural: Contacts
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
-    weight: 39
+    weight: 3
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: button
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 37
+    weight: 3
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -54,7 +130,7 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_action_parent:
-    weight: 32
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -62,27 +138,22 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_action_related:
-    weight: 36
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_hero_image:
-    weight: 38
+  field_external_url:
+    weight: 2
     settings:
-      entity_browser: browse_files_modal
-      field_widget_edit: '1'
-      field_widget_remove: '1'
-      selection_mode: selection_append
-      view_mode: default
-      open: 0
-      preview_image_style: thumbnail
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
-    type: entity_browser_file
+    type: link_default
   field_lede:
-    weight: 31
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -90,7 +161,7 @@ content:
     type: string_textarea
   title:
     type: string_textfield
-    weight: -5
+    weight: 1
     settings:
       size: 60
       placeholder: ''

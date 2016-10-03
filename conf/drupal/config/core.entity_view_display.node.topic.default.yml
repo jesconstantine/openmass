@@ -1,0 +1,60 @@
+uuid: f5d035f6-605f-4168-8eaf-4e2f630c61d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic.field_common_content
+    - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_lede
+    - field.field.node.topic.field_node_icon
+    - field.field.node.topic.field_section
+    - node.type.topic
+  module:
+    - image
+    - options
+    - user
+id: node.topic.default
+targetEntityType: node
+bundle: topic
+mode: default
+content:
+  field_common_content:
+    type: entity_reference_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_featured_image:
+    type: image
+    weight: 1
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_lede:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_node_icon:
+    type: list_default
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_section:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

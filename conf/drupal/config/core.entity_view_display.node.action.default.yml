@@ -8,13 +8,12 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
+    - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
     - entity_reference_revisions
     - file
-    - image
     - user
 _core:
   default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
@@ -25,7 +24,7 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_revisions_entity_view
-    weight: 110
+    weight: 6
     label: above
     settings:
       view_mode: default
@@ -33,48 +32,41 @@ content:
     third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
-    weight: 109
+    weight: 5
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
   field_action_downloads:
-    weight: 107
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
   field_action_parent:
-    weight: 102
+    weight: 2
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_action_related:
-    weight: 106
+    weight: 3
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_hero_image:
-    weight: 108
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
   field_lede:
-    weight: 101
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   links:
-    weight: 100
+    weight: 0
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_external_url: true

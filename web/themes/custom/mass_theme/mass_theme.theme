@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_block().
@@ -17,7 +18,35 @@ function mass_theme_preprocess_block(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK()
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  // Optionally, run node-type-specific preprocess functions, like
+  // foo_preprocess_node_page() or foo_preprocess_section_landing().
+  $function = __FUNCTION__ . '_' . $node->getType();
+  if (function_exists($function)) {
+    $function($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Preprocess our Section Landing node content.
+ */
+function mass_theme_preprocess_node_section_landing(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
  *
  * Various global preprocessing.
  */
@@ -26,34 +55,32 @@ function mass_theme_preprocess_html(&$variables) {
   if ($variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
- }
+}
 
 /**
- * Implements HOOK_preprocess_field().
+ * Implements hook_preprocess_field().
  */
 function mass_theme_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
 
   // Get the subheads for the action jump menu.
-  if($element['#field_name'] == 'field_action_details') {
-  $delta = 0;
-  while (!empty($element[$delta])) {
-    $paragraph = $element[$delta]['#paragraph'];
-    if ($paragraph->getType() == 'subhead') {
-      $title = $paragraph->field_title->value;
-      $key = strtolower($title);
-      $key = Html::cleanCssIdentifier($key);
-      $variables['subheads'][$key] = $title;
+  if ($element['#field_name'] == 'field_action_details') {
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      if ($paragraph->getType() == 'subhead') {
+        $title = $paragraph->field_title->value;
+        $key = strtolower($title);
+        $key = Html::cleanCssIdentifier($key);
+        $variables['subheads'][$key] = $title;
+      }
+      $delta++;
     }
-    $delta++;
   }
-
-  }
-
 }
 
 /**
- * Implements hook_preprocess_HOOK()
+ * Implements hook_preprocess_HOOK().
  *
  * Break out url pieces for callout link paragraphs.
  */
@@ -62,7 +89,7 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
-  $variables['calloutLink']['type'] = substr( $url->toString(), 0, 4 ) === "http" ? 'external' : 'internal';
+  $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
 }
 
 /**

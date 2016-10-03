@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
-    - field.field.node.action.field_hero_image
+    - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -61,5 +61,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_action_parent: true
-  field_hero_image: true
+  field_external_url: true
   links: true
