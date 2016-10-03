@@ -33,24 +33,12 @@
     <!-- Target: install -->
     <target name="install" description="Install the application.">
         <phingcall target="install-from-acquia" />
-
-        <drush command="pm-enable" assume="yes">
-            <param>devel</param>
-            <param>kint</param>
-            <param>mass_types</param>
-            <param>migrate_tools</param>
-        </drush>
+        <phingcall target="mass-local-modules" />
     </target>
 
     <target name="clean-install" description="Initialzie a new copy of the site without a canonical DB.">
         <phingcall target="drupal-install" />
-
-        <drush command="pm-enable" assume="yes">
-            <param>devel</param>
-            <param>kint</param>
-            <param>mass_types</param>
-            <param>migrate_tools</param>
-        </drush>
+        <phingcall target="mass-local-modules" />
     </target>
 
     <!-- Target: migrate -->
