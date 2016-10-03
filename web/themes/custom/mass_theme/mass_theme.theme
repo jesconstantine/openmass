@@ -99,7 +99,6 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
  */
 function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
   if (strpos($variables['menu_name'], 'footer') > -1) {
-    $suggestions[] = "menu--footer-layout";
-    // TODO: this totally doesn't work...
+    $suggestions[] = "menu__footer_layout";
   }
 }
