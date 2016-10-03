@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
+{% set desktop_image = desktop_finder_image %}
+{% set mobile_image = mobile_finder_image %}
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
@@ -18,8 +20,9 @@
   {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
 {% endblock %}
 {% block pageContent %}
+  {% include directory ~ "/templates/includes/organisms-action-finder.html.twig" %}
   {% if content.field_agency_links|render|trim is not empty %}
-    {{ content.field_agency_links }}
+    {{content.field_agency_links }}
   {% endif %}
 {% endblock %}
 {% block postContent %}

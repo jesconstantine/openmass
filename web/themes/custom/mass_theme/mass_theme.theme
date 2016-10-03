@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_block().
@@ -61,4 +62,66 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  // Optionally, run node-type-specific preprocess functions, like
+  // foo_preprocess_node_page() or foo_preprocess_node_story().
+  $function = __FUNCTION__ . '_' . $node->getType();
+  if (function_exists($function)) {
+    $function($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node subtopic alterations
+ */
+function mass_theme_preprocess_node_subtopic(&$variables) {
+  $node = $variables['node'];
+
+  $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
+  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
+}
+
+/**
+ * Provide the URL of an image.
+ *
+ * @param $node
+ *   The node with the field on it.
+ * @param string $style_name
+ *   The name of an image style.
+ * @param string $field
+ *   The name of an the image field.
+ *
+ * @return string
+ *   The URL to the styled image, or to the original image if the style does not
+ *   exist.
+ */
+function mass_theme_get_field_image_url($node, $style_name = NULL, $field = NULL) {
+  $url = '';
+
+  $fields = $node->get($field);
+  if ($fields) {
+    $images = $fields->referencedEntities();
+  }
+
+  if (!empty($images)) {
+    $image = current($images);
+
+    if (!empty($style_name) && ($style = ImageStyle::load($style_name))) {
+      $url = $style->buildUrl($image->getFileUri());
+    }
+    else {
+      $url = $image->url();
+    }
+  }
+
+  return $url;
 }
