@@ -1,9 +1,15 @@
 <?php
+/**
+ * @file
+ * Contains mass_entityreference.module.
+ *
+ * Copyright 2016 Palantir.net, Inc.
+ */
 
 use Drupal\Core\Form\FormStateInterface;
 
-/*
- *
+/**
+ * Implements hook_form_FORM_ID_alter().
  */
 function mass_entityreference_form_node_subtopic_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Save current nid as a cookie so it can be accessed by entityreference.
