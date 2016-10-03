@@ -1,0 +1,12 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/*
+ *
+ */
+function mass_entityreference_form_node_subtopic_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Save current nid as a cookie so it can be accessed by entityreference.
+  $node_id = \Drupal::routeMatch()->getRawParameter('node');
+  user_cookie_save(['subtopic_nid' => $node_id]);
+}
