@@ -32,6 +32,7 @@ module:
   inline_form_errors: 0
   link: 0
   mass_content: 0
+  mass_styles: 0
   mass_types: 0
   menu_ui: 0
   metatag: 0
