@@ -47,6 +47,7 @@
 
         <drush command="pm-enable" assume="yes">
             <param>devel</param>
+            <param>kint</param>
             <param>mass_types</param>
             <param>migrate_tools</param>
         </drush>
