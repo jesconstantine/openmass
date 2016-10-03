@@ -12,7 +12,7 @@ field_name: field_downloads
 entity_type: paragraph
 bundle: file_download
 label: Downloads
-description: 'Add any files that are required to be completed as part of this Action.'
+description: '<p>Add any files that are required to be completed as part of this Action.</p><p><b><big>PLEASE NOTE:</big></b> For now, it is best to upload, select and label ONE image at a time.  Uploading and selecting multiple images simultaneously will result in authors not knowing how to label each file because the filenames will not be displayed.  This is a bug and will eventually be resolved.</p>'
 required: false
 translatable: false
 default_value: {  }
