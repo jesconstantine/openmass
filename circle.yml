@@ -29,7 +29,7 @@ dependencies:
 
 test:
   pre:
-    - vendor/bin/phing build install migrate
+    - vendor/bin/phing build clean-install migrate
 
   override:
     - vendor/bin/phing test
