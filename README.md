@@ -8,8 +8,22 @@
 * [ansible](https://github.com/ansible/ansible) `brew install ansible`
 * [vagrant-hostmanager](https://github.com/smdahlen/vagrant-hostmanager) `vagrant plugin install vagrant-hostmanager`
 * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network) `vagrant plugin install vagrant-auto_network`
+* [composer](https://getcomposer.org/) installed on the host machine.
 
 If you have been running a previous version of Vagrant you may need to do: `vagrant plugin update` to ensure that you can install the plugins.
+
+## Required Set Up
+Before you can install the site, you'll need to make sure that you have access to the Acquia environment so you can download the canonical database. Once you have access to the environment, please follow these steps:
+
+1. Log in to your Acquia account
+1. Navigate to the "Credentials" tab under your profile
+1. Under the "Drush Integration" heading, click the "Download Drush aliases" link
+1. This will download acquiacloud.tar.gz
+1. Unzip this archive
+1. Place the resulting directory within this project's "artifacts" directory (create it if it doesn't exist)
+1. You should now have your Acquia Cloud credentials available at "${build.dir}/artifacts/acquiacloud"
+
+*If you don't have access to Acquia and would like to install with a clean database, you can call `phing clean-install` instead of `install` anywhere phing would try to do an install for you.*
 
 ## Getting Started
 
@@ -88,7 +102,13 @@ Run `vendor/bin/phing test` or `vendor/bin/behat features/installation.feature`.
 
 ## Troubleshooting
 
+### DNS could not be found
+
 If, on browsing to `http://mass.local`, you get the following error:
 > mass.local’s server DNS address could not be found.
 
 Then `vagrant up` may have failed half way through. When this happens, the `vagrant-hostmanager` plugin does not add the hostname to `/etc/hosts`. Try halting and re-upping the machine: `vagrant halt && vagrant up`. Reload is not sufficient to trigger updating the hosts file.
+
+### Could not build, phing error
+
+If you try to build the site and get a phing saying the Drupal site could not be built, but you were recently building it successfully, you may need to run `composer install`. If you switch branches and the new branch has a composer dependency that you don't have installed on your branch, phing complains loudly.

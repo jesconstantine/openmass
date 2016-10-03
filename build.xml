@@ -5,7 +5,6 @@
 
     <import file="vendor/palantirnet/the-build/tasks/boilerplate.xml" />
 
-
     <!-- Make these commands available by default. -->
     <import file="vendor/palantirnet/the-build/tasks/drupal.xml" />
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
@@ -33,7 +32,7 @@
 
     <!-- Target: install -->
     <target name="install" description="Install the application.">
-        <phingcall target="drupal-install" />
+        <phingcall target="install-from-acquia" />
 
         <drush command="pm-enable" assume="yes">
             <param>devel</param>
@@ -42,6 +41,15 @@
         </drush>
     </target>
 
+    <target name="clean-install" description="Initialzie a new copy of the site without a canonical DB.">
+        <phingcall target="drupal-install" />
+
+        <drush command="pm-enable" assume="yes">
+            <param>devel</param>
+            <param>mass_types</param>
+            <param>migrate_tools</param>
+        </drush>
+    </target>
 
     <!-- Target: migrate -->
     <target name="migrate" description="Run the migrations.">
@@ -58,7 +66,7 @@
         </drush>
 
         <!-- Reinstall the migration module to get the latest config. -->
-        <drush command="pm-uninstall" assume="yes">
+        <!-- <drush command="pm-uninstall" assume="yes">
             <param>mass_content</param>
         </drush>
         <drush command="pm-enable" assume="yes">
@@ -69,7 +77,7 @@
             <option name="group" value="mass_content" />
             <option name="update" />
             <option name="user" value="migration" />
-        </drush>
+        </drush> -->
     </target>
 
 

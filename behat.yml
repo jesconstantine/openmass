@@ -4,6 +4,7 @@ default:
       contexts:
         - FeatureContext
         - MassMarkupContext
+        - MassContentContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
@@ -29,3 +30,5 @@ default:
         anywhere: "*"
         body: "body"
         header: "header.ma__header"
+        breadcrumbs: "section.ma__breadcrumbs"
+        page_banner: "section.ma__page-banner"

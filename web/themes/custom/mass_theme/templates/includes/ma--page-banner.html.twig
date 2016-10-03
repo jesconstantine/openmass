@@ -1,0 +1,23 @@
+<section class="ma__page-banner {{ bannerClasses }}">
+  <style>
+    .ma__page-banner {
+      background-image: url('{{ hero800x400_image_url }}'); /* 800x400 using Hero800x400 image style. */
+    }
+
+    @media (min-width: 801px) {
+      .ma__page-banner {
+        background-image: url('{{ file_url(node.field_featured_image.entity.fileuri) }}'); /* Default uploaded image. */
+      }
+    }
+  </style>
+  <div class="ma__page-banner__container">
+    <div class="ma__page-banner__content">
+      <div class="ma__page-banner__icon">
+        <svg focusable="false" role="presentation" class="svg-{{ node.field_icon.value }}">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ active_theme_path() ~ '/images/svg-sprite.svg#' ~ node.field_icon.value }}"></use>
+        </svg>
+      </div>
+      <h1 class="ma__page-banner__title">{{ label|field_value }}</h1>
+    </div>
+  </div>
+</section>
