@@ -162,7 +162,7 @@ ${modified_files}
             <property name="build.env" value="vagrant" />
         </phing>
 
-        <phing target="clean-install" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
+        <phing target="install" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
             <property name="build.env" value="vagrant" />
         </phing>
 
