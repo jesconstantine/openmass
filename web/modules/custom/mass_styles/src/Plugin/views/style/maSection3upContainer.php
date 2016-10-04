@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\mass_styles\Plugin\views\style;
 
 use Drupal\views\Plugin\views\style\StylePluginBase;
@@ -14,7 +15,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  *   display_types = {"normal"}
  * )
  */
-class maSection3upContainer extends StylePluginBase {
+class MaSection3upContainer extends StylePluginBase {
 
   /**
    * Specifies if the plugin uses row plugins.
@@ -22,6 +23,4 @@ class maSection3upContainer extends StylePluginBase {
    * @var bool
    */
   protected $usesRowPlugin = TRUE;
-
-  // Class methods…
 }
