@@ -1,0 +1,36 @@
+uuid: 204e67dc-994b-4098-820c-e84f232309fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.rela.field_description
+    - field.field.paragraph.rela.field_link
+    - paragraphs.paragraphs_type.rela
+  module:
+    - link
+id: paragraph.rela.default
+targetEntityType: paragraph
+bundle: rela
+mode: default
+content:
+  field_description:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_link:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,34 @@
+uuid: 0945f58f-3670-4eb8-a1ab-40f9071fa764
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.rela.field_description
+    - field.field.paragraph.rela.field_link
+    - paragraphs.paragraphs_type.rela
+  module:
+    - link
+    - workbench_moderation
+id: paragraph.rela.default
+targetEntityType: paragraph
+bundle: rela
+mode: default
+content:
+  field_description:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+hidden:
+  created: true
+  status: true
+  uid: true
