@@ -44,3 +44,11 @@ Feature: Paragraph type definitions
     Then the "subhead" paragraph has the fields:
       | field       | widget        |
       | field-title | Textfield     |
+
+  Scenario: Verify that the related paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "related" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+      | field-description | Textfield  |
+

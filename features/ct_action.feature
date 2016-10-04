@@ -10,7 +10,6 @@ Feature: Action Content type
     | field                            | tag        | type         | multivalue |
     | field-action-parent              | input      | text         | true       |
     | field-lede                       | textarea   |              | false      |
-    | field-action-related             | input      | text         | true       |
     | field-external-url               | input      | url          | false      |
     # the following fields are multivalue but have no good way of testing for it.
     | field-action-downloads           | input      | submit       | false      |
@@ -21,6 +20,7 @@ Feature: Action Content type
     | field-action-details             | paragraphs | rich-text    | false      |
     | field-action-details             | paragraphs | stat         | false      |
     | field-action-details             | paragraphs | subhead      | false      |
+    | field-related                    | paragraphs | related      | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"
