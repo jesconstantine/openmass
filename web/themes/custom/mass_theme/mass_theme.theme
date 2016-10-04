@@ -82,7 +82,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 /**
  * Implements hook_preprocess_HOOK().
  *
- * Clean css id for subheads
+ * Clean css id for subheads.
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
