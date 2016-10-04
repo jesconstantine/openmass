@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.topic.field_lede
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
+    - image.style.hero800x400
     - node.type.topic
   module:
     - image
@@ -21,7 +22,7 @@ content:
   field_common_content:
     type: entity_reference_entity_view
     weight: 3
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -31,7 +32,7 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: ''
+      image_style: hero800x400
       image_link: ''
     third_party_settings: {  }
   field_lede:
@@ -48,7 +49,7 @@ content:
     third_party_settings: {  }
   field_section:
     weight: 4
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }

@@ -46,6 +46,20 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ *
+ * Preprocess our Topic node content.
+ */
+function mass_theme_preprocess_node_topic(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Various global preprocessing.
