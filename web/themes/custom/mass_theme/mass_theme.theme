@@ -91,3 +91,14 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add theme suggestions for Footer Menus.
+ */
+function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  if (strpos($variables['menu_name'], 'footer') > -1) {
+    $suggestions[] = "menu__footer_layout";
+  }
+}
