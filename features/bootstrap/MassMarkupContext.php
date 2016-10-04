@@ -28,7 +28,8 @@ class MassMarkupContext extends MarkupContext
   /**
    * @Then I should see the correct markup for the page banner
    */
-  public function iShouldSeeTheCorrectMarkupForThePageBanner() {
+  public function iShouldSeeTheCorrectMarkupForThePageBanner()
+  {
     $this->assertRegionElement('div.ma__breadcrumbs__container', 'breadcrumbs');
     $this->assertRegionElement('style', 'page_banner');
     $this->assertRegionElement('div.ma__page-banner__icon', 'page_banner');
@@ -39,7 +40,8 @@ class MassMarkupContext extends MarkupContext
   /**
    * @Then I should see the correct markup for the section links
    */
-  public function iShouldSeeTheCorrectMarkupForTheSectionLinks() {
+  public function iShouldSeeTheCorrectMarkupForTheSectionLinks()
+  {
     $this->assertRegionElement('.ma__section-links__content', 'section_links');
     $this->assertRegionElement('.ma__section-links__icon', 'section_links');
     $this->assertRegionElement('.ma__section-links__title', 'section_links');
@@ -48,5 +50,17 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('.ma__section-links__toggle-content > .ma__section-links__description', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content  h4.ma__section-links__mobile-title', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content  h4.ma__section-links__mobile-title > a', 'section_links');
+  }
+
+  /**
+   * @Then I should see the correct markup for the footer
+   */
+  public function iShouldSeeTheCorrectMarkupForTheFooter()
+  {
+    $this->assertRegionElement('button.ma__footer__back2top', 'footer');
+    $this->assertRegionElement('.ma__footer__container > .ma__footer__nav', 'footer');
+    $this->assertRegionElement('.ma__footer__info > .ma__footer__logo', 'footer');
+    $this->assertRegionElement('.ma__footer__info > .ma__footer__social', 'footer');
+    $this->assertRegionElement('.ma__footer__info > .ma__footer__copyright', 'footer');
   }
 }
