@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_related
     - node.type.action
-    - paragraphs.paragraphs_type.rela
+    - paragraphs.paragraphs_type.related
   module:
     - entity_reference_revisions
 id: node.action.field_related
@@ -22,7 +22,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      rela: rela
+      related: related
     target_bundles_drag_drop:
       action_step:
         weight: 9
@@ -36,7 +36,7 @@ settings:
       iframe:
         weight: 12
         enabled: false
-      rela:
+      related:
         enabled: true
         weight: 13
       rich_text:
