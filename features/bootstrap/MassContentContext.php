@@ -398,19 +398,8 @@ class MassContentContext extends RawDrupalContext {
       throw new \Exception('The node title must be provided.');
     }
 
-    // Grab node of type.
-    foreach ($this->{$type} as $title => $old_node) {
-
-      // Load node of correct type with nid.
-      $node = Node::load($old_node->nid);
-
-      // If the title is correct, return node.
-      if ($node->title->value == $title) {
-
-        // I'm not sure what to do here.
-        // return $node;
-      }
-    }
+    $node = $this->{$type}[$title];
+    $this->minkContext->visitPath('node/' . $node->nid);
   }
 
   /**
