@@ -230,19 +230,29 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: State Parks & Recreation',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
-        'field_icon' => 'camping',
+        'field_node_icon' => 'camping',
         'field_common_actions' => implode(', ', [
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Boating - http://www.google.com',
+          'Fishing - http://www.google.com',
+          'Hunting - http://www.google.com',
         ]),
       ],
       [
         'title' => 'Behat Test: Finding a Job',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
-        'field_icon' => 'apple',
+        'field_node_icon' => 'apple',
         'field_common_actions' => implode(', ', [
           'Behat Test: Post a Job',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Link 1 - http://www.google.com',
+          'Link 2 - http://www.google.com',
+          'Link 3 - http://www.google.com',
         ]),
       ],
     ];
@@ -380,16 +390,27 @@ class MassContentContext extends RawDrupalContext {
    * @throws Exception
    */
   public function vistsTestNode($type, $title) {
-    if (empty($title)) {
+    if (empty($type)) {
       throw new \Exception('The node type must be provided.');
     }
 
     if (empty($title)) {
-      throw new \Exception('The node titel must be provided.');
+      throw new \Exception('The node title must be provided.');
     }
 
-    // @todo Add logic here for setting the path; should be able to get it from
-    // the content arrays.
+    // Grab node of type.
+    foreach ($this->{$type} as $title => $old_node) {
+
+      // Load node of correct type with nid.
+      $node = Node::load($old_node->nid);
+
+      // If the title is correct, return node.
+      if ($node->title->value == $title) {
+
+        // I'm not sure what to do here.
+        // return $node;
+      }
+    }
   }
 
   /**
