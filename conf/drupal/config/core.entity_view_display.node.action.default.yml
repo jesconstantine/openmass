@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
-    - field.field.node.action.field_action_related
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
@@ -46,13 +45,6 @@ content:
     type: file_default
   field_action_parent:
     weight: 2
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_action_related:
-    weight: 3
     label: above
     settings:
       link: true
