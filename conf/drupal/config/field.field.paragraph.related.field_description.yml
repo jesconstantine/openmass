@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_description
-    - paragraphs.paragraphs_type.rela
-id: paragraph.rela.field_description
+    - paragraphs.paragraphs_type.related
+id: paragraph.related.field_description
 field_name: field_description
 entity_type: paragraph
-bundle: rela
+bundle: related
 label: Description
 description: ''
 required: false

@@ -3,15 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.rela.field_description
-    - field.field.paragraph.rela.field_link
-    - paragraphs.paragraphs_type.rela
+    - field.field.paragraph.related.field_description
+    - field.field.paragraph.related.field_link
+    - paragraphs.paragraphs_type.related
   module:
     - link
     - workbench_moderation
-id: paragraph.rela.default
+id: paragraph.related.default
 targetEntityType: paragraph
-bundle: rela
+bundle: related
 mode: default
 content:
   field_description:
