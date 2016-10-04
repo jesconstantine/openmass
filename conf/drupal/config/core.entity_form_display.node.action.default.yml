@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
-    - field.field.node.action.field_relate
     - field.field.node.action.field_related
     - node.type.action
   module:
@@ -38,7 +37,7 @@ third_party_settings:
         classes: ''
     group_sidebar:
       children:
-        - field_action_related
+        - field_related
         - field_action_downloads
         - field_action_contacts
       parent_name: group_form
@@ -101,7 +100,7 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 29
     settings:
       title: Contact
       title_plural: Contacts
@@ -120,7 +119,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 3
+    weight: 28
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -153,16 +152,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-  field_relate:
-    type: entity_reference_paragraphs
-    weight: 26
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-    third_party_settings: {  }
   field_related:
     type: entity_reference_paragraphs
     weight: 27
