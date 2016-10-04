@@ -45,8 +45,8 @@ class MassMarkupContext extends MarkupContext
       $this->assertRegionElement('button.ma__footer__back2top', 'footer');
       $this->assertRegionElement('.ma__footer__container > .ma__footer__nav', 'footer');
       $this->assertRegionElement('.ma__footer__info > .ma__footer__logo', 'footer');
-      $this->assertRegionElement('.ma__footer__social', 'footer');
-      $this->assertRegionElement('.ma__footer__copyright', 'footer');
+      $this->assertRegionElement('.ma__footer__info > .ma__footer__social', 'footer');
+      $this->assertRegionElement('.ma__footer__info > .ma__footer__copyright', 'footer');
 
   }
 }

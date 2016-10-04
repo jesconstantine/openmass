@@ -100,76 +100,64 @@
   <footer role="contentinfo">
     <footer class="ma__footer js-footer">
       <button class="ma__footer__back2top js-back2top">
-	<svg focusable="false" role="presentation" class="svg-arrow">
-	  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#arrow"></use>
-	</svg>
-	<span>Top</span>
+	       {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}
+	       <span>Top</span>
       </button>
       <div class="ma__footer__container">
-	{{ page.footer }}
-	{{ page.footer_navigation }}
 
-	<section class="ma__footer__info">
-	  <div class="ma__footer__logo">
-	    <div class="ma__site-logo">
-	      <a href="/" title="Mass Gov home page">
-		<img src="{{ base_path ~ directory }}/images/logo.png" alt="Mass Gov" width="210" height="66">
-	      </a>
-	    </div>
-	  </div>
-	  <div class="ma__footer__social">
-	    <section class="ma__social-links">
-	      <ul class="ma__social-links__items">
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="facebook">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#facebook"></use>
-		    </svg>
-		  </a>
-		</li>
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="twitter">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#twitter"></use>
-		    </svg>
-		  </a>
-		</li>
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="linkedin">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#linkedin"></use>
-		    </svg>
-		  </a>
-		</li>
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="youTube">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#youtube"></use>
-		    </svg>
-		  </a>
-		</li>
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="blog">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#blog"></use>
-		    </svg>
-		  </a>
-		</li>
-		<li class="ma__social-links__item">
-		  <a href="#" class="ma__social-links__link">
-		    <svg focusable="false" role="img" title="instagram">
-		      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#instagram"></use>
-		    </svg>
-		  </a>
-		</li>
-	      </ul>
-	    </section>
-	  </div>
-	  <div class="ma__footer__copyright">
-	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
-	    <p>Mass.Gov® is a registered service mark of the Commonwealth of Massachusetts.</p>
-	  </div>
-	</section>
+        {{ page.footer }}
+        {{ page.footer_navigation }}
+
+      	<section class="ma__footer__info">
+      	  <div class="ma__footer__logo">
+      	    <div class="ma__site-logo">
+      	      <a href="/" title="Mass Gov home page">
+      		      <img src="{{ base_path ~ directory }}/images/logo.png" alt="Mass Gov" width="210" height="66">
+      	      </a>
+      	    </div>
+      	  </div>
+      	  <div class="ma__footer__social">
+      	    <section class="ma__social-links">
+      	      <ul class="ma__social-links__items">
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'facebook'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'twitter'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'linkedin'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'youtube'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'blog'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'instagram'} %}
+          		  </a>
+          		</li>
+      	      </ul>
+      	    </section>
+      	  </div>
+      	  <div class="ma__footer__copyright">
+      	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
+      	    <p>Mass.Gov® is a registered service mark of the Commonwealth of Massachusetts.</p>
+      	  </div>
+      	</section>
+
       </div>
     </footer>
 
