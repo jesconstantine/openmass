@@ -23,4 +23,5 @@ class MaSection3upContainer extends StylePluginBase {
    * @var bool
    */
   protected $usesRowPlugin = TRUE;
+
 }
