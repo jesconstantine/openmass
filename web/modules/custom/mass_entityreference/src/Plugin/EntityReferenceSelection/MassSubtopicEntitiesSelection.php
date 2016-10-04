@@ -39,4 +39,5 @@ class MassSubtopicEntitiesSelection extends DefaultSelection {
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {}
+  
 }
