@@ -17,6 +17,9 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class MassSubtopicEntitiesSelection extends DefaultSelection {
 
+  /**
+   * {@inheritdoc}
+   */
   protected function buildEntityQuery($match = NULL, $match_operator = 'CONTAINS') {
     if ($nid = $_COOKIE['Drupal_visitor_subtopic_nid']) {
       $query = parent::buildEntityQuery($match, $match_operator);
@@ -25,6 +28,9 @@ class MassSubtopicEntitiesSelection extends DefaultSelection {
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     return $form;
   }
@@ -32,5 +38,5 @@ class MassSubtopicEntitiesSelection extends DefaultSelection {
   /**
    * {@inheritdoc}
    */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state){ }
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {}
 }
