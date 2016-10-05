@@ -51,6 +51,21 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'teaser_simple') {
+    $field_external_link = $node->get('field_external_url');
+
+    if ($field_external_link->count() > 0) {
+      $link = $field_external_link->first()->getValue();
+      $variables['link_url'] = $variables['link_url'] = \Drupal\Core\Url::fromUri($link['uri']);
+      $variables['link_title'] = $variables['label'];
+      $variables['link_type'] = 'external';
+    } else {
+      $variables['link_type'] = 'internal';
+      $variables['link_title'] = $variables['label'];
+      $variables['link_url'] = $variables['url'];
+    }
+  }
 }
 
 /**
@@ -184,4 +199,3 @@ function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $var
     $suggestions[] = "menu__footer_layout";
   }
 }
-
