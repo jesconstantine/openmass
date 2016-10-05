@@ -32,6 +32,6 @@ Feature: Section Landing Content type
     And I see the text "Outdoor description"
     And I should see the link "Find a State Park" in the "subtopic_featured_actions" region
     And I should see the link "Get a State Park Pass" in the "subtopic_all_actions" region
-    #And I won't see the link "Find a State Park" in the "All Actions & Guides, What Would You Like to Do?" region
+    And I should not see the link "Find a State Park" in the "subtopic_all_actions" region
     And I should see the link "MassParks"
     And I should see the link "Department of Fish and Game"
