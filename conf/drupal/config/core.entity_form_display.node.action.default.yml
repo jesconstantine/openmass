@@ -114,7 +114,7 @@ content:
       title: Molecule
       title_plural: Molecules
       edit_mode: closed
-      add_mode: dropdown
+      add_mode: button
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
