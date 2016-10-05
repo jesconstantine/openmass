@@ -21,3 +21,8 @@ Feature: Topic Content type
   Scenario: Verify that pathauto patterns are applied to topic nodes.
     Given I am viewing a "topic" with the title "Run the Test Suite"
     Then I am at "topics/run-test-suite"
+
+  Scenario: Verify custom ordered subtopics.
+    Given I am logged in as a user with the "administrator" role
+    And I am viewing a "topic" with the title "Test Topic"
+    Then I should see the link "Reorder Subtopics"
