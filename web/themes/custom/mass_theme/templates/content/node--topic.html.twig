@@ -34,63 +34,9 @@
 
 {# This is going to get replaced with real views and content. #}
 {% block pageContent %}
-  <section class="ma__top-actions">
-    <h2 class="ma__top-actions__title">Common Actions</h2>
-    <ul class="ma__top-actions__items">
-      <li class="ma__top-actions__item">
-        <div class="ma__top-actions__link">
-          <div class="ma__callout-link js-clickable ">
-            <span class="ma__decorative-link">
-              <a href="#" class="js-clickable-link">Get a State Park Pass&nbsp;
-                <svg focusable="false" role="presentation" class="svg-arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() }}/images/svg-sprite.svg#arrow"></use>
-                </svg>
-              </a>
-            </span>
-          </div>
-        </div>
-      </li>
-      <li class="ma__top-actions__item">
-        <div class="ma__top-actions__link">
-          <div class="ma__callout-link js-clickable ">
-            <span class="ma__decorative-link">
-              <a href="#" class="js-clickable-link">Reserve an Athletic Field&nbsp;
-                <svg focusable="false" role="presentation" class="svg-arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() }}/images/svg-sprite.svg#arrow"></use>
-                </svg>
-              </a>
-            </span>
-          </div>
-        </div>
-      </li>
-      <li class="ma__top-actions__item">
-        <div class="ma__top-actions__link">
-          <div class="ma__callout-link js-clickable ">
-            <span class="ma__decorative-link">
-              <a href="#" class="js-clickable-link">Plan a Vacation in Massachusetts&nbsp;
-                <svg focusable="false" role="presentation" class="svg-arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() }}/images/svg-sprite.svg#arrow"></use>
-                </svg>
-              </a>
-            </span>
-          </div>
-        </div>
-      </li>
-      <li class="ma__top-actions__item">
-        <div class="ma__top-actions__link">
-          <div class="ma__callout-link js-clickable ">
-            <span class="ma__decorative-link">
-              <a href="#" class="js-clickable-link">Find a Campground&nbsp;
-                <svg focusable="false" role="presentation" class="svg-arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() }}/images/svg-sprite.svg#arrow"></use>
-                </svg>
-              </a>
-            </span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
+
+  {{ content.field_common_content }}
+
   <section class="ma__sections-3up">
     <h2 class="ma__sections-3up__title">More in State Parks &amp; Recreation</h2>
     <div class="ma__sections-3up__container">
