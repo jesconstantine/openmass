@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -29,6 +30,7 @@ settings:
   handler_settings:
     target_bundles:
       action_step: action_step
+      action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
       file_download: file_download
       iframe: iframe
@@ -38,9 +40,13 @@ settings:
     target_bundles_drag_drop:
       action_step:
         enabled: true
-        weight: -17
+        weight: -19
+      action_step_numbered_list:
+        enabled: true
+        weight: -18
       callout_link:
         enabled: true
+        weight: -17
         weight: -16
       file_download:
         enabled: true
@@ -60,4 +66,7 @@ settings:
       subhead:
         enabled: true
         weight: -10
+      action_step_numbered:
+        weight: -9
+        enabled: false
 field_type: entity_reference_revisions

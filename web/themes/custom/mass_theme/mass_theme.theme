@@ -53,7 +53,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
-  if ($variables['node_type'] == 'action') {
+  if (!empty($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
 }
@@ -91,6 +91,22 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__contact(&$variables) {
+  if ($variables['paragraph']->get('field_phone')->first()) {
+    $phone = $variables['paragraph']->get('field_phone')->first()->getValue()['value'];
+    $variables['phone_clean'] = preg_replace('/[^0-9]+/', '', $phone);
+  }
+  if ($variables['paragraph']->get('field_fax')->first()) {
+    $fax = $variables['paragraph']->get('field_fax')->first()->getValue()['value'];
+    $variables['fax_clean'] = preg_replace('/[^0-9]+/', '', $fax);
+  }
 }
 
 /**
