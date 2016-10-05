@@ -14,4 +14,13 @@ mode: teaser
 content:
   links:
     weight: 100
-hidden: {  }
+  workbench_moderation_control:
+    weight: -20
+hidden:
+  field_agency_links: true
+  field_description: true
+  field_featured_content: true
+  field_featured_image: true
+  field_lede: true
+  field_topic_callout_links: true
+  field_topic_parent: true
