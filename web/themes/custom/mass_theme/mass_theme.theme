@@ -52,7 +52,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
-  if ($variables['node_type'] == 'action') {
+  if (!empty($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
 }
