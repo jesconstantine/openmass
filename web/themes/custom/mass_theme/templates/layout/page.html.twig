@@ -96,8 +96,70 @@
 
 </main>
 
-{% if page.footer %}
+{% if page.footer or page.footer_navigation %}
   <footer role="contentinfo">
-    {{ page.footer }}
+    <footer class="ma__footer js-footer">
+      <button class="ma__footer__back2top js-back2top">
+	       {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}
+	       <span>Top</span>
+      </button>
+      <div class="ma__footer__container">
+
+        {{ page.footer }}
+        {{ page.footer_navigation }}
+
+      	<section class="ma__footer__info">
+      	  <div class="ma__footer__logo">
+      	    <div class="ma__site-logo">
+      	      <a href="/" title="Mass Gov home page">
+      		      <img src="{{ base_path ~ directory }}/images/logo.png" alt="Mass Gov" width="210" height="66">
+      	      </a>
+      	    </div>
+      	  </div>
+      	  <div class="ma__footer__social">
+      	    <section class="ma__social-links">
+      	      <ul class="ma__social-links__items">
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'facebook'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'twitter'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'linkedin'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'youtube'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'blog'} %}
+          		  </a>
+          		</li>
+          		<li class="ma__social-links__item">
+          		  <a href="#" class="ma__social-links__link">
+                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'instagram'} %}
+          		  </a>
+          		</li>
+      	      </ul>
+      	    </section>
+      	  </div>
+      	  <div class="ma__footer__copyright">
+      	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
+      	    <p>Mass.Gov® is a registered service mark of the Commonwealth of Massachusetts.</p>
+      	  </div>
+      	</section>
+
+      </div>
+    </footer>
+
   </footer>
 {% endif %}
