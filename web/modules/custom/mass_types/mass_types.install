@@ -6,6 +6,28 @@
  */
 
 /**
+ *  Adds terms to icons taxonomy.
+ */
+function mass_types_update_8001() {
+  $file_path = dirname(__FILE__) . '/data/update_8001/icons_terms.yml';
+  $terms = Yaml::parse(file_get_contents($file_path));
+  $vocabulary = 'icons';
+  foreach ( $terms as $term_name => $sprite_name ) {
+    // Check for existing term.
+    $existing_terms = taxonomy_term_load_multiple_by_name($term_name, $vocabulary);
+    // Ignore existing terms, on assumption that they've been set by hand intelligently.
+    if ( empty($existing_terms) ) {
+      $term = Term::create(array(
+        'name' => $term_name,
+        'vid' => $vocabulary,
+      ));
+      $term->set('field_sprite_name', $sprite_name);
+      $term->save();
+    }
+  }
+}
+
+/**
  * Implements hook_uninstall().
  */
 function mass_types_uninstall() {
