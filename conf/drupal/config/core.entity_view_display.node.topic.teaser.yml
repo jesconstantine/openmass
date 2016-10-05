@@ -1,9 +1,14 @@
-uuid: 66839860-15d3-4c27-82ab-b4a015be6376
+uuid: 3ad8af00-cce0-4f38-bee4-6a9231ade88d
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.topic.field_common_content
+    - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_lede
+    - field.field.node.topic.field_node_icon
+    - field.field.node.topic.field_section
     - node.type.topic
   module:
     - user
@@ -14,4 +19,11 @@ mode: teaser
 content:
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_common_actions: true
+  field_common_content: true
+  field_featured_image: true
+  field_icon: true
+  field_lede: true
+  field_node_icon: true
+  field_section: true

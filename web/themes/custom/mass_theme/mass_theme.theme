@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_block().
@@ -17,13 +18,41 @@ function mass_theme_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  // Optionally, run node-type-specific preprocess functions, like
+  // foo_preprocess_node_page() or foo_preprocess_section_landing().
+  $function = __FUNCTION__ . '_' . $node->getType();
+  if (function_exists($function)) {
+    $function($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Preprocess our Section Landing node content.
+ */
+function mass_theme_preprocess_node_section_landing(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Various global preprocessing.
  */
 function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
-  if ($variables['node_type'] == 'action') {
+  if (!empty($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
 }
@@ -61,4 +90,31 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__contact(&$variables) {
+  if ($variables['paragraph']->get('field_phone')->first()) {
+    $phone = $variables['paragraph']->get('field_phone')->first()->getValue()['value'];
+    $variables['phone_clean'] = preg_replace('/[^0-9]+/', '', $phone);
+  }
+  if ($variables['paragraph']->get('field_fax')->first()) {
+    $fax = $variables['paragraph']->get('field_fax')->first()->getValue()['value'];
+    $variables['fax_clean'] = preg_replace('/[^0-9]+/', '', $fax);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add theme suggestions for Footer Menus.
+ */
+function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  if (strpos($variables['menu_name'], 'footer') > -1) {
+    $suggestions[] = "menu__footer_layout";
+  }
 }

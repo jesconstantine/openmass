@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.subtopic.field_agency_links
     - field.field.node.subtopic.field_description
     - field.field.node.subtopic.field_featured_content
+    - field.field.node.subtopic.field_featured_image
     - field.field.node.subtopic.field_lede
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
     - node.type.subtopic
   module:
+    - image
     - link
     - text
     - user
@@ -43,6 +45,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_featured_image:
+    weight: 108
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_lede:
     weight: 101
     label: above
@@ -69,4 +79,6 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+  workbench_moderation_control:
+    weight: -20
 hidden: {  }

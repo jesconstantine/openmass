@@ -5,7 +5,6 @@
 
     <import file="vendor/palantirnet/the-build/tasks/boilerplate.xml" />
 
-
     <!-- Make these commands available by default. -->
     <import file="vendor/palantirnet/the-build/tasks/drupal.xml" />
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
@@ -33,15 +32,14 @@
 
     <!-- Target: install -->
     <target name="install" description="Install the application.">
-        <phingcall target="drupal-install" />
-
-        <drush command="pm-enable" assume="yes">
-            <param>devel</param>
-            <param>mass_types</param>
-            <param>migrate_tools</param>
-        </drush>
+        <phingcall target="install-from-acquia" />
+        <phingcall target="mass-local-modules" />
     </target>
 
+    <target name="clean-install" description="Initialzie a new copy of the site without a canonical DB.">
+        <phingcall target="drupal-install" />
+        <phingcall target="mass-local-modules" />
+    </target>
 
     <!-- Target: migrate -->
     <target name="migrate" description="Run the migrations.">

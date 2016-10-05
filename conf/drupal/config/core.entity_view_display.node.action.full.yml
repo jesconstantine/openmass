@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -22,6 +23,14 @@ targetEntityType: node
 bundle: action
 mode: full
 content:
+  field_action_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 1
@@ -51,6 +60,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_action_contacts: true
   field_action_parent: true
+  field_external_url: true
   links: true

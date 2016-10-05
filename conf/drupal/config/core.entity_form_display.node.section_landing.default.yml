@@ -3,9 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
+    - image.style.thumbnail
     - node.type.section_landing
   module:
+    - image
     - path
 id: node.section_landing.default
 targetEntityType: node
@@ -17,6 +20,13 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+  field_featured_image:
+    weight: 33
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
   field_icon:
     weight: 32
     settings: {  }
