@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -29,6 +30,7 @@ settings:
   handler_settings:
     target_bundles:
       action_step: action_step
+      action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
       iframe: iframe
       rich_text: rich_text
@@ -38,25 +40,31 @@ settings:
     target_bundles_drag_drop:
       action_step:
         enabled: true
-        weight: 7
+        weight: -19
+      action_step_numbered_list:
+        enabled: true
+        weight: -18
       callout_link:
         enabled: true
-        weight: 8
+        weight: -17
       iframe:
         enabled: true
-        weight: 9
+        weight: -16
       rich_text:
         enabled: true
-        weight: 10
-      contact:
-        weight: 11
-        enabled: false
+        weight: -15
       stat:
         enabled: true
-        weight: 11
+        weight: -14
+      contact:
+        weight: -13
+        enabled: false
       subhead:
         enabled: true
-        weight: 12
+        weight: -12
+      action_step_numbered:
+        weight: -11
+        enabled: false
       video:
         enabled: true
         weight: 16
