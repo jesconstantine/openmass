@@ -74,9 +74,9 @@
 #}
 
 {# Set our regions at the top so we can test their existence #}
-{% set _preContent = block('preContent') %}
-{% set _sidebar = block('sidebar') %}
-{% set _postContent = block('postContent') %}
+{% set _preContent = block('preContent')|trim %}
+{% set _sidebar = block('sidebar')|trim %}
+{% set _postContent = block('postContent')|trim %}
 
 {% if _preContent is not empty %}
   <div class="pre-content">

@@ -128,4 +128,13 @@
 
   </target>
 
+  <target name="mass-local-modules" description="Install local modules.">
+    <drush command="pm-enable" assume="yes">
+        <param>devel</param>
+        <param>kint</param>
+        <param>mass_types</param>
+        <param>migrate_tools</param>
+    </drush>
+  </target>
+
 </project>

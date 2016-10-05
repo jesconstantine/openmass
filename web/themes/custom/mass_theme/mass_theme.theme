@@ -93,6 +93,22 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__contact(&$variables) {
+  if ($variables['paragraph']->get('field_phone')->first()) {
+    $phone = $variables['paragraph']->get('field_phone')->first()->getValue()['value'];
+    $variables['phone_clean'] = preg_replace('/[^0-9]+/', '', $phone);
+  }
+  if ($variables['paragraph']->get('field_fax')->first()) {
+    $fax = $variables['paragraph']->get('field_fax')->first()->getValue()['value'];
+    $variables['fax_clean'] = preg_replace('/[^0-9]+/', '', $fax);
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
  * Add theme suggestions for Footer Menus.
