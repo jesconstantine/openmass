@@ -16,6 +16,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: mass
+  handler: mass_subtopics
   handler_settings: {  }
 field_type: entity_reference

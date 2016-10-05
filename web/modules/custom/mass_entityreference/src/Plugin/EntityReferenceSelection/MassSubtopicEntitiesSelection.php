@@ -9,29 +9,28 @@ use Drupal\Core\Form\FormStateInterface;
  * Plugin implementation of the 'selection' entity_reference.
  *
  * @EntityReferenceSelection(
- *   id = "mass",
+ *   id = "mass_subtopics",
  *   label = @Translation("Subtopic: Related Content"),
- *   group = "mass",
+ *   group = "mass_subtopics",
  *   weight = 0
  * )
  */
 class MassSubtopicEntitiesSelection extends DefaultSelection {
 
+  /**
+   * {@inheritdoc}
+   */
   protected function buildEntityQuery($match = NULL, $match_operator = 'CONTAINS') {
-    $query = parent::buildEntityQuery($match, $match_operator);
-    $node = \Drupal::routeMatch()->getRawParameter('node');
-    $current_path = \Drupal::service('path.current')->getPath();
-    //$current_path = explode('/', $current_path);
-    //$selection_settings = $this->keyValue->get($current_path[3], FALSE);
-    dpm($current_path);
-    if ($node) {
-      $nid = $node->nid;
+    if ($nid = $_COOKIE['Drupal_visitor_subtopic_nid']) {
+      $query = parent::buildEntityQuery($match, $match_operator);
       $query->condition('field_action_parent.target_id', $nid);
+      return $query;
     }
-    //dpm($query);
-    return $query;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     return $form;
   }
@@ -39,5 +38,6 @@ class MassSubtopicEntitiesSelection extends DefaultSelection {
   /**
    * {@inheritdoc}
    */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state){ }
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {}
+
 }
