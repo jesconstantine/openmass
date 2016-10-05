@@ -12,7 +12,7 @@ field_name: field_video_source
 entity_type: paragraph
 bundle: video
 label: 'Video Source'
-description: 'Source from which the video is embedded from. Currently only supports <b>YouTube</b>.'
+description: 'Source from which the video is embedded. Currently only supports <b>YouTube</b>.'
 required: true
 translatable: false
 default_value:

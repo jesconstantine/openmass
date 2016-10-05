@@ -10,7 +10,7 @@ field_name: field_video_id
 entity_type: paragraph
 bundle: video
 label: 'Video ID'
-description: 'The video ID is usually string of character after the equal sign.  For example, for the link https://www.youtube.com/watch?v=dQw4w9WgXcQ, <b>dQw4w9WgXcQ</b> would be the ID.'
+description: 'The video ID is usually a string of characters after the equal sign.  For example, for the link https://www.youtube.com/watch?v=dQw4w9WgXcQ, <b>dQw4w9WgXcQ</b> would be the ID.'
 required: true
 translatable: false
 default_value: {  }
