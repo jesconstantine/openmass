@@ -27,7 +27,9 @@ function mass_nav_menu_local_tasks_alter(&$data, $route_name) {
   // If we are on a local node task.
   if (in_array($route_name, $node_tabs)) {
     $node = \Drupal::routeMatch()->getParameter('node');
+    // And it is not a topic.
     if (!in_array($node->getType(), array('topic'))) {
+      // Remove the subtopic reorder view.
       unset($data['tabs'][0]['views_view:view.subtopics.subtopic_reorder']);
     }
   }

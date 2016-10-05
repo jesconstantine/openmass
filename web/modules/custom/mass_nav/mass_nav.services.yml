@@ -1,0 +1,5 @@
+services:
+  mass_nav.route_subscriber:
+    class: Drupal\mass_nav\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
