@@ -102,7 +102,6 @@ function mass_theme_preprocess_paragraph__contact(&$variables) {
     $phone = $variables['paragraph']->get('field_phone')->first()->getValue()['value'];
     $variables['phone_clean'] = preg_replace('/[^0-9]+/', '', $phone);
   }
-  $phone = $variables['paragraph']->get('field_phone')->first()->getValue()['value'];
   if ($variables['paragraph']->get('field_fax')->first()) {
     $fax = $variables['paragraph']->get('field_fax')->first()->getValue()['value'];
     $variables['fax_clean'] = preg_replace('/[^0-9]+/', '', $fax);
