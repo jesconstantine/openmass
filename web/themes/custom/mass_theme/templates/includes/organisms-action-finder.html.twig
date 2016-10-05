@@ -30,11 +30,13 @@
         </section>
       </div> #}
     </header>
-    <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
     {% if action_finder_links|render|trim %}
+      <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
       {{ action_finder_links }}
     {% endif %}
-    <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
-    {{ all_actions_view }}
+    {% if all_actions_view|render|trim %}
+      <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
+      {{ all_actions_view }}
+    {% endif %}
   </div>
 </section>
