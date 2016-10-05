@@ -1,11 +1,11 @@
 <?php
+
 /**
- * Custom formatters for mass.gov
+ * @file
+ * Custom formatters for mass.gov.
  *
  * @copyright Copyright (c) 2016 Palantir.net
  */
-
-use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_theme().

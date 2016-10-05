@@ -1,19 +1,13 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\mass_formatters\Plugin\Field\FieldFormatter\Link.
- */
-
 namespace Drupal\mass_formatters\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FieldItemList;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
 
 /**
- * Plugin implementation of the 'button_link' formatter.
+ * Plugin implementation of the 'class_link' formatter.
  *
  * @FieldFormatter(
  *   id = "mass_link",
@@ -37,7 +31,7 @@ class Link extends LinkFormatter {
       $options = $element['#options'];
       $attributes = array();
 
-      if (key_exists('attributes', $options)){
+      if (array_key_exists('attributes', $options)) {
         $attributes = $options['attributes'];
       }
 
