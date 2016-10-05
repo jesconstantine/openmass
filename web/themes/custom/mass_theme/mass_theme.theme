@@ -42,9 +42,40 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-
 }
 
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node subtopic alterations
+ */
+function mass_theme_preprocess_node_action(&$variables) {
+  $node = $variables['node'];
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node subtopic alterations
+ */
+function mass_theme_preprocess_node_subtopic(&$variables) {
+  $node = $variables['node'];
+
+  $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
+  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
+
+  // Load Instance of the secondary menu block with variables
+  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
+  if (!empty($all_actions_view)){
+    $all_actions_view_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($all_actions_view);
+    if ($all_actions_view_content) {
+      // Add block content to build array
+      $variables['content']['all_actions_view'] = $all_actions_view_content;
+    }
+  }
+}
 /**
  * Implements hook_preprocess_HOOK().
  *
@@ -52,7 +83,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
-  if (!empty($variables['node_type']) && $variables['node_type'] == 'action') {
+  if (isset($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
 }
@@ -90,32 +121,6 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
-}
-
-/**
- * Implements hook_preprocess_node().
- */
-function mass_theme_preprocess_node(&$variables) {
-  $node = $variables['node'];
-
-  // Optionally, run node-type-specific preprocess functions, like
-  // foo_preprocess_node_page() or foo_preprocess_node_story().
-  $function = __FUNCTION__ . '_' . $node->getType();
-  if (function_exists($function)) {
-    $function($variables);
-  }
-}
-
-/**
- * Implements hook_preprocess_node().
- *
- * Node subtopic alterations
- */
-function mass_theme_preprocess_node_subtopic(&$variables) {
-  $node = $variables['node'];
-
-  $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
-  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
 }
 
 /**
@@ -179,3 +184,4 @@ function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $var
     $suggestions[] = "menu__footer_layout";
   }
 }
+

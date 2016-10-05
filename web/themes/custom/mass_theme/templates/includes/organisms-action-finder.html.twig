@@ -24,12 +24,17 @@
   <div class="ma__action-finder__container">
     <header class="ma__action-finder__header">
       <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
-      <div class="ma__action-finder__search">
+      {# todo future phase searchword #}
+      {#<div class="ma__action-finder__search">
         <section class="ma__keyword-search js-keyword-search">
         </section>
-      </div>
+      </div> #}
     </header>
     <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
+    {% if action_finder_links|render|trim %}
+      {{ action_finder_links }}
+    {% endif %}
     <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
+    {{ all_actions_view }}
   </div>
 </section>
