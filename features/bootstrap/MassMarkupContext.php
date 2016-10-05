@@ -49,4 +49,14 @@ class MassMarkupContext extends MarkupContext
       $this->assertRegionElement('.ma__footer__info > .ma__footer__copyright', 'footer');
 
   }
+
+  /**
+   * @Then I should see the correct markup for the top actions
+   */
+  public function iShouldSeeTheCorrectMarkupForTheTopActions()
+  {
+    $this->assertRegionElement('h2.ma__top-actions__title', 'top_actions');
+    $this->assertRegionElement('ul.ma__top-actions__items', 'top_actions');
+    //$this->assertRegionElement('ul.ma__top-actions__items > li.ma__top-actions__item > div.ma__top-actions__link > div.ma__callout-link > span.ma__decorative-link > a.js-clickable-link', 'top_actions');
+  }
 }

@@ -230,8 +230,8 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: State Parks & Recreation',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
-        'field_icon' => 'camping',
-        'field_common_actions' => implode(', ', [
+        'field_node_icon' => 'camping',
+        'field_common_content' => implode(', ', [
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
         ]),
@@ -240,8 +240,8 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: Finding a Job',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
-        'field_icon' => 'apple',
-        'field_common_actions' => implode(', ', [
+        'field_node_icon' => 'apple',
+        'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
         ]),
       ],
@@ -380,16 +380,15 @@ class MassContentContext extends RawDrupalContext {
    * @throws Exception
    */
   public function vistsTestNode($type, $title) {
-    if (empty($title)) {
+    if (empty($type)) {
       throw new \Exception('The node type must be provided.');
     }
-
     if (empty($title)) {
-      throw new \Exception('The node titel must be provided.');
+      throw new \Exception('The node title must be provided.');
     }
 
-    // @todo Add logic here for setting the path; should be able to get it from
-    // the content arrays.
+    $node = $this->{$type}[$title];
+    $this->minkContext->visitPath('node/' . $node->nid);
   }
 
   /**
