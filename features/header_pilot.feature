@@ -10,7 +10,7 @@ Feature: Pilot Header
     Then the "header" region contains the following links:
 
     | link               |
-    | Back to Mass.Gov   |
+    | Back to Mass.gov   |
     | Top Actions        |
     | Feedback           |
     | FAQ                |
@@ -19,3 +19,4 @@ Feature: Pilot Header
     Given I am an anonymous user
     And I am on the homepage
     Then I should see the correct markup for the header
+    
