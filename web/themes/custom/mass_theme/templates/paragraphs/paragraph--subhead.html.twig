@@ -38,12 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% set title = content.field_title|field_value|render.__toString() %}
-{#
-  @todo: Change the way this title is processed.
-
-  The Jump Menu uses Drupal's cleanCssIdentifier method, so we should do the
-  same here.
-#}
-{% set title_clean = title|clean_id %}
-<h3><a name="{{title_clean}}" id="{{title_clean}}">{{title}}</a></h3>
+<h3><a name="{{title_clean}}" id="{{title_clean}}">{{content.field_title|field_value}}</a></h3>

@@ -14,6 +14,9 @@ use Behat\Gherkin\Node\TableNode;
 class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 {
 
+  /** @var String The directory to save screenshots and html to. */
+  private $debug_dir;
+
   /**
    * @var MinkContext
    */
@@ -36,6 +39,20 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function __construct()
   {
+  }
+
+  /**
+   * Grab the html of the page and save it.
+   *
+   * @Then save the html for the page
+   * @Then save the html for the page with prefix :prefix
+   *
+   * @param string $prefix A string to prepend to the filename.
+   */
+  public function saveHtml($prefix = 'html') {
+    $html_data = $this->getSession()->getDriver()->getContent();
+    $filename = $this->debug_dir . $prefix . '-' .  time() . '.html';
+    file_put_contents($filename, $html_data);
   }
 
   /**
