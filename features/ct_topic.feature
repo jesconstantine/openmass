@@ -26,3 +26,9 @@ Feature: Topic Content type
     Given default test content exists
     When I visit the test "topic" "Behat Test: State Parks & Recreation"
     Then I should see the correct markup for the top actions
+
+  Scenario: Verify custom ordered subtopics.
+    Given I am logged in as a user with the "administrator" role
+    And I am viewing a "topic" with the title "Test Topic"
+    Then I should see the link "Reorder Subtopics"
+
