@@ -38,8 +38,8 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<ul id="ma__action-finder--featured" class="ma__action-finder__items">
+<ul class="ma__action-finder__items">
   {% for item in items %}
-    {{ item.content }}
+    <li class="ma__action-finder__item ma__action-finder__item--text">{{ item.content }}</li>
   {% endfor %}
 </ul>
