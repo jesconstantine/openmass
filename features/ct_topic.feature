@@ -25,5 +25,4 @@ Feature: Topic Content type
   Scenario: Verify top actions markup is correct
     Given default test content exists
     When I visit the test "topic" "Behat Test: State Parks & Recreation"
-    Then I break
     Then I should see the correct markup for the top actions
