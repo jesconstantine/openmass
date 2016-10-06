@@ -327,7 +327,7 @@ function mass_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
  *
  * Add title to 3up Container from the current page.
  */
-function mass_theme_preprocess_maSection3upContainer_style(&$variables) {
+function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
