@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Theme override to display the Full view mode of the Subtopic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{% set desktop_image = desktop_finder_image %}
+{% set mobile_image = mobile_finder_image %}
+{% set action_finder_links = content.field_featured_content %}
+{% set all_actions_view = content.all_actions_view %}
+{% extends 'node.html.twig' %}
+
+{% block preContent %}
+  {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+  {# include "organisms-page-header" #}
+  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+{% endblock %}
+{% block pageContent %}
+  {% include directory ~ "/templates/includes/organisms-action-finder.html.twig" %}
+  {% if content.field_agency_links|render|trim is not empty %}
+    {{content.field_agency_links }}
+  {% endif %}
+{% endblock %}
+{% block postContent %}
+  {# include "organisms-breadcrumbs" #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+{% endblock %}

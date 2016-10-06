@@ -1,4 +1,4 @@
-<section class="ma__page-banner {{ bannerClasses }}">
+<section class="ma__page-banner {{ bannerData.class }}">
   <style>
     .ma__page-banner {
       background-image: url('{{ hero800x400_image_url }}'); /* 800x400 using Hero800x400 image style. */
@@ -13,8 +13,8 @@
   <div class="ma__page-banner__container">
     <div class="ma__page-banner__content">
       <div class="ma__page-banner__icon">
-        <svg focusable="false" role="presentation" class="svg-{{ node.field_icon.value }}">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ active_theme_path() ~ '/images/svg-sprite.svg#' ~ node.field_icon.value }}"></use>
+        <svg focusable="false" role="presentation" class="svg-{{ bannerData.icon }}">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() ~ '/images/svg-sprite.svg#' ~ bannerData.icon  }}"></use>
         </svg>
       </div>
       <h1 class="ma__page-banner__title">{{ label|field_value }}</h1>

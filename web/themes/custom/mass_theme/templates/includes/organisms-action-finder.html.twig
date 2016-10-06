@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Partial for action finder. To be included at the node level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__action-finder">
+  {% if desktop_image is not empty or mobile_image is not empty %}
+    <style>
+      .ma__action-finder__banner {
+        background-image: url('{{ mobile_image }}');
+      }
+      
+      @media (min-width: 801px) {
+        .ma__action-finder__banner {
+          background-image: url('{{ desktop_image }}');
+        }
+      }
+    </style>
+  {% endif %}
+  <div class="ma__action-finder__banner"></div>
+  <div class="ma__action-finder__container">
+    <header class="ma__action-finder__header">
+      <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
+      {# todo future phase searchword #}
+      {#<div class="ma__action-finder__search">
+        <section class="ma__keyword-search js-keyword-search">
+        </section>
+      </div> #}
+    </header>
+    {% if action_finder_links|render|trim %}
+      <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
+      {{ action_finder_links }}
+    {% endif %}
+    {% if all_actions_view|render|trim %}
+      <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
+      {{ all_actions_view }}
+    {% endif %}
+  </div>
+</section>

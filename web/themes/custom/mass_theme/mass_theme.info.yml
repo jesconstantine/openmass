@@ -12,5 +12,6 @@ base theme: stable
 regions:
   header: Header
   content: Content
+  section_topics: Section topics
   footer: Footer
   footer_navigation: Footer Navigation

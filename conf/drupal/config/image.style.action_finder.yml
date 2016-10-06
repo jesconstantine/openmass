@@ -1,0 +1,14 @@
+uuid: 0346568e-3297-4f69-98c6-4d6042f2737b
+langcode: en
+status: true
+dependencies: {  }
+name: action_finder
+label: action-finder
+effects:
+  3e657e85-fab5-475d-a472-9336901d8e3d:
+    uuid: 3e657e85-fab5-475d-a472-9336901d8e3d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1600
+      height: 600
