@@ -10,6 +10,7 @@ module:
   ctools: 0
   datetime: 0
   dblog: 0
+  devel: 0
   draggableviews: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
