@@ -19,3 +19,8 @@ Feature: Section Landing Content type
   Scenario: The page banner has correct markup.
     Given I am viewing a "section_landing" with the title "Behat Test: Section Landing"
     Then I should see the correct markup for the page banner
+
+  Scenario: Verify the section links markup is correct
+    Given default test content exists
+    When I visit the test "section_landing" "Behat Test: Visiting & Exploring"
+    Then I should see the correct markup for the section links

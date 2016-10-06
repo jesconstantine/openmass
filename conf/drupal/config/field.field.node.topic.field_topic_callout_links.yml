@@ -1,0 +1,23 @@
+uuid: 2c276785-d9f8-4cb4-8af2-f8b03877d540
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic_callout_links
+    - node.type.topic
+  module:
+    - link
+id: node.topic.field_topic_callout_links
+field_name: field_topic_callout_links
+entity_type: node
+bundle: topic
+label: 'Topic Callout Links'
+description: 'Add links to internal or external resources. e.g. Boating, Fishing, Hunting'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

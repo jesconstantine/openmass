@@ -6,12 +6,15 @@ dependencies:
     - field.field.node.subtopic.field_agency_links
     - field.field.node.subtopic.field_description
     - field.field.node.subtopic.field_featured_content
+    - field.field.node.subtopic.field_featured_image
     - field.field.node.subtopic.field_lede
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
     - node.type.subtopic
   module:
+    - image
     - link
+    - mass_formatters
     - text
     - user
 id: node.subtopic.default
@@ -23,13 +26,14 @@ content:
     weight: 106
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
+      classes: ma__link-list__link
+      trim_length: '80'
+      url_only: ''
+      url_plain: ''
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    type: mass_link
   field_description:
     weight: 103
     label: above
@@ -43,6 +47,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_featured_image:
+    weight: 108
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_lede:
     weight: 101
     label: above
@@ -69,4 +81,10 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

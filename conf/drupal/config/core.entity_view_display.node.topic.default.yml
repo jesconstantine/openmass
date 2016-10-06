@@ -9,9 +9,11 @@ dependencies:
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
     - image.style.hero800x400
+    - field.field.node.topic.field_topic_callout_links
     - node.type.topic
   module:
     - image
+    - link
     - options
     - user
 id: node.topic.default
@@ -53,6 +55,17 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_topic_callout_links:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
   links:
     weight: 5
     settings: {  }

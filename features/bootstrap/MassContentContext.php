@@ -235,6 +235,11 @@ class MassContentContext extends RawDrupalContext {
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
         ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Boating - http://www.google.com',
+          'Fishing - http://www.google.com',
+          'Hunting - http://www.google.com',
+        ]),
       ],
       [
         'title' => 'Behat Test: Finding a Job',
@@ -243,6 +248,11 @@ class MassContentContext extends RawDrupalContext {
         'field_node_icon' => 'apple',
         'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Link 1 - http://www.google.com',
+          'Link 2 - http://www.google.com',
+          'Link 3 - http://www.google.com',
         ]),
       ],
     ];

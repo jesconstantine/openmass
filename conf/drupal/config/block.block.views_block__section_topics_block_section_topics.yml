@@ -1,0 +1,32 @@
+uuid: ae0e9a85-728c-44c6-84eb-b0f6d9aa39c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.section_topics
+  module:
+    - node
+    - views
+  theme:
+    - mass_theme
+id: views_block__section_topics_block_section_topics
+theme: mass_theme
+region: section_topics
+weight: -1
+provider: null
+plugin: 'views_block:section_topics-block_section_topics'
+settings:
+  id: 'views_block:section_topics-block_section_topics'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      section_landing: section_landing
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
