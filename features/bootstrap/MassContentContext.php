@@ -85,7 +85,7 @@ class MassContentContext extends RawDrupalContext {
         'field_featured_content',
       ],
       'topic' => [
-        'field_common_actions',
+        'field_common_content',
       ],
       'section_landing' => [],
     ];
@@ -165,6 +165,25 @@ class MassContentContext extends RawDrupalContext {
   public function defaultSubtopics() {
     return [
       [
+        'title' => 'Behat Test: Get a State Park Pass',
+        'field_topic_parent' => 'Behat Test: State Parks & Recreation',
+        'field_lede' => 'The lede text for Nature & Outdoor Activities',
+        'field_description' => 'The description text for Nature & Outdoor Activities',
+        'field_featured_content' => implode(', ', [
+          'Behat Test: Find a State Park',
+          'Behat Test: Download a Trail Map',
+        ]),
+        'field_agency_links' => implode(', ', [
+          'MassParks - http://www.google.com',
+          'Department of Fish - http://www.google.com',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Camping - /subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - /subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - /subtopic/nature-outdoor-activities?filter=Biking',
+        ]),
+      ],
+      [
         'title' => 'Behat Test: Nature & Outdoor Activities',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Nature & Outdoor Activities',
@@ -219,7 +238,7 @@ class MassContentContext extends RawDrupalContext {
   /**
    * Create default test topics.
    *
-   * The Common Actions field here is optional, and the actions may or may not
+   * The Common Content field here is optional, and the actions may or may not
    * exist, so they should be created in a followup.
    *
    * @Given test topics exist
@@ -231,7 +250,7 @@ class MassContentContext extends RawDrupalContext {
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
         'field_node_icon' => 'camping',
-        'field_common_actions' => implode(', ', [
+        'field_common_content' => implode(', ', [
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
         ]),
@@ -246,7 +265,7 @@ class MassContentContext extends RawDrupalContext {
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
         'field_node_icon' => 'apple',
-        'field_common_actions' => implode(', ', [
+        'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
         ]),
         'field_topic_callout_links' => implode(', ', [
@@ -393,7 +412,6 @@ class MassContentContext extends RawDrupalContext {
     if (empty($type)) {
       throw new \Exception('The node type must be provided.');
     }
-
     if (empty($title)) {
       throw new \Exception('The node title must be provided.');
     }

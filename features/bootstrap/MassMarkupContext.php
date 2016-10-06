@@ -79,4 +79,14 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > h2.ma__link-list__title', 'page_main');
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > ul.ma__link-list__items > li.ma__link-list__item > a.ma__link-list__link', 'page_main');
   }
+
+  /**
+   * @Then I should see the correct markup for the top actions
+   */
+  public function iShouldSeeTheCorrectMarkupForTheTopActions()
+  {
+    $this->assertRegionElement('h2.ma__top-actions__title', 'top_actions');
+    $this->assertRegionElement('ul.ma__top-actions__items', 'top_actions');
+    //$this->assertRegionElement('ul.ma__top-actions__items > li.ma__top-actions__item > div.ma__top-actions__link > div.ma__callout-link > span.ma__decorative-link > a.js-clickable-link', 'top_actions');
+  }
 }

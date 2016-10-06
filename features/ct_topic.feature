@@ -21,3 +21,8 @@ Feature: Topic Content type
   Scenario: Verify that pathauto patterns are applied to topic nodes.
     Given I am viewing a "topic" with the title "Run the Test Suite"
     Then I am at "topics/run-test-suite"
+
+  Scenario: Verify top actions markup is correct
+    Given default test content exists
+    When I visit the test "topic" "Behat Test: State Parks & Recreation"
+    Then I should see the correct markup for the top actions
