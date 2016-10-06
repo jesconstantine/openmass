@@ -38,8 +38,9 @@ third_party_settings:
     group_sidebar:
       children:
         - field_related
-        - field_action_downloads
         - field_action_contacts
+        - field_action_downloads
+        - field_action_related
       parent_name: group_form
       weight: 3
       label: 'Sidebar Content'
@@ -100,7 +101,7 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_paragraphs
-    weight: 29
+    weight: 28
     settings:
       title: Contact
       title_plural: Contacts
@@ -119,7 +120,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 28
+    weight: 29
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -139,7 +140,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_action_related:
-    weight: 2
+    weight: 30
     settings:
       match_operator: CONTAINS
       size: 60
