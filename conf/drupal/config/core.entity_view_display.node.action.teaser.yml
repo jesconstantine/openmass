@@ -33,3 +33,4 @@ hidden:
   field_action_related: true
   field_external_url: true
   field_lede: true
+  field_related: true
