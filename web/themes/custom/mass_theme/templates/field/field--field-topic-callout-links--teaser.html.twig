@@ -40,7 +40,6 @@
 #}
 <ul class="ma__section-links__items">
   {# Render 4 callout links, alphabetically #}
-  {#{ kint(items) }#}
   {% for item in items|slice(0,4) %}
     {%
       set list = {
