@@ -7,6 +7,8 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Url;
+use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
 
 /**
@@ -23,6 +25,22 @@ function mass_theme_preprocess_block(&$variables) {
  */
 function mass_theme_preprocess_node(&$variables) {
   $node = $variables['node'];
+
+  // Retrieve view mode.
+  $view_mode = $variables['view_mode'];
+
+  // Array of allowed view modes (for performance so as to not execute on
+  // unneeded nodes).
+  $allowed_view_modes = ['full'];
+
+  // If view mode is in allowed view modes list, pass to
+  // mass_theme_add_regions_to_node().
+  if (in_array($view_mode, $allowed_view_modes)) {
+    // Allowed regions (for performance so as to not execute for unneeded
+    // region).
+    $allowed_regions = ['section_topics'];
+    mass_theme_add_regions_to_node($allowed_regions, $variables);
+  }
 
   // Optionally, run node-type-specific preprocess functions, like
   // foo_preprocess_node_page() or foo_preprocess_section_landing().
@@ -43,6 +61,68 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node action alterations.
+ */
+function mass_theme_preprocess_node_action(&$variables) {
+  $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'teaser_simple') {
+    $field_external_link = $node->get('field_external_url');
+
+    if ($field_external_link->count() > 0) {
+      $link = $field_external_link->first()->getValue();
+      $variables['link_url'] = $variables['link_url'] = Url::fromUri($link['uri']);
+      $variables['link_title'] = $variables['label'];
+      $variables['link_type'] = 'external';
+    }
+    else {
+      $variables['link_type'] = 'internal';
+      $variables['link_title'] = $variables['label'];
+      $variables['link_url'] = $variables['url'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node subtopic alterations.
+ */
+function mass_theme_preprocess_node_subtopic(&$variables) {
+  $node = $variables['node'];
+
+  $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
+  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
+
+  // Load Instance of the secondary menu block with variables.
+  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
+  if (!empty($all_actions_view)) {
+    $all_actions_view_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($all_actions_view);
+    if ($all_actions_view_content) {
+      // Add block content to build array.
+      $variables['content']['all_actions_view'] = $all_actions_view_content;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Preprocess our Topic node content.
+ */
+function mass_theme_preprocess_node_topic(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->field_featured_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
 
 }
 
@@ -53,7 +133,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
-  if (!empty($variables['node_type']) && $variables['node_type'] == 'action') {
+  if (isset($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
 }
@@ -83,6 +163,19 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * Clean css id for subheads.
+ */
+function mass_theme_preprocess_paragraph__subhead(&$variables) {
+  $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
+
+  $subhead_clean = strtolower($subhead);
+  $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
+  $variables['title_clean'] = $subhead_clean;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
  * Break out url pieces for callout link paragraphs.
  */
 function mass_theme_preprocess_paragraph__callout_link(&$variables) {
@@ -91,6 +184,85 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Provide the URL of an image.
+ *
+ * @param object $node
+ *   The node with the field on it.
+ * @param string $style_name
+ *   The name of an image style.
+ * @param string $field
+ *   The name of an the image field.
+ *
+ * @return string
+ *   The URL to the styled image, or to the original image if the style does not
+ *   exist.
+ */
+function mass_theme_get_field_image_url($node, $style_name = NULL, $field = NULL) {
+  $url = '';
+
+  $fields = $node->get($field);
+  if ($fields) {
+    $images = $fields->referencedEntities();
+  }
+
+  if (!empty($images)) {
+    $image = current($images);
+
+    if (!empty($style_name) && ($style = ImageStyle::load($style_name))) {
+      $url = $style->buildUrl($image->getFileUri());
+    }
+    else {
+      $url = $image->url();
+    }
+  }
+
+  return $url;
+}
+
+/**
+ * Implements mass_theme_add_regions_to_node().
+ *
+ * Add regions to node templates.
+ */
+function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
+  // Retrieve active theme.
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+
+  // Retrieve theme regions.
+  $available_regions = system_region_list($theme, 'REGIONS_ALL');
+
+  // Validate allowed regions with available regions.
+  $regions = array_intersect(array_keys($available_regions), $allowed_regions);
+
+  // For each region.
+  foreach ($regions as $key => $region) {
+
+    // Load region blocks.
+    $blocks = \Drupal::entityTypeManager()
+      ->getStorage('block')
+      ->loadByProperties(array('theme' => $theme, 'region' => $region));
+
+    // Sort ‘em.
+    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+
+    // Capture viewable blocks and their settings to $build.
+    $build = array();
+    foreach ($blocks as $key => $block) {
+      if ($block->access('view')) {
+        $block = Block::load($key);
+        $block_content = \Drupal::entityTypeManager()
+          ->getViewBuilder('block')
+          ->view($block);
+        $build[$key] = $block_content;
+      }
+    }
+
+    // Add build to region.
+    $variables[$region] = $build;
+  }
 }
 
 /**
