@@ -37,3 +37,4 @@ default:
         page_main: ".main-content"
         subtopic_featured_actions: "#ma__action-finder--featured"
         subtopic_all_actions: "#ma__action-finder--all"
+        section_links: "section.ma__section-links"
