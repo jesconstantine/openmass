@@ -87,6 +87,7 @@
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
+        "drupal/draggableviews": "8.1.x-dev",
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
@@ -140,6 +141,12 @@
         "patches": {
             "drupal/metatag": {
                 "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
+            },
+            "drupal/workbench_moderation": {
+                "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
+            },
+            "drupal/draggableviews": {
+                "Invalidate cache when draggableviews order is changed (https://www.drupal.org/node/2425249#comment-10716828)": "https://www.drupal.org/files/issues/draggableviews-clearcache-2425249-11-8.x-1.x.diff"
             }
         }
     }

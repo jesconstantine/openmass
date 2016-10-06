@@ -282,6 +282,26 @@ function mass_theme_preprocess_paragraph__contact(&$variables) {
 }
 
 /**
+ * Helper function to sort a list of items by title.
+ */
+function compare_by_title($a, $b) {
+  return strcasecmp($a['content']['#title'], $b['content']['#title']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Sort items array case insensitively, since twig won't.
+ */
+function mass_theme_preprocess_field__field_topic_callout_links(&$variables) {
+  if (isset($variables['element']['#view_mode']) && $variables['element']['#view_mode'] == 'teaser') {
+    // Don't have to do anything with this since usort acts on the actual
+    // array but returns a boolean.
+    $items_lower = usort($variables['items'], 'compare_by_title');
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
  * Add theme suggestions for Footer Menus.
@@ -290,6 +310,29 @@ function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $var
   if (strpos($variables['menu_name'], 'footer') > -1) {
     $suggestions[] = "menu__footer_layout";
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add theme suggestions to fields for separate view modes.
+ */
+function mass_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
+  $suggestions[] = 'field__' .
+    $variables['element']['#field_name'] . '__' .
+    $variables['element']['#view_mode'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Add title to 3up Container from the current page.
+ */
+function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  $variables['label'] = $title;
 }
 
 /**
