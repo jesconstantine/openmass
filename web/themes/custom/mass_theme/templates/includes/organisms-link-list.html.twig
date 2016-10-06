@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Partial for link list. To be included at the field level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__link-list">
+  <div class="ma__link-list__container">
+    <h2 class="ma__link-list__title"> {{ label }} </h2>
+    <ul class="ma__link-list__items">
+      {% for item in items %}
+        <li class="ma__link-list__item">
+          {{ item.content }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
