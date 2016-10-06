@@ -10,7 +10,7 @@ dependencies:
     - node
     - user
 id: subtopics
-label: Subtopics
+label: 'Reordering Pages'
 module: views
 description: ''
 tag: ''
