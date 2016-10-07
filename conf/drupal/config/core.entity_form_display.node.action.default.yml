@@ -16,6 +16,7 @@ dependencies:
     - field_group
     - link
     - paragraphs
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_primary_content:
@@ -121,11 +122,11 @@ content:
     weight: 3
     settings:
       entity_browser: browse_files_modal
-      field_widget_edit: '1'
-      field_widget_remove: '1'
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
       selection_mode: selection_append
       view_mode: default
-      open: 0
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
