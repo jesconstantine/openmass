@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
-    - field.field.node.action.field_related
     - node.type.action
   module:
     - user
@@ -33,5 +32,4 @@ hidden:
   field_action_downloads: true
   field_action_parent: true
   field_external_url: true
-  field_related: true
   links: true

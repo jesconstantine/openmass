@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
-    - field.field.node.action.field_related
     - node.type.action
   module:
     - entity_reference_revisions
@@ -57,14 +56,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_related:
-    type: entity_reference_revisions_entity_view
-    weight: 8
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   links:
     weight: 0
     settings: {  }
