@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override to display the Full view mode of Topic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{% extends 'node.html.twig' %}
+
+
+{# Take our blocks from node.html.twig and extend them to get our wrapping divs #}
+{% block preContent %}
+  <section class="ma__breadcrumbs ">
+    <div class="ma__breadcrumbs__container">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li>{{ content.field_section|field_value }}</li>
+        <li><a href="{{ url }}">{{ label|field_value }}</a></li>
+      </ul>
+    </div>
+  </section>
+  {%
+  set bannerData = {
+    'icon': node.field_node_icon.value,
+    'class': 'ma__page-banner--small'
+  }
+  %}
+  {# Our section and topic landing pages have similar markup. Lets see if we can just pass in what we need #}
+  {% include "@mass_theme/includes/ma--page-banner.html.twig" with bannerData  %}
+{% endblock %}
+
+{# This is going to get replaced with real views and content. #}
+{% block pageContent %}
+
+  {{ content.field_common_content }}
+  {{ section_topics }}
+{% endblock %}
+
+{% block postContent %}
+  <section class="ma__breadcrumbs ">
+    <div class="ma__breadcrumbs__container">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li>{{ content.field_section|field_value }}</li>
+        <li><a href="{{ url }}">{{ label|field_value }}</a></li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

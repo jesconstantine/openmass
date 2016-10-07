@@ -12,11 +12,30 @@ Feature: Paragraph type definitions
       | field-title   | Textfield                 |
       | field-content | Text area (multiple rows) |
 
+  Scenario: Verify that the action_step_numbered paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "action_step_numbered" paragraph has the fields:
+      | field         | widget                    |
+      | field-title   | Textfield                 |
+      | field-content | Text area (multiple rows) |
+
+  Scenario: Verify that the action_step_numbered_list paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "action_step_numbered_list" paragraph has the fields:
+      | field                            | widget                    |
+      | field-action-step-numbered-items | Paragraphs                |
+
   Scenario: Verify that the callout_link paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "callout_link" paragraph has the fields:
       | field      | widget |
       | field-link | Link   |
+
+  Scenario: Verify that the file_download paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "file_download" paragraph has the fields:
+      | field           | widget         |
+      | field-downloads | Entity browser |
 
   Scenario: Verify that the iframe paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role

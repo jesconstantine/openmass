@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for a link to a file.
+ *
+ * Available variables:
+ * - attributes: The HTML attributes for the containing element.
+ * - link: A link to the file.
+ *
+ * @see template_preprocess_file_link()
+ */
+#}
+<div class="ma__download__item">
+  <div class="ma__download__icon">
+    {% set iconName = download.iconName %}
+    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':iconName} %}
+  </div>
+  <h5 class="ma__download__title">
+    <a href="{{ download.link }}">{{ download.linktext }}</a> <span>({{ download.filetype|upper }} {{ download.size }})</span>
+  </h5>
+</div>
