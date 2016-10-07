@@ -8,11 +8,9 @@ dependencies:
     - field.field.node.topic.field_lede
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
-    - field.field.node.topic.field_topic_callout_links
     - node.type.topic
   module:
     - entity_browser
-    - link
     - path
     - workbench_moderation
 id: node.topic.default
@@ -62,13 +60,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-  field_topic_callout_links:
-    weight: 26
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
   path:
     type: path
     weight: 7

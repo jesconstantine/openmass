@@ -47,7 +47,6 @@ settings:
       callout_link:
         enabled: true
         weight: -17
-        weight: -16
       file_download:
         enabled: true
         weight: -15
