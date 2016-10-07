@@ -11,7 +11,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  *   id = "maSection3upContainer",
  *   title = @Translation("MA Section 3up Container"),
  *   help = @Translation("Display Topics on Section page as 3up"),
- *   theme = "maSection3upContainer_style",
+ *   theme = "ma_section3up_container_style",
  *   display_types = {"normal"}
  * )
  */

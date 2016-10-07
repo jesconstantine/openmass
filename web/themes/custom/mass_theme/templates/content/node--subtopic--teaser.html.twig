@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override to display the teaser view mode of the Subtopic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{%
+  set sectionLinks = { title:{ text:label, href:url } }
+%}
+{% extends 'node.html.twig' %}
+
+{% block pageContent %}
+{# from molecules/section-links.twig #}
+<section class="ma__section-links js-section-accordion">
+  <div class="ma__section-links__content">
+    <h3 class="ma__section-links__title js-section-accordion-link">
+      <a href="{{sectionLinks.title.href}}">{{sectionLinks.title.text}}&nbsp;{% include "@mass_theme/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}</a>
+    </h3>
+    <div class="ma__section-links__toggle-content js-section-accordion-body">
+      <h4 class="ma__section-links__mobile-title">
+        <a href="{{sectionLinks.title.href}}">Learn More&nbsp;{% include "@mass_theme/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}</a>
+      </h4>
+      {{ content.field_topic_callout_links }}
+    </div>
+  </div>
+</section>
+{% endblock %}

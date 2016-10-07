@@ -102,10 +102,6 @@ class MassContentContext extends RawDrupalContext {
   public function defaultActions() {
     return [
       [
-        'title' => 'Behat Test: Find a State Park',
-        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
-      ],
-      [
         'title' => 'Behat Test: Get a State Park Pass',
         'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
       ],
@@ -178,9 +174,9 @@ class MassContentContext extends RawDrupalContext {
           'Department of Fish - http://www.google.com',
         ]),
         'field_topic_callout_links' => implode(', ', [
-          'Camping - /subtopic/nature-outdoor-activities?filter=Camping',
-          'Hiking - /subtopic/nature-outdoor-activities?filter=Hiking',
-          'Biking - /subtopic/nature-outdoor-activities?filter=Biking',
+          'Camping - http://mass.local/subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - http://mass.local/subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - http://mass.local/subtopic/nature-outdoor-activities?filter=Biking',
         ]),
       ],
       [
@@ -197,9 +193,9 @@ class MassContentContext extends RawDrupalContext {
           'Department of Fish - http://www.google.com',
         ]),
         'field_topic_callout_links' => implode(', ', [
-          'Camping - /subtopic/nature-outdoor-activities?filter=Camping',
-          'Hiking - /subtopic/nature-outdoor-activities?filter=Hiking',
-          'Biking - /subtopic/nature-outdoor-activities?filter=Biking',
+          'Camping - http://mass.local/subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - http://mass.local/subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - http://mass.local/subtopic/nature-outdoor-activities?filter=Biking',
         ]),
       ],
       [
@@ -227,9 +223,9 @@ class MassContentContext extends RawDrupalContext {
           'MassIT - http://www.google.com'
         ]),
         'field_topic_callout_links' => implode(', ', [
-          'Education - /subtopic/search-jobs?filter=Education',
-          'Public Sector - /subtopic/search-jobs?filter=Public Sector',
-          'Public Safety - /subtopic/search-jobs?filter=Public Safety',
+          'Education - http://mass.local/subtopic/search-jobs?filter=Education',
+          'Public Sector - http://mass.local/subtopic/search-jobs?filter=Public Sector',
+          'Public Safety - http://mass.local/subtopic/search-jobs?filter=Public Safety',
         ]),
       ],
     ];
@@ -254,11 +250,6 @@ class MassContentContext extends RawDrupalContext {
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
         ]),
-        'field_topic_callout_links' => implode(', ', [
-          'Boating - http://www.google.com',
-          'Fishing - http://www.google.com',
-          'Hunting - http://www.google.com',
-        ]),
       ],
       [
         'title' => 'Behat Test: Finding a Job',
@@ -267,11 +258,6 @@ class MassContentContext extends RawDrupalContext {
         'field_node_icon' => 'apple',
         'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
-        ]),
-        'field_topic_callout_links' => implode(', ', [
-          'Link 1 - http://www.google.com',
-          'Link 2 - http://www.google.com',
-          'Link 3 - http://www.google.com',
         ]),
       ],
     ];
@@ -412,8 +398,13 @@ class MassContentContext extends RawDrupalContext {
     if (empty($type)) {
       throw new \Exception('The node type must be provided.');
     }
+
     if (empty($title)) {
       throw new \Exception('The node title must be provided.');
+    }
+
+    if (!isset($this->{$type}[$title])) {
+      throw new \Exception('Cannot load the specified node.');
     }
 
     $node = $this->{$type}[$title];
