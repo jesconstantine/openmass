@@ -38,15 +38,17 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-
-<div class="ma__related-actions__link">
-  <span class="ma__decorative-link">
-    <a href="{{content.field_link.0['#url']}}" class="js-clickable-link">{{content.field_link.0['#title']}}&nbsp;
-      {% set icon = 'arrow' %}
-      {#{{ dump(content.field_link) }}#}
-      {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':icon} %}
-    </a>
-  </span>
+{%
+set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+'ma__related-actions__link'
+]
+%}
+<div {{ attributes.addClass(classes) }}>
+  {% set decorativeLink = relatedLink %}
+  {% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
 </div>
 
 <div class="ma__related-actions__description">
