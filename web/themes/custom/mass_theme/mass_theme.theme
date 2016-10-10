@@ -10,6 +10,8 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityViewBuilderInterface;
 
 /**
  * Implements hook_preprocess_block().
@@ -100,14 +102,14 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
   $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
 
   // Load Instance of the secondary menu block with variables.
-  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
-  if (!empty($all_actions_view)) {
-    $all_actions_view_content = \Drupal::entityTypeManager()
+  $all_actions_form = \Drupal::entityTypeManager()->getStorage('block')->load('form_subtopics_all_actionspage_1');
+  if (!empty($all_actions_form)) {
+    $all_actions_form_block = \Drupal::entityTypeManager()
       ->getViewBuilder('block')
-      ->view($all_actions_view);
-    if ($all_actions_view_content) {
+      ->view($all_actions_form);
+    if ($all_actions_form_block) {
       // Add block content to build array.
-      $variables['content']['all_actions_view'] = $all_actions_view_content;
+      $variables['content']['all_actions_form'] = $all_actions_form_block;
     }
   }
 }
@@ -375,4 +377,28 @@ function mass_theme_preprocess_file_link(&$variables) {
   // Set the icon name.
   $variables['download']['iconName'] = 'doc-' . $file_extension;
 
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_views_view_list(&$variables) {
+  $view = $variables['view'];
+  $rows = $variables['rows'];
+
+  if ($view->storage->id() == 'subtopics_all_actions') {
+    $nodes = array();
+
+    foreach ($rows as $row) {
+      $result = $row['content']['#row'];
+      $nid = $result->nid;
+
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+      $storage = \Drupal::entityTypeManager()->getStorage('node');
+      $node = $storage->load($nid);
+      $build = $view_builder->view($node, 'teaser_simple');
+      $nodes[] = $build;
+    }
+    $variables['nodes'] = $nodes;
+  }
 }
