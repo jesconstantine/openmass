@@ -24,3 +24,8 @@ Feature: Section Landing Content type
     Given default test content exists
     When I visit the test "section_landing" "Behat Test: Visiting & Exploring"
     Then I should see the correct markup for the section links
+
+  Scenario: Verify custom ordered topics.
+    Given I am logged in as a user with the "administrator" role
+    And I am viewing a "section_landing" with the title "Test section"
+    Then I should see the link "Reorder Topics"
