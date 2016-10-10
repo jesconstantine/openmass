@@ -1,22 +1,22 @@
-uuid: ae0e9a85-728c-44c6-84eb-b0f6d9aa39c0
+uuid: f4cd9a62-5455-4c2f-b710-976e87d1d791
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.section_topics
+    - views.view.ordered_topics
   module:
     - node
     - views
   theme:
     - mass_theme
-id: views_block__section_topics_block_section_topics
+id: views_block__ordered_topics_ordered_topic_list_block
 theme: mass_theme
 region: section_topics
-weight: -1
+weight: -4
 provider: null
-plugin: 'views_block:section_topics-block_section_topics'
+plugin: 'views_block:ordered_topics-ordered_topic_list_block'
 settings:
-  id: 'views_block:section_topics-block_section_topics'
+  id: 'views_block:ordered_topics-ordered_topic_list_block'
   label: ''
   provider: views
   label_display: '0'
