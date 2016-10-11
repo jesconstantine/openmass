@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser_simple
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_external_url
@@ -36,7 +35,6 @@ content:
 hidden:
   field_action_contacts: true
   field_action_details: true
-  field_action_downloads: true
   field_action_parent: true
   field_external_url: true
   field_lede: true

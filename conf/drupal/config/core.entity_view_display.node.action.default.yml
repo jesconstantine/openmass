@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_external_url
@@ -13,7 +12,6 @@ dependencies:
     - node.type.action
   module:
     - entity_reference_revisions
-    - file
     - user
 _core:
   default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
@@ -38,12 +36,6 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  field_action_downloads:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
   field_action_parent:
     weight: 2
     label: above
