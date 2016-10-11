@@ -13,7 +13,10 @@ if (!empty($output)) {
   # Configure Drush for the current project.
   $options['root'] = "{$repo}/web";
   $options['uri'] = "http://mass.local";
-  $options['include'] = "{$repo}/artifacts/acquiacloud/.drush";
+  $options['include'] = [
+    "{$repo}/artifacts/acquiacloud/.drush",
+    "{$repo}/vendor/previousnext/drush_cmi_tools",
+  ];
   $options['alias-path'] = "{$repo}/artifacts/acquiacloud/.drush";
 }
 
