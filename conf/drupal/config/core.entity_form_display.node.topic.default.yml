@@ -12,6 +12,7 @@ dependencies:
   module:
     - entity_browser
     - path
+    - workbench_moderation
 id: node.topic.default
 targetEntityType: node
 bundle: topic
@@ -23,7 +24,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_common_content:
-    type: entity_reference_autocomplete_tags
+    type: entity_reference_autocomplete
     weight: 5
     settings:
       match_operator: CONTAINS

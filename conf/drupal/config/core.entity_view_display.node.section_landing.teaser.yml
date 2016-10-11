@@ -6,18 +6,31 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
+    - image.style.hero800x400
     - node.type.section_landing
   module:
+    - image
+    - options
     - user
 id: node.section_landing.teaser
 targetEntityType: node
 bundle: section_landing
 mode: teaser
 content:
-  links:
-    weight: 100
-  workbench_moderation_control:
-    weight: -20
+  field_featured_image:
+    type: image
+    weight: 1
+    label: hidden
+    settings:
+      image_style: hero800x400
+      image_link: ''
+    third_party_settings: {  }
+  field_icon:
+    type: list_default
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  field_featured_image: true
-  field_icon: true
+  links: true
+  workbench_moderation_control: true

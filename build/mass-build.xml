@@ -126,6 +126,20 @@
       <echo>Running `drush updb` now.</echo>
       <drush command="updb" assume="yes" />
 
+      <drush command="cimy" assume="yes">
+        <option name="source" value="/var/www/mass.local/conf/drupal/config" />
+        <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
+      </drush>
+
+  </target>
+
+  <target name="mass-local-modules" description="Install local modules.">
+    <drush command="pm-enable" assume="yes">
+        <param>devel</param>
+        <param>kint</param>
+        <param>mass_types</param>
+        <param>migrate_tools</param>
+    </drush>
   </target>
 
 </project>
