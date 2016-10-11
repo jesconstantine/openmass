@@ -13,7 +13,6 @@ Feature: Action Content type
     | field-action-related         | input      | text                       | true       |
     | field-external-url           | input      | url                        | false      |
     # the following fields are multivalue but have no good way of testing for it.
-    | field-action-downloads       | input      | submit                     | false      |
     | field-action-contacts        | paragraphs | contact                    | false      |
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
