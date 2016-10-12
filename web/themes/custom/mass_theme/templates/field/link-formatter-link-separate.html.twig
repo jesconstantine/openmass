@@ -12,3 +12,7 @@
  * @see template_preprocess_link_formatter_link_separate()
  */
 #}
+
+{% set decorativeLink = fieldLink %}
+
+{% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
