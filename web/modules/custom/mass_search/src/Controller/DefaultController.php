@@ -18,8 +18,7 @@ class DefaultController extends ControllerBase {
    */
   public function search() {
     return [
-      '#type' => 'markup',
-      '#markup' => $this->t('Implement method: search')
+      '#theme' => 'mass_search',
     ];
   }
 
