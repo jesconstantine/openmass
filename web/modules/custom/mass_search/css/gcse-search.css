@@ -777,3 +777,23 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
     padding-top: 20px;
   }
 }
+
+
+/**
+ * PILOT header overrides to make search forms show
+ */
+
+/* update width of pilot menu */
+
+@media (min-width: 781px) {
+  .ma__header__main-nav {
+    position: static !important;
+    text-align: right;
+    width: 100% !important;
+  }
+}
+
+/* make header search form visible */
+.ma__header__search {
+  display: inline-block !important;
+}
