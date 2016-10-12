@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains mass_search.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mass_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the mass_search module.
+    case 'help.page.mass_search':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Embeds google custom search engine elements (forms, results, promotions, autocomplete) using javascript') . '</p>';
+      return $output;
+
+    default:
+  }
+}
