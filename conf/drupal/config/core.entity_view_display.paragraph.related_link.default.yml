@@ -15,14 +15,14 @@ mode: default
 content:
   field_description:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_link:
     weight: 0
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -30,7 +30,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    type: link_separate
 hidden:
   created: true
   uid: true
