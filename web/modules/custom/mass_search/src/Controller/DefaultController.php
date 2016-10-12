@@ -19,6 +19,11 @@ class DefaultController extends ControllerBase {
   public function search() {
     return [
       '#theme' => 'mass_search',
+      '#attached' => array(
+        'library' =>  array(
+          'mass_search/google-cse-results'
+        ),
+      ),
     ];
   }
 
