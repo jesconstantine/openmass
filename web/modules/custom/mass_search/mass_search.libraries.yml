@@ -1,0 +1,15 @@
+google-jsapi:
+  header: true
+  js:
+    //www.google.com/jsapi: { type: external }
+
+google-cse:
+  js:
+    js/google-custom-search-forms.js: { minified: false }
+  css:
+    theme:
+      css/gcse-search.css: {}
+
+google-cse-results:
+  js:
+    js/google-custom-search-results.js: { minified: false }
