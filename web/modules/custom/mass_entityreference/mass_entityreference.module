@@ -43,27 +43,30 @@ function _form_validation_action_subtopic_parent($form, $form_state) {
     ->condition('field_featured_content.target_id', $current_node_id);
   $referencing_nids = $query->execute();
 
-  // If this is referenced elsewhere.
-  if (!empty($referencing_nids)) {
-    // Get the subtopics currently referenced by this node.
-    $field_values = $form_state->getValue('field_action_parent');
-    $values = array();
-    foreach ($field_values as $item) {
-      if (is_array($item)) {
-        if (!empty($item['target_id'])) {
-          $values[] = $item['target_id'];
-        }
-      }
-    }
+  // If this is not referenced elsewhere.
+  if (empty($referencing_nids)) {
+    return;
+  }
 
-    foreach ($referencing_nids as $nid) {
-      // Make sure subtopic referencing this node is referenced by this node.
-      if (!in_array($nid, $values)) {
-        $node_storage = \Drupal::entityManager()->getStorage('node');
-        $subtopic = $node_storage->load($nid);
-        $error_message = 'The Subtopic <a href=' . $subtopic->url('edit-form') . '>' . $subtopic->getTitle() . '</a> is referencing this action. Please remove this node from the subtopic before removing it from Parent.';
-        $form_state->setErrorByName('field_action_parent', t($error_message));
+  // Get the subtopics currently referenced by this node.
+  $field_values = $form_state->getValue('field_action_parent');
+  $values = array();
+  foreach ($field_values as $item) {
+    if (is_array($item)) {
+      if (!empty($item['target_id'])) {
+        $values[] = $item['target_id'];
       }
     }
   }
+
+  foreach ($referencing_nids as $nid) {
+    // Make sure subtopic referencing this node is referenced by this node.
+    if (!in_array($nid, $values)) {
+      $node_storage = \Drupal::entityManager()->getStorage('node');
+      $subtopic = $node_storage->load($nid);
+      $error_message = 'The Subtopic <a href=' . $subtopic->url('edit-form') . '>' . $subtopic->getTitle() . '</a> is referencing this action. Please remove this node from the subtopic before removing it from Parent.';
+      $form_state->setErrorByName('field_action_parent', t($error_message));
+    }
+  }
+
 }
