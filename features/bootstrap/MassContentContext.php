@@ -162,6 +162,8 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: Get a State Park Pass',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Nature & Outdoor Activities',
         'field_description' => 'The description text for Nature & Outdoor Activities',
@@ -181,6 +183,8 @@ class MassContentContext extends RawDrupalContext {
       ],
       [
         'title' => 'Behat Test: Nature & Outdoor Activities',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Nature & Outdoor Activities',
         'field_description' => 'The description text for Nature & Outdoor Activities',
@@ -200,6 +204,8 @@ class MassContentContext extends RawDrupalContext {
       ],
       [
         'title' => 'Behat Test: Recreational Licenses & Permits',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Recreational Licenses & Permits',
         'field_description' => 'The description text for Recreational Licenses & Permits',
@@ -212,6 +218,8 @@ class MassContentContext extends RawDrupalContext {
       ],
       [
         'title' => 'Behat Test: Search Jobs',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: Finding a Job',
         'field_lede' => 'The lede text for Search Jobs',
         'field_description' => 'The description text for Search Jobs',
@@ -243,6 +251,8 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: State Parks & Recreation',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
         'field_node_icon' => 'camping',
@@ -253,6 +263,8 @@ class MassContentContext extends RawDrupalContext {
       ],
       [
         'title' => 'Behat Test: Finding a Job',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
         'field_node_icon' => 'apple',
