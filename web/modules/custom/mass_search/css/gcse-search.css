@@ -794,7 +794,12 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
 }
 
 /* make header search form visible */
-.ma__header__nav-search,
 .ma__header__search {
   display: inline-block !important;
+}
+
+@media (max-width: 620px) {
+  .ma__header__nav-search {
+    display: inline-block !important;
+  }
 }
