@@ -10,18 +10,19 @@ use Drupal\Core\Controller\ControllerBase;
  * @package Drupal\mass_search\Controller
  */
 class DefaultController extends ControllerBase {
+
   /**
    * Search.
    *
-   * @return string
-   *   Return Hello string.
+   * @return array
+   *   Render array that calls mass-search template and attaches results pg js
    */
   public function search() {
     return [
       '#theme' => 'mass_search',
       '#attached' => array(
-        'library' =>  array(
-          'mass_search/google-cse-results'
+        'library' => array(
+          'mass_search/google-cse-results',
         ),
       ),
     ];

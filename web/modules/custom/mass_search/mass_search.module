@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains mass_search.module..
+ * Contains mass_search.module.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -25,19 +25,13 @@ function mass_search_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_theme().
- * Define mass_search module twig template for search results page
- * Called in massgov_search module DefaultController
  *
- * @param  array  $existing  existing implementations
- * @param  string $type      what is being processed (theme, module, etc.)
- * @param  string $theme     the actual name of the theme, module, etc.
- * @param  string $path      the directory path of the theme or module
- * @return array             associative array of info about the implementation
+ * Define twig template for search results route, called by DefaultController.
  */
 function mass_search_theme($existing, $type, $theme, $path) {
   return array(
     'mass_search' => array(
-      'variables' => array('test_var' => NULL ),
+      'variables' => array('test_var' => NULL),
     ),
   );
 }

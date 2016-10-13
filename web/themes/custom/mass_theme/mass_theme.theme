@@ -383,7 +383,6 @@ function mass_theme_preprocess_file_link(&$variables) {
  * custom search header form on every page.
  */
 function mass_search_page_attachments(array &$attachments) {
-  // Unconditionally attach google search js/css assets.
 
   // Attach the google js api external script reference, load in head.
   $attachments['#attached']['library'][] = 'mass_search/google-jsapi';
@@ -391,4 +390,3 @@ function mass_search_page_attachments(array &$attachments) {
   // Attach the search form js + css globally.
   $attachments['#attached']['library'][] = 'mass_search/google-cse';
 }
-
