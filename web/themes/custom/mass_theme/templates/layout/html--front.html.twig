@@ -108,22 +108,7 @@
         <div class="ma__header__nav-container">
             <div class="ma__header__nav-search">
                 <section class="ma__header-search">
-                    <form action="#" class="js-header-search-form">
-                        <label
-                                for="header-search"
-                                class="ma__header-search__label">Search Mass.gov</label>
-                        <input
-                                id="header-search"
-                                class="ma__header-search__input"
-                                placeholder="What can we help you find?"
-                                type="text"/>
-                        <button type="submit" class="ma__button-search">
-                            <span>Search</span>
-                            <svg role="img" class="ma__button-search__icon">
-                                <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#search"></use>
-                            </svg>
-                        </button>
-                    </form>
+                  {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-search-form-mobile" } %}
                 </section>
             </div>
             <div class="ma__header__main-nav">
