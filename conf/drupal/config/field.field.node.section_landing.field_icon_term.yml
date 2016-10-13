@@ -1,0 +1,28 @@
+uuid: 600687cd-9918-4a57-8956-b7d022658a2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_icon_term
+    - node.type.section_landing
+    - taxonomy.vocabulary.icons
+id: node.section_landing.field_icon_term
+field_name: field_icon_term
+entity_type: node
+bundle: section_landing
+label: Icon
+description: 'The section icon'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      icons: icons
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

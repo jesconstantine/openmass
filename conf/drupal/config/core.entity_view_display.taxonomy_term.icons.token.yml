@@ -1,18 +1,19 @@
-uuid: 56f85c89-292c-4c92-9f58-339edcf8f7a4
+uuid: 27306a45-43df-4fc2-b129-b71846c0809b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.token
     - field.field.taxonomy_term.icons.field_sprite_name
     - taxonomy.vocabulary.icons
-id: taxonomy_term.icons.default
+id: taxonomy_term.icons.token
 targetEntityType: taxonomy_term
 bundle: icons
-mode: default
+mode: token
 content:
   field_sprite_name:
-    weight: 0
-    label: inline
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
