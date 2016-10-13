@@ -9,8 +9,9 @@ global-styling:
   js:
     js/vendor-generated.js: {}
     js/index-generated.js: {}
-  dependencies:
-    - core/jquery
+    # jquery for theme comes with vendor-generated.js
+    # dependencies:
+    # - core/jquery
 js-header:
   header: true
   js:
