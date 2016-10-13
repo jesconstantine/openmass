@@ -8,8 +8,6 @@
 (function() {
   'use strict';
 
-  console.log(google);
-
   /**
    * load the google custom search module
    * - with english language
