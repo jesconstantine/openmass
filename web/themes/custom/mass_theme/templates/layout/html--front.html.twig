@@ -460,7 +460,7 @@
                 <div class="ma__collage-header__details">
                     <h3>This is our testing ground for a new Mass.gov website. We have one goal: to make it easy for you
                         find what you need. We’re going to try, test, and make changes until we get it right.</h3>
-                    <p>To make a website that’s useful for everyone, we need your help. So start exploring! Let us know
+                    <p>To make Mass.gov useful for everyone, we need your help. So start exploring! Let us know
                         what works and what doesn’t — and check back for updates. We’ll keep improving this site as we
                         learn more about what you want and need.</p>
 
@@ -482,10 +482,8 @@
             <div class="ma__action-card__items">
                 <div class="ma__action-card__item js-clickable ma__action-card__item--green">
                     <div class="ma__action-card__icon">
-                        <svg id="SvgjsSvg1011" class="svg-campfire" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="32" height="28" viewBox="0 0 32 28">
-                            <defs id="SvgjsDefs1012">
-                                <path id="SvgjsPath1013" d="M810.004 752.992C809.995 752.828 809.969 752.6659999999999 809.932 752.5079999999999C809.926 752.482 809.922 752.4569999999999 809.915 752.4319999999999C809.872 752.271 809.8149999999999 752.1159999999999 809.746 751.9649999999999C809.741 751.953 809.739 751.9409999999999 809.733 751.929C809.727 751.9159999999999 809.718 751.906 809.7109999999999 751.893C809.6389999999999 751.748 809.5559999999999 751.609 809.4599999999999 751.477C809.4399999999999 751.451 809.42 751.427 809.4 751.401C809.305 751.28 809.20...1.4160000000002 800.4699999999999 751.6880000000001C800.3779999999999 751.9590000000001 800.5269999999999 752.2530000000002 800.8019999999999 752.344L803.9479999999999 753.3810000000001C804.0029999999998 753.3990000000001 804.0589999999999 753.407 804.1139999999999 753.407C804.1629999999999 753.407 804.2109999999999 753.399 804.2579999999999 753.385C804.2789999999999 753.636 804.3399999999999 753.881 804.429 754.121L795.001 750.783L785.588 754.116C785.6709999999999 753.889 785.723 753.65 785.746 753.405Z " transform="matrix(1,0,0,1,-779,-728)">
-                        </svg>
+                        {% set icon = 'campfire' %}
+                    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':icon} %}
                     </div>
                     <div class="ma__action-card__content">
                         <span class="ma__action-card__category">State Parks &amp; Recreation</span>
@@ -789,7 +787,7 @@
         <section class="ma__split50 ma__split50--has-divider">
             <div class="ma__split50__container">
                 <section class="ma__change-log">
-                    <h2 class="ma__change-log__title">Latest Updates</h2>
+                    <h2 class="ma__change-log__title">Recent Changes</h2>
                     <ul class="ma__change-log__items">
                         <li class="ma__change-log__item">
                             <span class="ma__change-log__date">08.15.16</span>
