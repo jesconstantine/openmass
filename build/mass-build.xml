@@ -63,6 +63,9 @@
             <exec command="drush --nocolor --yes sql-dump > ${acquia.databases}/backup-db-${build.time}.sql" />
             <echo>Local database backed up to ${acquia.databases}/backup-db-${build.time}.sql</echo>
           </then>
+          <else>
+            <echo>Skipping local database backup.</echo>
+          </else>
       </if>
 
       <!-- This cannot be a drush command because we cannot run it with the
