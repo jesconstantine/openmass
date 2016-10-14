@@ -312,4 +312,15 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new \Exception(sprintf('Content of type "%s" cannot be placed in the menu "%s"', $content_type, $menu));
     }
   }
+
+  /**
+   * @Then I should see the :arg1 element
+   */
+  public function iShouldSeeTheElement($selector)
+  {
+    $element = $this->getSession()->getPage()->find('css', $selector);
+    if (is_null($element)) {
+      throw new \Exception(sprintf('Could not find element for css selector "%s".', $selector));
+    }
+  }
 }
