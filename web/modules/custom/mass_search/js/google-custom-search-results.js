@@ -69,9 +69,10 @@
     resultsOptions.setAutoComplete(true);
 
     /**
-     * Displays the search form. Calling this method is the final
-     * step in activating a Custom Search Element object, and it
-     * produces the UI and search containers.
+     * Displays the search form + search results.
+     * Calling this method is the final step in activating a
+     * Custom Search Element object, and it produces the UI
+     * and search containers.
      *
      * .draw(selector, options)
      */
@@ -80,6 +81,8 @@
     /**
      * Parse URL parameters
      * @return array params - array of parameters from querystring
+     *
+     * @todo Move this functionality into globally available helper object
      */
     function parseParamsFromUrl() {
       var params = {};
@@ -100,12 +103,21 @@
     /**  Set param for the search query */
     var queryParamName = 'q';
 
-    /**  If the search param is in the querystring,
-     * populate the search form text input with it
+    /**
+     * If the search param is in the querystring, execute the search
      */
     if (urlParams[queryParamName]) {
       resultsPageSearchControl.execute(urlParams[queryParamName]);
     }
+
+    /**
+     * @todo Consider using drupal announce to notify assistive devices
+     * that search results are loading / have finished for searches that
+     * happen from search results page (IE when there is no page load)
+     *
+     * see .setSearchStartingCallback() && .setSearchCompleteCallback() :
+     * https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+     */
 
   }, true);
 
