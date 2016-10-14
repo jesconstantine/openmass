@@ -1,7 +1,7 @@
 google-jsapi:
   header: true
   js:
-    //www.google.com/jsapi: { type: external }
+    //www.google.com/jsapi: { type: external, weight: -25 }
 
 google-cse:
   js:
