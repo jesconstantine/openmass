@@ -89,6 +89,45 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $this->minkContext->visitPath('node/add/' . $content_type);
     // All content types have a title.
     $this->minkContext->assertElementOnPage('#edit-title-0-value');
+    $this->checkFields($fieldsTable);
+  }
+
+  /**
+   * Asserts a vocabulary has a name and
+   * fields provided in the form of a given type:
+   * | field               | tag      | type  | multivalue | required |
+   * | body                | textarea |       | true       |  true    |
+   * | field-subheadline   | input    | text  | false      |  false   |
+   * | field-author        | input    | text  | false      |  true    |
+   * | field-summary       | textarea |       | true       |  false   |
+   * | field-full-text     | textarea |       | true       |  false   |
+   * | field-ref-sections  | select   |       | false      |  false   |
+   *
+   * Assumes fields are targeted with #edit-<fieldname>. For example,
+   * "body" checks for the existence of the element, "#edit-body". Note, for
+   * almost everything this will begin with "field-", like "field-tags".
+   *
+   * @Then the taxonomy vocabulary :vocabulary_name has the fields:
+   *
+   * @param String $content_type
+   * @param TableNode $fieldsTable
+   */
+  public function assertTaxonomyFields($vocabulary_name, TableNode $fieldsTable) {
+    $this->minkContext->visitPath('admin/structure/taxonomy/manage/' . $vocabulary_name . '/add');
+    // All taxonomy terms have a name.
+    $this->minkContext->assertElementOnPage('#edit-name-0-value');
+    // Check the fields using same logic as nodes
+    $this->checkFields($fieldsTable);
+  }
+
+  /**
+   * After navigation to a form, check that the listed form fields
+   * have the listed attributes.
+   * Called by assertFields() and assertTaxonomyFields().
+   *
+   * @param \Behat\Gherkin\Node\TableNode $fieldsTable
+   */
+  protected function checkFields(TableNode $fieldsTable) {
     foreach ($fieldsTable->getHash() as $row) {
       // Get all IDs that start with our field name. D8 prints fields
       // differently than D7, so this is necessary.

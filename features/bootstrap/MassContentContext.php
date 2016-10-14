@@ -52,6 +52,16 @@ class MassContentContext extends RawDrupalContext {
    * @Given default test content exists
    */
   public function createDefaultTestContent() {
+    $vocabularies = [
+      'icons' => $this->defaultIcons(),
+    ];
+    foreach ($vocabularies as $vocabulary => $terms) {
+      foreach ($terms as $term) {
+        $term += ['vocabulary_machine_name' => $vocabulary];
+        $this->drupalContext->termCreate((object) $term);
+      }
+    }
+
     $types = [
       'section_landing' => $this->defaultSectionLandings(),
       'topic' => $this->defaultTopics(),
@@ -144,6 +154,33 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: Find a State Job',
         'field_action_parent' => 'Behat Test: Search Jobs',
       ],
+    ];
+  }
+
+  /**
+   * Create default icons terms for use in tests of
+   * content types: Section Landing, Topic
+   * paragraphs: Action Step.
+   *
+   * Note: the fields that reference this vocabulary are required, so
+   * these terms need to be created before the nodes/paragraphs.
+   *
+   * @Given icons vocabulary exists
+   */
+  public function defaultIcons() {
+    return [
+      [
+        'name' => 'Behat Test: Family',
+        'field_sprite_name' => 'family',
+      ],
+      [
+        'name' => 'Behat Test: Apple',
+        'field_sprite_name' => 'apple',
+      ],
+      [
+        'name' => 'Behat Test: Camping',
+        'field_sprite_name' => 'camping',
+      ]
     ];
   }
 
@@ -245,7 +282,7 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: State Parks & Recreation',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
-        'field_node_icon' => 'camping',
+        'field_icon_term' => 'Behat Test: Camping',
         'field_common_content' => implode(', ', [
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
@@ -255,7 +292,7 @@ class MassContentContext extends RawDrupalContext {
         'title' => 'Behat Test: Finding a Job',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
-        'field_node_icon' => 'apple',
+        'field_icon_term' => 'Behat Test: Apple',
         'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
         ]),
@@ -272,11 +309,11 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: Visiting & Exploring',
-        'field_icon' => 'family',
+        'field_icon_term' => 'Behat Test: Family',
       ],
       [
         'title' => 'Behat Test: Working',
-        'field_icon' => 'apple',
+        'field_icon_term' => 'Behat Test: Apple',
       ],
     ];
   }
@@ -308,7 +345,6 @@ class MassContentContext extends RawDrupalContext {
 
     return $node;
   }
-
 
   /**
    * Update reference fields on nodes of a given type.

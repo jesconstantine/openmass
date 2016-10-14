@@ -45,6 +45,17 @@
             "url": "git@github.com:palantirnet/palantir-behat-extension.git"
         },
         {
+            "type": "package",
+            "package": {
+                "name": "previousnext/drush_cmi_tools",
+                "version": "1.0",
+                "dist": {
+                    "url": "https://github.com/previousnext/drush_cmi_tools/archive/8.x-1.x.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
           "type": "package",
           "package": {
             "name": "enyo/dropzone",
@@ -105,7 +116,8 @@
         "palantirnet/mayflower-artifacts": "~0.3",
         "palantirnet/the-build": "dev-feature/code-quality-tools",
         "palantirnet/the-vagrant": "dev-master",
-        "palantirnet/workbench_tabs": "dev-8.x-1.x"
+        "palantirnet/workbench_tabs": "dev-8.x-1.x",
+        "previousnext/drush_cmi_tools": "^1.0"
     },
     "require-dev": {
         "behat/behat": "^3.1",

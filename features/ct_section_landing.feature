@@ -9,7 +9,7 @@ Feature: Section Landing Content type
     Then the content type "section_landing" has the fields:
       | field                            | tag      | type     | multivalue |
       | field-featured-image             | input    | submit   | false      |
-      | field-icon                       | select   |          | false      |
+      | field-icon-term                  | select   |          | false      |
     And "section_landing" content can appear in the "main" menu
 
   Scenario: Verify that pathauto patterns are applied to section landing nodes.
