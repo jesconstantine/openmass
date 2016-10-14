@@ -13,6 +13,16 @@ Feature: Mass Search
     Then I wait for AJAX to finish
     Then I should see the "form.gsc-search-box" element
 
+  # @javascript
+  # Scenario: Verify that home page search form submission calls results route.
+  #   And I am on the homepage
+  #   Then I wait for AJAX to finish
+  #   Then I should see the "form.gsc-search-box" element
+  #   When I fill in "snap" for "search"
+  # breaks with Element is not currently interactable and may not be manipulated
+  #     And I press the "Search" button
+  #   Then I should be on "/search?q=snap"
+
   Scenario: Verify users can access the search results route.
     And I am on "/search?q=snap"
     Then I should get a 200 HTTP response
