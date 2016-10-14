@@ -7,10 +7,10 @@ Feature: Paragraph type definitions
   Scenario: Verify that the action_step paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "action_step" paragraph has the fields:
-      | field         | widget                    |
-      | field-icon    | Select list               |
-      | field-title   | Textfield                 |
-      | field-content | Text area (multiple rows) |
+      | field                 | widget                    |
+      | field-para-icon-term  | Select list               |
+      | field-title           | Textfield                 |
+      | field-content         | Text area (multiple rows) |
 
   Scenario: Verify that the action_step_numbered paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
