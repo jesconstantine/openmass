@@ -57,7 +57,7 @@
       <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>
 
       <if>
-          <istrue value="${deploy.backup_local}" />
+          <istrue value="${deploy.backup_local_database}" />
           <then>
             <tstamp><format pattern="%Y-%m-%d_%H-%M-%S" property="build.time">  </format></tstamp>
             <exec command="drush --nocolor --yes sql-dump > ${acquia.databases}/backup-db-${build.time}.sql" />
