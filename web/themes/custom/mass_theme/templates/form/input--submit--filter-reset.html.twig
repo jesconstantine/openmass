@@ -10,9 +10,11 @@
  * @see template_preprocess_input()
  */
 #}
-<button{{ attributes.addClass('ma__button-search') }} />
+{#<button{{ attributes.addClass('ma__button-search') }} />
   <span>{{ 'Search'|t }}</span>
   <svg role="img" class="ma__button-search__icon">
-    <use xlink:href="/{{ base_path ~ directory }}/images/svg-sprite.svg#search"></use>
+    <use xlink:href="/{{ base_path ~ directory }}/images/svg-sprite.svg#search-white"></use>
   </svg>
 </button>
+#}
+<button {{ attributes.addClass('ma__keyword-search__reset').addClass('ajax') }}><span>+</span></button>
