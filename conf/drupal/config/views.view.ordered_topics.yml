@@ -269,7 +269,7 @@ display:
           plugin_id: draggable_views_field
       filters:
         status:
-          value: true
+          value: '1'
           table: node_field_data
           field: status
           plugin_id: boolean
@@ -461,7 +461,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'edit any subtopic content'
       display_description: ''
     cache_metadata:
       max-age: -1

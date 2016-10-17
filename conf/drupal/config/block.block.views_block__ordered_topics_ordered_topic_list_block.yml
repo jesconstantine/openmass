@@ -12,7 +12,7 @@ dependencies:
 id: views_block__ordered_topics_ordered_topic_list_block
 theme: mass_theme
 region: section_topics
-weight: -4
+weight: -2
 provider: null
 plugin: 'views_block:ordered_topics-ordered_topic_list_block'
 settings:
