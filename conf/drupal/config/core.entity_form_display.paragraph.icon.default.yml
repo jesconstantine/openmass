@@ -17,7 +17,7 @@ content:
     weight: 7
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
   field_title:
     weight: 6
     settings:

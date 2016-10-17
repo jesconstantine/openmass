@@ -40,9 +40,9 @@ Feature: Paragraph type definitions
   Scenario: Verify that the icon paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "icon" paragraph has the fields:
-      | field                | widget                       |
-      | field-title          | Textfield                    |
-      | field-para-icon-term | Check boxes/radio buttons    |
+      | field                | widget         |
+      | field-title          | Textfield      |
+      | field-para-icon-term | Select List    |
 
   Scenario: Verify that the iframe paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
