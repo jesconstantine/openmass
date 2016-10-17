@@ -1,0 +1,57 @@
+uuid: 6bed4420-d2ed-454a-9e93-6b842f15e64f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_action_sidebar
+    - node.type.action
+    - paragraphs.paragraphs_type.contact
+  module:
+    - entity_reference_revisions
+id: node.action.field_action_sidebar
+field_name: field_action_sidebar
+entity_type: node
+bundle: action
+label: Sidebar
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact: contact
+    target_bundles_drag_drop:
+      action_step:
+        weight: 11
+        enabled: false
+      action_step_numbered:
+        weight: 12
+        enabled: false
+      action_step_numbered_list:
+        weight: 13
+        enabled: false
+      callout_link:
+        weight: 14
+        enabled: false
+      contact:
+        enabled: true
+        weight: 15
+      file_download:
+        weight: 16
+        enabled: false
+      iframe:
+        weight: 17
+        enabled: false
+      rich_text:
+        weight: 18
+        enabled: false
+      stat:
+        weight: 19
+        enabled: false
+      subhead:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

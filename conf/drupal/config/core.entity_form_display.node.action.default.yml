@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
@@ -36,9 +37,9 @@ third_party_settings:
         classes: ''
     group_sidebar:
       children:
+        - field_action_sidebar
         - field_action_related
         - field_action_downloads
-        - field_action_contacts
       parent_name: group_form
       weight: 3
       label: 'Sidebar Content'
@@ -78,6 +79,7 @@ third_party_settings:
         required_fields: true
     group_external:
       children:
+        - field_action_contacts
         - field_external_url
       parent_name: group_form
       weight: 4
@@ -99,7 +101,7 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 29
     settings:
       title: Contact
       title_plural: Contacts
@@ -118,7 +120,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 3
+    weight: 28
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -138,15 +140,25 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_action_related:
-    weight: 2
+    weight: 27
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_action_sidebar:
+    type: entity_reference_paragraphs
+    weight: 26
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_external_url:
-    weight: 2
+    weight: 30
     settings:
       placeholder_url: ''
       placeholder_title: ''
