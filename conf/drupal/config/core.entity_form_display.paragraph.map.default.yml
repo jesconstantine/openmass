@@ -1,0 +1,39 @@
+uuid: 18f2059a-17b4-4ad1-984d-f4e25629d147
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.map.field_map
+    - paragraphs.paragraphs_type.map
+  module:
+    - geolocation
+    - workbench_moderation
+id: paragraph.map.default
+targetEntityType: paragraph
+bundle: map
+mode: default
+content:
+  field_map:
+    weight: 6
+    settings:
+      populate_address_field: null
+      target_address_field: null
+      google_map_settings:
+        type: ROADMAP
+        zoom: '10'
+        mapTypeControl: 1
+        streetViewControl: 1
+        zoomControl: 1
+        scrollwheel: 1
+        disableDoubleClickZoom: 0
+        draggable: 1
+        height: 400px
+        width: 100%
+        info_auto_display: 1
+        style: ''
+    third_party_settings: {  }
+    type: geolocation_googlegeocoder
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -6,10 +6,11 @@ dependencies:
     - field.storage.node.field_action_details
     - node.type.action
     - paragraphs.paragraphs_type.action_step
+    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
-    - paragraphs.paragraphs_type.action_step_numbered_list
+    - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -37,6 +38,7 @@ settings:
       rich_text: rich_text
       stat: stat
       subhead: subhead
+      map: map
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -68,4 +70,7 @@ settings:
       action_step_numbered:
         weight: -9
         enabled: false
+      map:
+        enabled: true
+        weight: 19
 field_type: entity_reference_revisions
