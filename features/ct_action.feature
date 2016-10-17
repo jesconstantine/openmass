@@ -12,6 +12,9 @@ Feature: Action Content type
     | field-lede                   | textarea   |                            | false      |
     | field-action-related         | input      | text                       | true       |
     | field-external-url           | input      | url                        | false      |
+    | field-alert-dropdown         | select     |                            | false      |
+    | field-alert-text             | textarea   |                            | false      |
+    | field-alert-link             | input      | text                       | false      |
     # the following fields are multivalue but have no good way of testing for it.
     | field-action-downloads       | input      | submit                     | false      |
     | field-action-contacts        | paragraphs | contact                    | false      |

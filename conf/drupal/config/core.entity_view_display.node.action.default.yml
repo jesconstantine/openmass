@@ -8,12 +8,16 @@ dependencies:
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_alert_dropdown
+    - field.field.node.action.field_alert_link
+    - field.field.node.action.field_alert_text
     - field.field.node.action.field_external_url
     - field.field.node.action.field_lede
     - node.type.action
   module:
     - entity_reference_revisions
     - file
+    - options
     - user
 _core:
   default_config_hash: _vJOq2rUrEQJBPFkonPBFXe6IGhZEPxgUhhbDP1eDgs
@@ -58,6 +62,25 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_alert_dropdown:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_alert_link:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_alert_text:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_lede:
     weight: 1
     label: above
