@@ -11,12 +11,4 @@
  */
 #}
 {% set path = '/' ~ base_path ~ directory ~ '/images/svg-sprite/search-white.svg' %}
-{{ path }}
-{#<button{{ attributes.addClass('ma__button-search') }} />
-  <span>{{ 'Search'|t }}</span>
-  <svg role="img" class="ma__button-search__icon">
-    <use xlink:href="/{{ base_path ~ directory }}/images/svg-sprite.svg#search-white"></use>
-  </svg>
-</button>
-#}
 <input{{ attributes.addClass('ma__button-search').setAttribute('type', 'image').setAttribute('src', path) }} />{{ children }}
