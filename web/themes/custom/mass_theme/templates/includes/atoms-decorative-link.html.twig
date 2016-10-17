@@ -8,8 +8,8 @@
 #}
 <span class="ma__decorative-link">
   {% if decorativeLink.type == "external" %}
-    <a href="{{decorativeLink.href}}" target="_blank">{{decorativeLink.text}}&nbsp;<svg focusable="false" role="presentation" class="svg-external-link"><use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#external-link"></use></svg></a>
+    <a href="{{decorativeLink.href}}" target="_blank">{% spaceless %}{{decorativeLink.text}}{% endspaceless %}&nbsp;<svg focusable="false" role="presentation" class="svg-external-link"><use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#external-link"></use></svg></a>
   {% else %}
-    <a href="{{decorativeLink.href}}">{{decorativeLink.text}}&nbsp;<svg focusable="false" role="presentation" class="svg-arrow"><use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#arrow"></use></svg></a>
+    <a href="{{decorativeLink.href}}">{% spaceless %}{{decorativeLink.text}}{% endspaceless %}&nbsp;<svg focusable="false" role="presentation" class="svg-arrow"><use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#arrow"></use></svg></a>
   {% endif %}
 </span>
