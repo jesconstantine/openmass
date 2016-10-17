@@ -15,7 +15,9 @@ class DefaultController extends ControllerBase {
    * Search.
    *
    * @return array
-   *   Render array that calls mass-search template and attaches results pg js
+   *   Render array that calls mass-search template and
+   *   attaches the js library to draw the search results page
+   *   search form + results
    */
   public function search() {
     return [
