@@ -106,28 +106,6 @@ input.gsc-search-button:hover {
 }
 
 /* autocomplete promotions styles */
-/* autocomplete entry table > row structure
-  <tr class="">
-    <td class="gssb_a " dir="ltr" style="text-align: left;">
-        <div>
-            <table cellspacing="0" cellpadding="0" class="gsc-completion-promotion-table" style="width: 100%;">
-                <tbody>
-                    <tr>
-                        <td valign="top" class="gscsep_a"></td>
-                        <td valign="top">
-                            <div class="gsc-completion-title">Labor &amp; employment</div>
-                            <div class="gsc-completion-snippet"></div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </td>
-</tr> */
-
-/* specificity necessary because we are overriding */
-
-/* autocomplete entries */
 .gsq_a span {
   color: #535353 !important;
   font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif;
