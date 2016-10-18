@@ -1,4 +1,4 @@
-uuid: f8977b69-e178-4c9a-b725-f7241c2f5dd8
+uuid: fcfec1c7-fdea-4697-8da1-1840d7306f4a
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - paragraphs
-id: node.field_action_header
-field_name: field_action_header
+id: node.field_header_cta
+field_name: field_header_cta
 entity_type: node
 type: entity_reference_revisions
 settings:

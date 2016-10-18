@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_full_bleed_ref
     - paragraphs.paragraphs_type.full_bleed
+    - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.slideshow
   module:
     - entity_reference_revisions
@@ -13,7 +14,7 @@ field_name: field_full_bleed_ref
 entity_type: paragraph
 bundle: full_bleed
 label: Items
-description: ''
+description: 'The full bleed area of the header is meant to hold an image (or slideshow) side-by-side with a map.'
 required: false
 translatable: false
 default_value: {  }
@@ -22,6 +23,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      iframe: iframe
       slideshow: slideshow
     target_bundles_drag_drop:
       action_step:
@@ -55,8 +57,8 @@ settings:
         weight: 19
         enabled: false
       iframe:
+        enabled: true
         weight: 19
-        enabled: false
       rich_text:
         weight: 20
         enabled: false

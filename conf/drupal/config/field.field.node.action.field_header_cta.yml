@@ -1,20 +1,20 @@
-uuid: 3d0c8cf6-ce8a-487f-b27b-9510eea79acd
+uuid: 258edf65-0efb-4911-ad69-8d5c8d175677
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_action_header
+    - field.storage.node.field_header_cta
     - node.type.action
-    - paragraphs.paragraphs_type.contact
-    - paragraphs.paragraphs_type.full_bleed
+    - paragraphs.paragraphs_type.callout_link
+    - paragraphs.paragraphs_type.iframe
   module:
     - entity_reference_revisions
-id: node.action.field_action_header
-field_name: field_action_header
+id: node.action.field_header_cta
+field_name: field_header_cta
 entity_type: node
 bundle: action
-label: 'Detailed Header Information'
-description: 'Use this area to add contact information, slideshows, and maps to the extended header.'
+label: 'Call to Action'
+description: 'The Call to Action can contain bits of actionable or fast-reference data for users.'
 required: false
 translatable: false
 default_value: {  }
@@ -23,55 +23,55 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      contact: contact
-      full_bleed: full_bleed
+      callout_link: callout_link
+      iframe: iframe
     target_bundles_drag_drop:
       action_address:
-        weight: 16
-        enabled: false
-      action_address_info:
         weight: 17
         enabled: false
-      action_area:
+      action_address_info:
         weight: 18
         enabled: false
-      action_step:
+      action_area:
         weight: 19
         enabled: false
-      action_step_numbered:
+      action_step:
         weight: 20
         enabled: false
-      action_step_numbered_list:
+      action_step_numbered:
         weight: 21
         enabled: false
-      callout_link:
+      action_step_numbered_list:
         weight: 22
         enabled: false
-      contact:
+      callout_link:
         enabled: true
         weight: 23
-      file_download:
+      contact:
         weight: 24
         enabled: false
-      full_bleed:
-        enabled: true
+      file_download:
         weight: 25
-      iframe:
+        enabled: false
+      full_bleed:
         weight: 26
         enabled: false
-      location_information:
+      iframe:
+        enabled: true
         weight: 27
-        enabled: false
-      rich_text:
+      location_information:
         weight: 28
         enabled: false
-      stat:
+      rich_text:
         weight: 29
-        enabled: false
-      subhead:
-        weight: 30
         enabled: false
       slideshow:
         weight: 30
+        enabled: false
+      stat:
+        weight: 31
+        enabled: false
+      subhead:
+        weight: 32
         enabled: false
 field_type: entity_reference_revisions
