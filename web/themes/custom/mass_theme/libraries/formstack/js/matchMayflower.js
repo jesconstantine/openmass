@@ -1,21 +1,24 @@
 $(function(){
-    // console.log('loaded formstack.js');
 
     // ---- begin formstack reset ------ //
     // see: https://github.com/base2arthur/bootstrap-the-formstack
-    // see / edit styles in scss dir custom/_formstack_reset.scss
 
       // Remove the Formstack styles
       // $('.fsBody link').remove();
       // $('.fsBody style').remove();
 
+      /*
       // Map checkbox form elements to what Mayflower is expecting
-      $('.fsOptionLabel > input[type="checkbox"]').each(function(el, i) {
+       $('.fsOptionLabel > input[type="checkbox"]').each(function(el, i) {
+        $(this)
+          .parent().wrap('<span class="ma__input-checkbox" />');
+
         // move checkbox input out from parent label,
         // necessary for custom :before pseudoelement in scss
         $(this)
           .insertBefore($(this).parent());
       });
+      */
 
       // Map radio form elements to what Mayflower is expecting
       $('.fsOptionLabel > input[type="radio"]').each(function(el, i) {
