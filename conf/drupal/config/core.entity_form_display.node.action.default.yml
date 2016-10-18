@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -42,6 +43,7 @@ third_party_settings:
         - field_action_related
         - field_action_downloads
         - field_action_contacts
+        - field_contact_group
       parent_name: group_form
       weight: 4
       label: 'Sidebar Content'
@@ -174,6 +176,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_contact_group:
+    type: entity_reference_paragraphs
+    weight: 5
+    settings:
+      title: 'Contact Group'
+      title_plural: 'Contact Groups'
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
   field_external_url:
     weight: 2
     settings:
