@@ -25,6 +25,7 @@ content:
       image_link: ''
     third_party_settings: {  }
 hidden:
+  field_icon: true
   field_icon_term: true
   links: true
   workbench_moderation_control: true
