@@ -1,0 +1,129 @@
+uuid: 05b8e12a-9e92-4fe3-a0fd-ba7ed6620b21
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_icon
+field_name: field_icon
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: alerts
+      label: Alerts
+    -
+      value: apple
+      label: Apple
+    -
+      value: arrow
+      label: Arrow
+    -
+      value: bag-search
+      label: 'Bag search'
+    -
+      value: blog
+      label: Blog
+    -
+      value: building
+      label: Building
+    -
+      value: campfire
+      label: Campfire
+    -
+      value: camping
+      label: Camping
+    -
+      value: certificate
+      label: Certificate
+    -
+      value: doc-docx
+      label: 'Doc docx'
+    -
+      value: doc-pdf
+      label: 'Doc pdf'
+    -
+      value: doc-xlsx
+      label: 'Doc xlsx'
+    -
+      value: external-link
+      label: 'External link'
+    -
+      value: facebook
+      label: Facebook
+    -
+      value: family
+      label: Family
+    -
+      value: gavel
+      label: Gavel
+    -
+      value: id-card
+      label: 'ID card'
+    -
+      value: instagram
+      label: Instagram
+    -
+      value: laptop
+      label: Laptop
+    -
+      value: linkedin
+      label: LinkedIn
+    -
+      value: login
+      label: Login
+    -
+      value: mail
+      label: Mail
+    -
+      value: map
+      label: Map
+    -
+      value: page-test
+      label: 'Page test'
+    -
+      value: phone
+      label: Phone
+    -
+      value: pig-bank
+      label: 'Pig bank'
+    -
+      value: profile
+      label: Profile
+    -
+      value: quote
+      label: Quote
+    -
+      value: restore
+      label: Restore
+    -
+      value: search
+      label: Search
+    -
+      value: server-rack
+      label: 'Server rack'
+    -
+      value: settings
+      label: Settings
+    -
+      value: theater
+      label: Theater
+    -
+      value: twitter
+      label: Twitter
+    -
+      value: user-test
+      label: 'User test'
+    -
+      value: youtube
+      label: YouTube
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
