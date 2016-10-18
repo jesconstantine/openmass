@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f15b5d09a0b6f7d3b5f4cd52e2b72825",
-    "content-hash": "3d453dbb8bf81b9e8550791e256dc201",
+    "content-hash": "ff2917b009c5203b919541fbafabc8f0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1579,16 +1578,16 @@
             "time": "2016-08-29 22:54:08"
         },
         {
-            "name": "drupal/geolocation",
-            "version": "8.1.8",
+            "name": "drupal/google_map_field",
+            "version": "8.1.1",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/geolocation",
-                "reference": "0d3db4282490e02daa2a608a3c825737a15f595b"
+                "url": "https://git.drupal.org/project/google_map_field",
+                "reference": "b1f2ad3990ed8a89d24f2a4acf8eef04d3065d52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/geolocation-8.x-1.8.zip",
+                "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1606,9 +1605,9 @@
             "license": [
                 "GPL-2.0+"
             ],
-            "description": "Provides a simple geolocation field type to store and display location data (lat, lng).",
-            "homepage": "https://www.drupal.org/project/geolocation",
-            "time": "2016-09-22 10:34:22"
+            "description": "Defines a field type for Google Maps.",
+            "homepage": "https://www.drupal.org/project/google_map_field",
+            "time": "2016-02-13 21:01:10"
         },
         {
             "name": "drupal/metatag",
@@ -2822,7 +2821,6 @@
             "support": {
                 "source": "https://github.com/massgov/mayflower-artifacts/tree/0.4.2",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
-
             },
             "time": "2016-10-18 14:28:19"
         },
