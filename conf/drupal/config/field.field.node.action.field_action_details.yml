@@ -6,10 +6,10 @@ dependencies:
     - field.storage.node.field_action_details
     - node.type.action
     - paragraphs.paragraphs_type.action_step
+    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
-    - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -67,5 +67,20 @@ settings:
         weight: -10
       action_step_numbered:
         weight: -9
+        enabled: false
+      action_address:
+        weight: 16
+        enabled: false
+      action_address_info:
+        weight: 17
+        enabled: false
+      action_area:
+        weight: 18
+        enabled: false
+      full_bleed:
+        weight: 25
+        enabled: false
+      location_information:
+        weight: 27
         enabled: false
 field_type: entity_reference_revisions

@@ -6,12 +6,14 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
     - field.field.node.action.field_external_url
+    - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -48,6 +50,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
+  field_action_header:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_action_parent:
     weight: 2
     label: above
@@ -81,6 +91,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+  field_header_cta:
+    type: entity_reference_revisions_entity_view
+    weight: 8
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_lede:
     weight: 1
     label: above
