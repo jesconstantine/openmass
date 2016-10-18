@@ -35,7 +35,7 @@ function mass_entityreference_form_node_action_edit_form_alter(&$form, FormState
 }
 
 /**
- * A form validator that ensures subtopics referencing action are referenced by action.
+ * Ensures subtopics referencing action are referenced by action.
  *
  * @param array $form
  *   The form.
@@ -74,7 +74,7 @@ function _form_validation_action_subtopic_parent($form, $form_state) {
       $node_storage = \Drupal::entityManager()->getStorage('node');
       $subtopic = $node_storage->load($nid);
       $error_message = 'The Subtopic <a href=' . $subtopic->url('edit-form') . '>' . $subtopic->getTitle() . '</a> is referencing this action. Please remove this node from the subtopic before removing it from Parent.';
-      $form_state->setErrorByName('field_action_parent', t($error_message));
+      $form_state->setErrorByName('field_action_parent', $error_message);
     }
   }
 
