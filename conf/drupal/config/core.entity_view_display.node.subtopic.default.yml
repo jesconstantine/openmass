@@ -44,9 +44,10 @@ content:
     weight: 107
     label: above
     settings:
-      link: true
+      view_mode: teaser_simple
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_featured_image:
     weight: 108
     label: above

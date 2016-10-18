@@ -6,8 +6,10 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_external_url
+    - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
     - field.field.node.action.field_related_link
     - node.type.action
@@ -41,7 +43,7 @@ third_party_settings:
         - field_action_contacts
         - field_action_downloads
       parent_name: group_form
-      weight: 3
+      weight: 4
       label: 'Sidebar Content'
       format_type: tab
       format_settings:
@@ -53,6 +55,7 @@ third_party_settings:
     group_form:
       children:
         - group_primary_content
+        - group_extended_header
         - group_details
         - group_sidebar
         - group_external
@@ -61,14 +64,15 @@ third_party_settings:
       label: 'Node Edit Form'
       format_type: tabs
       format_settings:
-        direction: vertical
-        classes: ''
+        label: 'Node Edit Form'
+        direction: horizontal
         id: ''
+        classes: ''
     group_details:
       children:
         - field_action_details
       parent_name: group_form
-      weight: 2
+      weight: 3
       label: Details
       format_type: tab
       format_settings:
@@ -81,7 +85,7 @@ third_party_settings:
       children:
         - field_external_url
       parent_name: group_form
-      weight: 4
+      weight: 5
       label: 'External Action'
       format_type: tab
       format_settings:
@@ -91,6 +95,20 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+    group_extended_header:
+      children:
+        - field_action_header
+        - field_header_cta
+      parent_name: group_form
+      weight: 2
+      label: 'Extended Header'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
@@ -110,7 +128,7 @@ content:
     third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 29
     settings:
       title: Molecule
       title_plural: Molecules
@@ -130,6 +148,16 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+  field_action_header:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_action_parent:
     weight: 4
     settings:
@@ -145,6 +173,16 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_header_cta:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_lede:
     weight: 2
     settings:

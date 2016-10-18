@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
-    - field.field.node.section_landing.field_icon
+    - field.field.node.section_landing.field_icon_term
     - image.style.thumbnail
     - node.type.section_landing
   module:
     - image
     - path
+    - workbench_moderation
 id: node.section_landing.default
 targetEntityType: node
 bundle: section_landing
@@ -17,51 +18,52 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   field_featured_image:
-    weight: 33
+    weight: 7
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-  field_icon:
-    weight: 32
+  field_icon_term:
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
   path:
     type: path
-    weight: 30
+    weight: 5
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 3
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 4
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_icon: true

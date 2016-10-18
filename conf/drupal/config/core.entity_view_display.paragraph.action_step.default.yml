@@ -4,11 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.action_step.field_content
-    - field.field.paragraph.action_step.field_icon
+    - field.field.paragraph.action_step.field_para_icon_term
     - field.field.paragraph.action_step.field_title
     - paragraphs.paragraphs_type.action_step
   module:
-    - options
     - text
 id: paragraph.action_step.default
 targetEntityType: paragraph
@@ -21,12 +20,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-  field_icon:
+  field_para_icon_term:
     weight: 0
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: token
+      link: false
     third_party_settings: {  }
-    type: list_key
+    type: entity_reference_entity_view
   field_title:
     weight: 1
     label: hidden
@@ -36,4 +37,5 @@ content:
     type: string
 hidden:
   created: true
+  field_icon: true
   uid: true
