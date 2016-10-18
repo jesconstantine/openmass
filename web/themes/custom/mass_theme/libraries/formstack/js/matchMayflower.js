@@ -41,6 +41,10 @@ $(function(){
       //   .addClass('usa-alert usa-alert-error');
 
       //   -- app specific overrides -- //
+
+      // Add appropriate class to homepage form > radio fieldset
+      $('#label46538067').addClass('ma__feedback-form__permission')
+
       // Map supporting .showMobile for file upload field to USWDS support text
       // $('.showMobile')
         // .addClass('usa-form-hint usa-additional_text');
