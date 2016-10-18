@@ -107,6 +107,13 @@ third_party_settings:
       parent_name: group_form
       weight: 5
       label: Alert
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
     group_extended_header:
       children:
         - field_action_header
