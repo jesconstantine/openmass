@@ -1,4 +1,4 @@
-uuid: 3c4482d6-3801-4d7b-8d82-9574b81a540a
+uuid: be78144c-5b75-48d4-8d85-f0a1a48bbad8
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - field.storage.paragraph.field_map
     - paragraphs.paragraphs_type.map
   module:
-    - geolocation
+    - google_map_field
 id: paragraph.map.field_map
 field_name: field_map
 entity_type: paragraph
@@ -18,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: geolocation
+field_type: google_map_field

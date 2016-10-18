@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.map.field_map
     - paragraphs.paragraphs_type.map
   module:
-    - geolocation
+    - google_map_field
     - workbench_moderation
 id: paragraph.map.default
 targetEntityType: paragraph
@@ -15,24 +15,9 @@ mode: default
 content:
   field_map:
     weight: 6
-    settings:
-      populate_address_field: null
-      target_address_field: null
-      google_map_settings:
-        type: ROADMAP
-        zoom: '10'
-        mapTypeControl: 1
-        streetViewControl: 1
-        zoomControl: 1
-        scrollwheel: 1
-        disableDoubleClickZoom: 0
-        draggable: 1
-        height: 400px
-        width: 100%
-        info_auto_display: 1
-        style: ''
+    settings: {  }
     third_party_settings: {  }
-    type: geolocation_googlegeocoder
+    type: google_map_field_default
 hidden:
   created: true
   status: true

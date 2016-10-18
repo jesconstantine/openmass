@@ -67,5 +67,5 @@ Feature: Paragraph type definitions
   Scenario: Verify that the map paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "map" paragraph has the fields:
-      | field       | widget                      |
-      | field-map   | Geolocation Google Geocoder |
+      | field       | widget                   |
+      | field-map   | Google Map Field default |
