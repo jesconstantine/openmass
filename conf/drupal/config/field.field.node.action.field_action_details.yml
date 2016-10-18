@@ -73,4 +73,19 @@ settings:
       map:
         enabled: true
         weight: 19
+      action_address:
+        weight: 16
+        enabled: false
+      action_address_info:
+        weight: 17
+        enabled: false
+      action_area:
+        weight: 18
+        enabled: false
+      full_bleed:
+        weight: 25
+        enabled: false
+      location_information:
+        weight: 27
+        enabled: false
 field_type: entity_reference_revisions
