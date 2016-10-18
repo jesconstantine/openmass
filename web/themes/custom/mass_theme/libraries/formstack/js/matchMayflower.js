@@ -19,6 +19,9 @@ $(function(){
 
       // Map radio form elements to what Mayflower is expecting
       $('.fsOptionLabel > input[type="radio"]').each(function(el, i) {
+        $(this)
+          .parent().wrap('<span class="ma__input-radio" />');
+
         // move radio input out from parent label,
         // necessary for custom :before pseudoelement in scss
         $(this)
