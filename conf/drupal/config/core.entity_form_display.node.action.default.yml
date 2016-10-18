@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_external_url
@@ -16,12 +17,14 @@ dependencies:
     - field_group
     - link
     - paragraphs
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_primary_content:
       children:
         - title
         - field_lede
+        - field_action_header
         - field_action_parent
       parent_name: group_form
       weight: 1
@@ -109,7 +112,7 @@ content:
     third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 29
     settings:
       title: Molecule
       title_plural: Molecules
@@ -129,6 +132,16 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+  field_action_header:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
   field_action_parent:
     weight: 4
     settings:
