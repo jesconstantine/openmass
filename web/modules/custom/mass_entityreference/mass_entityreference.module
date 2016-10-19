@@ -17,3 +17,66 @@ function mass_entityreference_form_node_subtopic_edit_form_alter(&$form, FormSta
   $node_id = \Drupal::routeMatch()->getRawParameter('node');
   user_cookie_save(['subtopic_nid' => $node_id]);
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function mass_entityreference_form_node_topic_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Save current nid as a cookie so it can be accessed by entityreference.
+  $node_id = \Drupal::routeMatch()->getRawParameter('node');
+  user_cookie_save(['topic_nid' => $node_id]);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function mass_entityreference_form_node_action_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#validate'][] = '_form_validation_action_subtopic_parent';
+}
+
+/**
+ * Ensures subtopics referencing action are referenced by action.
+ *
+ * @param array $form
+ *   The form.
+ * @param array $form_state
+ *   The form state.
+ */
+function _form_validation_action_subtopic_parent($form, $form_state) {
+  // Get the current nid.
+  $current_node_id = \Drupal::routeMatch()->getRawParameter('node');
+
+  // Get all subtopic nodes that reference the current node.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'subtopic')
+    ->condition('field_featured_content.target_id', $current_node_id);
+  $referencing_nids = $query->execute();
+
+  // If this is not referenced elsewhere.
+  if (empty($referencing_nids)) {
+    return;
+  }
+
+  // Get the subtopics currently referenced by this node.
+  $field_values = $form_state->getValue('field_action_parent');
+  $values = array();
+  foreach ($field_values as $item) {
+    if (is_array($item)) {
+      if (!empty($item['target_id'])) {
+        $values[] = $item['target_id'];
+      }
+    }
+  }
+
+  foreach ($referencing_nids as $nid) {
+    // Make sure subtopic referencing this node is referenced by this node.
+    if (!in_array($nid, $values)) {
+      $node_storage = \Drupal::entityManager()->getStorage('node');
+      $subtopic = $node_storage->load($nid);
+      $num_parents = count($form_state->getValues()['field_action_parent']) - 2;
+      $error_message = 'The Subtopic <a href=' . $subtopic->url('edit-form') . ' target="_blank">' . $subtopic->getTitle() . '</a> is referencing this action. Please remove this node from the subtopic before removing it from Parent.';
+      $form_state->setErrorByName('field_action_parent][' . $num_parents, t($error_message));
+    }
+  }
+
+}
