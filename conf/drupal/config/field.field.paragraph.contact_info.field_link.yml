@@ -12,7 +12,7 @@ field_name: field_link
 entity_type: paragraph
 bundle: contact_info
 label: Link
-description: 'Enter a link.'
+description: 'Enter just one of the following: Phone, Email, <em>Link</em>, or Address.'
 required: false
 translatable: true
 default_value: {  }

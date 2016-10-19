@@ -12,7 +12,7 @@ field_name: field_phone
 entity_type: paragraph
 bundle: contact_info
 label: Phone
-description: 'Enter a phone number.'
+description: 'Enter just one of the following: <em>Phone</em>, Email, Link, or Address.'
 required: false
 translatable: true
 default_value: {  }

@@ -10,7 +10,7 @@ field_name: field_label
 entity_type: paragraph
 bundle: contact_info
 label: Label
-description: 'Enter the label for this contact info.'
+description: 'Enter the label for this piece of contact information.'
 required: false
 translatable: false
 default_value: {  }

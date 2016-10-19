@@ -10,7 +10,7 @@ field_name: field_caption
 entity_type: paragraph
 bundle: contact_info
 label: Caption
-description: 'Enter a caption.'
+description: 'The caption is displayed in small text under the contact detail. For example, if you provide a phone number, the caption will display under the phone number; if you enter an address, the caption will display under the address.'
 required: false
 translatable: false
 default_value: {  }

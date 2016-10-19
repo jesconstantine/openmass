@@ -10,7 +10,7 @@ field_name: field_address
 entity_type: paragraph
 bundle: contact_info
 label: Address
-description: 'Enter an address.'
+description: 'Enter just one of the following: Phone, Email, Link, or <em>Address</em>.'
 required: false
 translatable: true
 default_value: {  }
