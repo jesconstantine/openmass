@@ -9,11 +9,11 @@ dependencies:
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
     - field.field.node.action.field_contact_group
-    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -47,7 +47,6 @@ third_party_settings:
         - field_action_sidebar
         - field_action_related
         - field_action_downloads
-        - field_contact_group
       parent_name: group_form
       weight: 4
       label: 'Sidebar Content'
@@ -64,8 +63,8 @@ third_party_settings:
         - group_extended_header
         - group_details
         - group_sidebar
-        - group_external
         - group_alert
+        - group_external
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -228,7 +227,7 @@ content:
     type: string_textarea
   field_contact_group:
     type: entity_reference_paragraphs
-    weight: 5
+    weight: 4
     settings:
       title: 'Contact Group'
       title_plural: 'Contact Groups'
@@ -269,7 +268,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_action_contacts: true
   field_hero: true
   path: true
   promote: true
