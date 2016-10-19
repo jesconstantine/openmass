@@ -6,6 +6,7 @@ global-styling:
       css/index-generated.css: {}
       css/base-theme-generated.css: {}
       css/pilot-generated.css: {}
+      overrides/css/action-finder.css: {}
   js:
     # This is in the styleguide, but not sure if we need it.
     # js/vendor-generated.js: {}

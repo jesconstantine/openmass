@@ -10,5 +10,5 @@
  * @see template_preprocess_input()
  */
 #}
-{% set path = '/' ~ base_path ~ directory ~ '/images/svg-sprite/search-white.svg' %}
-<input{{ attributes.addClass('ma__button-search').setAttribute('type', 'image').setAttribute('src', path) }} />{{ children }}
+{% set path = '/' ~ base_path ~ directory ~ '/overrides/images/search-white.svg' %}
+<input{{ attributes.addClass('ma__button-search').addClass('ma__button-search--ajax').setAttribute('type', 'image').setAttribute('src', path) }} />{{ children }}

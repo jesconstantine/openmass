@@ -425,12 +425,5 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
     else {
       $form['actions']['submit']['#attributes'] = array('data-theming-id' => 'filter-submit');
     }
-    if (isset($form['actions']['reset']['#attributes'])) {
-      $attributes = $form['actions']['reset']['#attributes'];
-      $form['actions']['reset']['#attributes'] = $attributes + array('data-theming-id' => 'filter-reset');
-    }
-    else {
-      $form['actions']['reset']['#attributes'] = array('data-theming-id' => 'filter-reset');
-    }
   }
 }
