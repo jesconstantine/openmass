@@ -24,8 +24,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | rich-text                  | false      |
     | field-action-details         | paragraphs | stat                       | false      |
     | field-action-details         | paragraphs | subhead                    | false      |
-    | field-action-sidebar         | paragraphs | contact                    | false      |
-    | field-contact-group          | paragraphs | contact-group              | false      |
+    | field-action-sidebar         | paragraphs | contact-group              | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"
