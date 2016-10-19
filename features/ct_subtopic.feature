@@ -24,7 +24,7 @@ Feature: Section Landing Content type
     When I am at "admin/content"
     And I follow "Nature & Outdoor Activities"
     And I follow "Edit draft"
-    And I fill in "edit-field-featured-content-target-id" with "Find A State Park"
+    And I fill in "edit-field-featured-content-0-target-id" with "Find A State Park"
     And I press "Save and Publish"
     Then I see the subtopic page markup
     Then I see the text "Nature & Outdoor Activities"
