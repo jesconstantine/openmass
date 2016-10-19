@@ -57,12 +57,15 @@
       <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>
 
       <if>
-          <istrue value="${deploy.backup_local}" />
+          <istrue value="${deploy.backup_local_database}" />
           <then>
             <tstamp><format pattern="%Y-%m-%d_%H-%M-%S" property="build.time">  </format></tstamp>
             <exec command="drush --nocolor --yes sql-dump > ${acquia.databases}/backup-db-${build.time}.sql" />
             <echo>Local database backed up to ${acquia.databases}/backup-db-${build.time}.sql</echo>
           </then>
+          <else>
+            <echo>Skipping local database backup.</echo>
+          </else>
       </if>
 
       <!-- This cannot be a drush command because we cannot run it with the
@@ -125,6 +128,11 @@
 
       <echo>Running `drush updb` now.</echo>
       <drush command="updb" assume="yes" />
+
+      <drush command="cimy" assume="yes">
+        <option name="source" value="/var/www/mass.local/conf/drupal/config" />
+        <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
+      </drush>
 
   </target>
 

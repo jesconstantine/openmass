@@ -14,6 +14,7 @@ dependencies:
   module:
     - image
     - link
+    - mass_formatters
     - text
     - user
 id: node.subtopic.default
@@ -25,13 +26,14 @@ content:
     weight: 106
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
+      classes: ma__link-list__link
+      trim_length: '80'
+      url_only: ''
+      url_plain: ''
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    type: mass_link
   field_description:
     weight: 103
     label: above
@@ -42,9 +44,10 @@ content:
     weight: 107
     label: above
     settings:
-      link: true
+      view_mode: teaser_simple
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_featured_image:
     weight: 108
     label: above
@@ -79,6 +82,10 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

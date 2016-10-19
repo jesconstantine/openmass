@@ -11,6 +11,7 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  draggableviews: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
   dynamic_page_cache: 0
@@ -33,7 +34,10 @@ module:
   inline_form_errors: 0
   link: 0
   mass_content: 0
+  mass_styles: 0
   mass_entityreference: 0
+  mass_formatters: 0
+  mass_nav: 0
   mass_types: 0
   menu_ui: 0
   metatag: 0

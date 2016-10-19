@@ -4,11 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.action_step.field_content
-    - field.field.paragraph.action_step.field_icon
+    - field.field.paragraph.action_step.field_para_icon_term
     - field.field.paragraph.action_step.field_title
     - paragraphs.paragraphs_type.action_step
   module:
     - text
+    - workbench_moderation
 id: paragraph.action_step.default
 targetEntityType: paragraph
 bundle: action_step
@@ -21,7 +22,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-  field_icon:
+  field_para_icon_term:
     weight: 0
     settings: {  }
     third_party_settings: {  }
@@ -35,5 +36,6 @@ content:
     type: string_textfield
 hidden:
   created: true
+  field_icon: true
   status: true
   uid: true

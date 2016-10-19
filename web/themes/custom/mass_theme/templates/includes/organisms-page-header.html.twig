@@ -9,13 +9,20 @@
 <section class="ma__page-header">
   <div class="ma__page-header__content">
     <h1 class="ma__page-header__title">{{label}}</h1>
-    {# @TODO Sub-title might go here #}
-    {% if content.field_lede %}
+    {% if content.field_lede|render|trim %}
+      <h4 class="ma__page-header__sub-title">
+        {{ content.field_lede|field_value }}
+      </h4>
+    {% endif %}
+    {% if content.field_description|render|trim %}
       <div class="ma__page-header__intro">
         <div class="ma__rich-text">
-          {{ content.field_lede }}
+          {{ content.field_description|field_value }}
         </div>
       </div>
+    {% endif %}
+    {% if content.field_action_header|render|trim %}
+      {{ content.field_action_header|field_value }}
     {% endif %}
   </div>
 </section>

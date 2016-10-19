@@ -6,24 +6,38 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.topic.field_common_content
     - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_icon_term
     - field.field.node.topic.field_lede
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
     - node.type.topic
   module:
+    - options
     - user
 id: node.topic.teaser
 targetEntityType: node
 bundle: topic
 mode: teaser
 content:
-  links:
-    weight: 100
+  field_lede:
+    type: basic_string
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_node_icon:
+    type: list_default
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
 hidden:
   field_common_actions: true
   field_common_content: true
   field_featured_image: true
   field_icon: true
-  field_lede: true
-  field_node_icon: true
+  field_icon_term: true
   field_section: true
+  links: true

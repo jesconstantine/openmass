@@ -6,9 +6,10 @@ dependencies:
     - field.storage.node.field_action_details
     - node.type.action
     - paragraphs.paragraphs_type.action_step
-    - paragraphs.paragraphs_type.callout_link
-    - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.action_step_numbered_list
+    - paragraphs.paragraphs_type.callout_link
+    - paragraphs.paragraphs_type.file_download
+    - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -32,6 +33,7 @@ settings:
       action_step: action_step
       action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
+      file_download: file_download
       iframe: iframe
       rich_text: rich_text
       stat: stat
@@ -47,23 +49,41 @@ settings:
       callout_link:
         enabled: true
         weight: -17
-      iframe:
-        enabled: true
-        weight: -16
-      rich_text:
+      file_download:
         enabled: true
         weight: -15
-      stat:
+      iframe:
         enabled: true
         weight: -14
-      contact:
+      rich_text:
+        enabled: true
         weight: -13
+      stat:
+        enabled: true
+        weight: -12
+      contact:
+        weight: -11
         enabled: false
       subhead:
         enabled: true
-        weight: -12
+        weight: -10
       action_step_numbered:
-        weight: -11
+        weight: -9
+        enabled: false
+      action_address:
+        weight: 16
+        enabled: false
+      action_address_info:
+        weight: 17
+        enabled: false
+      action_area:
+        weight: 18
+        enabled: false
+      full_bleed:
+        weight: 25
+        enabled: false
+      location_information:
+        weight: 27
         enabled: false
       video:
         enabled: true

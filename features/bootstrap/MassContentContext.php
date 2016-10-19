@@ -52,6 +52,16 @@ class MassContentContext extends RawDrupalContext {
    * @Given default test content exists
    */
   public function createDefaultTestContent() {
+    $vocabularies = [
+      'icons' => $this->defaultIcons(),
+    ];
+    foreach ($vocabularies as $vocabulary => $terms) {
+      foreach ($terms as $term) {
+        $term += ['vocabulary_machine_name' => $vocabulary];
+        $this->drupalContext->termCreate((object) $term);
+      }
+    }
+
     $types = [
       'section_landing' => $this->defaultSectionLandings(),
       'topic' => $this->defaultTopics(),
@@ -85,7 +95,7 @@ class MassContentContext extends RawDrupalContext {
         'field_featured_content',
       ],
       'topic' => [
-        'field_common_actions',
+        'field_common_content',
       ],
       'section_landing' => [],
     ];
@@ -101,10 +111,6 @@ class MassContentContext extends RawDrupalContext {
    */
   public function defaultActions() {
     return [
-      [
-        'title' => 'Behat Test: Find a State Park',
-        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
-      ],
       [
         'title' => 'Behat Test: Get a State Park Pass',
         'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
@@ -152,6 +158,33 @@ class MassContentContext extends RawDrupalContext {
   }
 
   /**
+   * Create default icons terms for use in tests of
+   * content types: Section Landing, Topic
+   * paragraphs: Action Step.
+   *
+   * Note: the fields that reference this vocabulary are required, so
+   * these terms need to be created before the nodes/paragraphs.
+   *
+   * @Given icons vocabulary exists
+   */
+  public function defaultIcons() {
+    return [
+      [
+        'name' => 'Behat Test: Family',
+        'field_sprite_name' => 'family',
+      ],
+      [
+        'name' => 'Behat Test: Apple',
+        'field_sprite_name' => 'apple',
+      ],
+      [
+        'name' => 'Behat Test: Camping',
+        'field_sprite_name' => 'camping',
+      ]
+    ];
+  }
+
+  /**
    * Create default test subtopics.
    *
    * Note: The "field_topic_parent" field is required, so Topics will need to be
@@ -165,7 +198,9 @@ class MassContentContext extends RawDrupalContext {
   public function defaultSubtopics() {
     return [
       [
-        'title' => 'Behat Test: Nature & Outdoor Activities',
+        'title' => 'Behat Test: Get a State Park Pass',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Nature & Outdoor Activities',
         'field_description' => 'The description text for Nature & Outdoor Activities',
@@ -178,13 +213,36 @@ class MassContentContext extends RawDrupalContext {
           'Department of Fish - http://www.google.com',
         ]),
         'field_topic_callout_links' => implode(', ', [
-          'Camping - /subtopic/nature-outdoor-activities?filter=Camping',
-          'Hiking - /subtopic/nature-outdoor-activities?filter=Hiking',
-          'Biking - /subtopic/nature-outdoor-activities?filter=Biking',
+          'Camping - http://mass.local/subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - http://mass.local/subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - http://mass.local/subtopic/nature-outdoor-activities?filter=Biking',
+        ]),
+      ],
+      [
+        'title' => 'Behat Test: Nature & Outdoor Activities',
+        'status' => 1,
+        'moderation_state' => 'published',
+        'field_topic_parent' => 'Behat Test: State Parks & Recreation',
+        'field_lede' => 'The lede text for Nature & Outdoor Activities',
+        'field_description' => 'The description text for Nature & Outdoor Activities',
+        'field_featured_content' => implode(', ', [
+          'Behat Test: Find a State Park',
+          'Behat Test: Download a Trail Map',
+        ]),
+        'field_agency_links' => implode(', ', [
+          'MassParks - http://www.google.com',
+          'Department of Fish - http://www.google.com',
+        ]),
+        'field_topic_callout_links' => implode(', ', [
+          'Camping - http://mass.local/subtopic/nature-outdoor-activities?filter=Camping',
+          'Hiking - http://mass.local/subtopic/nature-outdoor-activities?filter=Hiking',
+          'Biking - http://mass.local/subtopic/nature-outdoor-activities?filter=Biking',
         ]),
       ],
       [
         'title' => 'Behat Test: Recreational Licenses & Permits',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: State Parks & Recreation',
         'field_lede' => 'The lede text for Recreational Licenses & Permits',
         'field_description' => 'The description text for Recreational Licenses & Permits',
@@ -197,6 +255,8 @@ class MassContentContext extends RawDrupalContext {
       ],
       [
         'title' => 'Behat Test: Search Jobs',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_topic_parent' => 'Behat Test: Finding a Job',
         'field_lede' => 'The lede text for Search Jobs',
         'field_description' => 'The description text for Search Jobs',
@@ -208,9 +268,9 @@ class MassContentContext extends RawDrupalContext {
           'MassIT - http://www.google.com'
         ]),
         'field_topic_callout_links' => implode(', ', [
-          'Education - /subtopic/search-jobs?filter=Education',
-          'Public Sector - /subtopic/search-jobs?filter=Public Sector',
-          'Public Safety - /subtopic/search-jobs?filter=Public Safety',
+          'Education - http://mass.local/subtopic/search-jobs?filter=Education',
+          'Public Sector - http://mass.local/subtopic/search-jobs?filter=Public Sector',
+          'Public Safety - http://mass.local/subtopic/search-jobs?filter=Public Safety',
         ]),
       ],
     ];
@@ -219,7 +279,7 @@ class MassContentContext extends RawDrupalContext {
   /**
    * Create default test topics.
    *
-   * The Common Actions field here is optional, and the actions may or may not
+   * The Common Content field here is optional, and the actions may or may not
    * exist, so they should be created in a followup.
    *
    * @Given test topics exist
@@ -228,20 +288,24 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: State Parks & Recreation',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_section' => 'Behat Test: Visiting & Exploring',
         'field_lede' => 'Lede text for State Parks & Rec.',
-        'field_icon' => 'camping',
-        'field_common_actions' => implode(', ', [
+        'field_icon_term' => 'Behat Test: Camping',
+        'field_common_content' => implode(', ', [
           'Behat Test: Get a State Park Pass',
           'Behat Test: Download a Trail Map',
         ]),
       ],
       [
         'title' => 'Behat Test: Finding a Job',
+        'status' => 1,
+        'moderation_state' => 'published',
         'field_section' => 'Behat Test: Working',
         'field_lede' => 'Lede text for Finding a Job',
-        'field_icon' => 'apple',
-        'field_common_actions' => implode(', ', [
+        'field_icon_term' => 'Behat Test: Apple',
+        'field_common_content' => implode(', ', [
           'Behat Test: Post a Job',
         ]),
       ],
@@ -257,11 +321,11 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: Visiting & Exploring',
-        'field_icon' => 'family',
+        'field_icon_term' => 'Behat Test: Family',
       ],
       [
         'title' => 'Behat Test: Working',
-        'field_icon' => 'apple',
+        'field_icon_term' => 'Behat Test: Apple',
       ],
     ];
   }
@@ -293,7 +357,6 @@ class MassContentContext extends RawDrupalContext {
 
     return $node;
   }
-
 
   /**
    * Update reference fields on nodes of a given type.
@@ -380,16 +443,20 @@ class MassContentContext extends RawDrupalContext {
    * @throws Exception
    */
   public function vistsTestNode($type, $title) {
-    if (empty($title)) {
+    if (empty($type)) {
       throw new \Exception('The node type must be provided.');
     }
 
     if (empty($title)) {
-      throw new \Exception('The node titel must be provided.');
+      throw new \Exception('The node title must be provided.');
     }
 
-    // @todo Add logic here for setting the path; should be able to get it from
-    // the content arrays.
+    if (!isset($this->{$type}[$title])) {
+      throw new \Exception('Cannot load the specified node.');
+    }
+
+    $node = $this->{$type}[$title];
+    $this->minkContext->visitPath('node/' . $node->nid);
   }
 
   /**

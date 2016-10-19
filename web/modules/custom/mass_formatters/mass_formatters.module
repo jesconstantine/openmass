@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Custom formatters for mass.gov.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function mass_formatters_theme() {
+  return array();
+}
