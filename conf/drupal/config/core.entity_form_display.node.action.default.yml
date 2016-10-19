@@ -197,6 +197,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_action_sidebar:
+    type: entity_reference_paragraphs
+    weight: 26
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_alert_dropdown:
     weight: 26
     settings: {  }
@@ -223,16 +233,6 @@ content:
       title: 'Contact Group'
       title_plural: 'Contact Groups'
       edit_mode: closed
-      add_mode: button
-      form_display_mode: default
-    third_party_settings: {  }
-  field_action_sidebar:
-    type: entity_reference_paragraphs
-    weight: 26
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }

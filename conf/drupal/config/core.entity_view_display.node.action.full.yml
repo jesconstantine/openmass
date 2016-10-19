@@ -69,6 +69,14 @@ content:
       view_mode: related_actions
       link: false
     third_party_settings: {  }
+  field_action_sidebar:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_alert_dropdown:
     type: list_default
     weight: 9
@@ -87,14 +95,6 @@ content:
     weight: 7
     label: hidden
     settings: {  }
-    third_party_settings: {  }
-  field_action_sidebar:
-    type: entity_reference_revisions_entity_view
-    weight: 4
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
     third_party_settings: {  }
   field_lede:
     type: basic_string

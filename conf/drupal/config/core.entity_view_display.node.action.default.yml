@@ -66,6 +66,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_action_sidebar:
+    type: entity_reference_revisions_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_alert_dropdown:
     weight: 7
     label: hidden
@@ -96,14 +104,6 @@ content:
   field_header_cta:
     type: entity_reference_revisions_entity_view
     weight: 8
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-  field_action_sidebar:
-    type: entity_reference_revisions_entity_view
-    weight: 6
     label: above
     settings:
       view_mode: default
