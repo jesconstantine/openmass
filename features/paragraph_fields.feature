@@ -101,3 +101,34 @@ Feature: Paragraph type definitions
     Then the "map" paragraph has the fields:
       | field       | widget                   |
       | field-map   | Google Map Field default |
+
+  Scenario: Verify that the contact info paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "contact" paragraph has the fields:
+      | field         | widget                        |
+      | field-address | Text area (multiple rows)     |
+      | field-email   | Email       |
+      | field-fax     | Telephone number         |
+      | field-name    | Textfield   |
+      | field-phone   | Telephone number       |
+      | field-link    | Link        |
+
+  Scenario: Verify that the contact group paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "contact_group" paragraph has the fields:
+      | field              | widget     |
+      | field-title        | Textfield  |
+      | field-contact-info | Paragraphs |
+
+  Scenario: Verify that the contact info paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "contact_info" paragraph has the fields:
+      | field         | widget      |
+      | field-type    | Select list |
+      | field-label   | Textfield   |
+      | field-phone   | Telephone number       |
+      | field-email   | Email       |
+      | field-link    | Link        |
+      | field-address | Text area (multiple rows)     |
+      | field-caption | Textfield   |
+

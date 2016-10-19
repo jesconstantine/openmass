@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Partial for alerts in the header.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+{% if content.field_alert_text %}
+<section class="ma__header-alert js-header-alert" role="alert">
+  <div class="ma__header-alert__container">
+    <span class="ma__header-alert__label">{{ content.field_alert_dropdown }}</span>
+    <span class="ma__header-alert__message">
+      {% if content.field_alert_link %}
+        <a class="ma__content-link" href="{{content.field_alert_link|field_value}}" title="{{content.field_alert_text|field_value}}">{{content.field_alert_text|field_value}}</a>
+      {% else %}
+        {{ content.field_alert_text }}
+      {% endif %}
+    </span>
+  </div>
+  <button class="ma__header-alert__hide js-header-alert-link" title="hide alert">+</button>
+</section>
+{% endif %}
