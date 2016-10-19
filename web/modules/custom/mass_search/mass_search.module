@@ -30,8 +30,6 @@ function mass_search_help($route_name, RouteMatchInterface $route_match) {
  */
 function mass_search_theme($existing, $type, $theme, $path) {
   return array(
-    'mass_search' => array(
-      'variables' => array('test_var' => NULL),
-    ),
+    'mass_search' => array(),
   );
 }
