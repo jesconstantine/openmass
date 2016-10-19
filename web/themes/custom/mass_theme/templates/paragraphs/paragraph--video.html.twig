@@ -45,9 +45,9 @@ set classes = [
 view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 'ma__video',
 ]
-
-set video_id = 'caption-' ~ content.field_video_id|field_value|e('html_attr')
 %}
+
+{% set video_id = 'caption-' ~ content.field_video_id|field_value|e('html_attr') %}
 
 <section {{ attributes.addClass(classes) }}>
   <figure class="ma__video__figure">
