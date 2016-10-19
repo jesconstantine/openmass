@@ -1,4 +1,4 @@
-@api
+@javascript
 Feature: Mass Search
   As a site visitor,
   I want to be able to search the site,
@@ -7,13 +7,11 @@ Feature: Mass Search
   Background:
     Given I am an anonymous user
 
-  # @javascript
   # Scenario: Verify that google custom search form is drawn on home page.
     # And I am on the homepage
     # Then I wait for AJAX to finish
     # Then I should see the "form.gsc-search-box" element
 
-  # @javascript
   # Scenario: Verify that home page search form submission calls results route.
   #   And I am on the homepage
   #   Then I wait for AJAX to finish
@@ -27,7 +25,6 @@ Feature: Mass Search
     And I am on "/search?q=snap"
     Then I should get a 200 HTTP response
 
-  # @javascript
   # Scenario: Verify that results page google custom form + results are drawn.
   #   And I am on "/search?q=snap"
   #   Then I wait for AJAX to finish
