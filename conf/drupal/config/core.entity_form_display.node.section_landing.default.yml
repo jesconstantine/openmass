@@ -5,11 +5,11 @@ dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon
-    - image.style.thumbnail
     - node.type.section_landing
   module:
-    - image
+    - entity_browser
     - path
+    - workbench_moderation
 id: node.section_landing.default
 targetEntityType: node
 bundle: section_landing
@@ -23,10 +23,15 @@ content:
   field_featured_image:
     weight: 33
     settings:
-      progress_indicator: throbber
+      entity_browser: browse_files_modal
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
       preview_image_style: thumbnail
+      view_mode: default
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
   field_icon:
     weight: 32
     settings: {  }

@@ -11,9 +11,11 @@ dependencies:
     - field.field.node.action.field_lede
     - node.type.action
   module:
+    - entity_browser
     - field_group
     - link
     - paragraphs
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_primary_content:
