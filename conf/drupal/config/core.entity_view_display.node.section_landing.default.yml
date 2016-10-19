@@ -4,12 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
-    - field.field.node.section_landing.field_icon
+    - field.field.node.section_landing.field_icon_term
     - image.style.hero800x400
     - node.type.section_landing
   module:
     - image
-    - options
     - user
 id: node.section_landing.default
 targetEntityType: node
@@ -17,25 +16,28 @@ bundle: section_landing
 mode: default
 content:
   field_featured_image:
-    weight: 103
+    weight: 2
     label: hidden
     settings:
       image_style: hero800x400
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_icon:
-    weight: 102
+  field_icon_term:
+    weight: 3
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: token
+      link: false
     third_party_settings: {  }
-    type: list_default
+    type: entity_reference_entity_view
   links:
-    weight: 100
+    weight: 1
     settings: {  }
     third_party_settings: {  }
   workbench_moderation_control:
-    weight: -20
+    weight: 0
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_icon: true
