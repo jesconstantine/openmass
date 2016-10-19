@@ -32,15 +32,16 @@ Feature: Section Landing Content type
     And I see the text "Outdoor description"
     And I should see the link "Find a State Park" in the "subtopic_featured_actions" region
     And I should see the link "Get a State Park Pass" in the "subtopic_all_actions" region
+    And I should see the link "Reserve a Campsite" in the "subtopic_all_actions" region
     And I should not see the link "Find a State Park" in the "subtopic_all_actions" region
     And I should see the link "MassParks"
     And I should see the link "Department of Fish and Game"
-    When I fill in "edit-filter" with "Get a state"
-    And I press the "Search" button
-    Then I should see the link "Get a State Park Pass" in the "subtopic_all_actions" region
-    And I should not see the link "Reserve a Campsite" in the "subtopic_all_actions" region
-    When I press the "Reset" button
-    Then I should see the link "Reserve a Campsite" in the "subtopic_all_actions" region
+    #When I fill in "edit-filter" with "Get a state"
+    #And I press the "Search" button
+    #Then I should see the link "Get a State Park Pass" in the "subtopic_all_actions" region
+    #And I should not see the link "Reserve a Campsite" in the "subtopic_all_actions" region
+    #When I press the "Reset" button
+    #Then I should see the link "Reserve a Campsite" in the "subtopic_all_actions" region
 
   Scenario: The subtopic banner has correct markup.
     Given default test content exists
