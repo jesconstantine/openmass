@@ -294,6 +294,22 @@ function mass_theme_preprocess_paragraph__contact(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__action_address(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_address_url = $paragraph->get('field_address_url');
+
+  if ($field_address_url->count() > 0) {
+    $address = $field_address_url->first()->getValue();
+    $direction_url = 'https://www.google.com/maps/place/' . $address['value'];
+    $variables['direction_url'] = $direction_url;
+  }
+}
+
+/**
  * Helper function to sort a list of items by title.
  */
 function compare_by_title($a, $b) {
