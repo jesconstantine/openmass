@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_action_sidebar
     - node.type.action
-    - paragraphs.paragraphs_type.contact
+    - paragraphs.paragraphs_type.contact_group
   module:
     - entity_reference_revisions
 id: node.action.field_action_sidebar
@@ -22,7 +22,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      contact: contact
+      contact_group: contact_group
     target_bundles_drag_drop:
       action_step:
         weight: 11
@@ -37,8 +37,8 @@ settings:
         weight: 14
         enabled: false
       contact:
-        enabled: true
         weight: 15
+        enabled: false
       file_download:
         weight: 16
         enabled: false
@@ -51,7 +51,31 @@ settings:
       stat:
         weight: 19
         enabled: false
+      action_address:
+        weight: 19
+        enabled: false
       subhead:
         weight: 20
+        enabled: false
+      action_address_info:
+        weight: 20
+        enabled: false
+      action_area:
+        weight: 21
+        enabled: false
+      contact_group:
+        enabled: true
+        weight: 27
+      contact_info:
+        weight: 28
+        enabled: false
+      full_bleed:
+        weight: 30
+        enabled: false
+      location_information:
+        weight: 32
+        enabled: false
+      slideshow:
+        weight: 34
         enabled: false
 field_type: entity_reference_revisions
