@@ -815,6 +815,27 @@
                     background-image: url('/themes/custom/mass_theme/pilot-homepage-images/homepage-feedback-lowerimage-1600x600.png');
                 }
             }
+
+
+	    /* Formstack Validation overrides */
+	    .fsForm  div.fsError {
+		background: white;
+		border-radius: 0;
+		color: #f34343;
+		font-weight: bold;
+	    }
+	    .fsPage .fsValidationError {
+		background-color: transparent;
+	    }
+	    .fsPage .fsValidationError .fsLabel {
+		color: #f34343;
+		padding-left: 0;
+		background: none;
+	    }
+	    .fsPage .fsValidationError input,
+	    .fsPage .fsValidationError textarea {
+		border: 2px solid #f34343;
+	    }
         </style>
         <div class="ma__feedback-form__overlay">
             <div class="ma__feedback-form__container">

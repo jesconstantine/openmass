@@ -81,6 +81,15 @@ $(function(){
       // HOMEPAGE -- //
       // Add appropriate class to homepage form > radio fieldset
       $('#label46538067').addClass('ma__feedback-form__permission');
+      // Add appropriate class to homepage form > name field
+      $('#fsRow2504022-2').addClass('ma__feedback-form__name');
+      // Add appropriate class to homepage form > email field
+      $('#fsRow2504022-3').addClass('ma__feedback-form__email');
+      // Add appropriate class to homepage form > feedback field
+      $('#fsRow2504022-4').addClass('ma__feedback-form__feedback');
+      // Add appropriate class to homepage form > submit
+      $('#fsSubmit2504022').addClass('ma__feedback-form__controls');
+
 
       // FEEDBACK FORM -- //
 
