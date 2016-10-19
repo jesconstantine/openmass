@@ -68,7 +68,11 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
 hidden:
   field_action_parent: true
+  field_contact_group: true
   field_external_url: true
+  field_header_cta: true
   links: true
