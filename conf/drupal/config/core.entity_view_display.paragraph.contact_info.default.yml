@@ -1,0 +1,73 @@
+uuid: 33e930c1-af48-467d-bbf6-863bd0eb189b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact_info.field_address
+    - field.field.paragraph.contact_info.field_caption
+    - field.field.paragraph.contact_info.field_email
+    - field.field.paragraph.contact_info.field_label
+    - field.field.paragraph.contact_info.field_link
+    - field.field.paragraph.contact_info.field_phone
+    - field.field.paragraph.contact_info.field_type
+    - paragraphs.paragraphs_type.contact_info
+  module:
+    - link
+    - options
+id: paragraph.contact_info.default
+targetEntityType: paragraph
+bundle: contact_info
+mode: default
+content:
+  field_address:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_caption:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_email:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_label:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_link:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_phone:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_type:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+hidden:
+  created: true
+  uid: true

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_external_url
@@ -45,6 +46,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  field_action_header:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_action_related:
     type: entity_reference_entity_view
     weight: 2
@@ -59,7 +68,11 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
 hidden:
   field_action_parent: true
+  field_contact_group: true
   field_external_url: true
+  field_header_cta: true
   links: true
