@@ -9,6 +9,9 @@ dependencies:
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_alert_dropdown
+    - field.field.node.action.field_alert_link
+    - field.field.node.action.field_alert_text
     - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
@@ -60,6 +63,7 @@ third_party_settings:
         - group_details
         - group_sidebar
         - group_external
+        - group_alert
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -96,6 +100,21 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+    group_alert:
+      children:
+        - field_alert_dropdown
+        - field_alert_text
+        - field_alert_link
+      parent_name: group_form
+      weight: 5
+      label: Alert
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
     group_extended_header:
       children:
         - field_action_header
@@ -165,6 +184,25 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_alert_dropdown:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_alert_link:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_alert_text:
+    weight: 27
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
   field_contact_group:
     type: entity_reference_paragraphs
     weight: 5

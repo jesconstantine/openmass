@@ -12,6 +12,9 @@ Feature: Action Content type
     | field-lede                   | textarea   |                            | false      |
     | field-action-related         | input      | text                       | true       |
     | field-external-url           | input      | url                        | false      |
+    | field-alert-dropdown         | select     |                            | false      |
+    | field-alert-text             | textarea   |                            | false      |
+    | field-alert-link             | input      | text                       | false      |
     | field-action-downloads       | input      | submit                     | false      |
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
