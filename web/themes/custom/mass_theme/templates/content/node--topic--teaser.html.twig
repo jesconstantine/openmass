@@ -32,9 +32,7 @@
           </svg>
         </a>
       </h4>
-      {% if content.field_topic_callout_links|render|trim is not empty %}
-        {{ content.field_topic_callout_links }}
-      {% endif %}
+      {{ drupal_view('subtopics', 'section_links', node.id) }}
     </div>
   </div>
 </section>
