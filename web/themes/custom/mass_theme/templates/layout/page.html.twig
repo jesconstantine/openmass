@@ -63,26 +63,29 @@
       {# end "atoms-site-logo" #}
     </div>
     <div class="ma__header__search js-header-search-menu">
-      {# include "molecules-header-search" #}
       <section class="ma__header-search">
-        <form action="#" class="js-header-search-form">
-          <label
-              for="header-search"
-	      class="ma__header-search__label">Search Mass.gov</label>
-          <input
-              id="header-search"
-              class="ma__header-search__input"
-              placeholder="What can we help you find?"
-              type="text" />
-          <button type="submit" class="ma__button-search">
-        <span>Search</span>
-        <svg role="img" class="ma__button-search__icon">
-          <use xlink:href="{{ base_path ~ directory }}/images/svg-sprite.svg#search"></use>
-        </svg>
-      </button>
-        </form>
+        {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
+        <button class="ma__button-search">
+          <span>Search</span>
+          <svg role="img" class="ma__button-search__icon">
+            <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
+          </svg>
+        </button>
+        {# @TODO abstract this JS away #}
+        <script type="text/javascript">
+          (function(){
+            // ****** Mobile Search button should open mobile menu ******
+            var mobileSearchButton = document.querySelector(".ma__header__search .ma__header-search .ma__button-search");
+
+            if(null !== mobileSearchButton){
+              mobileSearchButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.querySelector("body").classList.toggle("show-menu");
+              });
+            }
+          })();
+        </script>
       </section>
-      {# end "molecules-header-search" #}
     </div>
   </div>
   {{ page.header }}

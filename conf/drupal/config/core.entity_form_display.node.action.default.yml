@@ -6,9 +6,16 @@ dependencies:
     - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
+    - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
+    - field.field.node.action.field_alert_dropdown
+    - field.field.node.action.field_alert_link
+    - field.field.node.action.field_alert_text
+    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
+    - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
     - node.type.action
   module:
@@ -16,6 +23,7 @@ dependencies:
     - field_group
     - link
     - paragraphs
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_primary_content:
@@ -36,11 +44,11 @@ third_party_settings:
         classes: ''
     group_sidebar:
       children:
+        - field_action_sidebar
         - field_action_related
         - field_action_downloads
-        - field_action_contacts
       parent_name: group_form
-      weight: 3
+      weight: 4
       label: 'Sidebar Content'
       format_type: tab
       format_settings:
@@ -52,22 +60,25 @@ third_party_settings:
     group_form:
       children:
         - group_primary_content
+        - group_extended_header
         - group_details
         - group_sidebar
+        - group_alert
         - group_external
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
       format_type: tabs
       format_settings:
-        direction: vertical
-        classes: ''
+        label: 'Node Edit Form'
+        direction: horizontal
         id: ''
+        classes: ''
     group_details:
       children:
         - field_action_details
       parent_name: group_form
-      weight: 2
+      weight: 3
       label: Details
       format_type: tab
       format_settings:
@@ -78,9 +89,10 @@ third_party_settings:
         required_fields: true
     group_external:
       children:
+        - field_action_contacts
         - field_external_url
       parent_name: group_form
-      weight: 4
+      weight: 5
       label: 'External Action'
       format_type: tab
       format_settings:
@@ -90,6 +102,35 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+    group_alert:
+      children:
+        - field_alert_dropdown
+        - field_alert_text
+        - field_alert_link
+      parent_name: group_form
+      weight: 5
+      label: Alert
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_extended_header:
+      children:
+        - field_action_header
+        - field_header_cta
+      parent_name: group_form
+      weight: 2
+      label: 'Extended Header'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
@@ -99,7 +140,7 @@ mode: default
 content:
   field_action_contacts:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 29
     settings:
       title: Contact
       title_plural: Contacts
@@ -109,7 +150,7 @@ content:
     third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 29
     settings:
       title: Molecule
       title_plural: Molecules
@@ -118,7 +159,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 3
+    weight: 28
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -129,6 +170,16 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+  field_action_header:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_action_parent:
     weight: 4
     settings:
@@ -138,20 +189,69 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_action_related:
-    weight: 2
+    weight: 27
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_action_sidebar:
+    type: entity_reference_paragraphs
+    weight: 26
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  field_alert_dropdown:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_alert_link:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_alert_text:
+    weight: 27
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+  field_contact_group:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: 'Contact Group'
+      title_plural: 'Contact Groups'
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_external_url:
-    weight: 2
+    weight: 30
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_header_cta:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_lede:
     weight: 2
     settings:

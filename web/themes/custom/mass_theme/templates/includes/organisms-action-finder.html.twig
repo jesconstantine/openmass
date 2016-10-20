@@ -22,21 +22,6 @@
   {% endif %}
   <div class="ma__action-finder__banner"></div>
   <div class="ma__action-finder__container">
-    <header class="ma__action-finder__header">
-      <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
-      {# todo future phase searchword #}
-      {#<div class="ma__action-finder__search">
-        <section class="ma__keyword-search js-keyword-search">
-        </section>
-      </div> #}
-    </header>
-    {% if action_finder_links|render|trim %}
-      <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
-      {{ action_finder_links }}
-    {% endif %}
-    {% if all_actions_view|render|trim %}
-      <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
-      {{ all_actions_view }}
-    {% endif %}
+    {{ drupal_view('subtopics_all_actions', 'block_1') }}
   </div>
 </section>

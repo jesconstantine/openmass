@@ -6,12 +6,13 @@ global-styling:
       css/index-generated.css: {}
       css/base-theme-generated.css: {}
       css/pilot-generated.css: {}
+      overrides/css/action-finder.css: {}
   js:
-    # This is in the styleguide, but not sure if we need it.
-    # js/vendor-generated.js: {}
+    js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
-  dependencies:
-    - core/jquery
+    # jquery for theme comes with vendor-generated.js
+    # dependencies:
+    # - core/jquery
 js-header:
   header: true
   js:
