@@ -28,8 +28,10 @@ function mass_search_help($route_name, RouteMatchInterface $route_match) {
  *
  * Define twig template for search results route, called by DefaultController.
  */
-function mass_search_theme($existing, $type, $theme, $path) {
+function mass_search_theme() {
   return array(
-    'mass_search' => array(),
+    'mass_search' => array(
+      'variables' => array('query' => NULL),
+    ),
   );
 }
