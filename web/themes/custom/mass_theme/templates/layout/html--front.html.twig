@@ -123,7 +123,7 @@
                                 <ul class="ma__main-nav__container">
                                     <li class="ma__main-nav__subitem"><a href="#commonaction" class="ma__main-nav__link">Common
                                             Actions</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/get-dcr-parkspass" class="ma__main-nav__link">Get a DCR 
+                                    <li class="ma__main-nav__subitem"><a href="actions/get-dcr-parkspass" class="ma__main-nav__link">Get a DCR
                                             ParksPass</a></li>
                                     <li class="ma__main-nav__subitem"><a href="actions/buy-freshwater-fishing-license" class="ma__main-nav__link">Buy a freshwater fishing license</a></li>
                                     <li class="ma__main-nav__subitem"><a href="actions/apply-nursing-license-new-graduates" class="ma__main-nav__link">Apply for a nursing license (new graduates)</a>
@@ -819,9 +819,9 @@
 
 	    /* Formstack Validation overrides */
 	    .fsForm  div.fsError {
-		background: white;
+		color: white;
 		border-radius: 0;
-		color: #f34343;
+		background-color: #f34343;
 		font-weight: bold;
 	    }
 	    .fsPage .fsValidationError {
@@ -836,13 +836,17 @@
 	    .fsPage .fsValidationError textarea {
 		border: 2px solid #f34343;
 	    }
-        </style>
-        <div class="ma__feedback-form__overlay">
-            <div class="ma__feedback-form__container">
-                <a name=“feedback” id="feedback"></a>
-                <header class="ma__feedback-form__header">
-                    <h2 class="ma__feedback-form__title">We Want to Hear From You</h2>
-                </header>
+	    .fsBody .fsPagination {
+		text-align: right;
+		margin: 0;
+	    }
+	</style>
+	<div class="ma__feedback-form__overlay">
+	    <div class="ma__feedback-form__container">
+		<header class="ma__feedback-form__header">
+		    <h2 class="ma__feedback-form__title">We Want to Hear From You</h2>
+		    <p class="ma__feedback-form__description">Mass.gov is for you, and we want to know what you think about it.</p>
+		</header>
 	       <script type="text/javascript" src="https://massgov.formstack.com/forms/js.php/feedback__homepage?nojquery=1&nomodernizr=1&no_style_strict=1&jsonp=1"></script>
 	       <noscript><a href="https://massgov.formstack.com/forms/feedback__homepage" title="Online Form">Online Form - Feedback - Homepage</a></noscript>
 	       <script type='text/javascript'>if (typeof $ == 'undefined' && jQuery){ $ = jQuery}</script>
