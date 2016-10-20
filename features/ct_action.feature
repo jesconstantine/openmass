@@ -23,7 +23,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | rich-text                  | false      |
     | field-action-details         | paragraphs | stat                       | false      |
     | field-action-details         | paragraphs | subhead                    | false      |
-    | field-contact-group          | paragraphs | contact-group              | false      |
+    | field-action-sidebar         | paragraphs | contact-group              | false      |
     | field-related-link           | paragraphs | related-link               | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
