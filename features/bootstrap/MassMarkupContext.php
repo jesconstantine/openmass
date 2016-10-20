@@ -89,4 +89,32 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('ul.ma__top-actions__items', 'top_actions');
     //$this->assertRegionElement('ul.ma__top-actions__items > li.ma__top-actions__item > div.ma__top-actions__link > div.ma__callout-link > span.ma__decorative-link > a.js-clickable-link', 'top_actions');
   }
+
+  /**
+   * @Then I should see the correct markup for the header search form
+   */
+  public function iShouldSeeTheCorrectMarkupForTheHeaderSearchForm()
+  {
+      $this->assertRegionElement('div.ma__header__search > section.ma__header-search > div#cse-header-search-form > div.gsc-control-searchbox-only > form.gsc-search-box > table.gsc-search-box > tbody > tr > td.gsc-input > input.gsc-input', 'header');
+
+      $this->assertRegionElement('div.ma__header__search > section.ma__header-search > div#cse-header-search-form > div.gsc-control-searchbox-only > form.gsc-search-box > table.gsc-search-box > tbody > tr > td.gsc-search-button > input.gsc-search-button', 'header');
+  }
+
+  /**
+   * @Then I should see the correct markup for the results search form
+   */
+  public function iShouldSeeTheCorrectMarkupForTheResultsSearchForm()
+  {
+      $this->assertRegionElement('div.ma__content__search > section.ma__content-search > div#cse-search-results-form > form.gsc-search-box > table.gsc-search-box > tbody > tr > td.gsc-input > input.gsc-input', 'page_pre');
+
+      $this->assertRegionElement('div.ma__content__search > section.ma__content-search > div#cse-search-results-form > form.gsc-search-box > table.gsc-search-box > tbody > tr > td.gsc-search-button > input.gsc-search-button', 'page_pre');
+  }
+
+  /**
+   * @Then I should see the correct markup for the search results
+   */
+  public function iShouldSeeTheCorrectMarkupForTheSearchResults()
+  {
+      $this->assertRegionElement('div#cse-search-results > div.gsc-control-cse > div.gsc-control-wrapper-cse  > div.gsc-results-wrapper-nooverlay > div.gsc-wrapper', 'search_results');
+  }
 }
