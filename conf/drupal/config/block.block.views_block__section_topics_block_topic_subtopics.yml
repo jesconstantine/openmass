@@ -1,22 +1,22 @@
-uuid: f4cd9a62-5455-4c2f-b710-976e87d1d791
+uuid: c95302fc-4698-4c34-bf6a-0e26a210109a
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - views.view.ordered_topics
+    - views.view.section_topics
   module:
     - node
     - views
   theme:
     - mass_theme
-id: views_block__ordered_topics_ordered_topic_list_block
+id: views_block__section_topics_block_topic_subtopics
 theme: mass_theme
-region: '-1'
-weight: -3
+region: section_topics
+weight: -4
 provider: null
-plugin: 'views_block:ordered_topics-ordered_topic_list_block'
+plugin: 'views_block:section_topics-block_topic_subtopics'
 settings:
-  id: 'views_block:ordered_topics-ordered_topic_list_block'
+  id: 'views_block:section_topics-block_topic_subtopics'
   label: ''
   provider: views
   label_display: '0'
@@ -26,7 +26,7 @@ visibility:
   node_type:
     id: node_type
     bundles:
-      section_landing: section_landing
+      topic: topic
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
