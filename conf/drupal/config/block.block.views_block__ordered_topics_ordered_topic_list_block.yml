@@ -1,6 +1,6 @@
 uuid: f4cd9a62-5455-4c2f-b710-976e87d1d791
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.ordered_topics
@@ -11,7 +11,7 @@ dependencies:
     - mass_theme
 id: views_block__ordered_topics_ordered_topic_list_block
 theme: mass_theme
-region: '-1'
+region: section_topics
 weight: -3
 provider: null
 plugin: 'views_block:ordered_topics-ordered_topic_list_block'

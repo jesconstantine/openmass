@@ -1,6 +1,6 @@
 uuid: 6ced440e-f337-458b-821c-301bae0cf23f
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.subtopics
@@ -11,7 +11,7 @@ dependencies:
     - mass_theme
 id: views_block__subtopics_ordered_subtopic_list_block
 theme: mass_theme
-region: '-1'
+region: section_topics
 weight: -4
 provider: null
 plugin: 'views_block:subtopics-ordered_subtopic_list_block'
