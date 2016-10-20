@@ -167,6 +167,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
+  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
+
+  // Lets let our subhead paragraph template know about the region.
+  $variables['region'] = $parent_field;
 
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
@@ -246,7 +250,7 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
       ->loadByProperties(array('theme' => $theme, 'region' => $region));
 
     // Sort ‘em.
-    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+    //uasort($blocks, 'Drupal\block\Entity\Block::sort');
 
     // Capture viewable blocks and their settings to $build.
     $build = array();
