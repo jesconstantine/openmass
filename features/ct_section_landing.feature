@@ -5,7 +5,7 @@ Feature: Section Landing Content type
   So that they the pages stay relevant and accurate.
 
   Scenario: Verify that the section landing content type has the correct fields
-    Given I am logged in as a user with the "administrator" role
+    Given I am logged in as a user with the "Administrator" role
     Then the content type "section_landing" has the fields:
       | field                            | tag      | type     | multivalue |
       | field-featured-image             | input    | submit   | false      |
