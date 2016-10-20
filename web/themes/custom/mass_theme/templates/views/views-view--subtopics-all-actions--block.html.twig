@@ -33,30 +33,28 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{{ title_prefix }}
-{{ title }}
-{{ title_suffix }}
-
-{% if header %}
-  <header>
-    {{ header }}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <header class="ma__action-finder__header">
+    {{ title_prefix }}
+    <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
+    {{ title_suffix }}
+    <div class="ma__action-finder__search">
+      <section class="ma__keyword-search">
+        {{ exposed }}
+      </section>
+    </div>
   </header>
-{% endif %}
-
-{{ exposed }}
-{{ attachment_before }}
-
-{{ rows }}
-{{ empty }}
-{{ pager }}
-
-{{ attachment_after }}
-{{ more }}
-
-{% if footer %}
-  <footer>
-    {{ footer }}
-  </footer>
-{% endif %}
-
-{{ feed_icons }}
+  
+  {% if attachment_before|render|trim %}
+    <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
+    {{ attachment_before }}
+  {% endif %}
+        
+  <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
+  {{ rows }}
+</div>
