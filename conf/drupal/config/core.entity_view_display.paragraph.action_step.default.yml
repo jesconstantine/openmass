@@ -37,4 +37,5 @@ content:
     type: string
 hidden:
   created: true
+  field_icon: true
   uid: true
