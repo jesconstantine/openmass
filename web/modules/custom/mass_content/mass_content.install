@@ -5,6 +5,8 @@
  * Uninstall config.
  */
 
+use Drupal\paragraphs\Entity\Paragraph;
+
 /**
  * Implements hook_uninstall().
  */
@@ -17,4 +19,165 @@ function mass_content_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.example_primary_landing')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.example_secondary_landing')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.pilot_menu')->delete();
+}
+
+/**
+ * Migrate action content from old contacts field to new contacts field.
+ */
+function mass_content_update_8001(&$sandbox) {
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+
+  // Get all actions that have contact content.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'action')
+    ->exists('field_action_contacts');
+  $nids = $query->execute();
+  $nodes = $node_storage->loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+    $subhead_added = FALSE;
+
+    foreach ($node->field_action_contacts as $old_contact_id) {
+      $old_contact = Paragraph::load($old_contact_id->target_id);
+      // Keep track of the new paragraph ids.
+      $new_contacts = array();
+      // Migrate address.
+      if ($old_contact->field_address) {
+        $new_address = Paragraph::create([
+          'type' => 'contact_info',
+          'field_address' => array(
+            "value" => $old_contact->field_address->value,
+            "format" => $old_contact->field_address->format,
+          ),
+          'field_type' => array(
+            "value" => 'mail',
+          ),
+        ]);
+        $new_address->save();
+        $new_contacts[] = array(
+          'target_id' => $new_address->id(),
+          'target_revision_id' => $new_address->getRevisionId(),
+        );
+      }
+      // Migrate email.
+      if ($old_contact->field_email) {
+        $new_email = Paragraph::create([
+          'type' => 'contact_info',
+          'field_email' => array(
+            "value" => $old_contact->field_email->value,
+          ),
+          'field_type' => array(
+            "value" => 'email',
+          ),
+        ]);
+        $new_email->save();
+        $new_contacts[] = array(
+          'target_id' => $new_email->id(),
+          'target_revision_id' => $new_email->getRevisionId(),
+        );
+      }
+      // Migrate fax.
+      if ($old_contact->field_fax) {
+        $new_fax = Paragraph::create([
+          'type' => 'contact_info',
+          'field_phone' => array(
+            "value" => $old_contact->field_fax->value,
+          ),
+          'field_type' => array(
+            "value" => 'fax',
+          ),
+        ]);
+        $new_fax->save();
+        $new_contacts[] = array(
+          'target_id' => $new_fax->id(),
+          'target_revision_id' => $new_fax->getRevisionId(),
+        );
+      }
+      // Migrate phone.
+      if ($old_contact->field_phone) {
+        $new_phone = Paragraph::create([
+          'type' => 'contact_info',
+          'field_phone' => array(
+            "value" => $old_contact->field_phone->value,
+          ),
+          'field_type' => array(
+            "value" => 'phone',
+          ),
+        ]);
+        $new_phone->save();
+        $new_contacts[] = array(
+          'target_id' => $new_phone->id(),
+          'target_revision_id' => $new_phone->getRevisionId(),
+        );
+      }
+      // Migrate website.
+      if ($old_contact->field_link) {
+        $new_link = Paragraph::create([
+          'type' => 'contact_info',
+          'field_link' => array(
+            "title" => $old_contact->field_link->title,
+            "uri" => $old_contact->field_link->uri,
+          ),
+          'field_type' => array(
+            "value" => 'online',
+          ),
+        ]);
+        $new_link->save();
+        $new_contacts[] = array(
+          'target_id' => $new_link->id(),
+          'target_revision_id' => $new_link->getRevisionId(),
+        );
+      }
+
+      // Bundle contact info into group.
+      $new_contact_group = Paragraph::create([
+        'type' => 'contact_group',
+        'field_title' => array(
+          "value" => $old_contact->field_name->value,
+        ),
+        'field_contact_info' => $new_contacts,
+      ]);
+      $new_contact_group->save();
+      $new_contact_group_id = array(
+        'target_id' => $new_contact_group->id(),
+        'target_revision_id' => $new_contact_group->getRevisionId(),
+      );
+
+      // If we haven't added a subhead to the node yet, do that.
+      if (!$subhead_added) {
+        $subhead_added = TRUE;
+
+        $subhead = Paragraph::create([
+          'type' => 'subhead',
+          'field_title' => [
+            'value' => 'Additional Contacts',
+          ],
+        ]);
+
+        $subhead->save();
+        $subhead_id = [
+          'target_id' => $subhead->id(),
+          'target_revision_id' => $subhead->getRevisionId(),
+        ];
+
+        $node->field_action_sidebar->appendItem($subhead_id);
+      }
+
+      // Add new contact group to the node.
+      $node->field_action_sidebar->appendItem($new_contact_group_id);
+      $node->save();
+    }
+  }
+
+  // Delete the field_action_contacts field.
+  $properties = array(
+    'entity_type' => 'node',
+    'bundle' => 'action',
+    'field_name' => 'field_action_contacts',
+  );
+  $field = \Drupal::entityManager()->getStorage('field_config')->loadByProperties($properties);
+  $field = reset($field);
+  $field->delete();
+
 }

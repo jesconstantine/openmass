@@ -57,6 +57,13 @@ Feature: Paragraph type definitions
       | field           | widget         |
       | field-downloads | Entity browser |
 
+  Scenario: Verify that the icon paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "icon" paragraph has the fields:
+      | field                | widget         |
+      | field-title          | Textfield      |
+      | field-para-icon-term | Select List    |
+
   Scenario: Verify that the full_bleed paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "full_bleed" paragraph has the fields:
@@ -95,7 +102,7 @@ Feature: Paragraph type definitions
     Then the "subhead" paragraph has the fields:
       | field       | widget        |
       | field-title | Textfield     |
-    
+
   Scenario: Verify that the video paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "video" paragraph has the fields:
