@@ -141,6 +141,7 @@
         <param>devel</param>
         <param>kint</param>
         <param>mass_types</param>
+        <param>mass_utility</param>
         <param>migrate_tools</param>
     </drush>
   </target>
