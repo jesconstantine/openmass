@@ -18,6 +18,9 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($route = $collection->get('view.subtopics.subtopic_reorder')) {
       $route->setOption('_admin_route', TRUE);
     }
+    if ($route = $collection->get('view.ordered_topics.topic_reorder')) {
+      $route->setOption('_admin_route', TRUE);
+    }
   }
 
 }

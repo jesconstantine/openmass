@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Utility methods and helpers.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * We want to remove a view that is currently in the production database.
+ */
+function mass_utility_install() {
+  $view_to_delete = \Drupal::entityTypeManager()->getStorage('view')
+    ->loadMultiple(['section_topics']);
+
+  foreach ($view_to_delete as $view) {
+    $view->delete();
+  }
+}
