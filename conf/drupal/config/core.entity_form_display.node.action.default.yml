@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
-    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -225,16 +224,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-  field_contact_group:
-    type: entity_reference_paragraphs
-    weight: 4
-    settings:
-      title: 'Contact Group'
-      title_plural: 'Contact Groups'
-      edit_mode: closed
-      add_mode: button
-      form_display_mode: default
-    third_party_settings: {  }
   field_external_url:
     weight: 30
     settings:
