@@ -1,8 +1,9 @@
-uuid: 33e930c1-af48-467d-bbf6-863bd0eb189b
+uuid: 48adfb70-14a9-43b0-ba7c-a8f01cb97762
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.extended_header
     - field.field.paragraph.contact_info.field_address
     - field.field.paragraph.contact_info.field_caption
     - field.field.paragraph.contact_info.field_email
@@ -14,41 +15,40 @@ dependencies:
   module:
     - link
     - options
-    - telephone
-id: paragraph.contact_info.default
+id: paragraph.contact_info.extended_header
 targetEntityType: paragraph
 bundle: contact_info
-mode: default
+mode: extended_header
 content:
   field_address:
     weight: 5
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_caption:
     weight: 6
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_email:
     weight: 3
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_label:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_link:
     weight: 4
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -59,14 +59,14 @@ content:
     type: link
   field_phone:
     weight: 2
-    label: above
+    label: hidden
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: telephone_link
+    type: string
   field_type:
     weight: 0
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default

@@ -16,7 +16,11 @@
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
   {% include "@mass_theme/includes/header-alert.html.twig" %}
-  {% include "@mass_theme/includes/organisms-page-header.html.twig" %}
+  {% if content.field_action_header|render|trim is not empty %}
+    {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
+  {% else %}
+    {% include "@mass_theme/includes/organisms-page-header.html.twig" %}
+  {% endif %}
 {% endblock %}
 {% block pageContent %}
   {# @TODO include "organisms-action-details" #}

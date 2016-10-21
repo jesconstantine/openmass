@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
@@ -138,16 +137,6 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
-  field_action_contacts:
-    type: entity_reference_paragraphs
-    weight: 29
-    settings:
-      title: Contact
-      title_plural: Contacts
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-    third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
     weight: 29
