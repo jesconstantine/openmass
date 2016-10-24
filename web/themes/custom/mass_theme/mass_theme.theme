@@ -277,7 +277,6 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
   }
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  *
@@ -290,6 +289,50 @@ function mass_theme_preprocess_paragraph__contact_group(&$variables) {
   if ($field_layout->count() > 0) {
     $layout = $field_layout->first()->getValue();
     $variables['layout'] = $layout['value'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__contact_info(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_address = $paragraph->get('field_address');
+
+  if ($field_address->count() > 0) {
+    $address = $field_address->first()->getValue();
+    $address_url = 'https://www.google.com/maps/place/' . $address['value'];
+    $variables['address_url'] = $address_url;
+  }
+
+  $svg_types = array(
+    'phone' => array('class' => 'svg-phone', 'svg' => 'phone'),
+    'laptop' => array('class' => 'svg-laptop', 'svg' => 'laptop'),
+    'mail' => array('class' => 'svg-mail', 'svg' => 'mail'),
+  );
+
+  $field_type = $paragraph->get('field_type');
+
+  if ($field_type->count() > 0) {
+    $type = $field_type->first()->getValue();
+    $svg_type = '';
+
+    switch($type['value']) {
+      case 'phone';
+      case 'fax':
+        $svg_type = $svg_types['phone'];
+        break;
+      case 'online':
+        $svg_type = $svg_types['laptop'];
+        break;
+      case 'email';
+      case 'mail':
+        $svg_type = $svg_types['mail'];
+        break;
+    }
+    $variables['svg_type'] = $svg_type;
   }
 }
 
