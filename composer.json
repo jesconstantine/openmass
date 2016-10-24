@@ -160,6 +160,9 @@
             },
             "drupal/draggableviews": {
                 "Invalidate cache when draggableviews order is changed (https://www.drupal.org/node/2425249#comment-10716828)": "https://www.drupal.org/files/issues/draggableviews-clearcache-2425249-11-8.x-1.x.diff"
+            },
+            "drupal/google_map_field": {
+              "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
             }
         }
     }
