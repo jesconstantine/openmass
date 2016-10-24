@@ -4,11 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
+    - field.field.node.section_landing.field_featured_mobile_image
+    - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
-    - image.style.thumbnail
     - node.type.section_landing
   module:
-    - image
+    - entity_browser
     - path
     - workbench_moderation
 id: node.section_landing.default
@@ -24,10 +25,27 @@ content:
   field_featured_image:
     weight: 7
     settings:
-      progress_indicator: throbber
+      entity_browser: browse_files_modal
+      field_widget_edit: '1'
+      field_widget_remove: '1'
+      selection_mode: selection_append
+      view_mode: default
+      open: 0
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
+  field_featured_mobile_image:
+    weight: 26
+    settings:
+      entity_browser: browse_files_modal
+      field_widget_edit: '1'
+      field_widget_remove: '1'
+      selection_mode: selection_append
+      view_mode: default
+      open: 0
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: entity_browser_file
   field_icon_term:
     weight: 6
     settings: {  }
