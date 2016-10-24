@@ -319,18 +319,21 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
     $type = $field_type->first()->getValue();
     $svg_type = '';
 
-    switch($type['value']) {
+    switch ($type['value']) {
       case 'phone';
       case 'fax':
         $svg_type = $svg_types['phone'];
         break;
+
       case 'online':
         $svg_type = $svg_types['laptop'];
         break;
+
       case 'email';
       case 'mail':
         $svg_type = $svg_types['mail'];
         break;
+
     }
     $variables['svg_type'] = $svg_type;
   }
