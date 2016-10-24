@@ -172,6 +172,11 @@ function mass_theme_preprocess_paragraph__subhead(&$variables) {
   // Lets let our subhead paragraph template know about the region.
   $variables['region'] = $parent_field;
 
+
+  if (trim($subhead) == 'Quick Actions'){
+    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
+  }
+
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
   $variables['title_clean'] = $subhead_clean;
