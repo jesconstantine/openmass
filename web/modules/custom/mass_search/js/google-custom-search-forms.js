@@ -113,7 +113,7 @@
      * enable autocomplete (see options above: autoCompleteOptions)
      */
 
-    /** mobileOptions.setAutoComplete(true); */
+    mobileOptions.setAutoComplete(true);
 
     /**
      * @TODO:

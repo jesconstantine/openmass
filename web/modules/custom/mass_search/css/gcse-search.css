@@ -105,6 +105,21 @@ input.gsc-search-button:hover {
   }
 }
 
+/* mobile autocomplete styles */
+
+/* target the mobile autocomplete and override js-assigned positioning because as is,
+  it does line up under input
+
+  1. magic number'ish for mobile autocomplete drop down left position:
+    - 100% = full width of the body, the autocomplete drop down's parent
+    - minus 300px = width of mobile nav menu
+    - plus 300px to cancel out the -300px translation to <body> when mobile nav menu opens
+    - plus 10px to match padding inside the mobile nav menu
+  */
+.gstl_51.gssb_c[style] {
+  left: calc(100% + 10px) !important; /* 1 */
+}
+
 /* autocomplete promotions styles */
 .gsq_a span {
   color: #535353 !important;
