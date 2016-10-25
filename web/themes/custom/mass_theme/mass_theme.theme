@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -167,6 +168,31 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $key = strtolower($title);
         $key = Html::cleanCssIdentifier($key);
         $variables['subheads'][$key] = $title;
+      }
+      $delta++;
+    }
+  }
+
+  // If our Callout Link (Link field) references an internal node,
+  // use the "External URL" field on that node, for the link,
+  // if it exists.
+  if ($element['#field_name'] == 'field_topic_callout_links') {
+    $variables['external_link_url'] = '';
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      // Run only if this is an internal link.
+      if ($element[$delta]['#url']->isExternal() == FALSE ) {
+        // Get the nid of the referenced internal node.
+        $ref_node = $element[$delta]['#url']->getRouteParameters();
+        // Load it up and get the field.
+        if ($node = Node::load($ref_node['node'])) {
+          // Run only on Action nodes.
+          if ($node->getType() == "action") {
+            $external_url = $node->get('field_external_url')->uri;
+            // Send this url to our template.
+            $variables['external_link_url'] = Url::fromUri($external_url);
+          }
+        }
       }
       $delta++;
     }
