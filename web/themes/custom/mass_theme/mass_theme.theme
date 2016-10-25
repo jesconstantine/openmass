@@ -10,6 +10,31 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function mass_theme_theme_suggestions_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']) && isset($variables['element']['#id'])) {
+    $original_theme_hook = $variables['theme_hook_original'];
+
+    $suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#id']);
+
+    if (isset($variables['element']['#type']) && isset($variables['element']['#name']) && $variables['element']['#type'] == 'textfield') {
+      $original_theme_hook = $variables['theme_hook_original'];
+
+      $suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#name']);
+    }
+
+    if (isset($variables['element']['#attributes']) && array_key_exists('data-theming-id', $variables['element']['#attributes'])) {
+      $suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#attributes']['data-theming-id']);
+    }
+  }
+
+  return $suggestions;
+}
 
 /**
  * Implements hook_preprocess_block().
@@ -71,9 +96,10 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
 
-  if ($variables['view_mode'] == 'teaser_simple') {
+  if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
     $field_external_link = $node->get('field_external_url');
 
+    // If we have an external URL, lets use that instead of internal paths.
     if ($field_external_link->count() > 0) {
       $link = $field_external_link->first()->getValue();
       $variables['link_url'] = $variables['link_url'] = Url::fromUri($link['uri']);
@@ -98,18 +124,6 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
 
   $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
   $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
-
-  // Load Instance of the secondary menu block with variables.
-  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
-  if (!empty($all_actions_view)) {
-    $all_actions_view_content = \Drupal::entityTypeManager()
-      ->getViewBuilder('block')
-      ->view($all_actions_view);
-    if ($all_actions_view_content) {
-      // Add block content to build array.
-      $variables['content']['all_actions_view'] = $all_actions_view_content;
-    }
-  }
 }
 
 /**
@@ -158,6 +172,31 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
+
+  // If our Callout Link (Link field) references an internal node,
+  // use the "External URL" field on that node, for the link,
+  // if it exists.
+  if ($element['#field_name'] == 'field_topic_callout_links') {
+    $variables['external_link_url'] = '';
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      // Run only if this is an internal link.
+      if ($element[$delta]['#url']->isExternal() == FALSE) {
+        // Get the nid of the referenced internal node.
+        $ref_node = $element[$delta]['#url']->getRouteParameters();
+        // Load it up and get the field.
+        if ($node = Node::load($ref_node['node'])) {
+          // Run only on Action nodes.
+          if ($node->getType() == "action") {
+            $external_url = $node->get('field_external_url')->uri;
+            // Send this url to our template.
+            $variables['external_link_url'] = Url::fromUri($external_url);
+          }
+        }
+      }
+      $delta++;
+    }
+  }
 }
 
 /**
@@ -167,6 +206,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
+  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
+
+  // Lets let our subhead paragraph template know about the region.
+  $variables['region'] = $parent_field;
+
+  if (trim($subhead) == 'Quick Actions') {
+    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
+  }
 
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
@@ -184,6 +231,19 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_link_formatter_link_separate().
+ *
+ * Separate title and link for rendering in template
+ * Default template: link-formatter-link-separate.html.twig.
+ */
+function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
+  $url = $variables['url_title'];
+  $variables['fieldLink']['text'] = $variables['title'];
+  $variables['fieldLink']['href'] = $url;
+  $variables['fieldLink']['type'] = substr($url, 0, 4) === "http" ? 'external' : 'internal';
 }
 
 /**
@@ -244,9 +304,6 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
     $blocks = \Drupal::entityTypeManager()
       ->getStorage('block')
       ->loadByProperties(array('theme' => $theme, 'region' => $region));
-
-    // Sort ‘em.
-    uasort($blocks, 'Drupal\block\Entity\Block::sort');
 
     // Capture viewable blocks and their settings to $build.
     $build = array();
@@ -348,8 +405,8 @@ function mass_theme_preprocess_file_link(&$variables) {
 
   // Get the human readable file size.
   $bytes = $file->getSize();
-  $readableSize = format_size($bytes);
-  $variables['download']['size'] = $readableSize;
+  $readable_size = format_size($bytes);
+  $variables['download']['size'] = $readable_size;
 
   // Use the description as the link text if available,
   // if not, use the file name.
@@ -374,5 +431,58 @@ function mass_theme_preprocess_file_link(&$variables) {
 
   // Set the icon name.
   $variables['download']['iconName'] = 'doc-' . $file_extension;
+}
 
+/**
+ * Implements hook_page_attachments().
+ *
+ * Attach module mass_search global js + css for google api js and
+ * custom search header form on every page.
+ */
+function mass_search_page_attachments(array &$attachments) {
+
+  // Attach the google js api external script reference, load in head.
+  $attachments['#attached']['library'][] = 'mass_search/google-jsapi';
+
+  // Attach the search form js + css globally.
+  $attachments['#attached']['library'][] = 'mass_search/google-cse';
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function mass_theme_preprocess_views_view_list(&$variables) {
+  $view = $variables['view'];
+  $rows = $variables['rows'];
+
+  if ($view->storage->id() == 'subtopics_all_actions') {
+    $nodes = array();
+
+    foreach ($rows as $row) {
+      $result = $row['content']['#row'];
+      $nid = $result->nid;
+
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+      $storage = \Drupal::entityTypeManager()->getStorage('node');
+      $node = $storage->load($nid);
+      $build = $view_builder->view($node, 'teaser_simple');
+      $nodes[] = $build;
+    }
+    $variables['nodes'] = $nodes;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-subtopics-all-actions-block-1') {
+    if (isset($form['actions']['submit']['#attributes'])) {
+      $attributes = $form['actions']['submit']['#attributes'];
+      $form['actions']['submit']['#attributes'] = $attributes + array('data-theming-id' => 'filter-submit');
+    }
+    else {
+      $form['actions']['submit']['#attributes'] = array('data-theming-id' => 'filter-submit');
+    }
+  }
 }

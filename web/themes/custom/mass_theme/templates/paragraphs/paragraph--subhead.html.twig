@@ -38,4 +38,8 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<h3><a name="{{title_clean}}" id="{{title_clean}}">{{content.field_title|field_value}}</a></h3>
+{% if region == 'field_action_details' %}
+  <h3><a name="{{ title_clean }}" id="{{ title_clean }}">{{ content.field_title|field_value }}</a></h3>
+{% else %}
+  <h2 class="ma__colored-heading {{ sidebar_header_class }}">{{ content.field_title|field_value }}</h2>
+{% endif %}

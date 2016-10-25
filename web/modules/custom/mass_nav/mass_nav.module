@@ -32,5 +32,20 @@ function mass_nav_menu_local_tasks_alter(&$data, $route_name) {
       // Remove the subtopic reorder view.
       unset($data['tabs'][0]['views_view:view.subtopics.subtopic_reorder']);
     }
+    // And it is not a topic.
+    if (!in_array($node->getType(), array('section_landing'))) {
+      // Remove the subtopic reorder view.
+      unset($data['tabs'][0]['views_view:view.ordered_topics.topic_reorder']);
+    }
+  }
+
+  // If we're on a reorder page (either section landings or topics), we need
+  // to unset the other tab.
+  if ($route_name == 'view.subtopics.subtopic_reorder') {
+    unset($data['tabs'][0]['views_view:view.ordered_topics.topic_reorder']);
+  }
+
+  if ($route_name == 'view.ordered_topics.topic_reorder') {
+    unset($data['tabs'][0]['views_view:view.ordered_topics.topic_reorder']);
   }
 }

@@ -1,0 +1,11 @@
+# @file
+# define custom search module routes
+
+# search results
+mass_search.default_controller_search:
+  path: '/search'
+  defaults:
+    _controller: '\Drupal\mass_search\Controller\DefaultController::search'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'

@@ -15,7 +15,8 @@
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
-  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+  {% include "@mass_theme/includes/header-alert.html.twig" %}
+  {% include "@mass_theme/includes/organisms-page-header.html.twig" %}
 {% endblock %}
 {% block pageContent %}
   {# @TODO include "organisms-action-details" #}
@@ -23,8 +24,8 @@
 {% endblock %}
 {% block sidebar %}
   {# include "organisms-related-actions" #}
-  {{ content.field_action_related }}
-  {{ content.field_action_contacts }}
+  {{ content.field_related_link }}
+  {{ content.field_action_sidebar|field_value }}
   {{ content.field_action_downloads}}
 {% endblock %}
 {% block postContent %}

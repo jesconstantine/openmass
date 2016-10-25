@@ -11,7 +11,7 @@ Feature: Topic Content type
     | field-featured-image      | input    | submit | false      |  false    |
     # Required. Hero image; use file browser modal widget. Due to widget, cannot check required status.
     | field-lede                | textarea |        | false      |  false    |
-    | field-node-icon           | select   |        | false      |  true     |
+    | field-icon-term           | select   |        | false      |  true     |
     # Required. Provide machine names for each of the SVG icons from the styleguide.
     | field-section             | select   |        | false      |  true     |
     # Required. Entity ref to section content. Use a select widget, single value.
