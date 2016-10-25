@@ -21,5 +21,10 @@
         {{ content.field_action_header|field_value }}
       {% endif %}
     </div>
+    {% if content.field_header_cta|render|trim is not empty %}
+      <div class="ma__action-header__widgets">
+        {{ content.field_header_cta|field_value }}
+      </div>
+    {% endif %}
   </div>
 </section>

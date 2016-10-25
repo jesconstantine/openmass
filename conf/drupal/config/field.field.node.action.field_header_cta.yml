@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_header_cta
     - node.type.action
     - paragraphs.paragraphs_type.callout_link
+    - paragraphs.paragraphs_type.icon
     - paragraphs.paragraphs_type.iframe
   module:
     - entity_reference_revisions
@@ -25,13 +26,8 @@ settings:
     target_bundles:
       callout_link: callout_link
       iframe: iframe
+      icon: icon
     target_bundles_drag_drop:
-      action_address:
-        weight: 17
-        enabled: false
-      action_address_info:
-        weight: 18
-        enabled: false
       action_area:
         weight: 19
         enabled: false
@@ -53,6 +49,12 @@ settings:
       file_download:
         weight: 25
         enabled: false
+      contact_group:
+        weight: 25
+        enabled: false
+      contact_info:
+        weight: 26
+        enabled: false
       full_bleed:
         weight: 26
         enabled: false
@@ -65,6 +67,9 @@ settings:
       rich_text:
         weight: 29
         enabled: false
+      icon:
+        enabled: true
+        weight: 29
       slideshow:
         weight: 30
         enabled: false
@@ -73,5 +78,8 @@ settings:
         enabled: false
       subhead:
         weight: 32
+        enabled: false
+      video:
+        weight: 36
         enabled: false
 field_type: entity_reference_revisions

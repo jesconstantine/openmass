@@ -105,7 +105,7 @@ content:
     weight: 8
     label: above
     settings:
-      view_mode: default
+      view_mode: extended_header
       link: ''
     third_party_settings: {  }
   field_lede:
