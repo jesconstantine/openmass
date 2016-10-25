@@ -130,3 +130,9 @@ Feature: Paragraph type definitions
       | field-address | Text area (multiple rows)     |
       | field-caption | Textfield   |
 
+  Scenario: Verify that the related_link paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "related_link" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+      | field-description | Textfield  |

@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_action_sidebar
     - node.type.action
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.related_link
     - paragraphs.paragraphs_type.subhead
   module:
     - entity_reference_revisions
@@ -25,6 +26,7 @@ settings:
     target_bundles:
       subhead: subhead
       contact_group: contact_group
+      related_link: related_link
     target_bundles_drag_drop:
       action_step:
         weight: 11
@@ -77,9 +79,15 @@ settings:
       location_information:
         weight: 32
         enabled: false
+      icon:
+        weight: 34
+        enabled: false
       slideshow:
         weight: 34
         enabled: false
+      related_link:
+        enabled: true
+        weight: 37
       video:
         weight: 38
         enabled: false

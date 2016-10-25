@@ -207,6 +207,19 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_link_formatter_link_separate().
+ *
+ * Separate title and link for rendering in template
+ * Default template: link-formatter-link-separate.html.twig.
+ */
+function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
+  $url = $variables['url_title'];
+  $variables['fieldLink']['text'] = $variables['title'];
+  $variables['fieldLink']['href'] = $url;
+  $variables['fieldLink']['type'] = substr($url, 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
  * Provide the URL of an image.
  *
  * @param object $node
