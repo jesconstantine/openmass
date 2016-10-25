@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\UrlHelper;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -216,7 +217,7 @@ function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
   $url = $variables['url_title'];
   $variables['fieldLink']['text'] = $variables['title'];
   $variables['fieldLink']['href'] = $url;
-  $variables['fieldLink']['type'] = substr($url, 0, 4) === "http" ? 'external' : 'internal';
+  $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
 }
 
 /**
