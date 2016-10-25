@@ -172,8 +172,7 @@ function mass_theme_preprocess_paragraph__subhead(&$variables) {
   // Lets let our subhead paragraph template know about the region.
   $variables['region'] = $parent_field;
 
-
-  if (trim($subhead) == 'Quick Actions'){
+  if (trim($subhead) == 'Quick Actions') {
     $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
   }
 
@@ -253,9 +252,6 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
     $blocks = \Drupal::entityTypeManager()
       ->getStorage('block')
       ->loadByProperties(array('theme' => $theme, 'region' => $region));
-
-    // Sort ‘em.
-    //uasort($blocks, 'Drupal\block\Entity\Block::sort');
 
     // Capture viewable blocks and their settings to $build.
     $build = array();
@@ -357,8 +353,8 @@ function mass_theme_preprocess_file_link(&$variables) {
 
   // Get the human readable file size.
   $bytes = $file->getSize();
-  $readableSize = format_size($bytes);
-  $variables['download']['size'] = $readableSize;
+  $readable_size = format_size($bytes);
+  $variables['download']['size'] = $readable_size;
 
   // Use the description as the link text if available,
   // if not, use the file name.
