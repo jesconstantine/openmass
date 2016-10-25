@@ -38,10 +38,13 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{# From 03-organisms/by-author/related-actions.twig #}
 
-{% for item in items %}
-  <li class="ma__quick-actions__item">
+<section class="ma__quick-actions">
+  <h2 class="ma__quick-actions__title">Quick Actions</h2>
+  <ul class="ma__quick-actions__items">
+  {# Render quick action items #}
+  {% for item in items %}
     {{ item.content }}
-  </li>
-{% endfor %}
+  {% endfor %}
+  </ul>
+</section>
