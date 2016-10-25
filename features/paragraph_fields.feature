@@ -57,6 +57,13 @@ Feature: Paragraph type definitions
       | field           | widget         |
       | field-downloads | Entity browser |
 
+  Scenario: Verify that the icon paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "icon" paragraph has the fields:
+      | field                | widget         |
+      | field-title          | Textfield      |
+      | field-para-icon-term | Select List    |
+
   Scenario: Verify that the full_bleed paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "full_bleed" paragraph has the fields:
@@ -96,16 +103,13 @@ Feature: Paragraph type definitions
       | field       | widget        |
       | field-title | Textfield     |
 
-  Scenario: Verify that the contact info paragraph type has the correct field configuration
+  Scenario: Verify that the video paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
-    Then the "contact" paragraph has the fields:
-      | field         | widget                        |
-      | field-address | Text area (multiple rows)     |
-      | field-email   | Email       |
-      | field-fax     | Telephone number         |
-      | field-name    | Textfield   |
-      | field-phone   | Telephone number       |
-      | field-link    | Link        |
+    Then the "video" paragraph has the fields:
+      | field                  | widget       |
+      | field-video-caption    | Textfield    |
+      | field-video-id         | Textfield    |
+      | field-video-source     | Select list  |
 
   Scenario: Verify that the contact group paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
@@ -126,4 +130,9 @@ Feature: Paragraph type definitions
       | field-address | Text area (multiple rows)     |
       | field-caption | Textfield   |
 
-
+  Scenario: Verify that the related_link paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "related_link" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+      | field-description | Textfield  |

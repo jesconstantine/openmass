@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
 id: node.action.field_action_details
@@ -37,6 +38,7 @@ settings:
       rich_text: rich_text
       stat: stat
       subhead: subhead
+      video: video
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -83,4 +85,7 @@ settings:
       location_information:
         weight: 27
         enabled: false
+      video:
+        enabled: true
+        weight: 16
 field_type: entity_reference_revisions

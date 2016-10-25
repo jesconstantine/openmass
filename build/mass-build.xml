@@ -56,6 +56,8 @@
       <!-- Which environment will we be pulling from? -->
       <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>
 
+      <input propertyname="deploy.db_sanitize" validargs="yes,no" defaultValue="yes">Sanitize your local database? </input>
+
       <if>
           <istrue value="${deploy.backup_local_database}" />
           <then>
@@ -78,17 +80,22 @@
       <!-- DB is installed! We can remove the file now. -->
       <delete file="${acquia.databases}/remote-db.sql" />
 
-      <echo>Preforming local database operations.</echo>
-      <!-- Scrub the DB of PII & reset the admin password. -->
-      <drush command="sql-sanitize" assume="yes">
-        <option name="sanitize-password">admin</option>
-        <option name="sanitize-email">user+%uid@localhost</option>
-      </drush>
+      <if>
+        <istrue value="${deploy.db_sanitize}" />
+        <then>
+          <echo>Preforming local database operations.</echo>
+          <!-- Scrub the DB of PII & reset the admin password. -->
+          <drush command="sql-sanitize" assume="yes">
+            <option name="sanitize-password">admin</option>
+            <option name="sanitize-email">user+%uid@localhost</option>
+          </drush>
 
-      <drush command="upwd">
-        <option name="password">admin</option>
-        <param>admin</param>
-      </drush>
+          <drush command="upwd">
+            <option name="password">admin</option>
+            <param>admin</param>
+          </drush>
+        </then>
+      </if>
 
       <echo>Reticulating splines.</echo>
       <drush command="cr" />
@@ -126,13 +133,13 @@
            destinationdir="${deploy.file_dest}"
            options="-rltDvPh" />
 
-      <echo>Running `drush updb` now.</echo>
-      <drush command="updb" assume="yes" />
-
       <drush command="cimy" assume="yes">
         <option name="source" value="/var/www/mass.local/conf/drupal/config" />
         <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
       </drush>
+
+      <echo>Running `drush updb` now.</echo>
+      <drush command="updb" assume="yes" />
 
   </target>
 
@@ -141,6 +148,7 @@
         <param>devel</param>
         <param>kint</param>
         <param>mass_types</param>
+        <param>mass_utility</param>
         <param>migrate_tools</param>
     </drush>
   </target>

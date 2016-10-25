@@ -55,6 +55,9 @@
 
 
 <link href="/themes/custom/mass_theme/css/pilot-generated.css" rel="stylesheet"/>
+<!-- google custom search styles, overrides pilot css to display search form in header -->
+<link rel="stylesheet" href="/modules/custom/mass_search/css/gcse-search.css"/>
+
 <!-- Begin .header -->
 <header class="ma__header">
     <a class="ma__header__skip-nav" href="#main-content">skip navigation</a>
@@ -69,24 +72,30 @@
                 </a>
             </div>
         </div>
-        <div class="ma__header__search js-header-search-menu">
+        <div class="ma__header__search js-header-search-menu" style="display:inline-block;">
             <section class="ma__header-search">
-                <form action="#" class="js-header-search-form">
-                    <label
-                            for="header-search"
-                            class="ma__header-search__label">Search Mass.gov</label>
-                    <input
-                            id="header-search"
-                            class="ma__header-search__input"
-                            placeholder="What can we help you find?"
-                            type="text"/>
-                    <button type="submit" class="ma__button-search">
-                        <span>Search</span>
-                        <svg role="img" class="ma__button-search__icon">
-                            <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#search"></use>
-                        </svg>
-                    </button>
-                </form>
+              {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
+              {# mobile-only faux search button that opens mobile menu on click #}
+              <button class="ma__button-search">
+                <span>Search</span>
+                <svg role="img" class="ma__button-search__icon">
+                  <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
+                </svg>
+              </button>
+              {# @TODO abstract this JS away #}
+              <script type="text/javascript">
+                (function(){
+                  // ****** Mobile Search button should open mobile menu ******
+                  var mobileSearchButton = document.querySelector(".ma__header__search .ma__header-search .ma__button-search");
+
+                  if(null !== mobileSearchButton){
+                    mobileSearchButton.addEventListener("click", function(event) {
+                      event.preventDefault();
+                      document.querySelector("body").classList.toggle("show-menu");
+                    });
+                  }
+                })();
+              </script>
             </section>
         </div>
     </div>
@@ -100,22 +109,7 @@
         <div class="ma__header__nav-container">
             <div class="ma__header__nav-search">
                 <section class="ma__header-search">
-                    <form action="#" class="js-header-search-form">
-                        <label
-                                for="header-search"
-                                class="ma__header-search__label">Search Mass.gov</label>
-                        <input
-                                id="header-search"
-                                class="ma__header-search__input"
-                                placeholder="What can we help you find?"
-                                type="text"/>
-                        <button type="submit" class="ma__button-search">
-                            <span>Search</span>
-                            <svg role="img" class="ma__button-search__icon">
-                                <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#search"></use>
-                            </svg>
-                        </button>
-                    </form>
+                  {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-search-form-mobile" } %}
                 </section>
             </div>
             <div class="ma__header__main-nav">
@@ -866,6 +860,14 @@
     </div>
 </div>
 <div class="post-content">
+    <section class="ma__image-credit">
+        <div class="ma__image-credit__container">
+            <span class="ma__image-credit__label">Image credits:&nbsp;</span>
+            <span>"State House" &mdash; Shutterstock;&nbsp;</span>
+            <span>"Chenoweth Labortory" &mdash; John Solem/University of Massachusetts Amherst;&nbsp;</span>
+            <span>"Berkshires Scenery" &mdash; Ogden Gigli/Courtesy of Massachusetts Office of Travel and Tourism;&nbsp;</span>
+        </div>
+    </section>
     <section class="ma__feedback-form" id="GUID8317417813234325">
         <style>
             #GUID8317417813234325 {
@@ -1112,7 +1114,8 @@
         }
     })();
 </script>
-
+<script src="//www.google.com/jsapi"></script>
+<script src="/modules/custom/mass_search/js/google-custom-search-forms.js"></script>
 <script src="/themes/custom/mass_theme/js/vendor-generated.js"></script>
 <script src="/themes/custom/mass_theme/js/index-generated.js"></script>
 </body>
