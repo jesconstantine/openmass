@@ -69,12 +69,16 @@
  */
 #}
 {%
-  set decorativeLink = {
-    'type': link_type,
-    'href': link_url,
-    'text': link_title
-  }
+set decorativeLink = {
+'type': link_type,
+'href': link_url,
+'text': link_title
+}
 %}
-<li class="ma__action-finder__item ma__action-finder__item--text">
-  {% include "@mass_theme/includes/atoms-decorative-link.html.twig" with decorativeLink %}
+<li class="ma__top-actions__item">
+  <div class="ma__top-actions__link">
+    <div class="ma__callout-link js-clickable ">
+      {% include "@mass_theme/includes/atoms-decorative-link.html.twig" with decorativeLink %}
+    </div>
+  </div>
 </li>
