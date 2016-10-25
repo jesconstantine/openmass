@@ -1,0 +1,96 @@
+uuid: 6c5604ed-f1e3-4d50-84d4-f6b68793fb67
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quick_actions
+    - paragraphs.paragraphs_type.quick_action
+    - paragraphs.paragraphs_type.quick_action_group
+  module:
+    - entity_reference_revisions
+id: paragraph.quick_action_group.field_quick_actions
+field_name: field_quick_actions
+entity_type: paragraph
+bundle: quick_action_group
+label: 'Quick Actions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      quick_action: quick_action
+    target_bundles_drag_drop:
+      action_address:
+        weight: 24
+        enabled: false
+      action_address_info:
+        weight: 25
+        enabled: false
+      action_area:
+        weight: 26
+        enabled: false
+      action_step:
+        weight: 27
+        enabled: false
+      action_step_numbered:
+        weight: 28
+        enabled: false
+      action_step_numbered_list:
+        weight: 29
+        enabled: false
+      callout_link:
+        weight: 30
+        enabled: false
+      contact:
+        weight: 31
+        enabled: false
+      contact_group:
+        weight: 32
+        enabled: false
+      contact_info:
+        weight: 33
+        enabled: false
+      file_download:
+        weight: 34
+        enabled: false
+      full_bleed:
+        weight: 35
+        enabled: false
+      icon:
+        weight: 36
+        enabled: false
+      iframe:
+        weight: 37
+        enabled: false
+      location_information:
+        weight: 38
+        enabled: false
+      quick_action:
+        enabled: true
+        weight: 39
+      quick_action_group:
+        weight: 40
+        enabled: false
+      related_link:
+        weight: 41
+        enabled: false
+      rich_text:
+        weight: 42
+        enabled: false
+      slideshow:
+        weight: 43
+        enabled: false
+      stat:
+        weight: 44
+        enabled: false
+      subhead:
+        weight: 45
+        enabled: false
+      video:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions
