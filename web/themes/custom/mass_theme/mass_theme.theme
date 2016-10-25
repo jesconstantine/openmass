@@ -181,7 +181,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     while (!empty($element[$delta])) {
       // Run only if this is an internal link.
-      if ($element[$delta]['#url']->isExternal() == FALSE ) {
+      if ($element[$delta]['#url']->isExternal() == FALSE) {
         // Get the nid of the referenced internal node.
         $ref_node = $element[$delta]['#url']->getRouteParameters();
         // Load it up and get the field.
