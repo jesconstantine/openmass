@@ -14,6 +14,9 @@
 
             <property name="imgs_source" value="${theme.artifact.root_dir}/images" />
             <property name="imgs_dest" value="${custom_theme}/images" />
+
+            <property name="fonts_source" value="${theme.artifact.root_dir}/fonts" />
+            <property name="fonts_dest" value="${custom_theme}/fonts" />
         </phingcall>
     </target>
 
@@ -34,6 +37,12 @@
             <property name="artifact_mode" value="${build.artifact_mode}" />
             <property name="resource_source" value="${imgs_source}" />
             <property name="resource_dest" value="${imgs_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${fonts_source}" />
+            <property name="resource_dest" value="${fonts_dest}" />
         </phing>
     </target>
 
