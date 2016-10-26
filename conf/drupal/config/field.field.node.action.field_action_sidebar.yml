@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_action_sidebar
     - node.type.action
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.quick_action
     - paragraphs.paragraphs_type.related_link
     - paragraphs.paragraphs_type.subhead
   module:
@@ -27,6 +28,7 @@ settings:
       subhead: subhead
       contact_group: contact_group
       related_link: related_link
+      quick_action: quick_action
     target_bundles_drag_drop:
       action_step:
         weight: 11
@@ -52,18 +54,18 @@ settings:
       rich_text:
         weight: 18
         enabled: false
+      stat:
+        weight: 19
+        enabled: false
       action_address:
         weight: 19
         enabled: false
-      stat:
-        weight: 19
+      action_address_info:
+        weight: 20
         enabled: false
       subhead:
         enabled: true
         weight: 20
-      action_address_info:
-        weight: 20
-        enabled: false
       action_area:
         weight: 21
         enabled: false
@@ -92,9 +94,6 @@ settings:
         weight: 38
         enabled: false
       quick_action:
+        enabled: true
         weight: 38
-        enabled: false
-      quick_action_group:
-        weight: 40
-        enabled: false
 field_type: entity_reference_revisions
