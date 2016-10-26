@@ -60,7 +60,7 @@
  *   node cannot hold the main body content.
  * - logged_in: Flag for authenticated user status. Will be true when the
  *   current user is a logged-in member.
- * - is_admin: Flag for admin user status. Will be true when the current user
+ * - is_admin: Flag for admin user status.d Will be true when the current user
  *   is an administrator.
  *
  * @see template_preprocess_node()
@@ -69,15 +69,16 @@
  */
 #}
 {%
-  set decorativeLink = {
-    'type': 'internal',
-    'href': url,
-    'text': label
-  }
+set decorativeLink = {
+'type': link_type,
+'href': link_url,
+'text': link_title
+}
 %}
-<div class="ma__related-actions__link">
-  {% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
-</div>
-<div class="ma__related-actions__description">
-  {{ content.field_lede }}
-</div>
+<li class="ma__top-actions__item">
+  <div class="ma__top-actions__link">
+    <div class="ma__callout-link js-clickable ">
+      {% include "@mass_theme/includes/atoms-decorative-link.html.twig" with decorativeLink %}
+    </div>
+  </div>
+</li>

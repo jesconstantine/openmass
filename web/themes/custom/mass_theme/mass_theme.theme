@@ -11,6 +11,8 @@ use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Component\Utility\UrlHelper;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -95,9 +97,10 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
 
-  if ($variables['view_mode'] == 'teaser_simple') {
+  if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
     $field_external_link = $node->get('field_external_url');
 
+    // If we have an external URL, lets use that instead of internal paths.
     if ($field_external_link->count() > 0) {
       $link = $field_external_link->first()->getValue();
       $variables['link_url'] = $variables['link_url'] = Url::fromUri($link['uri']);
@@ -170,6 +173,31 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
+
+  // If our Callout Link (Link field) references an internal node,
+  // use the "External URL" field on that node, for the link,
+  // if it exists.
+  if ($element['#field_name'] == 'field_topic_callout_links') {
+    $variables['external_link_url'] = '';
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      // Run only if this is an internal link.
+      if ($element[$delta]['#url']->isExternal() == FALSE) {
+        // Get the nid of the referenced internal node.
+        $ref_node = $element[$delta]['#url']->getRouteParameters();
+        // Load it up and get the field.
+        if ($node = Node::load($ref_node['node'])) {
+          // Run only on Action nodes.
+          if ($node->getType() == "action") {
+            $external_url = $node->get('field_external_url')->uri;
+            // Send this url to our template.
+            $variables['external_link_url'] = Url::fromUri($external_url);
+          }
+        }
+      }
+      $delta++;
+    }
+  }
 }
 
 /**
@@ -179,6 +207,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
+  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
+
+  // Lets let our subhead paragraph template know about the region.
+  $variables['region'] = $parent_field;
+
+  if (trim($subhead) == 'Quick Actions') {
+    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
+  }
 
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
@@ -196,6 +232,19 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
   $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_link_formatter_link_separate().
+ *
+ * Separate title and link for rendering in template
+ * Default template: link-formatter-link-separate.html.twig.
+ */
+function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
+  $url = $variables['url_title'];
+  $variables['fieldLink']['text'] = $variables['title'];
+  $variables['fieldLink']['href'] = $url;
+  $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
 }
 
 /**
@@ -256,9 +305,6 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
     $blocks = \Drupal::entityTypeManager()
       ->getStorage('block')
       ->loadByProperties(array('theme' => $theme, 'region' => $region));
-
-    // Sort ‘em.
-    uasort($blocks, 'Drupal\block\Entity\Block::sort');
 
     // Capture viewable blocks and their settings to $build.
     $build = array();
@@ -360,8 +406,8 @@ function mass_theme_preprocess_file_link(&$variables) {
 
   // Get the human readable file size.
   $bytes = $file->getSize();
-  $readableSize = format_size($bytes);
-  $variables['download']['size'] = $readableSize;
+  $readable_size = format_size($bytes);
+  $variables['download']['size'] = $readable_size;
 
   // Use the description as the link text if available,
   // if not, use the file name.
