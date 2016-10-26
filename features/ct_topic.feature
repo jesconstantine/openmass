@@ -19,7 +19,10 @@ Feature: Topic Content type
     # Optional. Allows 4 items. Autocomplete entity ref to actions. Autocomplete should be limited to actions that reference subtopics that reference this topic.
 
   Scenario: Verify that pathauto patterns are applied to topic nodes.
-    Given I am viewing a "topic" content:
+    Given "icons" terms:
+      | name     | field_sprite_name |
+      | building | building          |
+    And I am viewing a "topic" content:
       | title           | Run the Test Suite |
       | field_icon_term | building           |
     Then I am at "topics/run-test-suite"
@@ -31,6 +34,9 @@ Feature: Topic Content type
 
   Scenario: Verify custom ordered subtopics.
     Given I am logged in as a user with the "administrator" role
+    And "icons" terms:
+      | name     | field_sprite_name |
+      | building | building          |
     And I am viewing a "topic" content:
       | title           | Test topic |
       | field_icon_term | building   |
