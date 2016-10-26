@@ -4,12 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
-    - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
-    - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
@@ -30,14 +29,6 @@ targetEntityType: node
 bundle: action
 mode: full
 content:
-  field_action_contacts:
-    type: entity_reference_revisions_entity_view
-    weight: 6
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 3
@@ -60,13 +51,13 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  field_action_related:
-    type: entity_reference_entity_view
+  field_action_sidebar:
+    type: entity_reference_revisions_entity_view
     weight: 4
-    label: above
+    label: hidden
     settings:
-      view_mode: related_actions
-      link: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
   field_alert_dropdown:
     type: list_default

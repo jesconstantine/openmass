@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
-    - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
@@ -29,14 +28,6 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
-  field_action_contacts:
-    type: entity_reference_revisions_entity_view
-    weight: 6
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 5
@@ -66,13 +57,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_action_related:
-    weight: 3
+  field_action_sidebar:
+    type: entity_reference_revisions_entity_view
+    weight: 6
     label: above
     settings:
-      link: true
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    type: entity_reference_label
   field_alert_dropdown:
     weight: 7
     label: hidden

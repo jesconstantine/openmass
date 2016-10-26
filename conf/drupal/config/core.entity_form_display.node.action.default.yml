@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.action.field_action_contacts
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
-    - field.field.node.action.field_action_related
+    - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
@@ -43,9 +42,8 @@ third_party_settings:
         classes: ''
     group_sidebar:
       children:
-        - field_action_related
+        - field_action_sidebar
         - field_action_downloads
-        - field_contact_group
       parent_name: group_form
       weight: 4
       label: 'Sidebar Content'
@@ -62,8 +60,8 @@ third_party_settings:
         - group_extended_header
         - group_details
         - group_sidebar
-        - group_external
         - group_alert
+        - group_external
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -147,7 +145,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_action_downloads:
-    weight: 3
+    weight: 28
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: '1'
@@ -176,14 +174,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_action_related:
-    weight: 2
+  field_action_sidebar:
+    type: entity_reference_paragraphs
+    weight: 26
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
     third_party_settings: {  }
-    type: entity_reference_autocomplete
   field_alert_dropdown:
     weight: 26
     settings: {  }
@@ -205,7 +205,7 @@ content:
     type: string_textarea
   field_contact_group:
     type: entity_reference_paragraphs
-    weight: 5
+    weight: 4
     settings:
       title: 'Contact Group'
       title_plural: 'Contact Groups'
@@ -214,7 +214,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_external_url:
-    weight: 2
+    weight: 30
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -246,7 +246,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_action_contacts: true
   field_hero: true
   path: true
   promote: true

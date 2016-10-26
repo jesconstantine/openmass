@@ -1,4 +1,4 @@
-uuid: ff264b79-365d-44d6-b11f-baad6ba0c61d
+uuid: 6c590ab0-d0a0-4968-aab7-f76a8702bcd6
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - paragraphs
-id: node.field_action_contacts
-field_name: field_action_contacts
+id: node.field_action_sidebar
+field_name: field_action_sidebar
 entity_type: node
 type: entity_reference_revisions
 settings:

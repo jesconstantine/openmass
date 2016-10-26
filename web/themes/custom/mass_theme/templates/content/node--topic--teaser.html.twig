@@ -8,13 +8,15 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
+
 <section class="ma__section-links js-section-accordion">
   <div class="ma__section-links__content">
     <div class="ma__section-links__icon">
       <figure class="ma__category-icon ma__category-icon--small">
-        <svg focusable="false" role="presentation" class="svg-id-card">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ active_theme_path() ~ '/images/svg-sprite.svg#' ~ node.field_node_icon.value }}"></use>
-        </svg>
+        {%
+          include "@mass_theme/includes/atoms-svg.html.twig" with
+          {'iconName':node.field_icon_term.entity.field_sprite_name.value}
+        %}
       </figure>
     </div>
     <h3 class="ma__section-links__title js-section-accordion-link">
@@ -32,9 +34,7 @@
           </svg>
         </a>
       </h4>
-      {% if content.field_topic_callout_links|render|trim is not empty %}
-        {{ content.field_topic_callout_links }}
-      {% endif %}
+      {{ drupal_view('subtopics', 'section_links', node.id) }}
     </div>
   </div>
 </section>
