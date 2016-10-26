@@ -13,9 +13,7 @@
   <div class="ma__page-banner__container">
     <div class="ma__page-banner__content">
       <div class="ma__page-banner__icon">
-        <svg focusable="false" role="presentation" class="svg-{{ bannerData.icon }}">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() ~ '/images/svg-sprite.svg#' ~ bannerData.icon  }}"></use>
-        </svg>
+        {% include active_theme_path() ~ "/images/svg-sprite/" ~ bannerData.icon ~ ".svg" %}
       </div>
       <h1 class="ma__page-banner__title">{{ label|field_value }}</h1>
     </div>
