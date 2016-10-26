@@ -3,4 +3,4 @@ langcode: en
 status: true
 dependencies: {  }
 id: quick_action
-label: 'Quick Action'
+label: 'Quick Actions - List'
