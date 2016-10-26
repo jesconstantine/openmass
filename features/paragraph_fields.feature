@@ -77,6 +77,12 @@ Feature: Paragraph type definitions
       | field-url    | Link         |
       | field-height | Number field |
 
+  Scenario: Verify that the quick_action paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "quick_action" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+
   Scenario: Verify that the rich_text paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "rich_text" paragraph has the fields:
