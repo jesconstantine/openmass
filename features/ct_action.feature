@@ -10,7 +10,6 @@ Feature: Action Content type
     | field                        | tag        | type                       | multivalue |
     | field-action-parent          | input      | text                       | true       |
     | field-lede                   | textarea   |                            | false      |
-    | field-action-related         | input      | text                       | true       |
     | field-external-url           | input      | url                        | false      |
     | field-alert-dropdown         | select     |                            | false      |
     | field-alert-text             | textarea   |                            | false      |
@@ -25,6 +24,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | stat                       | false      |
     | field-action-details         | paragraphs | subhead                    | false      |
     | field-action-sidebar         | paragraphs | contact-group              | false      |
+    | field-action-sidebar         | paragraphs | quick-action               | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"

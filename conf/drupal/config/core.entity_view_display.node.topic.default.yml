@@ -21,11 +21,12 @@ bundle: topic
 mode: default
 content:
   field_common_content:
-    type: entity_reference_label
-    weight: 5
+    type: entity_reference_entity_view
+    weight: 3
     label: hidden
     settings:
-      link: true
+      view_mode: teaser
+      link: false
     third_party_settings: {  }
   field_featured_image:
     type: image
@@ -69,7 +70,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   workbench_moderation_control:
-    weight: 0
+    weight: -20
     settings: {  }
     third_party_settings: {  }
 hidden:
