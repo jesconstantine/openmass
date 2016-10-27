@@ -41,21 +41,8 @@
 <section class="ma__top-actions">
 <h2 class="ma__top-actions__title">Common Actions</h2>
   <ul class="ma__top-actions__items">
-  {% for item in items %}
-    <li class="ma__top-actions__item">
-      <div class="ma__top-actions__link">
-        <div class="ma__callout-link js-clickable ">
-          <span class="ma__decorative-link">
-            <a href="{{ item.content['#url'] }}" class="js-clickable-link">
-              {{ item.content['#title'] }}
-              <svg focusable="false" role="presentation" class="svg-arrow">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ active_theme_path() }}/images/svg-sprite.svg#arrow"></use>
-              </svg>
-            </a>
-          </span>
-        </div>
-      </div>
-    </li>
-  {% endfor %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
   </ul>
 </section>

@@ -6,6 +6,9 @@ dependencies:
     - field.storage.node.field_action_sidebar
     - node.type.action
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.quick_action
+    - paragraphs.paragraphs_type.related_link
+    - paragraphs.paragraphs_type.subhead
   module:
     - entity_reference_revisions
 id: node.action.field_action_sidebar
@@ -22,7 +25,10 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      subhead: subhead
       contact_group: contact_group
+      related_link: related_link
+      quick_action: quick_action
     target_bundles_drag_drop:
       action_step:
         weight: 11
@@ -54,12 +60,12 @@ settings:
       action_address:
         weight: 19
         enabled: false
-      subhead:
-        weight: 20
-        enabled: false
       action_address_info:
         weight: 20
         enabled: false
+      subhead:
+        enabled: true
+        weight: 20
       action_area:
         weight: 21
         enabled: false
@@ -75,7 +81,19 @@ settings:
       location_information:
         weight: 32
         enabled: false
+      icon:
+        weight: 34
+        enabled: false
       slideshow:
         weight: 34
         enabled: false
+      related_link:
+        enabled: true
+        weight: 37
+      video:
+        weight: 38
+        enabled: false
+      quick_action:
+        enabled: true
+        weight: 38
 field_type: entity_reference_revisions

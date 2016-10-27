@@ -38,15 +38,10 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{# From 03-organisms/by-author/related-actions.twig #}
 
-<section class="ma__related-actions">
-  <h2 class="ma__related-actions__title">Related</h2>
-  <ul class="ma__related-actions__items">
-    {% for item in items %}
-      <li class="ma__related-actions__item">
-        {{ item.content }}
-      </li>
-    {% endfor %}
-  </ul>
-</section>
+{# Render quick action link items #}
+{# Note: This link field uses the separate link text and url display format,
+ which is preprocessed and themed to include decorative link atom #}
+{% for item in items %}
+  <li class="ma__quick-actions__item">{{ item.content }}</li>
+{% endfor %}
