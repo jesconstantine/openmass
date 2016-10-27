@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
-    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -84,14 +83,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_contact_group:
-    type: entity_reference_revisions_entity_view
-    weight: 9
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   field_header_cta:
     type: entity_reference_revisions_entity_view
     weight: 8
