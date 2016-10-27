@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
-    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -41,7 +40,6 @@ hidden:
   field_alert_dropdown: true
   field_alert_link: true
   field_alert_text: true
-  field_contact_group: true
   field_external_url: true
   field_header_cta: true
   field_lede: true

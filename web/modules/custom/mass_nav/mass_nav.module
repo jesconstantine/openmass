@@ -22,6 +22,7 @@ function mass_nav_menu_local_tasks_alter(&$data, $route_name) {
     'entity.node.devel_render',
     'entity.node.devel_tokens',
     'entity.node.version_history',
+    'entity.node.latest_version',
   );
 
   // If we are on a local node task.
