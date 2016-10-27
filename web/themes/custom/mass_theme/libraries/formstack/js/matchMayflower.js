@@ -36,6 +36,10 @@ $(function(){
 
       });
 
+      $(document).on('change', 'select.js-dropdown-select', function(e) {
+        $('.ma__select-box__link .js-dropdown-link').text(e.target.value);
+      });
+
 
       // Map radio form elements to what Mayflower is expecting
       $('.fsOptionLabel > input[type="radio"]').each(function(el, i) {
