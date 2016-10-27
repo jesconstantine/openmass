@@ -2,7 +2,6 @@ global-styling:
   version: 1.x
   css:
     theme:
-      https://cloud.typography.com/7638692/6594352/css/fonts.css: { type: external }
       css/index-generated.css: {}
       css/base-theme-generated.css: {}
       css/pilot-generated.css: {}
@@ -10,9 +9,9 @@ global-styling:
   js:
     js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
-    # jquery for theme comes with vendor-generated.js
-    # dependencies:
-    # - core/jquery
+    libraries/formstack/js/matchMayflower.js: {}
+  dependencies:
+    - core/jquery
 js-header:
   header: true
   js:
