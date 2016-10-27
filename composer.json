@@ -102,6 +102,7 @@
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/imagick": "8.*",
         "drupal/metatag": "^8.1",
         "drupal/migrate_plus": "~8.2",
         "drupal/migrate_source_csv": "~8.1",

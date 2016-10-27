@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24c3911cda993e702480dce98e71f769",
-    "content-hash": "2fcb9904b0aafd9442dfa9a9cc194fbe",
+    "content-hash": "46e32891450157954ae78cd795777cc7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1577,6 +1576,31 @@
             "description": "Provides a default Entity Browser for files, using Masonry and Imagesloaded.",
             "homepage": "https://www.drupal.org/project/file_browser",
             "time": "2016-08-29 22:54:08"
+        },
+        {
+            "name": "drupal/imagick",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/imagick",
+                "reference": "90ecd63deba083a3b5278352f3ed6b75fc988d11"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Imagick toolkit for image manipulation within Drupal",
+            "homepage": "https://www.drupal.org/project/imagick",
+            "time": "2015-10-22 17:32:56"
         },
         {
             "name": "drupal/metatag",
