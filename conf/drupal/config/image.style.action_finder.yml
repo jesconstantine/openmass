@@ -1,7 +1,9 @@
 uuid: 0346568e-3297-4f69-98c6-4d6042f2737b
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - imagick
 name: action_finder
 label: action-finder
 effects:
@@ -12,3 +14,12 @@ effects:
     data:
       width: 1600
       height: 600
+  9dbb4b46-90f9-4dd2-b350-c79b06ffa8f4:
+    uuid: 9dbb4b46-90f9-4dd2-b350-c79b06ffa8f4
+    id: image_blur
+    weight: 2
+    data:
+      type: '2'
+      radius: '5'
+      sigma: '5'
+      angle: '0'

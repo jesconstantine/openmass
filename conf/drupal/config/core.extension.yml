@@ -31,6 +31,7 @@ module:
   help: 0
   history: 0
   image: 0
+  imagick: 0
   inline_form_errors: 0
   kint: 0
   link: 0
@@ -38,8 +39,8 @@ module:
   mass_entityreference: 0
   mass_formatters: 0
   mass_nav: 0
-  mass_styles: 0
   mass_search: 0
+  mass_styles: 0
   mass_types: 0
   menu_ui: 0
   metatag: 0
