@@ -42,6 +42,7 @@ hidden:
   field_alert_dropdown: true
   field_alert_link: true
   field_alert_text: true
+  field_contact_group: true
   field_external_url: true
   field_header_cta: true
   field_lede: true
