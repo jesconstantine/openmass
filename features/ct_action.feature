@@ -14,7 +14,6 @@ Feature: Action Content type
     | field-alert-dropdown         | select     |                            | false      |
     | field-alert-text             | textarea   |                            | false      |
     | field-alert-link             | input      | text                       | false      |
-    | field-action-downloads       | input      | submit                     | false      |
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
     | field-action-details         | paragraphs | callout-link               | false      |

@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_sidebar
@@ -17,7 +16,6 @@ dependencies:
     - node.type.action
   module:
     - entity_reference_revisions
-    - file
     - options
     - user
 _core:
@@ -30,20 +28,6 @@ content:
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 5
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-  field_action_downloads:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
-  field_action_header:
-    type: entity_reference_revisions_entity_view
-    weight: 7
     label: above
     settings:
       view_mode: default
