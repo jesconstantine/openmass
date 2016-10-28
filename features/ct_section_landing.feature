@@ -14,28 +14,28 @@ Feature: Section Landing Content type
 
   Scenario: Verify that pathauto patterns are applied to section landing nodes.
     Given "icons" terms:
-      | name     | field_sprite_name |
-      | building | building          |
+      | name                 | field_sprite_name |
+      | Behat Test: Building | building          |
     And I am viewing a "section_landing" content:
       | title           | Behat Test: Section Landing |
-      | field_icon_term | building                    |
+      | field_icon_term | Behat Test: Building        |
     Then I am at "behat-test-section-landing"
 
   Scenario: The page banner has correct markup.
     Given "icons" terms:
-      | name     | field_sprite_name |
-      | building | building          |
+      | name                 | field_sprite_name |
+      | Behat Test: Building | building          |
     And I am viewing a "section_landing" content:
       | title           | Behat Test: Section Landing |
-      | field_icon_term | building                    |
+      | field_icon_term | Behat Test: Building        |
     Then I should see the correct markup for the page banner
 
   Scenario: Verify custom ordered topics.
     Given I am logged in as a user with the "administrator" role
     And "icons" terms:
-      | name     | field_sprite_name |
-      | building | building          |
+      | name                 | field_sprite_name |
+      | Behat Test: Building | building          |
     And I am viewing a "section_landing" content:
       | title           | Behat Test: Section Landing |
-      | field_icon_term | building                    |
+      | field_icon_term | Behat Test: Building        |
     Then I should see the link "Reorder Topics"

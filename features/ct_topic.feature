@@ -20,11 +20,11 @@ Feature: Topic Content type
 
   Scenario: Verify that pathauto patterns are applied to topic nodes.
     Given "icons" terms:
-      | name     | field_sprite_name |
-      | building | building          |
+      | name                 | field_sprite_name |
+      | Behat Test: Building | building          |
     And I am viewing a "topic" content:
-      | title           | Run the Test Suite |
-      | field_icon_term | building           |
+      | title           | Run the Test Suite   |
+      | field_icon_term | Behat Test: Building |
     Then I am at "topics/run-test-suite"
 
   Scenario: Verify top actions markup is correct
@@ -35,10 +35,10 @@ Feature: Topic Content type
   Scenario: Verify custom ordered subtopics.
     Given I am logged in as a user with the "administrator" role
     And "icons" terms:
-      | name     | field_sprite_name |
-      | building | building          |
+      | name                 | field_sprite_name |
+      | Behat Test: Building | building          |
     And I am viewing a "topic" content:
-      | title           | Test topic |
-      | field_icon_term | building   |
+      | title           | Test topic           |
+      | field_icon_term | Behat Test: Building |
     Then I should see the link "Reorder Subtopics"
 
