@@ -3,12 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
-    - field.field.node.action.field_action_related
     - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
@@ -45,7 +43,6 @@ third_party_settings:
     group_sidebar:
       children:
         - field_action_sidebar
-        - field_action_related
         - field_action_downloads
       parent_name: group_form
       weight: 4
@@ -119,7 +116,6 @@ third_party_settings:
     group_extended_header:
       children:
         - field_action_header
-        - field_action_banner
         - field_header_cta
       parent_name: group_form
       weight: 2
@@ -138,16 +134,6 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
-  field_action_banner:
-    type: entity_reference_paragraphs
-    weight: 4
-    settings:
-      title: Molecule
-      title_plural: Molecules
-      edit_mode: closed
-      add_mode: button
-      form_display_mode: default
-    third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
     weight: 29
@@ -188,21 +174,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_action_related:
-    weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
   field_action_sidebar:
     type: entity_reference_paragraphs
     weight: 26
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
@@ -244,7 +222,7 @@ content:
     type: link_default
   field_header_cta:
     type: entity_reference_paragraphs
-    weight: 5
+    weight: 4
     settings:
       title: Molecule
       title_plural: Molecules

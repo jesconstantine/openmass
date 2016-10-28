@@ -102,6 +102,7 @@
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/google_map_field": "8.*",
         "drupal/metatag": "^8.1",
         "drupal/migrate_plus": "~8.2",
         "drupal/migrate_source_csv": "~8.1",
@@ -113,7 +114,7 @@
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
-        "palantirnet/mayflower-artifacts": "~0.4",
+        "palantirnet/mayflower-artifacts": "0.5.",
         "palantirnet/the-build": "dev-feature/code-quality-tools",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
@@ -151,6 +152,9 @@
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "patches": {
+            "drupal/core": {
+                "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch"
+            },
             "drupal/metatag": {
                 "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
             },
@@ -159,6 +163,9 @@
             },
             "drupal/draggableviews": {
                 "Invalidate cache when draggableviews order is changed (https://www.drupal.org/node/2425249#comment-10716828)": "https://www.drupal.org/files/issues/draggableviews-clearcache-2425249-11-8.x-1.x.diff"
+            },
+            "drupal/google_map_field": {
+              "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
             }
         }
     }

@@ -89,6 +89,12 @@ Feature: Paragraph type definitions
       | field       | widget        |
       | field-title | Textfield     |
 
+  Scenario: Verify that the map paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "map" paragraph has the fields:
+      | field       | widget                   |
+      | field-map   | Google Map Field default |
+
   Scenario: Verify that the video paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "video" paragraph has the fields:
@@ -117,3 +123,9 @@ Feature: Paragraph type definitions
       | field-address | Text area (multiple rows)     |
       | field-caption | Textfield   |
 
+  Scenario: Verify that the related_link paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "related_link" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+      | field-description | Textfield  |

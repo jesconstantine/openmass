@@ -13,7 +13,6 @@ dependencies:
     - paragraphs.paragraphs_type.contact_info
   module:
     - link
-    - options
     - telephone
 id: paragraph.contact_info.default
 targetEntityType: paragraph
@@ -22,33 +21,33 @@ mode: default
 content:
   field_address:
     weight: 5
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_caption:
     weight: 6
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_email:
     weight: 3
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_label:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_link:
     weight: 4
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -59,17 +58,12 @@ content:
     type: link
   field_phone:
     weight: 2
-    label: above
+    label: hidden
     settings:
       title: ''
     third_party_settings: {  }
     type: telephone_link
-  field_type:
-    weight: 0
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
 hidden:
   created: true
+  field_type: true
   uid: true

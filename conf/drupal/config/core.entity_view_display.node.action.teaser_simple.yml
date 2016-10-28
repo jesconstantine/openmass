@@ -27,14 +27,6 @@ targetEntityType: node
 bundle: action
 mode: teaser_simple
 content:
-  field_action_related:
-    type: entity_reference_entity_view
-    weight: 0
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
   links:
     weight: 0
     settings: {  }

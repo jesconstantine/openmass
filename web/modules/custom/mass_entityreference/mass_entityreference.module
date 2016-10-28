@@ -75,7 +75,7 @@ function _form_validation_action_subtopic_parent($form, $form_state) {
       $subtopic = $node_storage->load($nid);
       $num_parents = count($form_state->getValues()['field_action_parent']) - 2;
       $error_message = 'The Subtopic <a href=' . $subtopic->url('edit-form') . ' target="_blank">' . $subtopic->getTitle() . '</a> is referencing this action. Please remove this node from the subtopic before removing it from Parent.';
-      $form_state->setErrorByName('field_action_parent][' . $num_parents, t('%error', array('error' => $error_message)));
+      $form_state->setErrorByName('field_action_parent][' . $num_parents, $error_message);
     }
   }
 

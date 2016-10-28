@@ -40,7 +40,6 @@ hidden:
   field_action_downloads: true
   field_action_header: true
   field_action_parent: true
-  field_action_related: true
   field_action_sidebar: true
   field_alert_dropdown: true
   field_alert_link: true

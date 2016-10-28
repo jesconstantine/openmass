@@ -5,10 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.action.field_action_banner
-    - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
-    - field.field.node.action.field_action_header
-    - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_related
     - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
@@ -60,14 +56,6 @@ content:
     settings:
       view_mode: extended_header
       link: ''
-    third_party_settings: {  }
-  field_action_related:
-    type: entity_reference_entity_view
-    weight: 4
-    label: above
-    settings:
-      view_mode: related_actions
-      link: false
     third_party_settings: {  }
   field_action_sidebar:
     type: entity_reference_revisions_entity_view
