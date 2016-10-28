@@ -1,19 +1,19 @@
-uuid: 3d0c8cf6-ce8a-487f-b27b-9510eea79acd
+uuid: e2f7ee1e-af2a-416b-a818-1a3798061d3b
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_action_header
+    - field.storage.node.field_action_banner
     - node.type.action
-    - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.full_bleed
   module:
     - entity_reference_revisions
-id: node.action.field_action_header
-field_name: field_action_header
+id: node.action.field_action_banner
+field_name: field_action_banner
 entity_type: node
 bundle: action
-label: 'Detailed Header Information'
-description: 'Use this area to add contact information, slideshows, and maps to the extended header.'
+label: Banner
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -22,60 +22,60 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      contact_group: contact_group
+      full_bleed: full_bleed
     target_bundles_drag_drop:
       action_area:
-        weight: 18
-        enabled: false
-      action_step:
         weight: 19
         enabled: false
-      action_step_numbered:
+      action_step:
         weight: 20
         enabled: false
-      action_step_numbered_list:
+      action_step_numbered:
         weight: 21
         enabled: false
-      callout_link:
+      action_step_numbered_list:
         weight: 22
         enabled: false
-      contact:
+      callout_link:
         weight: 23
         enabled: false
-      file_download:
+      contact:
         weight: 24
         enabled: false
-      full_bleed:
+      contact_group:
         weight: 25
         enabled: false
-      iframe:
+      contact_info:
         weight: 26
         enabled: false
-      location_information:
+      file_download:
         weight: 27
         enabled: false
-      rich_text:
-        weight: 28
-        enabled: false
-      contact_group:
+      full_bleed:
         enabled: true
-        weight: 29
-      stat:
+        weight: 28
+      icon:
         weight: 29
         enabled: false
-      subhead:
+      iframe:
         weight: 30
+        enabled: false
+      location_information:
+        weight: 31
+        enabled: false
+      rich_text:
+        weight: 32
         enabled: false
       slideshow:
-        weight: 30
-        enabled: false
-      contact_info:
-        weight: 30
-        enabled: false
-      icon:
         weight: 33
         enabled: false
+      stat:
+        weight: 34
+        enabled: false
+      subhead:
+        weight: 35
+        enabled: false
       video:
-        weight: -37
+        weight: 36
         enabled: false
 field_type: entity_reference_revisions

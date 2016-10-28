@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
@@ -29,6 +30,14 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
+  field_action_banner:
+    type: entity_reference_revisions_entity_view
+    weight: 10
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 5

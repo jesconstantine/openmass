@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_header_cta
     - node.type.action
-    - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.icon
     - paragraphs.paragraphs_type.iframe
   module:
@@ -24,7 +23,6 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      callout_link: callout_link
       iframe: iframe
       icon: icon
     target_bundles_drag_drop:
@@ -41,8 +39,8 @@ settings:
         weight: 22
         enabled: false
       callout_link:
-        enabled: true
         weight: 23
+        enabled: false
       contact:
         weight: 24
         enabled: false
