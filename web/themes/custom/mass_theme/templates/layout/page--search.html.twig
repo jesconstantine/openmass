@@ -64,8 +64,8 @@
     </div>
     <div class="ma__header__search js-header-search-menu">
       <section class="ma__header-search">
-		  {# no header search form on search results page
-		    {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %} #}
+		    {# no header search form on search results page #}
+				{# {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %} #}
       </section>
     </div>
   </div>
@@ -75,7 +75,7 @@
 <main role="main">{# Keeping this for accessibility purposes #}
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-  {# Content region populated by mass_search custom module tempalte/mass-search #}
+  {# Content region populated by mass_search custom module template/mass-search #}
   {{ page.content }}
 
 </main>

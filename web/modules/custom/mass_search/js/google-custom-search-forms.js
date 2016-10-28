@@ -116,14 +116,6 @@
     mobileOptions.setAutoComplete(true);
 
     /**
-     * @TODO:
-     * Figure out how to get two autocompletes to load on 1 page.
-     *
-     * Currently, when a query is entered in mobile search, the
-     * autocomplete dropdown appears under the other header nav form
-     */
-
-    /**
      * Displays the search form. Calling this method is the final step
      * in activating a Custom Search Element object, and it produces the
      * UI and search containers.
