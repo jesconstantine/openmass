@@ -199,6 +199,42 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Sets up banner elements for full_bleed paragraphs.
+ */
+function mass_theme_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->getType() == 'full_bleed') {
+    $field_full_bleed_ref = $paragraph->get('field_full_bleed_ref');
+    if ($field_full_bleed_ref) {
+      $items = $field_full_bleed_ref->referencedEntities();
+      if (!empty($items)) {
+        foreach($items as $item) {
+          if ($item->getType() == 'slideshow') {
+            $image_field = $item->get('field_slideshow');
+            $image_count = $image_field->count();
+            $images = array();
+            foreach($image_field as $id=>$image) {
+              $image_small = mass_theme_get_field_image_url($item, 'action_banner_small', 'field_slideshow', $id);
+              $image_large = mass_theme_get_field_image_url($item, 'action_banner_large', 'field_slideshow', $id);
+              $images[$id] = array('small' => $image_small, 'large' => $image_large);
+            }
+
+            $variables['images'] = $images;
+            $variables['image_count'] = $image_count;
+          }
+          elseif ($item->getType() == 'iframe') {
+            $iframe = $item;
+            $variables['iframe'] = $iframe;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
  * Provide the URL of an image.
  *
  * @param object $node
@@ -212,7 +248,7 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
  *   The URL to the styled image, or to the original image if the style does not
  *   exist.
  */
-function mass_theme_get_field_image_url($node, $style_name = NULL, $field = NULL) {
+function mass_theme_get_field_image_url($node, $style_name = NULL, $field = NULL, $id = 0) {
   $url = '';
 
   $fields = $node->get($field);
@@ -221,7 +257,7 @@ function mass_theme_get_field_image_url($node, $style_name = NULL, $field = NULL
   }
 
   if (!empty($images)) {
-    $image = current($images);
+    $image = $images[$id];
 
     if (!empty($style_name) && ($style = ImageStyle::load($style_name))) {
       $url = $style->buildUrl($image->getFileUri());

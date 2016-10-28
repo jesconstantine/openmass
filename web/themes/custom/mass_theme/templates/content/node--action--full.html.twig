@@ -21,6 +21,9 @@
   {% else %}
     {% include "@mass_theme/includes/organisms-page-header.html.twig" %}
   {% endif %}
+  {% if content.field_action_banner|render|trim is not empty %}
+    {{ content.field_action_banner|field_value }}
+  {% endif %}
 {% endblock %}
 {% block pageContent %}
   {# @TODO include "organisms-action-details" #}
