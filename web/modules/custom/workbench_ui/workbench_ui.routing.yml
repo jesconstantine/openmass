@@ -1,0 +1,7 @@
+workbench.ui:
+  path: '/admin/config/workbench-ui'
+  defaults:
+    _form: '\Drupal\workbench_ui\WorkbenchUiSettingsForm'
+    _title: 'Workbench UI Settings'
+  requirements:
+    _permission: 'administer workbench ui'

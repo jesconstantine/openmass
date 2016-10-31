@@ -1,0 +1,16 @@
+<?php
+
+/**
+* @file
+* Contains workbench_ui.module.
+*
+* Copyright 2016 Palantir.net, Inc.
+*/
+
+
+function workbench_ui_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $remove_button = \Drupal::config('workbench.ui')->get('remove_preview_button');
+  if ($remove_button) {
+    unset($form['actions']['preview']);
+  }
+}
