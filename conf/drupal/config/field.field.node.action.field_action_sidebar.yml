@@ -49,8 +49,8 @@ settings:
         weight: 16
         enabled: false
       iframe:
+        enabled: true
         weight: 17
-        enabled: false
       rich_text:
         weight: 18
         enabled: false
