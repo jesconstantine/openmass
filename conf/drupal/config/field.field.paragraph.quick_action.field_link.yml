@@ -1,19 +1,19 @@
-uuid: 4b385e67-a4c9-4733-a0a4-32c3b9df1e3c
+uuid: 62e15902-fe9e-4bf8-bfd7-e40bab6d46c7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_link
-    - paragraphs.paragraphs_type.related_link
+    - paragraphs.paragraphs_type.quick_action
   module:
     - link
-id: paragraph.related_link.field_link
+id: paragraph.quick_action.field_link
 field_name: field_link
 entity_type: paragraph
-bundle: related_link
+bundle: quick_action
 label: Link
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''

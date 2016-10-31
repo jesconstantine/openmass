@@ -5,14 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser_simple
     - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
-    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -35,14 +33,12 @@ content:
 hidden:
   field_action_banner: true
   field_action_details: true
-  field_action_downloads: true
   field_action_header: true
   field_action_parent: true
   field_action_sidebar: true
   field_alert_dropdown: true
   field_alert_link: true
   field_alert_text: true
-  field_contact_group: true
   field_external_url: true
   field_header_cta: true
   field_lede: true
