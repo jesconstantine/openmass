@@ -27,6 +27,13 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<svg focusable="false" role="presentation" class="svg-{{ content.field_sprite_name|field_value }}">
-  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ directory }}/images/svg-sprite.svg#{{ content.field_sprite_name|field_value }}"></use>
+{% if svg_type == 'location' %}
+  {% set class = 'svg-loc-' ~ sprite_name %}
+  {% set url = '/' ~ directory ~ '/images/svg-loc-icons.svg#' ~ sprite_name %}
+{% else %}
+  {% set class = 'svg-' ~ sprite_name %}
+  {% set url = '/' ~ directory ~ '/images/svg-sprite.svg#' ~ sprite_name %}
+{% endif %}
+<svg focusable="false" role="presentation" class="{{ class }}">
+  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ url }}"></use>
 </svg>

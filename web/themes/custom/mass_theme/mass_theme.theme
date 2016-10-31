@@ -209,6 +209,31 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Various global preprocessing.
+ */
+function mass_theme_preprocess_taxonomy_term(&$variables) {
+  $term = $variables['term'];
+  $vocab = $term->bundle();
+
+  if ($vocab == 'icons') {
+    $field_sprite_type = $term->get('field_sprite_type');
+
+    if ($field_sprite_type->count() > 0) {
+      $svg_type = $field_sprite_type->first()->getValue();
+      $variables['svg_type'] = $svg_type['value'];
+    }
+
+    $field_sprite_name = $term->get('field_sprite_name');
+
+    if ($field_sprite_name->count() > 0) {
+      $sprite_name = $field_sprite_name->first()->getValue();
+      $variables['sprite_name'] = $sprite_name['value'];
+    }
+  }
+}
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -278,14 +303,21 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
           $image_count = $image_field->count();
           $images = array();
           foreach ($image_field as $id => $image) {
+            $value = $image->getValue();
             $image_small = mass_theme_get_field_image_url($item, 'action_banner_small', 'field_slideshow', $id);
             $image_large = mass_theme_get_field_image_url($item, 'action_banner_large', 'field_slideshow', $id);
-            $images[$id] = array('small' => $image_small, 'large' => $image_large);
+            $images[$id] = array(
+              'small' => $image_small,
+              'large' => $image_large,
+              'alt' => $value['alt'],
+              'title' => $value['title']
+            );
           }
 
           $variables['images'] = $images;
           $variables['image_count'] = $image_count;
-        } elseif ($item->getType() == 'iframe' || $item->getType() == 'map') {
+        }
+        elseif ($item->getType() == 'iframe' || $item->getType() == 'map') {
           $map = $item;
           $id = $item->id;
 
