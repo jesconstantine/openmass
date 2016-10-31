@@ -24,9 +24,9 @@
     role="image"
     title="{# locationBanner.title #}">
   </div>
-  {% if iframe is not empty %}
+  {% if map is not empty %}
     <div class="ma__location-banner__map">
-      {# iframe #}
+      {{ map }}
     </div>
   {% endif %}
 </section>

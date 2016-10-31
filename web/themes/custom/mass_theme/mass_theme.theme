@@ -285,9 +285,13 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
 
           $variables['images'] = $images;
           $variables['image_count'] = $image_count;
-        } elseif ($item->getType() == 'iframe') {
-          $iframe = $item;
-          $variables['iframe'] = $iframe;
+        } elseif ($item->getType() == 'iframe' || $item->getType() == 'map') {
+          $map = $item;
+          $id = $item->id;
+
+          $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+          $build = $view_builder->view($item, 'extended_header');
+          $variables['map'] = $build;
         }
       }
     }

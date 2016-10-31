@@ -33,6 +33,7 @@ content:
   workbench_moderation_control:
     weight: -20
 hidden:
+  field_action_banner: true
   field_action_details: true
   field_action_downloads: true
   field_action_header: true
