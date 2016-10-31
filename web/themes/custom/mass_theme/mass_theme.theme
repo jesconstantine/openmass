@@ -12,6 +12,7 @@ use Drupal\block\Entity\Block;
 use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
+use Drupal\Component\Utility\UrlHelper;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -199,8 +200,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           // Run only on Action nodes.
           if ($node->getType() == "action") {
             $external_url = $node->get('field_external_url')->uri;
-            // Send this url to our template.
-            $variables['external_link_url'] = Url::fromUri($external_url);
+            if (!empty($external_url)) {
+              // Send this url to our template.
+              $variables['external_link_url'] = Url::fromUri($external_url);
+            }
           }
         }
       }
@@ -253,7 +256,7 @@ function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
   $url = $variables['url_title'];
   $variables['fieldLink']['text'] = $variables['title'];
   $variables['fieldLink']['href'] = $url;
-  $variables['fieldLink']['type'] = substr($url, 0, 4) === "http" ? 'external' : 'internal';
+  $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
 }
 
 /**
