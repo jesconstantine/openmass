@@ -24,7 +24,6 @@ Feature: Action Content type
     | field-action-details         | paragraphs | subhead                    | false      |
     | field-action-details         | paragraphs | map                        | false      |
     | field-contact-group          | paragraphs | contact-group              | false      |
-    | field-action-sidebar         | paragraphs | contact-group              | false      |
     | field-action-banner          | paragraphs | full-bleed                 | false      |
     | field-action-sidebar         | paragraphs | quick-action               | false      |
 
