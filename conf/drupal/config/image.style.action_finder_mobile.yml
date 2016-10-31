@@ -20,6 +20,6 @@ effects:
     weight: 2
     data:
       type: '2'
-      radius: '5'
-      sigma: '5'
+      radius: '18'
+      sigma: '12'
       angle: '0'
