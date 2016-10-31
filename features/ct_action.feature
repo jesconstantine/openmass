@@ -26,6 +26,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | map                        | false      |
     | field-contact-group          | paragraphs | contact-group              | false      |
     | field-action-sidebar         | paragraphs | contact-group              | false      |
+    | field-action-banner          | paragraphs | full-bleed                 | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"
