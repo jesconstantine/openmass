@@ -48,7 +48,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 %}
 <section {{ attributes.addClass(classes) }}>
   <div class="ma__action-step__icon">
-    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':paragraph.field_para_icon_term.entity.field_sprite_name.value} %}
+    {% include active_theme_path() ~ "/images/svg-sprite/" ~ paragraph.field_para_icon_term.entity.field_sprite_name.value ~ ".svg" %}
   </div>
   <h5 class="ma__action-step__title">{{content.field_title}}</h5>
   <div class="ma__action-step__content">
