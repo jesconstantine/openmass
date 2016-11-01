@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\workbench_ui;
+namespace Drupal\mass_workbench_ui;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -21,7 +21,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'workbench.ui',
+      'mass_workbench.ui',
     ];
   }
 
@@ -29,7 +29,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('workbench.ui');
+    $config = $this->config('mass_workbench.ui');
 
     $form['workbench_ui_remove_preview_button'] = [
       '#type' => 'checkbox',
@@ -45,7 +45,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('workbench.ui')
+    $this->config('mass_workbench.ui')
       ->set('remove_preview_button', $form_state->getValue('workbench_ui_remove_preview_button'))
       ->save();
 

@@ -1,0 +1,5 @@
+mass.admin.workbench_ui:
+  route_name: mass.workbench.ui
+  title: Workbench UI settings
+  description: 'Configure settings for workbench ui.'
+  parent: system.admin_config_workflow
