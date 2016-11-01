@@ -22,7 +22,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'mass_workbench.ui',
+      'mass_workbench_ui.config',
     ];
   }
 
@@ -30,7 +30,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('mass_workbench.ui');
+    $config = $this->config('mass_workbench_ui.config');
 
     $form['workbench_ui_remove_preview_button'] = [
       '#type' => 'checkbox',
@@ -46,7 +46,7 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('mass_workbench.ui')
+    $this->config('mass_workbench_ui.config')
       ->set('remove_preview_button', $form_state->getValue('workbench_ui_remove_preview_button'))
       ->save();
 
