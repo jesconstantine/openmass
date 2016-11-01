@@ -8,7 +8,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 
 /**
- * Provides a Block that displays the revision state
+ * Provides a Block that displays the revision state.
  *
  * @Block(
  *   id = "current_revision",
@@ -16,6 +16,7 @@ use Drupal\Core\Access\AccessResult;
  * )
  */
 class WorkbenchModerationCurrentState extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
@@ -30,9 +31,8 @@ class WorkbenchModerationCurrentState extends BlockBase {
       ),
     );
 
-
     // Get the state for the latest revision.
-    if (\Drupal::routeMatch()->getRouteName() == 'entity.node.latest_version'){
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.node.latest_version') {
       $moderation_info = new ModerationInformation(\Drupal::entityTypeManager(), \Drupal::currentUser());
       $node = $moderation_info->getLatestRevision('node', $nid);
       $block['#markup'] = "Current moderation state: " . $node->moderation_state->target_id;
@@ -49,7 +49,7 @@ class WorkbenchModerationCurrentState extends BlockBase {
   /**
    * {@inheritdoc}
    *
-   * Only show this block on node pages to users who have the correct permission.
+   * Only show this block on node pages to users who have correct permission.
    */
   protected function blockAccess(AccountInterface $account) {
     $route_name = \Drupal::routeMatch()->getRouteName();
@@ -66,4 +66,5 @@ class WorkbenchModerationCurrentState extends BlockBase {
 
     return AccessResult::forbidden();
   }
+
 }

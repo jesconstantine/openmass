@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
  * Configure hello settings for this site.
  */
 class WorkbenchUiSettingsForm extends ConfigFormBase {
+
   /**
    * {@inheritdoc}
    */
@@ -51,4 +52,5 @@ class WorkbenchUiSettingsForm extends ConfigFormBase {
 
     parent::submitForm($form, $form_state);
   }
+
 }
