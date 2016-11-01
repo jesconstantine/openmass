@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.action.field_action_details
-    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
     - field.field.node.action.field_action_sidebar
@@ -143,18 +142,6 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
-  field_action_downloads:
-    weight: 28
-    settings:
-      entity_browser: browse_files_modal
-      field_widget_edit: '1'
-      field_widget_remove: '1'
-      selection_mode: selection_append
-      view_mode: default
-      open: 0
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: entity_browser_file
   field_action_header:
     type: entity_reference_paragraphs
     weight: 3
