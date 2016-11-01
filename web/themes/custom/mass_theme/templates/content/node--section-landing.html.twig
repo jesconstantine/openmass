@@ -12,21 +12,26 @@
 
 {# Take our blocks from node.html.twig and extend them to get our wrapping divs #}
 {% block preContent %}
-  <section class="ma__breadcrumbs ">
-    <div class="ma__breadcrumbs__container">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="{{ url }}">{{ label|field_value }}</a></li>
-      </ul>
-    </div>
-  </section>
   {%
-  set bannerData = {
-    'icon': node.field_icon_term.entity.field_sprite_name.value,
+  set breadcrumbs = {
+    "light": "",
+    "links": [{
+      "text": label|field_value,
+      "href": url
+    }]
+  }
+  %}
+  {% include "@organisms/by-template/breadcrumbs.twig"%}
+  {%
+  set pageBanner = {
+    'icon': '@atoms/05-icons/svg-' ~ node.field_icon_term.entity.field_sprite_name.value ~ '.twig',
+    'title': label|field_value,
+    'bgNarrow': hero800x400_image_url,
+    'bgWide': file_url(node.field_featured_image.entity.fileuri),
   }
   %}
   {# Our section and topic landing pages have similar markup. Lets see if we can just pass in what we need #}
-  {% include "@mass_theme/includes/ma--page-banner.html.twig" with bannerData %}
+  {% include "@organisms/by-template/page-banner.twig" with pageBanner %}
 {% endblock %}
 
 {# This is going to get replaced with real views and content. #}

@@ -96,6 +96,7 @@
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
+        "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
         "drupal/draggableviews": "8.1.x-dev",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24c3911cda993e702480dce98e71f769",
-    "content-hash": "2fcb9904b0aafd9442dfa9a9cc194fbe",
+    "hash": "9a3c7c134f94438647f14e84fdc6a3cd",
+    "content-hash": "19fe441ec21e4b051853698c302d411c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1022,6 +1022,37 @@
                 "standards"
             ],
             "time": "2016-09-17 16:49:15"
+        },
+        {
+            "name": "drupal/components",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/components.git",
+                "reference": "d6f3df460ca16373782f442ca92f9c251fbf311b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/components-8.x-1.0.zip",
+                "reference": "d6f3df460ca16373782f442ca92f9c251fbf311b",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Registers “component libraries” defined in modules and themes with the Twig system",
+            "homepage": "https://www.drupal.org/project/components",
+            "time": "2016-04-19 08:08:08"
         },
         {
             "name": "drupal/config_installer",
@@ -6663,6 +6694,79 @@
                 "web"
             ],
             "time": "2015-12-22 20:10:14"
+        },
+        {
+            "name": "drupal/patternlab",
+            "version": "8.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/patternlab.git",
+                "reference": "db0b91ae19a56aae74571e53cca7d668b469a5c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/patternlab-8.x-1.1.zip",
+                "reference": "db0b91ae19a56aae74571e53cca7d668b469a5c2",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "A Drupal theme whose Twig templates are integrated with Pattern Lab.",
+            "homepage": "https://www.drupal.org/project/patternlab",
+            "time": "2016-05-12 16:49:31"
+        },
+        {
+            "name": "drupal/twig_extender",
+            "version": "8.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/twig_extender.git",
+                "reference": "226acc46a1d7db9c5cfc268785f7198a17d06322"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/twig_extender-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Erik Seifert"
+                }
+            ],
+            "description": "Add new extensions to twig template engine",
+            "homepage": "https://www.drupal.org/project/twig_extender",
+            "keywords": [
+                "Drupal",
+                "php",
+                "twig",
+                "utils"
+            ],
+            "time": "2016-07-05 08:38:44"
         },
         {
             "name": "fabpot/goutte",

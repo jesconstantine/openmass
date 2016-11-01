@@ -13,6 +13,7 @@ use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\views;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -138,7 +139,15 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-
+  // Get our subtopics from view.
+  $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
+  $links = array();
+  // Roll this up for our twig template.
+  foreach ($view_results as $key=>$row) {
+    $links[] = array('href' => "node/" . $row->node_nid ,'text' => $row->_entity->get('title')->value);
+  }
+  // Send to twig.
+  $variables['links']= $links;
 }
 
 /**

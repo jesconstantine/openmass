@@ -20,10 +20,10 @@
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
-  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+  {% include "@organisms/by-template/page-header.twig" %}
 {% endblock %}
 {% block pageContent %}
-  {% include directory ~ "/templates/includes/organisms-action-finder.html.twig" %}
+  {% include "@organisms/by-author/action-finder.twig" %}
   {% if content.field_agency_links|render|trim is not empty %}
     {{content.field_agency_links }}
   {% endif %}
