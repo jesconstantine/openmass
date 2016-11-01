@@ -437,21 +437,6 @@ function mass_theme_preprocess_file_link(&$variables) {
 }
 
 /**
- * Implements hook_page_attachments().
- *
- * Attach module mass_search global js + css for google api js and
- * custom search header form on every page.
- */
-function mass_search_page_attachments(array &$attachments) {
-
-  // Attach the google js api external script reference, load in head.
-  $attachments['#attached']['library'][] = 'mass_search/google-jsapi';
-
-  // Attach the search form js + css globally.
-  $attachments['#attached']['library'][] = 'mass_search/google-cse';
-}
-
-/**
  * Implements hook_preprocess_node().
  */
 function mass_theme_preprocess_views_view_list(&$variables) {
