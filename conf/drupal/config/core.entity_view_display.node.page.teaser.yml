@@ -25,4 +25,6 @@ content:
     third_party_settings: {  }
   links:
     weight: 101
+  workbench_moderation_control:
+    weight: -20
 hidden: {  }
