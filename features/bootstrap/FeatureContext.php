@@ -343,6 +343,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function assertPlaceInMenu($content_type, $menu) {
     // Visit the content type page and open to the menu section.
+    // Visit the content type page and open to the menu section.
     $this->getSession()->visit(sprintf('/admin/structure/types/manage/%s#edit-menu', $content_type));
     // See if the box is checked for that menu.
     $selector = sprintf("#edit-menu-options-%s[checked=checked]", $menu);
@@ -350,5 +351,80 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if (is_null($element)) {
       throw new \Exception(sprintf('Content of type "%s" cannot be placed in the menu "%s"', $content_type, $menu));
     }
+  }
+
+  /**
+   * Verify that the current user has a particular set of permissions.
+   *
+   * @Then I should have the :permission permission(s)
+   *
+   * @param string $permission
+   *   The name of a single permission, or a comma-separated list of multiple
+   *   permissions.
+   *
+   * @return void
+   *
+   * @throws \Exception
+   */
+  public function hasPermissions($permission)
+  {
+    if (!$permission) { return; }
+    /** @var User $account */
+    $account = $this->getLoggedInUser();
+    $permissions = array_map('trim', array_filter(explode(',', $permission)));
+    list($present, $missing) = $this->matchPermissions($account, $permissions);
+    if (!empty($missing)) {
+      throw new \Exception(sprintf('User is missing the following permissions: %s', implode(', ', $missing)));
+    }
+  }
+
+  /**
+   * Verify that the current user does not have a particular set of
+   * permissions.
+   *
+   * @Then I should not have the :permission permission(s)
+   *
+   * @param string $permission
+   *   The name of a single permission, or a comma-separated list of multiple
+   *   permissions.
+   *
+   * @return void
+   *
+   * @throws \Exception
+   */
+  public function doesNotHavePermissions($permission)
+  {
+    if (!$permission) { return; }
+    /** @var User $account */
+    $account = $this->getLoggedInUser();
+    $permissions = array_map('trim', array_filter(explode(',', $permission)));
+    list($present, $missing) = $this->matchPermissions($account, $permissions);
+    if (!empty($present)) {
+      throw new \Exception(sprintf('User has the following permissions: %s', implode(', ', $present)));
+    }
+  }
+  /**
+   * Check a user's access to a list of permissions.
+   *
+   * @param \Drupal\user\Entity\User $account
+   * @param array $permissions
+   *
+   * @return array
+   *   First index is an array of the given permissions that the user has;
+   *   second index is an array of the ones they don't have.
+   */
+  protected function matchPermissions(User $account, array $permissions)
+  {
+    $present = [];
+    $missing = [];
+    foreach ($permissions as $p) {
+      if ($account->hasPermission($p)) {
+        $present[] = $p;
+      }
+      else {
+        $missing[] = $p;
+      }
+    }
+    return [$present, $missing];
   }
 }
