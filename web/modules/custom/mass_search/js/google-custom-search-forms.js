@@ -8,122 +8,124 @@
 (function() {
   'use strict';
 
-  /**
-   * load the google custom search module
-   * - with english language
-   * - with minimalist theme
-   */
-  google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
-
-  /** setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
-  google.setOnLoadCallback(function() {
-
-    var cx = '010551267445528504028:ivl9x2rf5e8'; /* search engine id */
+  if (window.google) {
 
     /**
-     * Set custom search options
-     * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
+     * load the google custom search module
+     * - with english language
+     * - with minimalist theme
      */
-    var customSearchOptions = {};
+    google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
 
-    /** autocomplete settings */
-    var autoCompleteOptions = {
-      maxCompletions: 3
-    };
-    customSearchOptions['autoCompleteOptions'] = autoCompleteOptions;
+    /** setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
+    google.setOnLoadCallback(function () {
 
-    /** HEADER SEARCH FORM */
+      var cx = '010551267445528504028:ivl9x2rf5e8';
+      /* search engine id */
 
-    /**
-     * Creates an instance of the CustomSearchControl object,
-     * which represents a Custom Search Element. Calling this
-     * constructor initializes the Custom Search service and UI.
-     */
-    var headerSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
+      /**
+       * Set custom search options
+       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
+       */
+      var customSearchOptions = {};
 
-    /**
-     * Customize search control with available methods
-     * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-    */
-    headerSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      /** autocomplete settings */
+      var autoCompleteOptions = {
+        maxCompletions: 3
+      };
+      customSearchOptions['autoCompleteOptions'] = autoCompleteOptions;
 
-    /**
-     * Draw header search form with draw options
-     * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
-    */
-    var headerOptions = new google.search.DrawOptions();
-    /**
-     * only draw search form (results are handled in mass_search
-     * module route teamplte mass-search.html.twig )
-     *
-     * set search results route and search term query
-     */
-    headerOptions.enableSearchboxOnly('/search', 'q');
+      /** HEADER SEARCH FORM */
 
-    /**
-     * enable autocomplete (see options above: autoCompleteOptions)
-     */
-    headerOptions.setAutoComplete(true);
+      /**
+       * Creates an instance of the CustomSearchControl object,
+       * which represents a Custom Search Element. Calling this
+       * constructor initializes the Custom Search service and UI.
+       */
+      var headerSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-    /**
-     * Displays the search form (when it exists, IE not on results page).
-     * Calling this method is the final step in activating a Custom Search
-     * Element object, and it produces the UI and search containers.
-     *
-     * .draw(selector, options)
-     */
-    var headerSearchExists = document.getElementById("cse-header-search-form");
+      /**
+       * Customize search control with available methods
+       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       */
+      headerSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
-    if (headerSearchExists) {
-      headerSearchControl.draw('cse-header-search-form', headerOptions);
-    }
+      /**
+       * Draw header search form with draw options
+       * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
+       */
+      var headerOptions = new google.search.DrawOptions();
+      /**
+       * only draw search form (results are handled in mass_search
+       * module route teamplte mass-search.html.twig )
+       *
+       * set search results route and search term query
+       */
+      headerOptions.enableSearchboxOnly('/search', 'q');
+
+      /**
+       * enable autocomplete (see options above: autoCompleteOptions)
+       */
+      headerOptions.setAutoComplete(true);
+
+      /**
+       * Displays the search form (when it exists, IE not on results page).
+       * Calling this method is the final step in activating a Custom Search
+       * Element object, and it produces the UI and search containers.
+       *
+       * .draw(selector, options)
+       */
+      var headerSearchExists = document.getElementById("cse-header-search-form");
+
+      if (headerSearchExists) {
+        headerSearchControl.draw('cse-header-search-form', headerOptions);
+      }
 
 
+      /** MOBILE SEARCH FORM */
 
-    /** MOBILE SEARCH FORM */
+      /**
+       * Creates an instance of the CustomSearchControl object,
+       * which represents a Custom Search Element. Calling this
+       * constructor initializes the Custom Search service and UI.
+       */
+      var mobileSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-    /**
-     * Creates an instance of the CustomSearchControl object,
-     * which represents a Custom Search Element. Calling this
-     * constructor initializes the Custom Search service and UI.
-     */
-    var mobileSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
+      /**
+       * Customize search control with available methods
+       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       */
+      mobileSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
-    /**
-     * Customize search control with available methods
-     * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-    */
-    mobileSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      /**
+       * Draw mobile search form with draw options
+       * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
+       */
+      var mobileOptions = new google.search.DrawOptions();
 
-    /**
-     * Draw mobile search form with draw options
-     * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
-    */
-    var mobileOptions = new google.search.DrawOptions();
+      /**
+       * only draw search form (results are handled in mass_search
+       * module route teamplte mass-search.html.twig )
+       *
+       * set search results route and search term query
+       */
+      mobileOptions.enableSearchboxOnly('/search', 'q');
 
-    /**
-     * only draw search form (results are handled in mass_search
-     * module route teamplte mass-search.html.twig )
-     *
-     * set search results route and search term query
-     */
-    mobileOptions.enableSearchboxOnly('/search', 'q');
+      /**
+       * enable autocomplete (see options above: autoCompleteOptions)
+       */
 
-    /**
-     * enable autocomplete (see options above: autoCompleteOptions)
-     */
+      mobileOptions.setAutoComplete(true);
 
-    mobileOptions.setAutoComplete(true);
+      /**
+       * Displays the search form. Calling this method is the final step
+       * in activating a Custom Search Element object, and it produces the
+       * UI and search containers.
+       *
+       * .draw(selector, options)
+       */
+      mobileSearchControl.draw('cse-search-form-mobile', mobileOptions);
 
-    /**
-     * Displays the search form. Calling this method is the final step
-     * in activating a Custom Search Element object, and it produces the
-     * UI and search containers.
-     *
-     * .draw(selector, options)
-     */
-    mobileSearchControl.draw('cse-search-form-mobile', mobileOptions);
-
-  }, true);
-
+    }, true);
+  }
 }());
