@@ -2,7 +2,7 @@
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
-
+use Drupal\user\Entity\User;
 use Drupal\DrupalExtension\Context\MinkContext;
 use Drupal\DrupalExtension\Context\DrupalContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
@@ -426,5 +426,23 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       }
     }
     return [$present, $missing];
+  }
+  /**
+   * Get the Drupal user entity for the current user.
+   *
+   * @return User
+   * @throws \Exception
+   */
+  public function getLoggedInUser()
+  {
+    if (empty($this->drupalContext->user->uid)) {
+      throw new \Exception('No user available.');
+    }
+    /** @var User $account */
+    $account = User::load($this->drupalContext->user->uid);
+    if (!$account) {
+      throw new \Exception(sprintf('User %d could not be loaded.', $this->drupalContext->user->uid));
+    }
+    return $account;
   }
 }

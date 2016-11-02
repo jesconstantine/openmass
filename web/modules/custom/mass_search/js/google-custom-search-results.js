@@ -8,117 +8,120 @@
 (function() {
   'use strict';
 
-  /**
-   * load the google custom search module
-   * - with english language
-   * - with minimalist theme
-   */
-  google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
-
-  /**  setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
-  google.setOnLoadCallback(function() {
-
-    var cx = '010551267445528504028:ivl9x2rf5e8'; /**  search engine id */
+  if (window.google) {
 
     /**
-     * Set custom search options
-     * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
+     * load the google custom search module
+     * - with english language
+     * - with minimalist theme
      */
-    var customSearchOptions = {};
+    google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
 
-    /**  disable search results orderby functionality */
-    customSearchOptions['enableOrderBy'] = false;
+    /**  setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
+    google.setOnLoadCallback(function () {
 
-    /**  autocomplete settings */
-    var autoCompleteOptions = {
-      maxCompletions: 3
-    };
-    customSearchOptions['autoCompleteOptions'] = autoCompleteOptions;
+      var cx = '010551267445528504028:ivl9x2rf5e8';
+      /**  search engine id */
 
-    /**
-     * Creates an instance of the CustomSearchControl object,
-     * which represents a Custom Search Element. Calling this
-     * constructor initializes the Custom Search service and UI.
-     */
-    var resultsPageSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
+      /**
+       * Set custom search options
+       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
+       */
+      var customSearchOptions = {};
 
-    /**
-     * Customize search control with available methods
-     * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-    */
-    resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      /**  disable search results orderby functionality */
+      customSearchOptions['enableOrderBy'] = false;
+
+      /**  autocomplete settings */
+      var autoCompleteOptions = {
+        maxCompletions: 3
+      };
+      customSearchOptions['autoCompleteOptions'] = autoCompleteOptions;
+
+      /**
+       * Creates an instance of the CustomSearchControl object,
+       * which represents a Custom Search Element. Calling this
+       * constructor initializes the Custom Search service and UI.
+       */
+      var resultsPageSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
+
+      /**
+       * Customize search control with available methods
+       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       */
+      resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
 
-    /**
-     * Draw search form with draw options
-     * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
-     */
+      /**
+       * Draw search form with draw options
+       * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
+       */
 
-    var resultsOptions = new google.search.DrawOptions();
+      var resultsOptions = new google.search.DrawOptions();
 
-    /**
-     * search form is a cse search form custom block placed in the
-     * pre-conent region for this node only
-     * see templates/block/block--csesearchform-2
-     */
-    resultsOptions.setSearchFormRoot('cse-search-results-form');
+      /**
+       * search form is a cse search form custom block placed in the
+       * pre-conent region for this node only
+       * see templates/block/block--csesearchform-2
+       */
+      resultsOptions.setSearchFormRoot('cse-search-results-form');
 
-    /**
-     * enable autocomplete (see options above: autoCompleteOptions)
-     */
-    resultsOptions.setAutoComplete(true);
+      /**
+       * enable autocomplete (see options above: autoCompleteOptions)
+       */
+      resultsOptions.setAutoComplete(true);
 
-    /**
-     * Displays the search form + search results.
-     * Calling this method is the final step in activating a
-     * Custom Search Element object, and it produces the UI
-     * and search containers.
-     *
-     * .draw(selector, options)
-     */
-    resultsPageSearchControl.draw('cse-search-results', resultsOptions);
+      /**
+       * Displays the search form + search results.
+       * Calling this method is the final step in activating a
+       * Custom Search Element object, and it produces the UI
+       * and search containers.
+       *
+       * .draw(selector, options)
+       */
+      resultsPageSearchControl.draw('cse-search-results', resultsOptions);
 
-    /**
-     * Parse URL parameters
-     * @return array params - array of parameters from querystring
-     *
-     * @todo Move this functionality into globally available helper object
-     */
-    function parseParamsFromUrl() {
-      var params = {};
-      var parts = window.location.search.substr(1).split('&');
-      for (var i = 0; i < parts.length; i++) {
-        var keyValuePair = parts[i].split('=');
-        var key = decodeURIComponent(keyValuePair[0]);
-        params[key] = keyValuePair[1] ?
-            decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
-            keyValuePair[1];
+      /**
+       * Parse URL parameters
+       * @return array params - array of parameters from querystring
+       *
+       * @todo Move this functionality into globally available helper object
+       */
+      function parseParamsFromUrl() {
+        var params = {};
+        var parts = window.location.search.substr(1).split('&');
+        for (var i = 0; i < parts.length; i++) {
+          var keyValuePair = parts[i].split('=');
+          var key = decodeURIComponent(keyValuePair[0]);
+          params[key] = keyValuePair[1] ?
+              decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
+              keyValuePair[1];
+        }
+        return params;
       }
-      return params;
-    }
 
-    /**  Get array of the url querystring params */
-    var urlParams = parseParamsFromUrl();
+      /**  Get array of the url querystring params */
+      var urlParams = parseParamsFromUrl();
 
-    /**  Set param for the search query */
-    var queryParamName = 'q';
+      /**  Set param for the search query */
+      var queryParamName = 'q';
 
-    /**
-     * If the search param is in the querystring, execute the search
-     */
-    if (urlParams[queryParamName]) {
-      resultsPageSearchControl.execute(urlParams[queryParamName]);
-    }
+      /**
+       * If the search param is in the querystring, execute the search
+       */
+      if (urlParams[queryParamName]) {
+        resultsPageSearchControl.execute(urlParams[queryParamName]);
+      }
 
-    /**
-     * @todo Consider using drupal announce to notify assistive devices
-     * that search results are loading / have finished for searches that
-     * happen from search results page (IE when there is no page load)
-     *
-     * see .setSearchStartingCallback() && .setSearchCompleteCallback() :
-     * https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-     */
+      /**
+       * @todo Consider using drupal announce to notify assistive devices
+       * that search results are loading / have finished for searches that
+       * happen from search results page (IE when there is no page load)
+       *
+       * see .setSearchStartingCallback() && .setSearchCompleteCallback() :
+       * https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       */
 
-  }, true);
-
+    }, true);
+  }
 }());
