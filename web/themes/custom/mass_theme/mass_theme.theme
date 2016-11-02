@@ -87,6 +87,9 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
+  if ($node->field_featured_mobile_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+  }
 }
 
 /**
@@ -124,7 +127,10 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
   $node = $variables['node'];
 
   $variables['desktop_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder', 'field_featured_image');
-  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
+  $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_mobile_image');
+  if (empty($variables['mobile_finder_image'])) {
+    $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
+  }
 }
 
 /**
@@ -138,7 +144,9 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-
+  if ($node->field_featured_mobile_image->entity) {
+    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+  }
 }
 
 /**
