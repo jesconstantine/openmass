@@ -199,8 +199,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           // Run only on Action nodes.
           if ($node->getType() == "action") {
             $external_url = $node->get('field_external_url')->uri;
-            // Send this url to our template.
-            $variables['external_link_url'] = Url::fromUri($external_url);
+            if (!empty($external_url)) {
+              // Send this url to our template.
+              $variables['external_link_url'] = Url::fromUri($external_url);
+            }
           }
         }
       }
