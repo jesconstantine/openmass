@@ -90,5 +90,4 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_action_header: true
   field_external_url: true
