@@ -31,6 +31,7 @@ module:
   help: 0
   history: 0
   image: 0
+  imagick: 0
   inline_form_errors: 0
   kint: 0
   link: 0

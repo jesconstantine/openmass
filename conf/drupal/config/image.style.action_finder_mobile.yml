@@ -1,7 +1,9 @@
 uuid: 1841536d-7f64-4006-8c69-ab8793778806
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - imagick
 name: action_finder_mobile
 label: action-finder-mobile
 effects:
@@ -12,3 +14,12 @@ effects:
     data:
       width: 800
       height: 800
+  a1e66473-c9e6-473a-80a8-92c2f57fc6fd:
+    uuid: a1e66473-c9e6-473a-80a8-92c2f57fc6fd
+    id: image_blur
+    weight: 2
+    data:
+      type: '2'
+      radius: '18'
+      sigma: '12'
+      angle: '0'
