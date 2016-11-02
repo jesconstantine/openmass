@@ -139,15 +139,30 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-  // Get our subtopics from view.
-  $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
-  $links = array();
-  // Roll this up for our twig template.
-  foreach ($view_results as $key=>$row) {
-    $links[] = array('href' => "node/" . $row->node_nid ,'text' => $row->_entity->get('title')->value);
+
+  if ($variables['view_mode'] == 'full') {
+    // Get our callout links view.
+    $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
+    $links = array();
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+      $links[] = array('calloutLink' => array('type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '', 'quickaction' => 'false', 'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value ,'text' => $row->_relationship_entities['field_common_content']->get('title')->value));
+    }
+    // Send to twig.
+    $variables['links']= $links;
   }
-  // Send to twig.
-  $variables['links']= $links;
+
+  if ($variables['view_mode'] == 'teaser') {
+    // Get our subtopics from view.
+    $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
+    $links = array();
+    // Roll this up for our twig template.
+    foreach ($view_results as $key => $row) {
+      $links[] = array('href' => "/node/" . $row->node_nid ,'text' => $row->_entity->get('title')->value);
+    }
+    // Send to twig.
+    $variables['links']= $links;
+  }
 }
 
 /**

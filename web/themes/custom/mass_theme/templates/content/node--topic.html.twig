@@ -37,7 +37,13 @@
 
 {# This is going to get replaced with real views and content. #}
 {% block pageContent %}
-  {{ content.field_common_content }}
+  {%
+  set topActions = {
+    'title': "Common Actions & Guides",
+    'links': links
+  }
+  %}
+  {% include "@organisms/by-author/top-actions.twig" %}
   {{ section_topics }}
 {% endblock %}
 
