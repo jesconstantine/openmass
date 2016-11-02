@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9a3c7c134f94438647f14e84fdc6a3cd",
-    "content-hash": "19fe441ec21e4b051853698c302d411c",
+    "hash": "56aa325e4985d548ce7f7e6d987ec1ff",
+    "content-hash": "488439348e72406fc29bfd566563e465",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1034,7 +1034,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/components-8.x-1.0.zip",
-                "reference": "d6f3df460ca16373782f442ca92f9c251fbf311b",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1413,7 +1413,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.0-alpha9.zip",
-                "reference": "8a7aeca9f32f17fb672a222bd79251a06647b2fe",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2671,7 +2671,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/4c35b508650f3268012abd4afbe4e309eb5297da",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/6a3c3e7914114cddc55536253c64b3ff2e9df772",
                 "reference": "4c35b508650f3268012abd4afbe4e309eb5297da",
                 "shasum": ""
             },
@@ -2795,16 +2795,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "0.5.0",
+            "version": "1.0.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "44f0337c1d8acc1325c5d67af1fc963128874c8d"
+                "reference": "aebe2f83515d872d0429c316b2d00d183b1c3f61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/44f0337c1d8acc1325c5d67af1fc963128874c8d",
-                "reference": "44f0337c1d8acc1325c5d67af1fc963128874c8d",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/aebe2f83515d872d0429c316b2d00d183b1c3f61",
+                "reference": "aebe2f83515d872d0429c316b2d00d183b1c3f61",
                 "shasum": ""
             },
             "type": "library",
@@ -2819,10 +2819,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/0.5.0",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/1.0.0-alpha1",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-10-24 14:23:53"
+            "time": "2016-11-01 14:57:19"
         },
         {
             "name": "palantirnet/the-build",
@@ -6694,79 +6694,6 @@
                 "web"
             ],
             "time": "2015-12-22 20:10:14"
-        },
-        {
-            "name": "drupal/patternlab",
-            "version": "8.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/patternlab.git",
-                "reference": "db0b91ae19a56aae74571e53cca7d668b469a5c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/patternlab-8.x-1.1.zip",
-                "reference": "db0b91ae19a56aae74571e53cca7d668b469a5c2",
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "type": "drupal-theme",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "A Drupal theme whose Twig templates are integrated with Pattern Lab.",
-            "homepage": "https://www.drupal.org/project/patternlab",
-            "time": "2016-05-12 16:49:31"
-        },
-        {
-            "name": "drupal/twig_extender",
-            "version": "8.1.0-beta1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/twig_extender.git",
-                "reference": "226acc46a1d7db9c5cfc268785f7198a17d06322"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/twig_extender-8.x-1.0-beta1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Erik Seifert"
-                }
-            ],
-            "description": "Add new extensions to twig template engine",
-            "homepage": "https://www.drupal.org/project/twig_extender",
-            "keywords": [
-                "Drupal",
-                "php",
-                "twig",
-                "utils"
-            ],
-            "time": "2016-07-05 08:38:44"
         },
         {
             "name": "fabpot/goutte",
