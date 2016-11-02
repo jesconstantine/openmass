@@ -5,11 +5,11 @@ dependencies:
   module:
     - help
   theme:
-    - seven
+    - mass_admin_theme
 _core:
   default_config_hash: NU5A_49mwLHfs5xFzMFrZ850w9pgUolxMS9NNF3vv4c
-id: seven_help
-theme: seven
+id: mass_admin_theme_help
+theme: mass_admin_theme
 region: help
 weight: 0
 provider: null

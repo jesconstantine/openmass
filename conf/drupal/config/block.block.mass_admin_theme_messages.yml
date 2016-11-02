@@ -5,11 +5,11 @@ dependencies:
   module:
     - system
   theme:
-    - seven
+    - mass_admin_theme
 _core:
   default_config_hash: XJqWwLt1LDCnazcEN6QkJmCLjk4R0__-8s0OO9xeNjg
-id: seven_messages
-theme: seven
+id: mass_admin_theme_messages
+theme: mass_admin_theme
 region: highlighted
 weight: 0
 provider: null
