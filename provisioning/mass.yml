@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    timezone: America/Chicago
+    timezone: America/New_York
     mysql_root_pass: root
     solr_enabled: false
     system_packages: ["php5-gd"]
