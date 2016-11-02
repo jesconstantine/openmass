@@ -16,6 +16,15 @@ Feature: Content Management
     And I should not see the link "Reports"
     And I should not see the link "Help"
 
+  Scenario: Verify that content team user has broad permission to deal with all content and can use workbench
+    Given I am logged in as a user with the "content_team" role
+    Then I should have the "administer nodes, revert all revisions, create url aliases" permissions
+    And I should have the "use workbench_tabs, view any unpublished content, view moderation states, view latest version" permissions
+
+  Scenario: Verify that content team user does not have permission to change site code or administer users
+    Given I am logged in as a user with the "content_team" role
+    Then I should not have the "administer modules, administer software updates, administer themes, administer users" permissions
+
   Scenario: Verify that content team user can see 'Add content' button
     Given I am logged in as a user with the "content_team" role
     And I am on "admin/content"
@@ -51,5 +60,6 @@ Feature: Content Management
     Given I am logged in as a user with the "content_team" role
     When I go to "node/add/topic"
     Then the response status code should be 200
+
 
 
