@@ -17,4 +17,15 @@ function mass_utility_install() {
   foreach ($view_to_delete as $view) {
     $view->delete();
   }
+
+  // Delete the field_contact_group field.
+  $properties = array(
+    'entity_type' => 'node',
+    'bundle' => 'action',
+    'field_name' => 'field_contact_group',
+  );
+  $field_to_delete = \Drupal::entityManager()->getStorage('field_config')->loadByProperties($properties);
+  foreach ($field_to_delete as $field) {
+    $field->delete();
+  }
 }
