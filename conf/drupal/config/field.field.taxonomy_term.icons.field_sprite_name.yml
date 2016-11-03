@@ -9,7 +9,7 @@ id: taxonomy_term.icons.field_sprite_name
 field_name: field_sprite_name
 entity_type: taxonomy_term
 bundle: icons
-label: 'Sprite Name'
+label: 'File Name'
 description: 'The name of the sprite to be used for this icon.  For instance, if the name of the sprite file is "id-card.svg" enter "id-card".  The available sprite files may be found in themes/custom/mass_theme/images/svg-sprite.'
 required: true
 translatable: false

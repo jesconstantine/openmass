@@ -10,8 +10,6 @@ global-styling:
     js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
     libraries/formstack/js/matchMayflower.js: {}
-  dependencies:
-    - core/jquery
 js-header:
   header: true
   js:

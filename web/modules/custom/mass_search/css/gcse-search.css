@@ -105,7 +105,32 @@ input.gsc-search-button:hover {
   }
 }
 
+/* mobile autocomplete styles */
+
+/* target the mobile autocomplete and override js-assigned positioning because as is,
+  it does line up under input
+
+  1. magic number'ish for mobile autocomplete drop down left position:
+    - 100% = full width of the body, the autocomplete drop down's parent
+    - minus 300px = width of mobile nav menu
+    - plus 300px to cancel out the -300px translation to <body> when mobile nav menu opens
+    - plus 10px to match padding inside the mobile nav menu
+  */
+.gstl_51.gssb_c[style] {
+  left: calc(100% + 10px) !important; /* 1 */
+}
+
 /* autocomplete promotions styles */
+.gsq_a {
+  padding: .5em 0 !important;
+}
+
+@media (min-width: 801px) {
+  .gsq_a {
+    padding: 0 !important;
+  }
+}
+
 .gsq_a span {
   color: #535353 !important;
   font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif;
@@ -139,7 +164,7 @@ input.gsc-search-button:hover {
   background-color: #fff;
 }
 */
-/*.gsc-control-cse {*/
+.gsc-control-cse {
   /*font-family: Arial, sans-serif;*/
   font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif;
   border-color: #FFFFFF;
@@ -379,8 +404,8 @@ a.gsc-trailing-more-results:link {
   .gs-promotion a.gs-title:visited *,
   .gs-promotion .gs-snippet a:link,
   .gs-promotion .gs-snippet a:visited {
-  font-size: 28px !important;
-  font-size: 1.75rem !important;
+  font-size: 24px !important;
+  font-size: 1.5rem !important;
   line-height: 1.214287 !important;
   font-weight: 500 !important;
   font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif !important;
@@ -391,6 +416,17 @@ a.gsc-trailing-more-results:link {
   -webkit-transition: border 0.4s ease;
   transition: border 0.4s ease;
 }
+ @media (min-width: 801px) {
+   .gs-promotion a.gs-title:link,
+   .gs-promotion a.gs-title:visited,
+   .gs-promotion a.gs-title:link *,
+   .gs-promotion a.gs-title:visited *,
+   .gs-promotion .gs-snippet a:link,
+   .gs-promotion .gs-snippet a:visited {
+     font-size: 28px !important;
+     font-size: 1.75rem !important;
+   }
+ }
 
 .gs-promotion a.gs-title, .gs-promotion a.gs-title * {
   text-decoration: none !important;
@@ -598,7 +634,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
   font-size: 16px;
   font-size: 1rem;
   height: 46px;
-  padding-right: 70px;
+  padding-right: 85px;
   padding-left: 17px;
   width: 100%;
   border: 2px solid #dcdcdc;
@@ -750,8 +786,8 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
         display: none; } }
 
 /* reduce vertical spacing above linked list container for search results */
-.ma__link-list {
-  @media (max-width: 620px) {
+@media (max-width: 620px) {
+  .ma__link-list {
     padding-top: 20px;
   }
 }

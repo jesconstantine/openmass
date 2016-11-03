@@ -1,0 +1,9 @@
+crazyegg_enabled: true
+crazyegg_account_id: '00572337'
+_core:
+  default_config_hash: KCjxdpBLTqGsKpT19syZe9K1OsSRAxVhx8nIFSV3oDw
+actions: null
+form_build_id: form-nQATe7aYzeofrfg-qF3uYsCV05uCbAtDC7d_GBATMJA
+form_token: BBaE6DFF3oFWNrpCXE8No1HYhQ4WZMBoS477eckvqC0
+form_id: crazyegg_settings_form
+crazyegg_paths: '/*'
