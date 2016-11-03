@@ -1,0 +1,5 @@
+name: MA Feedback Form
+type: module
+description: Module to manage feedback form through a Block
+core: 8.x
+package: Custom
