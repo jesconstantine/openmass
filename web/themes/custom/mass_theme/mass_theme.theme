@@ -88,6 +88,23 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
+
+  // Get our subtopics (sections) view.
+  $view_results = views_get_view_result('ordered_topics', 'ordered_topic_list_block', $node->id());
+  $sections = array();
+  // Roll this up and give the twig tpl what it expects.
+  foreach ($view_results as $key => $row) {
+    //$links = array();
+    // Wrap up our links for each subtopic.
+    //foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+      //$links[] = array('text' => $link->title, 'href' => $link->uri);
+    //}
+    // Wrap up each section with links.
+    // @TODO Check that the icon exists before providing path.
+    $sections[] = array('catIcon' => array('svg' => '@atoms/05-icons/svg-' . strtolower($row->_entity->get('field_icon_term')->view()[0]['#title']) . '.twig', 'small' => 'true'),'title' => array('href' => 'node/' . $row->_entity->get('nid')->value, 'text' => $row->_entity->get('title')->value), 'description' => $row->_entity->get('field_lede')->value, 'links' => '');
+  }
+  // Send to twig.
+  $variables['sections']= $sections;
 }
 
 /**
