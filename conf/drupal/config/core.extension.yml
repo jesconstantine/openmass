@@ -5,6 +5,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   color: 0
+  components: 0
   config: 0
   contextual: 0
   ctools: 0
@@ -38,9 +39,10 @@ module:
   mass_entityreference: 0
   mass_formatters: 0
   mass_nav: 0
-  mass_styles: 0
   mass_search: 0
+  mass_styles: 0
   mass_types: 0
+  mass_utility: 0
   menu_ui: 0
   metatag: 0
   migrate: 0

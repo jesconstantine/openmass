@@ -143,13 +143,29 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($variables['view_mode'] == 'full') {
     // Get our callout links view.
     $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
-    $links = array();
+    $calloutLinks = array();
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
-      $links[] = array('calloutLink' => array('type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '', 'quickaction' => 'false', 'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value ,'text' => $row->_relationship_entities['field_common_content']->get('title')->value));
+      $calloutLinks[] = array('calloutLink' => array('type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '', 'quickaction' => 'false', 'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value ,'text' => $row->_relationship_entities['field_common_content']->get('title')->value));
     }
     // Send to twig.
-    $variables['links']= $links;
+    $variables['calloutLinks']= $calloutLinks;
+
+    // Get our subtopics (sections) view.
+    $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
+    $sections = array();
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+      $links = array();
+      // Wrap up our links for each subtopic.
+      foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+        $links[] = array('text' => $link->title, 'href' => $link->uri);
+      }
+      // Wrap up each section with links.
+      $sections[] = array('title' => array('href' => 'node/' . $row->_entity->get('nid')->value, 'text' => $row->_entity->get('title')->value), 'description' => $row->_entity->get('field_lede')->value, 'links' => $links);
+    }
+    // Send to twig.
+    $variables['sections']= $sections;
   }
 
   if ($variables['view_mode'] == 'teaser') {
