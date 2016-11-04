@@ -10,7 +10,7 @@
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function workbench_ui_form_node_form_alter(&$form, $form_state, $form_id) {
+function mass_workbench_ui_form_node_form_alter(&$form, $form_state, $form_id) {
   $remove_button = \Drupal::config('mass_workbench_ui.config')->get('remove_preview_button');
   if ($remove_button) {
     unset($form['actions']['preview']);
