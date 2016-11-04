@@ -1,20 +1,20 @@
-uuid: e19241a9-7219-4040-a296-9b54e96e3d7a
+uuid: aaef013c-0bc1-486c-8e9a-8fb4932823d8
 langcode: en
 status: true
 dependencies:
   theme:
     - mass_admin_theme
-id: tabs
+id: mass_admin_theme_seconday_tabs
 theme: mass_admin_theme
-region: header
+region: pre_content
 weight: 0
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Primary tabs'
+  label: 'Secondary Tabs'
   provider: core
   label_display: '0'
-  primary: true
-  secondary: false
+  primary: false
+  secondary: true
 visibility: {  }

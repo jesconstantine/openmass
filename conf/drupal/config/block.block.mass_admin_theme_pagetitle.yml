@@ -1,20 +1,18 @@
-uuid: aaef013c-0bc1-486c-8e9a-8fb4932823d8
+uuid: 46681412-e543-4c37-b087-af655e06f74c
 langcode: en
 status: true
 dependencies:
   theme:
     - mass_admin_theme
-id: tabs_2
+id: mass_admin_theme_pagetitle
 theme: mass_admin_theme
-region: pre_content
+region: header
 weight: 0
 provider: null
-plugin: local_tasks_block
+plugin: page_title_block
 settings:
-  id: local_tasks_block
-  label: 'Secondary Tabs'
+  id: page_title_block
+  label: 'Page title'
   provider: core
   label_display: '0'
-  primary: false
-  secondary: true
 visibility: {  }

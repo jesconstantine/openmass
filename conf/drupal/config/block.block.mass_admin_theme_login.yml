@@ -6,7 +6,7 @@ dependencies:
     - user
   theme:
     - mass_admin_theme
-id: userlogin
+id: mass_admin_theme_login
 theme: mass_admin_theme
 region: content
 weight: -2

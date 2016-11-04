@@ -1,4 +1,4 @@
-uuid: 7c873acf-42e9-42bc-87fd-b9dc8978be6a
+uuid: 77e40268-1b8d-49b2-a778-972e29b62787
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - system
   theme:
     - mass_admin_theme
-id: mainpagecontent
+id: mass_admin_theme_messages
 theme: mass_admin_theme
-region: content
-weight: -3
+region: highlighted
+weight: 0
 provider: null
-plugin: system_main_block
+plugin: system_messages_block
 settings:
-  id: system_main_block
-  label: 'Main page content'
+  id: system_messages_block
+  label: 'Status messages'
   provider: system
   label_display: '0'
 visibility: {  }

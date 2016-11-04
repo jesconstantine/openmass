@@ -1,4 +1,4 @@
-uuid: 452834ff-6173-473e-857d-4da04f52eeb6
+uuid: 7c873acf-42e9-42bc-87fd-b9dc8978be6a
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - system
   theme:
     - mass_admin_theme
-id: breadcrumbs
+id: mass_admin_theme_mainpagecontent
 theme: mass_admin_theme
-region: breadcrumb
-weight: 0
+region: content
+weight: -3
 provider: null
-plugin: system_breadcrumb_block
+plugin: system_main_block
 settings:
-  id: system_breadcrumb_block
-  label: Breadcrumbs
+  id: system_main_block
+  label: 'Main page content'
   provider: system
   label_display: '0'
 visibility: {  }
