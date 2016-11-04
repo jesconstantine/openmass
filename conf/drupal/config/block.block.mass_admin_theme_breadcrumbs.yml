@@ -5,11 +5,11 @@ dependencies:
   module:
     - system
   theme:
-    - seven
+    - mass_admin_theme
 _core:
   default_config_hash: WWu2OQswgCztl9OeXjD1stexIEMZsSgPMYIdC-JHx9c
-id: seven_breadcrumbs
-theme: seven
+id: mass_admin_theme_breadcrumbs
+theme: mass_admin_theme
 region: breadcrumb
 weight: 0
 provider: null

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
@@ -114,6 +115,7 @@ third_party_settings:
     group_extended_header:
       children:
         - field_action_header
+        - field_action_banner
         - field_header_cta
       parent_name: group_form
       weight: 2
@@ -132,6 +134,16 @@ targetEntityType: node
 bundle: action
 mode: default
 content:
+  field_action_banner:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
   field_action_details:
     type: entity_reference_paragraphs
     weight: 29
@@ -198,7 +210,7 @@ content:
     type: link_default
   field_header_cta:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 5
     settings:
       title: Molecule
       title_plural: Molecules

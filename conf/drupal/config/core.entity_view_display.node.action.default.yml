@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
@@ -90,4 +91,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_action_banner: true
   field_external_url: true

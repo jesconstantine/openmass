@@ -6,6 +6,7 @@ global-styling:
       css/base-theme-generated.css: {}
       css/pilot-generated.css: {}
       overrides/css/action-finder.css: {}
+      overrides/css/basic-html.css: {}
   js:
     js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}

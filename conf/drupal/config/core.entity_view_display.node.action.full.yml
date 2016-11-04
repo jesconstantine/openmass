@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
+    - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
@@ -26,6 +27,14 @@ targetEntityType: node
 bundle: action
 mode: full
 content:
+  field_action_banner:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: extended_header
+      link: ''
+    third_party_settings: {  }
   field_action_details:
     type: entity_reference_revisions_entity_view
     weight: 3
@@ -37,9 +46,9 @@ content:
   field_action_header:
     type: entity_reference_revisions_entity_view
     weight: 2
-    label: above
+    label: hidden
     settings:
-      view_mode: default
+      view_mode: extended_header
       link: ''
     third_party_settings: {  }
   field_action_sidebar:
@@ -69,6 +78,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_header_cta:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: extended_header
+      link: ''
+    third_party_settings: {  }
   field_lede:
     type: basic_string
     weight: 1
@@ -82,5 +99,4 @@ content:
 hidden:
   field_action_parent: true
   field_external_url: true
-  field_header_cta: true
   links: true

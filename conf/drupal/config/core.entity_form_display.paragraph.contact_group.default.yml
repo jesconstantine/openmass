@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.contact_group.field_contact_group_layout
     - field.field.paragraph.contact_group.field_contact_info
     - field.field.paragraph.contact_group.field_title
     - paragraphs.paragraphs_type.contact_group
@@ -14,9 +15,14 @@ targetEntityType: paragraph
 bundle: contact_group
 mode: default
 content:
+  field_contact_group_layout:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
   field_contact_info:
     type: entity_reference_paragraphs
-    weight: 7
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -25,7 +31,7 @@ content:
       form_display_mode: default
     third_party_settings: {  }
   field_title:
-    weight: 6
+    weight: 0
     settings:
       size: 60
       placeholder: ''
