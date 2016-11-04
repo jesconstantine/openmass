@@ -460,7 +460,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'edit any subtopic content'
+          perm: 'access content'
       display_description: ''
     cache_metadata:
       max-age: -1
