@@ -7,3 +7,6 @@ libraries:
   - mass_admin_theme/admin_overrides
 
 base theme: seven
+
+libraries-override:
+  google_map_field/google-map-apis: false

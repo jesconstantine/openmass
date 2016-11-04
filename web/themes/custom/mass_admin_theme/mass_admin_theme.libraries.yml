@@ -3,3 +3,5 @@ admin_overrides:
   css:
     theme:
       overrides/css/action-node-form.css: {}
+  js:
+    //maps.googleapis.com/maps/api/js?key=AIzaSyDKl-Yq4l-djQRXFSAJnNwz-51QFQOqSH4: { type: external, preprocess: false }
