@@ -115,6 +115,18 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
 
+  if ($variables['view_mode'] == 'full') {
+    $field_action_parent = $node->get('field_action_parent');
+    $taxonomyTerms = array();
+    foreach($field_action_parent->referencedEntities() as $taxonomyTerm) {
+      $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
+    }
+    $variables['taxonomyTerms']= $taxonomyTerms;
+
+    // Get Quick Actions and use sidebar template.
+    //kint($node->get('field_action_sidebar'));
+  }
+
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
     $field_external_link = $node->get('field_external_url');
 
