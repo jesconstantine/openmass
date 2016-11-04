@@ -1,4 +1,4 @@
-uuid: 10bba274-9630-4f1c-95ab-0df2e75f3abb
+uuid: 57890fb0-bcfe-4682-ab38-b5d8165d0ffc
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,10 @@ dependencies:
     - user
   theme:
     - mass_admin_theme
-_core:
-  default_config_hash: IItlF4SKHgxduIysVQdvirDJ_v3HGuAviOkidAOJYRE
-id: mass_admin_theme_login
+id: userlogin
 theme: mass_admin_theme
 region: content
-weight: 10
+weight: -2
 provider: null
 plugin: user_login_block
 settings:

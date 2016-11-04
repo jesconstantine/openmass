@@ -1,15 +1,13 @@
-uuid: c4ea09b2-25ac-4ad2-bd70-2bb6fb72df49
+uuid: 46681412-e543-4c37-b087-af655e06f74c
 langcode: en
 status: true
 dependencies:
   theme:
     - mass_admin_theme
-_core:
-  default_config_hash: ZSpc3IoSaLd0PkB02nxjVPBMztIdsTdHek9SiGaqZ_c
-id: mass_admin_theme_page_title
+id: pagetitle
 theme: mass_admin_theme
 region: header
-weight: -30
+weight: 0
 provider: null
 plugin: page_title_block
 settings:

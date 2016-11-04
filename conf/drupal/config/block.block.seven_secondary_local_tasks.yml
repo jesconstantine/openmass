@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - mass_admin_theme
+    - seven
 _core:
   default_config_hash: QeZBeCilQfeET3GeW6ZtJkEiwROADTZktFgKWwPieD4
-id: mass_admin_theme_secondary_local_tasks
-theme: mass_admin_theme
+id: seven_secondary_local_tasks
+theme: seven
 region: pre_content
 weight: 0
 provider: null
