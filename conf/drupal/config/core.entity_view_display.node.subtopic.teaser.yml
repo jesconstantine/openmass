@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.subtopic.field_description
     - field.field.node.subtopic.field_featured_content
     - field.field.node.subtopic.field_featured_image
+    - field.field.node.subtopic.field_featured_mobile_image
     - field.field.node.subtopic.field_lede
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
@@ -36,6 +37,7 @@ hidden:
   field_description: true
   field_featured_content: true
   field_featured_image: true
+  field_featured_mobile_image: true
   field_lede: true
   field_topic_parent: true
   links: true

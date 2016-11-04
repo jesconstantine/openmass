@@ -7,9 +7,11 @@ dependencies:
     - field.field.node.subtopic.field_description
     - field.field.node.subtopic.field_featured_content
     - field.field.node.subtopic.field_featured_image
+    - field.field.node.subtopic.field_featured_mobile_image
     - field.field.node.subtopic.field_lede
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
+    - image.style.hero800x400
     - node.type.subtopic
   module:
     - image
@@ -53,6 +55,14 @@ content:
     label: above
     settings:
       image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_featured_mobile_image:
+    weight: 109
+    label: above
+    settings:
+      image_style: hero800x400
       image_link: ''
     third_party_settings: {  }
     type: image
