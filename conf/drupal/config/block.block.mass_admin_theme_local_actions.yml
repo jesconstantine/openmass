@@ -1,0 +1,20 @@
+uuid: 0fc9a282-8e71-40b5-8b16-ed7dbb14ac05
+langcode: en
+status: true
+dependencies:
+  theme:
+    - mass_admin_theme
+_core:
+  default_config_hash: HHryZVJbeKi9WnuBGC8FOhBZmBnk2G1H6KxFuy-rC9A
+id: mass_admin_theme_local_actions
+theme: mass_admin_theme
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

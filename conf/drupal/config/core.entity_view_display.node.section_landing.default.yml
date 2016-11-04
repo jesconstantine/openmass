@@ -4,8 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.section_landing.field_featured_image
+    - field.field.node.section_landing.field_featured_mobile_image
+    - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
-    - image.style.hero800x400
     - node.type.section_landing
   module:
     - image
@@ -20,6 +21,14 @@ content:
     label: hidden
     settings:
       image_style: hero800x400
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_featured_mobile_image:
+    weight: 4
+    label: above
+    settings:
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
     type: image

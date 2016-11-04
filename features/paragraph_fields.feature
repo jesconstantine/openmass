@@ -4,25 +4,11 @@ Feature: Paragraph type definitions
   I want to be able to add content for actions (a bedrock of the alpha release) for pre-determined journeys,
   so that I can help Bay Staters get the best information they need to fulfill basic tasks.
 
-  Scenario: Verify that the action_address_info paragraph type has the correct field configuration
-    Given I am logged in as a user with the "administrator" role
-    Then the "action_address_info" paragraph has the fields:
-      | field                   | widget                    |
-      | field-address-ref       | Paragraphs                |
-      | field-address-label     | Textfield                 |
-      | field-location-info-ref | Paragraphs                |
-
   Scenario: Verify that the action_area paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "action_area" paragraph has the fields:
       | field                 | widget            |
       | field-area-action-ref | Paragraphs        |
-
-  Scenario: Verify that the action_address paragraph type has the correct field configuration
-    Given I am logged in as a user with the "administrator" role
-    Then the "action_address" paragraph has the fields:
-      | field         | widget                    |
-      | field-address | Text area (multiple rows) |
 
   Scenario: Verify that the action_step paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
@@ -77,6 +63,12 @@ Feature: Paragraph type definitions
       | field-url    | Link         |
       | field-height | Number field |
 
+  Scenario: Verify that the quick_action paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "quick_action" paragraph has the fields:
+      | field             | widget     |
+      | field-link        | Link       |
+
   Scenario: Verify that the rich_text paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "rich_text" paragraph has the fields:
@@ -103,6 +95,12 @@ Feature: Paragraph type definitions
       | field       | widget        |
       | field-title | Textfield     |
 
+  Scenario: Verify that the map paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "map" paragraph has the fields:
+      | field       | widget                   |
+      | field-map   | Google Map Field default |
+
   Scenario: Verify that the video paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "video" paragraph has the fields:
@@ -114,9 +112,10 @@ Feature: Paragraph type definitions
   Scenario: Verify that the contact group paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "contact_group" paragraph has the fields:
-      | field              | widget     |
-      | field-title        | Textfield  |
-      | field-contact-info | Paragraphs |
+      | field                      | widget      |
+      | field-title                | Textfield   |
+      | field-contact-info         | Paragraphs  |
+      | field-contact-group-layout | Select list |
 
   Scenario: Verify that the contact info paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role

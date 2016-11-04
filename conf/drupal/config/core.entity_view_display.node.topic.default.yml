@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.topic.field_common_content
     - field.field.node.topic.field_featured_image
+    - field.field.node.topic.field_featured_mobile_image
     - field.field.node.topic.field_icon_term
     - field.field.node.topic.field_lede
     - field.field.node.topic.field_node_icon
@@ -29,14 +30,22 @@ content:
     third_party_settings: {  }
   field_featured_image:
     type: image
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       image_style: hero800x400
       image_link: ''
     third_party_settings: {  }
+  field_featured_mobile_image:
+    weight: 3
+    label: above
+    settings:
+      image_style: hero800x400
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_icon_term:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       view_mode: token
@@ -44,20 +53,20 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
   field_lede:
-    weight: 2
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_section:
-    weight: 4
+    weight: 6
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   links:
-    weight: 5
+    weight: 7
     settings: {  }
     third_party_settings: {  }
   workbench_moderation_control:

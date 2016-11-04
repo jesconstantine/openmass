@@ -25,9 +25,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
 
-    <!-- TODO replace the fonts before launch to production with client's kit -->
-    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7638692/6594352/css/fonts.css"/>
-
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/index-generated.css?1474397330" media="all"/>
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/base-theme-generated.css?1474397330" media="all"/>
 
@@ -47,6 +44,8 @@
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/pattern-scaffolding-generated.css?1474397330"
           media="all"/>
     <!-- End Pattern Lab -->
+
+    <script src="/themes/custom/mass_theme/js/vendor-generated.js"></script>
 
   </head>
   <body class="">
@@ -121,7 +120,7 @@
                                 <ul class="ma__main-nav__container">
                                     <li class="ma__main-nav__subitem"><a href="#commonaction" class="ma__main-nav__link">Common
                                             Actions</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/get-dcr-parkspass" class="ma__main-nav__link">Get a DCR 
+                                    <li class="ma__main-nav__subitem"><a href="actions/get-dcr-parkspass" class="ma__main-nav__link">Get a DCR
                                             ParksPass</a></li>
                                     <li class="ma__main-nav__subitem"><a href="actions/buy-freshwater-fishing-license" class="ma__main-nav__link">Buy a freshwater fishing license</a></li>
                                     <li class="ma__main-nav__subitem"><a href="actions/apply-nursing-license-new-graduates" class="ma__main-nav__link">Apply for a nursing license (new graduates)</a>
@@ -797,9 +796,9 @@
     <section class="ma__image-credit">
         <div class="ma__image-credit__container">
             <span class="ma__image-credit__label">Image credits:&nbsp;</span>
-            <span>"State House" &mdash; Shutterstock;&nbsp;</span>
-            <span>"Chenoweth Labortory" &mdash; John Solem/University of Massachusetts Amherst;&nbsp;</span>
-            <span>"Berkshires Scenery" &mdash; Ogden Gigli/Courtesy of Massachusetts Office of Travel and Tourism;&nbsp;</span>
+            <span>State House (Shutterstock);&nbsp;</span>
+            <span>Chenoweth Laboratory (John Solem/University of Massachusetts Amherst);&nbsp;</span>
+            <span>Berkshires scenery (Ogden Gigli/Courtesy of Massachusetts Office of Travel and Tourism)&nbsp;</span>
         </div>
     </section>
     <section class="ma__feedback-form" id="GUID8317417813234325">
@@ -813,68 +812,65 @@
                     background-image: url('/themes/custom/mass_theme/pilot-homepage-images/homepage-feedback-lowerimage-1600x600.png');
                 }
             }
-        </style>
-        <div class="ma__feedback-form__overlay">
-            <div class="ma__feedback-form__container">
-                <a name=“feedback” id="feedback"></a>
-                <header class="ma__feedback-form__header">
-                    <h2 class="ma__feedback-form__title">We Want to Hear From You</h2>
-                    <p class="ma__feedback-form__description">Mass.gov is for you, and we want to know what you think
-                        about it.</p>
-                </header>
-                <form action="#">
-                    <div class="ma__feedback-form__name">
-                        <label for="text-input">Your Name*</label>
-                        <input class="js-is-required" name="text-input" id="text-input" type="text" placeholder=""
-                               data-type="text"/></div>
-                    <div class="ma__feedback-form__email">
-                        <label for="email-input">Your Email Address*</label>
-                        <input class="js-is-required" name="email-input" id="email-input" type="email" placeholder=""
-                               data-type="email"/></div>
-                    <div class="ma__feedback-form__feeback">
-                        <label for="input-type-textarea">Feedback*</label>
-                        <textarea class="js-is-required" id="input-type-textarea" name="input-type-textarea"
-                                  data-type="text"></textarea></div>
-                    <div class="ma__feedback-form__type">
-                        <section class="ma__select-box js-dropdown">
-                            <label
-                                    for="color-select"
-                                    class="ma__select-box__label">Type of Feedback</label>
-                            <div class="ma__select-box__field">
-                                <select
-                                        name="color-select"
-                                        id="color-select"
-                                        class="ma__select-box__select js-dropdown-select">
-                                    <option value="design">Visual Feedback</option>
-                                    <option value="development">Functionality</option>
-                                    <option value="ux">Organization</option>
-                                </select>
-                                <div class="ma__select-box__link">
-                                    <span class="js-dropdown-link">Visual Feedback</span>
-                                    <span class="ma__select-box__icon"></span></div>
-                            </div>
-                        </section>
-                    </div>
-                    <fieldset class="ma__feedback-form__permission">
-                        <legend>Are you interested in helping us test our designs for new sections of Mass.Gov? If so,
-                            we will contact you by email with more information.
-                        </legend>
-                        <span class="ma__input-radio">
-  <input name="permission" type="radio" value="Yes" id="permission-yes">
-  <label for="permission-yes"><span>Yes</span></label>
-</span>
-                        <span class="ma__input-radio">
-  <input name="permission" type="radio" value="No" id="permission-no">
-  <label for="permission-no"><span>No</span></label>
-</span>
-                    </fieldset>
-                    <div class="ma__feedback-form__controls">
-                        <div class="ma__feedback-form__error-message js-error-msg">
-                            Please complete the fields highlighted in red.
-                        </div>
-                        <button type="submit">Send</button>
-                    </div>
-                </form>
+
+
+	    /* Formstack Validation overrides */
+	    .fsForm  div.fsError {
+		color: white;
+		border-radius: 0;
+		background-color: #f34343;
+		font-weight: bold;
+	    }
+	    .fsPage .fsValidationError {
+		background-color: transparent;
+	    }
+	    .fsPage .fsValidationError .fsLabel {
+		color: #f34343;
+		padding-left: 0;
+		background: none;
+	    }
+	    .fsPage .fsValidationError input,
+	    .fsPage .fsValidationError textarea {
+		border: 2px solid #f34343;
+	    }
+	    .fsBody .fsPagination {
+		text-align: right;
+		margin: 0;
+	    }
+
+	.fsPage fieldset {
+	    border: none;
+	    padding-left: 0;
+	}
+
+	.fsPage label {
+	    margin-bottom: 0;
+	}
+	.fsPage textarea {
+	    width: 100%;
+	}
+	.fsPage .fsRowBody {
+	    margin-bottom: 1em;
+	}
+	.fsPage .fsSupporting {
+	    padding-top: 0.5em;
+	    font-size: 0.8em;
+	}
+	.fsPage input[type="text"],
+	.fsPage input[type="email"] {
+	    max-width: 100%;
+	}
+
+	</style>
+	<div class="ma__feedback-form__overlay" id="feedback">
+	    <div class="ma__feedback-form__container">
+		<header class="ma__feedback-form__header">
+		    <h2 class="ma__feedback-form__title">We Want to Hear From You</h2>
+		    <p class="ma__feedback-form__description">Mass.gov is for you, and we want to know what you think about it.</p>
+		</header>
+	       <script type="text/javascript" src="https://massgov.formstack.com/forms/js.php/feedback__homepage?nojquery=1&nomodernizr=1&no_style_strict=1&jsonp=1"></script>
+	       <noscript><a href="https://massgov.formstack.com/forms/feedback__homepage" title="Online Form">Online Form - Feedback - Homepage</a></noscript>
+	       <script type='text/javascript'>if (typeof $ == 'undefined' && jQuery){ $ = jQuery}</script>
             </div>
         </div>
     </section>
@@ -973,7 +969,7 @@
             </div>
             <div class="ma__footer__copyright">
                 <p><b>&copy; 2016 Commonwealth of Massachusetts.</b></p>
-                <p>Mass.gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</b></p>
+                <p>Mass.gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</p>
                 <a href="/privacypolicy">Mass.gov Privacy Policy</a>
                 {#
                   The log-out link is required to be on the page becuase the behat tests
@@ -1052,7 +1048,7 @@
 </script>
 <script src="//www.google.com/jsapi"></script>
 <script src="/modules/custom/mass_search/js/google-custom-search-forms.js"></script>
-<script src="/themes/custom/mass_theme/js/vendor-generated.js"></script>
 <script src="/themes/custom/mass_theme/js/index-generated.js"></script>
+<script src="/themes/custom/mass_theme/libraries/formstack/js/matchMayflower.js"></script>
 </body>
 </html>

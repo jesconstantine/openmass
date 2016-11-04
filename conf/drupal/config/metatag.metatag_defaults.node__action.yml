@@ -1,0 +1,9 @@
+uuid: ab973211-b674-40a3-8c78-ac5e10f3f8ed
+langcode: en
+status: true
+dependencies: {  }
+id: node__action
+label: 'Content: Action'
+tags:
+  title: '[node:title] | [site:name]'
+  description: '[node:field_lede]'

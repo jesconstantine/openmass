@@ -35,3 +35,18 @@ function mass_search_theme() {
     ),
   );
 }
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Attach module mass_search global js + css for google api js and
+ * custom search header form on every page.
+ */
+function mass_search_page_attachments(array &$attachments) {
+
+  // Unconditionally attach the google js api external script reference (loads in head).
+  $attachments['#attached']['library'][] = 'mass_search/google-jsapi';
+
+  // Unconditionally attach the search form js + css globally.
+  $attachments['#attached']['library'][] = 'mass_search/google-cse';
+}
