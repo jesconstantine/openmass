@@ -38,9 +38,10 @@ module:
   mass_entityreference: 0
   mass_formatters: 0
   mass_nav: 0
-  mass_styles: 0
   mass_search: 0
+  mass_styles: 0
   mass_types: 0
+  mass_utility: 0
   menu_ui: 0
   metatag: 0
   migrate: 0
