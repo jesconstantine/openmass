@@ -106,4 +106,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_action_related: true
+  field_contact_group: true
   field_external_url: true
+  field_metatags: true
