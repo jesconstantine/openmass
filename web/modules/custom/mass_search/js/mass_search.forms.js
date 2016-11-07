@@ -3,7 +3,7 @@
  * Common JS for google custom search HEADER + MOBILE forms (loads globally)
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
- * - search results page JS in google-custom-search-results.js
+ * - search results page JS in mass_search.results.js
  */
 (function() {
   'use strict';

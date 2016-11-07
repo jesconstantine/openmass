@@ -3,7 +3,7 @@
  * JS for google custom search results page content FORM + RESULTS (loads once)
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
- * - header and mobile nav search forms js in google-custom-search-forms.js
+ * - header and mobile nav search forms js in mass_search.forms.js
  */
 (function() {
   'use strict';
