@@ -1,4 +1,4 @@
-uuid: b20ee2fb-dadf-417c-8213-e6dce20c5eb6
+uuid: 7c873acf-42e9-42bc-87fd-b9dc8978be6a
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,10 @@ dependencies:
     - system
   theme:
     - mass_admin_theme
-_core:
-  default_config_hash: YRY68JWkaUiGeZlWMv1nzeIgDm0ZZwXYgpqUpLFzwAY
-id: mass_admin_theme_content
+id: mass_admin_theme_mainpagecontent
 theme: mass_admin_theme
 region: content
-weight: 0
+weight: -3
 provider: null
 plugin: system_main_block
 settings:
