@@ -1,0 +1,14 @@
+{
+  "name": "drupal/mass_feedback_form",
+  "type": "drupal-module",
+  "description": "Module to manage feedback form through a Block",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/mass_feedback_form",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/mass_feedback_form",
+    "source": "http://cgit.drupalcode.org/mass_feedback_form"
+  },
+  "require": { }
+}

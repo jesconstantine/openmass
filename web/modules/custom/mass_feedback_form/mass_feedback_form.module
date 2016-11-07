@@ -10,7 +10,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 /**
  * Implements hook_help().
  */
-function ma_feedback_form_help($route_name, RouteMatchInterface $route_match) {
+function mass_feedback_form_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the ma_feedback_form module.
     case 'help.page.ma_feedback_form':
@@ -28,6 +28,6 @@ function ma_feedback_form_help($route_name, RouteMatchInterface $route_match) {
  *
  * Attach form css that will override formstack style.
  */
-function ma_feedback_form_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ma_feedback_form/feedback-form-css';
+function mass_feedback_form_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'mass_feedback_form/feedback-form-css';
 }

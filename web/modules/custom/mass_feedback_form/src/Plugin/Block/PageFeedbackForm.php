@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ma_feedback_form\Plugin\Block;
+namespace Drupal\mass_feedback_form\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
@@ -19,10 +19,10 @@ class PageFeedbackForm extends BlockBase {
    */
   public function build() {
     return array(
-      '#theme' => 'ma_feedback_form',
+      '#theme' => 'mass_feedback_form',
       '#attached' => array(
         'library' => array(
-          'ma_feedback_form/feedback-form-css',
+          'mass_feedback_form/feedback-form-css',
         ),
       ),
     );
