@@ -1,13 +1,15 @@
-uuid: 77e40268-1b8d-49b2-a778-972e29b62787
+uuid: c9e155af-1ad7-4981-ab83-29f774cce4b1
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - mass_admin_theme
-id: mass_admin_theme_messages
-theme: mass_admin_theme
+    - seven
+_core:
+  default_config_hash: XJqWwLt1LDCnazcEN6QkJmCLjk4R0__-8s0OO9xeNjg
+id: seven_messages
+theme: seven
 region: highlighted
 weight: 0
 provider: null

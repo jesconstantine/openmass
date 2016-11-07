@@ -1,4 +1,4 @@
-uuid: e17ea607-1464-42d8-9bef-1ec3d800497e
+uuid: 1276a4da-6204-4dbe-ac6d-c633904877f4
 langcode: en
 status: true
 dependencies:
@@ -6,9 +6,7 @@ dependencies:
     - help
   theme:
     - mass_admin_theme
-_core:
-  default_config_hash: NU5A_49mwLHfs5xFzMFrZ850w9pgUolxMS9NNF3vv4c
-id: mass_admin_theme_help
+id: help
 theme: mass_admin_theme
 region: help
 weight: 0
