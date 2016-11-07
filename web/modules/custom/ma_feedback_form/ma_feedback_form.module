@@ -22,3 +22,15 @@ function ma_feedback_form_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * TODO:update
+ */
+function ma_feedback_form_page_attachments(array &$attachments) {
+
+  // TODO:update
+  $attachments['#attached']['library'][] = 'ma_feedback_form/feedback-form-css';
+
+}

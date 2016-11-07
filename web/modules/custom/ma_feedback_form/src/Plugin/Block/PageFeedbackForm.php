@@ -19,10 +19,19 @@ class PageFeedbackForm extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
-    $build['page_feedback_form']['#markup'] = 'Implement PageFeedbackForm.';
+//    $build = [];
+//    $build['page_feedback_form']['#type'] = 'text_format';
+//    $build['page_feedback_form']['#markup'] = '';
+//    $build['page_feedback_form']['#attached']['library'][] = 'ma_feedback_form/feedback-form-css';
 
-    return $build;
+    return array(
+      '#theme' => 'ma_feedback_form',
+      '#attached' => array(
+        'library' =>  array(
+          'ma_feedback_form/feedback-form-css'
+        ),
+      ),
+    );
   }
 
 }
