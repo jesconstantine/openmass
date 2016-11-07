@@ -1,15 +1,17 @@
-uuid: 57890fb0-bcfe-4682-ab38-b5d8165d0ffc
+uuid: 10bba274-9630-4f1c-95ab-0df2e75f3abb
 langcode: en
 status: true
 dependencies:
   module:
     - user
   theme:
-    - mass_admin_theme
-id: mass_admin_theme_login
-theme: mass_admin_theme
+    - seven
+_core:
+  default_config_hash: IItlF4SKHgxduIysVQdvirDJ_v3HGuAviOkidAOJYRE
+id: seven_login
+theme: seven
 region: content
-weight: -2
+weight: 10
 provider: null
 plugin: user_login_block
 settings:

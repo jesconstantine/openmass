@@ -1,13 +1,15 @@
-uuid: 452834ff-6173-473e-857d-4da04f52eeb6
+uuid: 37f5d0bf-e045-4042-be15-98235dfe5437
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - mass_admin_theme
-id: mass_admin_theme_breadcrumbs
-theme: mass_admin_theme
+    - seven
+_core:
+  default_config_hash: WWu2OQswgCztl9OeXjD1stexIEMZsSgPMYIdC-JHx9c
+id: seven_breadcrumbs
+theme: seven
 region: breadcrumb
 weight: 0
 provider: null
