@@ -73,7 +73,14 @@ set sidebarWidget = {
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
   {% include "@organisms/by-template/header-alert.twig" %}
-  {% include "@organisms/by-template/page-header.twig" %}
+  {% if content.field_action_header|render|trim is not empty or content.field_header_cta|render|trim is not empty %}
+    {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
+  {% else %}
+    {% include "@organisms/by-template/page-header.twig" %}
+  {% endif %}
+  {% if content.field_action_banner|render|trim is not empty %}
+    {{ content.field_action_banner|field_value }}
+  {% endif %}
 {% endblock %}
 {% block pageContent %}
   {% include "@organisms/by-author/quick-actions.twig" %}
@@ -86,7 +93,6 @@ set sidebarWidget = {
   {% include "@organisms/by-author/sidebar-contact.twig" %}
   {{ content.field_related_link }}
   {{ content.field_action_sidebar|field_value }}
-  {{ content.field_action_downloads}}
 {% endblock %}
 {% block postContent %}
   {# include "organisms-breadcrumbs" #}

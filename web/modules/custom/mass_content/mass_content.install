@@ -181,3 +181,36 @@ function mass_content_update_8001(&$sandbox) {
   $field->delete();
 
 }
+
+/**
+ * Migrate action content from old step icon field list to term ref.
+ */
+function mass_content_update_8002(&$sandbox) {
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+
+  // Get all actions that have details.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'action')
+    ->exists('field_action_details');
+  $nids = $query->execute();
+  $nodes = $node_storage->loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+
+    foreach ($node->field_action_details as $detail_id) {
+      $detail = Paragraph::load($detail_id->target_id);
+      // Update only the action_steps
+      if ($detail->getType() == 'action_step') {
+        // As long as the step has no icon term.
+        if (empty($detail->field_para_icon_term->target_id)) {
+          // Get icon term from the icon list.
+          $icons = taxonomy_term_load_multiple_by_name($detail->field_icon->value, 'icons');
+          $icon = current(array_keys($icons));
+          $detail->field_para_icon_term->target_id = $icon;
+          $detail->save();
+        }
+      }
+    }
+  }
+}
