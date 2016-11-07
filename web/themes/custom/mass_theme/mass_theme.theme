@@ -610,6 +610,89 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for downloads.
+ */
+function mass_theme_preprocess_paragraph__file_download(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $files = '';
+  $field_downloads = $paragraph->get('field_downloads');
+
+  if ($field_downloads->count() > 0) {
+    $files = $field_downloads->referencedEntities();
+  }
+
+  foreach($files as $file) {
+    $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+
+    // Get the human readable file size.
+    $bytes = $file->getSize();
+    $readable_size = format_size($bytes);
+    dump($readable_size);
+
+    // Use the description as the link text if available,
+    // if not, use the file name.
+    $filename = $file_entity->getFilename();
+    /*if (empty($file['description'])) {
+      $linktext = $filename;
+    }
+    else {
+      $linktext = $file['description'];
+    }*/
+    dump($linktext);
+    dump($filename);
+
+    // Set the file link variable.
+    /*$variables['download']['link'] = file_create_url($file_entity->getFileUri());
+
+    // Get the file extension.
+    // see: http://php.net/manual/en/splfileinfo.getextension.php
+    $file_info = new SplFileInfo($filename);
+    $file_extension = $file_info->getExtension();
+
+    // Set the file type based on extesnion.
+    $variables['download']['filetype'] = $file_extension;
+
+    // Set the icon name.
+    $variables['download']['iconName'] = 'doc-' . $file_extension*/
+  }
+
+  /*// Get file attributes for ct.action file download links.
+  $file = $variables['file'];
+  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+
+  // Get the human readable file size.
+  $bytes = $file->getSize();
+  $readable_size = format_size($bytes);
+  $variables['download']['size'] = $readable_size;
+
+  // Use the description as the link text if available,
+  // if not, use the file name.
+  $filename = $file_entity->getFilename();
+  if (empty($variables['description'])) {
+    $variables['download']['linktext'] = $filename;
+  }
+  else {
+    $variables['download']['linktext'] = $variables['description'];
+  }
+
+  // Set the file link variable.
+  $variables['download']['link'] = file_create_url($file_entity->getFileUri());
+
+  // Get the file extension.
+  // see: http://php.net/manual/en/splfileinfo.getextension.php
+  $file_info = new SplFileInfo($filename);
+  $file_extension = $file_info->getExtension();
+
+  // Set the file type based on extesnion.
+  $variables['download']['filetype'] = $file_extension;
+
+  // Set the icon name.
+  $variables['download']['iconName'] = 'doc-' . $file_extension;*/
+}
+
+/**
  * Helper function to sort a list of items by title.
  */
 function compare_by_title($a, $b) {
