@@ -234,6 +234,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_action_downloads: true
   field_action_related: true
   field_contact_group: true
   field_hero: true

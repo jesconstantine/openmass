@@ -91,8 +91,10 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_action_banner: true
+  field_action_downloads: true
+  field_action_header: true
   field_action_related: true
   field_contact_group: true
-  field_action_banner: true
   field_external_url: true
   field_metatags: true
