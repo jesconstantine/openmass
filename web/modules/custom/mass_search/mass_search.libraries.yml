@@ -5,11 +5,11 @@ google-jsapi:
 
 google-cse:
   js:
-    js/google-custom-search-forms.js: {}
+    js/mass_search.forms.js: {}
   css:
     theme:
       css/gcse-search.css: {}
 
 google-cse-results:
   js:
-    js/google-custom-search-results.js: {}
+    js/mass_search.results.js: {}
