@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="mass-post-install" default="overwrite-files" description="Collection of post install/update commands.">
+
+    <!--source dir-->
+    <property name="source.dir" value="${build.dir}/conf/drupal/" />
+
+    <!--source files-->
+    <property name="htaccess" value="${source.dir}.htaccess" />
+    <property name="robots" value="${source.dir}robots.txt" />
+
+    <!--target dir-->
+    <property name="target.dir" value="${build.dir}/${drupal.root}" />
+
+    <target name="overwrite-files">
+        <exec command="cp -p ${htaccess} ${target.dir}"/>
+        <exec command="cp -p ${robots} ${target.dir}"/>
+    </target>
+</project>
