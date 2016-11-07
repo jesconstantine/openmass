@@ -5,6 +5,8 @@
  * Utility methods and helpers.
  */
 
+use Drupal\block\Entity\Block;
+
 /**
  * Implements hook_install().
  *
@@ -27,5 +29,30 @@ function mass_utility_install() {
   $field_to_delete = \Drupal::entityManager()->getStorage('field_config')->loadByProperties($properties);
   foreach ($field_to_delete as $field) {
     $field->delete();
+  }
+}
+
+/**
+ * Remove mass_theme blocks from the mass_admin_theme.
+ */
+function mass_utility_update_8001(&$sandbox) {
+  $block_ids = array(
+    'mass_admin_theme_views_block__subtopics_ordered_subtopic_list_block',
+    'mass_admin_theme_views_block__ordered_topics_ordered_topic_list_block',
+    'mass_admin_theme_footer1',
+    'mass_admin_theme_pilotmenu',
+    'mass_admin_theme_footer2',
+    'mass_admin_theme_footer3'
+  );
+
+  foreach($block_ids as $id) {
+    $blocks = \Drupal::entityTypeManager()
+      ->getStorage('block')
+      ->loadByProperties(array('theme' => 'mass_admin_theme', 'id' => $id));
+
+    foreach ($blocks as $key => $block) {
+      $block = Block::load($key);
+      $block->delete();
+    }
   }
 }
