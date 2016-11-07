@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -39,8 +40,9 @@ settings:
       rich_text: rich_text
       stat: stat
       subhead: subhead
-      map: map
       video: video
+      map: map
+      pull_quote: pull_quote
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -72,9 +74,9 @@ settings:
       action_step_numbered:
         weight: -9
         enabled: false
-      map:
+      video:
         enabled: true
-        weight: 19
+        weight: 16
       action_address:
         weight: 16
         enabled: false
@@ -84,13 +86,34 @@ settings:
       action_area:
         weight: 18
         enabled: false
+      map:
+        enabled: true
+        weight: 19
       full_bleed:
         weight: 25
         enabled: false
       location_information:
         weight: 27
         enabled: false
-      video:
+      contact_group:
+        weight: 33
+        enabled: false
+      contact_info:
+        weight: 34
+        enabled: false
+      icon:
+        weight: 37
+        enabled: false
+      pull_quote:
         enabled: true
-        weight: 16
+        weight: 41
+      quick_action:
+        weight: 42
+        enabled: false
+      related_link:
+        weight: 43
+        enabled: false
+      slideshow:
+        weight: 45
+        enabled: false
 field_type: entity_reference_revisions

@@ -135,3 +135,11 @@ Feature: Paragraph type definitions
       | field             | widget     |
       | field-link        | Link       |
       | field-description | Textfield  |
+
+  Scenario: Verify that the pull_quote paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "pull_quote" paragraph has the fields:
+      | field       | widget                    |
+      | field-quote | Text area (multiple rows) |
+      | field-name  | Textfield                 |
+      | field-title | Textfield                 |
