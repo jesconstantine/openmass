@@ -7,12 +7,13 @@ global-styling:
       css/pilot-generated.css: {}
       overrides/css/action-finder.css: {}
   js:
-    js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
     libraries/formstack/js/matchMayflower.js: {}
-  dependencies:
-    - core/jquery
 js-header:
   header: true
   js:
     js/vendor/modernizr.js: {}
+js-vendor:
+  header: true
+  js:
+    js/vendor-generated.js: {}

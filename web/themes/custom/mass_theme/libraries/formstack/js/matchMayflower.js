@@ -1,4 +1,4 @@
-$(function(){
+(function($){
 
     // ---- begin formstack reset ------ //
     // see: https://github.com/base2arthur/bootstrap-the-formstack
@@ -57,7 +57,13 @@ $(function(){
       $('#fsSubmit2504022').addClass('ma__feedback-form__controls');
       $('.fsPage textarea').attr('rows', 5);
 
+      // MULTI FORM-- //
+      $('#fs-go-back').css('display', 'none').attr('aria-hidden', 'true');
+      $('.fsSubmitButton').addClass('ma__button ma__button--small');
+
+      $('.fsForm').prepend('<hr align="left">');
+
 
     // ---- end formstack reset ------ //
 
-});
+})(jQuery);
