@@ -13,3 +13,5 @@ google-cse:
 google-cse-results:
   js:
     js/mass_search.results.js: {}
+  dependencies:
+    - core/drupal
