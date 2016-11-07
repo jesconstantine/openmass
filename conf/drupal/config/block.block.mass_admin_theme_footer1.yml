@@ -1,0 +1,24 @@
+uuid: e4c92e04-937a-4621-a4db-54518e6c474c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-1
+  module:
+    - system
+  theme:
+    - mass_admin_theme
+id: mass_admin_theme_footer1
+theme: mass_admin_theme
+region: header
+weight: -1
+provider: null
+plugin: 'system_menu_block:footer-1'
+settings:
+  id: 'system_menu_block:footer-1'
+  label: 'Footer Primary Links'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }
