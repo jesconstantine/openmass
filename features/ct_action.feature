@@ -14,7 +14,6 @@ Feature: Action Content type
     | field-alert-dropdown         | select     |                            | false      |
     | field-alert-text             | textarea   |                            | false      |
     | field-alert-link             | input      | text                       | false      |
-    | field-action-downloads       | input      | submit                     | false      |
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
     | field-action-details         | paragraphs | callout-link               | false      |
@@ -23,7 +22,11 @@ Feature: Action Content type
     | field-action-details         | paragraphs | rich-text                  | false      |
     | field-action-details         | paragraphs | stat                       | false      |
     | field-action-details         | paragraphs | subhead                    | false      |
+    | field-action-details         | paragraphs | map                        | false      |
+    | field-action-header          | paragraphs | contact-group              | false      |
+    | field-action-banner          | paragraphs | full-bleed                 | false      |
     | field-action-sidebar         | paragraphs | contact-group              | false      |
+    | field-action-sidebar         | paragraphs | quick-action               | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"

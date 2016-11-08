@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -38,6 +39,7 @@ settings:
       rich_text: rich_text
       stat: stat
       subhead: subhead
+      map: map
       video: video
     target_bundles_drag_drop:
       action_step:
@@ -70,6 +72,9 @@ settings:
       action_step_numbered:
         weight: -9
         enabled: false
+      map:
+        enabled: true
+        weight: 19
       action_address:
         weight: 16
         enabled: false

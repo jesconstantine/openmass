@@ -38,18 +38,6 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{#
-  From 03-organisms/by-author/related-actions.twig.
-  We don't have any styles for this, so just duplicate related.
-#}
-
-<section class="ma__related-actions">
-  <h2 class="ma__related-actions__title">Downloads</h2>
-  <ul class="ma__related-actions__items">
-    {% for item in items %}
-      <li class="ma__related-actions__item">
-        {{ item.content }}
-      </li>
-    {% endfor %}
-  </ul>
-</section>
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}
