@@ -9,10 +9,10 @@ Feature: Pilot Header
     And I am on the homepage
     Then the "header" region contains the following links:
 
-    | link               |
-    | Back to Mass.gov   |
-    | Common Actions     |
-    | Feedback           |
+    | link                    |
+    | Go to classic Mass.gov  |
+    | Common Actions          |
+    | Feedback                |
 
   Scenario: Verify the header markup is correct
     Given I am an anonymous user
