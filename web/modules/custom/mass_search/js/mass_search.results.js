@@ -1,6 +1,6 @@
 /**
  * @file
- * JS for google custom search results page content FORM + RESULTS (loads once)
+ * Loads google custom search results page FORM + RESULTS (loads once)
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
  * - header and mobile nav search forms js in mass_search.forms.js
@@ -12,9 +12,11 @@
   if (window.google) {
 
     /**
-     * load the google custom search module
+     * Loads the google custom search module
      * - with english language
      * - with minimalist theme
+     *
+     * @return google.search module
      */
     google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
   }
@@ -24,22 +26,21 @@
   Drupal.behaviors.massSearchResults.attach = function(context) {
 
     if (window.google.search) {
-      /**  setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
+      /**
+       * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
+       */
       google.setOnLoadCallback(function () {
 
+        // Define google custom search engine id.
         var cx = '010551267445528504028:ivl9x2rf5e8';
-        /**  search engine id */
 
-        /**
-         * Set custom search options
-         * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
-         */
+        // Set custom search options.
         var customSearchOptions = {};
 
-        /**  disable search results orderby functionality */
+        // Disable search results orderby functionality.
         customSearchOptions['enableOrderBy'] = false;
 
-        /**  autocomplete settings */
+        // Set autocomplete settings.
         var autoCompleteOptions = {
           maxCompletions: 3
         };
@@ -52,39 +53,22 @@
          */
         var resultsPageSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-        /**
-         * Customize search control with available methods
-         * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-         */
+        // Customize search control with available methods.
         resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
-        /**
-         * Draw search form with draw options
-         * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
-         */
 
+        // Draws search form with draw options.
         var resultsOptions = new google.search.DrawOptions();
 
-        /**
-         * search form is a cse search form custom block placed in the
-         * pre-content region for this node only
-         * see templates/block/block--csesearchform-2
-         */
+        // Set search form element.
+        // See markup in mass_search module templates/mass_search.html.twig
         resultsOptions.setSearchFormRoot('cse-search-results-form');
 
-        /**
-         * enable autocomplete (see options above: autoCompleteOptions)
-         */
+        // Enable autocomplete (see options above: autoCompleteOptions).
         resultsOptions.setAutoComplete(true);
 
-        /**
-         * Displays the search form + search results.
-         * Calling this method is the final step in activating a
-         * Custom Search Element object, and it produces the UI
-         * and search containers.
-         *
-         * .draw(selector, options)
-         */
+        // Display the search form + search results.
+        // .draw(selector, options)
         resultsPageSearchControl.draw('cse-search-results', resultsOptions);
 
         /**
@@ -109,12 +93,10 @@
         /**  Get array of the url querystring params */
         var urlParams = parseParamsFromUrl();
 
-        /**  Set param for the search query */
+        // Define param for the search query.
         var queryParamName = 'q';
 
-        /**
-         * If the search param is in the querystring, execute the search
-         */
+        // Execute the search
         if (urlParams[queryParamName]) {
           resultsPageSearchControl.execute(urlParams[queryParamName]);
         }
