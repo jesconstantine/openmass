@@ -85,9 +85,4 @@
         <phingcall target="acquia-deploy" />
     </target>
 
-    <!-- Target: post-install -->
-    <target name="post-install" description="Collection of post install/update commands.">
-        <phingcall target="overwrite-files" />
-    </target>
-
 </project>
