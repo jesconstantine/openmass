@@ -2,6 +2,7 @@
     <!-- Run with: vendor/bin/phing -Dbuild.env=vagrant -->
     <!-- For a list of commands, try: vendor/bin/phing -Dbuild.env=vagrant -l -->
 
+
     <import file="vendor/palantirnet/the-build/tasks/boilerplate.xml" />
 
     <!-- Make these commands available by default. -->
@@ -35,7 +36,7 @@
         <phingcall target="mass-local-modules" />
     </target>
 
-    <target name="clean-install" description="Initialize a new copy of the site without a canonical DB.">
+    <target name="clean-install" description="Initialzie a new copy of the site without a canonical DB.">
         <phingcall target="drupal-install" />
         <phingcall target="mass-local-modules" />
     </target>
@@ -69,6 +70,7 @@
         </drush> -->
     </target>
 
+
     <!-- Target: test -->
     <target name="test" description="Run all the tests.">
         <phingcall target="test-run-code-sniffer" />
@@ -77,6 +79,7 @@
         <phingcall target="mass-drupal-test" />
     </target>
 
+
     <!-- Target: deploy -->
     <target name="deploy" description="Build and deploy the application.">
         <phingcall target="check-deploy-env" />
@@ -84,5 +87,6 @@
         <phingcall target="build" />
         <phingcall target="acquia-deploy" />
     </target>
+
 
 </project>
