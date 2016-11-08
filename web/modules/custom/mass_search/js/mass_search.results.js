@@ -6,6 +6,8 @@
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
  * - header and mobile nav search forms js in mass_search.forms.js
+ *
+ * Improves accessibility (a11y) to google custom search dynamic content with Drupal.announce().
  */
 
 (function(Drupal) {
@@ -83,6 +85,8 @@
         // Customize search control with available methods.
         resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
+        // Specify the callback method to call upon completion of the search (defined below).
+        resultsPageSearchControl.setSearchCompleteCallback(null, Drupal.mass.search.a11y.announceSearchComplete);
 
         // Draws search form with draw options.
         var resultsOptions = new google.search.DrawOptions();
@@ -109,19 +113,71 @@
           resultsPageSearchControl.execute(urlParams[queryParamName]);
         }
 
-        /**
-         * @todo Consider using drupal announce to notify assistive devices
-         * that search results are loading / have finished for searches that
-         * happen from search results page (IE when there is no page load)
-         *
-         * see .setSearchStartingCallback() && .setSearchCompleteCallback() :
-         * https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
-         */
-
       }, true); // google.search onLoadCallback
     } // endif window.google.search
   }; // Drupal.behaviors.massSearchResults.attach
+
   /**
+   * Drupal.mass.search.a11y.announceSearchComplete
+   * Announces the status of search results page dynamic content on completed search:
+   * 1. Confirms new content has loaded
+   * 2a. No results message (if there are not results returned)
+   * 2b. Contents of search results (if there are results returned):
+   * -- 3. Number of promoted results (if any)
+   * -- 4. First ten regular results
+   *
+   * Prepends both the first promoted result (if any) [5.] and regular result [6.] with visually hidden heading landmarks.
+   *
+   * Invoked by setSearchCompleteCallback above.
+   */
+  Drupal.mass.search.a11y.announceSearchComplete = function () {
+    // Query dom for search results container.
+    // Used below as context for finding child nodes and inserting heading landmarks
+    var searchResults = document.querySelector('div.gsc-results');
+
+    // Begin composing announcement.
+    var announcement = 'New content loaded.  '; // 1.
+
+    // Query dom for no results container.
+    var noResults = searchResults.querySelectorAll('div.gs-no-results-result').length;
+
+    if (noResults) {
+      announcement += "Sorry, we couldn't find any results for your query.  Please search for something else."; //2a.
+    }
+    else { // There are results
+      announcement += "Now showing "; // 2b.
+
+      // Query dom for promoted search results + determine quantity.
+      var promotions = searchResults.querySelectorAll('div.gsc-promotion');
+      var numPromotions = (promotions.length) ? promotions.length : 0;
+
+      // If there are promoted results.
+      if (numPromotions) {
+        // Append promotions message content to announcement.
+        announcement += numPromotions + " best bets and "; // 3.
+
+        // Prepend first promoted result with visually hidden <h3> landmark.
+        var promotedResultsHeading = document.createElement('h3');
+        promotedResultsHeading.setAttribute('class', 'visually-hidden');
+        promotedResultsHeading.textContent = 'Best Bet Results'; // @TODO confirm with content team
+        searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
+      }
+
+      // Append regular results message content to announcement.
+      announcement += "the first ten regular results for your query."; // 4.
+
+      // Query dom for first regular search result container.
+      var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
+      // Prepend regular results with visually hidden <h3> landmark.
+      var regularResultsHeading = document.createElement('h3');
+      regularResultsHeading.setAttribute('class', 'visually-hidden');
+      regularResultsHeading.textContent = 'Regular Results';
+      searchResults.insertBefore(regularResultsHeading, regularResults); // 6.
+    }
+
+    // Make post-search execution announcement.
+    Drupal.announce(Drupal.t(announcement), 'polite');
+  };
 
   /**
    * Parses URL parameters
