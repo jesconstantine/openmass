@@ -40,9 +40,18 @@
     google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
   }
 
+  /**
+   * Attaches the custom search execution js to the custom search route.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Loads search form, executes search, loads search results, and accessibility helpers.
+   */
   Drupal.behaviors.massSearchResults = {};
   Drupal.behaviors.massSearchResults.attach = function (context) {
 
+    // If google.search module is loaded
     if (window.google.search) {
       /**
        * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
