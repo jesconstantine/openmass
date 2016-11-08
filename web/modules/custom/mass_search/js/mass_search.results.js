@@ -1,5 +1,7 @@
 /**
  * @file
+ * Extends Drupal object with mass custom js objects
+ *
  * Loads google custom search results page FORM + RESULTS (loads once)
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
@@ -9,6 +11,23 @@
 (function(Drupal) {
   'use strict';
 
+  /**
+   * Extends Drupal object with mass custom js object
+   * @namespace
+   */
+  Drupal.mass = Drupal.mass || {};
+
+  // Contains custom methods related to mass_search.
+  Drupal.mass.search = Drupal.mass.search || {};
+
+  // Contains custom methods to improve mass_search accessibility (a11y).
+  Drupal.mass.search.a11y = Drupal.mass.search.a11y || {};
+
+  // Contains custom generic helper methods
+  Drupal.mass.helpers = Drupal.mass.helpers || {};
+
+  // Confirm that we have access to the google object which is returned by
+  // mass_search js external library google.com/jsapi
   if (window.google) {
 
     /**
@@ -70,27 +89,8 @@
         // .draw(selector, options)
         resultsPageSearchControl.draw('cse-search-results', resultsOptions);
 
-        /**
-         * Parse URL parameters
-         * @return array params - array of parameters from querystring
-         *
-         * @todo Move this functionality into globally available helper object
-         */
-        function parseParamsFromUrl() {
-          var params = {};
-          var parts = window.location.search.substr(1).split('&');
-          for (var i = 0; i < parts.length; i++) {
-            var keyValuePair = parts[i].split('=');
-            var key = decodeURIComponent(keyValuePair[0]);
-            params[key] = keyValuePair[1] ?
-                decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
-                keyValuePair[1];
-          }
-          return params;
-        }
-
-        /**  Get array of the url querystring params */
-        var urlParams = parseParamsFromUrl();
+        // Get array of the url querystring params.
+        var urlParams = Drupal.mass.helpers.parseParamsFromUrl();
 
         // Define param for the search query.
         var queryParamName = 'q';
@@ -112,4 +112,22 @@
       }, true); // google.search onLoadCallback
     } // endif window.google.search
   }; // Drupal.behaviors.massSearchResults.attach
+  /**
+
+  /**
+   * Parses URL parameters
+   * @return array params - array of parameters from querystring
+   */
+  Drupal.mass.helpers.parseParamsFromUrl = function () {
+    var params = {};
+    var parts = window.location.search.substr(1).split('&');
+    for (var i = 0; i < parts.length; i++) {
+      var keyValuePair = parts[i].split('=');
+      var key = decodeURIComponent(keyValuePair[0]);
+      params[key] = keyValuePair[1] ?
+          decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
+          keyValuePair[1];
+    }
+    return params;
+  };
 })(Drupal);
