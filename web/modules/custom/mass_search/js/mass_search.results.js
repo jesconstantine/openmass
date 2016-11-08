@@ -22,8 +22,7 @@
   }
 
   Drupal.behaviors.massSearchResults = {};
-
-  Drupal.behaviors.massSearchResults.attach = function(context) {
+  Drupal.behaviors.massSearchResults.attach = function (context) {
 
     if (window.google.search) {
       /**
