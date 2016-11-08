@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_full_bleed_ref
     - paragraphs.paragraphs_type.full_bleed
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.slideshow
   module:
     - entity_reference_revisions
@@ -25,6 +26,7 @@ settings:
     target_bundles:
       iframe: iframe
       slideshow: slideshow
+      map: map
     target_bundles_drag_drop:
       action_step:
         weight: 12
@@ -44,13 +46,7 @@ settings:
       file_download:
         weight: 17
         enabled: false
-      action_address:
-        weight: 17
-        enabled: false
       full_bleed:
-        weight: 18
-        enabled: false
-      action_address_info:
         weight: 18
         enabled: false
       action_area:
@@ -68,10 +64,28 @@ settings:
       subhead:
         weight: 22
         enabled: false
+      contact_group:
+        weight: 27
+        enabled: false
       location_information:
+        weight: 28
+        enabled: false
+      contact_info:
         weight: 28
         enabled: false
       slideshow:
         enabled: true
         weight: 30
+      icon:
+        weight: 31
+        enabled: false
+      map:
+        enabled: true
+        weight: 34
+      related_link:
+        weight: 35
+        enabled: false
+      video:
+        weight: 40
+        enabled: false
 field_type: entity_reference_revisions

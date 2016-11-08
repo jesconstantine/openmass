@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/drupal8-skeleton.yml"
+        ansible.playbook = "provisioning/mass.yml"
 
         ansible.groups = {
             "all:children" => ["#{project}"]
