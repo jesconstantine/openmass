@@ -14,6 +14,9 @@
 # http://www.robotstxt.org/robotstxt.html
 
 User-agent: *
+# Homepage
+Allow: /$
+Allow: /index.php$
 # CSS, JS, Images
 Allow: /core/*.css$
 Allow: /core/*.css?
@@ -41,7 +44,5 @@ Disallow: /README.txt
 Disallow: /web.config
 # Paths (clean URLs)
 Disallow: /*
-Allow: /$
 # Paths (no clean URLs)
 Disallow: /index.php/*
-Allow: /index.php$
