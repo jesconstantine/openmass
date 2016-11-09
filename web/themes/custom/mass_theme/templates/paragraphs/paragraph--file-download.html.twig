@@ -38,41 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{#
-set actionDownloads = [{
-  icon: '@atoms/05-icons/svg-' ~ paragraph.field_para_icon_term.entity.field_sprite_name.value ~ '.twig',
-    title: title,
-    rteElements: [{
-      'path': '@atoms/11-text/paragraph.twig',
-      'data': {
-        'paragraph': {
-          'text': rich_text
-        }
-      },
-    }]
-  }]
-#}
-{#
-{
-  "actionDownloads": [{
-    "icon": "@atoms/05-icons/svg-doc-pdf.twig",
-    "title": "PDF download item",
-    "url": "#",
-    "size": "30kb",
-    "type": "PDF"
-  },{
-    "icon": "@atoms/05-icons/svg-doc-xlsx.twig",
-    "title": "Excel download item that has a longer title than the pdf did",
-    "url": "#",
-    "size": "35kb",
-    "type": "XLSX"
-  },{
-    "icon": "@atoms/05-icons/svg-doc-docx.twig",
-    "title": "Word download item",
-    "url": "#",
-    "size": "40kb",
-    "type": "DOCX"
-  }]
-}
-#}
 {% include "@molecules/action-downloads.twig" with actionDownloads %}
