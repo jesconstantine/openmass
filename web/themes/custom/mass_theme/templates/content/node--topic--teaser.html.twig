@@ -13,7 +13,9 @@
   <div class="ma__section-links__content">
     <div class="ma__section-links__icon">
       <figure class="ma__category-icon ma__category-icon--small">
-        {% include active_theme_path() ~ "/images/svg-sprite/" ~ node.field_icon_term.entity.field_sprite_name.value ~ ".svg" %}
+        {% if node.field_icon_term.entity.field_sprite_name.value|trim %}
+          {% include active_theme_path() ~ "/images/svg-sprite/" ~ node.field_icon_term.entity.field_sprite_name.value ~ ".svg" %}
+        {% endif %}
       </figure>
     </div>
     <h3 class="ma__section-links__title js-section-accordion-link">
