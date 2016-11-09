@@ -4,4 +4,7 @@ admin_overrides:
     theme:
       overrides/css/action-node-form.css: {}
   js:
+    # We need to hardcode the key here. If you're wanting to make changes to
+    # this file, please see the template file at:
+    # conf/mass_admin_theme.libraries.yml.template
     //maps.googleapis.com/maps/api/js?key={{placeholder-key}}: { type: external }

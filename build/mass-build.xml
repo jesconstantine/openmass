@@ -156,41 +156,22 @@
   <target name="mass-set-api-keys" description="Update API Keys.">
     <fail unless="api_keys.google.maps" />
 
-    <!-- Re-write the settings file. -->
-    <if>
-      <available file="${build.dir}/conf/drupal/config/google_map_field.settings.yml" type="file" />
-      <then>
-        <echo>Updating the Google Maps API Key in the config file.</echo>
-
-        <reflexive>
-            <fileset dir="${build.dir}/conf/drupal/config">
-                <include pattern="google_map_field.settings.yml" />
-            </fileset>
-            <filterchain>
-                <replaceregexp>
-                    <regexp pattern="{{placeholder-key}}" replace="${api_keys.google.maps}"/>
-                </replaceregexp>
-            </filterchain>
-        </reflexive>
-      </then>
-    </if>
-
     <!-- Rewrite the theme registry. -->
     <if>
       <available file="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml" type="file" />
       <then>
         <echo>Updating the Google Maps API Key in the theme file.</echo>
 
-        <reflexive>
-            <fileset dir="${build.dir}/web/themes/custom/mass_admin_theme">
-                <include pattern="mass_admin_theme.libraries.yml" />
-            </fileset>
+        <copy
+          file="${build.dir}/conf/mass_admin_theme.libraries.yml.template"
+          tofile="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml"
+          overwrite="true">
             <filterchain>
-                <replaceregexp>
-                    <regexp pattern="{{placeholder-key}}" replace="${api_keys.google.maps}"/>
-                </replaceregexp>
+                <replacetokens begintoken="{{" endtoken="}}">
+                    <token key="placeholder-key" value="${api_keys.google.maps}" />
+                </replacetokens>
             </filterchain>
-        </reflexive>
+        </copy>
       </then>
     </if>
   </target>
