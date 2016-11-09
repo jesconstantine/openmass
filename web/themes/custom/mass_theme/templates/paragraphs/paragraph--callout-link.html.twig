@@ -48,5 +48,5 @@ set classes = [
 %}
 <div {{ attributes.addClass(classes) }}>
   {% set decorativeLink = calloutLink %}
-  {% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
+  {% include "@atoms/decorative-link.twig" with decorativeLink %}
 </div>

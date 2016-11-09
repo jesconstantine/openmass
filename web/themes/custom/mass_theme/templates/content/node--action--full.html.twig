@@ -18,53 +18,7 @@ set pageHeader = {
   }
 }
 %}
-{%
-set quickActions = {
-  'coloredHeading': {
-    'text':'Quick Actions',
-    'color':'green'
-  },
-  'links': [{
-    'type': "",
-    'href': "#",
-    'text': "Order a MassParks Pass online through Reserve America"
-  }]
-}
-%}
-{%
-set quickActions = {
-  'coloredHeading': {
-  'text':'Quick Actions',
-  'color':'green'
-  },
-  'links': [{
-  'type': "",
-  'href': "#",
-  'text': "Order a MassParks Pass online through Reserve America"
-  }]
-}
-%}
-{%
-set sidebarWidget = {
-  'coloredHeading': {
-    'text':'Related',
-    'color':''
-  },
-  'items': [{
-    'path': "@molecules/related-action.twig",
-    'data': {
-      'relatedAction': {
-        'link' : {
-        'type': "",
-        'href': "#",
-        'text': "Give a Park Pass as a Gift!"
-      },
-      'description':"Purchase a MassParks Pass as a gift for holidays, birthdays, and anniversaries, or just to a put a smile on someone's face."
-      }
-    }
-  }]
-}
-%}
+
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
@@ -81,12 +35,8 @@ set sidebarWidget = {
   {{ content.field_action_details }}
 {% endblock %}
 {% block sidebar %}
-  {% include "@organisms/by-author/quick-actions.twig" %}
-  {% include "@organisms/by-author/sidebar-widget.twig" %}
-  {% include "@organisms/by-author/sidebar-contact.twig" %}
   {{ content.field_related_link }}
   {{ content.field_action_sidebar|field_value }}
-  {{ content.field_action_downloads}}
 {% endblock %}
 {% block postContent %}
   {# include "organisms-breadcrumbs" #}

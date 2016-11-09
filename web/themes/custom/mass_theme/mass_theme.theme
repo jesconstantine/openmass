@@ -122,9 +122,6 @@ function mass_theme_preprocess_node_action(&$variables) {
       $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
     }
     $variables['taxonomyTerms']= $taxonomyTerms;
-
-    // Get Quick Actions and use sidebar template.
-    //kint($node->get('field_action_sidebar'));
   }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
@@ -269,6 +266,43 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
+  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'related_link') {
+    $links = array();
+    $delta = 0;
+    // Wrap up our related links.
+    while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $links[] = array('link' => array('text' => $element[$delta]['#title'], 'href' => $element[$delta]['#url_title'], 'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal'));
+      $delta++;
+    }
+    // Send array to twig.
+    $variables['relatedActions'] = $links;
+  }
+
+  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
+    $groups = array();
+    $delta = 0;
+    // Wrap up our contact groups.
+    while (!empty($element[$delta])) {
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
+        $phone_details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => $element[$delta]['#paragraph']->get('field_phone')->value, 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
+        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $phone_details);
+      }
+      else if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        $online_details[] = array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => $element[$delta]['#paragraph']->get('field_email')->value, 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
+        $groups[] = array('icon' => '@atoms/05-icons/svg-laptop.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $online_details);
+      }
+      else if ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
+        $address_details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => '', 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_address')->value);
+        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $address_details);
+      }
+      else {
+        $details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
+        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $details);
+      }
+      $delta++;
+    }
+    $variables['contactGroups'] = $groups;
+  }
 }
 
 /**
@@ -278,18 +312,17 @@ function mass_theme_preprocess_field(&$variables, $hook) {
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
-  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
-
-  // Lets let our subhead paragraph template know about the region.
-  $variables['region'] = $parent_field;
-
-  if (trim($subhead) == 'Quick Actions') {
-    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
-  }
-
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
   $variables['title_clean'] = $subhead_clean;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Get related links in sidebar.
+ */
+function mass_theme_preprocess_paragraph__related_link__sidebar(&$variables) {
 }
 
 /**
@@ -411,6 +444,14 @@ function mass_theme_preprocess_paragraph__contact(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for contacts.
+ */
+function mass_theme_preprocess_paragraph__contact_info__sidebar(&$variables) {
+}
+
+/**
  * Helper function to sort a list of items by title.
  */
 function compare_by_title($a, $b) {
@@ -449,6 +490,12 @@ function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $var
 function mass_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   $suggestions[] = 'field__' .
     $variables['element']['#field_name'] . '__' .
+    $variables['element']['#view_mode'];
+
+  $suggestions[] = 'field__' .
+    $variables['element']['#entity_type'] . '__' .
+    $variables['element']['#field_name'] . '__' .
+    $variables['element']['#bundle'] . '__' .
     $variables['element']['#view_mode'];
 }
 

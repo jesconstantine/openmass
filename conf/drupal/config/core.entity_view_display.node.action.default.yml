@@ -61,7 +61,7 @@ content:
     weight: 6
     label: above
     settings:
-      view_mode: default
+      view_mode: sidebar
       link: ''
     third_party_settings: {  }
   field_alert_dropdown:
