@@ -154,4 +154,27 @@
     </drush>
   </target>
 
+  <target name="mass-set-api-keys" description="Update API Keys.">
+    <fail unless="api_keys.google.maps" />
+
+    <!-- Rewrite the theme registry. -->
+    <if>
+      <available file="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml" type="file" />
+      <then>
+        <echo>Updating the Google Maps API Key in the theme file.</echo>
+
+        <copy
+          file="${build.dir}/conf/mass_admin_theme.libraries.yml.template"
+          tofile="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml"
+          overwrite="true">
+            <filterchain>
+                <replacetokens begintoken="{{" endtoken="}}">
+                    <token key="placeholder-key" value="${api_keys.google.maps}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+      </then>
+    </if>
+  </target>
+
 </project>
