@@ -6,6 +6,7 @@
  */
 
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Implements hook_uninstall().
@@ -212,5 +213,36 @@ function mass_content_update_8002(&$sandbox) {
         }
       }
     }
+  }
+}
+
+/**
+ * Update Action paths.
+ */
+function mass_content_update_8003(&$sandbox) {
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+
+  // Update action paths.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'action');
+  $nids = $query->execute();
+  $nodes = $node_storage->loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+    \Drupal::service('pathauto.generator')->updateEntityAlias($node, 'update');
+  }
+
+  // Update action menu links.
+  $results = \Drupal::entityQuery('menu_link_content')
+    ->condition('link.uri', '/actions/', 'CONTAINS')
+    ->execute();
+  $menu_links = MenuLinkContent::loadMultiple($results);
+
+  foreach ($menu_links as $menu_link) {
+    $new_link = $menu_link->link->uri;
+    $new_link = str_replace('/actions/', '/', $new_link);
+    $menu_link->link->uri = $new_link;
+    $menu_link->save();
   }
 }
