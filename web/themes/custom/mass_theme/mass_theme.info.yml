@@ -17,6 +17,9 @@ regions:
   footer_navigation: Footer Navigation
 
 component-libraries:
+  custom_includes:
+    paths:
+      - templates/includes
   base:
     paths:
       - patterns/base

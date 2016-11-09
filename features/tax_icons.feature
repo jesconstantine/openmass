@@ -9,3 +9,4 @@ Feature: Icons taxonomy
     Then the taxonomy vocabulary "icons" has the fields:
     | field               | tag       | type      | multivalue  | required |
     | field-sprite-name   | input     | text      | false       | true     |
+    | field-sprite-type   | select    |           | false       | false    |

@@ -5,8 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_action_header
     - node.type.action
-    - paragraphs.paragraphs_type.contact
-    - paragraphs.paragraphs_type.full_bleed
+    - paragraphs.paragraphs_type.contact_group
   module:
     - entity_reference_revisions
 id: node.action.field_action_header
@@ -23,15 +22,8 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      contact: contact
-      full_bleed: full_bleed
+      contact_group: contact_group
     target_bundles_drag_drop:
-      action_address:
-        weight: 16
-        enabled: false
-      action_address_info:
-        weight: 17
-        enabled: false
       action_area:
         weight: 18
         enabled: false
@@ -48,14 +40,14 @@ settings:
         weight: 22
         enabled: false
       contact:
-        enabled: true
         weight: 23
+        enabled: false
       file_download:
         weight: 24
         enabled: false
       full_bleed:
-        enabled: true
         weight: 25
+        enabled: false
       iframe:
         weight: 26
         enabled: false
@@ -65,6 +57,9 @@ settings:
       rich_text:
         weight: 28
         enabled: false
+      contact_group:
+        enabled: true
+        weight: 29
       stat:
         weight: 29
         enabled: false
@@ -73,5 +68,14 @@ settings:
         enabled: false
       slideshow:
         weight: 30
+        enabled: false
+      contact_info:
+        weight: 30
+        enabled: false
+      icon:
+        weight: 33
+        enabled: false
+      video:
+        weight: -37
         enabled: false
 field_type: entity_reference_revisions

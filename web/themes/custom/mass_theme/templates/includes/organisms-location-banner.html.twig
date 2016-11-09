@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Partial for location banner header. To be included at the node template level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__location-banner">
+  <style>
+    #GUID24872901570 {
+      background-image: url('{{ locationBanner.small }}');
+    }
+    
+    @media (min-width: 801px) {
+      #GUID24872901570 {
+        background-image: url('{{ locationBanner.large }}');
+      }
+    }
+  </style>
+  <div
+    class="ma__location-banner__image"
+    id="GUID24872901570"
+    role="image"
+    title="{{ locationBanner.title }}"
+    alt="{{ locationBanner.alt }}">
+  </div>
+  {% if map is not empty %}
+    <div class="ma__location-banner__map">
+      {{ map }}
+    </div>
+  {% endif %}
+</section>

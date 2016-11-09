@@ -38,15 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-set classes = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  'ma__callout-link'
-]
-%}
-<div {{ attributes.addClass(classes) }}>
-  {% set decorativeLink = calloutLink %}
-  {% include "@atoms/decorative-link.twig" with decorativeLink %}
-</div>
+{% include "@molecules/callout-link.twig" with calloutLink %}
