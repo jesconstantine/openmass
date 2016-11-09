@@ -175,6 +175,18 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
   if (empty($variables['mobile_finder_image'])) {
     $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
   }
+
+  // Load Instance of the secondary menu block with variables
+  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
+  if (!empty($all_actions_view)){
+    $all_actions_view_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($all_actions_view);
+    if ($all_actions_view_content) {
+      // Add block content to build array
+      $variables['content']['all_actions_view'] = $all_actions_view_content;
+    }
+  }
 }
 
 /**
