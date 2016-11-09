@@ -9,11 +9,9 @@ use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
-use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\views;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -104,17 +102,29 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   $sections = array();
   // Roll this up and give the twig tpl what it expects.
   foreach ($view_results as $key => $row) {
-    //$links = array();
-    // Wrap up our links for each subtopic.
-    //foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-      //$links[] = array('text' => $link->title, 'href' => $link->uri);
-    //}
+    /* $links = array();
+     * // Wrap up our links for each subtopic.
+     * foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+     *   $links[] = array('text' => $link->title, 'href' => $link->uri);
+     * }
+     */
     // Wrap up each section with links.
     // @TODO Check that the icon exists before providing path.
-    $sections[] = array('catIcon' => array('svg' => '@atoms/05-icons/svg-' . strtolower($row->_entity->get('field_icon_term')->view()[0]['#title']) . '.twig', 'small' => 'true'),'title' => array('href' => 'node/' . $row->_entity->get('nid')->value, 'text' => $row->_entity->get('title')->value), 'description' => $row->_entity->get('field_lede')->value, 'links' => '');
+    $sections[] = array(
+      'catIcon' => array(
+        'svg' => '@atoms/05-icons/svg-' . strtolower($row->_entity->get('field_icon_term')->view()[0]['#title']) . '.twig',
+        'small' => 'true',
+      ),
+      'title' => array(
+        'href' => 'node/' . $row->_entity->get('nid')->value,
+        'text' => $row->_entity->get('title')->value,
+      ),
+      'description' => $row->_entity->get('field_lede')->value,
+      'links' => '',
+    );
   }
   // Send to twig.
-  $variables['sections']= $sections;
+  $variables['sections'] = $sections;
 }
 
 /**
@@ -128,13 +138,10 @@ function mass_theme_preprocess_node_action(&$variables) {
   if ($variables['view_mode'] == 'full') {
     $field_action_parent = $node->get('field_action_parent');
     $taxonomyTerms = array();
-    foreach($field_action_parent->referencedEntities() as $taxonomyTerm) {
+    foreach ($field_action_parent->referencedEntities() as $taxonomyTerm) {
       $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
     }
-    $variables['taxonomyTerms']= $taxonomyTerms;
-
-    // Get Quick Actions and use sidebar template.
-    //kint($node->get('field_action_sidebar'));
+    $variables['taxonomyTerms'] = $taxonomyTerms;
   }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
@@ -188,10 +195,17 @@ function mass_theme_preprocess_node_topic(&$variables) {
     $calloutLinks = array();
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
-      $calloutLinks[] = array('calloutLink' => array('type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '', 'quickaction' => 'false', 'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value ,'text' => $row->_relationship_entities['field_common_content']->get('title')->value));
+      $calloutLinks[] = array(
+        'calloutLink' => array(
+          'type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '',
+          'quickaction' => 'false',
+          'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value,
+          'text' => $row->_relationship_entities['field_common_content']->get('title')->value,
+        ),
+      );
     }
     // Send to twig.
-    $variables['calloutLinks']= $calloutLinks;
+    $variables['calloutLinks'] = $calloutLinks;
 
     // Get our subtopics (sections) view.
     $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
@@ -204,10 +218,17 @@ function mass_theme_preprocess_node_topic(&$variables) {
         $links[] = array('text' => $link->title, 'href' => $link->uri);
       }
       // Wrap up each section with links.
-      $sections[] = array('title' => array('href' => 'node/' . $row->_entity->get('nid')->value, 'text' => $row->_entity->get('title')->value), 'description' => $row->_entity->get('field_lede')->value, 'links' => $links);
+      $sections[] = array(
+        'title' => array(
+          'href' => 'node/' . $row->_entity->get('nid')->value,
+          'text' => $row->_entity->get('title')->value,
+        ),
+        'description' => $row->_entity->get('field_lede')->value,
+        'links' => $links,
+      );
     }
     // Send to twig.
-    $variables['sections']= $sections;
+    $variables['sections'] = $sections;
   }
 
   if ($variables['view_mode'] == 'teaser') {
@@ -216,10 +237,13 @@ function mass_theme_preprocess_node_topic(&$variables) {
     $links = array();
     // Roll this up for our twig template.
     foreach ($view_results as $key => $row) {
-      $links[] = array('href' => "/node/" . $row->node_nid ,'text' => $row->_entity->get('title')->value);
+      $links[] = array(
+        'href' => "/node/" . $row->node_nid ,
+        'text' => $row->_entity->get('title')->value,
+      );
     }
     // Send to twig.
-    $variables['links']= $links;
+    $variables['links'] = $links;
   }
 }
 
@@ -357,9 +381,9 @@ function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables)
           'path' => '@atoms/11-text/paragraph.twig',
           'data' => array(
             'paragraph' => array(
-              'text' => $content['value']
-            )
-          )
+              'text' => $content['value'],
+            ),
+          ),
         );
       }
     }
@@ -702,7 +726,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
         'title' => $linktext,
         'url' => $url,
         'size' => $readable_size,
-        'type' => $file_extension
+        'type' => $file_extension,
       );
     }
   }
