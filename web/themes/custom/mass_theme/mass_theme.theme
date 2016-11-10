@@ -350,9 +350,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
         );
         $groups[] = array(
-          'icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
-          'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $phone_details,
+          'icon'  => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+          'items' => $phone_details,
         );
       }
       elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
