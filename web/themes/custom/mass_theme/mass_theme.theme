@@ -141,7 +141,7 @@ function mass_theme_preprocess_node_action(&$variables) {
     foreach ($field_action_parent->referencedEntities() as $taxonomyTerm) {
       $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
     }
-    $variables['taxonomyTerms']= $taxonomyTerms;
+    $variables['taxonomyTerms'] = $taxonomyTerms;
   }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
@@ -176,14 +176,14 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
     $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
   }
 
-  // Load Instance of the secondary menu block with variables
+  // Load Instance of the secondary menu block with variables.
   $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
-  if (!empty($all_actions_view)){
+  if (!empty($all_actions_view)) {
     $all_actions_view_content = \Drupal::entityTypeManager()
       ->getViewBuilder('block')
       ->view($all_actions_view);
     if ($all_actions_view_content) {
-      // Add block content to build array
+      // Add block content to build array.
       $variables['content']['all_actions_view'] = $all_actions_view_content;
     }
   }
@@ -323,7 +323,11 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     // Wrap up our related links.
     while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
-      $links[] = array('link' => array('text' => $element[$delta]['#title'], 'href' => $element[$delta]['#url_title'], 'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal'));
+      $links[] = array(
+        'link' => array('text' => $element[$delta]['#title'],
+        'href' => $element[$delta]['#url_title'],
+        'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal')
+      );
       $delta++;
     }
     // Send array to twig.
@@ -337,19 +341,53 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     while (!empty($element[$delta])) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
         $phone_details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => $element[$delta]['#paragraph']->get('field_phone')->value, 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
-        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $phone_details);
+        $groups[] = array(
+          'icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $phone_details
+        );
       }
-      else if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
-        $online_details[] = array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => $element[$delta]['#paragraph']->get('field_email')->value, 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
-        $groups[] = array('icon' => '@atoms/05-icons/svg-laptop.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $online_details);
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        $online_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value
+        );
+        $groups[] = array(
+          'icon' => '@atoms/05-icons/svg-laptop.twig',
+          'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'type' => $element[$delta]['#paragraph']->get('field_type')->value,
+          'items' => $online_details
+        );
       }
-      else if ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
-        $address_details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => '', 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_address')->value);
-        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $address_details);
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
+        $address_details[] =  array(
+          'label' => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value' => '', 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_address')->value
+        );
+        $groups[] = array(
+          'icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'type' => $element[$delta]['#paragraph']->get('field_type')->value,
+          'items' => $address_details
+        );
       }
       else {
-        $details[] =  array('label' => $element[$delta]['#paragraph']->get('field_label')->value, 'value' => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value, 'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value, 'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_caption')->value);
-        $groups[] = array('icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig', 'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value), 'type' => $element[$delta]['#paragraph']->get('field_type')->value, 'items' => $details);
+        $details[] =  array(
+          'label' => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value' => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal' => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link' => '', 'details' => $element[$delta]['#paragraph']->get('field_caption')->value
+        );
+        $groups[] = array(
+          'icon' => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'name' => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'type' => $element[$delta]['#paragraph']->get('field_type')->value,
+          'items' => $details
+        );
       }
       $delta++;
     }
