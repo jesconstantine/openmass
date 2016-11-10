@@ -152,7 +152,7 @@
                 ".htaccess",
                 "robots.txt"
             ],
-            "omit-defaults": true
+            "omit-defaults": false
         },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
