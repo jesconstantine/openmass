@@ -43,6 +43,6 @@ Disallow: /profiles/
 Disallow: /README.txt
 Disallow: /web.config
 # Paths (clean URLs)
-Disallow: /*
+Disallow: /
 # Paths (no clean URLs)
-Disallow: /index.php/*
+Disallow: /index.php/
