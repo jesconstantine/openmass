@@ -10,7 +10,7 @@
  * Improves accessibility (a11y) to google custom search dynamic content with Drupal.announce().
  */
 
-(function(Drupal) {
+(function (Drupal) {
   'use strict';
 
   /**
@@ -55,6 +55,7 @@
 
     // If google.search module is loaded
     if (window.google.search) {
+
       /**
        * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
        */
@@ -142,10 +143,10 @@
     var noResults = searchResults.querySelectorAll('div.gs-no-results-result').length;
 
     if (noResults) {
-      announcement += "Sorry, we couldn't find any results for your query.  Please search for something else."; //2a.
+      announcement += "Sorry, we couldn't find any results for your query.  Please search for something else."; // 2a.
     }
     else { // There are results
-      announcement += "Now showing "; // 2b.
+      announcement += 'Now showing '; // 2b.
 
       // Query dom for promoted search results + determine quantity.
       var promotions = searchResults.querySelectorAll('div.gsc-promotion');
@@ -154,7 +155,7 @@
       // If there are promoted results.
       if (numPromotions) {
         // Append promotions message content to announcement.
-        announcement += numPromotions + " best bets and "; // 3.
+        announcement += numPromotions + ' best bets and '; // 3.
 
         // Prepend first promoted result with visually hidden <h3> landmark.
         var promotedResultsHeading = document.createElement('h3');
@@ -164,7 +165,7 @@
       }
 
       // Append regular results message content to announcement.
-      announcement += "the first ten regular results for your query."; // 4.
+      announcement += 'the first ten regular results for your query.'; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
@@ -181,7 +182,7 @@
 
   /**
    * Parses URL parameters
-   * @return array params - array of parameters from querystring
+   * @return {array} params - array of parameters from querystring
    */
   Drupal.mass.helpers.parseParamsFromUrl = function () {
     var params = {};

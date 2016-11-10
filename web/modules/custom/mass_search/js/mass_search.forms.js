@@ -5,7 +5,7 @@
  * - api v1 js code
  * - search results page JS in mass_search.results.js
  */
-(function() {
+(function () {
   'use strict';
 
   if (window.google) {
@@ -20,8 +20,8 @@
     /** setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
     google.setOnLoadCallback(function () {
 
-      var cx = '010551267445528504028:ivl9x2rf5e8';
       /* search engine id */
+      var cx = '010551267445528504028:ivl9x2rf5e8';
 
       /**
        * Set custom search options
@@ -55,6 +55,7 @@
        * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
        */
       var headerOptions = new google.search.DrawOptions();
+
       /**
        * only draw search form (results are handled in mass_search
        * module route teamplte mass-search.html.twig )
@@ -75,7 +76,7 @@
        *
        * .draw(selector, options)
        */
-      var headerSearchExists = document.getElementById("cse-header-search-form");
+      var headerSearchExists = document.getElementById('cse-header-search-form');
 
       if (headerSearchExists) {
         headerSearchControl.draw('cse-header-search-form', headerOptions);
