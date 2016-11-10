@@ -43,18 +43,20 @@
     {{ title_prefix }}
     <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
     {{ title_suffix }}
-    <div class="ma__action-finder__search">
-      <section class="ma__keyword-search">
-        {{ exposed }}
-      </section>
-    </div>
+    {% if row_count > 9 %}
+      <div class="ma__action-finder__search">
+        <section class="ma__keyword-search">
+          {{ exposed }}
+        </section>
+      </div>
+    {% endif %}
   </header>
-  
+
   {% if attachment_before|render|trim %}
     <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
     {{ attachment_before }}
   {% endif %}
-        
+
   <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
   {{ rows }}
 </div>
