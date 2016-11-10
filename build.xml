@@ -79,6 +79,7 @@
         <phingcall target="test-run-phpmd" />
         <phingcall target="test-run-phplint" />
         <phingcall target="mass-drupal-test" />
+        <phingcall target="mass-run-eslint" />
     </target>
 
 
