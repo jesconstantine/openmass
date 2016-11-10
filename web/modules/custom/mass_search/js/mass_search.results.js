@@ -155,12 +155,12 @@
       // If there are promoted results.
       if (numPromotions) {
         // Append promotions message content to announcement.
-        announcement += numPromotions + ' best bets and '; // 3.
+        announcement += numPromotions + ' suggestions and '; // 3.
 
         // Prepend first promoted result with visually hidden <h3> landmark.
         var promotedResultsHeading = document.createElement('h3');
         promotedResultsHeading.setAttribute('class', 'visually-hidden');
-        promotedResultsHeading.textContent = 'Best Bet Results'; // @TODO confirm with content team
+        promotedResultsHeading.textContent = 'Suggestions';
         searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
       }
 
