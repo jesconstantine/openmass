@@ -172,7 +172,7 @@
       // Prepend regular results with visually hidden <h3> landmark.
       var regularResultsHeading = document.createElement('h3');
       regularResultsHeading.setAttribute('class', 'visually-hidden');
-      regularResultsHeading.textContent = 'Regular Results';
+      regularResultsHeading.textContent = 'Results';
       searchResults.insertBefore(regularResultsHeading, regularResults); // 6.
     }
 
