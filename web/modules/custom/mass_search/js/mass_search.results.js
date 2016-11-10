@@ -165,7 +165,7 @@
       }
 
       // Append regular results message content to announcement.
-      announcement += 'the first ten regular results for your query.'; // 4.
+      announcement += 'the first ten results for your query.'; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
