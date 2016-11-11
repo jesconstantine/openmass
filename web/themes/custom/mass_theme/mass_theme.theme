@@ -574,10 +574,9 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
             $image_small = mass_theme_get_field_image_url($item, 'action_banner_small', 'field_slideshow', $id);
             $image_large = mass_theme_get_field_image_url($item, 'action_banner_large', 'field_slideshow', $id);
             $images[$id] = array(
-              'small' => $image_small,
-              'large' => $image_large,
+              'image' => $image_small,
+              'imageLarge' => $image_large,
               'alt' => $value['alt'],
-              'title' => $value['title'],
             );
           }
 
