@@ -30,7 +30,7 @@ class MassMarkupContext extends MarkupContext
    */
   public function iShouldSeeTheCorrectMarkupForThePageBanner()
   {
-    $this->assertRegionElement('div.ma__breadcrumbs__container', 'breadcrumbs');
+    $this->assertRegionElement('nav.ma__breadcrumbs__container', 'breadcrumbs');
     $this->assertRegionElement('style', 'page_banner');
     $this->assertRegionElement('div.ma__page-banner__icon', 'page_banner');
     $this->assertRegionElement('svg', 'page_banner');
