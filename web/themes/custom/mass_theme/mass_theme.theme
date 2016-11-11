@@ -196,9 +196,9 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
  */
 function mass_theme_preprocess_node_topic(&$variables) {
   $node = $variables['node'];
-
   $icon_terms = $node->get('field_icon_term');
-  if ($icon_terms->count() > 0 ) {
+
+  if ($icon_terms->count() > 0) {
     $terms = $icon_terms->referencedEntities();
     $term = current($terms);
     if (!empty($term) && file_exists(DRUPAL_ROOT . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig')) {
@@ -222,7 +222,8 @@ function mass_theme_preprocess_node_topic(&$variables) {
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
 
-      // Common contact can be Actions or Subtopics, so we need to check for the field.
+      // Common contact can be Actions or Subtopics,
+      // so we need to check for the field.
       if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
         $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
       }
