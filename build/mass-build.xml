@@ -3,9 +3,9 @@
     <!-- Target: mass-run-eslint  -->
     <target name="mass-run-eslint" description="Checks custom JS code against ESLint.">
         <!-- custom modules  -->
-        <exec command="eslint 'web/modules/custom/**/*.js'" checkreturn="true" logoutput="true" />
-        <!-- custom themes (ignoring mayflower artifacts) -->
-        <exec command="eslint  --ignore-pattern 'web/themes/custom/mass_theme/js/*' 'web/themes/custom/**/*.js' "
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/modules/custom/**/*.js'" checkreturn="true" logoutput="true" />
+        <!-- custom themes (ignores mayflower artifacts) -->
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/themes/custom/**/*.js' "
               checkreturn="true" logoutput="true" />
         <echo>ESLint was successful</echo>
     </target>
