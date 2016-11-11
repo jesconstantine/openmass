@@ -623,7 +623,7 @@ function mass_theme_preprocess_file_link(&$variables) {
  * Implements template_preprocess_views_view().
  */
 function mass_theme_preprocess_views_view(&$variables) {
-  if (isset($variables['rows'])) {
+  if (isset($variables['rows'][0]['#rows'])) {
     $variables['row_count'] = count($variables['rows'][0]['#rows']);
   }
 }
