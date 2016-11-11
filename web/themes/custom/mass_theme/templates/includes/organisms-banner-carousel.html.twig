@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Partial for location banner header. To be included at the node template level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__banner-carousel">
+  <div class="ma__banner-carousel__slides js-banner-carousel">
+    {% for slide in slides %}
+      <div class="ma__banner-carousel__slide">
+        <picture>
+          <source srcset="{{slide.large}}" media="(min-width: 801px)">
+          <img srcset="{{slide.small}}" alt="{{slide.alt}}" title="{{slide.title}}">
+        </picture>
+      </div>
+    {% endfor %}
+  </div>
+</section>
