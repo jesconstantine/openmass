@@ -56,6 +56,9 @@
     // If google.search module is loaded
     if (window.google.search) {
 
+      // add class to <body> so we can target autocomplete table in css for this page
+      document.body.setAttribute('class', 'search-results-page');
+
       /**
        * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
        */
