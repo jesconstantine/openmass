@@ -43,7 +43,7 @@
     {{ title_prefix }}
     <h2 class="ma__action-finder__title">{{ 'What Would You Like to Do?'|t }}</h2>
     {{ title_suffix }}
-    {% if row_count > 9 %}
+    {% if row_count > 9 or filter_value is not empty %}
       <div class="ma__action-finder__search">
         <section class="ma__keyword-search">
           {{ exposed }}

@@ -623,6 +623,12 @@ function mass_theme_preprocess_file_link(&$variables) {
  * Implements template_preprocess_views_view().
  */
 function mass_theme_preprocess_views_view(&$variables) {
+  $variables['row_count'] = 0;
+  $variables['filter_value'] = '';
+
+  if (isset($variables['exposed']['filter']['#value'])) {
+    $variables['filter_value'] = $variables['exposed']['filter']['#value'];
+  }
   if (isset($variables['rows'][0]['#rows'])) {
     $variables['row_count'] = count($variables['rows'][0]['#rows']);
   }
