@@ -135,3 +135,9 @@ Feature: Paragraph type definitions
       | field             | widget     |
       | field-link        | Link       |
       | field-description | Textfield  |
+
+  Scenario: Verify that the completion_time paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "completion_time" paragraph has the fields:
+      | field             | widget     |
+      | field-time        | Textfield  |

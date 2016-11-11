@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_bands
     - node.type.stacked_layout
+    - paragraphs.paragraphs_type.completion_time
   module:
     - entity_reference_revisions
 id: node.stacked_layout.field_bands
@@ -20,7 +21,8 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    target_bundles: null
+    target_bundles:
+      completion_time: completion_time
     target_bundles_drag_drop:
       action_address:
         weight: 24
@@ -46,6 +48,9 @@ settings:
       contact:
         weight: 31
         enabled: false
+      completion_time:
+        enabled: true
+        weight: 32
       contact_group:
         weight: 32
         enabled: false
