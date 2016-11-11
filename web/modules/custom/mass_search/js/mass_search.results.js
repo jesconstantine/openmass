@@ -86,7 +86,7 @@
          */
         var resultsPageSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-        // Customize search control with available methods.
+        // Specify the size of the result set (to max 10 results per page, 10 pages)
         resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
 
         // Specify the callback method to call upon completion of the search (defined below).
@@ -105,6 +105,9 @@
         // Display the search form + search results.
         // .draw(selector, options)
         resultsPageSearchControl.draw('cse-search-results', resultsOptions);
+
+        // Customize "no results" message
+        resultsPageSearchControl.setNoResultsString('Sorry, we couldn\'t find any results for your query.  Please search for something else.');
 
         // Get array of the url querystring params.
         var urlParams = Drupal.mass.helpers.parseParamsFromUrl();

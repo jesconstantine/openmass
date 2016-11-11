@@ -82,6 +82,8 @@
         headerSearchControl.draw('cse-header-search-form', headerOptions);
       }
 
+      // Customize "no results" message
+      headerSearchControl.setNoResultsString("Sorry, we couldn't find any results for your query.  Please search for something else.");
 
       /** MOBILE SEARCH FORM */
 
@@ -126,6 +128,9 @@
        * .draw(selector, options)
        */
       mobileSearchControl.draw('cse-search-form-mobile', mobileOptions);
+
+      // Customize "no results" message
+      mobileSearchControl.setNoResultsString("Sorry, we couldn't find any results for your query.  Please search for something else.");
 
     }, true);
   }
