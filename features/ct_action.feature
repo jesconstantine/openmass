@@ -31,4 +31,4 @@ Feature: Action Content type
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
     Given I am viewing an "action" with the title "Run the Test Suite"
-    Then I am at "actions/run-test-suite"
+    Then I am at "run-test-suite"
