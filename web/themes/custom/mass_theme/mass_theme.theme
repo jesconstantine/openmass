@@ -9,7 +9,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
-use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
@@ -97,9 +96,35 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-  if ($node->field_featured_mobile_image->entity) {
-    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+
+  // Get our subtopics (sections) view.
+  $view_results = views_get_view_result('ordered_topics', 'ordered_topic_list_block', $node->id());
+  $sections = array();
+  // Roll this up and give the twig tpl what it expects.
+  foreach ($view_results as $key => $row) {
+    /* $links = array();
+     * // Wrap up our links for each subtopic.
+     * foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+     *   $links[] = array('text' => $link->title, 'href' => $link->uri);
+     * }
+     */
+    // Wrap up each section with links.
+    // @TODO Check that the icon exists before providing path.
+    $sections[] = array(
+      'catIcon' => array(
+        'svg' => '@atoms/05-icons/svg-' . strtolower($row->_entity->get('field_icon_term')->view()[0]['#title']) . '.twig',
+        'small' => 'true',
+      ),
+      'title' => array(
+        'href' => 'node/' . $row->_entity->get('nid')->value,
+        'text' => $row->_entity->get('title')->value,
+      ),
+      'description' => $row->_entity->get('field_lede')->value,
+      'links' => '',
+    );
   }
+  // Send to twig.
+  $variables['sections'] = $sections;
 }
 
 /**
@@ -109,6 +134,15 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'full') {
+    $field_action_parent = $node->get('field_action_parent');
+    $taxonomyTerms = array();
+    foreach ($field_action_parent->referencedEntities() as $taxonomyTerm) {
+      $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
+    }
+    $variables['taxonomyTerms'] = $taxonomyTerms;
+  }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
     $field_external_link = $node->get('field_external_url');
@@ -141,6 +175,18 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
   if (empty($variables['mobile_finder_image'])) {
     $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
   }
+
+  // Load Instance of the secondary menu block with variables.
+  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
+  if (!empty($all_actions_view)) {
+    $all_actions_view_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($all_actions_view);
+    if ($all_actions_view_content) {
+      // Add block content to build array.
+      $variables['content']['all_actions_view'] = $all_actions_view_content;
+    }
+  }
 }
 
 /**
@@ -154,8 +200,62 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-  if ($node->field_featured_mobile_image->entity) {
-    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+
+  if ($variables['view_mode'] == 'full') {
+    // Get our callout links view.
+    $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
+    $calloutLinks = array();
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+      $calloutLinks[] = array(
+        'calloutLink' => array(
+          'type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '',
+          'quickaction' => 'false',
+          'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value,
+          'text' => $row->_relationship_entities['field_common_content']->get('title')->value,
+        ),
+      );
+    }
+    // Send to twig.
+    $variables['calloutLinks'] = $calloutLinks;
+
+    // Get our subtopics (sections) view.
+    $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
+    $sections = array();
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+      $links = array();
+      // Wrap up our links for each subtopic.
+      foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+        $links[] = array('text' => $link->title, 'href' => $link->uri);
+      }
+      // Wrap up each section with links.
+      $sections[] = array(
+        'title' => array(
+          'href' => 'node/' . $row->_entity->get('nid')->value,
+          'text' => $row->_entity->get('title')->value,
+        ),
+        'description' => $row->_entity->get('field_lede')->value,
+        'links' => $links,
+      );
+    }
+    // Send to twig.
+    $variables['sections'] = $sections;
+  }
+
+  if ($variables['view_mode'] == 'teaser') {
+    // Get our subtopics from view.
+    $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
+    $links = array();
+    // Roll this up for our twig template.
+    foreach ($view_results as $key => $row) {
+      $links[] = array(
+        'href' => "/node/" . $row->node_nid ,
+        'text' => $row->_entity->get('title')->value,
+      );
+    }
+    // Send to twig.
+    $variables['links'] = $links;
   }
 }
 
@@ -218,6 +318,109 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
+  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'related_link') {
+    $links = array();
+    $delta = 0;
+    // Wrap up our related links.
+    while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $links[] = array(
+        'link' => array(
+          'text' => $element[$delta]['#title'],
+          'href' => $element[$delta]['#url_title'],
+          'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal',
+        ),
+      );
+      $delta++;
+    }
+    // Send array to twig.
+    $variables['relatedActions'] = $links;
+  }
+
+  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
+    $groups = array();
+    $delta = 0;
+    // Wrap up our contact groups.
+    while (!empty($element[$delta])) {
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
+        $phone_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $groups[] = array(
+          'icon'  => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items' => $phone_details,
+        );
+      }
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        $online_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'  => 'email',
+        );
+        $groups[] = array(
+          'icon'  => '@atoms/05-icons/svg-laptop.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items' => $online_details,
+        );
+      }
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
+        $replace = array(", ", "\r\n", "\n", "\r", " ");
+        $address_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_address')->value,
+          'rawVal'  => '',
+          'link'    => 'https://maps.google.com/?q=' . str_replace($replace, "+", $element[$delta]['#paragraph']->get('field_address')->value),
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'  => 'address',
+        );
+        $groups[] = array(
+          'icon'  => '@atoms/05-icons/svg-marker.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items' => $address_details,
+        );
+      }
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'other') {
+        $other_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => '',
+          'rawVal'  => '',
+          'link'    => '',
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $groups[] = array(
+          'icon'  => '@atoms/05-icons/svg-marker.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items' => $other_details,
+        );
+      }
+      else {
+        $details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => '',
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $groups[] = array(
+          'icon'  => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '-icon.twig',
+          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items' => $details,
+        );
+      }
+      $delta++;
+    }
+    $variables['contactGroups'] = $groups;
+  }
 }
 
 /**
@@ -265,22 +468,75 @@ function mass_theme_preprocess_paragraph(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * Break out url pieces for callout link paragraphs.
+ */
+function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_action_step_numbered_items = $paragraph->get('field_action_step_numbered_items');
+  $list = array();
+
+  if ($field_action_step_numbered_items->count() > 0) {
+    $items = $field_action_step_numbered_items->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    foreach ($items as $id => $item) {
+      $list[$id] = array();
+      $field_title = $item->get('field_title');
+      $field_content = $item->get('field_content');
+
+      if ($field_title->count() > 0) {
+        $title = $field_title->first()->getValue();
+        $list[$id]['title'] = $title['value'];
+      }
+
+      if ($field_content->count() > 0) {
+        $content = $field_content->first()->getValue();
+        $list[$id]['rteElements'][] = array(
+          'path' => '@atoms/11-text/paragraph.twig',
+          'data' => array(
+            'paragraph' => array(
+              'text' => $content['value'],
+            ),
+          ),
+        );
+      }
+    }
+  }
+  $variables['actionSeqLists'] = $list;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
  * Clean css id for subheads.
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
-  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
-
-  // Lets let our subhead paragraph template know about the region.
-  $variables['region'] = $parent_field;
-
-  if (trim($subhead) == 'Quick Actions') {
-    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
-  }
-
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
   $variables['title_clean'] = $subhead_clean;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for action step paragraphs.
+ */
+function mass_theme_preprocess_paragraph__action_step(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_title = $paragraph->get('field_title');
+  $field_content = $paragraph->get('field_content');
+
+  if ($field_title->count() > 0) {
+    $title = $field_title->first()->getValue();
+    $variables['title'] = $title['value'];
+  }
+
+  if ($field_content->count() > 0) {
+    $rich_text = $field_content->first()->getValue();
+    $variables['rich_text'] = $rich_text['value'];
+  }
 }
 
 /**
@@ -318,10 +574,9 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
             $image_small = mass_theme_get_field_image_url($item, 'action_banner_small', 'field_slideshow', $id);
             $image_large = mass_theme_get_field_image_url($item, 'action_banner_large', 'field_slideshow', $id);
             $images[$id] = array(
-              'small' => $image_small,
-              'large' => $image_large,
+              'image' => $image_small,
+              'imageLarge' => $image_large,
               'alt' => $value['alt'],
-              'title' => $value['title'],
             );
           }
 
@@ -525,6 +780,65 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for downloads.
+ */
+function mass_theme_preprocess_paragraph__file_download(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $actionDownloads = array();
+  $field_downloads = $paragraph->get('field_downloads');
+  $files = '';
+
+  if ($field_downloads->count() > 0) {
+    $file_list = $field_downloads->getValue();
+    $files = $field_downloads->referencedEntities();
+  }
+
+  if (!empty($files)) {
+    foreach ($files as $id => $file) {
+      // Get the human readable file size.
+      $bytes = $file->getSize();
+      $readable_size = format_size($bytes);
+
+      // Use the description as the link text if available,
+      // if not, use the file name.
+      $filename = $file->getFilename();
+
+      if (empty($file_list[$id]['description'])) {
+        $linktext = $filename;
+      }
+      else {
+        $linktext = $file_list[$id]['description'];
+      }
+
+      // Set the file link variable.
+      $url = file_create_url($file->getFileUri());
+
+      // Get the file extension.
+      // see: http://php.net/manual/en/splfileinfo.getextension.php
+      $file_info = new SplFileInfo($filename);
+      $file_extension = $file_info->getExtension();
+
+      // Set the file type based on extesnion.
+      $file_type = $file_extension;
+
+      // Set the icon name.
+      $icon_name = 'doc-' . $file_extension;
+
+      $actionDownloads[] = array(
+        'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
+        'title' => $linktext,
+        'url' => $url,
+        'size' => $readable_size,
+        'type' => $file_extension,
+      );
+    }
+  }
+  $variables['actionDownloads'] = $actionDownloads;
+}
+
+/**
  * Helper function to sort a list of items by title.
  */
 function compare_by_title($a, $b) {
@@ -564,6 +878,12 @@ function mass_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   $suggestions[] = 'field__' .
     $variables['element']['#field_name'] . '__' .
     $variables['element']['#view_mode'];
+
+  $suggestions[] = 'field__' .
+    $variables['element']['#entity_type'] . '__' .
+    $variables['element']['#field_name'] . '__' .
+    $variables['element']['#bundle'] . '__' .
+    $variables['element']['#view_mode'];
 }
 
 /**
@@ -576,47 +896,6 @@ function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
   $route_match = \Drupal::routeMatch();
   $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
   $variables['label'] = $title;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- * Parse file attributes for file link template.
- * Default template: file-link.html.twig.
- */
-function mass_theme_preprocess_file_link(&$variables) {
-  // Get file attributes for ct.action file download links.
-  $file = $variables['file'];
-  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
-
-  // Get the human readable file size.
-  $bytes = $file->getSize();
-  $readable_size = format_size($bytes);
-  $variables['download']['size'] = $readable_size;
-
-  // Use the description as the link text if available,
-  // if not, use the file name.
-  $filename = $file_entity->getFilename();
-  if (empty($variables['description'])) {
-    $variables['download']['linktext'] = $filename;
-  }
-  else {
-    $variables['download']['linktext'] = $variables['description'];
-  }
-
-  // Set the file link variable.
-  $variables['download']['link'] = file_create_url($file_entity->getFileUri());
-
-  // Get the file extension.
-  // see: http://php.net/manual/en/splfileinfo.getextension.php
-  $file_info = new SplFileInfo($filename);
-  $file_extension = $file_info->getExtension();
-
-  // Set the file type based on extesnion.
-  $variables['download']['filetype'] = $file_extension;
-
-  // Set the icon name.
-  $variables['download']['iconName'] = 'doc-' . $file_extension;
 }
 
 /**

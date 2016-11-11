@@ -35,12 +35,13 @@
  *
  * @ingroup themeable
  *
- * @copyright Copyright (c) 2016 Palantir.net s
+ * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
 {%
-  set video = {
-    'src': 'https://www.youtube.com/embed/' ~ content.field_video_id|field_value|e('url')
-  }
+set coloredHeading = {
+  'text': content.field_title|field_value,
+  'color': (content.field_title|field_value[0]['#context']['value'] == 'Quick Actions') ? 'green' : 'blue',
+}
 %}
-{% include "@atoms/09-media/video.twig" with video %}
+{% include "@atoms/04-headings/colored-heading.twig" %}

@@ -1,0 +1,37 @@
+uuid: ac780a79-dba5-4201-abbc-97d5344b9ecf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.sidebar
+    - field.field.paragraph.related_link.field_description
+    - field.field.paragraph.related_link.field_link
+    - paragraphs.paragraphs_type.related_link
+  module:
+    - link
+id: paragraph.related_link.sidebar
+targetEntityType: paragraph
+bundle: related_link
+mode: sidebar
+content:
+  field_description:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_link:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link_separate
+hidden:
+  created: true
+  uid: true

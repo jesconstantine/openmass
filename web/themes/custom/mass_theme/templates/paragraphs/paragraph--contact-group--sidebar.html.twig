@@ -35,12 +35,10 @@
  *
  * @ingroup themeable
  *
- * @copyright Copyright (c) 2016 Palantir.net s
+ * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-  set video = {
-    'src': 'https://www.youtube.com/embed/' ~ content.field_video_id|field_value|e('url')
-  }
-%}
-{% include "@atoms/09-media/video.twig" with video %}
+<div class="ma__contact-us js-accordion">
+  <h5 class="ma__contact-us__title">{{ content.field_title|field_value }}</h5>
+  {{ content|without('field_title') }}
+</div>
