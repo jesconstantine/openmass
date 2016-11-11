@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% if content.field_alert_text %}
+{% if content.field_alert_text|field_value is not empty %}
 <section class="ma__header-alert js-header-alert" role="alert">
   <div class="ma__header-alert__container">
     <span class="ma__header-alert__label">{{ content.field_alert_dropdown }}</span>
