@@ -197,6 +197,19 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
 function mass_theme_preprocess_node_topic(&$variables) {
   $node = $variables['node'];
 
+  $icon_terms = $node->get('field_icon_term');
+  if ($icon_terms->count() > 0 ) {
+    $terms = $icon_terms->referencedEntities();
+    $term = current($terms);
+    if (!empty($term) && file_exists(DRUPAL_ROOT . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig')) {
+      $variables['icon'] = '@atoms/07-user-added-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig';
+    }
+    // Check in another directory for icons...ugh.
+    else {
+      $variables['icon'] = '@atoms/05-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig';
+    }
+  }
+
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
@@ -205,14 +218,21 @@ function mass_theme_preprocess_node_topic(&$variables) {
     // Get our callout links view.
     $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
     $calloutLinks = array();
+
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
+
+      // Common contact can be Actions or Subtopics, so we need to check for the field.
+      if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
+        $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
+      }
+
       $calloutLinks[] = array(
         'calloutLink' => array(
-          'type' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? 'external' : '',
+          'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
           'quickaction' => 'false',
-          'href' => ($row->_relationship_entities['field_common_content']->get('field_external_url')->uri) ? $row->_relationship_entities['field_common_content']->get('field_external_url')->uri : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value,
-          'text' => $row->_relationship_entities['field_common_content']->get('title')->value,
+          'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value,
+          'text'        => $row->_relationship_entities['field_common_content']->get('title')->value,
         ),
       );
     }
