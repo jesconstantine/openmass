@@ -165,6 +165,24 @@ function mass_theme_preprocess_node_action(&$variables) {
 /**
  * Implements hook_preprocess_node().
  *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_stacked_layout(&$variables) {
+  $node = $variables['node'];
+
+  $image_field = $node->get('field_photo');
+
+  if ($image_field->count() > 0) {
+    $values = $image_field->getValue();
+    $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
+    $variables['image_alt'] = $values[0]['alt'];
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_node().
+ *
  * Node subtopic alterations.
  */
 function mass_theme_preprocess_node_subtopic(&$variables) {

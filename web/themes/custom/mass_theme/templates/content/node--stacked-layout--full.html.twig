@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Theme override to display the Full view mode of the Subtopic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{%
+set illustratedHeader = {
+  'bgTitle': image_alt,
+  'bgImage': image_url,
+  'category': content.field_label|field_value,
+  'pageHeader': {
+    'title': label|field_value,
+    'subTitle': '',
+    'rteElements': [{
+      'path': '@atoms/11-text/paragraph.twig',
+      'data': {
+        'paragraph' : {
+          'text': content.field_lede|field_value
+        }
+      }
+    }],
+    'headerTags': ''
+  }
+}
+%}
+{% extends 'node.html.twig' %}
+
+{% block preContent %}
+  {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+  {% include "@organisms/by-template/illustrated-header.twig" %}
+{% endblock %}
+
+{% block main %}
+  <div class="guide-content">
+    {% include "@organisms/by-template/jump-links.twig" %}
+    {% for guideSection in guideSections %}
+      {% include "@organisms/by-author/guide-section.twig" %}
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block postContent %}
+  {% include "@organisms/by-author/suggested-pages.twig" %}
+{% endblock %}
