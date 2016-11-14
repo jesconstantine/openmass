@@ -123,14 +123,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     // Wrap up each section with links.
     if (isset($row->_entity->get('field_icon_term')->referencedEntities()[0])) {
       $icon = $row->_entity->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
-
-      // Check if this template exists.
-      if (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
-        $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
-      }
-      else {
-        $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
-      }
+      $icon_path = icon_path($icon);
     }
     $sections[] = array(
       'catIcon' => array(
@@ -223,13 +216,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($icon_terms->count() > 0) {
     $terms = $icon_terms->referencedEntities();
     $term = current($terms);
-    if (!empty($term) && file_exists(DRUPAL_ROOT . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig')) {
-      $variables['icon'] = '@atoms/07-user-added-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig';
-    }
-    // Check in another directory for icons...ugh.
-    else {
-      $variables['icon'] = '@atoms/05-icons/svg-' . strtolower($term->get('field_sprite_name')->value) . '.twig';
-    }
+    $variables['icon'] = icon_path($term->get('field_sprite_name')->value);
   }
 
   if ($node->field_featured_image->entity) {
@@ -448,16 +435,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
       else {
         $icon = $element[$delta]['#paragraph']->get('field_type')->value;
-        // Check if this template exists.
-        if (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
-          $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
-        }
-        elseif (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/05-icons/svg-' . strtolower($icon) . '.twig')) {
-          $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
-        }
-        else {
-          $icon_path = '@atoms/05-icons/svg-marker.twig';
-        }
+        $icon_path = icon_path($icon);
         $details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
@@ -1046,4 +1024,29 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
       $form['actions']['submit']['#attributes'] = array('data-theming-id' => 'filter-submit');
     }
   }
+}
+
+/**.
+ *
+ * Check for template exists
+ */
+function icon_path($icon) {
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+  $path = DRUPAL_ROOT . '/' . $theme_path;
+
+  // Check if this template exists.
+  if (file_exists($path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+    $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
+  }
+  elseif (file_exists($path . '/patterns/atoms/05-icons/svg-' . strtolower($icon) . '.twig')) {
+    $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+  }
+  elseif (file_exists($path . '/patterns/atoms/06-icons-location/svg-loc-' . strtolower($icon) . '.twig')) {
+    $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+  }
+  else {
+    $icon_path = '@atoms/05-icons/svg-marker.twig';
+  }
+
+  return $icon_path;
 }
