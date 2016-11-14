@@ -86,8 +86,14 @@
          */
         var resultsPageSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-        // Specify the size of the result set (to max 10 results per page, 10 pages)
-        resultsPageSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        /**
+         * set search results set size
+         * options:
+         * - integer between 1-20,
+         * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+         * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
+         */
+        resultsPageSearchControl.setResultSetSize(20);
 
         // Specify the callback method to call upon completion of the search (defined below).
         resultsPageSearchControl.setSearchCompleteCallback(null, Drupal.mass.search.a11y.announceSearchComplete);
@@ -171,7 +177,7 @@
       }
 
       // Append regular results message content to announcement.
-      announcement += 'the first ten results for your query.'; // 4.
+      announcement += 'the first twenty results for your query.'; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');

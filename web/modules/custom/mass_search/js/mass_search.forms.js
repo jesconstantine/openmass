@@ -45,10 +45,13 @@
       var headerSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
       /**
-       * Customize search control with available methods
-       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       * set search results set size
+       * options:
+       * - integer between 1-20,
+       * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+       * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
        */
-      headerSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      headerSearchControl.setResultSetSize(20);
 
       /**
        * Draw header search form with draw options
@@ -95,10 +98,13 @@
       var mobileSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
       /**
-       * Customize search control with available methods
-       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       * set search results set size
+       * options:
+       * - integer between 1-20,
+       * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+       * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
        */
-      mobileSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      mobileSearchControl.setResultSetSize(20);
 
       /**
        * Draw mobile search form with draw options
