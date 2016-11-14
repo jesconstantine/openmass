@@ -137,7 +137,7 @@
    * 2a. No results message (if there are not results returned)
    * 2b. Contents of search results (if there are results returned):
    * -- 3. Number of promoted results (if any)
-   * -- 4. First ten regular results
+   * -- 4. Page # of search results
    *
    * Prepends both the first promoted result (if any) [5.] and regular result [6.] with visually hidden heading landmarks.
    *
@@ -176,8 +176,12 @@
         searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
       }
 
-      // Append regular results message content to announcement.
-      announcement += 'the first twenty results for your query.'; // 4.
+      // Determine what results page we are one
+      var currentPageNode = searchResults.querySelector('div.gsc-cursor-page.gsc-cursor-current-page');
+      var currentPage = currentPageNode.textContent;
+
+      // Append regular results message content, with the context of the current page, to announcement.
+      announcement += 'page ' + currentPage + ' of the search results.'; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
