@@ -35,12 +35,16 @@ content:
 hidden:
   field_action_banner: true
   field_action_details: true
+  field_action_downloads: true
   field_action_header: true
   field_action_parent: true
+  field_action_related: true
   field_action_sidebar: true
   field_alert_dropdown: true
   field_alert_link: true
   field_alert_text: true
+  field_contact_group: true
   field_external_url: true
   field_header_cta: true
+  field_metatags: true
   links: true

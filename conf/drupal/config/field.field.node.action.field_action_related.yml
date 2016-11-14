@@ -1,0 +1,27 @@
+uuid: a3555674-22e6-436f-86ab-460474c7be08
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_action_related
+    - node.type.action
+id: node.action.field_action_related
+field_name: field_action_related
+entity_type: node
+bundle: action
+label: 'Related Content'
+description: 'List other content that relates to this one. Related Content will show this content in the sidebar.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      action: action
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

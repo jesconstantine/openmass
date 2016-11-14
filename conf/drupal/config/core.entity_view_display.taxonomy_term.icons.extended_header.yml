@@ -20,3 +20,4 @@ content:
     type: string
 hidden:
   description: true
+  field_sprite_type: true
