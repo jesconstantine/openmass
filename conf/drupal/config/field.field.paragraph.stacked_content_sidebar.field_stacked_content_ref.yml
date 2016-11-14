@@ -1,0 +1,103 @@
+uuid: 7e95f6f3-4494-4039-b27b-b3c236004d33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stacked_content_ref
+    - paragraphs.paragraphs_type.stacked_content_sidebar
+  module:
+    - entity_reference_revisions
+id: paragraph.stacked_content_sidebar.field_stacked_content_ref
+field_name: field_stacked_content_ref
+entity_type: paragraph
+bundle: stacked_content_sidebar
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    target_bundles_drag_drop:
+      action_address:
+        weight: 27
+        enabled: false
+      action_address_info:
+        weight: 28
+        enabled: false
+      action_area:
+        weight: 29
+        enabled: false
+      action_step:
+        weight: 30
+        enabled: false
+      action_step_numbered:
+        weight: 31
+        enabled: false
+      action_step_numbered_list:
+        weight: 32
+        enabled: false
+      callout_link:
+        weight: 33
+        enabled: false
+      contact:
+        weight: 34
+        enabled: false
+      contact_group:
+        weight: 35
+        enabled: false
+      contact_info:
+        weight: 36
+        enabled: false
+      file_download:
+        weight: 37
+        enabled: false
+      full_bleed:
+        weight: 38
+        enabled: false
+      icon:
+        weight: 39
+        enabled: false
+      iframe:
+        weight: 40
+        enabled: false
+      location_information:
+        weight: 41
+        enabled: false
+      map:
+        weight: 42
+        enabled: false
+      quick_action:
+        weight: 43
+        enabled: false
+      related_link:
+        weight: 44
+        enabled: false
+      rich_text:
+        weight: 45
+        enabled: false
+      slideshow:
+        weight: 46
+        enabled: false
+      stacked_content:
+        weight: 47
+        enabled: false
+      stacked_content_full:
+        weight: 48
+        enabled: false
+      stacked_content_sidebar:
+        weight: 49
+        enabled: false
+      stat:
+        weight: 50
+        enabled: false
+      subhead:
+        weight: 51
+        enabled: false
+      video:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,29 @@
+uuid: 97dc77f7-863d-4f89-a41f-7494c57a9765
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.stacked_content_full.field_stacked_content_ref
+    - paragraphs.paragraphs_type.stacked_content_full
+  module:
+    - paragraphs
+    - workbench_moderation
+id: paragraph.stacked_content_full.default
+targetEntityType: paragraph
+bundle: stacked_content_full
+mode: default
+content:
+  field_stacked_content_ref:
+    type: entity_reference_paragraphs
+    weight: 6
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

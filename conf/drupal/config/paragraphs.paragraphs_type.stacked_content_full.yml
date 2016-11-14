@@ -1,0 +1,6 @@
+uuid: f6cdd492-8bdc-4d9d-9a1e-dbf63038e80f
+langcode: en
+status: true
+dependencies: {  }
+id: stacked_content_full
+label: 'Stacked content full width'

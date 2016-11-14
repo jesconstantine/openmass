@@ -1,0 +1,39 @@
+uuid: b1d0e5e1-2116-4fbb-b53c-50f6e1679804
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.stacked_content_sidebar.field_stacked_content_ref
+    - field.field.paragraph.stacked_content_sidebar.field_stacked_sidebar_ref
+    - paragraphs.paragraphs_type.stacked_content_sidebar
+  module:
+    - entity_reference_revisions
+    - paragraphs
+    - workbench_moderation
+id: paragraph.stacked_content_sidebar.default
+targetEntityType: paragraph
+bundle: stacked_content_sidebar
+mode: default
+content:
+  field_stacked_content_ref:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_autocomplete
+  field_stacked_sidebar_ref:
+    type: entity_reference_paragraphs
+    weight: 7
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true
