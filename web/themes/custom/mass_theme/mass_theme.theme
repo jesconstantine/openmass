@@ -92,6 +92,7 @@ function mass_theme_preprocess_node(&$variables) {
  */
 function mass_theme_preprocess_node_section_landing(&$variables) {
   $node = $variables['node'];
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
 
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
@@ -124,7 +125,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
       $icon = $row->_entity->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
 
       // Check if this template exists.
-      if (file_exists(DRUPAL_ROOT . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+      if (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
         $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
       }
       else {
@@ -379,6 +380,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   }
 
   if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
+    $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
     $groups = array();
     $delta = 0;
     // Wrap up our contact groups.
@@ -390,10 +392,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '.twig',
+          'icon'  => '@atoms/05-icons/svg-phone.twig',
           'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
           'items' => $phone_details,
         );
@@ -405,7 +407,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'  => 'email',
+          'type'    => 'email',
         );
         $groups[] = array(
           'icon'  => '@atoms/05-icons/svg-laptop.twig',
@@ -421,7 +423,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'rawVal'  => '',
           'link'    => 'https://maps.google.com/?q=' . str_replace($replace, "+", $element[$delta]['#paragraph']->get('field_address')->value),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'  => 'address',
+          'type'    => 'address',
         );
         $groups[] = array(
           'icon'  => '@atoms/05-icons/svg-marker.twig',
@@ -436,7 +438,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'rawVal'  => '',
           'link'    => '',
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
           'icon'  => '@atoms/05-icons/svg-marker.twig',
@@ -445,16 +447,27 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         );
       }
       else {
+        $icon = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Check if this template exists.
+        if (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+          $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
+        }
+        elseif (file_exists(DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/05-icons/svg-' . strtolower($icon) . '.twig')) {
+          $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+        }
+        else {
+          $icon_path = '@atoms/05-icons/svg-marker.twig';
+        }
         $details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_address')->value . $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => '',
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'  => $element[$delta]['#paragraph']->get('field_type')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-' . $element[$delta]['#paragraph']->get('field_type')->value . '-icon.twig',
+          'icon'  => $icon_path,
           'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
           'items' => $details,
         );
