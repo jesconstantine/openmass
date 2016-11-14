@@ -1026,9 +1026,8 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   }
 }
 
-/**.
- *
- * Check for template exists
+/**
+ * Check for icon twig templates.
  */
 function icon_path($icon) {
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
