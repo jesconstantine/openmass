@@ -61,8 +61,8 @@ ${modified_files}
             -->
 
         <!-- Always prompt for the deployment destination. -->
-        <property name="deploy.site_alias" value="@massgovdemo.dev" />
-        <input propertyname="deploy.site_alias" validargs="@massgovdemo.dev,@massgovdemo.test">Acquia environment? </input>
+        <property name="deploy.site_alias" value="@massgov.dev" />
+        <input propertyname="deploy.site_alias" validargs="@massgov.dev,@massgov.test">Acquia environment? </input>
 
         <!-- The build commit ref. -->
         <gitdescribe repository="${build.dir}" tags="true" always="true" outputProperty="tmp.git_describe_output" />

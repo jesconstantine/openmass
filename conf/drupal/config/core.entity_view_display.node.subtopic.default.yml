@@ -98,4 +98,5 @@ content:
     weight: -20
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_metatags: true

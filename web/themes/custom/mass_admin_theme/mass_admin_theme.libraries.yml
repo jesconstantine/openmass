@@ -1,5 +1,0 @@
-admin_overrides:
-  version: 1.x
-  css:
-    theme:
-      overrides/css/action-node-form.css: {}
