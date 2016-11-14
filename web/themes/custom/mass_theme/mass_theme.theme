@@ -169,13 +169,32 @@ function mass_theme_preprocess_node_action(&$variables) {
  */
 function mass_theme_preprocess_node_stacked_layout(&$variables) {
   $node = $variables['node'];
-
   $image_field = $node->get('field_photo');
+  $field_related_guides = $node->get('field_related_guides');
 
   if ($image_field->count() > 0) {
     $values = $image_field->getValue();
     $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
     $variables['image_alt'] = $values[0]['alt'];
+  }
+
+  if ($field_related_guides->count() > 0) {
+    $guides = $field_related_guides->referencedEntities();
+  }
+
+  if (!empty($guides)) {
+    $related_guides = array();
+    foreach ($guides as $guide) {
+      $related_guides[] = array(
+        'link' => array(
+          'type' => 'internal',
+          'quickaction' => 'false',
+          'href' => $guide->url(),
+          'text' => $guide->getTitle(),
+        )
+      );
+    }
+    $variables['related_guides'] = $related_guides;
   }
 }
 

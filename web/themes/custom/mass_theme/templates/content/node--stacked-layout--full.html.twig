@@ -28,6 +28,14 @@ set illustratedHeader = {
   }
 }
 %}
+
+{%
+set suggestedPages = {
+  'title': 'Related Guides'|t,
+  'pages': related_guides
+}
+%}
+
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
@@ -47,5 +55,5 @@ set illustratedHeader = {
 {% endblock %}
 
 {% block postContent %}
-  {% include "@organisms/by-author/suggested-pages.twig" %}
+  {% include "@custom_includes/organisms-suggested-pages.html.twig" with suggestedPages %}
 {% endblock %}
