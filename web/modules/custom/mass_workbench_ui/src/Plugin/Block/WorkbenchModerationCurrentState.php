@@ -39,6 +39,14 @@ class WorkbenchModerationCurrentState extends BlockBase {
       return $block;
     }
 
+    // Get the state for revisions.
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.node.revision') {
+      $revision_id = $nid = \Drupal::routeMatch()->getRawParameter('node_revision');
+      $node = node_revision_load($revision_id);
+      $block['#markup'] = "Current moderation state: " . $node->moderation_state->target_id;
+      return $block;
+    }
+
     // Get the state of the default revision.
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $block['#markup'] = "Current moderation state: " . $node->moderation_state->target_id;
@@ -60,7 +68,7 @@ class WorkbenchModerationCurrentState extends BlockBase {
     }
 
     // Only show on node pages.
-    if (in_array($route_name, array('entity.node.canonical', 'entity.node.latest_version'))) {
+    if (in_array($route_name, array('entity.node.canonical', 'entity.node.latest_version', 'entity.node.revision'))) {
       return AccessResult::allowed();
     }
 
