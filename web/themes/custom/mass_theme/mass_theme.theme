@@ -1032,21 +1032,20 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  */
 function icon_path($icon) {
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
-  $path = DRUPAL_ROOT . '/' . $theme_path;
+  $path = DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/';
 
   // Check if this template exists.
-  if (file_exists($path . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
-    $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
-  }
-  elseif (file_exists($path . '/patterns/atoms/05-icons/svg-' . strtolower($icon) . '.twig')) {
-    $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
-  }
-  elseif (file_exists($path . '/patterns/atoms/06-icons-location/svg-loc-' . strtolower($icon) . '.twig')) {
-    $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
-  }
-  else {
-    $icon_path = '@atoms/05-icons/svg-marker.twig';
+  if (file_exists($path . '07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+    return '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
   }
 
-  return $icon_path;
+  if (file_exists($path . '05-icons/svg-' . strtolower($icon) . '.twig')) {
+    return '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+  }
+
+  if (file_exists($path . '06-icons-location/svg-loc-' . strtolower($icon) . '.twig')) {
+    return '@atoms/06-icons-location/svg-' . strtolower($icon) . '.twig';
+  }
+
+  return '@atoms/05-icons/svg-marker.twig';
 }
