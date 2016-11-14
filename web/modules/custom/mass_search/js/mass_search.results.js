@@ -181,7 +181,7 @@
       var currentPage = currentPageNode.textContent;
 
       // Append regular results message content, with the context of the current page, to announcement.
-      announcement += 'page ' + currentPage + ' of the search results.'; // 4.
+      announcement += 'search results page ' + currentPage; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
