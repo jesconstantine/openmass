@@ -180,6 +180,16 @@
       var currentPageNode = searchResults.querySelector('div.gsc-cursor-page.gsc-cursor-current-page');
       var currentPage = currentPageNode.textContent;
 
+      // Add current pagination link text for screen readers
+      var currentPageDescribedBy = document.createElement('div');
+      currentPageDescribedBy.setAttribute('id', 'ma-current-search-page');
+      currentPageDescribedBy.style.display = 'none';
+      currentPageDescribedBy.textContent = 'current results page';
+
+      searchResults.appendChild(currentPageDescribedBy);
+      currentPageNode.setAttribute('aria-describedby', 'ma-current-search-page');
+
+
       // Append regular results message content, with the context of the current page, to announcement.
       announcement += 'search results page ' + currentPage; // 4.
 
