@@ -112,6 +112,7 @@
         "drupal/migrate_tools": "~8",
         "drupal/paragraphs": "~8.1.0",
         "drupal/pathauto": "^8.1",
+        "drupal/redirect": "8.*",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
         "drupal/workbench_moderation": "^8.1",
