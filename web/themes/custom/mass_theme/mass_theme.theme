@@ -102,17 +102,38 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   $sections = array();
   // Roll this up and give the twig tpl what it expects.
   foreach ($view_results as $key => $row) {
-    /* $links = array();
-     * // Wrap up our links for each subtopic.
-     * foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-     *   $links[] = array('text' => $link->title, 'href' => $link->uri);
-     * }
-     */
+    $icon_path = '';
+    $links = array();
+    // Wrap up our links for each subtopic.
+    if ($row->_entity->hasField('field_common_content')) {
+      foreach ($row->_entity->get('field_common_content')->referencedEntities() as $link) {
+        // If we have an external URL, lets use that instead of internal paths.
+        if (isset($link->get('field_external_url')[0])) {
+          $external_link = $link->get('field_external_url')->first()->getValue();
+          $link_path = $external_link['uri'];
+        }
+        else {
+          $link_path = '/node/' . $link->get('nid')->value;
+        }
+        $links[] = array('text' => $link->get('title')->value, 'href' => $link_path);
+      }
+    }
+
     // Wrap up each section with links.
-    // @TODO Check that the icon exists before providing path.
+    if (isset($row->_entity->get('field_icon_term')->referencedEntities()[0])) {
+      $icon = $row->_entity->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+
+      // Check if this template exists.
+      if (file_exists(DRUPAL_ROOT . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/patterns/atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+        $icon_path = '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
+      }
+      else {
+        $icon_path = '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+      }
+    }
     $sections[] = array(
       'catIcon' => array(
-        'svg' => '@atoms/05-icons/svg-' . strtolower($row->_entity->get('field_icon_term')->view()[0]['#title']) . '.twig',
+        'svg' => $icon_path,
         'small' => 'true',
       ),
       'title' => array(
@@ -120,7 +141,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
         'text' => $row->_entity->get('title')->value,
       ),
       'description' => $row->_entity->get('field_lede')->value,
-      'links' => '',
+      'links' => $links,
     );
   }
   // Send to twig.
