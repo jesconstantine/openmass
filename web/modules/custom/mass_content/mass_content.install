@@ -246,3 +246,21 @@ function mass_content_update_8003(&$sandbox) {
     $menu_link->save();
   }
 }
+
+/**
+ * Create Subtopic paths.
+ */
+function mass_content_update_8004(&$sandbox) {
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+
+  // Create subtopics paths.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'subtopic');
+  $nids = $query->execute();
+  $nodes = $node_storage->loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+    \Drupal::service('pathauto.generator')->createEntityAlias($node, 'insert');
+  }
+}
