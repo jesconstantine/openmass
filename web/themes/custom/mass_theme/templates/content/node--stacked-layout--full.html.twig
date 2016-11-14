@@ -48,9 +48,7 @@ set suggestedPages = {
 {% block main %}
   <div class="guide-content">
     {% include "@organisms/by-template/jump-links.twig" %}
-    {% for guideSection in guideSections %}
-      {% include "@organisms/by-author/guide-section.twig" %}
-    {% endfor %}
+    {{ content.field_bands }}
   </div>
 {% endblock %}
 
