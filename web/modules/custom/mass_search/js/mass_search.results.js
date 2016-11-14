@@ -194,7 +194,7 @@
 
   /**
    * Parses URL parameters
-   * @return {array} params - array of parameters from querystring
+   * @return {object} params - object of parameters from querystring
    */
   Drupal.mass.helpers.parseParamsFromUrl = function () {
     var params = {};
