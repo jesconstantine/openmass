@@ -72,7 +72,7 @@ class WorkbenchModerationCurrentState extends BlockBase {
       'entity.node.latest_version',
       'entity.node.revision',
     );
-    
+
     // Only show on node pages.
     if (in_array($route_name, $routes)) {
       return AccessResult::allowed();
