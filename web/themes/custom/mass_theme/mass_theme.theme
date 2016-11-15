@@ -94,6 +94,16 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
   $node = $variables['node'];
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
 
+  // This is a required icon field, but lets check.
+  if (array_key_exists('0', $node->get('field_icon_term')->referencedEntities())) {
+    $icon = $node->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+    $variables['icon_path'] = icon_path($icon);
+  }
+  else {
+    // Default Section Landing icon.
+    $variables['icon_path'] = '@atoms/05-icons/svg-marker.twig';
+  }
+
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }

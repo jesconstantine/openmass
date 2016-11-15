@@ -19,7 +19,7 @@ set breadcrumbs = {
 %}
 {%
 set pageBanner = {
-  'icon': '@atoms/05-icons/svg-' ~ node.field_icon_term.entity.field_sprite_name.value ~ '.twig',
+  'icon': icon_path,
   'title': label|field_value,
   'bgNarrow': hero800x400_image_url,
   'bgWide': file_url(node.field_featured_image.entity.fileuri),
