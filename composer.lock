@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ddbb948bb9e3bc16f5b59bacb896a7ec",
-    "content-hash": "00d13fa2a90df872ab799d0e4ae9a5fd",
+    "hash": "a6c63476b685110cd65e307f68e20542",
+    "content-hash": "fd681e2cdbf72cf4282891e70090cb68",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2923,12 +2923,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "419e3645be04cc38702298ea3a0c6a45b5fcdcc8"
+                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/419e3645be04cc38702298ea3a0c6a45b5fcdcc8",
-                "reference": "419e3645be04cc38702298ea3a0c6a45b5fcdcc8",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/4f55dd0f521b5690ce04e0c65548b2244f5f448d",
+                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d",
                 "shasum": ""
             },
             "require": {
@@ -2954,7 +2954,7 @@
                 "source": "https://github.com/palantirnet/the-build/tree/feature/code-quality-tools",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-11-12 03:58:26"
+            "time": "2016-08-19 19:39:45"
         },
         {
             "name": "palantirnet/the-vagrant",
