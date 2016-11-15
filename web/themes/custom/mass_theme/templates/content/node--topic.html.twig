@@ -12,12 +12,12 @@
 set breadcrumbs = {
   'light': "",
   'links': [{
-  'text': content.field_section|field_value,
-  'href': "/node/" ~ content.field_section[0]['#url'].routeParameters['node']
-  },
-  {
-  'text': label|field_value,
-  'href': url
+    'text': content.field_section|field_value,
+    'href': path_alias
+    },
+    {
+    'text': label|field_value,
+    'href': url
   }]
 }
 %}
