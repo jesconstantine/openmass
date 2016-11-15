@@ -1,0 +1,19 @@
+uuid: fb003fd8-e007-4471-a449-666f55e7ea15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_credit
+    - node.type.subtopic
+id: node.subtopic.field_image_credit
+field_name: field_image_credit
+entity_type: node
+bundle: subtopic
+label: 'Image credit(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
