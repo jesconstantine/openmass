@@ -67,8 +67,14 @@ class WorkbenchModerationCurrentState extends BlockBase {
       return AccessResult::forbidden();
     }
 
+    $routes = array(
+      'entity.node.canonical',
+      'entity.node.latest_version',
+      'entity.node.revision',
+    );
+    
     // Only show on node pages.
-    if (in_array($route_name, array('entity.node.canonical', 'entity.node.latest_version', 'entity.node.revision'))) {
+    if (in_array($route_name, $routes)) {
       return AccessResult::allowed();
     }
 
