@@ -1,0 +1,33 @@
+uuid: 2d86ccd3-14dd-4ede-ab14-4f824e78984b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hours.field_hours
+    - field.field.paragraph.hours.field_time_frame
+    - paragraphs.paragraphs_type.hours
+  module:
+    - workbench_moderation
+id: paragraph.hours.default
+targetEntityType: paragraph
+bundle: hours
+mode: default
+content:
+  field_hours:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_time_frame:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true
