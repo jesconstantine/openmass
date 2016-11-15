@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.section_landing.field_featured_mobile_image
     - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
+    - field.field.node.section_landing.field_image_credit
+    - field.field.node.section_landing.field_metatags
     - node.type.section_landing
   module:
     - entity_browser
@@ -51,6 +53,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+  field_image_credit:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   path:
     type: path
     weight: 5
