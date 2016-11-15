@@ -21,7 +21,7 @@ dependencies:
 
   override:
     - composer install
-    - npm install -g eslint@3.9.1
+    - npm install -g eslint@v2.13.1
 
   cache_directories:
     - vendor
