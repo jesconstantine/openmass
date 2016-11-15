@@ -9,6 +9,7 @@ Feature: Topic Content type
     Then the content type "topic" has the fields:
     | field                     | tag      | type   | multivalue |  required |
     | field-featured-image      | input    | submit | false      |  false    |
+    | field-image-credit        | input    | text   | false      |  false    |
     # Required. Hero image; use file browser modal widget. Due to widget, cannot check required status.
     | field-lede                | textarea |        | false      |  false    |
     | field-icon-term           | select   |        | false      |  true     |
