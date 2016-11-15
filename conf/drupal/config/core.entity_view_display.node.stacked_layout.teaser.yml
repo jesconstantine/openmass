@@ -14,4 +14,9 @@ mode: teaser
 content:
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_bands: true
+  field_label: true
+  field_lede: true
+  field_photo: true
+  field_related_guides: true
