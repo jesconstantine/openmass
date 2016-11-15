@@ -12,7 +12,7 @@ field_name: field_search
 entity_type: node
 bundle: action
 label: 'Search optimization'
-description: ''
+description: 'Add keywords and text here that you would like the subtopic filter view to match against.'
 required: false
 translatable: false
 default_value: {  }
