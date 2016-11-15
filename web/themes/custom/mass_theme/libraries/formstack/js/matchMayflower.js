@@ -1,4 +1,4 @@
-$(function(){
+(function($){
 
     // ---- begin formstack reset ------ //
     // see: https://github.com/base2arthur/bootstrap-the-formstack
@@ -60,4 +60,4 @@ $(function(){
 
     // ---- end formstack reset ------ //
 
-});
+})(jQuery);
