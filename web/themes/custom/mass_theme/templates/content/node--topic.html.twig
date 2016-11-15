@@ -40,6 +40,9 @@
 {% endblock %}
 
 {% block postContent %}
+  {% if content.field_image_credit|trim is not empty %}
+    {{ content.field_image_credit|trim }}
+  {% endif %}
   <section class="ma__breadcrumbs ">
     <div class="ma__breadcrumbs__container">
       <ul>

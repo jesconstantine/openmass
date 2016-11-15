@@ -34,15 +34,17 @@
   {{ section_topics }}
 {% endblock %}
 
-{#
+
 {% block postContent %}
-  <section class="ma__breadcrumbs ">
-    <div class="ma__breadcrumbs__container">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/?p=pages-visiting-and-exploring">Visiting &amp; Exploring</a></li>
-      </ul>
-    </div>
-  </section>
+  {% if content.field_image_credit|trim is not empty %}
+    {{ content.field_image_credit|trim }}
+  {% endif %}
+  {#<section class="ma__breadcrumbs ">#}
+    {#<div class="ma__breadcrumbs__container">#}
+      {#<ul>#}
+        {#<li><a href="/">Home</a></li>#}
+        {#<li><a href="/?p=pages-visiting-and-exploring">Visiting &amp; Exploring</a></li>#}
+      {#</ul>#}
+    {#</div>#}
+  {#</section>#}
 {% endblock %}
-#}

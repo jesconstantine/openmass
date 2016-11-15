@@ -29,6 +29,9 @@
   {% endif %}
 {% endblock %}
 {% block postContent %}
+  {% if content.field_image_credit|trim is not empty %}
+    {{ content.field_image_credit|trim }}
+  {% endif %}
   {# include "organisms-breadcrumbs" #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
