@@ -36,8 +36,8 @@
 
 
 {% block postContent %}
-  {% if content.field_image_credit|trim is not empty %}
-    {{ content.field_image_credit|trim }}
+  {% if content.field_image_credit is not empty %}
+    {{ content.field_image_credit }}
   {% endif %}
   {#<section class="ma__breadcrumbs ">#}
     {#<div class="ma__breadcrumbs__container">#}
