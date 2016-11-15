@@ -39,17 +39,17 @@
  */
 #}
 {%
-set actionSteps = [{
+set actionStep = {
   icon: '@atoms/05-icons/svg-' ~ paragraph.field_para_icon_term.entity.field_sprite_name.value ~ '.twig',
-    title: title,
-    rteElements: [{
-      'path': '@atoms/11-text/paragraph.twig',
-      'data': {
-        'paragraph': {
-          'text': rich_text
-        }
-      },
-    }]
+  title: title,
+  rteElements: [{
+    'path': '@atoms/11-text/paragraph.twig',
+    'data': {
+      'paragraph': {
+        'text': rich_text
+      }
+    },
   }]
+}
 %}
-{% include "@molecules/action-step.twig" with actionSteps %}
+{% include "@molecules/action-step.twig" with actionStep %}
