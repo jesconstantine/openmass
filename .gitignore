@@ -43,3 +43,6 @@ styleguide/output_prod/
 /web/themes/custom/mass_theme/js
 /web/themes/custom/mass_theme/images
 /web/themes/custom/mass_theme/fonts
+
+# Ignore admin theme generated code
+/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml

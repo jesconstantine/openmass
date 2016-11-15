@@ -12,7 +12,7 @@ field_name: field_action_downloads
 entity_type: node
 bundle: action
 label: Downloads
-description: 'Add any files that are required to be completed as part of this Action. The files will be displayed in this Action sidebar.'
+description: 'Add any files that are required to be completed as part of this Right-Rail Layout. The files will be displayed in this Right-Rail Layout sidebar.'
 required: false
 translatable: false
 default_value: {  }
