@@ -2018,7 +2018,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.0-alpha2.zip",
-                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -3017,12 +3017,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45"
+                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/4f55dd0f521b5690ce04e0c65548b2244f5f448d",
+                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d",
                 "shasum": ""
             },
             "require": {
@@ -3048,7 +3048,7 @@
                 "source": "https://github.com/palantirnet/the-build/tree/feature/code-quality-tools",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-11-12 03:46:17"
+            "time": "2016-08-19 19:39:45"
         },
         {
             "name": "palantirnet/the-vagrant",
