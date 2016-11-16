@@ -962,7 +962,63 @@ function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_node().
+ * Implements hook_preprocess_HOOK().
+ *
+ * Parse file attributes for file link template.
+ * Default template: file-link.html.twig.
+ */
+function mass_theme_preprocess_file_link(&$variables) {
+  // Get file attributes for ct.action file download links.
+  $file = $variables['file'];
+  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+
+  // Get the human readable file size.
+  $bytes = $file->getSize();
+  $readable_size = format_size($bytes);
+  $variables['download']['size'] = $readable_size;
+
+  // Use the description as the link text if available,
+  // if not, use the file name.
+  $filename = $file_entity->getFilename();
+  if (empty($variables['description'])) {
+    $variables['download']['linktext'] = $filename;
+  }
+  else {
+    $variables['download']['linktext'] = $variables['description'];
+  }
+
+  // Set the file link variable.
+  $variables['download']['link'] = file_create_url($file_entity->getFileUri());
+
+  // Get the file extension.
+  // see: http://php.net/manual/en/splfileinfo.getextension.php
+  $file_info = new SplFileInfo($filename);
+  $file_extension = $file_info->getExtension();
+
+  // Set the file type based on extesnion.
+  $variables['download']['filetype'] = $file_extension;
+
+  // Set the icon name.
+  $variables['download']['iconName'] = 'doc-' . $file_extension;
+}
+
+/**
+ * Implements template_preprocess_views_view().
+ */
+function mass_theme_preprocess_views_view(&$variables) {
+  $variables['row_count'] = 0;
+  $variables['filter_value'] = '';
+
+  if (isset($variables['exposed']['filter']['#value'])) {
+    $variables['filter_value'] = $variables['exposed']['filter']['#value'];
+  }
+  if (isset($variables['rows'][0]['#rows'])) {
+    $variables['row_count'] = count($variables['rows'][0]['#rows']);
+  }
+}
+
+/**
+ * Implements template_preprocess_views_view_list().
  */
 function mass_theme_preprocess_views_view_list(&$variables) {
   $view = $variables['view'];

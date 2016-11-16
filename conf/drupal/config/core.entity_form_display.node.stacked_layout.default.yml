@@ -25,9 +25,10 @@ third_party_settings:
       label: 'Node Edit Form'
       format_type: tabs
       format_settings:
-        direction: vertical
-        classes: ''
+        label: 'Node Edit Form'
+        direction: horizontal
         id: ''
+        classes: ''
     group_primary_content:
       children:
         - title

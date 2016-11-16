@@ -1,0 +1,17 @@
+uuid: 836398de-11ac-43bd-9dc6-4a734ada2fb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.2up_stacked_band
+  module:
+    - user
+id: node.2up_stacked_band.teaser
+targetEntityType: node
+bundle: 2up_stacked_band
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden: {  }
