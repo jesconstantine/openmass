@@ -378,11 +378,13 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
     $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
     $groups = array();
+    $order = array();
     $delta = 0;
     // Wrap up our contact groups.
     while (!empty($element[$delta])) {
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our phone numbers.
         $phone_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -397,6 +399,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'fax') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our fax numbers.
         $fax_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -411,6 +414,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our online links.
         $online_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -425,6 +429,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our emails.
         $email_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -439,6 +444,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         $replace = array(", ", "\r\n", "\n", "\r", " ");
         // Wrap up all our addresses.
         $address_details[] = array(
@@ -454,6 +460,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'other') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our other stuff. Anything goes!
         $other_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -467,55 +474,60 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
     }
-    // Do we have phone numbers? If so, display them under one icon.
-    if (!empty($phone_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-phone.twig',
-        'name'    => 'Phone',
-        'items'   => $phone_details,
-      );
-    }
-    // Do we have fax numbers? If so, display them under one icon.
-    if (!empty($fax_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-phone.twig',
-        'name'    => 'Fax',
-        'items'   => $fax_details,
-      );
-    }
-    // Do we have emails? If so, display them under one icon.
-    if (!empty($email_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-laptop.twig',
-        'name'    => 'Online',
-        'items'   => $email_details,
-      );
-    }
-    // Do we have online links? If so, display them under one icon.
-    if (!empty($online_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-laptop.twig',
-        'name'    => 'Online',
-        'items'   => $online_details,
-      );
-    }
-    // Do we have address? If so, display them under one icon.
-    if (!empty($address_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-mail.twig',
-        'name'    => 'Address',
-        'items'   => $address_details,
-      );
-    }
-    // Do we have other details? If so, display them under one icon.
-    if (!empty($other_details)) {
-      $groups[] = array(
-        'icon'    => '@atoms/05-icons/svg-marker.twig',
-        'name'    => 'Other',
-        'items'   => $other_details,
-      );
-    }
 
+    $order = array_unique($order);
+
+    // Render our groups in order.
+    foreach ($order as $value) {
+      // Do we have phone numbers? If so, display them under one icon.
+      if (!empty($phone_details) && $value == 'phone') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'name'    => 'Phone',
+          'items'   => $phone_details,
+        );
+      }
+      // Do we have fax numbers? If so, display them under one icon.
+      if (!empty($fax_details) && $value == 'fax') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'name'    => 'Fax',
+          'items'   => $fax_details,
+        );
+      }
+      // Do we have emails? If so, display them under one icon.
+      if (!empty($email_details) && $value == 'email') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => 'Online',
+          'items'   => $email_details,
+        );
+      }
+      // Do we have online links? If so, display them under one icon.
+      if (!empty($online_details) && $value == 'online') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => 'Online',
+          'items'   => $online_details,
+        );
+      }
+      // Do we have address? If so, display them under one icon.
+      if (!empty($address_details) && $value == 'mail') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-mail.twig',
+          'name'    => 'Address',
+          'items'   => $address_details,
+        );
+      }
+      // Do we have other details? If so, display them under one icon.
+      if (!empty($other_details) && $value == 'other') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-marker.twig',
+          'name'    => 'Other',
+          'items'   => $other_details,
+        );
+      }
+    }
     // Send to twig template.
     $variables['contactGroups'] = $groups;
   }
