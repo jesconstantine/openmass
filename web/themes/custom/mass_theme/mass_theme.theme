@@ -384,31 +384,31 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
         $phone_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-phone.twig',
-          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'items' => $phone_details,
+          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'name'    => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items'   => $phone_details,
         );
       }
-      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+      elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'online' || $element[$delta]['#paragraph']->get('field_type')->value == 'email') {
         $online_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_email')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_email')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => 'email',
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-laptop.twig',
-          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'items' => $online_details,
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items'   => $online_details,
         );
       }
       elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
@@ -422,9 +422,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'type'    => 'address',
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-marker.twig',
-          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'items' => $address_details,
+          'icon'    => '@atoms/05-icons/svg-mail.twig',
+          'name'    => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items'   => $address_details,
         );
       }
       elseif ($element[$delta]['#paragraph']->get('field_type')->value == 'other') {
@@ -437,9 +437,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
-          'icon'  => '@atoms/05-icons/svg-marker.twig',
-          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'items' => $other_details,
+          'icon'    => '@atoms/05-icons/svg-marker.twig',
+          'name'    => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items'   => $other_details,
         );
       }
       else {
@@ -454,9 +454,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $groups[] = array(
-          'icon'  => $icon_path,
-          'name'  => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
-          'items' => $details,
+          'icon'    => $icon_path,
+          'name'    => ucfirst($element[$delta]['#paragraph']->get('field_type')->value),
+          'items'   => $details,
         );
       }
       $delta++;
