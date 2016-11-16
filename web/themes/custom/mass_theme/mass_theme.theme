@@ -198,6 +198,31 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_2up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_1up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
 
 /**
  * Implements hook_preprocess_node().
@@ -334,21 +359,18 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     while (!empty($element[$delta])) {
       $paragraph = $element[$delta]['#paragraph'];
-      $stacked_ref = $paragraph->get('field_stacked_content_ref');
+      $band = $paragraph->get('field_band');
 
-      if ($stacked_ref->count() > 0) {
-        $items = $stacked_ref->referencedEntities();
+      if ($band->count() > 0) {
+        $items = $band->referencedEntities();
       }
 
       if (!empty($items)) {
-        foreach ($items as $item) {
-          if ($item->getType() == 'subhead') {
-            $title = $item->field_title->value;
-            $key = strtolower($title);
-            $key = Html::cleanCssIdentifier($key);
-            $variables['subheads'][$key] = $title;
-          }
-        }
+        $item =  current($items);
+        $title = $item->getTitle();
+        $key = strtolower($title);
+        $key = Html::cleanCssIdentifier($key);
+        $variables['subheads'][$key] = $title;
       }
 
       $delta++;

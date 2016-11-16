@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.2up_stacked_band.field_band_main
+    - field.field.node.2up_stacked_band.field_band_right_rail
     - node.type.2up_stacked_band
   module:
     - user
@@ -14,4 +16,6 @@ mode: teaser
 content:
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_band_main: true
+  field_band_right_rail: true
