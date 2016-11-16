@@ -1,6 +1,0 @@
-mass-subtopic-filter:
-  js:
-    js/mass_subtopic_filter.js: {}
-  dependencies:
-    - core/drupal
-    - core/drupal.announce
