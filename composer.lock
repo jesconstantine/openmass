@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "039f2d652251723792e730ca4be6aa8b",
-    "content-hash": "c8f8cf06466986bb9973dbaa1be88efb",
+    "hash": "c535fa1d6e8a3d1d805a531be26d8b7d",
+    "content-hash": "7c0ae177d30fa71711ac9b19e58ca49d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2018,7 +2018,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.0-alpha2.zip",
-                "reference": null,
+                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71",
                 "shasum": null
             },
             "require": {
@@ -2037,6 +2037,31 @@
             "description": "Enhance security of your Drupal website.",
             "homepage": "https://www.drupal.org/project/seckit",
             "time": "2016-08-10 18:02:58"
+        },
+        {
+            "name": "drupal/security_review",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/security_review",
+                "reference": "35ebae445bb260e961e47c4c58efe7c50c228999"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Site security and configuration review module.",
+            "homepage": "https://www.drupal.org/project/security_review",
+            "time": "2016-10-20 15:43:48"
         },
         {
             "name": "drupal/token",
@@ -2992,12 +3017,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d"
+                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/4f55dd0f521b5690ce04e0c65548b2244f5f448d",
-                "reference": "4f55dd0f521b5690ce04e0c65548b2244f5f448d",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
+                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
                 "shasum": ""
             },
             "require": {
@@ -3023,7 +3048,7 @@
                 "source": "https://github.com/palantirnet/the-build/tree/feature/code-quality-tools",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-08-19 19:39:45"
+            "time": "2016-11-12 03:46:17"
         },
         {
             "name": "palantirnet/the-vagrant",
@@ -7689,6 +7714,7 @@
         "drupal/draggableviews": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
+        "drupal/security_review": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "palantirnet/the-vagrant": 20,
