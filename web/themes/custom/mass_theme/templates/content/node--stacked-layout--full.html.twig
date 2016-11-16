@@ -52,5 +52,7 @@ set suggestedPages = {
 {% endblock %}
 
 {% block postContent %}
-  {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
+  {% if related_guides is not empty %}
+    {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
+  {% endif %}
 {% endblock %}
