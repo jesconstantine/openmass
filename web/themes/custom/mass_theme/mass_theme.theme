@@ -99,10 +99,6 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     $icon = $node->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
     $variables['icon_path'] = icon_path($icon);
   }
-  else {
-    // Default Section Landing icon.
-    $variables['icon_path'] = '@atoms/05-icons/svg-marker.twig';
-  }
 
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
@@ -124,7 +120,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
           $link_path = $external_link['uri'];
         }
         else {
-          $link_path = '/node/' . $link->get('nid')->value;
+          $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $link->get('nid')->value);
         }
         $links[] = array('text' => $link->get('title')->value, 'href' => $link_path);
       }
@@ -164,7 +160,8 @@ function mass_theme_preprocess_node_action(&$variables) {
     $field_action_parent = $node->get('field_action_parent');
     $taxonomyTerms = array();
     foreach ($field_action_parent->referencedEntities() as $taxonomyTerm) {
-      $taxonomyTerms[] = array('url' => '/node/' . $taxonomyTerm->get('nid')->value, 'term' => $taxonomyTerm->get('title')->value);
+      $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $taxonomyTerm->get('nid')->value);
+      $taxonomyTerms[] = array('url' => $link_path, 'term' => $taxonomyTerm->get('title')->value);
     }
     $variables['taxonomyTerms'] = $taxonomyTerms;
   }
@@ -249,12 +246,11 @@ function mass_theme_preprocess_node_topic(&$variables) {
       if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
         $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
       }
-
       $calloutLinks[] = array(
         'calloutLink' => array(
           'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
           'quickaction' => 'false',
-          'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : "/node/" . $row->_relationship_entities['field_common_content']->get('nid')->value,
+          'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_relationship_entities['field_common_content']->get('nid')->value),
           'text'        => $row->_relationship_entities['field_common_content']->get('title')->value,
         ),
       );
@@ -270,12 +266,12 @@ function mass_theme_preprocess_node_topic(&$variables) {
       $links = array();
       // Wrap up our links for each subtopic.
       foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-        $links[] = array('text' => $link->title, 'href' => $link->uri);
+        $links[] = array('text' => $link->title, 'href' => Url::fromUri($link->uri));
       }
       // Wrap up each section with links.
       $sections[] = array(
         'title' => array(
-          'href' => 'node/' . $row->_entity->get('nid')->value,
+          'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_entity->get('nid')->value),
           'text' => $row->_entity->get('title')->value,
         ),
         'description' => $row->_entity->get('field_lede')->value,
@@ -293,7 +289,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
     // Roll this up for our twig template.
     foreach ($view_results as $key => $row) {
       $links[] = array(
-        'href' => "/node/" . $row->node_nid ,
+        'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->node_nid),
         'text' => $row->_entity->get('title')->value,
       );
     }
