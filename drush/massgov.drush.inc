@@ -28,7 +28,6 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   $is_prod = $target == 'prod';
   $alias =  $is_prod ? '@massgov.prod' : '@massgov.test';
   $options_cloudapi = array(
-    // 'ac-config' => '../artifacts/acquiacloud/.acquia/cloudapi.conf',
     'format' => 'json',
   );
 
@@ -53,7 +52,7 @@ function drush_massgov_ma_deploy($target, $git_ref) {
     $task_backup = $data->id;
     massgov_wait($task_backup, $options_cloudapi);
   }
-  elseif (0) {
+  else {
     // Copy Prod DB to Stage.
     $args = array('massgov', 'test');
     $return = drush_invoke_process('@massgov.prod', 'ac-database-copy', $args, $options_cloudapi);
@@ -74,10 +73,9 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   $return = drush_invoke_process($alias, 'ac-code-path-deploy', $args, $options_cloudapi);
   massgov_check_error($return);
 
-  // Import any new config
-  // @todo options.
+  // Import new config
   $args = array();
-  $options = array();
+  $options = array('source' => 'conf/drupal/config', 'delete-list' => 'conf/drupal/delete.yml');
   $return = drush_invoke_process($alias, 'cimy', $args, $options);
   massgov_check_error($return);
 
@@ -110,7 +108,7 @@ function massgov_wait($task_id, $options_cloudapi) {
       break;
     }
     else {
-      drush_log('Will re-check for task completion in 10 seconds.', 'ok');
+      drush_log(dt('Will re-check for task !task_id completion in 10 seconds.', array('!task_id' => $task_id)), 'ok');
       sleep(10);
     }
   }
