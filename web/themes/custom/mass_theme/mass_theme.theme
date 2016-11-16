@@ -454,7 +454,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
     }
     // Do we have phone numbers? If so, display them under one icon.
-    if (!empty($phone_details)){
+    if (!empty($phone_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-phone.twig',
         'name'    => 'Phone',
@@ -462,7 +462,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
     }
     // Do we have fax numbers? If so, display them under one icon.
-    if (!empty($fax_details)){
+    if (!empty($fax_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-phone.twig',
         'name'    => 'Fax',
@@ -470,7 +470,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
     }
     // Do we have emails? If so, display them under one icon.
-    if (!empty($online_details)){
+    if (!empty($online_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-laptop.twig',
         'name'    => 'Online',
@@ -478,7 +478,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
     }
     // Do we have address? If so, display them under one icon.
-    if (!empty($address_details)){
+    if (!empty($address_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-mail.twig',
         'name'    => 'Address',
@@ -486,7 +486,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
     }
     // Do we have other details? If so, display them under one icon.
-    if (!empty($other_details)){
+    if (!empty($other_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-marker.twig',
         'name'    => 'Other',
