@@ -410,15 +410,29 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
 
-      if ($element[$delta]['#paragraph']->get('field_type')->value == 'online' || $element[$delta]['#paragraph']->get('field_type')->value == 'email') {
-        // Wrap up all our emails.
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        // Wrap up all our online links.
         $online_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'],
+          'rawVal'  => '',
+          'link'    => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'],
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
+        // Wrap up all our emails.
+        $email_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_email')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_email')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'    => 'email',
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $delta++;
         continue;
@@ -440,12 +454,12 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'other') {
-        // Wrap up all our other stuff.
+        // Wrap up all our other stuff. Anything goes!
         $other_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => '',
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'] . $element[$delta]['#paragraph']->get('field_email')->value . $element[$delta]['#paragraph']->get('field_address')->value,
           'rawVal'  => '',
-          'link'    => '',
+          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'] . $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
@@ -470,6 +484,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
     }
     // Do we have emails? If so, display them under one icon.
+    if (!empty($email_details)) {
+      $groups[] = array(
+        'icon'    => '@atoms/05-icons/svg-laptop.twig',
+        'name'    => 'Online',
+        'items'   => $email_details,
+      );
+    }
+    // Do we have online links? If so, display them under one icon.
     if (!empty($online_details)) {
       $groups[] = array(
         'icon'    => '@atoms/05-icons/svg-laptop.twig',
