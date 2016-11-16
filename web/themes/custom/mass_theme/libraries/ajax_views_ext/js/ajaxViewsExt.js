@@ -12,7 +12,9 @@
       // We hook off of the document-level view ajax event
       $(document).once('views-ajax').ajaxComplete(function (e, xhr, settings) {
         xhr.done(function() {
-          Drupal.announce(FILTERED_ANNOUNCEMENT);
+          Drupal.announce(
+            Drupal.t(FILTERED_ANNOUNCEMENT)
+          );
         });
       });
     }
