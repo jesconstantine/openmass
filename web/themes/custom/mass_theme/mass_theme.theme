@@ -881,11 +881,8 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       // if not, use the file name.
       $filename = $file->getFilename();
 
-      if (empty($file_list[$id]['description'])) {
+      if (!empty($file_list[$id]['description'])) {
         $linktext = $filename;
-      }
-      else {
-        $linktext = $file_list[$id]['description'];
       }
 
       // Set the file link variable.
