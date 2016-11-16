@@ -10,6 +10,7 @@ global-styling:
   js:
     js/index-generated.js: {}
     libraries/formstack/js/matchMayflower.js: {}
+    libraries/ajax_views_ext/js/ajaxViewsExt.js: {}
 js-header:
   header: true
   js:
