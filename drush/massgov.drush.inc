@@ -7,8 +7,10 @@ function massgov_drush_command() {
       'target' => 'Target environment. Recognized values: state, prod',
       'git-ref' => 'Tag or branch to deploy.',
     ),
-    'required arguments' => 2,
+    'required-arguments' => TRUE,
     'options' => array(),
+    'drush dependencies' => array('acapi'),
+    'bootstrap' => DRUSH_BOOTSTRAP_NONE,
     'examples' => array(
       'drush ma-deploy stage tags/build-0.6.1' => 'Deploy tag to staging environment.',
     ),
@@ -18,7 +20,7 @@ function massgov_drush_command() {
 
 function drush_massgov_ma_deploy_validate($target) {
   if (!in_array($target, array('stage', 'prod'))) {
-    return drush_set_error('Invalid target');
+    return drush_set_error('Invalid argument: target');
   }
 }
 
@@ -32,96 +34,98 @@ function drush_massgov_ma_deploy($target, $git_ref) {
 
   // Turn on Maint mode
   $args = array('system.maintenance_mode', 1);
-  $options = array('input-format' => 'integer');
-  if (!drush_invoke_process($alias, 'state-set', $args, $options)) {
-    return drush_set_error('Unable to turn on Maintenance mode.');
-  }
-
-  // @todo Disable System Notification block
-
+  $options = array('format' => 'integer');
+  $return = drush_invoke_process($alias, 'state-set', $args, $options);
+  massgov_check_error($return);
 
   // Backup Prod DB if needed.
   if ($is_prod) {
     // cache-rebuild empties cache-* tables.
     $args = $options = array();
-    drush_invoke_process($target, 'cache-rebuild', $args, $options);
+    $return = drush_invoke_process($target, 'cache-rebuild', $args, $options);
+    massgov_check_error($return);
 
     $args = array('massgov');
-    if ($return = drush_invoke_process($alias, 'ac-database-instance-backup', $args, $options_cloudapi)) {
-      $json = $return['object']['output'];
-      $data = json_decode($json);
-      $task_backup = $data['task'];
-      massgov_wait($task_backup);
-    }
-    else {
-      return drush_set_error('Unable to start instance backup');
-    }
+    $return = drush_invoke_process($alias, 'ac-database-instance-backup', $args, $options_cloudapi);
+    massgov_check_error($return);
+    $json = $return['object']['output'];
+    $data = json_decode($json);
+    $task_backup = $data->id;
+    massgov_wait($task_backup, $options_cloudapi);
   }
-  else {
+  elseif (0) {
     // Copy Prod DB to Stage.
     $args = array('massgov', 'test');
-    if ($return = drush_invoke_process('@massgov.prod', 'ac-database-copy', $args, $options_cloudapi)) {
-      $task_db = $return['object']['id'];
-    }
-    else {
-      return drush_set_error('Unable to copy Database from Prod');
-    }
+    $return = drush_invoke_process('@massgov.prod', 'ac-database-copy', $args, $options_cloudapi);
+    massgov_check_error($return);
+    $task_db = $return['object']['id'];
 
     // Copy Prod files to Stage.
     $args = array('test');
-    if (!$return = drush_invoke_process('@massgov.prod', 'ac-files-copy', $args, $options_cloudapi)) {
-      return drush_set_error('Unable to copy files from Prod');
-    }
+    $return = drush_invoke_process('@massgov.prod', 'ac-files-copy', $args, $options_cloudapi);
+    massgov_check_error($return);
+
+    // Make sure DB copy is complete before proceeding. Files are less important.
+    massgov_wait($task_db, $options_cloudapi);
   }
 
   // Deploy the new code.
   $args = array($git_ref);
-  if (!$return = drush_invoke_process($alias, 'ac-code-path-deploy', $args, $options_cloudapi)) {
-    return drush_set_error('Unable to deploy new code');
-  }
+  $return = drush_invoke_process($alias, 'ac-code-path-deploy', $args, $options_cloudapi);
+  massgov_check_error($return);
 
   // Import any new config
   // @todo options.
   $args = array();
   $options = array();
-  if (!$return = drush_invoke_process($alias, 'cimy', $args, $options)) {
-    return drush_set_error('Unable to import new configuration');
-  }
+  $return = drush_invoke_process($alias, 'cimy', $args, $options);
+  massgov_check_error($return);
 
   // Run any pending DB updates
   $args = $options = array();
-  if (!$return = drush_invoke_process($alias, 'updb', $args, $options)) {
-    return drush_set_error('Unable run pending Db updates');
-  }
-
-  // Disable Maintenance mode.
-  $args = array('system.maintenance_mode', 0);
-  $options = array('input-format' => 'integer');
-  if (!$return = drush_invoke_process($alias, 'state-set', $args, $options)) {
-    return drush_set_error('Unable to disable maintenance mode.');
-  }
+  $return = drush_invoke_process($alias, 'updb', $args, $options);
+  massgov_check_error($return);
 
   // Purge Varnish cache.
   $args = array();
-  if (!$return = drush_invoke_process($alias, 'ac-domain-purge', $args, $options_cloudapi)) {
-    return drush_set_error('Unable to purge Varnish');
-  }
+  $return = drush_invoke_process($alias, 'ac-domain-purge', $args, $options_cloudapi);
+  massgov_check_error($return);
 
+  // @todo Disable System Notification block
+
+  // Disable Maintenance mode.
+  $args = array('system.maintenance_mode', 0);
+  $options = array('format' => 'integer');
+  $return = drush_invoke_process($alias, 'state-set', $args, $options);
+  massgov_check_error($return);
 }
 
 function massgov_wait($task_id, $options_cloudapi) {
   while (TRUE) {
-    if (!$return = drush_invoke_process($alias, 'ac-task-info', $args, $options_cloudapi)) {
-      return drush_set_error('Unable to get task information.');
-    }
-    $json = $return['object'];
+    $return = drush_invoke_process($alias, 'ac-task-info', array($task_id), $options_cloudapi);
+    massgov_check_error($return);
+    $json = $return['object']['output'];
     $data = json_decode($json);
-    if ($data['status'] == 'complete') {
+    if (!empty($data->completed)) {
       break;
     }
     else {
       drush_log('Will re-check for task completion in 10 seconds.', 'ok');
       sleep(10);
     }
+  }
+}
+
+function massgov_check_error($return) {
+  if (!$return) {
+    throw new Exception('Failure in drush_invoke_process()');
+  }
+  elseif ($return['error_status']) {
+    foreach ($return['error_log'] as $key => $value) {
+      foreach ($value as $message) {
+        $messages[] = $message;
+      }
+    }
+    throw new Exception(implode('', $messages));
   }
 }
