@@ -431,7 +431,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_address')->value,
           'rawVal'  => '',
-          'link'    => 'https://maps.google.com/?q=' . str_replace($replace, "+", $element[$delta]['#paragraph']->get('field_address')->value),
+          'link'    => 'https://maps.google.com/?q=' . urlencode($element[$delta]['#paragraph']->get('field_address')->value),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => 'address',
         );
