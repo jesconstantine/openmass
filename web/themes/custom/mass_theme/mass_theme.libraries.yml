@@ -11,6 +11,9 @@ global-styling:
     js/index-generated.js: {}
     libraries/formstack/js/matchMayflower.js: {}
     libraries/ajax_views_ext/js/ajaxViewsExt.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupal.announce
 js-header:
   header: true
   js:
