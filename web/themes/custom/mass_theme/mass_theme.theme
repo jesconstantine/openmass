@@ -191,7 +191,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
           'quickaction' => 'false',
           'href' => $guide->url(),
           'text' => $guide->getTitle(),
-        )
+        ),
       );
     }
     $variables['related_guides'] = $related_guides;
@@ -366,7 +366,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
 
       if (!empty($items)) {
-        $item =  current($items);
+        $item = current($items);
         $title = $item->getTitle();
         $key = strtolower($title);
         $key = Html::cleanCssIdentifier($key);
