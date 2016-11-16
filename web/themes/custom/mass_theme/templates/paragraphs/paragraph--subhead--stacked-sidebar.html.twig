@@ -38,4 +38,9 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% include '@custom_includes/organisms-guide-section.html.twig' %}
+{%
+set sidebarHeading = {
+  'title': content.field_title|field_value,
+}
+%}
+{% include "@atoms/04-headings/sidebar-heading.twig" %}

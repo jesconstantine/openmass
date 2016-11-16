@@ -39,19 +39,18 @@ set suggestedPages = {
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
-  {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
+  {# include 'organisms-breadcrumbs' with {breadcrumb:{class:'ma__breadcrumbs--page'}} #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
-  {% include "@organisms/by-template/illustrated-header.twig" %}
+  {% include '@organisms/by-template/illustrated-header.twig' %}
 {% endblock %}
 
 {% block main %}
-  <div class="guide-content">
-    {% include "@organisms/by-template/jump-links.twig" %}
+  <div class='guide-content'>
     {{ content.field_bands }}
   </div>
 {% endblock %}
 
 {% block postContent %}
-  {% include "@custom_includes/organisms-suggested-pages.html.twig" with suggestedPages %}
+  {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
 {% endblock %}

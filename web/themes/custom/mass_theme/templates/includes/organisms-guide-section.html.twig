@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Partial for suggested pages finder. To be included at the node level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+
+<div class="main-content {{ content.field_stacked_sidebar_ref|render|trim is not empty ? 'main-content--two' : '' }}">
+  <main class="page-content">
+    {{ content.field_stacked_content_ref|field_value }}
+  </main>
+  {% if content.field_stacked_sidebar_ref|render|trim is not empty %}
+    <aside class="sidebar">
+      {{ content.field_stacked_sidebar_ref|field_value }}
+    </aside>
+  {% endif %}
+</div>

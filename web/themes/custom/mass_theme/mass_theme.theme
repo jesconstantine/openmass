@@ -329,6 +329,32 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     }
   }
 
+  // Get the subheads for the action jump menu.
+  if ($element['#field_name'] == 'field_bands') {
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      $stacked_ref = $paragraph->get('field_stacked_content_ref');
+
+      if ($stacked_ref->count() > 0) {
+        $items = $stacked_ref->referencedEntities();
+      }
+
+      if (!empty($items)) {
+        foreach ($items as $item) {
+          if ($item->getType() == 'subhead') {
+            $title = $item->field_title->value;
+            $key = strtolower($title);
+            $key = Html::cleanCssIdentifier($key);
+            $variables['subheads'][$key] = $title;
+          }
+        }
+      }
+
+      $delta++;
+    }
+  }
+
   // If our Callout Link (Link field) references an internal node,
   // use the "External URL" field on that node, for the link,
   // if it exists.
@@ -355,7 +381,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
-  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'related_link') {
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'related_link') {
     $links = array();
     $delta = 0;
     // Wrap up our related links.
@@ -373,7 +399,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $variables['relatedActions'] = $links;
   }
 
-  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
     $groups = array();
     $delta = 0;
     // Wrap up our contact groups.
