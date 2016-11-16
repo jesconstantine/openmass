@@ -113,7 +113,7 @@ class MassContentContext extends RawDrupalContext {
     return [
       [
         'title' => 'Behat Test: Get a State Park Pass',
-        'field_action_parent' => 'Behat Test: Nature & Outdoor Activities',
+        'field_action_parent' => 'Behat Test: State Parks & Recreation',
       ],
       [
         'title' => 'Behat Test: Reserve a Campsite (external)',
