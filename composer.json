@@ -96,6 +96,7 @@
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
+        "drupal/acquia_connector": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
         "drupal/crazyegg": "8.*",
@@ -112,6 +113,9 @@
         "drupal/migrate_tools": "~8",
         "drupal/paragraphs": "~8.1.0",
         "drupal/pathauto": "^8.1",
+        "drupal/redirect": "8.*",
+        "drupal/seckit": "8.1.0-alpha2",
+        "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
         "drupal/workbench_moderation": "^8.1",
@@ -147,6 +151,13 @@
         "post-create-project-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "extra": {
+        "drupal-scaffold": {
+            "excludes": [
+                ".htaccess",
+                "robots.txt"
+            ],
+            "omit-defaults": false
+        },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
