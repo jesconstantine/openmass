@@ -9,8 +9,8 @@ id: node.action.field_action_related
 field_name: field_action_related
 entity_type: node
 bundle: action
-label: 'Related Actions'
-description: 'List other actions that relate to this one. Related Actions will show this Action in the sidebar.'
+label: 'Related Content'
+description: 'List other content that relates to this one. Related Content will show this content in the sidebar.'
 required: false
 translatable: false
 default_value: {  }
