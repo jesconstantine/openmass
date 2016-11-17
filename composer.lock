@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c535fa1d6e8a3d1d805a531be26d8b7d",
-    "content-hash": "7c0ae177d30fa71711ac9b19e58ca49d",
+    "hash": "c4d0a17458057ad87b2ba6ff27d9bc50",
+    "content-hash": "1634af18c0d5b98066c7026facb421fc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1250,6 +1250,7 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
                     "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
                 }
             },
@@ -2018,7 +2019,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.0-alpha2.zip",
-                "reference": null,
+                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71",
                 "shasum": null
             },
             "require": {
