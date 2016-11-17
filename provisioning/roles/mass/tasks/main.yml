@@ -1,5 +1,8 @@
 ---
 - name: Mass.gov | Install imagick for source data
   become: True
-  apt: pkg=php5.6-imagick
+  apt: pkg={{ item }}
+  with_items:
+    - php5.6-imagemagick
+    - php5.6-xml
   tags: mass
