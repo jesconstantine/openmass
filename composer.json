@@ -115,6 +115,7 @@
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
         "drupal/seckit": "8.1.0-alpha2",
+        "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
         "drupal/workbench_moderation": "^8.1",
