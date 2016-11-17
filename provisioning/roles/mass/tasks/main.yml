@@ -3,6 +3,7 @@
   become: True
   apt: pkg={{ item }}
   with_items:
-    - php5.6-imagemagick
+    - imagemagick
+    - php5-imagick
     - php5.6-xml
   tags: mass
