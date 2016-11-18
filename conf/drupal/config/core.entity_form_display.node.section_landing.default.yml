@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
     - field.field.node.section_landing.field_image_credit
-    - field.field.node.section_landing.field_metatags
     - node.type.section_landing
   module:
     - entity_browser
@@ -94,4 +93,3 @@ content:
     third_party_settings: {  }
 hidden:
   field_icon: true
-  field_metatags: true

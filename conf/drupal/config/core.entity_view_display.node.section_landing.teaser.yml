@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
     - field.field.node.section_landing.field_image_credit
-    - field.field.node.section_landing.field_metatags
     - image.style.hero800x400
     - node.type.section_landing
   module:
@@ -33,6 +32,5 @@ hidden:
   field_icon: true
   field_icon_term: true
   field_image_credit: true
-  field_metatags: true
   links: true
   workbench_moderation_control: true
