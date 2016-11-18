@@ -14,7 +14,7 @@
     <div class="ma__section-links__icon">
       <figure class="ma__category-icon ma__category-icon--small">
         {% if node.field_icon_term.entity.field_sprite_name.value|trim %}
-          {% include active_theme_path() ~ "/images/svg-sprite/" ~ node.field_icon_term.entity.field_sprite_name.value ~ ".svg" %}
+          {% include active_theme_path() ~ "/images/svg-sprite/" ~ node.field_icon_term.entity.field_sprite_name.value ~ ".svg" ignore missing %}
         {% endif %}
       </figure>
     </div>
