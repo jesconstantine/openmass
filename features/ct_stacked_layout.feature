@@ -8,9 +8,9 @@ Feature: Stacked Layout Content type
   Scenario: Verify that the Stacked Layout content type has the correct fields
     Given I am logged in as a user with the "administrator" role
     Then the content type "stacked_layout" has the fields:
-    | field                | tag        | type         | multivalue |
-    | field-related-guides | input      | text         | true       |
-    | field-lede           | textarea   |              | false      |
-    | field-label          | input      | text         | false      |
-    | field-photo          | input      | submit       | false      |
-    | field-bands          | paragraphs | stacked-band | false      |
+    | field                 | tag        | type         | multivalue |
+    | field-related-content | input      | text         | true       |
+    | field-lede            | textarea   |              | false      |
+    | field-label           | input      | text         | false      |
+    | field-photo           | input      | submit       | false      |
+    | field-bands           | paragraphs | stacked-band | false      |
