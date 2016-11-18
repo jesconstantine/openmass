@@ -10,7 +10,7 @@ field_name: field_title
 entity_type: paragraph
 bundle: subhead
 label: Title
-description: ''
+description: '<a href="http://dev.massgov.velir.com/?p=atoms-comp-heading-subheading">View a sample Subhead</a>'
 required: true
 translatable: false
 default_value: {  }
