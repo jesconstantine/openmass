@@ -1281,6 +1281,7 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
                     "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
                 }
             },
@@ -2080,7 +2081,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.0-alpha2.zip",
-                "reference": null,
+                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71",
                 "shasum": null
             },
             "require": {
@@ -2099,6 +2100,31 @@
             "description": "Enhance security of your Drupal website.",
             "homepage": "https://www.drupal.org/project/seckit",
             "time": "2016-08-10 18:02:58"
+        },
+        {
+            "name": "drupal/security_review",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/security_review",
+                "reference": "35ebae445bb260e961e47c4c58efe7c50c228999"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Site security and configuration review module.",
+            "homepage": "https://www.drupal.org/project/security_review",
+            "time": "2016-10-20 15:43:48"
         },
         {
             "name": "drupal/token",
@@ -7751,6 +7777,7 @@
         "drupal/draggableviews": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
+        "drupal/security_review": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "palantirnet/the-vagrant": 20,
