@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_photo
-    - field.field.node.stacked_layout.field_related_guides
+    - field.field.node.stacked_layout.field_related_content
     - node.type.stacked_layout
   module:
     - entity_browser
@@ -101,8 +101,8 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_browser_file
-  field_related_guides:
-    weight: 5
+  field_related_content:
+    weight: 110
     settings:
       match_operator: CONTAINS
       size: 60
