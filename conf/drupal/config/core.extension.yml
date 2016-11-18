@@ -46,6 +46,7 @@ module:
   mass_search: 0
   mass_styles: 0
   mass_types: 0
+  mass_workbench_ui: 0
   mass_utility: 0
   menu_ui: 0
   metatag: 0
@@ -62,6 +63,7 @@ module:
   rdf: 0
   redirect: 0
   seckit: 0
+  security_review: 0
   shortcut: 0
   system: 0
   taxonomy: 0
