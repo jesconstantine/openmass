@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e036295608c542fe76108f31edbcc2c",
-    "content-hash": "15e0c453c83fda69ae824fb374b626a2",
+    "hash": "0f77fd44d26df2e215426d1770e54dd8",
+    "content-hash": "0b8cfa7f8e752e8a59ad0440e371f041",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2914,16 +2914,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.0.0",
+            "version": "2.0.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "54c8805016fcd0b7f0fe239eb0f438f5fd99414d"
+                "reference": "7d812fc6a779b3782bd08fcb42069c5386db6f2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/54c8805016fcd0b7f0fe239eb0f438f5fd99414d",
-                "reference": "54c8805016fcd0b7f0fe239eb0f438f5fd99414d",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/7d812fc6a779b3782bd08fcb42069c5386db6f2d",
+                "reference": "7d812fc6a779b3782bd08fcb42069c5386db6f2d",
                 "shasum": ""
             },
             "type": "library",
@@ -2938,10 +2938,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.0.0",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.0.0-alpha1",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-11-10 22:23:48"
+            "time": "2016-11-18 21:11:34"
         },
         {
             "name": "palantirnet/the-build",
