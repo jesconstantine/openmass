@@ -73,7 +73,7 @@
       <!-- This cannot be a drush command because we cannot run it with the
            root parameter... exec works okay for this one-off. -->
       <echo>Downloading the database from Acquia.</echo>
-      <exec command="${drush.bin} --config=${drush.config} --nocolor --yes ${deploy.site_alias} sql-dump > ${acquia.databases}/remote-db.sql" />
+      <exec command="drush --nocolor --yes ${deploy.site_alias} sql-dump > ${acquia.databases}/remote-db.sql" />
       <drush command="sql-drop" assume="yes" />
       <drush command="sql-cli &lt; ${acquia.databases}/remote-db.sql" />
 
@@ -135,8 +135,8 @@
 
       <echo>Importing config.</echo>
       <drush command="cimy" assume="yes">
-        <option name="source" value="${build.dir}/conf/drupal/config" />
-        <option name="delete-list" value="${build.dir}/conf/drupal/delete.yml" />
+        <option name="source" value="/var/www/mass.local/conf/drupal/config" />
+        <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
       </drush>
 
       <echo>Running `drush updb` now.</echo>
