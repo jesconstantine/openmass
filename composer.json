@@ -96,6 +96,7 @@
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
+        "drupal/acquia_connector": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
         "drupal/crazyegg": "8.*",
@@ -106,6 +107,7 @@
         "drupal/file_browser": "8.1.x-dev",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
+        "drupal/inline_entity_form": "^8.1",
         "drupal/metatag": "^8.1",
         "drupal/migrate_plus": "~8.2",
         "drupal/migrate_source_csv": "~8.1",
@@ -113,13 +115,15 @@
         "drupal/paragraphs": "~8.1.0",
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
+        "drupal/seckit": "8.1.0-alpha2",
+        "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/mayflower-artifacts": "0.5.",
-        "palantirnet/the-build": "dev-feature/code-quality-tools",
+        "palantirnet/the-build": "dev-feature/code-quality-tools#4f55dd0f521b5690ce04e0c65548b2244f5f448d",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
         "previousnext/drush_cmi_tools": "^1.0"
@@ -148,6 +152,13 @@
         "post-create-project-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "extra": {
+        "drupal-scaffold": {
+            "excludes": [
+                ".htaccess",
+                "robots.txt"
+            ],
+            "omit-defaults": false
+        },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
@@ -157,7 +168,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch"
+                "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
+                "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
             },
             "drupal/metatag": {
                 "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
@@ -170,9 +182,6 @@
             },
             "drupal/google_map_field": {
               "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
-            },
-            "drupal/core": {
-              "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
             },
             "drupal/crazyegg": {
               "Configure crazyegg for specific pages. (https://www.drupal.org/node/2812783)": "https://www.drupal.org/files/issues/2812783-configure-for-specific-pages.patch"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb0d9d725ee50a42c31226ef36ff78ff",
+    "content-hash": "44643dd205490d7a584c4f1a9473f7eb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -102,6 +102,7 @@
                 }
             ],
             "description": "Modern task runner",
+            "abandoned": "consolidation/robo",
             "time": "2016-04-13 20:14:17"
         },
         {
@@ -986,6 +987,45 @@
             "time": "2016-04-13 15:46:44"
         },
         {
+            "name": "drupal/acquia_connector",
+            "version": "8.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/acquia_connector",
+                "reference": "07d3fc1894071949e8d934ce6cfb3b5c0d3f1bd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.6.zip",
+                "reference": "07d3fc1894071949e8d934ce6cfb3b5c0d3f1bd6",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/acquia_search": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/acquia_search",
+                "drupal/search_api_solr": "Required by drupal/acquia_search",
+                "drupal/views": "Required by drupal/acquia_search"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Allows Drupal to securely communicate with the Acquia Subscription, and checks for updates to Acquia Drupal.",
+            "homepage": "https://www.drupal.org/project/acquia_connector",
+            "time": "2016-10-26 13:52:51"
+        },
+        {
             "name": "drupal/coder",
             "version": "8.2.9",
             "source": {
@@ -1209,6 +1249,7 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
                     "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
                 }
             },
@@ -1667,6 +1708,37 @@
             "time": "2015-10-22 17:32:56"
         },
         {
+            "name": "drupal/inline_entity_form",
+            "version": "8.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/inline_entity_form",
+                "reference": "8227e2879c9d4c19bf6d402cbba35d59350da56b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities. ",
+            "homepage": "https://www.drupal.org/project/inline_entity_form",
+            "time": "2016-10-18 23:16:30"
+        },
+        {
             "name": "drupal/metatag",
             "version": "8.1.0-beta10",
             "source": {
@@ -1944,7 +2016,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "f88e28a5033d2a9952929faff6fa59764583b80c",
                 "shasum": null
             },
             "require": {
@@ -1965,6 +2037,62 @@
             "description": "Allows users to redirect from old URLs to new URLs.",
             "homepage": "https://www.drupal.org/project/redirect",
             "time": "2016-03-25 13:39:45"
+        },
+        {
+            "name": "drupal/seckit",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/seckit",
+                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.0-alpha2.zip",
+                "reference": "15324266793e6a3c103bebb7ce3dddffb9537e71",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Enhance security of your Drupal website.",
+            "homepage": "https://www.drupal.org/project/seckit",
+            "time": "2016-08-10 18:02:58"
+        },
+        {
+            "name": "drupal/security_review",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/security_review",
+                "reference": "35ebae445bb260e961e47c4c58efe7c50c228999"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Site security and configuration review module.",
+            "homepage": "https://www.drupal.org/project/security_review",
+            "time": "2016-10-20 15:43:48"
         },
         {
             "name": "drupal/token",
@@ -7617,6 +7745,7 @@
         "drupal/draggableviews": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
+        "drupal/security_review": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "palantirnet/the-vagrant": 20,
