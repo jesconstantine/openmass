@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hours.field_hours
+    - field.field.paragraph.hours.field_label
     - field.field.paragraph.hours.field_time_frame
     - paragraphs.paragraphs_type.hours
   module:
@@ -14,14 +15,21 @@ bundle: hours
 mode: default
 content:
   field_hours:
-    weight: 7
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_label:
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_time_frame:
-    weight: 6
+    weight: 1
     settings:
       size: 60
       placeholder: ''

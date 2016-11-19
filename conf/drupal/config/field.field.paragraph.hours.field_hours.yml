@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: hours
 label: Hours
 description: 'Ex. 9:00 a.m. - 5:00 p.m., Sunrise - Sunset'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
