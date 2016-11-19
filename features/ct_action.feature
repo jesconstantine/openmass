@@ -14,6 +14,7 @@ Feature: Action Content type
     | field-alert-dropdown         | select     |                            | false      |
     | field-alert-text             | textarea   |                            | false      |
     | field-alert-link             | input      | text                       | false      |
+    | field-search                 | textarea   |                            | false      |
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
     | field-action-details         | paragraphs | callout-link               | false      |
@@ -24,6 +25,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | subhead                    | false      |
     | field-action-details         | paragraphs | map                        | false      |
     | field-action-details         | paragraphs | hours                      | false      |
+    | field-action-details         | paragraphs | pull-quote                 | false      |
     | field-action-header          | paragraphs | contact-group              | false      |
     | field-action-banner          | paragraphs | full-bleed                 | false      |
     | field-action-sidebar         | paragraphs | contact-group              | false      |

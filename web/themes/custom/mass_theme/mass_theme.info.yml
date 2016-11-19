@@ -15,3 +15,30 @@ regions:
   section_topics: Section topics
   footer: Footer
   footer_navigation: Footer Navigation
+
+component-libraries:
+  custom_includes:
+    paths:
+      - templates/includes
+  base:
+    paths:
+      - patterns/base
+  atoms:
+    paths:
+      - patterns/atoms
+  molecules:
+    paths:
+      - patterns/molecules
+  organisms:
+    paths:
+      - patterns/organisms
+  templates:
+    paths:
+      - patterns/templates
+  pages:
+    paths:
+      - patterns/pages
+  pilot:
+    paths:
+      - patterns/pilot
+
