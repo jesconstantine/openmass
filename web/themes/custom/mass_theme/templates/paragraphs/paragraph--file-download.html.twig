@@ -38,11 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-  set compHeading = {
-    'title': content.field_title|field_value,
-    'sub': true,
-  }
-%}
-
-{% include "@atoms/04-headings/comp-heading.twig" %}
+{% include "@molecules/action-downloads.twig" with actionDownloads %}

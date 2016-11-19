@@ -9,12 +9,12 @@
 <section class="ma__location-banner">
   <style>
     #GUID24872901570 {
-      background-image: url('{{ locationBanner.small }}');
+      background-image: url('{{ locationBanner.image }}');
     }
     
     @media (min-width: 801px) {
       #GUID24872901570 {
-        background-image: url('{{ locationBanner.large }}');
+        background-image: url('{{ locationBanner.imageLarge }}');
       }
     }
   </style>
@@ -22,7 +22,6 @@
     class="ma__location-banner__image"
     id="GUID24872901570"
     role="image"
-    title="{{ locationBanner.title }}"
     alt="{{ locationBanner.alt }}">
   </div>
   {% if map is not empty %}

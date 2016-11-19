@@ -10,9 +10,9 @@
     <import file="vendor/palantirnet/the-build/tasks/acquia.xml" />
 
     <!-- Code Quality tools -->
-    <import file="vendor/palantirnet/the-build/tasks/drupal_code_sniffer.xml" />
-    <import file="vendor/palantirnet/the-build/tasks/phplint.xml" />
-    <import file="vendor/palantirnet/the-build/tasks/phpmd.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/code_review/drupal_code_sniffer.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/code_review/phplint.xml" />
+    <import file="vendor/palantirnet/the-build/tasks/code_review/phpmd.xml" />
 
     <!-- Include theme.xml -->
     <import file="build/theme.xml" />
