@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
+    - paragraphs.paragraphs_type.hours
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.pull_quote
@@ -42,6 +43,7 @@ settings:
       subhead: subhead
       video: video
       map: map
+      hours: hours
       pull_quote: pull_quote
     target_bundles_drag_drop:
       action_step:
@@ -101,8 +103,11 @@ settings:
       contact_info:
         weight: 34
         enabled: false
-      icon:
+      hours:
+        enabled: true
         weight: 37
+      icon:
+        weight: 38
         enabled: false
       pull_quote:
         enabled: true
