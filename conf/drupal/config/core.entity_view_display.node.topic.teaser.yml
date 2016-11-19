@@ -41,5 +41,6 @@ hidden:
   field_featured_mobile_image: true
   field_icon: true
   field_icon_term: true
+  field_metatags: true
   field_section: true
   links: true

@@ -6,8 +6,10 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.action.field_action_banner
     - field.field.node.action.field_action_details
+    - field.field.node.action.field_action_downloads
     - field.field.node.action.field_action_header
     - field.field.node.action.field_action_parent
+    - field.field.node.action.field_action_related
     - field.field.node.action.field_action_sidebar
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
@@ -15,6 +17,8 @@ dependencies:
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
+    - field.field.node.action.field_metatags
+    - field.field.node.action.field_search
     - node.type.action
   module:
     - entity_reference_revisions
@@ -56,7 +60,7 @@ content:
     weight: 4
     label: hidden
     settings:
-      view_mode: default
+      view_mode: sidebar
       link: ''
     third_party_settings: {  }
   field_alert_dropdown:
@@ -97,6 +101,12 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_action_downloads: true
   field_action_parent: true
+  field_action_related: true
+  field_contact_group: true
   field_external_url: true
+  field_header_cta: true
+  field_metatags: true
+  field_search: true
   links: true

@@ -9,23 +9,15 @@
  */
  #}
 {%
-  set sectionLinks = { title:{ text:label, href:url } }
+set sectionLinks = {
+  'title':  {
+  'href': url,
+  'text': label|field_value
+  },
+}
 %}
 {% extends 'node.html.twig' %}
 
 {% block pageContent %}
-{# from molecules/section-links.twig #}
-<section class="ma__section-links js-section-accordion">
-  <div class="ma__section-links__content">
-    <h3 class="ma__section-links__title js-section-accordion-link">
-      <a href="{{sectionLinks.title.href}}">{{sectionLinks.title.text}}&nbsp;{% include "@mass_theme/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}</a>
-    </h3>
-    <div class="ma__section-links__toggle-content js-section-accordion-body">
-      <h4 class="ma__section-links__mobile-title">
-        <a href="{{sectionLinks.title.href}}">Learn More&nbsp;{% include "@mass_theme/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}</a>
-      </h4>
-      {{ content.field_topic_callout_links }}
-    </div>
-  </div>
-</section>
+  {% include "@molecules/section-links.twig" with sectionLinks %}
 {% endblock %}

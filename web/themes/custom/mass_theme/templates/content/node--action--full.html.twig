@@ -8,6 +8,17 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
+{%
+set pageHeader = {
+  'title': label|field_value,
+  'subTitle': content.field_lede|field_value,
+  'intro': '',
+  'headerTags': {
+    'taxonomyTerms': taxonomyTerms
+  }
+}
+%}
+
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
@@ -15,22 +26,21 @@
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
-  {% include "@mass_theme/includes/header-alert.html.twig" %}
+  {% include "@organisms/by-template/header-alert.twig" %}
   {% if content.field_action_header|render|trim is not empty or content.field_header_cta|render|trim is not empty %}
     {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
   {% else %}
-    {% include "@mass_theme/includes/organisms-page-header.html.twig" %}
+    {% include "@organisms/by-template/page-header.twig" %}
   {% endif %}
   {% if content.field_action_banner|render|trim is not empty %}
     {{ content.field_action_banner|field_value }}
   {% endif %}
 {% endblock %}
 {% block pageContent %}
-  {# @TODO include "organisms-action-details" #}
+  {% include "@organisms/by-author/quick-actions.twig" %}
   {{ content.field_action_details }}
 {% endblock %}
 {% block sidebar %}
-  {# include "organisms-related-actions" #}
   {{ content.field_related_link }}
   {{ content.field_action_sidebar|field_value }}
 {% endblock %}
