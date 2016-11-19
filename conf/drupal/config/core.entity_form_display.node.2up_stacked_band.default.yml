@@ -8,21 +8,15 @@ dependencies:
     - node.type.2up_stacked_band
   module:
     - paragraphs
-    - path
     - workbench_moderation
 id: node.2up_stacked_band.default
 targetEntityType: node
 bundle: 2up_stacked_band
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
   field_band_main:
     type: entity_reference_paragraphs
-    weight: 31
+    weight: 1
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -32,7 +26,7 @@ content:
     third_party_settings: {  }
   field_band_right_rail:
     type: entity_reference_paragraphs
-    weight: 32
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -40,36 +34,16 @@ content:
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 15
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 16
-    third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

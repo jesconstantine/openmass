@@ -38,4 +38,11 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<h3><a name="{{ title_clean }}" id="{{ title_clean }}">{{ content.field_title|field_value }}</a></h3>
+{%
+  set compHeading = {
+    'title': content.field_title|field_value,
+    'sub': true,
+  }
+%}
+
+{% include "@atoms/04-headings/comp-heading.twig" %}
