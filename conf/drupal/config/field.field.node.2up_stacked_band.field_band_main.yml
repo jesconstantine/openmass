@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -42,6 +43,7 @@ settings:
       iframe: iframe
       map: map
       rich_text: rich_text
+      pull_quote: pull_quote
       stat: stat
       subhead: subhead
       video: video
@@ -104,6 +106,9 @@ settings:
         weight: 43
         enabled: false
       rich_text:
+        enabled: true
+        weight: 44
+      pull_quote:
         enabled: true
         weight: 44
       slideshow:

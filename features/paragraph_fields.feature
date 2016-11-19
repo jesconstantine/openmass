@@ -136,6 +136,14 @@ Feature: Paragraph type definitions
       | field-link        | Link       |
       | field-description | Textfield  |
 
+  Scenario: Verify that the pull_quote paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "pull_quote" paragraph has the fields:
+      | field       | widget                    |
+      | field-quote | Text area (multiple rows) |
+      | field-name  | Textfield                 |
+      | field-title | Textfield                 |
+
   Scenario: Verify that the completion_time paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "completion_time" paragraph has the fields:
@@ -147,3 +155,4 @@ Feature: Paragraph type definitions
     Then the "stacked_band" paragraph has the fields:
       | field             | widget                       |
       | field-band        | Inline entity form - Complex |
+
