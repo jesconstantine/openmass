@@ -32,7 +32,7 @@ set illustratedHeader = {
 {%
 set suggestedPages = {
   'title': 'Related Guides'|t,
-  'pages': related_guides
+  'pages': related_content
 }
 %}
 
@@ -52,7 +52,7 @@ set suggestedPages = {
 {% endblock %}
 
 {% block postContent %}
-  {% if related_guides is not empty %}
+  {% if related_content is not empty %}
     {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
   {% endif %}
 {% endblock %}

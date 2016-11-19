@@ -192,7 +192,7 @@ function mass_theme_preprocess_node_action(&$variables) {
 function mass_theme_preprocess_node_stacked_layout(&$variables) {
   $node = $variables['node'];
   $image_field = $node->get('field_photo');
-  $field_related_guides = $node->get('field_related_guides');
+  $field_related_content = $node->get('field_related_content');
 
   if ($image_field->count() > 0) {
     $values = $image_field->getValue();
@@ -200,23 +200,23 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
     $variables['image_alt'] = $values[0]['alt'];
   }
 
-  if ($field_related_guides->count() > 0) {
-    $guides = $field_related_guides->referencedEntities();
+  if ($field_related_content->count() > 0) {
+    $items = $field_related_content->referencedEntities();
   }
 
-  if (!empty($guides)) {
-    $related_guides = array();
-    foreach ($guides as $guide) {
-      $related_guides[] = array(
+  if (!empty($items)) {
+    $related_content = array();
+    foreach ($items as $item) {
+      $related_content[] = array(
         'link' => array(
           'type' => 'internal',
           'quickaction' => 'false',
-          'href' => $guide->url(),
-          'text' => $guide->getTitle(),
+          'href' => $item->url(),
+          'text' => $item->getTitle(),
         ),
       );
     }
-    $variables['related_guides'] = $related_guides;
+    $variables['related_content'] = $related_content;
   }
 }
 
