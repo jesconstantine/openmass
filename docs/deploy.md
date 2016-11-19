@@ -1,63 +1,37 @@
-# Deploying a local install to Acquia
+# TL;DR
 
-This document describes taking a local installation of the site and deploying a complete copy of it to Acquia.
+To deploy to Acquia dev, run the following command from within Vagrant (*on a clean tag*):
 
-## Steps
+`vendor/bin/phing -f build/deploy.xml`
 
-1. Install the site locally
-1. Generate a database artifact and install on Acquia
-1. Sync files
-1. Deploy code
-1. Select new tag on Acquia (if deploying from a tag)
-1. Take Acquia site out of maintenance mode
+# Deployment Artifact
 
-## Database
+A Drupal deployment consists of three things:
+1) Code (managed in a version controll system, usually git)
+2) A database (which reflects changes made by or in code)
+3) Files (because the database references files)
 
-From your VM:
+Without all three components you do not have a fully deployable Drupal artifact.
 
-```
-vendor/bin/phing drupal-dump-db
-```
+The deployment artifact may be able to be build in-place (such is the case in a prod deployment where the database is not built in a separate environment but is changed "live" and in-place).
 
-From your host machine:
+# Execution Order
 
-```
-scp artifacts/db-XYZ.sql.gz massgovdemo.dev@free-5792.devcloud.hosting.acquia.com:
-ssh massgovdemo.dev@free-5792.devcloud.hosting.acquia.com 'drush @massgovdemo.dev ah-db-import --drop ~/db-XYZ.sql.gz'
-```
+When a deployment is needed, the following things must happen to the existing codebase, database, and files:
 
-## Files
+1) The codebase must be updated to reflect the desired deployment status
+2) The database needs to be updated in two ways: config needs to be imported *and then* update hooks need to be run.
+3) Files need to stay in place.
 
-From your host machine:
+Any deployment process, whether scripted or done by handed, must execute these steps in this order to be successful.
 
-```
-(cd web/sites/default && rsync -rltDvPh --delete files/ massgovdemo.dev@free-5792.devcloud.hosting.acquia.com:dev/files)
-```
+# Promoting Deployment Artifacts
 
-## Code
+## To Dev
+Deploying to the dev environment involves building a full Drupal Deployment Artifact locally (by pulling the database and files from canonical, then running processes on them) and then putting all three components of the artifact in the dev environment at once.
 
-From your VM:
+## To Staging
+`@todo Moshe?`
 
-```
-vendor/bin/phing deploy -Dbuild.env=acquia-dev
-```
-
-## On Acquia
-
-Log in to the Acquia UI and verify the correct branch or tag is deployed: [https://insight.acquia.com/cloud/workflow?s=3679931](https://insight.acquia.com/cloud/workflow?s=3679931)
-
-Clear the Drupal cache:
-
-```
-ssh massgovdemo.dev@free-5792.devcloud.hosting.acquia.com 'drush @massgovdemo.dev cache-rebuild'
-```
-
-Log in to the site and take it out of maintenance mode: [http://massgovdemoq3hkjviknb.devcloud.acquia-sites.com//](http://massgovdemoq3hkjviknb.devcloud.acquia-sites.com//)
-
-## Reference
-
-* [rsyncing files on Acquia cloud](https://docs.acquia.com/articles/rsyncing-files-acquia-cloud)
-* [Assessing disk space usage](https://docs.acquia.com/articles/assessing-disk-space-usage)
-* [Importing your files](https://docs.acquia.com/cloud/site/import/manual/files)
-* [Importing your database](https://docs.acquia.com/cloud/site/import/manual/database)
-* [rsync man page](http://linux.die.net/man/1/rsync)
+## To Production
+`@todo Moshe?`

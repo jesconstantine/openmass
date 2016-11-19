@@ -1,0 +1,26 @@
+uuid: fca52e8c-d927-4db4-a277-f7461ec3ade0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.1up_stacked_band.field_band_main
+    - node.type.1up_stacked_band
+  module:
+    - entity_reference_revisions
+    - user
+id: node.1up_stacked_band.default
+targetEntityType: node
+bundle: 1up_stacked_band
+mode: default
+content:
+  field_band_main:
+    weight: 101
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  links:
+    weight: 100
+hidden: {  }

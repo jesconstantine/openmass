@@ -133,6 +133,7 @@
            destinationdir="${deploy.file_dest}"
            options="-rltDvPh" />
 
+      <echo>Importing config.</echo>
       <drush command="cimy" assume="yes">
         <option name="source" value="/var/www/mass.local/conf/drupal/config" />
         <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
