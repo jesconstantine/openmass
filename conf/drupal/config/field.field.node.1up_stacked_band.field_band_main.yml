@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.completion_time
     - paragraphs.paragraphs_type.file_download
+    - paragraphs.paragraphs_type.hours
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.pull_quote
@@ -44,6 +45,7 @@ settings:
       file_download: file_download
       iframe: iframe
       map: map
+      hours: hours
       rich_text: rich_text
       pull_quote: pull_quote
       stat: stat
@@ -104,6 +106,9 @@ settings:
       map:
         enabled: true
         weight: -38
+      hours:
+        enabled: true
+        weight: 41
       quick_action:
         weight: -37
         enabled: false
@@ -128,6 +133,9 @@ settings:
       stacked_band:
         weight: -30
         enabled: false
+      subhead:
+        enabled: true
+        weight: 47
       video:
         enabled: true
         weight: -29
