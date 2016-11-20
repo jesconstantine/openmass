@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.1up_stacked_band.field_band_main
     - node.type.1up_stacked_band
   module:
     - user

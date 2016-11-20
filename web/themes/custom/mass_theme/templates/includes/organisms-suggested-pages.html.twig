@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Partial for suggested pages finder. To be included at the node level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__suggested-pages">
+  <div class="ma__suggested-pages__container">
+    <h2 class="ma__suggested-pages__title">{{ suggestedPages.title }}</h2>
+    <div class="ma__suggested-pages__items">
+      {% for page in suggestedPages.pages %}
+        {% set illustratedLink = {
+        "text": page.link.text,
+        "type": page.link.type,
+        "href": page.link.href } %}
+        <div class="ma__suggested-pages__item ma__suggested-pages__item--guide">
+          {% include "@molecules/illustrated-link.twig" %}
+        </div>
+      {% endfor %}
+    </div>
+    {% set buttonMinor = suggestedPages.buttonMinor %}
+    {% if buttonMinor.link %}
+      {% include "@atoms/01-buttons/button-link2-sm.twig" %}
+    {% endif %}
+  </div>
+</section>

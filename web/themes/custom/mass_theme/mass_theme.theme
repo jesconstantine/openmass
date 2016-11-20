@@ -187,6 +187,68 @@ function mass_theme_preprocess_node_action(&$variables) {
 /**
  * Implements hook_preprocess_node().
  *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_stacked_layout(&$variables) {
+  $node = $variables['node'];
+  $image_field = $node->get('field_photo');
+  $field_related_content = $node->get('field_related_content');
+
+  if ($image_field->count() > 0) {
+    $values = $image_field->getValue();
+    $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
+    $variables['image_alt'] = $values[0]['alt'];
+  }
+
+  if ($field_related_content->count() > 0) {
+    $items = $field_related_content->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    $related_content = array();
+    foreach ($items as $item) {
+      $related_content[] = array(
+        'link' => array(
+          'type' => 'internal',
+          'quickaction' => 'false',
+          'href' => $item->url(),
+          'text' => $item->getTitle(),
+        ),
+      );
+    }
+    $variables['related_content'] = $related_content;
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_2up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_1up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
  * Node subtopic alterations.
  */
 function mass_theme_preprocess_node_subtopic(&$variables) {
@@ -331,6 +393,29 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     }
   }
 
+  // Get the subheads for the action jump menu.
+  if ($element['#field_name'] == 'field_bands') {
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      $band = $paragraph->get('field_band');
+
+      if ($band->count() > 0) {
+        $items = $band->referencedEntities();
+      }
+
+      if (!empty($items)) {
+        $item = current($items);
+        $title = $item->getTitle();
+        $key = strtolower($title);
+        $key = Html::cleanCssIdentifier($key);
+        $variables['subheads'][$key] = $title;
+      }
+
+      $delta++;
+    }
+  }
+
   // If our Callout Link (Link field) references an internal node,
   // use the "External URL" field on that node, for the link,
   // if it exists.
@@ -357,7 +442,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       $delta++;
     }
   }
-  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'related_link') {
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'related_link') {
     $links = array();
     $delta = 0;
     // Wrap up our related links.
@@ -375,7 +460,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $variables['relatedActions'] = $links;
   }
 
-  if ($element['#view_mode'] == 'sidebar' && $element['#bundle'] == 'contact_group') {
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
     $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
     $groups = array();
     $order = array();
