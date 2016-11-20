@@ -18,6 +18,7 @@ Feature: Action Content type
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
     | field-action-details         | paragraphs | callout-link               | false      |
+    | field-action-details         | paragraphs | callout-alert              | false      |
     | field-action-details         | paragraphs | file-download              | false      |
     | field-action-details         | paragraphs | iframe                     | false      |
     | field-action-details         | paragraphs | rich-text                  | false      |
