@@ -659,7 +659,7 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
-  $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+  $variables['calloutLink']['type'] = (UrlHelper::isExternal($url->toString())) ? 'external' : 'internal';
 }
 
 /**
@@ -668,11 +668,13 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
  * Break out url pieces for callout link - need-to-know paragraphs.
  */
 function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
-  $url = $variables['paragraph']->get('field_link')->first()->getUrl();
+  $url = $variables['paragraph']->get('field_link')->first();
 
-  $variables['calloutAlert']['decorativeLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
-  $variables['calloutAlert']['decorativeLink']['href'] = $url->toString();
-  $variables['calloutAlert']['decorativeLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+  $variables['calloutAlert']['decorativeLink'] = [
+    'text' => $url->getValue()['title'],
+    'href' => $url->getUrl()->toString(),
+    'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal'
+  ];
 }
 
 /**

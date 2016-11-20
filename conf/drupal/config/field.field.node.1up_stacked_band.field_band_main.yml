@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.action_step_numbered
     - paragraphs.paragraphs_type.action_step_numbered_list
+    - paragraphs.paragraphs_type.callout_alert
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.completion_time
     - paragraphs.paragraphs_type.file_download
@@ -38,6 +39,7 @@ settings:
       action_step_numbered: action_step_numbered
       action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
+      callout_alert: callout_alert
       completion_time: completion_time
       file_download: file_download
       iframe: iframe
@@ -49,81 +51,84 @@ settings:
       video: video
     target_bundles_drag_drop:
       action_address:
-        weight: 25
+        weight: -55
         enabled: false
       action_address_info:
-        weight: 26
+        weight: -54
         enabled: false
       action_area:
-        weight: 27
+        weight: -53
         enabled: false
       action_step:
         enabled: true
-        weight: 28
+        weight: -52
       action_step_numbered:
         enabled: true
-        weight: 29
+        weight: -51
       action_step_numbered_list:
         enabled: true
-        weight: 30
+        weight: -50
       callout_link:
         enabled: true
-        weight: 31
+        weight: -49
+      callout_alert:
+        enabled: true
+        weight: -48
       completion_time:
         enabled: true
-        weight: 32
+        weight: -47
       contact:
-        weight: 33
+        weight: -46
         enabled: false
       contact_group:
-        weight: 34
+        weight: -45
         enabled: false
       contact_info:
-        weight: 35
+        weight: -44
         enabled: false
       file_download:
         enabled: true
-        weight: 36
+        weight: -43
       full_bleed:
-        weight: 37
+        weight: -42
         enabled: false
       icon:
-        weight: 38
+        weight: -41
         enabled: false
       iframe:
         enabled: true
-        weight: 39
+        weight: -40
       location_information:
-        weight: 40
+        weight: -39
         enabled: false
       map:
         enabled: true
-        weight: 41
+        weight: -38
       quick_action:
-        weight: 42
+        weight: -37
         enabled: false
       related_link:
-        weight: 43
+        weight: -36
         enabled: false
       rich_text:
         enabled: true
-        weight: 44
+        weight: -35
       pull_quote:
         enabled: true
-        weight: 44
+        weight: -34
       slideshow:
-        weight: 45
+        weight: -33
         enabled: false
       stat:
         enabled: true
-        weight: 46
+        weight: -32
       subhead:
         enabled: true
-        weight: 47
+        weight: -31
       stacked_band:
-        weight: 47
+        weight: -30
         enabled: false
       video:
         enabled: true
-        weight: 48
+        weight: -29
 field_type: entity_reference_revisions
