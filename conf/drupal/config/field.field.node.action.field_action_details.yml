@@ -7,6 +7,7 @@ dependencies:
     - node.type.action
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.action_step_numbered_list
+    - paragraphs.paragraphs_type.callout_button
     - paragraphs.paragraphs_type.callout_alert
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
@@ -45,6 +46,7 @@ settings:
       subhead: subhead
       video: video
       map: map
+      callout_button: callout_button
       hours: hours
       pull_quote: pull_quote
     target_bundles_drag_drop:
@@ -102,6 +104,9 @@ settings:
       location_information:
         weight: 27
         enabled: false
+      callout_button:
+        enabled: true
+        weight: 31
       contact_group:
         weight: 33
         enabled: false
