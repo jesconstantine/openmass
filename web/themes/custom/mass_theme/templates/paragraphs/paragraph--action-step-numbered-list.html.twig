@@ -38,14 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-set classes = [
-'paragraph',
-'paragraph--type--' ~ paragraph.bundle|clean_class,
-view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-'ma__action-seq-list'
-]
-%}
-<section {{ attributes.addClass(classes) }}>
-  {{content}}
-</section>
+{% include "@molecules/action-seq-list.twig" with actionSeqLists %}
