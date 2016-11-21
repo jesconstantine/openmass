@@ -1,0 +1,37 @@
+uuid: 95164448-cb4c-46a8-ad67-5f7c6d25f53e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.2up_stacked_band.field_band_main
+    - field.field.node.2up_stacked_band.field_band_right_rail
+    - node.type.2up_stacked_band
+  module:
+    - entity_reference_revisions
+    - user
+id: node.2up_stacked_band.default
+targetEntityType: node
+bundle: 2up_stacked_band
+mode: default
+content:
+  field_band_main:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: hidden
+    settings:
+      view_mode: stacked
+      link: ''
+    third_party_settings: {  }
+  field_band_right_rail:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: hidden
+    settings:
+      view_mode: stacked_sidebar
+      link: ''
+    third_party_settings: {  }
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

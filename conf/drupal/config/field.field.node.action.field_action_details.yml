@@ -8,10 +8,13 @@ dependencies:
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.action_step_numbered_list
     - paragraphs.paragraphs_type.callout_button
+    - paragraphs.paragraphs_type.callout_alert
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
+    - paragraphs.paragraphs_type.hours
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -35,6 +38,7 @@ settings:
       action_step: action_step
       action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
+      callout_alert: callout_alert
       file_download: file_download
       iframe: iframe
       rich_text: rich_text
@@ -43,6 +47,8 @@ settings:
       video: video
       map: map
       callout_button: callout_button
+      hours: hours
+      pull_quote: pull_quote
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -53,6 +59,9 @@ settings:
       callout_link:
         enabled: true
         weight: -17
+      callout_alert:
+        enabled: true
+        weight: -16
       file_download:
         enabled: true
         weight: -15
@@ -99,14 +108,20 @@ settings:
         enabled: true
         weight: 31
       contact_group:
-        weight: 34
+        weight: 33
         enabled: false
       contact_info:
-        weight: 35
+        weight: 34
         enabled: false
+      hours:
+        enabled: true
+        weight: 37
       icon:
         weight: 38
         enabled: false
+      pull_quote:
+        enabled: true
+        weight: 41
       quick_action:
         weight: 42
         enabled: false
