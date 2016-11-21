@@ -8,8 +8,10 @@ global-styling:
       overrides/css/action-finder.css: {}
       overrides/css/basic-html.css: {}
   js:
+    overrides/js/env-drupal.js: {}
     js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
+
     libraries/formstack/js/matchMayflower.js: {}
 js-header:
   header: true

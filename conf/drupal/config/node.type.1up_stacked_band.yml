@@ -1,0 +1,17 @@
+uuid: 832ead1b-d5c9-459f-8b78-58bd770ad2c0
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: '1up Stacked Band'
+type: 1up_stacked_band
+description: 'Used as part of the Stacked Layout.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

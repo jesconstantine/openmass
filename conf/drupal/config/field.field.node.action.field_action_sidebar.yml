@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.storage.node.field_action_sidebar
     - node.type.action
+    - paragraphs.paragraphs_type.callout_button
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.quick_action
     - paragraphs.paragraphs_type.related_link
     - paragraphs.paragraphs_type.subhead
@@ -25,8 +27,10 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      iframe: iframe
       subhead: subhead
       contact_group: contact_group
+      callout_button: callout_button
       related_link: related_link
       quick_action: quick_action
     target_bundles_drag_drop:
@@ -78,6 +82,9 @@ settings:
       full_bleed:
         weight: 30
         enabled: false
+      callout_button:
+        enabled: true
+        weight: 31
       location_information:
         weight: 32
         enabled: false
@@ -90,10 +97,13 @@ settings:
       related_link:
         enabled: true
         weight: 37
-      video:
-        weight: 38
-        enabled: false
       quick_action:
         enabled: true
         weight: 38
+      video:
+        weight: 38
+        enabled: false
+      map:
+        weight: 41
+        enabled: false
 field_type: entity_reference_revisions
