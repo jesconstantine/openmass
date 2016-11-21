@@ -23,6 +23,9 @@
       /* search engine id */
       var cx = '010551267445528504028:ivl9x2rf5e8';
 
+      /* set string for message when no results are returned */
+      var noResultsString = 'Sorry, we couldn\'t find any results for your query.  Please try searching with different words.';
+
       /**
        * Set custom search options
        * See: https://developers.google.com/custom-search/docs/js/cselement-reference#opt_options
@@ -86,7 +89,7 @@
       }
 
       // Customize "no results" message
-      headerSearchControl.setNoResultsString("Sorry, we couldn't find any results for your query.  Please search for something else.");
+      headerSearchControl.setNoResultsString(noResultsString);
 
       /** MOBILE SEARCH FORM */
 
@@ -136,7 +139,7 @@
       mobileSearchControl.draw('cse-search-form-mobile', mobileOptions);
 
       // Customize "no results" message
-      mobileSearchControl.setNoResultsString("Sorry, we couldn't find any results for your query.  Please search for something else.");
+      mobileSearchControl.setNoResultsString(noResultsString);
 
     }, true);
   }
