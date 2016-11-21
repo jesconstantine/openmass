@@ -44,3 +44,4 @@ default:
         subtopic_all_actions: "#ma__action-finder--all"
         section_links: "section.ma__section-links"
         guide_related_guides: "section.ma__suggested-pages"
+        admin_menu: "ul.toolbar-menu"
