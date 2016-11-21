@@ -127,3 +127,4 @@ content:
 hidden:
   promote: true
   sticky: true
+  field_metatags: true
