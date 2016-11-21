@@ -39,8 +39,11 @@
  */
 #}
 {% if image_count is not empty and image_count > 1 %}
-  {% set slides = images %}
-  {% include "@mass_theme/includes/organisms-banner-carousel.html.twig" %}
+  {% set bannerCarousel = {
+      slides: images,
+    }
+  %}
+  {% include "@organisms/by-author/banner-carousel.twig" %}
 {% elseif image_count is not empty and image_count == 1 %}
   {% set locationBanner = images.0 %}
   {% set map = map %}

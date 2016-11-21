@@ -18,3 +18,30 @@ regions:
   footer_navigation: Footer Navigation
 libraries-override:
   core/jquery: mass_theme/js-vendor
+
+component-libraries:
+  custom_includes:
+    paths:
+      - templates/includes
+  base:
+    paths:
+      - patterns/base
+  atoms:
+    paths:
+      - patterns/atoms
+  molecules:
+    paths:
+      - patterns/molecules
+  organisms:
+    paths:
+      - patterns/organisms
+  templates:
+    paths:
+      - patterns/templates
+  pages:
+    paths:
+      - patterns/pages
+  pilot:
+    paths:
+      - patterns/pilot
+
