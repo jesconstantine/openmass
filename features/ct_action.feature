@@ -18,12 +18,16 @@ Feature: Action Content type
     | field-action-details         | paragraphs | action-step                | false      |
     | field-action-details         | paragraphs | action-step-numbered-list  | false      |
     | field-action-details         | paragraphs | callout-link               | false      |
+    | field-action-details         | paragraphs | callout-button             | false      |
+    | field-action-details         | paragraphs | callout-alert              | false      |
     | field-action-details         | paragraphs | file-download              | false      |
     | field-action-details         | paragraphs | iframe                     | false      |
     | field-action-details         | paragraphs | rich-text                  | false      |
     | field-action-details         | paragraphs | stat                       | false      |
     | field-action-details         | paragraphs | subhead                    | false      |
     | field-action-details         | paragraphs | map                        | false      |
+    | field-action-details         | paragraphs | hours                      | false      |
+    | field-action-details         | paragraphs | pull-quote                 | false      |
     | field-action-header          | paragraphs | contact-group              | false      |
     | field-action-banner          | paragraphs | full-bleed                 | false      |
     | field-action-sidebar         | paragraphs | contact-group              | false      |

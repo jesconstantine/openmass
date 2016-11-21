@@ -96,6 +96,7 @@
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
+        "drupal/components": "^8.1",
         "drupal/acquia_connector": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.0",
@@ -122,8 +123,8 @@
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
-        "palantirnet/mayflower-artifacts": "0.5.",
-        "palantirnet/the-build": "dev-feature/code-quality-tools#4f55dd0f521b5690ce04e0c65548b2244f5f448d",
+        "palantirnet/mayflower-artifacts": "2.0.0-alpha2",
+        "palantirnet/the-build": "dev-feature/code-quality-tools#1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
         "previousnext/drush_cmi_tools": "^1.0"
@@ -176,9 +177,6 @@
             },
             "drupal/workbench_moderation": {
                 "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
-            },
-            "drupal/draggableviews": {
-                "Invalidate cache when draggableviews order is changed (https://www.drupal.org/node/2425249#comment-10716828)": "https://www.drupal.org/files/issues/draggableviews-clearcache-2425249-11-8.x-1.x.diff"
             },
             "drupal/google_map_field": {
               "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
