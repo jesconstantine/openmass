@@ -38,16 +38,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-set classes = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  'ma__button-minor',
-  'ma__button-minor--small'
-]
-%}
-<div {{ attributes.addClass(classes) }}>
-  {% set decorativeLink = calloutLink %}
-  {% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
-</div>
+{% include "@atoms/01-buttons/button-link2-sm.twig" with buttonMinor %}
