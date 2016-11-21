@@ -78,3 +78,5 @@ permissions:
   73: 'administer embed buttons'
   74: 'access in-place editing'
   75: 'view the administration theme'
+  76: 'setup own tfa'
+  77: 'require tfa'
