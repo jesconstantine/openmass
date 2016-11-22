@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d6407c3d1030732a252f0e3792e36967",
-    "content-hash": "cec30f60c98b5dfa9f31094a7b26c3fb",
+    "hash": "4f13ef0fecea82df684383a0892116a6",
+    "content-hash": "a411abbafb17bbc34436b4c00fe6dc8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1150,7 +1150,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/acquia_purge-8.x-1.0-alpha2.zip",
-                "reference": null,
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84",
                 "shasum": null
             },
             "require": {
