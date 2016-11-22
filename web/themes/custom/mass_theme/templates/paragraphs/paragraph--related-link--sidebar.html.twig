@@ -38,18 +38,8 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{%
-set classes = [
-'paragraph',
-'paragraph--type--' ~ paragraph.bundle|clean_class,
-view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-'ma__action-seq-list__item'
-]
-%}
-
-<li {{ attributes.addClass(classes) }}>
-  <h5 class="ma__action-seq-list__title">{{content.field_title}}</h5>
-  <div class="ma__action-seq-list__content">
-    <section class="ma__rich-text js-ma-rich-text">{{content.field_content}}</section>
+<section class="ma__sidebar-widget">
+  <div class="ma__sidebar-widget__items">
+    {{ content }}
   </div>
-</li>
+</section>

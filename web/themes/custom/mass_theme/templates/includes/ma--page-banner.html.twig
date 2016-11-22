@@ -14,7 +14,7 @@
     <div class="ma__page-banner__content">
       <div class="ma__page-banner__icon">
         {% if bannerData.icon|trim %}
-          {% include active_theme_path() ~ "/images/svg-sprite/" ~ bannerData.icon ~ ".svg" %}
+          {% include active_theme_path() ~ "/images/svg-sprite/" ~ bannerData.icon ~ ".svg" ignore missing %}
         {% endif %}
       </div>
       <h1 class="ma__page-banner__title">{{ label|field_value }}</h1>
