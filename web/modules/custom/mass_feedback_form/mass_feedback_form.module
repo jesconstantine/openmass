@@ -24,10 +24,16 @@ function mass_feedback_form_help($route_name, RouteMatchInterface $route_match) 
 }
 
 /**
- * Implements hook_page_attachments().
+ * Implements hook_theme().
  *
- * Attach form css that will override formstack style.
+ * Define twig template for feedback form block, called by PageFeedbackForm.
  */
-function mass_feedback_form_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'mass_feedback_form/feedback-form-css';
+function mass_feedback_form_theme() {
+  return array(
+      'block__mass_feedback_form' => array(
+          'render element' => 'elements',
+          'template' => 'block--mass-feedback-form',
+          'base hook' => 'block'
+      )
+  );
 }
