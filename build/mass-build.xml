@@ -181,6 +181,19 @@
 
   <target name="mass-update-admin-username" description="Update admin user name.">
     <echo>Updating administrator user name.</echo>
-    <exec command="mysql -u ${drupal.database.username} ${drupal.database.password.conditional} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
+
+    <!-- Since Circle doesn't have a db password, we need to conditionally pass
+         the password paramater to the mysql command. -->
+    <if>
+      <isset property="drupal.database.username" />
+      <then>
+        <property name="local_db_password" value="-p${drupal.database.username}" />
+      </then>
+      <else>
+        <property name="local_db_password" value="" />
+      </else>
+    </if>
+
+    <exec command="mysql -u ${drupal.database.username} ${local_db_password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
   </target>
 </project>
