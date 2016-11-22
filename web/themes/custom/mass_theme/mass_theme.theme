@@ -551,20 +551,20 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Wrap up all our other stuff. Anything goes!
         $value = '';
         $link = '';
-        if ($element[$delta]['#paragraph']->get('field_link')->first() !== null) {
+        if ($element[$delta]['#paragraph']->get('field_link')->first() !== NULL) {
           $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
           $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
         }
         $other_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value .
-                       $value .
-                       $element[$delta]['#paragraph']->get('field_email')->value .
-                       $element[$delta]['#paragraph']->get('field_address')->value,
+           $value .
+           $element[$delta]['#paragraph']->get('field_email')->value .
+           $element[$delta]['#paragraph']->get('field_address')->value,
           'rawVal'  => '',
           'link'    => $element[$delta]['#paragraph']->get('field_phone')->value .
-                       $link .
-                       $element[$delta]['#paragraph']->get('field_email')->value,
+           $link .
+           $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
@@ -572,7 +572,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
 
-      // if all else fails, increment or we spin out of control.
+      // If all else fails, increment or we spin out of control.
       $delta++;
     }
 
