@@ -122,6 +122,7 @@
         "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
+        "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
@@ -185,6 +186,9 @@
             },
             "drupal/crazyegg": {
               "Configure crazyegg for specific pages. (https://www.drupal.org/node/2812783)": "https://www.drupal.org/files/issues/2812783-configure-for-specific-pages.patch"
+            },
+            "drupal/username_enumeration_prevention": {
+                "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
             }
         }
     }

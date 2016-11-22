@@ -81,6 +81,7 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  username_enumeration_prevention: 0
   views_ui: 0
   workbench_moderation: 0
   workbench_tabs: 0
