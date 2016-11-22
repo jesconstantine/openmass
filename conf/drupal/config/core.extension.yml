@@ -47,8 +47,8 @@ module:
   mass_search: 0
   mass_styles: 0
   mass_types: 0
-  mass_workbench_ui: 0
   mass_utility: 0
+  mass_workbench_ui: 0
   menu_ui: 0
   metatag: 0
   migrate: 0
@@ -76,6 +76,7 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  username_enumeration_prevention: 0
   views_ui: 0
   workbench_moderation: 0
   workbench_tabs: 0
