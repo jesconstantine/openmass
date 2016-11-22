@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "289d11137e412c5791e92f842ee72c02",
-    "content-hash": "59289225a81afb2a765a1ebede6a42ad",
+    "hash": "32cf3b32a7cefdc0ce950c3ab652906a",
+    "content-hash": "9cfaa7c991ce9094b8242905ce09eefc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1127,16 +1127,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.2.1",
+            "version": "8.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "a5549f2a541c0fbb0565e1576a63b917813fadba"
+                "reference": "63b3346647a7e43bcde3947a3aea02eabdf8fa56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/a5549f2a541c0fbb0565e1576a63b917813fadba",
-                "reference": "a5549f2a541c0fbb0565e1576a63b917813fadba",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/63b3346647a7e43bcde3947a3aea02eabdf8fa56",
+                "reference": "63b3346647a7e43bcde3947a3aea02eabdf8fa56",
                 "shasum": ""
             },
             "require": {
@@ -1306,7 +1306,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-10-11 10:18:49"
+            "time": "2016-11-16 18:45:36"
         },
         {
             "name": "drupal/crazyegg",
@@ -1804,6 +1804,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -2068,6 +2071,31 @@
             "description": "Allows users to redirect from old URLs to new URLs.",
             "homepage": "https://www.drupal.org/project/redirect",
             "time": "2016-03-25 13:39:45"
+        },
+        {
+            "name": "drupal/restrict_by_ip",
+            "version": "dev-8.x-4.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/restrict_by_ip",
+                "reference": "f2621e1b688d4852965d0bed972584cdf3ce91c2"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-4.x": "8.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Enables limiting user login and role access to specific IP Addresses.",
+            "homepage": "https://www.drupal.org/project/restrict_by_ip",
+            "time": "2016-06-26 23:12:23"
         },
         {
             "name": "drupal/seckit",
@@ -7824,6 +7852,7 @@
         "drupal/draggableviews": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
+        "drupal/restrict_by_ip": 20,
         "drupal/security_review": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
