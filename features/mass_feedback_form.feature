@@ -10,7 +10,12 @@ Feature: Mass Feedback Form
     When I go to "admin/structure/block/library/mass_theme"
     Then I should see text matching "Mass Feedback Form"
 
+  Scenario: Verify that Mass Feedback Form does show on action nodes.
+    Given I am viewing an "action" with the title "Run the Test Suite"
+    Then I should see text matching "Online Form - Feedback - Multi Page"
+
 #  This is waiting on a decision of what pattern lab regions will be available for blocks
+#  @TODO remove the above scenario when the below scenario is used
 #  Scenario: Verify Mass Feedback Form shows on pages other than the home.
 #    Given default test content exists
 #    When I visit the test "subtopic" "Behat Test: Nature & Outdoor Activities"
