@@ -19,11 +19,6 @@ class PageFeedbackForm extends BlockBase {
    */
   public function build() {
     return array(
-      '#attached' => array(
-        'library' => array(
-          'mass_feedback_form/feedback-form-css',
-        ),
-      ),
       '#theme' => 'block--mass-feedback-form',
     );
   }

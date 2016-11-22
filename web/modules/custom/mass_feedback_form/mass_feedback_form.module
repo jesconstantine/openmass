@@ -37,3 +37,14 @@ function mass_feedback_form_theme() {
       )
   );
 }
+
+/**
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
+ *
+ * Attaching feedback form css library to block.  For some reason, could not
+ * attach it to render array in the module Block Plugin class.
+ */
+function mass_feedback_form_block_view_page_feedback_form_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  $build['#attached']['library'][] = 'mass_feedback_form/feedback-form-css';
+  return $build;
+}
