@@ -94,6 +94,9 @@
             <option name="password">admin</option>
             <param>admin</param>
           </drush>
+
+          <!-- Change name of admin user. -->
+          <exec command="mysql -u ${drupal.database.username} -p${drupal.database.password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
         </then>
       </if>
 
