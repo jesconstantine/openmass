@@ -39,22 +39,8 @@
  */
 #}
 {%
-set classes = [
-'paragraph',
-'paragraph--type--' ~ paragraph.bundle|clean_class,
-view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-'ma__video',
-]
+  set video = {
+    'src': 'https://www.youtube.com/embed/' ~ content.field_video_id|field_value|e('url')
+  }
 %}
-
-{% set video_id = 'caption-' ~ content.field_video_id|field_value|e('html_attr') %}
-
-<section {{ attributes.addClass(classes) }}>
-  <figure class="ma__video__figure">
-    {% if content.field_video_source['#items'].getValue()|first.value == 'youtube' %}
-      <iframe class="ma__video__iframe" width="560" height="315" aria-labelledby="{{video_id}}" src="https://www.youtube.com/embed/{{content.field_video_id|field_value|e('url')}}" frameborder="0" allowfullscreen></iframe>
-    {% endif %}
-    <figcaption class="ma_video__figcaption" id="{{video_id}}">{{content.field_video_caption}}</figcaption>
-  </figure>
-</section>
-
+{% include "@atoms/09-media/video.twig" with video %}

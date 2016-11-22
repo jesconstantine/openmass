@@ -28,6 +28,9 @@
   // Contains custom generic helper methods
   Drupal.mass.helpers = Drupal.mass.helpers || {};
 
+  /* set no results message for announcement and visual display */
+  var noResultsString = 'Sorry, we couldn\'t find any results for your query.  Please try searching with different words.';
+
   // Confirm that we have access to the google object which is returned by
   // mass_search js external library google.com/jsapi
   if (window.google) {
@@ -113,7 +116,7 @@
         resultsPageSearchControl.draw('cse-search-results', resultsOptions);
 
         // Customize "no results" message
-        resultsPageSearchControl.setNoResultsString('Sorry, we couldn\'t find any results for your query.  Please search for something else.');
+        resultsPageSearchControl.setNoResultsString(noResultsString);
 
         // Get array of the url querystring params.
         var urlParams = Drupal.mass.helpers.parseParamsFromUrl();
@@ -155,7 +158,7 @@
     var noResults = searchResults.querySelectorAll('div.gs-no-results-result').length;
 
     if (noResults) {
-      announcement += "Sorry, we couldn't find any results for your query.  Please search for something else."; // 2a.
+      announcement += noResultsString; // 2a.
     }
     else { // There are results
       announcement += 'Now showing '; // 2b.

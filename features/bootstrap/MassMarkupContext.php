@@ -30,7 +30,7 @@ class MassMarkupContext extends MarkupContext
    */
   public function iShouldSeeTheCorrectMarkupForThePageBanner()
   {
-    $this->assertRegionElement('div.ma__breadcrumbs__container', 'breadcrumbs');
+    $this->assertRegionElement('nav.ma__breadcrumbs__container', 'breadcrumbs');
     $this->assertRegionElement('style', 'page_banner');
     $this->assertRegionElement('div.ma__page-banner__icon', 'page_banner');
     $this->assertRegionElement('svg', 'page_banner');
@@ -116,5 +116,24 @@ class MassMarkupContext extends MarkupContext
   public function iShouldSeeTheCorrectMarkupForTheSearchResults()
   {
       $this->assertRegionElement('div#cse-search-results > div.gsc-control-cse > div.gsc-control-wrapper-cse  > div.gsc-results-wrapper-nooverlay > div.gsc-wrapper', 'search_results');
+  }
+
+  /**
+   * @Then I should see the correct markup for the illustrated header
+   */
+  public function iShouldSeeTheCorrectMarkupForTheIllustratedHeader()
+  {
+    $this->assertRegionElement('div.ma__illustrated-header__container > .ma__illustrated-header__content > .ma__illustrated-header__category', 'page_illustrated_header');
+    $this->assertRegionElement('div.ma__illustrated-header__container > .ma__illustrated-header__content > .ma__page-header > .ma__page-header__content > h1.ma__page-header__title', 'page_illustrated_header');
+    $this->assertRegionElement('div.ma__illustrated-header__image.ma__illustrated-header__image--empty', 'page_illustrated_header');
+  }
+
+  /**
+   * @Then I should see the correct markup for the related guides
+   */
+  public function iShouldSeeTheCorrectMarkupForTheRelatedGuides()
+  {
+    $this->assertRegionElement('div.ma__suggested-pages__container > h2.ma__suggested-pages__title', 'guide_related_guides');
+    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > h4.ma__illustrated-link__title', 'guide_related_guides');
   }
 }
