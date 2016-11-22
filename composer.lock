@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cec30f60c98b5dfa9f31094a7b26c3fb",
+    "hash": "4f13ef0fecea82df684383a0892116a6",
+    "content-hash": "a411abbafb17bbc34436b4c00fe6dc8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1139,6 +1140,43 @@
             "time": "2016-10-26 13:52:51"
         },
         {
+            "name": "drupal/acquia_purge",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/acquia_purge",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/acquia_purge-8.x-1.0-alpha2.zip",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/page_cache": "8.*",
+                "drupal/purge": "8.*",
+                "drupal/purge_drush": "8.*",
+                "drupal/purge_processor_cron": "8.*",
+                "drupal/purge_processor_lateruntime": "8.*",
+                "drupal/purge_queuer_coretags": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Top-notch cache invalidation on Acquia Cloud!",
+            "homepage": "https://www.drupal.org/project/acquia_purge",
+            "time": "2016-09-07 13:43:49"
+        },
+        {
             "name": "drupal/coder",
             "version": "8.2.9",
             "source": {
@@ -2242,6 +2280,48 @@
             "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
             "homepage": "https://www.drupal.org/project/pathauto",
             "time": "2016-08-07 10:52:55"
+        },
+        {
+            "name": "drupal/purge",
+            "version": "8.3.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/purge",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0-beta6.zip",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/purge_drush": "self.version",
+                "drupal/purge_processor_cron": "self.version",
+                "drupal/purge_processor_lateruntime": "self.version",
+                "drupal/purge_queuer_coretags": "self.version",
+                "drupal/purge_tokens": "self.version",
+                "drupal/purge_ui": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/purge_drush, drupal/purge_processor_cron, drupal/purge_processor_lateruntime, drupal/purge_queuer_coretags, drupal/purge_tokens, drupal/purge_ui"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a generic external cache invalidation API and queue service.",
+            "homepage": "https://www.drupal.org/project/purge",
+            "time": "2016-10-26 12:16:03"
         },
         {
             "name": "drupal/redirect",
