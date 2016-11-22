@@ -152,3 +152,5 @@ permissions:
   147: 'administer site configuration'
   148: 'access security review list'
   149: 'run security checks'
+  150: 'setup own tfa'
+  151: 'require tfa'
