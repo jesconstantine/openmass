@@ -185,12 +185,12 @@
     <!-- Since Circle doesn't have a db password, we need to conditionally pass
          the password paramater to the mysql command. -->
     <if>
-      <isset property="drupal.database.password" />
+      <equals arg1="${drupal.database.password}" arg2="" />
       <then>
-        <property name="local_db_password" value="-p${drupal.database.password}" />
+        <property name="local_db_password" value="" />
       </then>
       <else>
-        <property name="local_db_password" value="" />
+        <property name="local_db_password" value="-p${drupal.database.password}" />
       </else>
     </if>
 
