@@ -153,3 +153,5 @@ permissions:
   148: 'access security review list'
   149: 'run security checks'
   150: 'manage password reset'
+  151: 'setup own tfa'
+  152: 'require tfa'

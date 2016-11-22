@@ -19,7 +19,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: actions/files
-  file_extensions: 'txt pdf doc exe csv'
+  file_extensions: 'txt pdf doc xls csv docx xlsx'
   max_filesize: ''
   description_field: false
   handler: 'default:file'

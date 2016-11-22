@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "699974594e86ee4a0263195a6f60ca4c",
-    "content-hash": "db50797cfff316c8f6fd66733dad1e94",
+    "hash": "4f13ef0fecea82df684383a0892116a6",
+    "content-hash": "a411abbafb17bbc34436b4c00fe6dc8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -49,6 +49,119 @@
                 "stack"
             ],
             "time": "2016-08-01 12:05:04"
+        },
+        {
+            "name": "christian-riesen/base32",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ChristianRiesen/base32.git",
+                "reference": "0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa",
+                "reference": "0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "satooshi/php-coveralls": "0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Base32\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Riesen",
+                    "email": "chris.riesen@gmail.com",
+                    "homepage": "http://christianriesen.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Base32 encoder/decoder according to RFC 4648",
+            "homepage": "https://github.com/ChristianRiesen/base32",
+            "keywords": [
+                "base32",
+                "decode",
+                "encode",
+                "rfc4648"
+            ],
+            "time": "2016-05-05 11:49:03"
+        },
+        {
+            "name": "christian-riesen/otp",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ChristianRiesen/otp.git",
+                "reference": "b441f8338c0375df3e288225acefb943c0b3cb05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ChristianRiesen/otp/zipball/b441f8338c0375df3e288225acefb943c0b3cb05",
+                "reference": "b441f8338c0375df3e288225acefb943c0b3cb05",
+                "shasum": ""
+            },
+            "require": {
+                "christian-riesen/base32": "^1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "suggest": {
+                "paragonie/random_compat": "Optional polyfill for a more secure random generator for pre PHP7 versions"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Otp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Riesen",
+                    "email": "chris.riesen@gmail.com",
+                    "homepage": "http://christianriesen.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "One Time Passwords, hotp and totp according to RFC4226 and RFC6238",
+            "homepage": "https://github.com/ChristianRiesen/otp",
+            "keywords": [
+                "googleauthenticator",
+                "hotp",
+                "otp",
+                "rfc4226",
+                "rfc6238",
+                "totp"
+            ],
+            "time": "2016-06-10 14:47:22"
         },
         {
             "name": "codegyre/robo",
@@ -1027,6 +1140,43 @@
             "time": "2016-10-26 13:52:51"
         },
         {
+            "name": "drupal/acquia_purge",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/acquia_purge",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/acquia_purge-8.x-1.0-alpha2.zip",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/page_cache": "8.*",
+                "drupal/purge": "8.*",
+                "drupal/purge_drush": "8.*",
+                "drupal/purge_processor_cron": "8.*",
+                "drupal/purge_processor_lateruntime": "8.*",
+                "drupal/purge_queuer_coretags": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Top-notch cache invalidation on Acquia Cloud!",
+            "homepage": "https://www.drupal.org/project/acquia_purge",
+            "time": "2016-09-07 13:43:49"
+        },
+        {
             "name": "drupal/coder",
             "version": "8.2.9",
             "source": {
@@ -1486,6 +1636,38 @@
             "time": "2016-07-10 18:43:18"
         },
         {
+            "name": "drupal/encrypt",
+            "version": "8.3.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/encrypt",
+                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/encrypt-8.x-3.0-alpha1.zip",
+                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/key": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides an API for two-way encryption.",
+            "homepage": "https://www.drupal.org/project/encrypt",
+            "time": "2016-02-26 14:58:40"
+        },
+        {
             "name": "drupal/entity_browser",
             "version": "dev-8.x-1.x",
             "source": {
@@ -1682,6 +1864,32 @@
             "time": "2016-11-07 16:33:31"
         },
         {
+            "name": "drupal/ga_login",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/ga_login",
+                "reference": "1e1d6f39a6cf07acf9b86bb31b10d6e921fc6272"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/tfa": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "TFA plugins for Hmac-Based One Time Passwords & Time Based One Time Password with recovery codes as fallback.",
+            "homepage": "https://www.drupal.org/project/ga_login",
+            "time": "2016-08-19 19:20:09"
+        },
+        {
             "name": "drupal/google_map_field",
             "version": "8.1.1",
             "source": {
@@ -1771,6 +1979,40 @@
             "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities. ",
             "homepage": "https://www.drupal.org/project/inline_entity_form",
             "time": "2016-10-18 23:16:30"
+        },
+        {
+            "name": "drupal/key",
+            "version": "8.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/key.git",
+                "reference": "9b7bd169f7720f7c5e02f6b5e9d0b81d8739eab9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/key-8.x-1.3.zip",
+                "reference": "9b7bd169f7720f7c5e02f6b5e9d0b81d8739eab9",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides the ability to manage site-wide keys.",
+            "homepage": "http://drupal.org/project/key",
+            "keywords": [
+                "Drupal"
+            ],
+            "time": "2016-09-22 23:47:27"
         },
         {
             "name": "drupal/metatag",
@@ -2081,6 +2323,48 @@
             "time": "2016-08-07 10:52:55"
         },
         {
+            "name": "drupal/purge",
+            "version": "8.3.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/purge",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0-beta6.zip",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/purge_drush": "self.version",
+                "drupal/purge_processor_cron": "self.version",
+                "drupal/purge_processor_lateruntime": "self.version",
+                "drupal/purge_queuer_coretags": "self.version",
+                "drupal/purge_tokens": "self.version",
+                "drupal/purge_ui": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/purge_drush, drupal/purge_processor_cron, drupal/purge_processor_lateruntime, drupal/purge_queuer_coretags, drupal/purge_tokens, drupal/purge_ui"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a generic external cache invalidation API and queue service.",
+            "homepage": "https://www.drupal.org/project/purge",
+            "time": "2016-10-26 12:16:03"
+        },
+        {
             "name": "drupal/redirect",
             "version": "8.1.0-alpha1",
             "source": {
@@ -2168,6 +2452,40 @@
             "description": "Site security and configuration review module.",
             "homepage": "https://www.drupal.org/project/security_review",
             "time": "2016-10-20 15:43:48"
+        },
+        {
+            "name": "drupal/tfa",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/tfa",
+                "reference": "ea39e6b85c2e35b0dc2c0bd0abe1c6bd6162ee22"
+            },
+            "require": {
+                "christian-riesen/otp": "2.*",
+                "drupal/core": "8.*",
+                "drupal/encrypt": "8.*"
+            },
+            "replace": {
+                "drupal/services_tfa": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/services_tfa",
+                "drupal/services": "Required by drupal/services_tfa"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Pluggable provider of second factor authentication for Drupal",
+            "homepage": "https://www.drupal.org/project/tfa",
+            "time": "2016-08-23 20:32:20"
         },
         {
             "name": "drupal/token",
@@ -2261,6 +2579,40 @@
             "description": "Provides some extra twig functions.",
             "homepage": "https://www.drupal.org/project/twig_tweak",
             "time": "2016-09-02 11:29:33"
+        },
+        {
+            "name": "drupal/username_enumeration_prevention",
+            "version": "8.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/username_enumeration_prevention",
+                "reference": "05d0aceb217d1577f542f9fd04dc062ade1e0a18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/username_enumeration_prevention-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Removes the error message produced, from the forgot password form, when an incorrect user has been supplied.",
+            "homepage": "https://www.drupal.org/project/username_enumeration_prevention",
+            "time": "2016-06-22 21:55:23"
         },
         {
             "name": "drupal/workbench_moderation",
