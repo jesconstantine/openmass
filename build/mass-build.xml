@@ -95,8 +95,7 @@
             <param>admin</param>
           </drush>
 
-          <!-- Change name of admin user. -->
-          <exec command="mysql -u ${drupal.database.username} -p${drupal.database.password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
+          <phingcall target="mass-update-admin-username" />
         </then>
       </if>
 
@@ -180,4 +179,8 @@
     </if>
   </target>
 
+  <target name="mass-update-admin-username" description="Update admin user name.">
+    <echo>Updating administrator user name.</echo>
+    <exec command="mysql -u ${drupal.database.username} -p${drupal.database.password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
+  </target>
 </project>
