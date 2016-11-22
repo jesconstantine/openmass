@@ -14,6 +14,7 @@ global-styling:
     libraries/formstack/js/matchMayflower.js: {}
     libraries/ajax_views_ext/js/ajaxViewsExt.js: {}
     libraries/interstitial/js/external-links.js: {}
+    libraries/browserupdate/js/browserUpdate.js: {}
   dependencies:
     - core/drupal
     - core/drupal.announce
