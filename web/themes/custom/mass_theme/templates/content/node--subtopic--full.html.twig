@@ -42,6 +42,9 @@ set pageHeader = {
   {% endif %}
 {% endblock %}
 {% block postContent %}
+  {% if content.field_image_credit is not empty %}
+    {{ content.field_image_credit }}
+  {% endif %}
   {# include "organisms-breadcrumbs" #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
