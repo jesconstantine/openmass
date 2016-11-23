@@ -156,3 +156,4 @@ permissions:
   151: 'administer seckit'
   152: 'setup own tfa'
   153: 'require tfa'
+  154: 'manage password reset'

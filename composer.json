@@ -116,6 +116,7 @@
         "drupal/migrate_source_csv": "~8.1",
         "drupal/migrate_tools": "~8",
         "drupal/paragraphs": "~8.1.0",
+        "drupal/password_policy": "8.3.0-alpha2",
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
         "drupal/restrict_by_ip": "8.4.x-dev",
@@ -187,6 +188,9 @@
             },
             "drupal/crazyegg": {
               "Configure crazyegg for specific pages. (https://www.drupal.org/node/2812783)": "https://www.drupal.org/files/issues/2812783-configure-for-specific-pages.patch"
+            },
+            "drupal/password_policy": {
+              "Removes field updates from the install file. (https://www.drupal.org/node/2771129#comment-11792230)": "https://www.drupal.org/files/issues/password-policy-remove-install-2771129-5.patch"
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
