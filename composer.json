@@ -100,7 +100,7 @@
         "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
-        "drupal/core": "^8.0",
+        "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
         "drupal/entity_browser": "8.1.x-dev",
@@ -112,9 +112,9 @@
         "drupal/imagick": "8.*",
         "drupal/inline_entity_form": "^8.1",
         "drupal/metatag": "^8.1",
-        "drupal/migrate_plus": "~8.2",
-        "drupal/migrate_source_csv": "~8.1",
-        "drupal/migrate_tools": "~8",
+        "drupal/migrate_plus": "^8.3",
+        "drupal/migrate_source_csv": "^8.2",
+        "drupal/migrate_tools": "^8.3",
         "drupal/paragraphs": "~8.1.0",
         "drupal/password_policy": "8.3.0-alpha2",
         "drupal/pathauto": "^8.1",
@@ -176,9 +176,6 @@
             "drupal/core": {
                 "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
                 "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
-            },
-            "drupal/metatag": {
-                "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
             },
             "drupal/workbench_moderation": {
                 "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
