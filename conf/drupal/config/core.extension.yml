@@ -66,6 +66,7 @@ module:
   quickedit: 0
   rdf: 0
   redirect: 0
+  restrict_by_ip: 0
   seckit: 0
   security_review: 0
   shortcut: 0
