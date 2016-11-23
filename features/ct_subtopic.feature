@@ -12,6 +12,7 @@ Feature: Section Landing Content type
       | field_lede             | Outdoor Lede                                                                           |
       | field_description      | Outdoor description                                                                    |
       | field_agency_links     | MassParks - http://www.google.com, Department of Fish and Game - http://www.google.com |
+      | field_image_credit     | State House (Shutterstock)                                                             |
       | status                 | 1                                                                                      |
     Given "action" content:
       | title                        | field_action_parent          |

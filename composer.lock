@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cec30f60c98b5dfa9f31094a7b26c3fb",
+    "hash": "8ddc1fd92b80d241c3c8ac9549126bf5",
+    "content-hash": "f68bbb0ddbab566f33fbfa1b622e1914",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1139,6 +1140,43 @@
             "time": "2016-10-26 13:52:51"
         },
         {
+            "name": "drupal/acquia_purge",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/acquia_purge",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/acquia_purge-8.x-1.0-alpha2.zip",
+                "reference": "1f40a25af3cacf73426dc4a5806f6b01d34fdf84",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/page_cache": "8.*",
+                "drupal/purge": "8.*",
+                "drupal/purge_drush": "8.*",
+                "drupal/purge_processor_cron": "8.*",
+                "drupal/purge_processor_lateruntime": "8.*",
+                "drupal/purge_queuer_coretags": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Top-notch cache invalidation on Acquia Cloud!",
+            "homepage": "https://www.drupal.org/project/acquia_purge",
+            "time": "2016-09-07 13:43:49"
+        },
+        {
             "name": "drupal/coder",
             "version": "8.2.9",
             "source": {
@@ -2244,6 +2282,48 @@
             "time": "2016-08-07 10:52:55"
         },
         {
+            "name": "drupal/purge",
+            "version": "8.3.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/purge",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0-beta6.zip",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/purge_drush": "self.version",
+                "drupal/purge_processor_cron": "self.version",
+                "drupal/purge_processor_lateruntime": "self.version",
+                "drupal/purge_queuer_coretags": "self.version",
+                "drupal/purge_tokens": "self.version",
+                "drupal/purge_ui": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/purge_drush, drupal/purge_processor_cron, drupal/purge_processor_lateruntime, drupal/purge_queuer_coretags, drupal/purge_tokens, drupal/purge_ui"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a generic external cache invalidation API and queue service.",
+            "homepage": "https://www.drupal.org/project/purge",
+            "time": "2016-10-26 12:16:03"
+        },
+        {
             "name": "drupal/redirect",
             "version": "8.1.0-alpha1",
             "source": {
@@ -2483,6 +2563,40 @@
             "description": "Provides some extra twig functions.",
             "homepage": "https://www.drupal.org/project/twig_tweak",
             "time": "2016-09-02 11:29:33"
+        },
+        {
+            "name": "drupal/username_enumeration_prevention",
+            "version": "8.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/username_enumeration_prevention",
+                "reference": "05d0aceb217d1577f542f9fd04dc062ade1e0a18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/username_enumeration_prevention-8.x-1.0-beta1.zip",
+                "reference": "05d0aceb217d1577f542f9fd04dc062ade1e0a18",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Removes the error message produced, from the forgot password form, when an incorrect user has been supplied.",
+            "homepage": "https://www.drupal.org/project/username_enumeration_prevention",
+            "time": "2016-06-22 21:55:23"
         },
         {
             "name": "drupal/workbench_moderation",

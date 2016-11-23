@@ -7,7 +7,7 @@ Feature: Installation
   Scenario: Verify that user 1 can log into the site.
     Given I am not logged in
     When I visit "user/login"
-    And I fill in "name" with "admin"
+    And I fill in "name" with "massadmin"
     And I fill in "pass" with "admin"
     And I press "Log in"
     Then I should see the link "Log out"

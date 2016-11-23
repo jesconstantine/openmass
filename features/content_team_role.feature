@@ -7,14 +7,14 @@ Feature: Content Management
   Scenario: Verify that content team member can only see content menu item
     Given I am logged in as a user with the "content_team" role
     And I am on "admin/content"
-    Then I should see the link "Content"
-    And I should not see the link "Structure"
-    And I should not see the link "Appearance"
-    And I should not see the link "Extend"
-    And I should not see the link "Configuration"
-    And I should not see the link "People"
-    And I should not see the link "Reports"
-    And I should not see the link "Help"
+    Then I should see the link "Content" in the admin_menu
+    And I should not see the link "Structure" in the admin_menu
+    And I should not see the link "Appearance" in the admin_menu
+    And I should not see the link "Extend" in the admin_menu
+    And I should not see the link "Configuration" in the admin_menu
+    And I should not see the link "People" in the admin_menu
+    And I should not see the link "Reports" in the admin_menu
+    And I should not see the link "Help" in the admin_menu
 
   Scenario: Verify that content team user has broad permission to deal with all content and can use workbench
     Given I am logged in as a user with the "content_team" role

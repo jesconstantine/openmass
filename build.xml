@@ -39,6 +39,7 @@
 
     <target name="clean-install" description="Initialize a new copy of the site without a canonical DB.">
         <phingcall target="drupal-install" />
+        <phingcall target="mass-update-admin-username" />
         <phingcall target="mass-local-modules" />
         <phingcall target="mass-set-api-keys" />
     </target>

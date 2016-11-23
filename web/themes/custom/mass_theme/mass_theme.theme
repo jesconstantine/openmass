@@ -465,6 +465,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $groups = array();
     $order = array();
     $delta = 0;
+
     // Wrap up our contact groups.
     while (!empty($element[$delta])) {
 
@@ -530,7 +531,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
-        $replace = array(", ", "\r\n", "\n", "\r", " ");
+
         // Wrap up all our addresses.
         $address_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
@@ -544,20 +545,35 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
 
-      if ($element[$delta]['#paragraph']->get('field_type')->value == 'other') {
+      // No type? or type "other"? Try to process what we have.
+      if (!isset($element[$delta]['#paragraph']->get('field_type')->value) || $element[$delta]['#paragraph']->get('field_type')->value == 'other') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our other stuff. Anything goes!
+        $value = '';
+        $link = '';
+        if ($element[$delta]['#paragraph']->get('field_link')->first() !== NULL) {
+          $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
+        }
         $other_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'] . $element[$delta]['#paragraph']->get('field_email')->value . $element[$delta]['#paragraph']->get('field_address')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value .
+          $value .
+          $element[$delta]['#paragraph']->get('field_email')->value .
+          $element[$delta]['#paragraph']->get('field_address')->value,
           'rawVal'  => '',
-          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value . $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'] . $element[$delta]['#paragraph']->get('field_email')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value .
+          $link .
+          $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
         $delta++;
         continue;
       }
+
+      // If all else fails, increment or we spin out of control.
+      $delta++;
     }
 
     $order = array_unique($order);

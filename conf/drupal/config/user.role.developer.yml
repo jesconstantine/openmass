@@ -154,3 +154,5 @@ permissions:
   149: 'run security checks'
   150: 'administer restrict by ip'
   151: 'administer seckit'
+  152: 'setup own tfa'
+  153: 'require tfa'
