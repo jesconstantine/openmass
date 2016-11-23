@@ -97,6 +97,7 @@
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/acquia_connector": "^8.1",
+        "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/core": "^8.2.3",
@@ -106,6 +107,7 @@
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
         "drupal/inline_entity_form": "^8.1",
@@ -114,12 +116,15 @@
         "drupal/migrate_source_csv": "~8.1",
         "drupal/migrate_tools": "~8",
         "drupal/paragraphs": "~8.1.0",
+        "drupal/password_policy": "8.3.0-alpha2",
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
+        "drupal/restrict_by_ip": "8.4.x-dev",
         "drupal/seckit": "8.1.0-alpha2",
         "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
+        "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
@@ -183,6 +188,12 @@
             },
             "drupal/crazyegg": {
               "Configure crazyegg for specific pages. (https://www.drupal.org/node/2812783)": "https://www.drupal.org/files/issues/2812783-configure-for-specific-pages.patch"
+            },
+            "drupal/password_policy": {
+              "Removes field updates from the install file. (https://www.drupal.org/node/2771129#comment-11792230)": "https://www.drupal.org/files/issues/password-policy-remove-install-2771129-5.patch"
+            },
+            "drupal/username_enumeration_prevention": {
+                "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
             }
         }
     }

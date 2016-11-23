@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_icon_term
+    - field.field.node.section_landing.field_image_credit
     - image.style.hero800x400
     - node.type.section_landing
   module:
@@ -27,5 +28,6 @@ content:
 hidden:
   field_icon: true
   field_icon_term: true
+  field_image_credit: true
   links: true
   workbench_moderation_control: true
