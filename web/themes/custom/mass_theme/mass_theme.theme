@@ -1046,8 +1046,9 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       // if not, use the file name.
       $filename = $file->getFilename();
 
+      $link_text = '';
       if (!empty($file_list[$id]['description'])) {
-        $linktext = $filename;
+        $link_text = $file_list[$id]['description'];
       }
 
       // Set the file link variable.
@@ -1058,16 +1059,13 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       $file_info = new SplFileInfo($filename);
       $file_extension = $file_info->getExtension();
 
-      // Set the file type based on extesnion.
-      $file_type = $file_extension;
-
       // Set the icon name.
       $icon_name = 'doc-' . $file_extension;
 
       $actionDownloads[] = array(
         'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
-        'title' => $linktext,
-        'url' => $url,
+        'text' => $link_text,
+        'href' => $url,
         'size' => $readable_size,
         'type' => $file_extension,
       );
