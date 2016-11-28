@@ -57,7 +57,11 @@
       {% if content.field_label|render|trim is not empty %}
         <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
       {% endif %}
-      <a href="tel:+{{ content.field_phone|field_value }}" class="ma__header-contact__value ma__header-contact__value--phone">{{ content.field_phone|field_value }}</a>
+      {% if paragraph.field_type.value == 'phone' %}
+        <a href="tel:+{{ content.field_phone|field_value }}" class="ma__header-contact__value ma__header-contact__value--phone">{{ content.field_phone|field_value }}</a>
+      {% else %}
+        {{ content.field_phone|field_value }}
+      {% endif %}
       {% if content.field_caption|render|trim is not empty %}
         <div class="ma__header-contact__details">
           {{ content.field_caption|field_value }}
