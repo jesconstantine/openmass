@@ -70,8 +70,7 @@
    {{ page.header }}
 </header>
 
-<main role="main">{# Keeping this for accessibility purposes #}
-  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+<main role="main" id="main-content" tabindex="-1">{# Keeping this for accessibility purposes #}
 
   {# Content region populated by mass_search custom module template/mass-search #}
   {{ page.content }}
