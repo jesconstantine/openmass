@@ -37,11 +37,11 @@ set pageHeader = {
   {% endif %}
 {% endblock %}
 {% block pageContent %}
-  {% include "@custom_includes/organisms-quick-actions.html.twig" with quick_actions %}
+  {% include "@custom_includes/organisms-quick-actions.html.twig" %}
   {{ content.field_action_details }}
 {% endblock %}
 {% block sidebar %}
-  {% include "@custom_includes/organisms-quick-actions.html.twig" with quick_actions %}
+  {% include "@custom_includes/organisms-quick-actions.html.twig" %}
   {{ content.field_related_link }}
   {{ content.field_action_sidebar }}
 {% endblock %}
