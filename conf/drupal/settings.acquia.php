@@ -12,6 +12,7 @@ $settings['file_private_path'] = '${drupal.settings.file_private_path}';
 $settings['trusted_host_patterns'] = array(
   '^${acquia.accountname}dev.prod.acquia-sites.com',
   '^${acquia.accountname}stg.prod.acquia-sites.com',
+  '^${acquia.accountname}cd.prod.acquia-sites.com',
 );
 
 // Include the Acquia database connection and other config.
@@ -45,7 +46,7 @@ if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) 
 
 // IP-PROTECT PPRODUCTION AND STAGING SITES
 if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
-  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod'))) {
+  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod','cd'))) {
     // All IPs must be in CIDR format, including single address IPs.
     $ips = array(
       '10.20.0.0/16',     // Virtual machine addresses
@@ -67,6 +68,17 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
     // If no override, IP restrictions apply as set in config or GUI,
     // which should usually be empty string unless testing.
     $config['restrict_by_ip.settings']['login_range'] = implode(';',$ips);
+
+    // Get IP address from load balancer, and tell restrict_by_ip to use it.
+    if (!isset($_SERVER['AH_Client_IP'])) {
+      // Default value if acquia fails us.
+      $_SERVER['AH_Client_IP'] = $_SERVER['REMOTE_ADDR'];
+      // Environment value set by Acquia.
+      if (isset($_ENV['AH_Client_IP'])) {
+        $_SERVER['AH_Client_IP'] = $_ENV['AH_Client_IP'];
+      }
+    }
+    $config['restrict_by_ip.settings']['header'] = 'AH_Client_IP';
   }
 }
 
