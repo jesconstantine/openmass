@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.error_page.field_error_title
     - field.field.node.error_page.field_helpful_links
     - field.field.node.error_page.field_include_search
+    - field.field.node.error_page.field_interstitial
     - node.type.error_page
   module:
     - link
@@ -56,6 +57,12 @@ content:
     type: link_default
   field_include_search:
     weight: 36
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_interstitial:
+    weight: 38
     settings:
       display_label: true
     third_party_settings: {  }
