@@ -43,7 +43,35 @@ if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) 
   }
 }
 
-// PASSWORD-PROTECT PRODUCTION SITE
+// IP-PROTECT PPRODUCTION AND STAGING SITES
+if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
+  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod'))) {
+    // All IPs must be in CIDR format, including single address IPs.
+    $ips = array(
+      '10.20.0.0/16',     // Virtual machine addresses
+      '146.243.0.0/16',   // MassIT VPN
+      '170.63.0.0/16',    // MassIT VPN
+      '63.250.249.138/32',// Palantir VPN
+      '104.247.39.34/32', // From here to end are Acquia internal
+      '40.130.238.138/32',
+      '207.173.24.186/32',
+      '50.224.63.14/32',
+      '80.71.2.77/32',
+      '66.207.219.134/32',
+      '208.66.24.54/32',
+      '50.247.79.241/32',
+      '59.100.22.81/32',
+      '14.141.169.186/32',
+    );
+    // Override restrict_by_ip configuration in these environments.
+    // If no override, IP restrictions apply as set in config or GUI,
+    // which should usually be empty string unless testing.
+    $config['restrict_by_ip.settings']['login_range'] = implode(';',$ips);
+  }
+}
+
+// PASSWORD-PROTECT PRODUCTION
+// to be removed when site goes live
 if (!$cli && (isset($_ENV['AH_PRODUCTION']) && $_ENV['AH_PRODUCTION'])) {
     $username = 'massgov';
     $password = 'for the commonwealth';
