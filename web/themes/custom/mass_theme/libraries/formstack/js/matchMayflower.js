@@ -10,9 +10,6 @@ $(function(){
         var $this = $(this),
         $label = $this.siblings( "label[for=" + $this.attr( "id" ) + "]" );
 
-        // add class to label
-        $label.addClass('ma__select-box__label');
-
         // add class to field div container
         // $(this).parent().addClass('ma__feedback-form__type');
 
