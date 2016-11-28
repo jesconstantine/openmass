@@ -547,7 +547,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       // No type? or type "other"? Try to process what we have.
       if (!isset($element[$delta]['#paragraph']->get('field_type')->value) || $element[$delta]['#paragraph']->get('field_type')->value == 'other') {
-        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        $order[$delta] = 'other';
         // Wrap up all our other stuff. Anything goes!
         $value = '';
         $link = '';
