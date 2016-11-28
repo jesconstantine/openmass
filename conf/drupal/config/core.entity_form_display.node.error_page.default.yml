@@ -62,7 +62,7 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
   field_interstitial:
-    weight: 38
+    weight: 29
     settings:
       display_label: true
     third_party_settings: {  }
