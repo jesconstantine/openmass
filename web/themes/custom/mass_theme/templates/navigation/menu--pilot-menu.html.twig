@@ -65,7 +65,7 @@
         set item_classes = [
           menu_level == 0 ? 'ma__main-nav__item',
           menu_level > 0 ? 'ma__main-nav__subitem',
-          item.is_expanded ? 'has-subnav js-main-nav-toggle',
+          item.is_expanded ? 'has-subnav js-main-nav-toggle' : 'js-main-nav-top-link',
           item.in_active_trail ? 'is-active'
         ]
       %}
