@@ -528,7 +528,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
-          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => str_replace(array('+','-'), '',filter_var($element[$delta]['#paragraph']->get('field_phone')->value, FILTER_SANITIZE_NUMBER_INT)),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
