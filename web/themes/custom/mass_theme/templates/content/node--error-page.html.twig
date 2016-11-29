@@ -18,7 +18,7 @@ set errorPage = {
 
 {% block pageContent %}
   {% if content.field_interstitial|render|striptags|trim == 'True' %}
-    {{ content.field_interstitial }}
+    {#{{ content.field_interstitial }}#}
   {% endif %}
   {% if content.field_include_search|render|striptags|trim == 'True' %}
     {% include "@custom_includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
