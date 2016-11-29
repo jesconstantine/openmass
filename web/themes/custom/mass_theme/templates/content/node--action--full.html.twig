@@ -26,7 +26,8 @@ set pageHeader = {
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
   {# include "organisms-page-header" #}
-  {% include "@organisms/by-template/header-alert.twig" %}
+  {# Alert is currently appearing on all actions, commenting out until it can be fixed. #}
+  {# include "@organisms/by-template/header-alert.twig" #}
   {% if content.field_action_header|render|trim is not empty or content.field_header_cta|render|trim is not empty %}
     {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
   {% else %}
