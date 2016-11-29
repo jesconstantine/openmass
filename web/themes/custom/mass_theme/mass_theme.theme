@@ -462,7 +462,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         'link' => array(
           'text' => $element[$delta]['#title'],
           'href' => $url,
-          'type' => substr($url, 0, 4) === "http" ? 'external' : 'internal',
+          'type' => (UrlHelper::isExternal($url)) ? 'external' : 'internal',
         ),
       );
       $delta++;
