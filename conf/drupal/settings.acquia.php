@@ -13,6 +13,7 @@ $settings['trusted_host_patterns'] = array(
   '^${acquia.accountname}dev.prod.acquia-sites.com',
   '^${acquia.accountname}stg.prod.acquia-sites.com',
   '^${acquia.accountname}cd.prod.acquia-sites.com',
+  '^pilot\.mass\.gov$',
 );
 
 // Include the Acquia database connection and other config.
@@ -70,11 +71,12 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
     $config['restrict_by_ip.settings']['login_range'] = implode(';',$ips);
 
     // Get IP address from load balancer, and tell restrict_by_ip to use it.
-    if (!isset($_SERVER['AH_Client_IP'])) {
-      // Default value if acquia fails us.
+    // $_SERVER['AH_CLient_IP'] is not expected to be set at this point, but just in case.
+    if (empty($_SERVER['AH_Client_IP'])) {
+      // Default value if Acquia environment variable is not available.
       $_SERVER['AH_Client_IP'] = $_SERVER['REMOTE_ADDR'];
       // Environment value set by Acquia.
-      if (isset($_ENV['AH_Client_IP'])) {
+      if (!empty($_ENV['AH_Client_IP'])) {
         $_SERVER['AH_Client_IP'] = $_ENV['AH_Client_IP'];
       }
     }
