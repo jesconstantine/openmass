@@ -150,6 +150,7 @@
     <drush command="pm-enable" assume="yes">
         <param>devel</param>
         <param>kint</param>
+        <param>views_ui</param>
         <param>mass_types</param>
         <param>mass_utility</param>
         <param>migrate_tools</param>
