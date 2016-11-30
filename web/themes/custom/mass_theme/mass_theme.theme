@@ -1109,7 +1109,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       // if not, use the file name.
       $filename = $file->getFilename();
 
-      $link_text = '';
+      $link_text = $filename;
       if (!empty($file_list[$id]['description'])) {
         $link_text = $file_list[$id]['description'];
       }
