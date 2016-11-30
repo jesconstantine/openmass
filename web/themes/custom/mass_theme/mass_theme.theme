@@ -565,11 +565,17 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our online links.
+        $value = $link = null;
+        if (!empty($element[$delta]['#paragraph']->get('field_link')->first())) {
+          $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
+        }
+
         $online_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'],
+          'value'   => $value,
           'rawVal'  => '',
-          'link'    => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'],
+          'link'    => $link,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
