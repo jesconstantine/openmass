@@ -499,11 +499,22 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     // Wrap up our related links.
     while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $url = $element[$delta]['#url_title'];
+      // Check if referenced nodes are external urls.
+      if ($element[$delta]['#url']->isRouted()) {
+        $nid = $element[$delta]['#url']->getRouteParameters()['node'];
+        $node = \Drupal::entityManager()->getStorage('node')->load($nid);
+        $external_url = $node->get('field_external_url')->uri;
+        if (!empty($external_url)) {
+          $url = $external_url;
+        }
+      }
+
       $links[] = array(
         'link' => array(
           'text' => $element[$delta]['#title'],
-          'href' => $element[$delta]['#url_title'],
-          'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal',
+          'href' => $url,
+          'type' => (UrlHelper::isExternal($url)) ? 'external' : 'internal',
         ),
       );
       $delta++;
