@@ -8,14 +8,26 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
+
+{#
+  Hiding breadcrumb since we will want these breadcrumbs back in the future
+  refs https://jira.state.ma.us/browse/MGRP-242
+#}
+{#
+ set pageHeader = {
+   'title': label|field_value,
+   'subTitle': content.field_lede|field_value,
+   'intro': '',
+   'headerTags': {
+     'taxonomyTerms': taxonomyTerms
+   }
+ }
 {%
 set pageHeader = {
   'title': label|field_value,
   'subTitle': content.field_lede|field_value,
   'intro': '',
-  'headerTags': {
-    'taxonomyTerms': taxonomyTerms
-  }
+  'headerTags': {}
 }
 %}
 
