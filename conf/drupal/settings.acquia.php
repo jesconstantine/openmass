@@ -84,16 +84,3 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
   }
 }
 
-// PASSWORD-PROTECT PRODUCTION
-// to be removed when site goes live
-if (!$cli && (isset($_ENV['AH_PRODUCTION']) && $_ENV['AH_PRODUCTION'])) {
-    $username = 'massgov';
-    $password = 'for the commonwealth';
-    if (!(isset($_SERVER['PHP_AUTH_USER']) && ($_SERVER['PHP_AUTH_USER']==$username && $_SERVER['PHP_AUTH_PW']==$password))) {
-        header('WWW-Authenticate: Basic realm="This site is protected"');
-        header('HTTP/1.0 401 Unauthorized');
-        // Fallback message when the user presses cancel / escape
-        echo 'Access denied';
-        exit;
-    }
-}
