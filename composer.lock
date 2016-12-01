@@ -3495,12 +3495,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "12d1bf7b1fa112034dcaa3b82b4f331205523681"
+                "reference": "5245299ce63ea806cb0159680950320d4de05988"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/12d1bf7b1fa112034dcaa3b82b4f331205523681",
-                "reference": "12d1bf7b1fa112034dcaa3b82b4f331205523681",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/5245299ce63ea806cb0159680950320d4de05988",
+                "reference": "5245299ce63ea806cb0159680950320d4de05988",
                 "shasum": ""
             },
             "require": {
@@ -3526,7 +3526,7 @@
                 "source": "https://github.com/palantirnet/the-build/tree/37-admin-username",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-12-01 02:18:36"
+            "time": "2016-12-01 13:44:01"
         },
         {
             "name": "palantirnet/the-vagrant",
