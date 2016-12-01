@@ -34,5 +34,5 @@ Feature: Action Content type
     | field-action-sidebar         | paragraphs | quick-action               | false      |
 
   Scenario: Verify that pathauto patterns are applied to action nodes.
-    Given I am viewing an "action" with the title "Run the Test Suite"
-    Then I am at "run-test-suite"
+    Given I am viewing an "action" content with the title "Run the Test Suite"
+    Then I am on "run-test-suite"

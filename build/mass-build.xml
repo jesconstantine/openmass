@@ -83,19 +83,19 @@
       <if>
         <istrue value="${deploy.db_sanitize}" />
         <then>
-          <echo>Preforming local database operations.</echo>
+          <echo>Performing local database operations.</echo>
           <!-- Scrub the DB of PII & reset the admin password. -->
           <drush command="sql-sanitize" assume="yes">
             <option name="sanitize-password">admin</option>
             <option name="sanitize-email">user+%uid@localhost</option>
           </drush>
 
+          <phingcall target="mass-update-admin-username" />
+
           <drush command="upwd">
             <option name="password">admin</option>
-            <param>admin</param>
+            <param>${drupal.admin.user_name}</param>
           </drush>
-
-          <phingcall target="mass-update-admin-username" />
         </then>
       </if>
 
@@ -150,6 +150,7 @@
     <drush command="pm-enable" assume="yes">
         <param>devel</param>
         <param>kint</param>
+        <param>views_ui</param>
         <param>mass_types</param>
         <param>mass_utility</param>
         <param>migrate_tools</param>
@@ -183,7 +184,7 @@
     <echo>Updating administrator user name.</echo>
 
     <!-- Since Circle doesn't have a db password, we need to conditionally pass
-         the password paramater to the mysql command. -->
+         the password parameter to the mysql command. -->
     <if>
       <equals arg1="${drupal.database.password}" arg2="" />
       <then>
@@ -194,6 +195,6 @@
       </else>
     </if>
 
-    <exec command="mysql -u ${drupal.database.username} ${local_db_password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = 'massadmin' WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
+    <exec command="mysql -u ${drupal.database.username} ${local_db_password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = &apos;${drupal.admin.user_name}&apos; WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
   </target>
 </project>

@@ -38,7 +38,8 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% set contactGroups = contactGroups %}
-{% for contactGroup in contactGroups %}
-  {% include "@custom_includes/molecule-contact-group.html.twig" with contactGroup %}
+
+{# Render other sidebar items #}
+{% for item in items %}
+  {{ item.content }}
 {% endfor %}
