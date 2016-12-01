@@ -134,7 +134,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     $sections[] = array(
       'catIcon' => array(
         'svg' => $icon_path,
-        'small' => 'true',
+        'small' => 'TRUE',
       ),
       'title' => array(
         'href' => 'node/' . $row->_entity->get('nid')->value,
@@ -164,6 +164,35 @@ function mass_theme_preprocess_node_action(&$variables) {
       $taxonomyTerms[] = array('url' => $link_path, 'term' => $taxonomyTerm->get('title')->value);
     }
     $variables['taxonomyTerms'] = $taxonomyTerms;
+
+    $field_action_sidebar = $node->get('field_action_sidebar');
+
+    // Get the subheads for the sidebar and filter out the quick action.
+    if ($field_action_sidebar->count() > 0) {
+      $delta = 0;
+      $quick_actions_section = FALSE;
+      $quick_actions = array();
+
+      foreach ($field_action_sidebar->referencedEntities() as $paragraph) {
+        $paragraph->getType();
+        if ($paragraph->getType() == 'subhead') {
+          $title = $paragraph->field_title->value;
+          if ($title == 'Quick Actions') {
+            $quick_actions_section = TRUE;
+          }
+          else {
+            $quick_actions_section = FALSE;
+          }
+        }
+        if ($quick_actions_section == TRUE) {
+          $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+          $build = $view_builder->view($paragraph, 'sidebar');
+          $quick_actions[] = $build;
+        }
+        $delta++;
+      }
+      $variables['quick_actions'] = $quick_actions;
+    }
   }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
@@ -210,7 +239,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
       $related_content[] = array(
         'link' => array(
           'type' => 'internal',
-          'quickaction' => 'false',
+          'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
         ),
@@ -311,7 +340,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
       $calloutLinks[] = array(
         'calloutLink' => array(
           'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
-          'quickaction' => 'false',
+          'quickaction' => 'FALSE',
           'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_relationship_entities['field_common_content']->get('nid')->value),
           'text'        => $row->_relationship_entities['field_common_content']->get('title')->value,
         ),
@@ -393,6 +422,29 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     }
   }
 
+  // Get the subheads for the sidebar and filter out the quick action.
+  if ($element['#field_name'] == 'field_action_sidebar') {
+    $delta = 0;
+    $quick_actions_section = FALSE;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      $paragraph->getType();
+      if ($paragraph->getType() == 'subhead') {
+        $title = $paragraph->field_title->value;
+        if ($title == 'Quick Actions') {
+          $quick_actions_section = TRUE;
+        }
+        else {
+          $quick_actions_section = FALSE;
+        }
+      }
+      if ($quick_actions_section == TRUE) {
+        unset($variables['items'][$delta]);
+      }
+      $delta++;
+    }
+  }
+
   // Get the subheads for the action jump menu.
   if ($element['#field_name'] == 'field_bands') {
     $delta = 0;
@@ -447,11 +499,22 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     // Wrap up our related links.
     while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $url = $element[$delta]['#url_title'];
+      // Check if referenced nodes are external urls.
+      if ($element[$delta]['#url']->isRouted()) {
+        $nid = $element[$delta]['#url']->getRouteParameters()['node'];
+        $node = \Drupal::entityManager()->getStorage('node')->load($nid);
+        $external_url = $node->get('field_external_url')->uri;
+        if (!empty($external_url)) {
+          $url = $external_url;
+        }
+      }
+
       $links[] = array(
         'link' => array(
           'text' => $element[$delta]['#title'],
-          'href' => $element[$delta]['#url_title'],
-          'type' => substr($element[$delta]['#url_title'], 0, 4) === "http" ? 'external' : 'internal',
+          'href' => $url,
+          'type' => (UrlHelper::isExternal($url)) ? 'external' : 'internal',
         ),
       );
       $delta++;
@@ -476,7 +539,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
-          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => str_replace(array('+', '-'), '', filter_var($element[$delta]['#paragraph']->get('field_phone')->value, FILTER_SANITIZE_NUMBER_INT)),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
@@ -502,11 +565,17 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our online links.
+        $value = $link = null;
+        if (!empty($element[$delta]['#paragraph']->get('field_link')->first())) {
+          $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
+        }
+
         $online_details[] = array(
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
-          'value'   => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'],
+          'value'   => $value,
           'rawVal'  => '',
-          'link'    => $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'],
+          'link'    => $link,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
         );
@@ -1070,7 +1139,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       // if not, use the file name.
       $filename = $file->getFilename();
 
-      $link_text = '';
+      $link_text = $filename;
       if (!empty($file_list[$id]['description'])) {
         $link_text = $file_list[$id]['description'];
       }

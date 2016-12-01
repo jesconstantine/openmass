@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43d2215302410caa8405eb707a599f04",
-    "content-hash": "09cfea585f1bdff8c3596c3e3017be3f",
+    "hash": "72342f5054463867ff58541699fd4d32",
+    "content-hash": "c9b202f9615902debdf41535d1c224c4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1577,7 +1577,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha3.zip",
-                "reference": null,
+                "reference": "1bfd486a92f81cb1dfb249b1d723e359683ff2c4",
                 "shasum": null
             },
             "require": {
@@ -1730,7 +1730,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta2.zip",
-                "reference": null,
+                "reference": "0a8d4b38b1a16c8c929ad941b4e3be2925fbcc3f",
                 "shasum": null
             },
             "require": {
@@ -2579,7 +2579,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/twig_tweak-8.x-1.4.zip",
-                "reference": null,
+                "reference": "d13f2323ae7a70dfe3fd0909961a1755ef9a21a7",
                 "shasum": null
             },
             "require": {
@@ -3460,16 +3460,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.0.0-alpha2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "fda8f37ec3d1527dbc3afc3093beae86dcd4bbf2"
+                "reference": "0cdc650c50170c1686225ef7c56718930e6dc5ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/fda8f37ec3d1527dbc3afc3093beae86dcd4bbf2",
-                "reference": "fda8f37ec3d1527dbc3afc3093beae86dcd4bbf2",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0cdc650c50170c1686225ef7c56718930e6dc5ed",
+                "reference": "0cdc650c50170c1686225ef7c56718930e6dc5ed",
                 "shasum": ""
             },
             "type": "library",
@@ -3484,10 +3484,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.0.0-alpha2",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.1.3",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-11-18 23:23:15"
+            "time": "2016-11-29 20:59:22"
         },
         {
             "name": "palantirnet/the-build",
