@@ -482,7 +482,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Load it up and get the field.
         if ($node = Node::load($ref_node['node'])) {
           // Run only on Action nodes.
-          if ($node->getType() == "action") {
+          if ($node->getType() == "action" && $node->hasField('field_external_url')) {
             $external_url = $node->get('field_external_url')->uri;
             if (!empty($external_url)) {
               // Send this url to our template.
@@ -504,9 +504,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#url']->isRouted()) {
         $nid = $element[$delta]['#url']->getRouteParameters()['node'];
         $node = \Drupal::entityManager()->getStorage('node')->load($nid);
-        $external_url = $node->get('field_external_url')->uri;
-        if (!empty($external_url)) {
-          $url = $external_url;
+
+        if ($node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
+          $url = $node->get('field_external_url')->uri;
         }
       }
 
