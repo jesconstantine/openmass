@@ -19,6 +19,17 @@ set errorPage = {
 {% block pageContent %}
   {% if content.field_interstitial|render|striptags|trim == 'True' %}
     {#{{ content.field_interstitial }}#}
+    <form action="">
+      <label for="js-interstitial-dont-show">
+        <input type="checkbox" id="js-interstitial-dont-show">
+        Don't show me this again
+      </label>
+    </form>
+    <div>
+      <button id="js-interstitial-button-back" class="ma__button-alt ma__button-alt--small">Back to Pilot</button>
+      <button id="js-interstitial-button-continue" class="ma__button ma__button--small">Continue</button>
+    </div>
+    {{ attach_library('mass_theme/interstitial-page') }}
   {% endif %}
   {% if content.field_include_search|render|striptags|trim == 'True' %}
     {% include "@custom_includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}

@@ -13,7 +13,12 @@ global-styling:
     js/index-generated.js: {}
 
     libraries/formstack/js/matchMayflower.js: {}
+    libraries/interstitial/js/external-links.js: {}
 js-header:
   header: true
   js:
     js/vendor/modernizr.js: {}
+
+interstitial-page:
+  js:
+    libraries/interstitial/js/interstitial-page.js: {}
