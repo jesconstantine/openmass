@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72342f5054463867ff58541699fd4d32",
-    "content-hash": "c9b202f9615902debdf41535d1c224c4",
+    "hash": "9ad41202f09846c6a738dec4c426ced9",
+    "content-hash": "3d6a3dbf1dd51721c29f7556987a67dd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3491,16 +3491,16 @@
         },
         {
             "name": "palantirnet/the-build",
-            "version": "dev-feature/code-quality-tools",
+            "version": "dev-37-admin-username",
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45"
+                "reference": "5245299ce63ea806cb0159680950320d4de05988"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/5245299ce63ea806cb0159680950320d4de05988",
+                "reference": "5245299ce63ea806cb0159680950320d4de05988",
                 "shasum": ""
             },
             "require": {
@@ -3523,10 +3523,10 @@
             ],
             "description": "Drupal build tasks for our projects.",
             "support": {
-                "source": "https://github.com/palantirnet/the-build/tree/feature/code-quality-tools",
+                "source": "https://github.com/palantirnet/the-build/tree/37-admin-username",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-11-12 03:46:17"
+            "time": "2016-12-01 13:44:01"
         },
         {
             "name": "palantirnet/the-vagrant",
