@@ -19,15 +19,17 @@ set errorPage = {
 {% block pageContent %}
   {% if content.field_interstitial|render|striptags|trim == 'True' %}
     {#{{ content.field_interstitial }}#}
-    <form action="">
-      <label for="js-interstitial-dont-show">
-        <input type="checkbox" id="js-interstitial-dont-show">
-        Don't show me this again
-      </label>
+    <form class="ma__form ma__pilot-transition__form" action="http://www.mass.gov">
+      <div class="ma__pilot-transition__checkbox">
+        <span class="ma__input-checkbox">
+          <input type="checkbox" value="hide-transition-page" id="hide-transition-page">
+          <label for="hide-transition-page"><span>Got it, don't show me this page again</span></label>
+        </span>
+      </div>
     </form>
-    <div>
-      <button id="js-interstitial-button-back" class="ma__button-alt ma__button-alt--small">Back to Pilot</button>
-      <button id="js-interstitial-button-continue" class="ma__button ma__button--small">Continue</button>
+    <div class="ma__pilot-transition__buttons">
+      <button class="ma__button-minor ma__button-minor--small js-interstitial-button-back" type="button">Cancel</button>
+      <button class="ma__button ma__button--small js-interstitial-button-continue">Continue</button>
     </div>
     {{ attach_library('mass_theme/interstitial-page') }}
   {% endif %}

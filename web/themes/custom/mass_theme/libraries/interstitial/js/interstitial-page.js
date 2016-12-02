@@ -16,22 +16,22 @@ $(function(){
   })(window.location.search.substr(1).split('&'));
 
   if(window.localStorage.noInterstitial) {
-    $('#js-interstitial-dont-show').attr('checked', JSON.parse(window.localStorage.noInterstitial));
+    $('#hide-transition-page').attr('checked', JSON.parse(window.localStorage.noInterstitial));
   }
 
 
-  $('#js-interstitial-dont-show').change(function(e) {
+  $('#hide-transition-page').change(function(e) {
     if(window.localStorage) {
       window.localStorage.noInterstitial = this.checked ? true : null;
     }
   });
 
-  $('#js-interstitial-button-continue').click(function() {
+  $('.js-interstitial-button-continue').click(function() {
     // Default to mass.gov if somehow there is no incoming query parameter
     window.location.href = queryString.continueURL || 'https://mass.gov';
   });
 
-  $('#js-interstitial-button-back').click(function() {
+  $('.js-interstitial-button-back').click(function() {
     window.history.back();
   });
 });
