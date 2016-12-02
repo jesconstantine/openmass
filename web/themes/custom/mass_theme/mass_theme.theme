@@ -158,12 +158,12 @@ function mass_theme_preprocess_node_action(&$variables) {
 
   if ($variables['view_mode'] == 'full') {
     $field_action_parent = $node->get('field_action_parent');
-    $taxonomyTerms = array();
-    foreach ($field_action_parent->referencedEntities() as $taxonomyTerm) {
-      $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $taxonomyTerm->get('nid')->value);
-      $taxonomyTerms[] = array('url' => $link_path, 'term' => $taxonomyTerm->get('title')->value);
+    $taxonomy_terms = array();
+    foreach ($field_action_parent->referencedEntities() as $term) {
+      $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $term->get('nid')->value);
+      $taxonomy_terms[] = array('url' => $link_path, 'term' => $term->get('title')->value);
     }
-    $variables['taxonomyTerms'] = $taxonomyTerms;
+    $variables['taxonomyTerms'] = $taxonomy_terms;
 
     $field_action_sidebar = $node->get('field_action_sidebar');
 
@@ -327,7 +327,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($variables['view_mode'] == 'full') {
     // Get our callout links view.
     $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
-    $calloutLinks = array();
+    $callout_links = array();
 
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
@@ -337,7 +337,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
       if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
         $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
       }
-      $calloutLinks[] = array(
+      $callout_links[] = array(
         'calloutLink' => array(
           'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
           'quickaction' => 'FALSE',
@@ -347,7 +347,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
       );
     }
     // Send to twig.
-    $variables['calloutLinks'] = $calloutLinks;
+    $variables['calloutLinks'] = $callout_links;
 
     // Get our subtopics (sections) view.
     $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
@@ -482,7 +482,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Load it up and get the field.
         if ($node = Node::load($ref_node['node'])) {
           // Run only on Action nodes.
-          if ($node->getType() == "action") {
+          if ($node->getType() == "action" && $node->hasField('field_external_url')) {
             $external_url = $node->get('field_external_url')->uri;
             if (!empty($external_url)) {
               // Send this url to our template.
@@ -504,9 +504,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#url']->isRouted()) {
         $nid = $element[$delta]['#url']->getRouteParameters()['node'];
         $node = \Drupal::entityManager()->getStorage('node')->load($nid);
-        $external_url = $node->get('field_external_url')->uri;
-        if (!empty($external_url)) {
-          $url = $external_url;
+
+        if ($node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
+          $url = $node->get('field_external_url')->uri;
         }
       }
 
@@ -565,7 +565,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our online links.
-        $value = $link = null;
+        $value = $link = NULL;
         if (!empty($element[$delta]['#paragraph']->get('field_link')->first())) {
           $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
           $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
@@ -1120,7 +1120,7 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
  */
 function mass_theme_preprocess_paragraph__file_download(&$variables) {
   $paragraph = $variables['paragraph'];
-  $actionDownloads = array();
+  $action_downloads = array();
   $field_downloads = $paragraph->get('field_downloads');
   $files = '';
 
@@ -1155,7 +1155,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       // Set the icon name.
       $icon_name = 'doc-' . $file_extension;
 
-      $actionDownloads[] = array(
+      $action_downloads[] = array(
         'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
         'text' => $link_text,
         'href' => $url,
@@ -1164,7 +1164,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       );
     }
   }
-  $variables['actionDownloads'] = $actionDownloads;
+  $variables['actionDownloads'] = $action_downloads;
 }
 
 /**
