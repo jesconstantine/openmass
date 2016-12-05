@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.interstitial.body
+    - field.field.node.interstitial.field_message
     - node.type.interstitial
   module:
     - text
@@ -13,14 +13,13 @@ targetEntityType: node
 bundle: interstitial
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 1
+  field_message:
+    weight: 26
     settings:
-      rows: 9
-      summary_rows: 3
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
+    type: text_textarea
   title:
     type: string_textfield
     weight: 0

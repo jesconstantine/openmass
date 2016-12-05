@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.interstitial.body
+    - field.field.node.interstitial.field_message
     - node.type.interstitial
   module:
     - text
@@ -13,12 +13,12 @@ targetEntityType: node
 bundle: interstitial
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
+  field_message:
+    weight: 102
+    label: above
     settings: {  }
     third_party_settings: {  }
+    type: text_default
   links:
     weight: 100
 hidden: {  }

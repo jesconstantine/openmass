@@ -4,23 +4,16 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.interstitial.body
+    - field.field.node.interstitial.field_message
     - node.type.interstitial
   module:
-    - text
     - user
 id: node.interstitial.teaser
 targetEntityType: node
 bundle: interstitial
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_message: true
