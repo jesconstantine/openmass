@@ -1,0 +1,40 @@
+uuid: a98f5cfc-a990-486e-9a7f-880d1a77338c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.2up_stacked_band.field_main
+    - field.field.paragraph.2up_stacked_band.field_right_rail
+    - paragraphs.paragraphs_type.2up_stacked_band
+  module:
+    - paragraphs
+    - workbench_moderation
+id: paragraph.2up_stacked_band.default
+targetEntityType: paragraph
+bundle: 2up_stacked_band
+mode: default
+content:
+  field_main:
+    weight: 8
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_right_rail:
+    type: entity_reference_paragraphs
+    weight: 7
+    settings:
+      title: molecule
+      title_plural: molecules
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true
