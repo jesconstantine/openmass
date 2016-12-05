@@ -1,0 +1,35 @@
+uuid: 710239b7-9929-4dbc-9e00-5ea4d65b671a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.interstitial.field_message
+    - node.type.interstitial
+  module:
+    - text
+    - workbench_moderation
+id: node.interstitial.default
+targetEntityType: node
+bundle: interstitial
+mode: default
+content:
+  field_message:
+    weight: 26
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true
