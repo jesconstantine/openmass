@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.interstitial.field_message
     - node.type.interstitial
   module:
+    - path
     - text
     - workbench_moderation
 id: node.interstitial.default
@@ -14,12 +15,17 @@ bundle: interstitial
 mode: default
 content:
   field_message:
-    weight: 26
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+  path:
+    type: path
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -29,7 +35,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  path: true
   promote: true
   sticky: true
   uid: true
