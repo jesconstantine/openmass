@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "921a5c97cd9a72b5ed40d32f88d9311c",
-    "content-hash": "7e83537fcc28abd6bdd24abc4fc63ca4",
+    "hash": "9ad41202f09846c6a738dec4c426ced9",
+    "content-hash": "3d6a3dbf1dd51721c29f7556987a67dd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3490,16 +3490,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.1.4",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "3a959bead5fd561748be539ee35f2a3bdfaa27fc"
+                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/3a959bead5fd561748be539ee35f2a3bdfaa27fc",
-                "reference": "3a959bead5fd561748be539ee35f2a3bdfaa27fc",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
+                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
                 "shasum": ""
             },
             "type": "library",
@@ -3514,23 +3514,23 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.1.4",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.1.6",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-11-29 23:00:29"
+            "time": "2016-12-01 20:21:37"
         },
         {
             "name": "palantirnet/the-build",
-            "version": "dev-feature/code-quality-tools",
+            "version": "dev-37-admin-username",
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45"
+                "reference": "5245299ce63ea806cb0159680950320d4de05988"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
-                "reference": "1ac262d5791ee5c6059b0a14df2c1b3000cb8d45",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/5245299ce63ea806cb0159680950320d4de05988",
+                "reference": "5245299ce63ea806cb0159680950320d4de05988",
                 "shasum": ""
             },
             "require": {
@@ -3553,10 +3553,10 @@
             ],
             "description": "Drupal build tasks for our projects.",
             "support": {
-                "source": "https://github.com/palantirnet/the-build/tree/feature/code-quality-tools",
+                "source": "https://github.com/palantirnet/the-build/tree/37-admin-username",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-11-12 03:46:17"
+            "time": "2016-12-01 13:44:01"
         },
         {
             "name": "palantirnet/the-vagrant",

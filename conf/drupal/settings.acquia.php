@@ -12,6 +12,8 @@ $settings['file_private_path'] = '${drupal.settings.file_private_path}';
 $settings['trusted_host_patterns'] = array(
   '^${acquia.accountname}dev.prod.acquia-sites.com',
   '^${acquia.accountname}stg.prod.acquia-sites.com',
+  '^${acquia.accountname}cd.prod.acquia-sites.com',
+  '^pilot\.mass\.gov$',
 );
 
 // Include the Acquia database connection and other config.
@@ -45,7 +47,7 @@ if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) 
 
 // IP-PROTECT PPRODUCTION AND STAGING SITES
 if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
-  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod'))) {
+  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod','cd'))) {
     // All IPs must be in CIDR format, including single address IPs.
     $ips = array(
       '10.20.0.0/16',     // Virtual machine addresses
@@ -67,19 +69,18 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
     // If no override, IP restrictions apply as set in config or GUI,
     // which should usually be empty string unless testing.
     $config['restrict_by_ip.settings']['login_range'] = implode(';',$ips);
+
+    // Get IP address from load balancer, and tell restrict_by_ip to use it.
+    // $_SERVER['AH_CLient_IP'] is not expected to be set at this point, but just in case.
+    if (empty($_SERVER['AH_Client_IP'])) {
+      // Default value if Acquia environment variable is not available.
+      $_SERVER['AH_Client_IP'] = $_SERVER['REMOTE_ADDR'];
+      // Environment value set by Acquia.
+      if (!empty($_ENV['AH_Client_IP'])) {
+        $_SERVER['AH_Client_IP'] = $_ENV['AH_Client_IP'];
+      }
+    }
+    $config['restrict_by_ip.settings']['header'] = 'AH_Client_IP';
   }
 }
 
-// PASSWORD-PROTECT PRODUCTION
-// to be removed when site goes live
-if (!$cli && (isset($_ENV['AH_PRODUCTION']) && $_ENV['AH_PRODUCTION'])) {
-    $username = 'massgov';
-    $password = 'for the commonwealth';
-    if (!(isset($_SERVER['PHP_AUTH_USER']) && ($_SERVER['PHP_AUTH_USER']==$username && $_SERVER['PHP_AUTH_PW']==$password))) {
-        header('WWW-Authenticate: Basic realm="This site is protected"');
-        header('HTTP/1.0 401 Unauthorized');
-        // Fallback message when the user presses cancel / escape
-        echo 'Access denied';
-        exit;
-    }
-}
