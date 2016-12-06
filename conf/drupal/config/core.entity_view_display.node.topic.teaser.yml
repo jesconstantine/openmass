@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.topic.field_featured_image
     - field.field.node.topic.field_featured_mobile_image
     - field.field.node.topic.field_icon_term
+    - field.field.node.topic.field_image_credit
     - field.field.node.topic.field_lede
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
@@ -42,5 +43,6 @@ hidden:
   field_icon: true
   field_icon_term: true
   field_metatags: true
+  field_image_credit: true
   field_section: true
   links: true

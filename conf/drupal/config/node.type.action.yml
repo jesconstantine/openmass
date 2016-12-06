@@ -13,6 +13,7 @@ third_party_settings:
     enabled: true
     allowed_moderation_states:
       - published
+      - archived
       - draft
       - needs_review
     default_moderation_state: draft
@@ -22,6 +23,6 @@ name: 'Right-Rail Layout'
 type: action
 description: ''
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

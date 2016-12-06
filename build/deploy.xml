@@ -173,6 +173,7 @@ ${modified_files}
         <!-- Dump the database; sets the Drupal admin password from above. -->
         <phing target="drupal-dump-db" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
             <property name="build.env" value="vagrant" />
+            <property name="admin" value="${drupal.admin.user_name}" />
             <property name="pass" value="${deploy.set_pass}" />
         </phing>
 

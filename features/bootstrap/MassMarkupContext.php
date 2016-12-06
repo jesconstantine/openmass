@@ -70,7 +70,7 @@ class MassMarkupContext extends MarkupContext
   public function iSeeTheSubtopicPageMarkup()
   {
     $this->assertRegionElement('.ma__page-header__content > h1.ma__page-header__title', 'page_header');
-    $this->assertRegionElement('.ma__page-header__content > h4.ma__page-header__sub-title', 'page_header');
+    //$this->assertRegionElement('.ma__page-header__content > h4.ma__page-header__sub-title', 'page_header');
     $this->assertRegionElement('.ma__page-header__content > .ma__page-header__intro > .ma__rich-text', 'page_header');
     $this->assertRegionElement('section.ma__action-finder .ma__action-finder__container', 'page_main');
     $this->assertRegionElement('section.ma__action-finder header.ma__action-finder__header > h2.ma__action-finder__title', 'page_main');
@@ -78,6 +78,7 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('section.ma__action-finder ul.ma__action-finder__items > li.ma__action-finder__item.ma__action-finder__item--text', 'page_main');
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > h2.ma__link-list__title', 'page_main');
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > ul.ma__link-list__items > li.ma__link-list__item > a.ma__link-list__link', 'page_main');
+    $this->assertRegionElement('section.ma__image-credit > div.ma__image-credit__container > span.ma__image-credit__label', 'page_post');
   }
 
   /**
