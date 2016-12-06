@@ -3,17 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.topic.field_common_content
     - field.field.node.topic.field_featured_image
     - field.field.node.topic.field_featured_mobile_image
     - field.field.node.topic.field_icon_term
     - field.field.node.topic.field_image_credit
     - field.field.node.topic.field_lede
+    - field.field.node.topic.field_metatags
     - field.field.node.topic.field_node_icon
     - field.field.node.topic.field_section
     - node.type.topic
   module:
     - entity_browser
+    - metatag
     - path
     - workbench_moderation
 id: node.topic.default
@@ -77,6 +80,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+  field_metatags:
+    type: metatag_firehose
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
   field_section:
     weight: 5
     settings: {  }
@@ -115,5 +123,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  field_metatags: true
   field_node_icon: true
