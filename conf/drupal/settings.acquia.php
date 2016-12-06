@@ -45,9 +45,9 @@ if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) 
   }
 }
 
-// IP-PROTECT PPRODUCTION AND STAGING SITES
+// IP-PROTECT PRODUCTION SITE
 if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) ) {
-  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('test','prod','cd'))) {
+  if (in_array($_ENV['AH_SITE_ENVIRONMENT'], array('prod'))) {
     // All IPs must be in CIDR format, including single address IPs.
     $ips = array(
       '10.20.0.0/16',     // Virtual machine addresses
