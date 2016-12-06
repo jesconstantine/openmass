@@ -14,8 +14,6 @@ Feature: Interstitial Content type
     Then I am on "run-test-suite"
 
   Scenario: Verify Developer role/user can create error page content
-#    Unable to test for explicit/literal `anonymous_user` role (just in case config got tampered with somewhere!)
-#    Given I am logged in as a user with the "anonymous_user" role
     Given I am logged in as a user with the "content_team" role
     Given I am logged in as a user with the "content_user" role
     Given I am logged in as a user with the "content_editor" role
@@ -27,3 +25,7 @@ Feature: Interstitial Content type
     Given I am logged in as a user with the "developer" role
     When I go to "node/add/interstitial"
     Then the response status code should be 200
+
+  Scenario: Verify anonymous_user cannot create interstitial
+    When I go to "node/add/interstitial"
+    Then the response status code should be 403
