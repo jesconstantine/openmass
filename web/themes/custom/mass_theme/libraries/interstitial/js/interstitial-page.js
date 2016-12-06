@@ -2,6 +2,8 @@
   'use strict';
   // console.info('interstitial page');
 
+  var $hideTransitionPageCheckbox = $('#hide-transition-page');
+  var $continueButton = $('.ma__transition-page__buttons').find('button[type="submit"]');
   var queryString = (function (a) {
     if (a === '') {
       return {};
@@ -20,22 +22,19 @@
   })(window.location.search.substr(1).split('&'));
 
   if (window.localStorage.noInterstitial) {
-    $('#hide-transition-page').attr('checked', JSON.parse(window.localStorage.noInterstitial));
+    $hideTransitionPageCheckbox.attr('checked', JSON.parse(window.localStorage.noInterstitial));
   }
 
 
-  $('#hide-transition-page').change(function (e) {
+  $hideTransitionPageCheckbox.change(function (e) {
     if (window.localStorage) {
       window.localStorage.noInterstitial = this.checked ? true : null;
     }
   });
 
-  $('.js-interstitial-button-continue').click(function () {
+  $continueButton.click(function (e) {
+    e.preventDefault();
     // Default to mass.gov if somehow there is no incoming query parameter
-    window.location.href = queryString.continueURL || 'https://mass.gov';
-  });
-
-  $('.js-interstitial-button-back').click(function () {
-    window.history.back();
+    window.location.href = queryString.continueURL || 'http://www.mass.gov/portal';
   });
 })(jQuery);
