@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\Core\Block\BlockPluginInterface;
 
 /**
  * Implements hook_help().
@@ -30,11 +31,11 @@ function mass_feedback_form_help($route_name, RouteMatchInterface $route_match) 
  */
 function mass_feedback_form_theme() {
   return array(
-      'block__mass_feedback_form' => array(
-          'render element' => 'elements',
-          'template' => 'block--mass-feedback-form',
-          'base hook' => 'block'
-      )
+    'block__mass_feedback_form' => array(
+      'render element' => 'elements',
+      'template' => 'block--mass-feedback-form',
+      'base hook' => 'block',
+    ),
   );
 }
 
@@ -44,7 +45,7 @@ function mass_feedback_form_theme() {
  * Attaching feedback form css library to block.  For some reason, could not
  * attach it to render array in the module Block Plugin class.
  */
-function mass_feedback_form_block_view_page_feedback_form_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+function mass_feedback_form_block_view_page_feedback_form_alter(array &$build, BlockPluginInterface $block) {
   $build['#attached']['library'][] = 'mass_feedback_form/feedback-form-css';
   return $build;
 }
