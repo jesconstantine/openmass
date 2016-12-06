@@ -14,11 +14,6 @@ Feature: Error Page Content type
     | field-include-search    | input      | checkbox      | false      | false    |
     | field-helpful-links     | input      | text          | true       | false    |
 
-  Scenario: Verify that pathauto patterns are applied to action nodes.
+  Scenario: Verify that pathauto patterns are applied to error page nodes.
     Given I am viewing an "error_page" content with the title "Run the Test Suite"
     Then I am on "run-test-suite"
-
-
-
-
-
