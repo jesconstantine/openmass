@@ -22,10 +22,5 @@ Feature: Interstitial Content type
 
   Scenario: Verify Developer role/user can create interstitial content
     Given I am logged in as a user with the "administrator" role
-    Given I am logged in as a user with the "developer" role
     When I go to "node/add/interstitial"
     Then the response status code should be 200
-
-  Scenario: Verify anonymous_user cannot create interstitial
-    When I go to "node/add/interstitial"
-    Then the response status code should be 403

@@ -27,10 +27,5 @@ Feature: Error Page Content type
 
   Scenario: Verify Developer role/user can create error page content
     Given I am logged in as a user with the "administrator" role
-    Given I am logged in as a user with the "developer" role
     When I go to "node/add/error_page"
     Then the response status code should be 200
-
- Scenario: Verify anonymous_user cannot create error_page
-    When I go to "node/add/error_page"
-    Then the response status code should be 403
