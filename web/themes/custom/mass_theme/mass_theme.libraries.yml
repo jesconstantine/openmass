@@ -15,7 +15,4 @@ js-header:
   header: true
   js:
     js/vendor/modernizr.js: {}
-js-vendor:
-  header: true
-  js:
     js/vendor-generated.js: {}
