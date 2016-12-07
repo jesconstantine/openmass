@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.subtopic.field_featured_content
     - field.field.node.subtopic.field_featured_image
     - field.field.node.subtopic.field_featured_mobile_image
+    - field.field.node.subtopic.field_image_credit
     - field.field.node.subtopic.field_lede
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
@@ -66,6 +67,13 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+  field_image_credit:
+    weight: 110
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_lede:
     weight: 101
     label: above

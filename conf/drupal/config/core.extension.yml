@@ -20,6 +20,7 @@ module:
   dynamic_page_cache: 0
   editor: 0
   embed: 0
+  encrypt: 0
   entity_browser: 0
   entity_embed: 0
   entity_reference: 0
@@ -30,6 +31,7 @@ module:
   file: 0
   file_browser: 0
   filter: 0
+  ga_login: 0
   google_map_field: 0
   google_tag: 0
   help: 0
@@ -38,17 +40,19 @@ module:
   imagick: 0
   inline_entity_form: 0
   inline_form_errors: 0
+  key: 0
   kint: 0
   link: 0
   mass_content: 0
   mass_entityreference: 0
+  mass_feedback_form: 0
   mass_formatters: 0
   mass_nav: 0
   mass_search: 0
   mass_styles: 0
   mass_types: 0
-  mass_workbench_ui: 0
   mass_utility: 0
+  mass_workbench_ui: 0
   menu_ui: 0
   metatag: 0
   migrate: 0
@@ -59,24 +63,30 @@ module:
   options: 0
   page_cache: 0
   paragraphs: 0
+  password_policy: 0
+  password_policy_characters: 0
+  password_policy_length: 0
   path: 0
   quickedit: 0
   rdf: 0
   redirect: 0
+  restrict_by_ip: 0
   seckit: 0
   security_review: 0
   shortcut: 0
+  syslog: 0
   system: 0
   taxonomy: 0
   telephone: 0
   text: 0
+  tfa: 0
   token: 0
   toolbar: 0
   twig_field_value: 0
   twig_tweak: 0
   update: 0
   user: 0
-  views_ui: 0
+  username_enumeration_prevention: 0
   workbench_moderation: 0
   workbench_tabs: 0
   menu_link_content: 1

@@ -40,5 +40,5 @@
 #}
 {% set contactGroups = contactGroups %}
 {% for contactGroup in contactGroups %}
-  {% include "@molecules/contact-group.twig" with contactGroup %}
+  {% include "@custom_includes/molecule-contact-group.html.twig" with contactGroup %}
 {% endfor %}
