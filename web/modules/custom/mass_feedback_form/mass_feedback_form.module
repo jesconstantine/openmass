@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Contains ma_feedback_form.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\Core\Block\BlockPluginInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mass_feedback_form_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ma_feedback_form module.
+    case 'help.page.ma_feedback_form':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module to manage feedback form through a Block') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Define twig template for feedback form block, called by PageFeedbackForm.
+ */
+function mass_feedback_form_theme() {
+  return array(
+    'block__mass_feedback_form' => array(
+      'render element' => 'elements',
+      'template' => 'block--mass-feedback-form',
+      'base hook' => 'block',
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
+ *
+ * Attaching feedback form css library to block.  For some reason, could not
+ * attach it to render array in the module Block Plugin class.
+ */
+function mass_feedback_form_block_view_page_feedback_form_alter(array &$build, BlockPluginInterface $block) {
+  $build['#attached']['library'][] = 'mass_feedback_form/feedback-form-css';
+  return $build;
+}

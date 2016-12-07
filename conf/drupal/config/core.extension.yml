@@ -45,6 +45,7 @@ module:
   link: 0
   mass_content: 0
   mass_entityreference: 0
+  mass_feedback_form: 0
   mass_formatters: 0
   mass_nav: 0
   mass_search: 0
