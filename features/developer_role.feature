@@ -29,3 +29,6 @@ Feature: Content Management
     Given I am logged in as a user with the "developer" role
     Then I should not have the "administer modules, administer software updates, administer themes, administer users" permissions
 
+  Scenario: Verify that developer user can administer security settings and checks
+    Given I am logged in as a user with the "developer" role
+    Then I should have the "access security review list, run security checks, administer restrict by ip, administer seckit" permissions

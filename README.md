@@ -41,7 +41,7 @@ Before you can install the site, you'll need to make sure that you have access t
     vendor/bin/phing build install migrate
   ```
 
-1. Visit [mass.local](http://mass.local) in your browser of choice.
+3. Visit [mass.local](http://mass.local) in your browser of choice.
 
 ## How do I work on this?
 
@@ -74,8 +74,14 @@ You can run `drush` commands from anywhere within the repository, as long as you
 Run `composer install` from your host machine and `vendor/bin/phing build install` within the VM.
 You should normally ignore messages from composer about an outdate composer.lock file.
 
+### Configure Composer with OAuth Token
+* Go to [GitHub Settings - Tokens](https://github.com/settings/tokens)
+* If setting up a new Token, make the scope just for the repo
+* Once you have completed creating the token, add it to your composer config `composer config -g github-oauth.github.com <oauthtoken>`
+
 ### Adding modules
 
+* Complete "__Configure Composer with OAuth Token__" first
 * Download modules with composer: `composer require drupal/bad_judgement:^8.1`
 * Enable the module: `drush en bad_judgement`
 * Export the config with the module enabled: `drush config-export`

@@ -38,53 +38,59 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% if content.field_type|render|trim is not empty %}
-  <h6 class="ma__header-contact__name">
-    {% if svg_type is not empty %}
-      <svg focusable="false" role="presentation" class="{{ svg_type.class }}">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#{{ svg_type.svg }}"></use>
-      </svg>
-    {% endif %}
-    <span>{{ content.field_type|field_value }}</span>
-  </h6>
-{% endif %}
-{% if content.field_address|render|trim is not empty %}
-  <p>{{ content.field_address|field_value }}</p>
-  <a class="ma__content-link ma__content-link--chevron" href="{{ address_url }}" target="_blank" title="{{ 'Directions'|t }}">{{ 'Directions'|t }}</a>
-{% elseif content.field_phone|render|trim is not empty %}
-  <div>
-    {% if content.field_label|render|trim is not empty %}
-      <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
-    {% endif %}
-    <a href="tel:+{{ content.field_phone|field_value }}" class="ma__header-contact__value ma__header-contact__value--phone">{{ content.field_phone|field_value }}</a>
-    {% if content.field_caption|render|trim is not empty %}
-      <div class="ma__header-contact__details">
-        {{ content.field_caption|field_value }}
-      </div>
-    {% endif %}
-  </div>
-{% elseif content.field_email|render|trim is not empty %}
-  <div>
-    {% if content.field_label|render|trim is not empty %}
-      <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
-    {% endif %}
-    {{ content.field_email|field_value }}
-    {% if content.field_caption|render|trim is not empty %}
-      <div class="ma__header-contact__details">
-        {{ content.field_caption|field_value }}
-      </div>
-    {% endif %}
-  </div>
-{% elseif content.field_link|render|trim is not empty %}
-  <div>
-    {% if content.field_label|render|trim is not empty %}
-      <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
-    {% endif %}
-    {{ content.field_link|field_value }}
-    {% if content.field_caption|render|trim is not empty %}
-      <div class="ma__header-contact__details">
-        {{ content.field_caption|field_value }}
-      </div>
-    {% endif %}
-  </div>
-{% endif %}
+<div class="ma__contact-group">
+  {% if content.field_type|render|trim is not empty %}
+    <h6 class="ma__contact-group__name">
+      {% if svg_type is not empty %}
+        <svg focusable="false" role="presentation" class="{{ svg_type.class }}">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#{{ svg_type.svg }}"></use>
+        </svg>
+      {% endif %}
+      <span>{{ content.field_type|field_value }}</span>
+    </h6>
+  {% endif %}
+  {% if content.field_address|render|trim is not empty %}
+    <p>{{ content.field_address|field_value }}</p>
+    <a class="ma__content-link ma__content-link--chevron" href="{{ address_url }}" target="_blank" title="{{ 'Directions'|t }}">{{ 'Directions'|t }}</a>
+  {% elseif content.field_phone|render|trim is not empty %}
+    <div>
+      {% if content.field_label|render|trim is not empty %}
+        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+      {% endif %}
+      {% if paragraph.field_type.value == 'phone' %}
+        <a href="tel:{{ content.field_phone|field_value }}" class="ma__header-contact__value ma__header-contact__value--phone">{{ content.field_phone|field_value }}</a>
+      {% else %}
+        {{ content.field_phone|field_value }}
+      {% endif %}
+      {% if content.field_caption|render|trim is not empty %}
+        <div class="ma__header-contact__details">
+          {{ content.field_caption|field_value }}
+        </div>
+      {% endif %}
+    </div>
+  {% elseif content.field_email|render|trim is not empty %}
+    <div>
+      {% if content.field_label|render|trim is not empty %}
+        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+      {% endif %}
+      {{ content.field_email|field_value }}
+      {% if content.field_caption|render|trim is not empty %}
+        <div class="ma__header-contact__details">
+          {{ content.field_caption|field_value }}
+        </div>
+      {% endif %}
+    </div>
+  {% elseif content.field_link|render|trim is not empty %}
+    <div>
+      {% if content.field_label|render|trim is not empty %}
+        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+      {% endif %}
+      {{ content.field_link|field_value }}
+      {% if content.field_caption|render|trim is not empty %}
+        <div class="ma__header-contact__details">
+          {{ content.field_caption|field_value }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

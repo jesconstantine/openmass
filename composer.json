@@ -97,31 +97,39 @@
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/acquia_connector": "^8.1",
+        "drupal/acquia_purge": "^8.1",
+        "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
-        "drupal/core": "^8.0",
+        "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
         "drupal/entity_browser": "8.1.x-dev",
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
+        "drupal/inline_entity_form": "^8.1",
         "drupal/metatag": "^8.1",
-        "drupal/migrate_plus": "~8.2",
-        "drupal/migrate_source_csv": "~8.1",
-        "drupal/migrate_tools": "~8",
+        "drupal/migrate_plus": "^8.3",
+        "drupal/migrate_source_csv": "^8.2",
+        "drupal/migrate_tools": "^8.3",
         "drupal/paragraphs": "~8.1.0",
+        "drupal/password_policy": "8.3.0-alpha2",
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
+        "drupal/restrict_by_ip": "8.4.x-dev",
         "drupal/seckit": "8.1.0-alpha2",
+        "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
+        "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
-        "palantirnet/mayflower-artifacts": "0.5.",
-        "palantirnet/the-build": "dev-feature/code-quality-tools",
+        "palantirnet/mayflower-artifacts": "^2.1",
+        "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
         "previousnext/drush_cmi_tools": "^1.0"
@@ -150,6 +158,13 @@
         "post-create-project-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "extra": {
+        "drupal-scaffold": {
+            "excludes": [
+                ".htaccess",
+                "robots.txt"
+            ],
+            "omit-defaults": false
+        },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
@@ -159,25 +174,23 @@
         },
         "patches": {
             "drupal/core": {
-                "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch"
-            },
-            "drupal/metatag": {
-                "Stop metatag from breaking drush": "https://www.drupal.org/files/issues/metatag-deactivate_drupalconsole_services.patch"
+                "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
+                "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
             },
             "drupal/workbench_moderation": {
                 "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
             },
-            "drupal/draggableviews": {
-                "Invalidate cache when draggableviews order is changed (https://www.drupal.org/node/2425249#comment-10716828)": "https://www.drupal.org/files/issues/draggableviews-clearcache-2425249-11-8.x-1.x.diff"
-            },
             "drupal/google_map_field": {
               "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
             },
-            "drupal/core": {
-              "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
-            },
             "drupal/crazyegg": {
               "Configure crazyegg for specific pages. (https://www.drupal.org/node/2812783)": "https://www.drupal.org/files/issues/2812783-configure-for-specific-pages.patch"
+            },
+            "drupal/password_policy": {
+              "Removes field updates from the install file. (https://www.drupal.org/node/2771129#comment-11792230)": "https://www.drupal.org/files/issues/password-policy-remove-install-2771129-5.patch"
+            },
+            "drupal/username_enumeration_prevention": {
+                "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
             }
         }
     }

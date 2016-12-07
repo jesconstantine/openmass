@@ -14,9 +14,11 @@ if (!empty($output)) {
   $options['root'] = "{$repo}/web";
   $options['uri'] = "http://mass.local";
   $options['include'] = [
-    "{$repo}/artifacts/acquiacloud/.drush",
+    // @todo Not needed after https://github.com/previousnext/drush_cmi_tools/issues/7
     "{$repo}/vendor/previousnext/drush_cmi_tools",
+    "{$repo}/artifacts/acquiacloud/.drush",
   ];
+  // @todo Remove after this code is on Prod.
   $options['alias-path'] = "{$repo}/artifacts/acquiacloud/.drush";
 }
 

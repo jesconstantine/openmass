@@ -267,3 +267,22 @@ function mass_content_update_8004(&$sandbox) {
     $node->save();
   }
 }
+
+/**
+ * Unpublish Subtopics.
+ */
+function mass_content_update_8005(&$sandbox) {
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+
+  // Unpublish all subtopics.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'subtopic');
+  $nids = $query->execute();
+  $nodes = $node_storage->loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+    $node->moderation_state->target_id = 'archived';
+    $node->save();
+  }
+}

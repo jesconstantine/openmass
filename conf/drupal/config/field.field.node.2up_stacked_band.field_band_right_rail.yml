@@ -1,0 +1,107 @@
+uuid: b4615c63-8b2f-4359-a862-d523e7039dac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_band_right_rail
+    - node.type.2up_stacked_band
+    - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.quick_action
+    - paragraphs.paragraphs_type.related_link
+    - paragraphs.paragraphs_type.subhead
+  module:
+    - entity_reference_revisions
+id: node.2up_stacked_band.field_band_right_rail
+field_name: field_band_right_rail
+entity_type: node
+bundle: 2up_stacked_band
+label: 'Right rail'
+description: 'This will take up 30% of this band.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact_group: contact_group
+      iframe: iframe
+      quick_action: quick_action
+      related_link: related_link
+      subhead: subhead
+    target_bundles_drag_drop:
+      action_address:
+        weight: 25
+        enabled: false
+      action_address_info:
+        weight: 26
+        enabled: false
+      action_area:
+        weight: 27
+        enabled: false
+      action_step:
+        weight: 28
+        enabled: false
+      action_step_numbered:
+        weight: 29
+        enabled: false
+      action_step_numbered_list:
+        weight: 30
+        enabled: false
+      callout_link:
+        weight: 31
+        enabled: false
+      completion_time:
+        weight: 32
+        enabled: false
+      contact:
+        weight: 33
+        enabled: false
+      contact_group:
+        enabled: true
+        weight: 34
+      contact_info:
+        weight: 35
+        enabled: false
+      file_download:
+        weight: 36
+        enabled: false
+      full_bleed:
+        weight: 37
+        enabled: false
+      icon:
+        weight: 38
+        enabled: false
+      iframe:
+        enabled: true
+        weight: 39
+      location_information:
+        weight: 40
+        enabled: false
+      map:
+        weight: 41
+        enabled: false
+      quick_action:
+        enabled: true
+        weight: 42
+      related_link:
+        enabled: true
+        weight: 43
+      rich_text:
+        weight: 44
+        enabled: false
+      slideshow:
+        weight: 45
+        enabled: false
+      stat:
+        weight: 46
+        enabled: false
+      subhead:
+        enabled: true
+        weight: 47
+      video:
+        weight: 48
+        enabled: false
+field_type: entity_reference_revisions

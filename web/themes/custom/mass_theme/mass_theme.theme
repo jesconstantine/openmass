@@ -9,7 +9,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Url;
 use Drupal\block\Entity\Block;
-use Drupal\file\Entity\File;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
@@ -93,13 +92,60 @@ function mass_theme_preprocess_node(&$variables) {
  */
 function mass_theme_preprocess_node_section_landing(&$variables) {
   $node = $variables['node'];
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+
+  // This is a required icon field, but lets check.
+  if (array_key_exists('0', $node->get('field_icon_term')->referencedEntities())) {
+    $icon = $node->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+    $variables['icon_path'] = icon_path($icon);
+  }
 
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-  if ($node->field_featured_mobile_image->entity) {
-    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+
+  // Get our subtopics (sections) view.
+  $view_results = views_get_view_result('ordered_topics', 'ordered_topic_list_block', $node->id());
+  $sections = array();
+  // Roll this up and give the twig tpl what it expects.
+  foreach ($view_results as $key => $row) {
+    $icon_path = '';
+    $links = array();
+    // Wrap up our links for each subtopic.
+    if ($row->_entity->hasField('field_common_content')) {
+      foreach ($row->_entity->get('field_common_content')->referencedEntities() as $link) {
+        // If we have an external URL, lets use that instead of internal paths.
+        if (isset($link->get('field_external_url')[0])) {
+          $external_link = $link->get('field_external_url')->first()->getValue();
+          $link_path = $external_link['uri'];
+        }
+        else {
+          $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $link->get('nid')->value);
+        }
+        $links[] = array('text' => $link->get('title')->value, 'href' => $link_path);
+      }
+    }
+
+    // Wrap up each section with links.
+    if (isset($row->_entity->get('field_icon_term')->referencedEntities()[0])) {
+      $icon = $row->_entity->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+      $icon_path = icon_path($icon);
+    }
+    $sections[] = array(
+      'catIcon' => array(
+        'svg' => $icon_path,
+        'small' => 'TRUE',
+      ),
+      'title' => array(
+        'href' => 'node/' . $row->_entity->get('nid')->value,
+        'text' => $row->_entity->get('title')->value,
+      ),
+      'description' => $row->_entity->get('field_lede')->value,
+      'links' => $links,
+    );
   }
+  // Send to twig.
+  $variables['sections'] = $sections;
 }
 
 /**
@@ -109,6 +155,45 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
  */
 function mass_theme_preprocess_node_action(&$variables) {
   $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'full') {
+    $field_action_parent = $node->get('field_action_parent');
+    $taxonomy_terms = array();
+    foreach ($field_action_parent->referencedEntities() as $term) {
+      $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $term->get('nid')->value);
+      $taxonomy_terms[] = array('url' => $link_path, 'term' => $term->get('title')->value);
+    }
+    $variables['taxonomyTerms'] = $taxonomy_terms;
+
+    $field_action_sidebar = $node->get('field_action_sidebar');
+
+    // Get the subheads for the sidebar and filter out the quick action.
+    if ($field_action_sidebar->count() > 0) {
+      $delta = 0;
+      $quick_actions_section = FALSE;
+      $quick_actions = array();
+
+      foreach ($field_action_sidebar->referencedEntities() as $paragraph) {
+        $paragraph->getType();
+        if ($paragraph->getType() == 'subhead') {
+          $title = $paragraph->field_title->value;
+          if ($title == 'Quick Actions') {
+            $quick_actions_section = TRUE;
+          }
+          else {
+            $quick_actions_section = FALSE;
+          }
+        }
+        if ($quick_actions_section == TRUE) {
+          $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+          $build = $view_builder->view($paragraph, 'sidebar');
+          $quick_actions[] = $build;
+        }
+        $delta++;
+      }
+      $variables['quick_actions'] = $quick_actions;
+    }
+  }
 
   if ($variables['view_mode'] == 'teaser_simple' || $variables['view_mode'] == 'teaser') {
     $field_external_link = $node->get('field_external_url');
@@ -131,6 +216,68 @@ function mass_theme_preprocess_node_action(&$variables) {
 /**
  * Implements hook_preprocess_node().
  *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_stacked_layout(&$variables) {
+  $node = $variables['node'];
+  $image_field = $node->get('field_photo');
+  $field_related_content = $node->get('field_related_content');
+
+  if ($image_field->count() > 0) {
+    $values = $image_field->getValue();
+    $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
+    $variables['image_alt'] = $values[0]['alt'];
+  }
+
+  if ($field_related_content->count() > 0) {
+    $items = $field_related_content->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    $related_content = array();
+    foreach ($items as $item) {
+      $related_content[] = array(
+        'link' => array(
+          'type' => 'internal',
+          'quickaction' => 'FALSE',
+          'href' => $item->url(),
+          'text' => $item->getTitle(),
+        ),
+      );
+    }
+    $variables['related_content'] = $related_content;
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_2up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Node stacked layout alterations.
+ */
+function mass_theme_preprocess_node_1up_stacked_band(&$variables) {
+  $node = $variables['node'];
+
+  $label_clean = strtolower($node->getTitle());
+  $label_clean = Html::cleanCssIdentifier($label_clean);
+  $variables['label_clean'] = $label_clean;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
  * Node subtopic alterations.
  */
 function mass_theme_preprocess_node_subtopic(&$variables) {
@@ -141,6 +288,18 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
   if (empty($variables['mobile_finder_image'])) {
     $variables['mobile_finder_image'] = mass_theme_get_field_image_url($node, 'action_finder_mobile', 'field_featured_image');
   }
+
+  // Load Instance of the secondary menu block with variables.
+  $all_actions_view = \Drupal::entityTypeManager()->getStorage('block')->load('views_block__subtopics_all_actions_block_1');
+  if (!empty($all_actions_view)) {
+    $all_actions_view_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($all_actions_view);
+    if ($all_actions_view_content) {
+      // Add block content to build array.
+      $variables['content']['all_actions_view'] = $all_actions_view_content;
+    }
+  }
 }
 
 /**
@@ -150,12 +309,83 @@ function mass_theme_preprocess_node_subtopic(&$variables) {
  */
 function mass_theme_preprocess_node_topic(&$variables) {
   $node = $variables['node'];
+  $icon_terms = $node->get('field_icon_term');
+
+  // Get path_alias for breadcrumb in twig template.
+  $variables['path_alias'] = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->get('field_section')->entity->nid->value);
+
+  if ($icon_terms->count() > 0) {
+    $terms = $icon_terms->referencedEntities();
+    $term = current($terms);
+    $variables['icon'] = icon_path($term->get('field_sprite_name')->value);
+  }
 
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
-  if ($node->field_featured_mobile_image->entity) {
-    $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+
+  if ($variables['view_mode'] == 'full') {
+    // Get our callout links view.
+    $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
+    $callout_links = array();
+
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+
+      // Common contact can be Actions or Subtopics,
+      // so we need to check for the field.
+      if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
+        $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
+      }
+      $callout_links[] = array(
+        'calloutLink' => array(
+          'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
+          'quickaction' => 'FALSE',
+          'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_relationship_entities['field_common_content']->get('nid')->value),
+          'text'        => $row->_relationship_entities['field_common_content']->get('title')->value,
+        ),
+      );
+    }
+    // Send to twig.
+    $variables['calloutLinks'] = $callout_links;
+
+    // Get our subtopics (sections) view.
+    $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
+    $sections = array();
+    // Roll this up and give the twig tpl what it expects.
+    foreach ($view_results as $key => $row) {
+      $links = array();
+      // Wrap up our links for each subtopic.
+      foreach ($row->_entity->get('field_topic_callout_links') as $link) {
+        $links[] = array('text' => $link->title, 'href' => Url::fromUri($link->uri));
+      }
+      // Wrap up each section with links.
+      $sections[] = array(
+        'title' => array(
+          'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_entity->get('nid')->value),
+          'text' => $row->_entity->get('title')->value,
+        ),
+        'description' => $row->_entity->get('field_lede')->value,
+        'links' => $links,
+      );
+    }
+    // Send to twig.
+    $variables['sections'] = $sections;
+  }
+
+  if ($variables['view_mode'] == 'teaser') {
+    // Get our subtopics from view.
+    $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
+    $links = array();
+    // Roll this up for our twig template.
+    foreach ($view_results as $key => $row) {
+      $links[] = array(
+        'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->node_nid),
+        'text' => $row->_entity->get('title')->value,
+      );
+    }
+    // Send to twig.
+    $variables['links'] = $links;
   }
 }
 
@@ -192,6 +422,52 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     }
   }
 
+  // Get the subheads for the sidebar and filter out the quick action.
+  if ($element['#field_name'] == 'field_action_sidebar') {
+    $delta = 0;
+    $quick_actions_section = FALSE;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      $paragraph->getType();
+      if ($paragraph->getType() == 'subhead') {
+        $title = $paragraph->field_title->value;
+        if ($title == 'Quick Actions') {
+          $quick_actions_section = TRUE;
+        }
+        else {
+          $quick_actions_section = FALSE;
+        }
+      }
+      if ($quick_actions_section == TRUE) {
+        unset($variables['items'][$delta]);
+      }
+      $delta++;
+    }
+  }
+
+  // Get the subheads for the action jump menu.
+  if ($element['#field_name'] == 'field_bands') {
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      $band = $paragraph->get('field_band');
+
+      if ($band->count() > 0) {
+        $items = $band->referencedEntities();
+      }
+
+      if (!empty($items)) {
+        $item = current($items);
+        $title = $item->getTitle();
+        $key = strtolower($title);
+        $key = Html::cleanCssIdentifier($key);
+        $variables['subheads'][$key] = $title;
+      }
+
+      $delta++;
+    }
+  }
+
   // If our Callout Link (Link field) references an internal node,
   // use the "External URL" field on that node, for the link,
   // if it exists.
@@ -206,7 +482,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Load it up and get the field.
         if ($node = Node::load($ref_node['node'])) {
           // Run only on Action nodes.
-          if ($node->getType() == "action") {
+          if ($node->getType() == "action" && $node->hasField('field_external_url')) {
             $external_url = $node->get('field_external_url')->uri;
             if (!empty($external_url)) {
               // Send this url to our template.
@@ -217,6 +493,213 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       }
       $delta++;
     }
+  }
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'related_link') {
+    $links = array();
+    $delta = 0;
+    // Wrap up our related links.
+    while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $url = $element[$delta]['#url_title'];
+      // Check if referenced nodes are external urls.
+      if ($element[$delta]['#url']->isRouted()) {
+        $nid = $element[$delta]['#url']->getRouteParameters()['node'];
+        $node = \Drupal::entityManager()->getStorage('node')->load($nid);
+
+        if ($node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
+          $url = $node->get('field_external_url')->uri;
+        }
+      }
+
+      $links[] = array(
+        'link' => array(
+          'text' => $element[$delta]['#title'],
+          'href' => $url,
+          'type' => (UrlHelper::isExternal($url)) ? 'external' : 'internal',
+        ),
+      );
+      $delta++;
+    }
+    // Send array to twig.
+    $variables['relatedActions'] = $links;
+  }
+
+  if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
+    $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+    $groups = array();
+    $order = array();
+    $delta = 0;
+
+    // Wrap up our contact groups.
+    while (!empty($element[$delta])) {
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our phone numbers.
+        $phone_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => str_replace(array('+', '-'), '', filter_var($element[$delta]['#paragraph']->get('field_phone')->value, FILTER_SANITIZE_NUMBER_INT)),
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'fax') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our fax numbers.
+        $fax_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'online') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our online links.
+        $value = $link = NULL;
+        if (!empty($element[$delta]['#paragraph']->get('field_link')->first())) {
+          $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
+        }
+
+        $online_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $value,
+          'rawVal'  => '',
+          'link'    => $link,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our emails.
+        $email_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_email')->value,
+          'rawVal'  => $element[$delta]['#paragraph']->get('field_email')->value,
+          'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'mail') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+
+        // Wrap up all our addresses.
+        $address_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_address')->value,
+          'rawVal'  => '',
+          'link'    => 'https://maps.google.com/?q=' . urlencode($element[$delta]['#paragraph']->get('field_address')->value),
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => 'address',
+        );
+        $delta++;
+        continue;
+      }
+
+      // No type? or type "other"? Try to process what we have.
+      if (!isset($element[$delta]['#paragraph']->get('field_type')->value) || $element[$delta]['#paragraph']->get('field_type')->value == 'other') {
+        $order[$delta] = 'other';
+        // Wrap up all our other stuff. Anything goes!
+        $value = '';
+        $link = '';
+        if ($element[$delta]['#paragraph']->get('field_link')->first() !== NULL) {
+          $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
+        }
+        $other_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $element[$delta]['#paragraph']->get('field_phone')->value .
+          $value .
+          $element[$delta]['#paragraph']->get('field_email')->value .
+          $element[$delta]['#paragraph']->get('field_address')->value,
+          'rawVal'  => '',
+          'link'    => $element[$delta]['#paragraph']->get('field_phone')->value .
+          $link .
+          $element[$delta]['#paragraph']->get('field_email')->value,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
+      // If all else fails, increment or we spin out of control.
+      $delta++;
+    }
+
+    $order = array_unique($order);
+
+    // Render our groups in order.
+    foreach ($order as $value) {
+      // Do we have phone numbers? If so, display them under one icon.
+      if (!empty($phone_details) && $value == 'phone') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'name'    => 'Phone',
+          'items'   => $phone_details,
+        );
+      }
+      // Do we have fax numbers? If so, display them under one icon.
+      if (!empty($fax_details) && $value == 'fax') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'name'    => 'Fax',
+          'items'   => $fax_details,
+        );
+      }
+      // Do we have emails? If so, display them under one icon.
+      if (!empty($email_details) && $value == 'email') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => 'Online',
+          'items'   => $email_details,
+        );
+      }
+      // Do we have online links? If so, display them under one icon.
+      if (!empty($online_details) && $value == 'online') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => 'Online',
+          'items'   => $online_details,
+        );
+      }
+      // Do we have address? If so, display them under one icon.
+      if (!empty($address_details) && $value == 'mail') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-mail.twig',
+          'name'    => 'Address',
+          'items'   => $address_details,
+        );
+      }
+      // Do we have other details? If so, display them under one icon.
+      if (!empty($other_details) && $value == 'other') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-marker.twig',
+          'name'    => 'Other',
+          'items'   => $other_details,
+        );
+      }
+    }
+    // Send to twig template.
+    $variables['contactGroups'] = $groups;
   }
 }
 
@@ -265,22 +748,75 @@ function mass_theme_preprocess_paragraph(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * Break out url pieces for callout link paragraphs.
+ */
+function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_action_step_numbered_items = $paragraph->get('field_action_step_numbered_items');
+  $list = array();
+
+  if ($field_action_step_numbered_items->count() > 0) {
+    $items = $field_action_step_numbered_items->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    foreach ($items as $id => $item) {
+      $list[$id] = array();
+      $field_title = $item->get('field_title');
+      $field_content = $item->get('field_content');
+
+      if ($field_title->count() > 0) {
+        $title = $field_title->first()->getValue();
+        $list[$id]['title'] = $title['value'];
+      }
+
+      if ($field_content->count() > 0) {
+        $content = $field_content->first()->getValue();
+        $list[$id]['rteElements'][] = array(
+          'path' => '@atoms/11-text/paragraph.twig',
+          'data' => array(
+            'paragraph' => array(
+              'text' => $content['value'],
+            ),
+          ),
+        );
+      }
+    }
+  }
+  $variables['actionSeqLists'] = $list;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
  * Clean css id for subheads.
  */
 function mass_theme_preprocess_paragraph__subhead(&$variables) {
   $subhead = $variables['paragraph']->get('field_title')->first()->getValue()['value'];
-  $parent_field = $variables['paragraph']->get('parent_field_name')->value;
-
-  // Lets let our subhead paragraph template know about the region.
-  $variables['region'] = $parent_field;
-
-  if (trim($subhead) == 'Quick Actions') {
-    $variables['sidebar_header_class'] = Html::cleanCssIdentifier('ma__colored-heading--green');
-  }
-
   $subhead_clean = strtolower($subhead);
   $subhead_clean = Html::cleanCssIdentifier($subhead_clean);
   $variables['title_clean'] = $subhead_clean;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for action step paragraphs.
+ */
+function mass_theme_preprocess_paragraph__action_step(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $field_title = $paragraph->get('field_title');
+  $field_content = $paragraph->get('field_content');
+
+  if ($field_title->count() > 0) {
+    $title = $field_title->first()->getValue();
+    $variables['title'] = $title['value'];
+  }
+
+  if ($field_content->count() > 0) {
+    $rich_text = $field_content->first()->getValue();
+    $variables['rich_text'] = $rich_text['value'];
+  }
 }
 
 /**
@@ -293,7 +829,37 @@ function mass_theme_preprocess_paragraph__callout_link(&$variables) {
 
   $variables['calloutLink']['text'] = $variables['paragraph']->get('field_link')->first()->getValue()['title'];
   $variables['calloutLink']['href'] = $url->toString();
-  $variables['calloutLink']['type'] = substr($url->toString(), 0, 4) === "http" ? 'external' : 'internal';
+  $variables['calloutLink']['type'] = (UrlHelper::isExternal($url->toString())) ? 'external' : 'internal';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for callout link - need-to-know paragraphs.
+ */
+function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
+  $url = $variables['paragraph']->get('field_link')->first();
+
+  $variables['calloutAlert']['decorativeLink'] = [
+    'text' => $url->getValue()['title'],
+    'href' => $url->getUrl()->toString(),
+    'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for callout button paragraphs.
+ */
+function mass_theme_preprocess_paragraph__callout_button(&$variables) {
+  $url = $variables['paragraph']->get('field_link')->first();
+
+  $variables['buttonMinor'] = [
+    'text' => $url->getValue()['title'],
+    'link' => $url->getUrl()->toString(),
+    'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+  ];
 }
 
 /**
@@ -318,10 +884,9 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
             $image_small = mass_theme_get_field_image_url($item, 'action_banner_small', 'field_slideshow', $id);
             $image_large = mass_theme_get_field_image_url($item, 'action_banner_large', 'field_slideshow', $id);
             $images[$id] = array(
-              'small' => $image_small,
-              'large' => $image_large,
+              'image' => $image_small,
+              'imageLarge' => $image_large,
               'alt' => $value['alt'],
-              'title' => $value['title'],
             );
           }
 
@@ -525,6 +1090,60 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process various fields for downloads.
+ */
+function mass_theme_preprocess_paragraph__file_download(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $action_downloads = array();
+  $field_downloads = $paragraph->get('field_downloads');
+  $files = '';
+
+  if ($field_downloads->count() > 0) {
+    $file_list = $field_downloads->getValue();
+    $files = $field_downloads->referencedEntities();
+  }
+
+  if (!empty($files)) {
+    foreach ($files as $id => $file) {
+      // Get the human readable file size.
+      $bytes = $file->getSize();
+      $readable_size = format_size($bytes);
+
+      // Use the description as the link text if available,
+      // if not, use the file name.
+      $filename = $file->getFilename();
+
+      $link_text = $filename;
+      if (!empty($file_list[$id]['description'])) {
+        $link_text = $file_list[$id]['description'];
+      }
+
+      // Set the file link variable.
+      $url = file_create_url($file->getFileUri());
+
+      // Get the file extension.
+      // see: http://php.net/manual/en/splfileinfo.getextension.php
+      $file_info = new SplFileInfo($filename);
+      $file_extension = $file_info->getExtension();
+
+      // Set the icon name.
+      $icon_name = 'doc-' . $file_extension;
+
+      $action_downloads[] = array(
+        'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
+        'text' => $link_text,
+        'href' => $url,
+        'size' => $readable_size,
+        'type' => $file_extension,
+      );
+    }
+  }
+  $variables['actionDownloads'] = $action_downloads;
+}
+
+/**
  * Helper function to sort a list of items by title.
  */
 function compare_by_title($a, $b) {
@@ -563,6 +1182,12 @@ function mass_theme_theme_suggestions_menu_alter(array &$suggestions, array $var
 function mass_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   $suggestions[] = 'field__' .
     $variables['element']['#field_name'] . '__' .
+    $variables['element']['#view_mode'];
+
+  $suggestions[] = 'field__' .
+    $variables['element']['#entity_type'] . '__' .
+    $variables['element']['#field_name'] . '__' .
+    $variables['element']['#bundle'] . '__' .
     $variables['element']['#view_mode'];
 }
 
@@ -671,4 +1296,27 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
       $form['actions']['submit']['#attributes'] = array('data-theming-id' => 'filter-submit');
     }
   }
+}
+
+/**
+ * Check for icon twig templates.
+ */
+function icon_path($icon) {
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+  $path = DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/';
+
+  // Check if this template exists.
+  if (file_exists($path . '07-user-added-icons/svg-' . strtolower($icon) . '.twig')) {
+    return '@atoms/07-user-added-icons/svg-' . strtolower($icon) . '.twig';
+  }
+
+  if (file_exists($path . '05-icons/svg-' . strtolower($icon) . '.twig')) {
+    return '@atoms/05-icons/svg-' . strtolower($icon) . '.twig';
+  }
+
+  if (file_exists($path . '06-icons-location/svg-loc-' . strtolower($icon) . '.twig')) {
+    return '@atoms/06-icons-location/svg-' . strtolower($icon) . '.twig';
+  }
+
+  return '@atoms/05-icons/svg-marker.twig';
 }

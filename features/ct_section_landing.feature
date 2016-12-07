@@ -9,6 +9,7 @@ Feature: Section Landing Content type
     Then the content type "section_landing" has the fields:
       | field                            | tag      | type     | multivalue |
       | field-featured-image             | input    | submit   | false      |
+      | field-image-credit               | input    | text     | true       |
       | field-icon-term                  | select   |          | false      |
     And "section_landing" content can appear in the "main" menu
 
