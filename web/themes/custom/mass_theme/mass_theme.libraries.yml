@@ -9,15 +9,14 @@ global-styling:
       overrides/css/basic-html.css: {}
   js:
     overrides/js/env-drupal.js: {}
-    js/vendor-generated.js: { weight: -20 }
     js/index-generated.js: {}
-
     libraries/formstack/js/matchMayflower.js: {}
     libraries/interstitial/js/external-links.js: {}
 js-header:
   header: true
   js:
     js/vendor/modernizr.js: {}
+    js/vendor-generated.js: {}
 
 interstitial-page:
   js:
