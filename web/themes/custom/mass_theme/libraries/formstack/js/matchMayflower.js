@@ -62,8 +62,8 @@
 
   $('.fsForm').prepend('<hr align="left">');
 
-      // MULTI FORM-- //
-      $('#fs-go-back').css('display', 'none').attr('aria-hidden', 'true');
-      $('.fsSubmitButton').addClass('ma__button ma__button--small');
+  // MULTI FORM-- //
+  $('#fs-go-back').css('display', 'none').attr('aria-hidden', 'true');
+  $('.fsSubmitButton').addClass('ma__button ma__button--small');
 
 })(jQuery);
