@@ -8,45 +8,58 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
-{% extends 'node.html.twig' %}
+{%
+set breadcrumbs = {
+  'light': "",
+  'links': [{
+    'text': content.field_section|field_value,
+    'href': path_alias
+    },
+    {
+    'text': label|field_value,
+    'href': url
+  }]
+}
+%}
+{%
+set pageBanner = {
+  'icon': icon,
+  'title': label|field_value,
+  'bgNarrow': hero800x400_image_url,
+  'bgWide': file_url(node.field_featured_image.entity.fileuri),
+  'small': true,
+}
+%}
+{%
+set topActions = {
+  'title': "Common Actions & Guides",
+  'links': calloutLinks
+}
+%}
+{%
+set sectionThreeUp = {
+  'title': label|field_value,
+  'sections': sections
+}
+%}
 
+{% extends 'node.html.twig' %}
 
 {# Take our blocks from node.html.twig and extend them to get our wrapping divs #}
 {% block preContent %}
-  <section class="ma__breadcrumbs ">
-    <div class="ma__breadcrumbs__container">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li>{{ content.field_section|field_value }}</li>
-        <li><a href="{{ url }}">{{ label|field_value }}</a></li>
-      </ul>
-    </div>
-  </section>
-  {%
-  set bannerData = {
-    'icon': node.field_icon_term.entity.field_sprite_name.value,
-    'class': 'ma__page-banner--small'
-  }
-  %}
-  {# Our section and topic landing pages have similar markup. Lets see if we can just pass in what we need #}
-  {% include "@mass_theme/includes/ma--page-banner.html.twig" with bannerData  %}
+  {% include "@organisms/by-template/breadcrumbs.twig" %}
+  {% include "@organisms/by-template/page-banner.twig" %}
 {% endblock %}
 
 {# This is going to get replaced with real views and content. #}
 {% block pageContent %}
-
-  {{ content.field_common_content }}
-  {{ section_topics }}
+  {% include "@organisms/by-author/top-actions.twig" %}
+  {% include "@organisms/by-author/sections-three-up.twig" %}
 {% endblock %}
 
 {% block postContent %}
-  <section class="ma__breadcrumbs ">
-    <div class="ma__breadcrumbs__container">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li>{{ content.field_section|field_value }}</li>
-        <li><a href="{{ url }}">{{ label|field_value }}</a></li>
-      </ul>
-    </div>
-  </section>
+  {% if content.field_image_credit is not empty %}
+    {{ content.field_image_credit }}
+  {% endif %}
+  {% include "@organisms/by-template/breadcrumbs.twig" %}
 {% endblock %}

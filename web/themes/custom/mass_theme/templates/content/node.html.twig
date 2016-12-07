@@ -84,18 +84,20 @@
   </div>
 {% endif %}
 
-<div class="main-content{{ _sidebar is not empty ? ' main-content--two': ''}}">
-  <div class="page-content">
-    {% block pageContent %}
-      {{ content }}
-    {% endblock %}
-  </div>
-  {% if _sidebar is not empty %}
-    <div class="sidebar">
-      {{ _sidebar|raw }}
+{% block main %}
+  <div class="main-content{{ _sidebar is not empty ? ' main-content--two': ''}}">
+    <div class="page-content">
+      {% block pageContent %}
+        {{ content }}
+      {% endblock %}
     </div>
-  {% endif %}
-</div>
+    {% if _sidebar is not empty %}
+      <div class="sidebar">
+        {{ _sidebar|raw }}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
 
 {% if _postContent is not empty %}
   <div class="post-content">

@@ -1,0 +1,49 @@
+uuid: 99fb4ddc-b54b-4dde-b8a8-405c1545ab97
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.2up_stacked_band.field_band_main
+    - field.field.node.2up_stacked_band.field_band_right_rail
+    - node.type.2up_stacked_band
+  module:
+    - paragraphs
+    - workbench_moderation
+id: node.2up_stacked_band.default
+targetEntityType: node
+bundle: 2up_stacked_band
+mode: default
+content:
+  field_band_main:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_band_right_rail:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

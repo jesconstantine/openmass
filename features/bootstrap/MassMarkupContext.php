@@ -30,7 +30,7 @@ class MassMarkupContext extends MarkupContext
    */
   public function iShouldSeeTheCorrectMarkupForThePageBanner()
   {
-    $this->assertRegionElement('div.ma__breadcrumbs__container', 'breadcrumbs');
+    $this->assertRegionElement('nav.ma__breadcrumbs__container', 'breadcrumbs');
     $this->assertRegionElement('style', 'page_banner');
     $this->assertRegionElement('div.ma__page-banner__icon', 'page_banner');
     $this->assertRegionElement('svg', 'page_banner');
@@ -70,7 +70,7 @@ class MassMarkupContext extends MarkupContext
   public function iSeeTheSubtopicPageMarkup()
   {
     $this->assertRegionElement('.ma__page-header__content > h1.ma__page-header__title', 'page_header');
-    $this->assertRegionElement('.ma__page-header__content > h4.ma__page-header__sub-title', 'page_header');
+    //$this->assertRegionElement('.ma__page-header__content > h4.ma__page-header__sub-title', 'page_header');
     $this->assertRegionElement('.ma__page-header__content > .ma__page-header__intro > .ma__rich-text', 'page_header');
     $this->assertRegionElement('section.ma__action-finder .ma__action-finder__container', 'page_main');
     $this->assertRegionElement('section.ma__action-finder header.ma__action-finder__header > h2.ma__action-finder__title', 'page_main');
@@ -78,6 +78,7 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('section.ma__action-finder ul.ma__action-finder__items > li.ma__action-finder__item.ma__action-finder__item--text', 'page_main');
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > h2.ma__link-list__title', 'page_main');
     $this->assertRegionElement('section.ma__link-list > .ma__link-list__container > ul.ma__link-list__items > li.ma__link-list__item > a.ma__link-list__link', 'page_main');
+    $this->assertRegionElement('section.ma__image-credit > div.ma__image-credit__container > span.ma__image-credit__label', 'page_post');
   }
 
   /**
@@ -116,5 +117,24 @@ class MassMarkupContext extends MarkupContext
   public function iShouldSeeTheCorrectMarkupForTheSearchResults()
   {
       $this->assertRegionElement('div#cse-search-results > div.gsc-control-cse > div.gsc-control-wrapper-cse  > div.gsc-results-wrapper-nooverlay > div.gsc-wrapper', 'search_results');
+  }
+
+  /**
+   * @Then I should see the correct markup for the illustrated header
+   */
+  public function iShouldSeeTheCorrectMarkupForTheIllustratedHeader()
+  {
+    $this->assertRegionElement('div.ma__illustrated-header__container > .ma__illustrated-header__content > .ma__illustrated-header__category', 'page_illustrated_header');
+    $this->assertRegionElement('div.ma__illustrated-header__container > .ma__illustrated-header__content > .ma__page-header > .ma__page-header__content > h1.ma__page-header__title', 'page_illustrated_header');
+    $this->assertRegionElement('div.ma__illustrated-header__image.ma__illustrated-header__image--empty', 'page_illustrated_header');
+  }
+
+  /**
+   * @Then I should see the correct markup for the related guides
+   */
+  public function iShouldSeeTheCorrectMarkupForTheRelatedGuides()
+  {
+    $this->assertRegionElement('div.ma__suggested-pages__container > h2.ma__suggested-pages__title', 'guide_related_guides');
+    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > h4.ma__illustrated-link__title', 'guide_related_guides');
   }
 }
