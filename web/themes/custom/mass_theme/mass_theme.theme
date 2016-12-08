@@ -1214,7 +1214,6 @@ function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
  *     Properties used: #attributes, #children.
  */
 function mass_theme_preprocess_entity_embed_container(&$variables) {
-  kint($variables);
   $variables['element'] += ['#attributes' => []];
 
   if (isset($variables['element']['#attributes']) && $variables['element']['#context']['data-entity-embed-display'] == 'image:image') {
