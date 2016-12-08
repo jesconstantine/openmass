@@ -585,7 +585,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'branch_location') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
-        // Wrap up all our online links.
+        // Wrap up all our branch location links.
         $value = $link = NULL;
         if (!empty($element[$delta]['#paragraph']->get('field_branch_locations')->first())) {
           $value = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['title'];
@@ -703,7 +703,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         );
       }
       // Do we have branch location links? If so, display them under one icon.
-      if (!empty($online_details) && $value == 'branch_location') {
+      if (!empty($branch_location_details) && $value == 'branch_location') {
         $groups[] = array(
           'icon'    => '@atoms/05-icons/svg-profile.twig',
           'name'    => 'Branch Location',
