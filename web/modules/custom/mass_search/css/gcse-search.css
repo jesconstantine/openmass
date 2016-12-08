@@ -831,3 +831,8 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
     display: inline-block !important;
   }
 }
+
+/* error and interstitial page search bar */
+.ma__narrow-template #cse-header-search-form {
+  margin-bottom: 75px;
+}
