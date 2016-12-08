@@ -701,6 +701,30 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     // Send to twig template.
     $variables['contactGroups'] = $groups;
   }
+
+  // Populate helpful links array.
+  if ($element['#field_name'] == 'field_helpful_links') {
+    $helpfulLinks = array();
+    $helpfulLinks['compHeading']= array(
+        'title' => $element['#title'],
+        'sub' => 'true',
+        'color' => 'yellow',
+    );
+    $links = array();
+    $delta = 0;
+    // Wrap up our helpful links.
+    while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
+      $links[] = array(
+        'chevron' => 'true',
+        'text' => $element[$delta]['#title'],
+        'href' => $element[$delta]['#url_title'],
+      );
+      $delta++;
+    }
+    $helpfulLinks['items'] = $links;
+    // Send array to twig.
+    $variables['helpfulLinks'] = $helpfulLinks;
+  }
 }
 
 /**
@@ -1319,4 +1343,17 @@ function icon_path($icon) {
   }
 
   return '@atoms/05-icons/svg-marker.twig';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Adds a page template hook suggestion per content type.
+ */
+function mass_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add content type suggestions.
+  $node = \Drupal::request()->attributes->get('node');
+  if ($node) {
+    array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
+  }
 }
