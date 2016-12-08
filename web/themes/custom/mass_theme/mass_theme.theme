@@ -1204,6 +1204,26 @@ function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
 }
 
 /**
+ * Prepares variables for entity embed container templates.
+ *
+ * Default template: entity-embed-container.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ *     Properties used: #attributes, #children.
+ */
+function mass_theme_preprocess_entity_embed_container(&$variables) {
+  $variables['element'] += ['#attributes' => []];
+
+  if (isset($variables['element']['#attributes']) && $variables['element']['#context']['data-entity-embed-display'] == 'image:image') {
+    $align_class = 'pull-' . $variables['element']['#attributes']['data-align'];
+    $variables['attributes']['class'][] = 'ma__action-image__figure';
+    $variables['children'] = Drupal\Core\Render\Markup::create(str_replace("<img", "<img class={$align_class}", $variables['children']));
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Parse file attributes for file link template.
