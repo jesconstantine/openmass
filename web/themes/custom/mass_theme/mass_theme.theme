@@ -1214,12 +1214,16 @@ function mass_theme_preprocess_ma_section3up_container_style(&$variables) {
  *     Properties used: #attributes, #children.
  */
 function mass_theme_preprocess_entity_embed_container(&$variables) {
+  kint($variables);
   $variables['element'] += ['#attributes' => []];
 
   if (isset($variables['element']['#attributes']) && $variables['element']['#context']['data-entity-embed-display'] == 'image:image') {
-    $align_class = 'pull-' . $variables['element']['#attributes']['data-align'];
+    $img_classes = 'ma__action-image__image';
+    if(isset($variables['element']['#attributes']['data-align'])) {
+      $img_classes .= ' pull-' . $variables['element']['#attributes']['data-align'];
+    }
     $variables['attributes']['class'][] = 'ma__action-image__figure';
-    $variables['children'] = Drupal\Core\Render\Markup::create(str_replace("<img", "<img class={$align_class}", $variables['children']));
+    $variables['children'] = Drupal\Core\Render\Markup::create(str_replace('<img', '<img class="' . $img_classes . '"', $variables['children']));
   }
 }
 
