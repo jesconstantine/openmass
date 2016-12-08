@@ -583,6 +583,27 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
 
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'branch_location') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our online links.
+        $value = $link = NULL;
+        if (!empty($element[$delta]['#paragraph']->get('field_branch_locations')->first())) {
+          $value = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['uri'];
+        }
+
+        $branch_location_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $value,
+          'rawVal'  => '',
+          'link'    => $link,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+        );
+        $delta++;
+        continue;
+      }
+
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our emails.
@@ -679,6 +700,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'icon'    => '@atoms/05-icons/svg-laptop.twig',
           'name'    => 'Online',
           'items'   => $online_details,
+        );
+      }
+      // Do we have branch location links? If so, display them under one icon.
+      if (!empty($online_details) && $value == 'branch_location') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-laptop.twig',
+          'name'    => 'Branch Location',
+          'items'   => $branch_location_details,
         );
       }
       // Do we have address? If so, display them under one icon.
