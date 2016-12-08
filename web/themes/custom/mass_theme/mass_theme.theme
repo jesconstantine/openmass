@@ -598,7 +598,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'rawVal'  => '',
           'link'    => $link,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
-          'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
+          'type'    => 'online',
         );
         $delta++;
         continue;
