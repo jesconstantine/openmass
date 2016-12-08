@@ -1029,6 +1029,7 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
     'phone' => array('class' => 'svg-phone', 'svg' => 'phone'),
     'laptop' => array('class' => 'svg-laptop', 'svg' => 'laptop'),
     'mail' => array('class' => 'svg-mail', 'svg' => 'mail'),
+    'profile' => array('class' => 'svg-profile', 'svg' => 'profile'),
   );
 
   $field_type = $paragraph->get('field_type');
@@ -1050,6 +1051,9 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
       case 'email';
       case 'mail':
         $svg_type = $svg_types['mail'];
+        break;
+      case 'branch_location':
+        $svg_type = $svg_types['profile'];
         break;
 
     }

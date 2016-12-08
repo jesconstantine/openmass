@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.contact_info.field_address
+    - field.field.paragraph.contact_info.field_branch_locations
     - field.field.paragraph.contact_info.field_caption
     - field.field.paragraph.contact_info.field_email
     - field.field.paragraph.contact_info.field_label
@@ -25,6 +26,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+  field_branch_locations:
+    weight: 7
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
   field_caption:
     weight: 6
     label: hidden
