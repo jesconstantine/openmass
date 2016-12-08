@@ -13,14 +13,14 @@ Feature: Interstitial Content type
     Given I am viewing an "interstitial" content with the title "Run the Test Suite"
     Then I am on "run-test-suite"
 
-  Scenario: Verify Developer role/user can create error page content
+  Scenario: Verify that these roles cannot create error page content
     Given I am logged in as a user with the "content_team" role
     Given I am logged in as a user with the "content_user" role
     Given I am logged in as a user with the "content_editor" role
     When I go to "node/add/interstitial"
     Then the response status code should be 403
 
-  Scenario: Verify Developer role/user can create interstitial content
+  Scenario: Verify Administrator can create interstitial page content
     Given I am logged in as a user with the "administrator" role
     When I go to "node/add/interstitial"
     Then the response status code should be 200
