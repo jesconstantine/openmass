@@ -1,6 +1,7 @@
 module:
   acquia_connector: 0
   automated_cron: 0
+  basic_auth: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -35,6 +36,7 @@ module:
   ga_login: 0
   google_map_field: 0
   google_tag: 0
+  hal: 0
   help: 0
   history: 0
   image: 0
@@ -71,9 +73,12 @@ module:
   quickedit: 0
   rdf: 0
   redirect: 0
+  rest: 0
   restrict_by_ip: 0
+  restui: 0
   seckit: 0
   security_review: 0
+  serialization: 0
   shortcut: 0
   syslog: 0
   system: 0
@@ -88,6 +93,7 @@ module:
   update: 0
   user: 0
   username_enumeration_prevention: 0
+  views_ui: 0
   workbench_moderation: 0
   workbench_tabs: 0
   menu_link_content: 1
