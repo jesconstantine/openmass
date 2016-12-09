@@ -120,6 +120,7 @@
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
         "drupal/restrict_by_ip": "8.4.x-dev",
+        "drupal/restui": "8.*",
         "drupal/seckit": "8.1.0-alpha2",
         "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
