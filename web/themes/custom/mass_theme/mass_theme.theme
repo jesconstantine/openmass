@@ -705,10 +705,10 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   // Populate helpful links array.
   if ($element['#field_name'] == 'field_helpful_links') {
     $helpfulLinks = array();
-    $helpfulLinks['compHeading']= array(
-        'title' => $element['#title'],
-        'sub' => 'true',
-        'color' => 'yellow',
+    $helpfulLinks['compHeading'] = array(
+      'title' => $element['#title'],
+      'sub' => 'true',
+      'color' => 'yellow',
     );
     $links = array();
     $delta = 0;
