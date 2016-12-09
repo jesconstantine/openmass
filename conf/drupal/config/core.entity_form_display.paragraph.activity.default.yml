@@ -7,10 +7,9 @@ dependencies:
     - field.field.paragraph.activity.field_link
     - field.field.paragraph.activity.field_teaser
     - field.field.paragraph.activity.field_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.activity
   module:
-    - image
+    - entity_browser
     - link
     - workbench_moderation
 id: paragraph.activity.default
@@ -21,10 +20,15 @@ content:
   field_image:
     weight: 7
     settings:
-      progress_indicator: throbber
       preview_image_style: thumbnail
+      entity_browser: null
+      open: false
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      view_mode: default
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
   field_link:
     weight: 9
     settings:
