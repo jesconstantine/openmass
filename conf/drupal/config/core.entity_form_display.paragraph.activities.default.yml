@@ -1,0 +1,40 @@
+uuid: b98f5825-6b4a-4f61-be4c-330f7d34c639
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.activities.field_activities
+    - field.field.paragraph.activities.field_subhead
+    - paragraphs.paragraphs_type.activities
+  module:
+    - paragraphs
+    - workbench_moderation
+id: paragraph.activities.default
+targetEntityType: paragraph
+bundle: activities
+mode: default
+content:
+  field_activities:
+    type: entity_reference_paragraphs
+    weight: 7
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_subhead:
+    type: entity_reference_paragraphs
+    weight: 6
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true
