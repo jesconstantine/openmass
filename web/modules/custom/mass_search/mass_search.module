@@ -44,8 +44,8 @@ function mass_search_theme() {
  */
 function mass_search_page_attachments(array &$attachments) {
 
-  // Unconditionally attach the google js api external script reference (loads
-  // in head).
+  // Unconditionally attach the google js api external script reference
+  // (loads in head).
   $attachments['#attached']['library'][] = 'mass_search/google-jsapi';
 
   // Unconditionally attach the search form js + css globally.

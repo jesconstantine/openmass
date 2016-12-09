@@ -6,3 +6,4 @@ libraries/**/*
 sites/**/libraries/**/*
 profiles/**/libraries/**/*
 **/js_test_files/**/*
+web/themes/custom/mass_theme/js/*

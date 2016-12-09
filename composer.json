@@ -126,6 +126,7 @@
         "drupal/twig_tweak": "^8.1",
         "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
+        "drupal/config_log": "8.*",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/mayflower-artifacts": "^2.1",

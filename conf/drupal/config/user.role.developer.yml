@@ -157,3 +157,7 @@ permissions:
   152: 'setup own tfa'
   153: 'require tfa'
   154: 'manage password reset'
+  155: 'create error_page content'
+  156: 'edit any error_page content'
+  157: 'create interstitial content'
+  158: 'edit any interstitial content'
