@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.activities.field_activities
-    - field.field.paragraph.activities.field_subhead
     - paragraphs.paragraphs_type.activities
   module:
     - paragraphs
@@ -18,19 +17,9 @@ content:
     type: entity_reference_paragraphs
     weight: 7
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-    third_party_settings: {  }
-  field_subhead:
-    type: entity_reference_paragraphs
-    weight: 6
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }

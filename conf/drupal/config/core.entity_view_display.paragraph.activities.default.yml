@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.activities.field_activities
-    - field.field.paragraph.activities.field_subhead
     - paragraphs.paragraphs_type.activities
   module:
     - entity_reference_revisions
@@ -16,14 +15,6 @@ content:
   field_activities:
     type: entity_reference_revisions_entity_view
     weight: 1
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-  field_subhead:
-    type: entity_reference_revisions_entity_view
-    weight: 0
     label: hidden
     settings:
       view_mode: default
