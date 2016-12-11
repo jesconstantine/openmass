@@ -6,6 +6,7 @@
   'use strict';
 
   // @TODO: revisit and confirm this language.
+  // See: https://jira.state.ma.us/browse/MASSGOV-1208
   var FILTERED_ANNOUNCEMENT = 'New content loaded. Now displaying a new set of filtered items.';
 
   Drupal.behaviors.ajaxViewsExt = {
