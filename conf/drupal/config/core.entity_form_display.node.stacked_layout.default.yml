@@ -3,15 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.stacked_layout.field_bands
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
+    - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
     - node.type.stacked_layout
   module:
     - entity_browser
     - field_group
+    - metatag
     - paragraphs
     - workbench_moderation
 third_party_settings:
@@ -89,6 +92,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+  field_metatags:
+    weight: 111
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
   field_photo:
     weight: 4
     settings:
