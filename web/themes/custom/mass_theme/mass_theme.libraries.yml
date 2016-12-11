@@ -8,6 +8,7 @@ global-styling:
       overrides/css/action-finder.css: {}
       overrides/css/basic-html.css: {}
   js:
+    libraries/jquery_once/jquery.once.min.js: {}
     overrides/js/env-drupal.js: {}
     js/index-generated.js: {}
     libraries/formstack/js/matchMayflower.js: {}
