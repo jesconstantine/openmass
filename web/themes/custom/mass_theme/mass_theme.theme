@@ -733,8 +733,8 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
   // Populate helpful links array.
   if ($element['#field_name'] == 'field_helpful_links') {
-    $helpfulLinks = array();
-    $helpfulLinks['compHeading'] = array(
+    $helpful_links = array();
+    $helpful_links['compHeading'] = array(
       'title' => $element['#title'],
       'sub' => 'true',
       'color' => 'yellow',
@@ -750,9 +750,9 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       );
       $delta++;
     }
-    $helpfulLinks['items'] = $links;
+    $helpful_links['items'] = $links;
     // Send array to twig.
-    $variables['helpfulLinks'] = $helpfulLinks;
+    $variables['helpfulLinks'] = $helpful_links;
   }
 }
 
@@ -1105,6 +1105,7 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
       case 'mail':
         $svg_type = $svg_types['mail'];
         break;
+
       case 'branch_location':
         $svg_type = $svg_types['profile'];
         break;
