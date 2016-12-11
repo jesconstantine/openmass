@@ -583,6 +583,27 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         continue;
       }
 
+      if ($element[$delta]['#paragraph']->get('field_type')->value == 'branch_location') {
+        $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
+        // Wrap up all our branch location links.
+        $value = $link = NULL;
+        if (!empty($element[$delta]['#paragraph']->get('field_branch_locations')->first())) {
+          $value = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['title'];
+          $link = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['uri'];
+        }
+
+        $branch_location_details[] = array(
+          'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
+          'value'   => $value,
+          'rawVal'  => '',
+          'link'    => $link,
+          'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
+          'type'    => 'online',
+        );
+        $delta++;
+        continue;
+      }
+
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our emails.
@@ -679,6 +700,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           'icon'    => '@atoms/05-icons/svg-laptop.twig',
           'name'    => 'Online',
           'items'   => $online_details,
+        );
+      }
+      // Do we have branch location links? If so, display them under one icon.
+      if (!empty($branch_location_details) && $value == 'branch_location') {
+        $groups[] = array(
+          'icon'    => '@atoms/05-icons/svg-profile.twig',
+          'name'    => 'Branch Location',
+          'items'   => $branch_location_details,
         );
       }
       // Do we have address? If so, display them under one icon.
@@ -1053,6 +1082,7 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
     'phone' => array('class' => 'svg-phone', 'svg' => 'phone'),
     'laptop' => array('class' => 'svg-laptop', 'svg' => 'laptop'),
     'mail' => array('class' => 'svg-mail', 'svg' => 'mail'),
+    'profile' => array('class' => 'svg-profile', 'svg' => 'profile'),
   );
 
   $field_type = $paragraph->get('field_type');
@@ -1074,6 +1104,9 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
       case 'email';
       case 'mail':
         $svg_type = $svg_types['mail'];
+        break;
+      case 'branch_location':
+        $svg_type = $svg_types['profile'];
         break;
 
     }
