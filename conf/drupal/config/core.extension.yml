@@ -8,6 +8,7 @@ module:
   color: 0
   components: 0
   config: 0
+  config_log: 0
   contextual: 0
   crazyegg: 0
   ctools: 0
@@ -45,6 +46,7 @@ module:
   link: 0
   mass_content: 0
   mass_entityreference: 0
+  mass_feedback_form: 0
   mass_formatters: 0
   mass_nav: 0
   mass_search: 0
