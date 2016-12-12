@@ -125,6 +125,7 @@
         "drupal/twig_tweak": "^8.1",
         "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
+        "drupal/config_log": "8.*",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
         "palantirnet/mayflower-artifacts": "^2.1",
@@ -190,6 +191,9 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
+            },
+            "drupal/core": {
+              "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
             }
         }
     }

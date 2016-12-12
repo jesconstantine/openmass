@@ -92,5 +92,17 @@
         </div>
       {% endif %}
     </div>
+  {% elseif content.field_branch_locations|render|trim is not empty %}
+    <div>
+      {% if content.field_label|render|trim is not empty %}
+        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+      {% endif %}
+      {{ content.field_branch_locations|field_value }}
+      {% if content.field_caption|render|trim is not empty %}
+        <div class="ma__header-contact__details">
+          {{ content.field_caption|field_value }}
+        </div>
+      {% endif %}
+    </div>
   {% endif %}
 </div>

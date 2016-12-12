@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.sidebar
     - field.field.paragraph.contact_info.field_address
+    - field.field.paragraph.contact_info.field_branch_locations
     - field.field.paragraph.contact_info.field_caption
     - field.field.paragraph.contact_info.field_email
     - field.field.paragraph.contact_info.field_label
@@ -21,33 +22,44 @@ bundle: contact_info
 mode: sidebar
 content:
   field_address:
-    weight: 5
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_caption:
+  field_branch_locations:
+    type: link
     weight: 6
+    label: hidden
+    settings:
+      trim_length: 80
+      rel: ''
+      target: ''
+      url_only: false
+      url_plain: false
+    third_party_settings: {  }
+  field_caption:
+    weight: 5
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_email:
-    weight: 3
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_label:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_link:
-    weight: 4
+    weight: 3
     label: hidden
     settings:
       trim_length: 80
@@ -58,7 +70,7 @@ content:
     third_party_settings: {  }
     type: link
   field_phone:
-    weight: 2
+    weight: 1
     label: hidden
     settings:
       title: ''
