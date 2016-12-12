@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
+    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
@@ -22,6 +23,7 @@ dependencies:
   module:
     - field_group
     - link
+    - metatag
     - paragraphs
     - text
     - workbench_moderation
@@ -46,7 +48,6 @@ third_party_settings:
     group_sidebar:
       children:
         - field_action_sidebar
-        - field_action_downloads
       parent_name: group_form
       weight: 4
       label: 'Sidebar Content'
@@ -135,6 +136,7 @@ third_party_settings:
     group_search:
       children:
         - field_search
+        - field_metatags
       parent_name: group_form
       weight: 7
       label: Search
@@ -243,6 +245,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+  field_metatags:
+    type: metatag_firehose
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
   field_search:
     weight: 32
     settings:
@@ -263,7 +270,6 @@ hidden:
   field_action_related: true
   field_contact_group: true
   field_hero: true
-  field_metatags: true
   path: true
   promote: true
   sticky: true
