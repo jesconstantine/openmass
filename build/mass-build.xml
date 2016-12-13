@@ -171,23 +171,27 @@
     <fail unless="api_keys.google.maps" />
 
     <!-- Rewrite the theme registry. -->
-    <if>
-      <available file="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml" type="file" />
-      <then>
-        <echo>Updating the Google Maps API Key in the theme file.</echo>
-
-        <copy
-          file="${build.dir}/conf/mass_admin_theme.libraries.yml.template"
-          tofile="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml"
-          overwrite="true">
-            <filterchain>
-                <replacetokens begintoken="{{" endtoken="}}">
-                    <token key="placeholder-key" value="${api_keys.google.maps}" />
-                </replacetokens>
-            </filterchain>
-        </copy>
-      </then>
-    </if>
+    <echo>Updating the Google Maps API Key in the theme file.</echo>
+    <copy
+      file="${build.dir}/conf/mass_admin_theme.libraries.yml.template"
+      tofile="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml"
+      overwrite="true">
+        <filterchain>
+            <replacetokens begintoken="{{" endtoken="}}">
+                <token key="placeholder-key" value="${api_keys.google.maps}" />
+            </replacetokens>
+        </filterchain>
+    </copy>
+    <drush command="config-set" assume="yes">
+        <param>google_map_field.settings</param>
+        <param>google_map_field_apikey</param>
+        <param>${api_keys.google.maps}</param>
+    </drush>
+    <drush command="config-set" assume="yes">
+        <param>google_map_field.settings</param>
+        <param>google_map_field_auth_method</param>
+        <param>1</param>
+    </drush>
   </target>
 
   <target name="mass-update-admin-username" description="Update admin user name.">
