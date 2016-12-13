@@ -8,4 +8,16 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
  #}
-{% include '@custom_includes/organisms-guide-section.html.twig' %}
+{#
+/**
+ * @file
+ * Partial for suggested pages finder. To be included at the node level.
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<div class="main-content">
+  <main class="page-content">
+    {{ content.field_main|field_value }}
+  </main>
+</div>

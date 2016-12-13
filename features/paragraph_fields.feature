@@ -169,9 +169,3 @@ Feature: Paragraph type definitions
       | field             | widget     |
       | field-time        | Textfield  |
 
-  Scenario: Verify that the completion_time paragraph type has the correct field configuration
-    Given I am logged in as a user with the "administrator" role
-    Then the "stacked_band" paragraph has the fields:
-      | field             | widget                       |
-      | field-band        | Inline entity form - Complex |
-
