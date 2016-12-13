@@ -1,0 +1,46 @@
+uuid: ba373497-58fb-418d-975c-3078aeb9d9a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.emergency_alert.field_emergency_alert_message
+    - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
+    - field.field.paragraph.emergency_alert.field_link
+    - paragraphs.paragraphs_type.emergency_alert
+  module:
+    - datetime
+    - link
+id: paragraph.emergency_alert.default
+targetEntityType: paragraph
+bundle: emergency_alert
+mode: default
+content:
+  field_emergency_alert_message:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_emergency_alert_timestamp:
+    weight: 1
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'm.d.y, g:i a'
+    third_party_settings: {  }
+    type: datetime_custom
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  created: true
+  uid: true

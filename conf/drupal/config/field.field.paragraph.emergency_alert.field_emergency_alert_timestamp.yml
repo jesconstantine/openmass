@@ -1,0 +1,24 @@
+uuid: decd1c83-aa92-4b1f-9fad-91962e6baf7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_emergency_alert_timestamp
+    - paragraphs.paragraphs_type.emergency_alert
+  module:
+    - datetime
+id: paragraph.emergency_alert.field_emergency_alert_timestamp
+field_name: field_emergency_alert_timestamp
+entity_type: paragraph
+bundle: emergency_alert
+label: 'Emergency Alert Timestamp'
+description: '<p>The date and time that this alert was created and subsequently, edited.  This appears directly after the individual alert (light yellow) message in the alert banner.</p>'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
