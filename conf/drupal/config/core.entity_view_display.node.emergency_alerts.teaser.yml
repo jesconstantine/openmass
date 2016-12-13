@@ -1,0 +1,17 @@
+uuid: c040c32d-aecd-4a3f-82a1-8784dd3ef734
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.emergency_alerts
+  module:
+    - user
+id: node.emergency_alerts.teaser
+targetEntityType: node
+bundle: emergency_alerts
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden: {  }

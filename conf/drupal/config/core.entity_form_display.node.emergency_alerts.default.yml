@@ -1,0 +1,43 @@
+uuid: f3b3517c-09ff-4eeb-99e8-83c5dfc0de55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.emergency_alerts.field_alert
+    - node.type.emergency_alerts
+  module:
+    - paragraphs
+    - path
+    - workbench_moderation
+id: node.emergency_alerts.default
+targetEntityType: node
+bundle: emergency_alerts
+mode: default
+content:
+  field_alert:
+    type: entity_reference_paragraphs
+    weight: 31
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 100
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

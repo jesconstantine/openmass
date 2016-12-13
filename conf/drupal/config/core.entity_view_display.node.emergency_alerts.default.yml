@@ -1,0 +1,25 @@
+uuid: 26b53ee6-0d46-4845-960d-4dbfab8f0223
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.emergency_alerts.field_alert
+    - node.type.emergency_alerts
+  module:
+    - entity_reference_revisions
+    - user
+id: node.emergency_alerts.default
+targetEntityType: node
+bundle: emergency_alerts
+mode: default
+content:
+  field_alert:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+hidden:
+  links: true
