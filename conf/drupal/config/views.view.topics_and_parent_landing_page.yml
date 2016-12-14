@@ -145,6 +145,71 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
+        uuid:
+          id: uuid
+          table: node
+          field: uuid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: uuid
+          plugin_id: field
         type:
           id: type
           table: node_field_data
@@ -392,6 +457,71 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
+        uuid_1:
+          id: uuid_1
+          table: node
+          field: uuid
+          relationship: field_section
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: uuid
+          plugin_id: field
         field_section:
           id: field_section
           table: node__field_section
@@ -547,16 +677,6 @@ display:
       footer: {  }
       empty: {  }
       relationships:
-        reverse__node__field_topic_parent:
-          id: reverse__node__field_topic_parent
-          table: node_field_data
-          field: reverse__node__field_topic_parent
-          relationship: none
-          group_type: group
-          admin_label: field_topic_parent
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
         field_section:
           id: field_section
           table: node__field_section
@@ -588,7 +708,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: api/v1/topics-and-parent-landing-page
+      path: api/v1/topics
       pager:
         type: none
         options:
@@ -605,6 +725,9 @@ display:
             nid:
               alias: self_id
               raw_output: false
+            uuid:
+              alias: ''
+              raw_output: false
             type:
               alias: self_content_type
               raw_output: false
@@ -616,6 +739,9 @@ display:
               raw_output: false
             nid_3:
               alias: parent_id
+              raw_output: false
+            uuid_1:
+              alias: parent_uuid
               raw_output: false
             field_section:
               alias: parent_title

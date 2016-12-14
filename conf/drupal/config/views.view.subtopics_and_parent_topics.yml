@@ -36,7 +36,7 @@ display:
         type: views_query
         options:
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_comment: ''
           query_tags: {  }
@@ -456,71 +456,6 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        uuid_1:
-          id: uuid_1
-          table: node
-          field: uuid
-          relationship: reverse__node__field_action_parent
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: uuid
-          plugin_id: field
         type_1:
           id: type_1
           table: node_field_data
@@ -700,6 +635,71 @@ display:
           absolute: true
           entity_type: node
           plugin_id: node_path
+        uuid_1:
+          id: uuid_1
+          table: node
+          field: uuid
+          relationship: field_topic_parent
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: uuid
+          plugin_id: field
       filters:
         status:
           value: '1'
@@ -741,16 +741,6 @@ display:
       footer: {  }
       empty: {  }
       relationships:
-        reverse__node__field_action_parent:
-          id: reverse__node__field_action_parent
-          table: node_field_data
-          field: reverse__node__field_action_parent
-          relationship: none
-          group_type: group
-          admin_label: field_action_parent
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
         field_topic_parent:
           id: field_topic_parent
           table: node__field_topic_parent
@@ -782,11 +772,25 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: api/v1/subtopics-and-parent-topics
+      path: api/v1/subtopics
       pager:
-        type: none
+        type: mini
         options:
+          items_per_page: 2
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
       style:
         type: serializer
         options:
@@ -833,6 +837,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:

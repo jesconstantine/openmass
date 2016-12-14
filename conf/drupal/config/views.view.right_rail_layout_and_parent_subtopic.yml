@@ -801,7 +801,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: api/v1/right-rail-layout-and-parent-subtopics
+      path: api/v1/right-rail
       pager:
         type: none
         options:
