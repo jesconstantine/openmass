@@ -502,8 +502,20 @@ display:
         type: data_field
         options:
           field_options:
+            nid:
+              alias: node_id
+              raw_output: false
+            uuid:
+              alias: node_uuid
+              raw_output: false
+            type:
+              alias: content_type
+              raw_output: false
             title:
-              alias: ''
+              alias: node_title
+              raw_output: false
+            path:
+              alias: node_path
               raw_output: false
       display_description: ''
     cache_metadata:
