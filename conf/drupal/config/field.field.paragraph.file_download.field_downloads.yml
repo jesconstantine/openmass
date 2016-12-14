@@ -12,7 +12,7 @@ field_name: field_downloads
 entity_type: paragraph
 bundle: file_download
 label: Downloads
-description: '<p>Add any files that are required to be completed as part of this content.</p><p><b><big>PLEASE NOTE:</big></b> For now, it is best to upload, select and label ONE file at a time.</p><p><a href="http://dev.massgov.velir.com/?p=molecules-action-downloads">View a sample File Download</a></p>'
+description: '<p>Add any files that are required to be completed as part of this content.</p><p><b><big>PLEASE NOTE:</big></b> For now, it is best to upload, select and label ONE file at a time.</p><p><a href="http://dev.massgov.velir.com/?p=molecules-action-downloads" target="_blank">View a sample File Download</a></p>'
 required: false
 translatable: false
 default_value: {  }
