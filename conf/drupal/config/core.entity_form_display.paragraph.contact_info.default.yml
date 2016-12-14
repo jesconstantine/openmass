@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.contact_info.field_address
+    - field.field.paragraph.contact_info.field_branch_locations
     - field.field.paragraph.contact_info.field_caption
     - field.field.paragraph.contact_info.field_email
     - field.field.paragraph.contact_info.field_label
@@ -39,6 +40,7 @@ third_party_settings:
         - field_phone
         - field_email
         - field_link
+        - field_branch_locations
         - field_address
       parent_name: ''
       weight: 2
@@ -55,12 +57,19 @@ bundle: contact_info
 mode: default
 content:
   field_address:
-    weight: 6
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+  field_branch_locations:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
   field_caption:
     weight: 3
     settings:

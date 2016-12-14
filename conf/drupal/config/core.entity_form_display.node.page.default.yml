@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_metatags
     - node.type.page
   module:
+    - metatag
     - path
     - text
+    - workbench_moderation
 _core:
   default_config_hash: KSvzyFhdLuxniTsunUnUfpfMmod2l57GibtVjL8ymHM
 id: node.page.default
@@ -28,6 +31,11 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+  field_metatags:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
   path:
     type: path
     weight: 30

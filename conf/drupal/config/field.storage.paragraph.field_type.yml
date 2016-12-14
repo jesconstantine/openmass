@@ -24,6 +24,9 @@ settings:
       value: online
       label: Online
     -
+      value: branch_location
+      label: 'Branch Location'
+    -
       value: mail
       label: Mail
     -

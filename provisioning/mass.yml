@@ -13,3 +13,4 @@
     - { role: drush }
     - { role: gulp }
     - { role: mass }
+    - { role: eslint }

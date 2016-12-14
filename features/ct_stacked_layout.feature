@@ -13,7 +13,7 @@ Feature: Stacked Layout Content type
     | field-lede            | textarea   |              | false      |
     | field-label           | input      | text         | false      |
     | field-photo           | input      | submit       | false      |
-    | field-bands           | paragraphs | stacked-band | false      |
+    | field-bands           | paragraphs |  | false      |
 
 
   Scenario: The stacked layout has correct markup.

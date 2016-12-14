@@ -8,6 +8,7 @@ module:
   color: 0
   components: 0
   config: 0
+  config_log: 0
   contextual: 0
   crazyegg: 0
   ctools: 0
@@ -38,13 +39,13 @@ module:
   history: 0
   image: 0
   imagick: 0
-  inline_entity_form: 0
   inline_form_errors: 0
   key: 0
   kint: 0
   link: 0
   mass_content: 0
   mass_entityreference: 0
+  mass_feedback_form: 0
   mass_formatters: 0
   mass_nav: 0
   mass_search: 0
@@ -86,6 +87,7 @@ module:
   update: 0
   user: 0
   username_enumeration_prevention: 0
+  views_ui: 0
   workbench_moderation: 0
   workbench_tabs: 0
   menu_link_content: 1

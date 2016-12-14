@@ -1,5 +1,15 @@
 <project name="mass-build" default="status">
 
+    <!-- Target: mass-run-eslint  -->
+    <target name="mass-run-eslint" description="Checks custom JS code against ESLint.">
+        <!-- custom modules  -->
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/modules/custom/**/*.js'" checkreturn="true" logoutput="true" />
+        <!-- custom themes (ignores mayflower artifacts) -->
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/themes/custom/**/*.js' "
+              checkreturn="true" logoutput="true" />
+        <echo>ESLint was successful</echo>
+    </target>
+
   <target name="mass-drupal-test" description="Run Drupal tests.">
       <property name="build.test_output" value="/dev/null" />
 
