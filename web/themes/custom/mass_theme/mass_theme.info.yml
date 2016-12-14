@@ -11,6 +11,7 @@ libraries:
 base theme: stable
 
 regions:
+  emergency_alert: Emergency Alert
   header: Header
   content: Content
   section_topics: Section topics
