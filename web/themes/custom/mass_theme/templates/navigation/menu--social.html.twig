@@ -40,7 +40,7 @@
     {% for item in items %}
       <li{{ item.attributes.addClass('ma__social-links__item') }}>
         <a href="{{ item.url }}" class="ma__social-links__link">
-          {% include "@mass_theme/includes/atoms-svg.html.twig" with {'iconName':item.title|lower} %}
+          {% include "@mass_theme/includes/atoms-svg.html.twig" ignore missing with {'iconName':item.title|lower} %}
         </a>
       </li>
     {% endfor %}
