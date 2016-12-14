@@ -1,0 +1,6 @@
+feedback-form-css:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/fs-page-feedback-form.css: {}

@@ -38,6 +38,7 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
+<div class="multi-row-content">
 {% set links = [] %}
 {% for key,value in subheads %}
   {%
@@ -57,6 +58,9 @@
 {% include '@organisms/by-template/jump-links.twig' %}
 
 {# Render band #}
-{% for item in items %}
-  {{ item.content }}
+{% for band in bands %}
+  <section class="ma__multi-row-section">
+    {{ band }}
+  </section>
 {% endfor %}
+</div>
