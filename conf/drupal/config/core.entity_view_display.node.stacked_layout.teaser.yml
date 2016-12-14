@@ -14,9 +14,16 @@ mode: teaser
 content:
   links:
     weight: 100
+  workbench_moderation_control:
+    weight: -20
 hidden:
+  field_action_banner: true
+  field_action_header: true
   field_bands: true
+  field_header_cta: true
   field_label: true
   field_lede: true
+  field_metatags: true
   field_photo: true
+  field_related_content: true
   field_related_guides: true

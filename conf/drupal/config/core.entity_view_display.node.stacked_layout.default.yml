@@ -3,7 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.stacked_layout.field_action_banner
+    - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
+    - field.field.node.stacked_layout.field_header_cta
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_metatags
@@ -20,6 +23,22 @@ targetEntityType: node
 bundle: stacked_layout
 mode: default
 content:
+  field_action_banner:
+    weight: 109
+    label: above
+    settings:
+      view_mode: extended_header
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  field_action_header:
+    weight: 108
+    label: above
+    settings:
+      view_mode: extended_header
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
   field_bands:
     type: entity_reference_revisions_entity_view
     weight: 105
@@ -28,6 +47,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  field_header_cta:
+    weight: 110
+    label: above
+    settings:
+      view_mode: extended_header
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
   field_label:
     weight: 101
     label: above
@@ -64,6 +91,10 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

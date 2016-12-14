@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.browse_files_modal
+    - field.field.node.stacked_layout.field_action_banner
+    - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
+    - field.field.node.stacked_layout.field_header_cta
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_metatags
@@ -23,6 +26,7 @@ third_party_settings:
       children:
         - group_primary_content
         - group_bands
+        - group_extended_header
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -38,7 +42,6 @@ third_party_settings:
         - field_label
         - field_lede
         - field_photo
-        - field_related_guides
       parent_name: group_node_edit_form
       weight: 108
       label: 'Primary Content'
@@ -63,11 +66,46 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+    group_extended_header:
+      children:
+        - field_action_header
+        - field_action_banner
+        - field_header_cta
+      parent_name: group_node_edit_form
+      weight: 110
+      label: 'Extended Header'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
 id: node.stacked_layout.default
 targetEntityType: node
 bundle: stacked_layout
 mode: default
 content:
+  field_action_banner:
+    weight: 113
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_action_header:
+    weight: 112
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
   field_bands:
     type: entity_reference_paragraphs
     weight: 11
@@ -78,6 +116,16 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  field_header_cta:
+    weight: 114
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
   field_label:
     weight: 2
     settings:
