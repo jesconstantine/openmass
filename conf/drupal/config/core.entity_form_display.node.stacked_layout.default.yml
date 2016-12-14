@@ -74,7 +74,7 @@ content:
     settings:
       title: Molecule
       title_plural: Molecules
-      edit_mode: closed
+      edit_mode: preview
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
