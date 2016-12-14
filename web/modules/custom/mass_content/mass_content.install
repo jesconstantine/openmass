@@ -286,3 +286,14 @@ function mass_content_update_8005(&$sandbox) {
     $node->save();
   }
 }
+
+/**
+ * Remove 1up/2up stacked bands.
+ */
+function mass_content_update_8006(&$sandbox) {
+  $content_type = \Drupal::entityManager()->getStorage('node_type')->load('1up_stacked_band');
+  $content_type->delete();
+
+  $content_type = \Drupal::entityManager()->getStorage('node_type')->load('2up_stacked_band');
+  $content_type->delete();
+}
