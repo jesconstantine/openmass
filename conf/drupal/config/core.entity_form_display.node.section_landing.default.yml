@@ -3,13 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.section_landing.field_featured_image
     - field.field.node.section_landing.field_featured_mobile_image
     - field.field.node.section_landing.field_icon
     - field.field.node.section_landing.field_icon_term
+    - field.field.node.section_landing.field_image_credit
+    - field.field.node.section_landing.field_metatags
     - node.type.section_landing
   module:
     - entity_browser
+    - metatag
     - path
     - workbench_moderation
 id: node.section_landing.default
@@ -35,7 +39,7 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_featured_mobile_image:
-    weight: 26
+    weight: 8
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: true
@@ -51,6 +55,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+  field_image_credit:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_metatags:
+    type: metatag_firehose
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 5
@@ -85,4 +101,3 @@ content:
     third_party_settings: {  }
 hidden:
   field_icon: true
-  field_metatags: true

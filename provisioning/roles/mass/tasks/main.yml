@@ -6,4 +6,5 @@
     - imagemagick
     - php5-imagick
     - php5.6-xml
+    - php5.6-dom
   tags: mass

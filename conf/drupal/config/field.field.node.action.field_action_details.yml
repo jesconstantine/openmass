@@ -7,10 +7,15 @@ dependencies:
     - node.type.action
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.action_step_numbered_list
+    - paragraphs.paragraphs_type.activities
+    - paragraphs.paragraphs_type.callout_alert
+    - paragraphs.paragraphs_type.callout_button
     - paragraphs.paragraphs_type.callout_link
     - paragraphs.paragraphs_type.file_download
+    - paragraphs.paragraphs_type.hours
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
     - paragraphs.paragraphs_type.subhead
@@ -34,13 +39,18 @@ settings:
       action_step: action_step
       action_step_numbered_list: action_step_numbered_list
       callout_link: callout_link
+      callout_alert: callout_alert
       file_download: file_download
       iframe: iframe
       rich_text: rich_text
       stat: stat
       subhead: subhead
-      map: map
       video: video
+      map: map
+      callout_button: callout_button
+      hours: hours
+      activities: activities
+      pull_quote: pull_quote
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -51,6 +61,9 @@ settings:
       callout_link:
         enabled: true
         weight: -17
+      callout_alert:
+        enabled: true
+        weight: -16
       file_download:
         enabled: true
         weight: -15
@@ -72,25 +85,64 @@ settings:
       action_step_numbered:
         weight: -9
         enabled: false
-      map:
-        enabled: true
-        weight: 19
       action_address:
         weight: 16
         enabled: false
+      video:
+        enabled: true
+        weight: 16
       action_address_info:
         weight: 17
         enabled: false
       action_area:
         weight: 18
         enabled: false
+      map:
+        enabled: true
+        weight: 19
       full_bleed:
         weight: 25
         enabled: false
       location_information:
         weight: 27
         enabled: false
-      video:
+      callout_button:
         enabled: true
-        weight: 16
+        weight: 31
+      contact_group:
+        weight: 33
+        enabled: false
+      contact_info:
+        weight: 34
+        enabled: false
+      hours:
+        enabled: true
+        weight: 37
+      activities:
+        enabled: true
+        weight: 38
+      icon:
+        weight: 38
+        enabled: false
+      activity:
+        weight: 39
+        enabled: false
+      pull_quote:
+        enabled: true
+        weight: 41
+      quick_action:
+        weight: 42
+        enabled: false
+      completion_time:
+        weight: 43
+        enabled: false
+      related_link:
+        weight: 43
+        enabled: false
+      slideshow:
+        weight: 45
+        enabled: false
+      stacked_band:
+        weight: 59
+        enabled: false
 field_type: entity_reference_revisions

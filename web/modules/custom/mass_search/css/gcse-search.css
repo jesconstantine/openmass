@@ -1,6 +1,14 @@
 /* GOOGLE CUSTOM SEARCH STYLES */
 
-/* mobile search custom orverride */
+/* no results content - matches mayflower callout alert */
+.gs-no-results-result .gs-snippet {
+  border: 3px solid #fbe28d !important;
+  padding: 30px !important;
+  background-color: #fef9e8 !important;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+/* mobile search custom override */
 .cse form.gsc-search-box, form.gsc-search-box,
 .gsc-search-box {
   margin: 0;
@@ -107,16 +115,22 @@ input.gsc-search-button:hover {
 
 /* mobile autocomplete styles */
 
-/* target the mobile autocomplete and override js-assigned positioning because as is,
-  it does line up under input
+/** target the mobile autocomplete and override js-assigned positioning
+    because as is,it does line up under input.
 
   1. magic number'ish for mobile autocomplete drop down left position:
     - 100% = full width of the body, the autocomplete drop down's parent
     - minus 300px = width of mobile nav menu
     - plus 300px to cancel out the -300px translation to <body> when mobile nav menu opens
     - plus 10px to match padding inside the mobile nav menu
-  */
-.gstl_51.gssb_c[style] {
+
+  Google assigns the autocomplete selector (gstl_50, gstl_51) based on when the
+  search forms (and thus autocompletes) appear in the DOM so we need to target based on
+  what page we are on.  In our search results js we add the search results-page to the
+  body tag because here and only here, the mobile search form is first, semantically.
+  On all other pages, the mobile search form is second, after the global header form. */
+body:not(.search-results-page) .gstl_51.gssb_c[style],
+body.search-results-page .gstl_50.gssb_c[style] {
   left: calc(100% + 10px) !important; /* 1 */
 }
 
@@ -816,4 +830,9 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
   .ma__header__nav-search {
     display: inline-block !important;
   }
+}
+
+/* error and interstitial page search bar */
+.ma__narrow-template #cse-header-search-form {
+  margin-bottom: 75px;
 }

@@ -1,0 +1,25 @@
+uuid: 4de8a7f2-84e8-4af1-9dc4-efdbe25cdeb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.stacked_layout
+  module:
+    - user
+id: node.stacked_layout.teaser
+targetEntityType: node
+bundle: stacked_layout
+mode: teaser
+content:
+  links:
+    weight: 100
+  workbench_moderation_control:
+    weight: -20
+hidden:
+  field_bands: true
+  field_label: true
+  field_lede: true
+  field_photo: true
+  field_related_content: true
+  field_related_guides: true

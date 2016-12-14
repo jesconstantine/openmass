@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override to display the Full view mode of the Subtopic content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+ #}
+{%
+set illustratedHeader = {
+  'bgTitle': image_alt,
+  'bgImage': image_url,
+  'category': content.field_label|field_value,
+  'pageHeader': {
+    'title': label|field_value,
+    'subTitle': '',
+    'rteElements': [{
+      'path': '@atoms/11-text/paragraph.twig',
+      'data': {
+        'paragraph' : {
+          'text': content.field_lede|field_value
+        }
+      }
+    }],
+    'headerTags': ''
+  }
+}
+%}
+
+{%
+set suggestedPages = {
+  'title': 'Related Guides'|t,
+  'pages': related_content
+}
+%}
+
+{% extends 'node.html.twig' %}
+
+{% block preContent %}
+  {# include 'organisms-breadcrumbs' with {breadcrumb:{class:'ma__breadcrumbs--page'}} #}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# drupal_block('breadcrumbs') #}
+  {% include '@organisms/by-template/illustrated-header.twig' %}
+{% endblock %}
+
+{% block main %}
+  {{ content.field_bands }}
+{% endblock %}
+
+{% block postContent %}
+  {% if related_content is not empty %}
+    {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
+  {% endif %}
+{% endblock %}

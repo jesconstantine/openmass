@@ -3,9 +3,9 @@
  * Common JS for google custom search HEADER + MOBILE forms (loads globally)
  * Using Mass.gov custom search engine at cse.google.com
  * - api v1 js code
- * - search results page JS in google-custom-search-results.js
+ * - search results page JS in mass_search.results.js
  */
-(function() {
+(function () {
   'use strict';
 
   if (window.google) {
@@ -20,8 +20,11 @@
     /** setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
     google.setOnLoadCallback(function () {
 
-      var cx = '010551267445528504028:ivl9x2rf5e8';
       /* search engine id */
+      var cx = '010551267445528504028:ivl9x2rf5e8';
+
+      /* set string for message when no results are returned */
+      var noResultsString = 'Sorry, we couldn\'t find any results for your query.  Please try searching with different words.';
 
       /**
        * Set custom search options
@@ -45,16 +48,20 @@
       var headerSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
       /**
-       * Customize search control with available methods
-       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       * set search results set size
+       * options:
+       * - integer between 1-20,
+       * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+       * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
        */
-      headerSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      headerSearchControl.setResultSetSize(20);
 
       /**
        * Draw header search form with draw options
        * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
        */
       var headerOptions = new google.search.DrawOptions();
+
       /**
        * only draw search form (results are handled in mass_search
        * module route teamplte mass-search.html.twig )
@@ -75,12 +82,14 @@
        *
        * .draw(selector, options)
        */
-      var headerSearchExists = document.getElementById("cse-header-search-form");
+      var headerSearchExists = document.getElementById('cse-header-search-form');
 
       if (headerSearchExists) {
         headerSearchControl.draw('cse-header-search-form', headerOptions);
       }
 
+      // Customize "no results" message
+      headerSearchControl.setNoResultsString(noResultsString);
 
       /** MOBILE SEARCH FORM */
 
@@ -92,10 +101,13 @@
       var mobileSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
       /**
-       * Customize search control with available methods
-       * See: https://developers.google.com/custom-search/docs/js/cselement-reference#customsearchcontrol-methods
+       * set search results set size
+       * options:
+       * - integer between 1-20,
+       * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+       * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
        */
-      mobileSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      mobileSearchControl.setResultSetSize(20);
 
       /**
        * Draw mobile search form with draw options
@@ -125,6 +137,9 @@
        * .draw(selector, options)
        */
       mobileSearchControl.draw('cse-search-form-mobile', mobileOptions);
+
+      // Customize "no results" message
+      mobileSearchControl.setNoResultsString(noResultsString);
 
     }, true);
   }

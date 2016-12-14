@@ -29,6 +29,12 @@ Feature: Content Management
     Given I am logged in as a user with the "developer" role
     Then I should not have the "administer modules, administer software updates, administer themes, administer users" permissions
 
-  Scenario: Verify that developer user can run security checks
+  Scenario: Verify that developer user can administer security settings and checks
     Given I am logged in as a user with the "developer" role
-    Then I should have the "access security review list, run security checks" permissions
+    Then I should have the "access security review list, run security checks, administer restrict by ip, administer seckit" permissions
+
+  Scenario: Verify Developer role/user can create interstitial content
+    Given I am logged in as a user with the "developer" role
+    When I go to "node/add/interstitial"
+    When I go to "node/add/error_page"
+    Then the response status code should be 200

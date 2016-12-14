@@ -1,5 +1,15 @@
 <project name="mass-build" default="status">
 
+    <!-- Target: mass-run-eslint  -->
+    <target name="mass-run-eslint" description="Checks custom JS code against ESLint.">
+        <!-- custom modules  -->
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/modules/custom/**/*.js'" checkreturn="true" logoutput="true" />
+        <!-- custom themes (ignores mayflower artifacts) -->
+        <exec command="eslint --debug --ignore-path '${build.dir}/web/.eslintignore' '${build.dir}/web/themes/custom/**/*.js' "
+              checkreturn="true" logoutput="true" />
+        <echo>ESLint was successful</echo>
+    </target>
+
   <target name="mass-drupal-test" description="Run Drupal tests.">
       <property name="build.test_output" value="/dev/null" />
 
@@ -73,7 +83,7 @@
       <!-- This cannot be a drush command because we cannot run it with the
            root parameter... exec works okay for this one-off. -->
       <echo>Downloading the database from Acquia.</echo>
-      <exec command="${drush.bin} --config=${drush.config} --nocolor --yes ${deploy.site_alias} sql-dump > ${acquia.databases}/remote-db.sql" />
+      <exec command="drush --nocolor --yes ${deploy.site_alias} sql-dump > ${acquia.databases}/remote-db.sql" />
       <drush command="sql-drop" assume="yes" />
       <drush command="sql-cli &lt; ${acquia.databases}/remote-db.sql" />
 
@@ -83,16 +93,18 @@
       <if>
         <istrue value="${deploy.db_sanitize}" />
         <then>
-          <echo>Preforming local database operations.</echo>
+          <echo>Performing local database operations.</echo>
           <!-- Scrub the DB of PII & reset the admin password. -->
           <drush command="sql-sanitize" assume="yes">
             <option name="sanitize-password">admin</option>
             <option name="sanitize-email">user+%uid@localhost</option>
           </drush>
 
+          <phingcall target="mass-update-admin-username" />
+
           <drush command="upwd">
             <option name="password">admin</option>
-            <param>admin</param>
+            <param>${drupal.admin.user_name}</param>
           </drush>
         </then>
       </if>
@@ -135,8 +147,8 @@
 
       <echo>Importing config.</echo>
       <drush command="cimy" assume="yes">
-        <option name="source" value="${build.dir}/conf/drupal/config" />
-        <option name="delete-list" value="${build.dir}/conf/drupal/delete.yml" />
+        <option name="source" value="/var/www/mass.local/conf/drupal/config" />
+        <option name="delete-list" value="/var/www/mass.local/conf/drupal/delete.yml" />
       </drush>
 
       <echo>Running `drush updb` now.</echo>
@@ -148,6 +160,7 @@
     <drush command="pm-enable" assume="yes">
         <param>devel</param>
         <param>kint</param>
+        <param>views_ui</param>
         <param>mass_types</param>
         <param>mass_utility</param>
         <param>migrate_tools</param>
@@ -177,4 +190,21 @@
     </if>
   </target>
 
+  <target name="mass-update-admin-username" description="Update admin user name.">
+    <echo>Updating administrator user name.</echo>
+
+    <!-- Since Circle doesn't have a db password, we need to conditionally pass
+         the password parameter to the mysql command. -->
+    <if>
+      <equals arg1="${drupal.database.password}" arg2="" />
+      <then>
+        <property name="local_db_password" value="" />
+      </then>
+      <else>
+        <property name="local_db_password" value="-p${drupal.database.password}" />
+      </else>
+    </if>
+
+    <exec command="mysql -u ${drupal.database.username} ${local_db_password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = &apos;${drupal.admin.user_name}&apos; WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
+  </target>
 </project>

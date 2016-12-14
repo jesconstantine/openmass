@@ -39,15 +39,10 @@
  */
 #}
 {%
-set classes = [
-'paragraph',
-'paragraph--type--' ~ paragraph.bundle|clean_class,
-view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-'ma__callout-stats',
-'ma__callout-stats--' ~ content.field_alignment|field_value|render.__toString(),
-]
+  set statsCallout = {
+    pull: content.field_alignment|field_value|render.__toString(),
+    stat: content.field_stat|field_value|render.__toString(),
+    content: content.field_description|field_value|render.__toString()
+  }
 %}
-<section {{ attributes.addClass(classes) }}>
-  <div class="ma__callout-stats__stat">{{content.field_stat}}</div>
-  <div class="ma__callout-stats__content">{{content.field_description}}</div>
-</section>
+{% include "@molecules/callout-stats.twig" with statsCallout %}

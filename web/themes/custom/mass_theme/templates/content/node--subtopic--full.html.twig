@@ -13,22 +13,38 @@
 {% set action_finder_links = content.field_featured_content %}
 {% set all_actions_form = content.all_actions_form %}
 {% set all_actions_view = content.all_actions_view %}
+{%
+set pageHeader = {
+  "title": label|field_value,
+  "subTitle": content.field_lede|field_value,
+  rteElements: [{
+    'path': '@atoms/11-text/paragraph.twig',
+    'data': {
+      'paragraph': {
+        'text': content.field_description|field_value
+      }
+    },
+  }]
+}
+%}
 {% extends 'node.html.twig' %}
 
 {% block preContent %}
   {# include "organisms-breadcrumbs" with {breadcrumb:{class:"ma__breadcrumbs--page"}} #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
-  {# include "organisms-page-header" #}
-  {% include directory ~ "/templates/includes/organisms-page-header.html.twig" %}
+  {% include "@organisms/by-template/page-header.twig" %}
 {% endblock %}
 {% block pageContent %}
-  {% include directory ~ "/templates/includes/organisms-action-finder.html.twig" %}
+  {% include "@custom_includes/organisms-action-finder.html.twig" %}
   {% if content.field_agency_links|render|trim is not empty %}
     {{content.field_agency_links }}
   {% endif %}
 {% endblock %}
 {% block postContent %}
+  {% if content.field_image_credit is not empty %}
+    {{ content.field_image_credit }}
+  {% endif %}
   {# include "organisms-breadcrumbs" #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}

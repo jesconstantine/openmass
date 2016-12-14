@@ -1,0 +1,5 @@
+---
+- name: ESLint | Install ESLint globally for JS linting
+  become: yes
+  command: npm install --global eslint@v2.13.1
+  tags: eslint

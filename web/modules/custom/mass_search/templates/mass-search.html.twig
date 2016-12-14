@@ -10,34 +10,36 @@
 #}
 
 <div class="pre-content">
-  <section class="ma__breadcrumbs" role="navigation" aria-labelledby="system-breadcrumb">
-    <div class="ma__breadcrumbs__container">
-      <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/search">Search Results</a>
-        </li>
-      </ul>
-    </div>
-  </section><!-- .ma__breadrumbs -->
+  <section class="ma__breadcrumbs ">
+    <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
+    <nav class="ma__breadcrumbs__container">
+      <ol class="ma__breadcrumbs__items">
+        <li class="ma__breadcrumbs__item"><a href="/">Home</a></li>
+        <li class="ma__breadcrumbs__item"><a href="/search">Search Results</a></li>
+      </ol>
+    </nav>
+  </section><!-- .ma__breadcrumbs -->
+
+  <h1 class="visually-hidden">
+    Search Results Page
+  </h1>
+
   <div class="ma__content__search js-header-search-menu">
+    <h2 class="visually-hidden">Search Form</h2>
     <section class="ma__content-search">
       <!-- search form container -->
-      <div id="cse-search-results-form" style="width: 100%;" dir="ltr">Loading</div>
+      <div id="cse-search-results-form" role="search" style="width: 100%;" dir="ltr">Loading</div>
     </section><!-- .ma__content__search -->
   </div><!-- .ma__content-search -->
 </div><!-- .pre-content -->
-<div class="main-content" role="main">
-  <a id="main-content" tabindex="-1"></a>
+<main class="main-content" role="main" id="main-content" tabindex="-1">
   <div class="page-content">
     <section class="ma__link-list">
       <div class="ma__link-list__container">
+        <h2 class="visually-hidden">Search Results</h2>
         <!-- search results container -->
         <div id="cse-search-results" style="width: 100%;">Loading</div>
       </div><!-- .ma__link-list__container -->
     </section><!-- .ma__link-list -->
   </div><!-- .page-content -->
-</div><!-- .main-content -->
+</main><!-- .main-content -->

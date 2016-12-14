@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -7,16 +8,16 @@
  */
 #}
 
-{% set link_unemployment = 'actions/file-unemployment' %}
-{% set link_masshealth = 'actions/apply-masshealth-individuals-families' %}
-{% set link_snap = 'actions/apply-snap-benefits-food-stamps' %}
-{% set link_jury_duty = 'actions/respond-jury-duty-summons' %}
-{% set link_state_park = 'actions/get-dcr-parkspass' %}
-{% set link_nursing_license = 'actions/apply-nursing-license-new-graduates' %}
-{% set link_child_support = 'actions/get-child-support-order' %}
-{% set link_fishing = 'actions/buy-freshwater-fishing-license' %}
-{% set link_nursing_oos = 'actions/convert-out-state-nursing-license-reciprocity' %}
-{% set link_register_business = 'actions/register-your-business' %}
+{% set link_unemployment = 'file-unemployment' %}
+{% set link_masshealth = 'apply-masshealth-individual-or-family' %}
+{% set link_snap = 'apply-snap-benefits-food-stamps' %}
+{% set link_jury_duty = 'respond-jury-duty-summons' %}
+{% set link_state_park = 'get-parking-pass-state-parks' %}
+{% set link_nursing_license = 'apply-nursing-license-new-graduate' %}
+{% set link_child_support = 'get-child-support-order' %}
+{% set link_fishing = 'buy-freshwater-fishing-license' %}
+{% set link_nursing_oos = 'convert-out-state-nursing-license-reciprocity' %}
+{% set link_register_business = 'register-your-business' %}
 
 <!DOCTYPE html>
 <html class="pl" lang="en">
@@ -45,6 +46,7 @@
           media="all"/>
     <!-- End Pattern Lab -->
 
+    <script src="/themes/custom/mass_theme/overrides/js/env-drupal.js"></script>
     <script src="/themes/custom/mass_theme/js/vendor-generated.js"></script>
 
   </head>
@@ -59,7 +61,7 @@
 
 <!-- Begin .header -->
 <header class="ma__header">
-    <a class="ma__header__skip-nav" href="#main-content">skip navigation</a>
+    <a class="ma__header__skip-nav" href="#main-content">skip to main content</a>
     <div class="ma__header__backto">
         <a href="http://www.mass.gov">Go to classic Mass.gov</a>
     </div>
@@ -120,27 +122,26 @@
                                 <ul class="ma__main-nav__container">
                                     <li class="ma__main-nav__subitem"><a href="#commonaction" class="ma__main-nav__link">Common
                                             Actions</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/get-dcr-parkspass" class="ma__main-nav__link">Get a DCR
-                                            ParksPass</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/buy-freshwater-fishing-license" class="ma__main-nav__link">Buy a freshwater fishing license</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/apply-nursing-license-new-graduates" class="ma__main-nav__link">Apply for a nursing license (new graduates)</a>
+                                    <li class="ma__main-nav__subitem"><a href="get-parking-pass-state-parks" class="ma__main-nav__link">Get a parking pass for state parks</a></li>
+                                    <li class="ma__main-nav__subitem"><a href="buy-freshwater-fishing-license" class="ma__main-nav__link">Buy a freshwater fishing license</a></li>
+                                    <li class="ma__main-nav__subitem"><a href="apply-nursing-license-new-graduate" class="ma__main-nav__link">Apply for a nursing license as a new graduate</a>
                                     </li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/convert-out-state-nursing-license-reciprocity" class="ma__main-nav__link">Convert an out-of-state nursing license (reciprocity)</a>
+                                    <li class="ma__main-nav__subitem"><a href="convert-out-state-nursing-license-reciprocity" class="ma__main-nav__link">Convert an out-of-state nursing license (reciprocity)</a>
                                     </li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/register-your-business" class="ma__main-nav__link">Register your business</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/apply-masshealth-individuals-families" class="ma__main-nav__link">Apply for MassHealth (individuals &amp; families)</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/file-unemployment" class="ma__main-nav__link">File for unemployment</a>
+                                    <li class="ma__main-nav__subitem"><a href="register-your-business" class="ma__main-nav__link">Register your business</a></li>
+                                    <li class="ma__main-nav__subitem"><a href="apply-masshealth-individual-or-family" class="ma__main-nav__link">Apply for MassHealth as an individual or a family</a></li>
+                                    <li class="ma__main-nav__subitem"><a href="file-unemployment" class="ma__main-nav__link">File for unemployment</a>
                                     </li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/apply-snap-benefits-food-stamps" class="ma__main-nav__link">Apply for SNAP benefits (food stamps)</a>
+                                    <li class="ma__main-nav__subitem"><a href="apply-snap-benefits-food-stamps" class="ma__main-nav__link">Apply for SNAP benefits (food stamps)</a>
                                     </li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/get-child-support-order" class="ma__main-nav__link">Get a child support order</a>
+                                    <li class="ma__main-nav__subitem"><a href="get-child-support-order" class="ma__main-nav__link">Get a child support order</a>
                                     </li>
-                                    <li class="ma__main-nav__subitem"><a href="actions/respond-jury-duty-summons" class="ma__main-nav__link">Respond to a jury duty summons</a>
+                                    <li class="ma__main-nav__subitem"><a href="respond-jury-duty-summons" class="ma__main-nav__link">Respond to a jury duty summons</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="ma__main-nav__item  ">
+                        <li class="ma__main-nav__item  js-main-nav-top-link">
                             <a class="ma__main-nav__top-link" href="#feedback" title="Feedback">Feedback</a>
                         </li>
                     </ul>
@@ -408,7 +409,7 @@
     </nav>
 </header>
 <!-- end .header -->
-<a name="main-content"></a>
+<main role="main" id="main-content" tabindex="-1">
 <div class="pre-content">
     <section class="ma__collage-header">
         <div class="ma__collage-header__container">
@@ -449,13 +450,12 @@
                     <h1>Welcome to the Mass.gov Pilot</h1>
                 </div>
                 <div class="ma__collage-header__details">
-                    <h3>This is our testing ground for a new Mass.gov website. We have one goal: to make it easy for you
-                        find what you need. We’re going to try, test, and make changes until we get it right.</h3>
-                    <p>To make Mass.gov useful for everyone, we need your help. So start exploring! Let us know
+                    <p class="ma__collage-header__lead">This is our testing ground for a new Mass.gov website. We have one goal: to make it easy for you to find what you need. We're going to try, test, and make changes until we get it right.</p>
+                    <p class="ma__collage-header__description">To make Mass.gov useful for everyone, we need your help. So start exploring! Let us know
                         what works and what doesn’t — and check back for updates. We’ll keep improving this site as we
                         learn more about what you want and need.</p>
 
-                    <p>Thank you for helping us make a better and bolder Mass.gov.</p>
+                    <p class="ma__collage-header__description">Thank you for helping us make a better and bolder Mass.gov.</p>
                 </div>
             </div>
         </div>
@@ -479,8 +479,8 @@
                     <div class="ma__action-card__content">
                         <span class="ma__action-card__category">State Parks &amp; Recreation</span>
                         <h3 class="ma__action-card__link">
-                            <a class="js-clickable-link" href="{{ link_state_park }}" title="Get a DCR ParksPass">Get
-                                a DCR ParksPass&nbsp;
+                            <a class="js-clickable-link" href="{{ link_state_park }}" title="Get a parking pass for state parks">Get
+                                a parking pass for state parks&nbsp;
                                 <svg focusable="false" role="presentation" class="svg-arrow">
                                     <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#arrow"/>
                                 </svg>
@@ -525,8 +525,8 @@
                         <span class="ma__action-card__category">Professional Licensing &amp; Certification</span>
                         <h3 class="ma__action-card__link">
                             <a class="js-clickable-link" href="{{ link_nursing_license }}"
-                               title="Apply for a nursing license (new graduates)">Apply for a nursing license
-                                (new graduates)&nbsp;
+                               title="Apply for a nursing license as a new graduate">Apply for a nursing license
+                                as a new graduate&nbsp;
                                 <svg focusable="false" role="presentation" class="svg-arrow">
                                     <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#arrow"/>
                                 </svg>
@@ -595,8 +595,7 @@
                     <div class="ma__action-card__content">
                         <span class="ma__action-card__category">Health &amp; Social Services</span>
                         <h3 class="ma__action-card__link">
-                            <a class="js-clickable-link" href="{{ link_masshealth }}" title="Apply for MassHealth (individuals & families)">Apply
-                                for MassHealth (individuals & families)&nbsp;
+                            <a class="js-clickable-link" href="{{ link_masshealth }}" title="Apply for MassHealth as an individual or a family">Apply for MassHealth as an individual or a family&nbsp;
                                 <svg focusable="false" role="presentation" class="svg-arrow">
                                     <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#arrow"/>
                                 </svg>
@@ -662,7 +661,7 @@
                         </svg>
                     </div>
                     <div class="ma__action-card__content">
-                        <span class="ma__action-card__category">Family &amp; Children</span>
+                        <span class="ma__action-card__category">Families &amp; Children</span>
                         <h3 class="ma__action-card__link">
                             <a class="js-clickable-link" href="{{ link_child_support }}"
                                title="Get a child support order">Get a child support order&nbsp;
@@ -706,7 +705,7 @@
                 </div>
                 <div class="ma__personal-message__content">
                     <h2 class="ma__personal-message__title">A Message from Governor Baker</h2>
-                    <section class="ma__rich-text"><p>"Mass.gov is the digital front door of government — the first place many people in the Commonwealth start their interactions with the state. In our ongoing mission to ensure that state government works better for everyone, we are excited to unveil the new Mass.gov pilot, an innovative testing laboratory to help you get the support you need and the answers you’re looking for — fast and easy. We welcome your feedback. Thanks for your help.” – Governor Charlie Baker</p></section>
+                    <section class="ma__rich-text"><p>"Mass.gov is the digital front door of government — the first place many people in the Commonwealth start their interactions with the state. In our ongoing mission to ensure that state government works better for everyone, we are excited to unveil the new Mass.gov pilot, an innovative testing laboratory to help you get the support you need and the answers you’re looking for — fast and easy. We welcome your feedback. Thanks for your help.” — Governor Charlie Baker</p></section>
                 </div>
             </div>
         </section>
@@ -717,25 +716,10 @@
                     <h2 class="ma__change-log__title">Recent Changes</h2>
                     <ul class="ma__change-log__items">
                         <li class="ma__change-log__item">
-                            <span class="ma__change-log__date">11.2.16</span>
-                            User testing  begins
-                        </li>
-                        <li class="ma__change-log__item">
-                            <span class="ma__change-log__date">11.23.16</span>
-                            Added 2 new action pages
-                        </li>
-                        <li class="ma__change-log__item">
-                            <span class="ma__change-log__date">12.1.16</span>
-                            Lorem ipsum dolor sit amet
-                        </li>
-                        <li class="ma__change-log__item">
-                            <span class="ma__change-log__date">12.8.16</span>
-                            Added 2 new action pages
+                            <span class="ma__change-log__date">12.2.16</span>
+                            Public debut of pilot.mass.gov
                         </li>
                     </ul>
-                    <div class="ma__change-log__view-all">
-                        <a href="#">See full change log</a>
-                    </div>
                 </section>
                 <section class="ma__test-feed">
                     <h2 class="ma__test-feed__title">Help Us Test</h2>
@@ -747,46 +731,19 @@
                                 </svg>
                             </div>
                             <div class="ma__test-feed__content">
-                                <div class="ma__test-feed__link">
+                                <h3 class="ma__test-feed__link">
                             <span class="ma__decorative-link">
-      <a href="#">Help Us Pick a Logo!&nbsp;<svg focusable="false" role="presentation" class="svg-arrow">
+      <a href="https://867de1dl.optimalworkshop.com/treejack/ma-ia-v1">Help us test how we organize our top topics!&nbsp;<svg focusable="false" role="presentation" class="svg-arrow">
   <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#arrow"></use>
 </svg>
 </a>
   </span>
-                                </div>
+                                </h3>
                                 <div class="ma__test-feed__description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu tellus sit amet
-                                    turpis convallis...
+                                    To make sure our design is easy to use, we're exploring different options for describing our services and organizing our digital content. Let us know what you think.
                                 </div>
                             </div>
                         </div>
-                        <div class="ma__test-feed__item">
-                            <div class="ma__test-feed__icon">
-                                <svg focusable="false" role="presentation" class="svg-page-test">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#page-test"></use>
-                                </svg>
-                            </div>
-                            <div class="ma__test-feed__content">
-                                <div class="ma__test-feed__link">
-                            <span class="ma__decorative-link">
-      <a href="#">Give Us Feedback on These In-Progress Pages&nbsp;<svg focusable="false" role="presentation"
-                                                                        class="svg-arrow">
-  <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#arrow"></use>
-</svg>
-</a>
-  </span>
-                                </div>
-                                <div class="ma__test-feed__description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu tellus sit amet
-                                    turpis convallis...
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ma__test-feed__view-all">
-                        <a href="#">See all tests</a>
-                    </div>
                 </section>
             </div>
         </section>
@@ -876,7 +833,7 @@
     </section>
 
 </div>
-
+</main>
 <footer class="ma__footer js-footer">
     <button class="ma__footer__back2top js-back2top is-hidden">
         <svg focusable="false" role="presentation" class="svg-arrow">
@@ -920,52 +877,7 @@
                 </div>
             </div>
             <div class="ma__footer__social">
-                <section class="ma__social-links">
-                    <ul class="ma__social-links__items">
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="facebook">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#facebook"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="twitter">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#twitter"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="linkedin">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#linkedin"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="youTube">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#youtube"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="blog">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#blog"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="ma__social-links__item">
-                            <a href="#" class="ma__social-links__link">
-                                <svg focusable="false" role="img" title="instagram">
-                                    <use xlink:href="/themes/custom/mass_theme/images/svg-sprite.svg#instagram"></use>
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+                    {% include "@mass_theme/includes/molecules-social-links.html.twig" %}
             </div>
             <div class="ma__footer__copyright">
                 <p><b>&copy; 2016 Commonwealth of Massachusetts.</b></p>
@@ -1047,8 +959,9 @@
     })();
 </script>
 <script src="//www.google.com/jsapi"></script>
-<script src="/modules/custom/mass_search/js/google-custom-search-forms.js"></script>
+<script src="/modules/custom/mass_search/js/mass_search.forms.js"></script>
 <script src="/themes/custom/mass_theme/js/index-generated.js"></script>
 <script src="/themes/custom/mass_theme/libraries/formstack/js/matchMayflower.js"></script>
+<script src="/themes/custom/mass_theme/libraries/interstitial/js/external-links.js"></script>
 </body>
 </html>

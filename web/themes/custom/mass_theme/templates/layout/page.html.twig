@@ -47,7 +47,7 @@
 #}
 <header class="ma__header">
   <a href="#main-content" class="ma__header__skip-nav visually-hidden focusable">
-    {{ 'Skip navigation'|t }}
+    {{ 'Skip to main content'|t }}
   </a>
   <div class="ma__header__backto">
     <a href="http://www.mass.gov">Go to classic Mass.gov</a>
@@ -91,8 +91,7 @@
   {{ page.header }}
 </header>
 
-<main role="main">{# Keeping this for accessibility purposes #}
-  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+<main role="main" id="main-content" tabindex="-1">{# Keeping this for accessibility purposes #}
 
   {# Content regions are all in the node templates #}
   {{ page.content }}
@@ -120,40 +119,7 @@
       	    </div>
       	  </div>
       	  <div class="ma__footer__social">
-      	    <section class="ma__social-links">
-      	      <ul class="ma__social-links__items">
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'facebook'} %}
-          		  </a>
-          		</li>
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'twitter'} %}
-          		  </a>
-          		</li>
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'linkedin'} %}
-          		  </a>
-          		</li>
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'youtube'} %}
-          		  </a>
-          		</li>
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-          		    {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'blog'} %}
-          		  </a>
-          		</li>
-          		<li class="ma__social-links__item">
-          		  <a href="#" class="ma__social-links__link">
-                  {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'instagram'} %}
-          		  </a>
-          		</li>
-      	      </ul>
-      	    </section>
+      	      {% include "@mass_theme/includes/molecules-social-links.html.twig" %}
       	  </div>
       	  <div class="ma__footer__copyright">
       	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
