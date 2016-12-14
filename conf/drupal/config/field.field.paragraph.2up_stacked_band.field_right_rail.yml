@@ -1,10 +1,10 @@
-uuid: b4615c63-8b2f-4359-a862-d523e7039dac
+uuid: c6c5715b-0bbd-4a96-b613-f24835062a71
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_band_right_rail
-    - node.type.2up_stacked_band
+    - field.storage.paragraph.field_right_rail
+    - paragraphs.paragraphs_type.2up_stacked_band
     - paragraphs.paragraphs_type.contact_group
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.quick_action
@@ -12,9 +12,9 @@ dependencies:
     - paragraphs.paragraphs_type.subhead
   module:
     - entity_reference_revisions
-id: node.2up_stacked_band.field_band_right_rail
-field_name: field_band_right_rail
-entity_type: node
+id: paragraph.2up_stacked_band.field_right_rail
+field_name: field_right_rail
+entity_type: paragraph
 bundle: 2up_stacked_band
 label: 'Right rail'
 description: 'This will take up 30% of this band.'
@@ -32,76 +32,97 @@ settings:
       related_link: related_link
       subhead: subhead
     target_bundles_drag_drop:
-      action_address:
-        weight: 25
-        enabled: false
-      action_address_info:
-        weight: 26
-        enabled: false
-      action_area:
-        weight: 27
-        enabled: false
-      action_step:
-        weight: 28
-        enabled: false
-      action_step_numbered:
-        weight: 29
-        enabled: false
-      action_step_numbered_list:
-        weight: 30
-        enabled: false
-      callout_link:
-        weight: 31
-        enabled: false
-      completion_time:
+      1up_stacked_band:
         weight: 32
         enabled: false
-      contact:
+      2up_stacked_band:
         weight: 33
+        enabled: false
+      action_address:
+        weight: 34
+        enabled: false
+      action_address_info:
+        weight: 35
+        enabled: false
+      action_area:
+        weight: 36
+        enabled: false
+      action_step:
+        weight: 37
+        enabled: false
+      action_step_numbered:
+        weight: 38
+        enabled: false
+      action_step_numbered_list:
+        weight: 39
+        enabled: false
+      callout_alert:
+        weight: 40
+        enabled: false
+      callout_button:
+        weight: 41
+        enabled: false
+      callout_link:
+        weight: 42
+        enabled: false
+      completion_time:
+        weight: 43
+        enabled: false
+      contact:
+        weight: 44
         enabled: false
       contact_group:
         enabled: true
-        weight: 34
+        weight: 45
       contact_info:
-        weight: 35
+        weight: 46
         enabled: false
       file_download:
-        weight: 36
+        weight: 47
         enabled: false
       full_bleed:
-        weight: 37
+        weight: 48
+        enabled: false
+      hours:
+        weight: 49
         enabled: false
       icon:
-        weight: 38
+        weight: 50
         enabled: false
       iframe:
         enabled: true
-        weight: 39
+        weight: 51
       location_information:
-        weight: 40
+        weight: 52
         enabled: false
       map:
-        weight: 41
+        weight: 53
+        enabled: false
+      pull_quote:
+        weight: 54
         enabled: false
       quick_action:
         enabled: true
-        weight: 42
+        weight: 55
       related_link:
         enabled: true
-        weight: 43
+        weight: 56
       rich_text:
-        weight: 44
+        weight: 57
         enabled: false
       slideshow:
-        weight: 45
+        weight: 58
+        enabled: false
+      stacked_band:
+        weight: 59
         enabled: false
       stat:
-        weight: 46
+        weight: 60
         enabled: false
       subhead:
         enabled: true
-        weight: 47
+        weight: 61
       video:
-        weight: 48
+        weight: 62
         enabled: false
 field_type: entity_reference_revisions
