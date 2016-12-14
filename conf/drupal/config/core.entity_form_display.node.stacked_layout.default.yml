@@ -38,6 +38,7 @@ third_party_settings:
         - field_label
         - field_lede
         - field_photo
+        - field_related_guides
       parent_name: group_node_edit_form
       weight: 108
       label: 'Primary Content'
@@ -92,7 +93,7 @@ content:
     third_party_settings: {  }
     type: string_textarea
   field_metatags:
-    weight: 1
+    weight: 111
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -108,6 +109,14 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_browser_file
+  field_related_content:
+    weight: 110
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   title:
     type: string_textfield
     weight: 1
@@ -117,7 +126,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_related_content: true
   path: true
   promote: true
   sticky: true
