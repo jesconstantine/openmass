@@ -132,7 +132,8 @@ display:
             thousand_separator: ''
             prefix_suffix: true
           group_column: value
-          group_columns: {  }
+          group_columns:
+            entity_id: entity_id
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -143,71 +144,6 @@ display:
           field_api_classes: false
           entity_type: node
           entity_field: nid
-          plugin_id: field
-        uuid:
-          id: uuid
-          table: node
-          field: uuid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: uuid
           plugin_id: field
         type:
           id: type
@@ -390,6 +326,72 @@ display:
           absolute: true
           entity_type: node
           plugin_id: node_path
+        nid_3:
+          id: nid_3
+          table: node_field_data
+          field: nid
+          relationship: field_section
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
         field_section:
           id: field_section
           table: node__field_section
@@ -453,142 +455,11 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        nid_1:
-          id: nid_1
-          table: node_field_data
-          field: nid
-          relationship: reverse__node__field_topic_parent
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
-        uuid_1:
-          id: uuid_1
-          table: node
-          field: uuid
-          relationship: reverse__node__field_topic_parent
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: uuid
-          plugin_id: field
-        path_1:
-          id: path_1
+        path_2:
+          id: path_2
           table: node
           field: path
-          relationship: reverse__node__field_topic_parent
+          relationship: field_section
           group_type: group
           admin_label: ''
           label: ''
@@ -686,9 +557,19 @@ display:
           required: false
           entity_type: node
           plugin_id: entity_reverse
+        field_section:
+          id: field_section
+          table: node__field_section
+          field: field_section
+          relationship: none
+          group_type: group
+          admin_label: 'field_section: Content'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       title: 'Topics and parent landing page REST export'
+      group_by: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -722,37 +603,25 @@ display:
         options:
           field_options:
             nid:
-              alias: topic_id
-              raw_output: false
-            uuid:
-              alias: topic_uuid
+              alias: self_id
               raw_output: false
             type:
-              alias: content_type
+              alias: self_content_type
               raw_output: false
             title:
-              alias: topic_title
+              alias: self_title
               raw_output: false
             path:
-              alias: topic_path
+              alias: self_path
+              raw_output: false
+            nid_3:
+              alias: parent_id
               raw_output: false
             field_section:
-              alias: parent_landing_page
+              alias: parent_title
               raw_output: false
-            nid_1:
-              alias: landing_page_id
-              raw_output: false
-            uuid_1:
-              alias: landing_page_uuid
-              raw_output: false
-            path_1:
-              alias: landing_page_path
-              raw_output: false
-            created:
-              alias: topic_created_date
-              raw_output: false
-            created_1:
-              alias: landing_created_date
+            path_2:
+              alias: parent_path
               raw_output: false
       display_description: 'Topics and parent landing page REST export'
     cache_metadata:

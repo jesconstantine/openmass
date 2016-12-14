@@ -503,19 +503,19 @@ display:
         options:
           field_options:
             nid:
-              alias: node_id
+              alias: self_id
               raw_output: false
             uuid:
-              alias: node_uuid
+              alias: self_uuid
               raw_output: false
             type:
-              alias: content_type
+              alias: self_content_type
               raw_output: false
             title:
-              alias: node_title
+              alias: self_title
               raw_output: false
             path:
-              alias: node_path
+              alias: self_path
               raw_output: false
       display_description: ''
     cache_metadata:
