@@ -417,6 +417,10 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
     foreach ($field_alert->referencedEntities() as $paragraph) {
 //      $paragraph->getType();
 
+      $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+      $raw_timestamp = strtotime($raw_timestamp_str);
+      $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
+
       // Populate optional alert "Read More" link.
       $url = $paragraph->get('field_link')->first();
       $link = '';
@@ -431,7 +435,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
 
       $alerts[] = array(
         'message' => $paragraph->get('field_emergency_alert_message')->value,
-        'timeStamp' => $paragraph->get('field_emergency_alert_timestamp')->value,
+        'timeStamp' => $timestamp,
         'link' => $link,
       );
 
