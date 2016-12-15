@@ -398,12 +398,12 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
   $node = $variables['node'];
 
   // Create and populate the data object which the template is expecting.
-  $emergencyAlerts = array();
+  $emergency_alerts = array();
   // @TODO get node update timestamp or revision id and set emergencyHeader.id
-  $emergencyAlerts['emergencyHeader']['title'] = $node->get('title');
-  $emergencyAlerts['buttonAlert']['hideText'] = 'hide';
-  $emergencyAlerts['buttonAlert']['showText'] = 'show';
-  $emergencyAlerts['buttonAlert']['text'] = 'alerts';
+  $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
+  $emergency_alerts['buttonAlert']['hideText'] = 'hide';
+  $emergency_alerts['buttonAlert']['showText'] = 'show';
+  $emergency_alerts['buttonAlert']['text'] = 'alerts';
 
   // Get the alert paragraph field.
   $field_alert = $node->get('field_alert');
@@ -438,10 +438,10 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       $delta++;
     }
 
-    $emergencyAlerts['alerts'] = $alerts;
+    $emergency_alerts['alerts'] = $alerts;
 
     // Make emergency alerts data object available in template.
-    $variables['emergencyAlerts'] = $emergencyAlerts;
+    $variables['emergencyAlerts'] = $emergency_alerts;
   }
 }
 
