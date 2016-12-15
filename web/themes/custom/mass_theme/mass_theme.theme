@@ -506,22 +506,45 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $delta = 0;
     while (!empty($element[$delta])) {
       $paragraph = $element[$delta]['#paragraph'];
-      $band = $paragraph->get('field_band');
-
-      if ($band->count() > 0) {
-        $items = $band->referencedEntities();
+      // Check paragraph type.
+      if ($paragraph->getType() == 'subhead') {
+        // Get data from paragraph type field.
+        $title_field = $paragraph->get('field_title');
+        // Get the titles of a stack-layout for jump menu.
+        if (!empty($title_field)) {
+          $title = $title_field->getValue();
+          $key = strtolower($title[0]['value']);
+          $key = Html::cleanCssIdentifier($key);
+          $variables['subheads'][$key] = $title[0]['value'];
+        }
       }
-
-      if (!empty($items)) {
-        $item = current($items);
-        $title = $item->getTitle();
-        $key = strtolower($title);
-        $key = Html::cleanCssIdentifier($key);
-        $variables['subheads'][$key] = $title;
-      }
-
       $delta++;
     }
+
+    // Rebuild this array to include subheads into bands.
+    $delta = 0;
+    $bands = [];
+    $subhead = [];
+    while (!empty($element[$delta])) {
+      $paragraph = $element[$delta]['#paragraph'];
+      // Check paragraph type for subhead.
+      if ($paragraph->getType() == 'subhead') {
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+        $build = $view_builder->view($paragraph, 'stacked');
+        $subhead = $build;
+      }
+      // Check paragraph type for stacked band.
+      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band') {
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+        $band = $view_builder->view($paragraph, 'stacked');
+        $bands[$delta][] = $subhead;
+        $bands[$delta][] = $band;
+        // Since we've entered our subhead, clear it out.
+        $subhead = [];
+      }
+      $delta++;
+    }
+    $variables['bands'] = $bands;
   }
 
   // If our Callout Link (Link field) references an internal node,
