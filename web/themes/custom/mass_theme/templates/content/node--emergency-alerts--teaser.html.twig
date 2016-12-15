@@ -72,6 +72,13 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{#See mass_theme_preprocess_node_emergency_alerts()#}
-{% set emergencyAlerts = emergencyAlerts %}
-{% include "@organisms/by-template/emergency-alerts.twig" with { 'emergencyAlerts': emergencyAlerts } %}
+
+{% extends 'node.html.twig' %}
+
+{% block main %}
+  {% block pageContent %}
+    {#See mass_theme_preprocess_node_emergency_alerts()#}
+    {% set emergencyAlerts = emergencyAlerts %}
+    {% include "@organisms/by-template/emergency-alerts.twig" %}
+  {% endblock %}
+{% endblock %}
