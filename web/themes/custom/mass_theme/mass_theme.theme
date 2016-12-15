@@ -1173,6 +1173,22 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * Preprocess the callout time organism.
+ */
+function mass_theme_preprocess_paragraph__completion_time(&$variables) {
+  $time = '';
+  if (!empty($variables['paragraph']->get('field_time')->first())) {
+    $time = $variables['paragraph']->get('field_time')->first()->getValue()['value'];
+  }
+
+  $variables['calloutTime'] = [
+    'text' => $time,
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
  * Process various fields for downloads.
  */
 function mass_theme_preprocess_paragraph__file_download(&$variables) {
@@ -1217,7 +1233,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,
-        'format' => $file_extension,
+        'format' => strtoupper($file_extension),
       );
     }
   }
