@@ -236,14 +236,21 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   if (!empty($items)) {
     $related_content = array();
     foreach ($items as $item) {
-      $related_content[] = array(
-        'link' => array(
+      $image = NULL;
+
+      if (!empty($item->field_photo)) {
+        $image = file_create_url($item->field_photo->entity->getFileUri());
+      }
+
+      $related_content[] = [
+        'link' => [
           'type' => 'internal',
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
-        ),
-      );
+          'image' => $image,
+        ],
+      ];
     }
     $variables['related_content'] = $related_content;
   }
