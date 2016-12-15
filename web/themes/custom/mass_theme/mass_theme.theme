@@ -1217,7 +1217,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,
-        'type' => $file_extension,
+        'format' => $file_extension,
       );
     }
   }
