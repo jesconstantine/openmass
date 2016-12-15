@@ -4,14 +4,23 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.emergency_alerts.field_alert
     - node.type.emergency_alerts
   module:
+    - entity_reference_revisions
     - user
 id: node.emergency_alerts.teaser
 targetEntityType: node
 bundle: emergency_alerts
 mode: teaser
 content:
-  links:
-    weight: 100
-hidden: {  }
+  field_alert:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+hidden:
+  links: true
