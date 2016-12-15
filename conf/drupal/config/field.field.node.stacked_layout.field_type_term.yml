@@ -1,0 +1,28 @@
+uuid: a01c4846-1707-46c7-b425-454197b75bf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type_term
+    - node.type.stacked_layout
+    - taxonomy.vocabulary.type
+id: node.stacked_layout.field_type_term
+field_name: field_type_term
+entity_type: node
+bundle: stacked_layout
+label: Type
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      type: type
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,28 @@
+uuid: 191d9c5c-0fab-4b48-a35d-b9820bc9b5e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_funnel_endpoint_term
+    - node.type.stacked_layout
+    - taxonomy.vocabulary.funnel_or_endpoint
+id: node.stacked_layout.field_funnel_endpoint_term
+field_name: field_funnel_endpoint_term
+entity_type: node
+bundle: stacked_layout
+label: 'Funnel or Endpoint'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      funnel_or_endpoint: funnel_or_endpoint
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
