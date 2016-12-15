@@ -415,8 +415,8 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
     $alerts = array();
 
     foreach ($field_alert->referencedEntities() as $paragraph) {
-//      $paragraph->getType();
 
+      // Format the alert timestamp to match new date format that meets spec.
       $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
       $raw_timestamp = strtotime($raw_timestamp_str);
       $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
@@ -425,7 +425,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       $url = $paragraph->get('field_link')->first();
       $link = '';
       if ($url) {
-        $link = array (
+        $link = array(
           'chevron' => 'true',
           'text' => $url->getValue()['title'],
           'href' => $url->getUrl()->toString(),
