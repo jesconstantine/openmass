@@ -390,6 +390,62 @@ function mass_theme_preprocess_node_topic(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ *
+ * Node alert (banner) alterations.
+ */
+function mass_theme_preprocess_node_emergency_alerts(&$variables) {
+  $node = $variables['node'];
+
+  // Create and populate the data object which the template is expecting.
+  $emergencyAlerts = array();
+  // @TODO get node update timestamp or revision id and set emergencyHeader.id
+  $emergencyAlerts['emergencyHeader']['title'] = $node->get('title');
+  $emergencyAlerts['buttonAlert']['hideText'] = 'hide';
+  $emergencyAlerts['buttonAlert']['showText'] = 'show';
+  $emergencyAlerts['buttonAlert']['text'] = 'alerts';
+
+  // Get the alert paragraph field.
+  $field_alert = $node->get('field_alert');
+
+  // Iterate through alert paragraph instances.
+  // Populate alerts array with individual alert content.
+  if ($field_alert->count() > 0) {
+    $delta = 0;
+    $alerts = array();
+
+    foreach ($field_alert->referencedEntities() as $paragraph) {
+//      $paragraph->getType();
+
+      // Populate optional alert "Read More" link.
+      $url = $paragraph->get('field_link')->first();
+      $link = '';
+      if ($url) {
+        $link = array (
+          'chevron' => 'TRUE',
+          'text' => $url->getValue()['title'],
+          'href' => $url->getUrl()->toString(),
+          'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+        );
+      }
+
+      $alerts[] = array(
+        'message' => $paragraph->get('field_emergency_alert_message')->value,
+        'timeStamp' => $paragraph->get('field_emergency_alert_timestamp')->value,
+        'link' => $link,
+      );
+
+      $delta++;
+    }
+
+    $emergencyAlerts['alerts'] = $alerts;
+
+    // Make emergency alerts data object available in template.
+    $variables['emergencyAlerts'] = $emergencyAlerts;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Various global preprocessing.
