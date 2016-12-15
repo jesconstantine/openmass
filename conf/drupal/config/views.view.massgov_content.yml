@@ -4,7 +4,12 @@ status: true
 dependencies:
   config:
     - node.type.action
+    - node.type.agency
+    - node.type.error_page
+    - node.type.interstitial
+    - node.type.page
     - node.type.section_landing
+    - node.type.stacked_layout
     - node.type.subtopic
     - node.type.topic
   module:
@@ -480,8 +485,14 @@ display:
           admin_label: ''
           operator: in
           value:
+            all: all
+            agency: agency
+            page: page
+            error_page: error_page
+            interstitial: interstitial
             action: action
             section_landing: section_landing
+            stacked_layout: stacked_layout
             subtopic: subtopic
             topic: topic
           group: 1
@@ -556,9 +567,23 @@ display:
       display_extenders: {  }
       path: api/v1/content
       pager:
-        type: none
+        type: mini
         options:
+          items_per_page: 1000
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
       style:
         type: serializer
         options:
@@ -594,6 +619,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
