@@ -422,7 +422,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       $link = '';
       if ($url) {
         $link = array (
-          'chevron' => 'TRUE',
+          'chevron' => 'true',
           'text' => $url->getValue()['title'],
           'href' => $url->getUrl()->toString(),
           'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
