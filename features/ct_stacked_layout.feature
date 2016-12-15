@@ -13,16 +13,4 @@ Feature: Stacked Layout Content type
     | field-lede            | textarea   |              | false      |
     | field-label           | input      | text         | false      |
     | field-photo           | input      | submit       | false      |
-    | field-bands           | paragraphs |  | false      |
-
-
-  Scenario: The stacked layout has correct markup.
-    Given "stacked_layout" content:
-      | title                              |
-      | Behat Test: Related stacked layout |
-    And I am viewing a "stacked_layout" content:
-      | title                 | Behat Test: Stacked layout  |
-      | field_lede            | Lede: lorem ipsum           |
-      | field_related_content | Behat Test: Related stacked layout |
-    Then I should see the correct markup for the illustrated header
-    And I should see the correct markup for the related guides
+    | field-bands           | paragraphs |              | false      |
