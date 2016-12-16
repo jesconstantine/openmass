@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: emergency_alert
 label: 'Emergency Alert Message'
 description: '<p>This is the text that appears in the individual alert (light yellow) banner.  The text will wrap on smaller screens, and a large, modern screen can fit around 120 characters on one line.<p>'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

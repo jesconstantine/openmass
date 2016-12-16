@@ -13,7 +13,7 @@ entity_type: paragraph
 bundle: emergency_alert
 label: 'Emergency Alert Timestamp'
 description: '<p>The date and time that this alert was created and subsequently, edited.  This appears directly after the individual alert (light yellow) message in the alert banner.</p>'
-required: false
+required: true
 translatable: false
 default_value:
   -
