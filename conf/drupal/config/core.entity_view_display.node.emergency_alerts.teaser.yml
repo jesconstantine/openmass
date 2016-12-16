@@ -22,5 +22,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
 hidden:
   links: true

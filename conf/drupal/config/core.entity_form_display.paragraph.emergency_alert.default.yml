@@ -26,7 +26,7 @@ content:
   field_emergency_alert_message:
     weight: 6
     settings:
-      size: 120
+      size: 80
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
