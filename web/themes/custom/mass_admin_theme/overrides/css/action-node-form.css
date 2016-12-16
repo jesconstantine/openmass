@@ -5,6 +5,11 @@
   display: none;
 }
 
+.field--name-field-contact-group-layout,
 .form-item-field-action-sidebar-0-subform-field-contact-group-layout {
   display: none;
+}
+
+.field--name-field-action-header .field--name-field-contact-group-layout {
+  display: block;
 }
