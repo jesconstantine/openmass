@@ -464,6 +464,13 @@ function mass_theme_preprocess_html(&$variables) {
   if (isset($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
   }
+
+  // Add a variable for the emergency alerts banner view for front template.
+  $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+
+  if ($is_front_page) {
+    $variables['alerts_banner_view'] = views_embed_view('emergency_alert', 'block_banner');
+  }
 }
 
 /**
