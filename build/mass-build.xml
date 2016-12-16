@@ -172,7 +172,7 @@
 
     <!-- Rewrite the theme registry. -->
     <if>
-      <available file="${build.dir}/conf/mass_admin_theme.libraries.yml.template" type="file" />
+      <available file="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml" type="file" />
       <then>
         <echo>Updating the Google Maps API Key in the theme file.</echo>
 

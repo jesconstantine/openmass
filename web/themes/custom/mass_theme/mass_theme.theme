@@ -236,21 +236,14 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   if (!empty($items)) {
     $related_content = array();
     foreach ($items as $item) {
-      $image = NULL;
-
-      if (!empty($item->field_photo->entity)) {
-        $image = file_create_url($item->field_photo->entity->getFileUri());
-      }
-
-      $related_content[] = [
-        'link' => [
+      $related_content[] = array(
+        'link' => array(
           'type' => 'internal',
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
-          'image' => $image,
-        ],
-      ];
+        ),
+      );
     }
     $variables['related_content'] = $related_content;
   }
@@ -1180,22 +1173,6 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
- * Preprocess the callout time organism.
- */
-function mass_theme_preprocess_paragraph__completion_time(&$variables) {
-  $time = '';
-  if (!empty($variables['paragraph']->get('field_time')->first())) {
-    $time = $variables['paragraph']->get('field_time')->first()->getValue()['value'];
-  }
-
-  $variables['calloutTime'] = [
-    'text' => $time,
-  ];
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
  * Process various fields for downloads.
  */
 function mass_theme_preprocess_paragraph__file_download(&$variables) {
@@ -1209,20 +1186,8 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
     $files = $field_downloads->referencedEntities();
   }
 
-  // There is a bug in the entity browser module right now that causes files
-  // uploaded to render twice. To avoid odd displays on the front end, we'll
-  // build an array of used files and only display files once.
-  // @see https://jira.state.ma.us/browse/MQA-216
-  $processed_files = [];
-
   if (!empty($files)) {
     foreach ($files as $id => $file) {
-      if (in_array($file->id(), $processed_files)) {
-        continue;
-      }
-
-      array_push($processed_files, $file->id());
-
       // Get the human readable file size.
       $bytes = $file->getSize();
       $readable_size = format_size($bytes);
@@ -1252,7 +1217,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,
-        'format' => strtoupper($file_extension),
+        'type' => $file_extension,
       );
     }
   }
