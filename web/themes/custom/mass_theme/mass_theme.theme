@@ -427,7 +427,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
 
       // Populate optional alert "Read More" link.
-      $url = $paragraph->get('field_link')->first();
+      $url = $paragraph->get('field_emergency_alert_link')->first();
       $link = '';
       if ($url) {
         $link = array(
