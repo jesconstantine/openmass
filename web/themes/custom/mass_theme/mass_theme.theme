@@ -238,7 +238,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
     foreach ($items as $item) {
       $image = NULL;
 
-      if (!empty($item->field_photo)) {
+      if (!empty($item->field_photo->entity)) {
         $image = file_create_url($item->field_photo->entity->getFileUri());
       }
 
@@ -1209,8 +1209,20 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
     $files = $field_downloads->referencedEntities();
   }
 
+  // There is a bug in the entity browser module right now that causes files
+  // uploaded to render twice. To avoid odd displays on the front end, we'll
+  // build an array of used files and only display files once.
+  // @see https://jira.state.ma.us/browse/MQA-216
+  $processed_files = [];
+
   if (!empty($files)) {
     foreach ($files as $id => $file) {
+      if (in_array($file->id(), $processed_files)) {
+        continue;
+      }
+
+      array_push($processed_files, $file->id());
+
       // Get the human readable file size.
       $bytes = $file->getSize();
       $readable_size = format_size($bytes);
