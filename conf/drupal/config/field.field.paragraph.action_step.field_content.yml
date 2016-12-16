@@ -12,7 +12,7 @@ field_name: field_content
 entity_type: paragraph
 bundle: action_step
 label: Content
-description: ''
+description: '<a href="http://dev.massgov.velir.com/?p=molecules-action-step" target="_blank">View a sample Action Step</a>'
 required: false
 translatable: false
 default_value: {  }

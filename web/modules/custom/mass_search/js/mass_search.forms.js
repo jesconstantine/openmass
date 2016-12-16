@@ -8,6 +8,16 @@
 (function () {
   'use strict';
 
+  // ****** Mobile Search button should open mobile menu ******
+  var mobileSearchButton = document.querySelector('.ma__header__search .ma__header-search .ma__button-search');
+
+  if (mobileSearchButton !== null) {
+    mobileSearchButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      document.querySelector('body').classList.toggle('show-menu');
+    });
+  }
+
   if (window.google) {
 
     /**

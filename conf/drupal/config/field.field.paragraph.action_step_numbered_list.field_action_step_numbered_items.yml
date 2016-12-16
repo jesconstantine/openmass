@@ -13,7 +13,7 @@ field_name: field_action_step_numbered_items
 entity_type: paragraph
 bundle: action_step_numbered_list
 label: 'Action Step - Numbered Items'
-description: ''
+description: '<a href="http://dev.massgov.velir.com/?p=molecules-action-seq-list" target="_blank">View a sample Action Step - Numbered List</a>'
 required: false
 translatable: false
 default_value: {  }
