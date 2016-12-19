@@ -68,8 +68,11 @@ function mass_theme_preprocess_node(&$variables) {
   // unneeded nodes).
   $allowed_view_modes = ['full'];
 
-  // If view mode is in allowed view modes list, pass to
+  // If current view mode is in allowed view modes list, pass to
   // mass_theme_add_regions_to_node().
+  // This has the effect of making blocks in the specified theme regions
+  // available to be rendered by the node template as, e.g. "pre_content".
+  // @see templates/content/node.html.twig
   if (in_array($view_mode, $allowed_view_modes)) {
     // Allowed regions (for performance so as to not execute for unneeded
     // region).
