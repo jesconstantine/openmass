@@ -34,10 +34,10 @@ function acapi_drush_command() {
     'arguments' => array(
     ),
     'options' => $options + array(
-      'reset' => array(
-        'description' => 'Discard any existing stored values from a previous call. Without this option, new values will be merged with existing values.'
+        'reset' => array(
+          'description' => 'Discard any existing stored values from a previous call. Without this option, new values will be merged with existing values.'
+        ),
       ),
-    ),
   );
 
   //////////////////////////////////////////////////////////////////////
@@ -268,10 +268,10 @@ function acapi_drush_command() {
     'resource' => '/sites/:realm::site/envs/:env/dbs/:db/backups/:backup/download',
     'callback' => 'drush_acapi_ac_database_backup_download',
     'options' => array('result-file' =>
-      array(
-        'description' => 'Save to a file; specify the full path in which to store the backup. If not provided, the backup is sent the standard output.',
-        'example-value' => '/path/to/file',
-      )) + $options,
+        array(
+          'description' => 'Save to a file; specify the full path in which to store the backup. If not provided, the backup is sent the standard output.',
+          'example-value' => '/path/to/file',
+        )) + $options,
   );
   $items['ac-database-instance-backup'] = array(
     'description' => 'Create a database instance backup.',
@@ -319,19 +319,19 @@ function acapi_drush_command() {
     'arguments' => array(
     ),
     'options' => array(
-      'state' => array(
-        'description' => 'The task state to retrieve. If not specified, retrieve all tasks for the site.',
-        'example-value' => 'done',
-      ),
-      'days' => array(
-        'description' => 'The number of days worth of tasks to retrieve. If not specified, retrieve, at a maximum, 7 days worth of tasks.',
-        'example-value' => '5',
-      ),
-      'limit' => array(
-        'description' => 'The maximum number of tasks to retrieve. If not specified, retrieve a maximum of 50 tasks. The maximum value allowed is 1000.',
-        'example-value' => '500'
-      ),
-    ) + $options,
+        'state' => array(
+          'description' => 'The task state to retrieve. If not specified, retrieve all tasks for the site.',
+          'example-value' => 'done',
+        ),
+        'days' => array(
+          'description' => 'The number of days worth of tasks to retrieve. If not specified, retrieve, at a maximum, 7 days worth of tasks.',
+          'example-value' => '5',
+        ),
+        'limit' => array(
+          'description' => 'The maximum number of tasks to retrieve. If not specified, retrieve a maximum of 50 tasks. The maximum value allowed is 1000.',
+          'example-value' => '500'
+        ),
+      ) + $options,
   );
 
   $items['ac-task-info'] = array(
@@ -437,16 +437,16 @@ function acapi_drush_command() {
     'body_fields_path' => array('ssh_pub_key'),
     'callback' => 'drush_acapi_ac_generic_callback',
     'options' => $options + array(
-      'shell_access' =>
-        array('description' => 'Set shell access for this key. (true or false)',
-          'param' => 'shell_access',),
-      'vcs_access' =>
-        array('description' => 'Set git access for this key. (true or false)',
-          'param' => 'vcs_access',),
-      'blacklist' =>
-        array('description' => 'Array containing a list of environments to disallow access for this key',
-          'param' => 'blacklist',),
-    ),
+        'shell_access' =>
+          array('description' => 'Set shell access for this key. (true or false)',
+            'param' => 'shell_access',),
+        'vcs_access' =>
+          array('description' => 'Set git access for this key. (true or false)',
+            'param' => 'vcs_access',),
+        'blacklist' =>
+          array('description' => 'Array containing a list of environments to disallow access for this key',
+            'param' => 'blacklist',),
+      ),
   );
   $items['ac-sshkey-delete'] = array(
     'description' => 'Delete an SSH key from a site.',
@@ -805,9 +805,9 @@ function drush_acapi_ac_database_backup_download($db, $backupid) {
   }
 
   $api_args = acapi_get_site_args() + array(
-    ':db' => $db,
-    ':backup' => $backupid,
-  );
+      ':db' => $db,
+      ':backup' => $backupid,
+    );
   list($status, $result) = acapi_call(
     $command['method'],
     $command['resource'],

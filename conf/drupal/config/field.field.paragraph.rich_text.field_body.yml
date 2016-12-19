@@ -12,7 +12,7 @@ field_name: field_body
 entity_type: paragraph
 bundle: rich_text
 label: Body
-description: ''
+description: '<a href="http://dev.massgov.velir.com/?p=organisms-rich-text" target="_blank">View a sample Rich Text</a>'
 required: false
 translatable: false
 default_value: {  }

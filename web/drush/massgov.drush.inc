@@ -4,7 +4,7 @@ function massgov_drush_command() {
   $items['ma-deploy'] = array(
     'description' => 'Deploy code and database (if needed). Perform config-import, updb, and similar tasks.',
     'arguments' => array(
-      'target' => 'Target environment. Recognized values: state, prod',
+      'target' => 'Target environment. Recognized values: stage, cd, prod',
       'git-ref' => 'Tag or branch to deploy.',
     ),
     'required-arguments' => TRUE,
@@ -19,14 +19,14 @@ function massgov_drush_command() {
 }
 
 function drush_massgov_ma_deploy_validate($target) {
-  if (!in_array($target, array('stage', 'prod'))) {
+  if (!in_array($target, array('cd', 'test', 'prod'))) {
     return drush_set_error('Invalid argument: target');
   }
 }
 
 function drush_massgov_ma_deploy($target, $git_ref) {
-  $is_prod = $target == 'prod';
-  $alias =  $is_prod ? '@massgov.prod' : '@massgov.test';
+  $to_prod = $target == 'prod';
+  $alias_target =  '@massgov.'. $target;
   $options_cloudapi = array(
     'format' => 'json',
   );
@@ -34,18 +34,18 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   // Turn on Maint mode
   $args = array('system.maintenance_mode', 1);
   $options = array('format' => 'integer');
-  $return = drush_invoke_process($alias, 'state-set', $args, $options);
+  $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
   massgov_check_error($return);
 
   // Backup Prod DB if needed.
-  if ($is_prod) {
+  if ($to_prod) {
     // cache-rebuild empties cache-* tables.
     $args = $options = array();
-    $return = drush_invoke_process($target, 'cache-rebuild', $args, $options);
+    $return = drush_invoke_process($alias_target, 'cache-rebuild', $args, $options);
     massgov_check_error($return);
 
     $args = array('massgov');
-    $return = drush_invoke_process($alias, 'ac-database-instance-backup', $args, $options_cloudapi);
+    $return = drush_invoke_process($alias_target, 'ac-database-instance-backup', $args, $options_cloudapi);
     massgov_check_error($return);
     $json = $return['object']['output'];
     $data = json_decode($json);
@@ -53,14 +53,14 @@ function drush_massgov_ma_deploy($target, $git_ref) {
     massgov_wait($task_backup, $options_cloudapi);
   }
   else {
-    // Copy Prod DB to Stage.
-    $args = array('massgov', 'test');
+    // Copy Prod DB to target.
+    $args = array('massgov', $target);
     $return = drush_invoke_process('@massgov.prod', 'ac-database-copy', $args, $options_cloudapi);
     massgov_check_error($return);
     $task_db = $return['object']['id'];
 
-    // Copy Prod files to Stage.
-    $args = array('test');
+    // Copy Prod files to target.
+    $args = array($target);
     $return = drush_invoke_process('@massgov.prod', 'ac-files-copy', $args, $options_cloudapi);
     massgov_check_error($return);
 
@@ -70,23 +70,23 @@ function drush_massgov_ma_deploy($target, $git_ref) {
 
   // Deploy the new code.
   $args = array($git_ref);
-  $return = drush_invoke_process($alias, 'ac-code-path-deploy', $args, $options_cloudapi);
+  $return = drush_invoke_process($alias_target, 'ac-code-path-deploy', $args, $options_cloudapi);
   massgov_check_error($return);
 
   // Import new config
   $args = array();
   $options = array('source' => 'conf/drupal/config', 'delete-list' => 'conf/drupal/delete.yml');
-  $return = drush_invoke_process($alias, 'cimy', $args, $options);
+  $return = drush_invoke_process($alias_target, 'cimy', $args, $options);
   massgov_check_error($return);
 
   // Run any pending DB updates
   $args = $options = array();
-  $return = drush_invoke_process($alias, 'updb', $args, $options);
+  $return = drush_invoke_process($alias_target, 'updb', $args, $options);
   massgov_check_error($return);
 
   // Purge Varnish cache.
   $args = array();
-  $return = drush_invoke_process($alias, 'ac-domain-purge', $args, $options_cloudapi);
+  $return = drush_invoke_process($alias_target, 'ac-domain-purge', $args, $options_cloudapi);
   massgov_check_error($return);
 
   // @todo Disable System Notification block
@@ -94,7 +94,7 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   // Disable Maintenance mode.
   $args = array('system.maintenance_mode', 0);
   $options = array('format' => 'integer');
-  $return = drush_invoke_process($alias, 'state-set', $args, $options);
+  $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
   massgov_check_error($return);
 }
 
