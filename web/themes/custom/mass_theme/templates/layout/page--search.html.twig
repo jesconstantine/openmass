@@ -33,9 +33,9 @@
  * - page.secondary_menu: Items for the secondary menu region.
  * - page.highlighted: Items for the highlighted content region.
  * - page.help: Dynamic help text, mostly for admin pages.
- * - page.pre_content: The main content of the current page.
+ * - page.pre_content: The pre-content Drupal block region.
  * - page.content: The main content of the current page.
- * - page.post_content: The main content of the current page.
+ * - page.post_content: The post-content Drupal block region.
  * - page.sidebar_first: Items for the first sidebar.
  * - page.sidebar_second: Items for the second sidebar.
  * - page.footer: Items for the footer region.
@@ -73,10 +73,22 @@
 </header>
 
 <main role="main" id="main-content" tabindex="-1">{# Keeping this for accessibility purposes #}
-  {{ page.pre_content }}
+  {% block preContent %}
+    {% if page.pre_content %}
+      <div class="pre-content">
+        {{ page.pre_content }}
+      </div>
+    {% endif %}
+  {% endblock %}
   {# Content region populated by mass_search custom module template/mass-search #}
   {{ page.content }}
-  {{ page.post_content }}
+  {% block postContent %}
+    {% if page.post_content %}
+      <div class="post-content">
+        {{ page.post_content }}
+      </div>
+    {% endif %}
+  {% endblock %}
 </main>
 
 {% if page.footer or page.footer_navigation %}
