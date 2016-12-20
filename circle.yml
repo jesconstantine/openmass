@@ -32,7 +32,7 @@ dependencies:
 
 test:
   pre:
-    - vendor/bin/drush -r web site-install --db-url=mysql://ubuntu:@127.0.0.1/circle_test config_installer
+    - cd web && ../vendor/bin/drush site-install --db-url=mysql://ubuntu:@127.0.0.1/circle_test config_installer
 
   override:
     - vendor/bin/phing test
