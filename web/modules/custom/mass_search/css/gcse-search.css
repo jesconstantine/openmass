@@ -76,10 +76,7 @@ table.gsc-search-box td.gsc-input {
   position: absolute;
   right: 0;
   top: 0; 
-/*  background: #ffffff url("/modules/custom/mass_search/images/search.svg") no-repeat 78px center;
-*/
-  background: #ffffff url("/themes/custom/mass_theme/images/svg-sprite.svg#search") no-repeat 78px center;
-  background-color: #fff;
+  background: #ffffff url("/modules/custom/mass_search/images/search.svg") no-repeat 78px center;
   border: 2px solid #dcdcdc;
   color: #43956f;
   font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
@@ -100,10 +97,10 @@ table.gsc-search-box td.gsc-input {
   vertical-align: middle;
   width: 1px;
 }
-input.gsc-search-button:hover {
-    background-color: #43956f !important;
-    border-color: #43956f !important;
-    color: white !important;
+.cse input.gsc-search-button:hover, .gsc-search-box input.gsc-search-button:hover {
+    background: #43956f url("/modules/custom/mass_search/images/search-hover.svg") no-repeat 78px center;
+    border-color: #43956f;
+    color: white;
 }
 .gsc-clear-button {
   display: none;
