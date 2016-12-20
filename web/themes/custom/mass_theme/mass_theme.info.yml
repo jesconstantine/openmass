@@ -12,7 +12,9 @@ base theme: stable
 
 regions:
   header: Header
+  pre_content: Pre Content
   content: Content
+  post_content: Post Content
   section_topics: Section topics
   footer: Footer
   footer_navigation: Footer Navigation
