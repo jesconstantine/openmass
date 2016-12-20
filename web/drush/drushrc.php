@@ -1,7 +1,7 @@
 <?php
 
 $options['shell-aliases'] = [
-  // Used by devs and CircleCI to fetch a Prod DB and run pending updates.
+  // Used by devs to fetch a Prod DB and run pending updates.
   'ma-pull-db' => '!drush sql-sync @massgov.prod @self && drush cimy && drush updatedb',
   'ma-pull-files' => '!drush rsync @massgov.prod:%files @self:%files',
 ];
