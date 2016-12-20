@@ -71,20 +71,6 @@
             <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
           </svg>
         </button>
-        {# @TODO abstract this JS away #}
-        <script type="text/javascript">
-          (function(){
-            // ****** Mobile Search button should open mobile menu ******
-            var mobileSearchButton = document.querySelector(".ma__header__search .ma__header-search .ma__button-search");
-
-            if(null !== mobileSearchButton){
-              mobileSearchButton.addEventListener("click", function(event) {
-                event.preventDefault();
-                document.querySelector("body").classList.toggle("show-menu");
-              });
-            }
-          })();
-        </script>
       </section>
     </div>
   </div>
