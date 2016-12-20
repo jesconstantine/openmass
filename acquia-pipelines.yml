@@ -1,0 +1,15 @@
+version: 1.0.0
+variables:
+  global:
+
+events:
+  build:
+    steps:
+      - build:
+          type: script
+          script:
+            - composer install
+      - notify:
+          type: script
+          script:
+            - scripts/slack-post.sh

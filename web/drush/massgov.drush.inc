@@ -74,9 +74,7 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   massgov_check_error($return);
 
   // Import new config
-  $args = array();
-  $options = array('source' => 'conf/drupal/config', 'delete-list' => 'conf/drupal/delete.yml');
-  $return = drush_invoke_process($alias_target, 'cimy', $args, $options);
+  $return = drush_invoke_process($alias_target, 'cimy');
   massgov_check_error($return);
 
   // Run any pending DB updates
