@@ -107,10 +107,8 @@
 	       <span>Top</span>
       </button>
       <div class="ma__footer__container">
-
         {{ page.footer }}
         {{ page.footer_navigation }}
-
       	<section class="ma__footer__info">
       	  <div class="ma__footer__logo">
       	    <div class="ma__site-logo">
@@ -120,7 +118,7 @@
       	    </div>
       	  </div>
       	  <div class="ma__footer__social">
-      	      {% include "@mass_theme/includes/molecules-social-links.html.twig" %}
+            {{ page.footer_social }}
       	  </div>
       	  <div class="ma__footer__copyright">
       	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
@@ -128,7 +126,6 @@
       	    <a href="/privacypolicy">Mass.gov Privacy Policy</a>
       	  </div>
       	</section>
-
       </div>
     </footer>
 
