@@ -665,6 +665,7 @@ a.gsc-trailing-more-results:link {
 
 .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet, .gs-fileFormatType {
   color: #535353 !important;
+  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif";
 }
 
 div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
