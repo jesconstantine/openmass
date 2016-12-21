@@ -8,6 +8,8 @@
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\pathauto\PathautoState;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Implements hook_uninstall().
@@ -296,4 +298,28 @@ function mass_content_update_8006(&$sandbox) {
 
   $content_type = \Drupal::entityManager()->getStorage('node_type')->load('2up_stacked_band');
   $content_type->delete();
+}
+
+/**
+ * Create Funnel or Endpoint taxonomy terms.
+ */
+function mass_content_update_8007() {
+  // Load the vocabulary to get the the vocabulary ID.
+  $vocabulary = Vocabulary::load('funnel_or_endpoint');
+
+  if (!empty($vocabulary)) {
+    // Add an array of term names that we want to create.
+    $terms = array(
+      'Funnel',
+      'Endpoint',
+    );
+
+    // Create taxonomy terms.
+    foreach ($terms as $term_name) {
+      Term::create([
+        'name' => $term_name,
+        'vid' => $vocabulary->id(),
+      ])->save();
+    }
+  }
 }

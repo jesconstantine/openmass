@@ -13,11 +13,14 @@ dependencies:
     - field.field.node.action.field_alert_dropdown
     - field.field.node.action.field_alert_link
     - field.field.node.action.field_alert_text
+    - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
+    - field.field.node.action.field_funnel_endpoint_term
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
     - field.field.node.action.field_metatags
     - field.field.node.action.field_search
+    - field.field.node.action.field_type_term
     - node.type.action
   module:
     - entity_reference_revisions
@@ -101,5 +104,7 @@ hidden:
   field_action_related: true
   field_contact_group: true
   field_external_url: true
+  field_funnel_endpoint_term: true
   field_metatags: true
   field_search: true
+  field_type_term: true
