@@ -174,7 +174,7 @@
 
         // Prepend first promoted result with visually hidden <h3> landmark.
         var promotedResultsHeading = document.createElement('h3');
-        promotedResultsHeading.setAttribute('class', 'ma__sidebar-heading');
+        promotedResultsHeading.setAttribute('class', 'ma__search-heading');
         promotedResultsHeading.textContent = 'Suggestions';
         searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
       }
@@ -200,7 +200,7 @@
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
       // Prepend regular results with visually hidden <h3> landmark.
       var regularResultsHeading = document.createElement('h3');
-      regularResultsHeading.setAttribute('class', 'ma__sidebar-heading');
+      regularResultsHeading.setAttribute('class', 'ma__search-heading');
       regularResultsHeading.textContent = 'Results';
       searchResults.insertBefore(regularResultsHeading, regularResults); // 6.
     }

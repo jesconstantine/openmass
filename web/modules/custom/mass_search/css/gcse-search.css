@@ -389,6 +389,19 @@ a.gsc-trailing-more-results:link {
   display: none;
 }
 
+/* dynamically added headings for promotions, regular results, styled with ma__sidebar-heading */
+.ma__search-heading {
+  border-color: #dcdcdc !important;
+  color: #535353 !important;
+  border-bottom: 2px solid;
+  font-size: 19.008px;
+  font-size: 1.188rem;
+  letter-spacing: .09em;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif"
+}
+
 /* promoted result container */
 .gsc-webResult.gsc-result.gsc-promotion,
 .gsc-webResult.gsc-result.gsc-promotion:hover {
