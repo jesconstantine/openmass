@@ -18,6 +18,7 @@ regions:
   section_topics: Section topics
   footer: Footer
   footer_navigation: Footer Navigation
+  footer_social: Footer Social
 libraries-override:
   core/jquery: mass_theme/js-vendor
 
