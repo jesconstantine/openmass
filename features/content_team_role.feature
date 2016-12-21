@@ -51,6 +51,11 @@ Feature: Content Management
     When I go to "node/add/section_landing"
     Then the response status code should be 200
 
+  Scenario: Verify content team user can create stacked layout content
+    Given I am logged in as a user with the "content_team" role
+    When I go to "node/add/stacked_layout"
+    Then the response status code should be 200
+
   Scenario: Verify content team user can create subtopic content
     Given I am logged in as a user with the "content_team" role
     When I go to "node/add/subtopic"
