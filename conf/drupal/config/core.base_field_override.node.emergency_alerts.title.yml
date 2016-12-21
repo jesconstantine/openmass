@@ -1,0 +1,18 @@
+uuid: e11963aa-291e-4da6-9cfd-8a1cd34c03e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.emergency_alerts
+id: node.emergency_alerts.title
+field_name: title
+entity_type: node
+bundle: emergency_alerts
+label: 'Emergency Alert Headline'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

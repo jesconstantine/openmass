@@ -1,0 +1,22 @@
+uuid: 279cf9ae-4dc8-4305-b23e-c3a77768b588
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.emergency_alerts
+id: node.emergency_alerts.promote
+field_name: promote
+entity_type: node
+bundle: emergency_alerts
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "676412e88e6e307c8f496e8ff311d881",
-    "content-hash": "03b7eb3dff4a61371dc6fd016a3b5e66",
+    "hash": "7062c6524dad3183f20a62065b0b3942",
+    "content-hash": "cea7408cdf49fb74810680d20916a8f0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3490,16 +3490,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.1.6",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69"
+                "reference": "85a8a6605319c786a1ed00a3c6cb344cbc08ac5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
-                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/85a8a6605319c786a1ed00a3c6cb344cbc08ac5e",
+                "reference": "85a8a6605319c786a1ed00a3c6cb344cbc08ac5e",
                 "shasum": ""
             },
             "type": "library",
@@ -3514,10 +3514,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.1.6",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.2.0",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-12-01 20:21:37"
+            "time": "2016-12-12 14:27:32"
         },
         {
             "name": "palantirnet/the-build",
@@ -8220,6 +8220,53 @@
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
             "time": "2016-11-14 16:15:57"
+        },
+        {
+            "name": "symfony/stopwatch",
+            "version": "v2.4.10",
+            "target-dir": "Symfony/Component/Stopwatch",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Stopwatch.git",
+                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/95a08e3cc2be672f16eb1602e3040141fdc00c7d",
+                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Stopwatch Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-09-22 08:51:05"
         }
     ],
     "aliases": [],

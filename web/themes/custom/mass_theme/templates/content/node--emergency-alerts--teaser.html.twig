@@ -65,46 +65,16 @@
  *
  * @see template_preprocess_node()
  *
- * @todo Remove the id attribute (or make it a class), because if that gets
- *   rendered twice on a page this is invalid CSS for example: two lists
- *   in different view modes.
- *
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
 
-{# Set our twig block regions at the top so we can test their existence #}
-{% set _preContent = block('preContent')|trim %}
-{% set _sidebar = block('sidebar')|trim %}
-{% set _postContent = block('postContent')|trim %}
-
-{# Produce the .pre-content div if either the twig block or the theme region is present #}
-{% if _preContent is not empty or pre_content %}
-  <div class="pre-content">
-    {{ pre_content }}
-    {{ _preContent|raw }}
-  </div>
-{% endif %}
+{% extends 'node.html.twig' %}
 
 {% block main %}
-  <div class="main-content{{ _sidebar is not empty ? ' main-content--two': ''}}">
-    <div class="page-content">
-      {% block pageContent %}
-        {{ content }}
-      {% endblock %}
-    </div>
-    {% if _sidebar is not empty %}
-      <div class="sidebar">
-        {{ _sidebar|raw }}
-      </div>
-    {% endif %}
-  </div>
+  {% block pageContent %}
+    {#See mass_theme_preprocess_node_emergency_alerts()#}
+    {% set emergencyAlerts = emergencyAlerts %}
+    {% include "@organisms/by-template/emergency-alerts.twig" %}
+  {% endblock %}
 {% endblock %}
-
-{# Produce the .post-content div if either the twig block or the theme region is present #}
-{% if _postContent is not empty or post_content %}
-  <div class="post-content">
-    {{ _postContent|raw }}
-    {{ post_content }}
-  </div>
-{% endif %}

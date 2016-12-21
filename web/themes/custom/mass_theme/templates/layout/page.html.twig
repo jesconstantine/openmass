@@ -22,10 +22,12 @@
  *
  * Page content (in order of occurrence in the default page.html.twig):
  * - messages: Status and error messages. Should be displayed prominently.
- * - node: Fully loaded node, if there is an automatically-loaded node
+ * - pre-content: Blocks placed in the pre-content region. (Overridden for node pages.)
+ * - content - usually a fully loaded node, if there is an automatically-loaded node
  *   associated with the page and the node ID is the second argument in the
  *   page's path (e.g. node/12345 and node/12345/revisions, but not
  *   comment/reply/12345).
+ * - post-content: Blocks placed in the post-content region. (Overridden for node pages.)
  *
  * Regions:
  * - page.header: Items for the header region.
@@ -33,7 +35,10 @@
  * - page.secondary_menu: Items for the secondary menu region.
  * - page.highlighted: Items for the highlighted content region.
  * - page.help: Dynamic help text, mostly for admin pages.
+ * - page.pre-content: Area available for cross-content promotions or other information.
  * - page.content: The main content of the current page.
+ * - page.post-content: Area available for cross-content functionality,
+ *   e.g. the site feedback form
  * - page.sidebar_first: Items for the first sidebar.
  * - page.sidebar_second: Items for the second sidebar.
  * - page.footer: Items for the footer region.
@@ -45,6 +50,7 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
+{{ page.emergency_alert }}
 <header class="ma__header">
   <a href="#main-content" class="ma__header__skip-nav visually-hidden focusable">
     {{ 'Skip to main content'|t }}
@@ -76,12 +82,22 @@
   </div>
   {{ page.header }}
 </header>
-
 <main role="main" id="main-content" tabindex="-1">{# Keeping this for accessibility purposes #}
-
-  {# Content regions are all in the node templates #}
+  {% block preContent %}
+    {% if page.pre_content %}
+      <div class="pre-content">
+      {{ page.pre_content }}
+      </div>
+    {% endif %}
+  {% endblock %}
   {{ page.content }}
-
+  {% block postContent %}
+    {% if page.post_content %}
+      <div class="post-content">
+      {{ page.post_content }}
+      </div>
+    {% endif %}
+  {% endblock %}
 </main>
 
 {% if page.footer or page.footer_navigation %}
@@ -92,10 +108,8 @@
 	       <span>Top</span>
       </button>
       <div class="ma__footer__container">
-
         {{ page.footer }}
         {{ page.footer_navigation }}
-
       	<section class="ma__footer__info">
       	  <div class="ma__footer__logo">
       	    <div class="ma__site-logo">
@@ -105,7 +119,7 @@
       	    </div>
       	  </div>
       	  <div class="ma__footer__social">
-      	      {% include "@mass_theme/includes/molecules-social-links.html.twig" %}
+            {{ page.footer_social }}
       	  </div>
       	  <div class="ma__footer__copyright">
       	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
@@ -113,7 +127,6 @@
       	    <a href="/privacypolicy">Mass.gov Privacy Policy</a>
       	  </div>
       	</section>
-
       </div>
     </footer>
 
