@@ -90,5 +90,5 @@ permissions:
   85: 'edit own stacked_layout content'
   86: 'revert stacked_layout revisions'
   87: 'view stacked_layout revisions'
-  89: 'administer site configuration'
   90: 'view current moderation states'
+  91: 'administer shortcuts'
