@@ -38,3 +38,8 @@ Feature: Content Management
     When I go to "node/add/interstitial"
     When I go to "node/add/error_page"
     Then the response status code should be 200
+
+  Scenario: Verify Developer role/user can create stacked layout content
+    Given I am logged in as a user with the "developer" role
+    When I go to "node/add/stacked_layout"
+    Then the response status code should be 200
