@@ -409,7 +409,7 @@ a.gsc-trailing-more-results:link {
     border-left: 0 !important;
     background-color: #43956f !important;
     color: #fff !important;
-    padding: 2em;
+    padding: 2em 2.1em 2em; /* add right padding because arrow icon is bg image */
     min-height: 125px;
     display: block;
     margin: 1em 0 !important;
@@ -462,16 +462,27 @@ a.gsc-trailing-more-results:link {
 }
 
 /* add arrow icon as bg image for links */
-
-/* external links */
-a.gs-title {
-  background: transparent url("/modules/custom/mass_search/images/external-link.svg") no-repeat right center;
+/* promoted results - external links + common styles */
+.gsc-result.gsc-promotion a.gs-title {
+  background: transparent url("/modules/custom/mass_search/images/external-link-white.svg") no-repeat right center !important;
   padding-right: 25px !important;
 }
 
-/* massgov links */
-a.gs-title[data-ctorig^="/"], a.gs-title[data-ctorig^=".."], a.gs-title[data-ctorig^="http://www.mass.gov"], a.gs-title[data-ctorig^="https://www.mass.gov"], a.gs-title[data-ctorig^="http://mass.gov"], a.gs-title[data-ctorig^="https://mass.gov"] {
-  background: transparent url("/modules/custom/mass_search/images/arrow.svg") no-repeat right center;
+/* promoted results - massgov links */
+.gsc-result.gsc-promotion a.gs-title[data-ctorig^="/"], a.gs-title[data-ctorig^=".."], a.gs-title[data-ctorig^="http://www.mass.gov"], a.gs-title[data-ctorig^="https://www.mass.gov"], a.gs-title[data-ctorig^="http://mass.gov"], a.gs-title[data-ctorig^="https://mass.gov"] {
+  background: transparent url("/modules/custom/mass_search/images/arrow-white.svg") no-repeat right center !important;
+}
+
+
+/* regular results - external links + common styles */
+.gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title {
+  background: transparent url("/modules/custom/mass_search/images/external-link-blue.svg") no-repeat right center !important;
+  padding-right: 25px;
+}
+
+/* regular results - massgov links */
+.gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^="/"], .gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^=".."], .gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^="http://www.mass.gov"], .gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^="https://www.mass.gov"], .gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^="http://mass.gov"], .gsc-webResult.gsc-result:not(.gsc-promotion) a.gs-title[data-ctorig^="https://mass.gov"] {
+  background: transparent url("/modules/custom/mass_search/images/arrow-blue.svg") no-repeat right center !important;
 }
 
 /* first result after promoted results */
