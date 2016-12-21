@@ -53,7 +53,6 @@ permissions:
   48: 'edit own topic content'
   49: 'revert topic revisions'
   50: 'view topic revisions'
-  51: 'create url aliases'
   52: 'switch shortcut sets'
   53: 'administer menu'
   54: 'access toolbar'
