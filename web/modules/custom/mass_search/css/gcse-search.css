@@ -460,7 +460,15 @@ a.gsc-trailing-more-results:link {
 }
 
 @media (min-width: 801px) {
+  /* first result after promoted results */
   .gsc-webResult.gsc-result:not(.gsc-promotion) {
+    margin: 2em 0;
+    width: 100%;
+    max-width: 65em;
+  }
+
+  .gsc-expansionArea .gsc-webResult.gsc-result:not(.gsc-promotion),
+  .gsc-expansionArea .gsc-webResult.gsc-result:not(.gsc-promotion):hover {
     clear: left;
     margin: 0 !important;
     padding: 2em 0 !important;
