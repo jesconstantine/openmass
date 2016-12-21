@@ -16,6 +16,7 @@ Feature: User Security
     When I go to "node/add/2up_stacked_band"
     When I go to "node/add/action"
     When I go to "node/add/agency"
+    When I go to "node/add/emergency_alerts"
     When I go to "node/add/error_page"
     When I go to "node/add/interstitial"
     When I go to "node/add/page"
