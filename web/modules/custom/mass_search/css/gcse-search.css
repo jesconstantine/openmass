@@ -443,10 +443,22 @@ a.gsc-trailing-more-results:link {
     margin-left: 0 !important;
   }
 
-  /* vertically center promotion content on desktop */
   .gs-promotion.gs-result {
     margin-top: .5em !important;
   }
+}
+
+/* add arrow icon as bg image for links */
+
+/* external links */
+a.gs-title {
+  background: transparent url("/modules/custom/mass_search/images/external-link.svg") no-repeat right center;
+  padding-right: 25px !important;
+}
+
+/* massgov links */
+a.gs-title[data-ctorig^="/"], a.gs-title[data-ctorig^=".."], a.gs-title[data-ctorig^="http://www.mass.gov"], a.gs-title[data-ctorig^="https://www.mass.gov"], a.gs-title[data-ctorig^="http://mass.gov"], a.gs-title[data-ctorig^="https://mass.gov"] {
+  background: transparent url("/modules/custom/mass_search/images/arrow.svg") no-repeat right center;
 }
 
 /* first result after promoted results */
