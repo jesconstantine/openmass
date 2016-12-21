@@ -15,16 +15,6 @@ Feature: Emergency Alert Content type
     When I go to "node/add/emergency_alerts"
     Then the response status code should be 403
 
-  Scenario: Verify that these roles cannot create emergency alerts content
-    Given I am logged in as a user with the "content_user" role
-    When I go to "node/add/emergency_alerts"
-    Then the response status code should be 403
-
-  Scenario: Verify that these roles cannot create emergency alerts content
-    Given I am logged in as a user with the "content_editor" role
-    When I go to "node/add/emergency_alerts"
-    Then the response status code should be 403
-
   Scenario: Verify Emergency Alert Publisher can create emergency alerts content
     Given I am logged in as a user with the "emergency_alert_publisher" role
     When I go to "node/add/emergency_alerts"
