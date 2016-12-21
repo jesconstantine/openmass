@@ -475,7 +475,7 @@ a.gsc-trailing-more-results:link {
 }
 
 /* promoted results - massgov links */
-.gsc-result.gsc-promotion a.gs-title[data-ctorig^="/"], a.gs-title[data-ctorig^=".."], a.gs-title[data-ctorig^="http://www.mass.gov"], a.gs-title[data-ctorig^="https://www.mass.gov"], a.gs-title[data-ctorig^="http://mass.gov"], a.gs-title[data-ctorig^="https://mass.gov"] {
+.gsc-result.gsc-promotion a.gs-title[data-ctorig^="/"], .gsc-result.gsc-promotion a.gs-title[data-ctorig^=".."], .gsc-result.gsc-promotion a.gs-title[data-ctorig^="http://www.mass.gov"], .gsc-result.gsc-promotion a.gs-title[data-ctorig^="https://www.mass.gov"], .gsc-result.gsc-promotion a.gs-title[data-ctorig^="http://mass.gov"], .gsc-result.gsc-promotion a.gs-title[data-ctorig^="https://mass.gov"] {
   background: transparent url("/modules/custom/mass_search/images/arrow-white.svg") no-repeat right center !important;
 }
 
