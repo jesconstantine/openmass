@@ -1,0 +1,9 @@
+uuid: 7e316f44-5a64-4617-bbd7-567f88fffac3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Funnel or Endpoint'
+vid: funnel_or_endpoint
+description: 'Funnel or endpoint content'
+hierarchy: 0
+weight: 0
