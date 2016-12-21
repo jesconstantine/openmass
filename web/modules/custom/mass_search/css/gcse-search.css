@@ -139,24 +139,51 @@ body.search-results-page .gstl_50.gssb_c[style] {
   left: calc(100% + 10px) !important; /* 1 */
 }
 
-/* autocomplete promotions styles */
+.gssb_e {
+  box-shadow: none !important; /* search results page autocomplete */
+}
+
+.gssb_a:hover {
+  cursor: pointer;
+}
+
+/* autocomplete styles */
 .gsq_a {
-  padding: .5em 0 !important;
+  padding: 0 0 5px 7px !important;
 }
 
 @media (min-width: 801px) {
   .gsq_a {
-    padding: 0 !important;
+    /*padding: 0 !important;*/
   }
 }
 
 .gsq_a span {
   color: #535353 !important;
   font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gsq_a span b {
+  font-weight: 200;
+}
+
+.gsc-completion-container {
+  padding-top: 10px !important;
+  border: 1px solid #dcdcdc !important;
+  box-shadow: none !important;
+  margin-top: -1px !important;
+}
+
+/* horizontal rule separating autocomplete from promotions */
+.gssb_l {
+  margin: 10px 0 !important;
 }
 
 /* autocomplete promotion container table */
 .gsc-completion-container .gsc-completion-promotion-table {
+  margin: 5px 7px !important;
 }
 
 /* autocomplete promotion link */
@@ -164,6 +191,7 @@ body.search-results-page .gstl_50.gssb_c[style] {
   color: #14558f !important;
   font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
   font-weight: 700 !important;
+  font-size: 18px !important;
 }
 
 /* autocomplete promotion description */
@@ -173,7 +201,8 @@ body.search-results-page .gstl_50.gssb_c[style] {
 
 /* autocomplete hover style, class applied to parent <tr> */
 .gsc-completion-selected {
-    background: #dcdcdc !important;
+  background: #f2f2f2 !important;
+  cursor: pointer;
 }
 
 
