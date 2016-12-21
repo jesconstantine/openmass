@@ -74,33 +74,38 @@ table.gsc-search-box td.gsc-input {
   padding: 0;
   width: 14% !important;
 }
-input.gsc-search-button {
-    display: block !important;
-    height: 46px !important;
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 0;*/
-    font-weight: 700 !important;
-    font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
-    background-color: white !important;
-    border-radius: 0 !important;
-    color: #43956f !important;
-    border: 2px solid #dcdcdc !important;
-    font-size: 12px !important;
-    font-size: 0.75rem !important;
-    letter-spacing: .05em !important;
-    margin-left: -2px !important;
-    padding: 13px 14px 14px !important;
-    text-transform: uppercase !important;
-    -webkit-transition: background-color .4s, color .4s, border .4s, fill .4s;
-    transition: background-color .4s, color .4s, border .4s, fill .4s;
-    white-space: nowrap;
-    cursor: pointer;
+.cse input.gsc-search-button, .gsc-search-box input.gsc-search-button {
+  display: block;
+  height: 46px;
+  padding: 0 38px 0 18px;
+  position: absolute;
+  right: 0;
+  top: 0; 
+  background: #ffffff url("/modules/custom/mass_search/images/search.svg") no-repeat 78px center;
+  border: 2px solid #dcdcdc;
+  color: #43956f;
+  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.15;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 0.4s ease 0s, color 0.4s ease 0s, border 0.4s ease 0s, fill 0.4s ease 0s;
+  white-space: nowrap;
+  border-radius: 0;/* override styles from Google, minimalist.css */
 }
-input.gsc-search-button:hover {
-    background-color: #43956f !important;
-    border-color: #43956f !important;
-    color: white !important;
+.gsc-search-box input.gsc-search-button::before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  margin-right: -1px;
+  vertical-align: middle;
+  width: 1px;
+}
+.cse input.gsc-search-button:hover, .gsc-search-box input.gsc-search-button:hover {
+    background: #43956f url("/modules/custom/mass_search/images/search-hover.svg") no-repeat 78px center;
+    border-color: #43956f;
+    color: white;
 }
 .gsc-clear-button {
   display: none;
