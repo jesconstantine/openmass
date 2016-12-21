@@ -1417,3 +1417,29 @@ function mass_theme_theme_suggestions_page_alter(array &$suggestions, array $var
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Prepare icon link values for template.
+ */
+function mass_theme_preprocess_paragraph__icon_links(&$variables) {
+  $items = [];
+  if (!$variables['paragraph']->get('field_icon_link')->isEmpty()) {
+    $icon_links = $variables['paragraph']->get('field_icon_link')->referencedEntities();
+    foreach ($icon_links as $icon_link) {
+      $icon_name = current($icon_link->get('field_para_icon_term')->referencedEntities())->get('field_sprite_name')->value;
+      $link = $icon_link->get('field_link_single')->first()->getValue();
+      $items[] = [
+        'icon' => "@atoms/05-icons/svg-" . $icon_name . '.twig',
+        'link' => [
+          'href' => $link['uri'],
+          'text' => $link['title'],
+          'chevron' => '',
+        ],
+      ];
+    }
+  }
+
+  $variables['icon_links']['items'] = $items;
+}
