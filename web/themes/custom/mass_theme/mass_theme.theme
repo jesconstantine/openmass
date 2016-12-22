@@ -68,12 +68,15 @@ function mass_theme_preprocess_node(&$variables) {
   // unneeded nodes).
   $allowed_view_modes = ['full'];
 
-  // If view mode is in allowed view modes list, pass to
+  // If current view mode is in allowed view modes list, pass to
   // mass_theme_add_regions_to_node().
+  // This has the effect of making blocks in the specified theme regions
+  // available to be rendered by the node template as, e.g. "pre_content".
+  // @see templates/content/node.html.twig
   if (in_array($view_mode, $allowed_view_modes)) {
     // Allowed regions (for performance so as to not execute for unneeded
     // region).
-    $allowed_regions = ['section_topics'];
+    $allowed_regions = ['pre_content', 'post_content', 'section_topics'];
     mass_theme_add_regions_to_node($allowed_regions, $variables);
   }
 
@@ -390,6 +393,71 @@ function mass_theme_preprocess_node_topic(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ *
+ * Node alert (banner) alterations.
+ */
+function mass_theme_preprocess_node_emergency_alerts(&$variables) {
+  $node = $variables['node'];
+
+  // Create and populate the data object which the template is expecting.
+  $emergency_alerts = array();
+  // Set alert id = node updated time.
+  $emergency_alerts['id'] = $node->get('changed')->value;
+
+  // Set banner accordion button text (css will format).
+  $emergency_alerts['buttonAlert']['hideText'] = 'hide';
+  $emergency_alerts['buttonAlert']['showText'] = 'show';
+  $emergency_alerts['buttonAlert']['text'] = 'alerts';
+
+  // Set alert banner headline = node title.
+  $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
+
+  // Get the alert paragraph field.
+  $field_alert = $node->get('field_alert');
+
+  // Iterate through alert paragraph instances.
+  // Populate alerts array with individual alert content.
+  if ($field_alert->count() > 0) {
+    $delta = 0;
+    $alerts = array();
+
+    foreach ($field_alert->referencedEntities() as $paragraph) {
+
+      // Format the alert timestamp to match new date format that meets spec.
+      $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+      $raw_timestamp = strtotime($raw_timestamp_str);
+      $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
+
+      // Populate optional alert "Read More" link.
+      $url = $paragraph->get('field_emergency_alert_link')->first();
+      $link = '';
+      if ($url) {
+        $link = array(
+          'chevron' => 'true',
+          'text' => $url->getValue()['title'],
+          'href' => $url->getUrl()->toString(),
+          'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+        );
+      }
+
+      $alerts[] = array(
+        'message' => $paragraph->get('field_emergency_alert_message')->value,
+        'timeStamp' => $timestamp,
+        'link' => $link,
+      );
+
+      $delta++;
+    }
+
+    $emergency_alerts['alerts'] = $alerts;
+
+    // Make emergency alerts data object available in template.
+    $variables['emergencyAlerts'] = $emergency_alerts;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Various global preprocessing.
@@ -398,6 +466,13 @@ function mass_theme_preprocess_html(&$variables) {
   // Add a body class for Action nodes.
   if (isset($variables['node_type']) && $variables['node_type'] == 'action') {
     $variables['attributes']['class'][] = 'action-page';
+  }
+
+  // Add a variable for the emergency alerts banner view for front template.
+  $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+
+  if ($is_front_page) {
+    $variables['alerts_banner_view'] = views_embed_view('emergency_alert', 'block_banner');
   }
 }
 

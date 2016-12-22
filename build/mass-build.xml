@@ -61,7 +61,7 @@
 
       <!-- Which environment will we be pulling from? -->
       <property name="deploy.site_alias" value="@massgov.test" />
-      <input propertyname="deploy.site_alias" validargs="@massgov.dev,@massgov.test">Acquia environment to pull from? </input>
+      <input propertyname="deploy.site_alias" validargs="@massgov.dev,@massgov.cd,@massgov.test">Acquia environment to pull from? </input>
 
       <!-- Which environment will we be pulling from? -->
       <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>

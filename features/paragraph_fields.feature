@@ -49,6 +49,14 @@ Feature: Paragraph type definitions
       | field      | widget |
       | field-link | Link   |
 
+  Scenario: Verify that the emergency_alert paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "emergency_alert" paragraph has the fields:
+      | field                           | widget        |
+      | field-emergency-alert-link      | Link          |
+      | field-emergency-alert-message   | Textfield     |
+      | field-emergency-alert-timestamp | Date and Time |
+
   Scenario: Verify that the file_download paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "file_download" paragraph has the fields:

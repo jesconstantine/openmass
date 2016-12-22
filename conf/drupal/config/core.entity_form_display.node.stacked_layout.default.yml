@@ -7,12 +7,14 @@ dependencies:
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
+    - field.field.node.stacked_layout.field_funnel_endpoint_term
     - field.field.node.stacked_layout.field_header_cta
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
+    - field.field.node.stacked_layout.field_type_term
     - node.type.stacked_layout
   module:
     - entity_browser
@@ -27,6 +29,7 @@ third_party_settings:
         - group_primary_content
         - group_bands
         - group_extended_header
+        - group_meta_info
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -81,6 +84,20 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+    group_meta_info:
+      children:
+        - field_funnel_endpoint_term
+        - field_type_term
+      parent_name: group_node_edit_form
+      weight: 110
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Meta Info'
 id: node.stacked_layout.default
 targetEntityType: node
 bundle: stacked_layout
@@ -116,6 +133,11 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  field_funnel_endpoint_term:
+    weight: 112
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
   field_header_cta:
     weight: 114
     settings:
@@ -163,6 +185,14 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_type_term:
+    weight: 113
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'Indicate type (E.g. “How To”)'
     third_party_settings: {  }
     type: entity_reference_autocomplete
   title:

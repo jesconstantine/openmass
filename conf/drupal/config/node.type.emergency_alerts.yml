@@ -1,0 +1,26 @@
+uuid: 47a65d71-4560-4d31-869a-4d95ef8e808c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: 'Emergency Alert(s)'
+type: emergency_alerts
+description: 'Use this content type to create a group of emergency alerts, including an alert headline (IE The State is experiencing severe weather due to the winter storm Paula) and individual alert message(s) (IE MassPort is operating with limited flights due to road closures. 02.15.16, 5:00 p.m. Read full alert > )'
+help: ''
+new_revision: true
+preview_mode: 2
+display_submitted: false
