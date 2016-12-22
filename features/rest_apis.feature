@@ -18,3 +18,7 @@ Feature: REST APIs
   Scenario: Verify anonymous user can get to the right-rail REST export
     When I go to "/api/v1/right-rail"
     Then the response status code should be 200
+
+  Scenario: Verify anonymous user can get to the content-types REST export
+    When I go to "/api/v1/content-types"
+    Then the response status code should be 200
