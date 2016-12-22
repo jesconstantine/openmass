@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.action
     - node.type.agency
+    - node.type.emergency_alerts
     - node.type.error_page
     - node.type.interstitial
     - node.type.page
@@ -555,6 +556,7 @@ display:
             all: all
             agency: agency
             page: page
+            emergency_alerts: emergency_alerts
             error_page: error_page
             interstitial: interstitial
             action: action
