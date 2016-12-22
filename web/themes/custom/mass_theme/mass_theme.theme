@@ -12,6 +12,7 @@ use Drupal\block\Entity\Block;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Component\Utility\Unicode;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -357,34 +358,24 @@ function mass_theme_preprocess_node_topic(&$variables) {
       $links = array();
       // Wrap up our links for each subtopic.
       foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-
-
-
-        // Check what kind of thing the link is. If just an object with a uri, the output as is.
-        // If it's a guide, and external, use the uri
-        if ( strpos('entity:node', $link->uri) !== FALSE ) {
-          // get the node and assign the node object to $link
-          // TODO maybe $link->getReferencedEntity();
-          if (isset($link->get('field_external_url')[0])) {
-            $external_link = $link->get('field_external_url')
-              ->first()
-              ->getValue();
-            $link_path = $external_link['uri'];
+        // Check the value of the field for either a direct input or a node.
+        if (strpos($link->uri, 'entity') !== FALSE) {
+          if(Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
+            $nid = explode('/', $link->uri)[1];
           }
-          else {
-            $link_path = \Drupal::service('path.alias_manager')
-              ->getAliasByPath('/node/' . $link->get('nid')->value);
+          $section_link_node = \Drupal\node\Entity\Node::load($nid);
+          $external_link = $section_link_node->get('field_external_url')->uri;
+          //  Check the external url field value is not empty
+          if ($external_link !== '') {
+            $link_path = $external_link;
+          } else {
+            $link_path = Url::fromUri($link->uri);
           }
         } else {
+        // Use the direct output value.
           $link_path = Url::fromUri($link->uri);
         }
-
         $links[] = array('text' => $link->title, 'href' => $link_path);
-
-
-
-
-        $links[] = array('text' => $link->title, 'href' => Url::fromUri($link->uri));
       }
       // Wrap up each section with links.
       $sections[] = array(
