@@ -2,14 +2,14 @@
 
 $options['shell-aliases'] = [
   // Used by devs to fetch a Prod DB and run pending updates.
-  'ma-pull-db' => '!drush sql-sync @massgov.prod @self && drush cimy && drush updatedb',
+  'ma-pull-db' => '!drush sql-sync @massgov.prod @self && drush updatedb && drush cimy',
   'ma-pull-files' => '!drush rsync @massgov.prod:%files @self:%files',
 ];
 
 
 $options['uri'] = "http://mass.local";
 $options['include'] = [
-  // @todo Not needed after https://github.com/previousnext/drush_cmi_tools/issues/7
+  // @todo Not needed after https://github.com/previousnext/drush_cmi_tools/pull/8
   "../vendor/previousnext/drush_cmi_tools",
 ];
 /**

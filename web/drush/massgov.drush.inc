@@ -73,13 +73,14 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   $return = drush_invoke_process($alias_target, 'ac-code-path-deploy', $args, $options_cloudapi);
   massgov_check_error($return);
 
-  // Import new config
-  $return = drush_invoke_process($alias_target, 'cimy');
+  // Run any pending DB updates
+  // This goes before config import per https://www.drupal.org/node/2628144
+  $options = array('entity-updates' => TRUE);
+  $return = drush_invoke_process($alias_target, 'updb', $args, $options);
   massgov_check_error($return);
 
-  // Run any pending DB updates
-  $args = $options = array();
-  $return = drush_invoke_process($alias_target, 'updb', $args, $options);
+  // Import new config
+  $return = drush_invoke_process($alias_target, 'cimy');
   massgov_check_error($return);
 
   // Purge Varnish cache.
