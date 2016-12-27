@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ec4f01738db93488a522aa90c91e5049",
-    "content-hash": "b53acdc29bea9819f3a512e55ff42f4d",
+    "hash": "a59b1546693e58876d48d70594c702b1",
+    "content-hash": "d27280871b13a1f099f5a99783ae30f2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1464,6 +1464,8 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
+                    "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch",
                     "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
                 }
             },
@@ -7127,12 +7129,12 @@
             "version": "0.11.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hechoendrupal/DrupalConsole.git",
+                "url": "https://github.com/hechoendrupal/drupal-console.git",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "shasum": ""
             },
