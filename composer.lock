@@ -3327,12 +3327,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikeyp/google_tag.git",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da"
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/4c35b508650f3268012abd4afbe4e309eb5297da",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/3caa4f0b7f008576936ab7501d483bfcf58a4764",
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3344,7 +3344,7 @@
                 "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
                 "issues": "https://github.com/mikeyp/google_tag/issues"
             },
-            "time": "2016-06-15 22:09:45"
+            "time": "2016-10-17 15:47:26"
         },
         {
             "name": "nikic/php-parser",
