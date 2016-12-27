@@ -7,7 +7,6 @@ $options['shell-aliases'] = [
 ];
 
 
-$options['uri'] = "http://mass.local";
 $options['include'] = [
   // @todo Not needed after https://github.com/previousnext/drush_cmi_tools/pull/8
   "../vendor/previousnext/drush_cmi_tools",
@@ -17,12 +16,6 @@ $options['include'] = [
  * the structure but not the data to be dumped for these tables.
  */
 $options['structure-tables']['common'] = array('cache', 'cache_*', 'history', 'search_*', 'sessions', 'watchdog');
-
-// Remember to pass config_installer as argument to site-install.
-$command_specific['site-install'] = [
-  'account-name' => 'massadmin',
-  'db-url' => 'mysql://root:root@127.0.0.1/drupal',
-];
 
 $command_specific['config-import-plus'] = [
   'source' => '../conf/drupal/config',
