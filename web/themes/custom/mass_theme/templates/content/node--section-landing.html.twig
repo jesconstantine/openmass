@@ -9,6 +9,9 @@
  */
  #}
 {%
+set backgroundImage = mobile800x400_image_url ?? hero800x400_image_url
+%}
+{%
 set breadcrumbs = {
   "light": "",
   "links": [{
@@ -21,7 +24,7 @@ set breadcrumbs = {
 set pageBanner = {
   'icon': icon_path,
   'title': label|field_value,
-  'bgNarrow': hero800x400_image_url,
+  'bgNarrow': backgroundImage,
   'bgWide': file_url(node.field_featured_image.entity.fileuri),
 }
 %}
