@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_right_rail
     - paragraphs.paragraphs_type.2up_stacked_band
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.icon_links
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.quick_action
     - paragraphs.paragraphs_type.related_link
@@ -30,6 +31,7 @@ settings:
       iframe: iframe
       quick_action: quick_action
       related_link: related_link
+      icon_links: icon_links
       subhead: subhead
     target_bundles_drag_drop:
       1up_stacked_band:
@@ -71,6 +73,12 @@ settings:
       contact:
         weight: 44
         enabled: false
+      activities:
+        weight: 44
+        enabled: false
+      activity:
+        weight: 45
+        enabled: false
       contact_group:
         enabled: true
         weight: 45
@@ -110,9 +118,15 @@ settings:
       rich_text:
         weight: 57
         enabled: false
+      icon_link:
+        weight: 57
+        enabled: false
       slideshow:
         weight: 58
         enabled: false
+      icon_links:
+        enabled: true
+        weight: 58
       stacked_band:
         weight: 59
         enabled: false
