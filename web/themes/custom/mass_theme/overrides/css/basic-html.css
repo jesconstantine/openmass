@@ -16,6 +16,17 @@ figure figcaption {
   margin-bottom: .25em;
 }
 
+.align-right,
+.align-left {
+  float: none;
+  margin: 0;
+}
+
+.align-right img,
+.align-left img {
+  width: 100%;
+}
+
 @media (min-width: 621px) {
   .align-right {
     float: right;
