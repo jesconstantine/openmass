@@ -73,13 +73,15 @@
  */
 #}
 
-{# Set our regions at the top so we can test their existence #}
+{# Set our twig block regions at the top so we can test their existence #}
 {% set _preContent = block('preContent')|trim %}
 {% set _sidebar = block('sidebar')|trim %}
 {% set _postContent = block('postContent')|trim %}
 
-{% if _preContent is not empty %}
+{# Produce the .pre-content div if either the twig block or the theme region is present #}
+{% if _preContent is not empty or pre_content %}
   <div class="pre-content">
+    {{ pre_content }}
     {{ _preContent|raw }}
   </div>
 {% endif %}
@@ -99,8 +101,10 @@
   </div>
 {% endblock %}
 
-{% if _postContent is not empty %}
+{# Produce the .post-content div if either the twig block or the theme region is present #}
+{% if _postContent is not empty or post_content %}
   <div class="post-content">
     {{ _postContent|raw }}
+    {{ post_content }}
   </div>
 {% endif %}

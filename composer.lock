@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9bc0f70bd0ae225edf788485187df42b",
-    "content-hash": "3174dbda8b221e8ee69ce68dc3255781",
+    "hash": "cb574af09e6cae8289f698b189b270dc",
+    "content-hash": "543f2e63185cf8f9a4025fec387e7384",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1113,7 +1113,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.7.zip",
-                "reference": null,
+                "reference": "535f27b1ee669e277e52390a198a1605192bbe88",
                 "shasum": null
             },
             "require": {
@@ -1288,7 +1288,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_log-8.x-1.1.zip",
-                "reference": null,
+                "reference": "61eab9371412932f98d1dc87fc1fc3c98e2960c4",
                 "shasum": null
             },
             "require": {
@@ -1464,8 +1464,7 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
-                    "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
+                    "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
                 }
             },
             "autoload": {
@@ -1824,7 +1823,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/field_group-8.x-1.0-rc6.zip",
-                "reference": null,
+                "reference": "acd3aaef1d0c9822b81ce7fdff8a12ef3844b4e1",
                 "shasum": null
             },
             "require": {
@@ -1892,6 +1891,37 @@
             "description": "Provides a default Entity Browser for files, using Masonry and Imagesloaded.",
             "homepage": "https://www.drupal.org/project/file_browser",
             "time": "2016-11-26 20:43:42"
+        },
+        {
+            "name": "drupal/flood_unblock",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/flood_unblock",
+                "reference": "6bc688e416430c0529caf18e4ed1959773095961"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/flood_unblock-8.x-1.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Interface for unblocking ip's that are blocked by the flood table",
+            "homepage": "https://www.drupal.org/project/flood_unblock",
+            "time": "2016-04-14 11:59:11"
         },
         {
             "name": "drupal/ga_login",
@@ -2670,6 +2700,38 @@
                 "Drupal"
             ],
             "time": "2016-06-28 04:04:37"
+        },
+        {
+            "name": "drupal/xmlsitemap",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/xmlsitemap",
+                "reference": "24c8474a8dcd682f426865302c85f7b15aae8c59"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/xmlsitemap_custom": "self.version",
+                "drupal/xmlsitemap_engines": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/xmlsitemap_custom, drupal/xmlsitemap_engines"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Creates an XML sitemap conforming to the <a href=\"http://sitemaps.org/\">sitemaps.org protocol</a>.",
+            "homepage": "https://www.drupal.org/project/xmlsitemap",
+            "time": "2016-12-07 10:00:27"
         },
         {
             "name": "drush/drush",
@@ -3459,16 +3521,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.1.6",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69"
+                "reference": "85a8a6605319c786a1ed00a3c6cb344cbc08ac5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
-                "reference": "ec5802bbebbb03549a93868f6ef0f4a91bfb5c69",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/85a8a6605319c786a1ed00a3c6cb344cbc08ac5e",
+                "reference": "85a8a6605319c786a1ed00a3c6cb344cbc08ac5e",
                 "shasum": ""
             },
             "type": "library",
@@ -3483,10 +3545,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.1.6",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.2.0",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2016-12-01 20:21:37"
+            "time": "2016-12-12 14:27:32"
         },
         {
             "name": "palantirnet/the-build",
@@ -8189,6 +8251,53 @@
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
             "time": "2016-11-14 16:15:57"
+        },
+        {
+            "name": "symfony/stopwatch",
+            "version": "v2.4.10",
+            "target-dir": "Symfony/Component/Stopwatch",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Stopwatch.git",
+                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/95a08e3cc2be672f16eb1602e3040141fdc00c7d",
+                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Stopwatch Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-09-22 08:51:05"
         }
     ],
     "aliases": [],
@@ -8200,6 +8309,7 @@
         "drupal/file_browser": 20,
         "drupal/restrict_by_ip": 20,
         "drupal/security_review": 20,
+        "drupal/xmlsitemap": 20,
         "mikeyp/google_tag": 20,
         "palantirnet/the-build": 20,
         "palantirnet/the-vagrant": 20,

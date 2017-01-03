@@ -4,12 +4,17 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.browse_files_modal
+    - field.field.node.stacked_layout.field_action_banner
+    - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
+    - field.field.node.stacked_layout.field_funnel_endpoint_term
+    - field.field.node.stacked_layout.field_header_cta
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
+    - field.field.node.stacked_layout.field_type_term
     - node.type.stacked_layout
   module:
     - entity_browser
@@ -23,6 +28,8 @@ third_party_settings:
       children:
         - group_primary_content
         - group_bands
+        - group_extended_header
+        - group_meta_info
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -38,7 +45,6 @@ third_party_settings:
         - field_label
         - field_lede
         - field_photo
-        - field_related_guides
       parent_name: group_node_edit_form
       weight: 108
       label: 'Primary Content'
@@ -63,11 +69,60 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+    group_extended_header:
+      children:
+        - field_action_header
+        - field_action_banner
+        - field_header_cta
+      parent_name: group_node_edit_form
+      weight: 110
+      label: 'Extended Header'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_meta_info:
+      children:
+        - field_funnel_endpoint_term
+        - field_type_term
+      parent_name: group_node_edit_form
+      weight: 110
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Meta Info'
 id: node.stacked_layout.default
 targetEntityType: node
 bundle: stacked_layout
 mode: default
 content:
+  field_action_banner:
+    weight: 113
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_action_header:
+    weight: 112
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
   field_bands:
     type: entity_reference_paragraphs
     weight: 11
@@ -78,6 +133,21 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  field_funnel_endpoint_term:
+    weight: 112
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_header_cta:
+    weight: 114
+    settings:
+      title: Molecule
+      title_plural: Molecules
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
   field_label:
     weight: 2
     settings:
@@ -115,6 +185,14 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_type_term:
+    weight: 113
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'Indicate type (E.g. “How To”)'
     third_party_settings: {  }
     type: entity_reference_autocomplete
   title:
