@@ -100,6 +100,7 @@
         "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
+        "drupal/config_log": "8.*",
         "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
@@ -108,6 +109,7 @@
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/flood_unblock": "^8.1",
         "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
@@ -126,7 +128,7 @@
         "drupal/twig_tweak": "^8.1",
         "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
-        "drupal/config_log": "8.*",
+        "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
         "palantirnet/mayflower-artifacts": "^2.2",
@@ -194,6 +196,9 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
+            },
+            "drupal/core": {
+              "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
             }
         }
     }

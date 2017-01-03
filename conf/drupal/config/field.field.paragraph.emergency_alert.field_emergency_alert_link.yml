@@ -1,0 +1,23 @@
+uuid: 40c47221-70a2-4052-bb62-afb9942e6796
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_emergency_alert_link
+    - paragraphs.paragraphs_type.emergency_alert
+  module:
+    - link
+id: paragraph.emergency_alert.field_emergency_alert_link
+field_name: field_emergency_alert_link
+entity_type: paragraph
+bundle: emergency_alert
+label: 'Emergency Alert Link'
+description: '<p>Use this optional field to link to an internal or external webpage which provides more information for this individual alert.</p>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
