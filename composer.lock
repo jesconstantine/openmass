@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb574af09e6cae8289f698b189b270dc",
-    "content-hash": "543f2e63185cf8f9a4025fec387e7384",
+    "hash": "a59b1546693e58876d48d70594c702b1",
+    "content-hash": "d27280871b13a1f099f5a99783ae30f2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1464,6 +1464,8 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
+                    "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch",
                     "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
                 }
             },
@@ -1669,17 +1671,11 @@
         },
         {
             "name": "drupal/encrypt",
-            "version": "8.3.0-alpha1",
+            "version": "dev-8.x-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/encrypt",
-                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/encrypt-8.x-3.0-alpha1.zip",
-                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0",
-                "shasum": null
+                "reference": "19cda8cf22bfe7d020b819a7cfddf2e4883b78a8"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1697,7 +1693,7 @@
             ],
             "description": "Provides an API for two-way encryption.",
             "homepage": "https://www.drupal.org/project/encrypt",
-            "time": "2016-02-26 14:58:40"
+            "time": "2016-08-05 15:43:56"
         },
         {
             "name": "drupal/entity_browser",
@@ -2687,7 +2683,8 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
+                    "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch",
+                    "Removes second occurrence of 'arguments: ['@entity.manager']' (It was defined twice)": "https://www.drupal.org/files/issues/2796871-1-workbench_moderation-paramconvertor.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3393,12 +3390,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikeyp/google_tag.git",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da"
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/4c35b508650f3268012abd4afbe4e309eb5297da",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/3caa4f0b7f008576936ab7501d483bfcf58a4764",
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3410,7 +3407,7 @@
                 "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
                 "issues": "https://github.com/mikeyp/google_tag/issues"
             },
-            "time": "2016-06-15 22:09:45"
+            "time": "2016-10-17 15:47:26"
         },
         {
             "name": "nikic/php-parser",
@@ -7195,12 +7192,12 @@
             "version": "0.11.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hechoendrupal/DrupalConsole.git",
+                "url": "https://github.com/hechoendrupal/drupal-console.git",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "shasum": ""
             },
@@ -8305,6 +8302,7 @@
     "stability-flags": {
         "desandro/imagesloaded": 20,
         "drupal/draggableviews": 20,
+        "drupal/encrypt": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
         "drupal/restrict_by_ip": 20,
