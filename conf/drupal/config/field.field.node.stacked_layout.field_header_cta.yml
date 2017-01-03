@@ -1,61 +1,53 @@
-uuid: c6c5715b-0bbd-4a96-b613-f24835062a71
+uuid: 1b722da7-4615-4cf5-8e56-b94d96657c06
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_right_rail
-    - paragraphs.paragraphs_type.2up_stacked_band
-    - paragraphs.paragraphs_type.contact_group
-    - paragraphs.paragraphs_type.icon_links
+    - field.storage.node.field_header_cta
+    - node.type.stacked_layout
+    - paragraphs.paragraphs_type.icon
     - paragraphs.paragraphs_type.iframe
-    - paragraphs.paragraphs_type.quick_action
-    - paragraphs.paragraphs_type.related_link
-    - paragraphs.paragraphs_type.subhead
   module:
     - entity_reference_revisions
-id: paragraph.2up_stacked_band.field_right_rail
-field_name: field_right_rail
-entity_type: paragraph
-bundle: 2up_stacked_band
-label: 'Right rail'
-description: 'This will take up 30% of this band.'
+id: node.stacked_layout.field_header_cta
+field_name: field_header_cta
+entity_type: node
+bundle: stacked_layout
+label: 'Call to Action'
+description: 'The Call to Action can contain bits of actionable or fast-reference data for users.'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      contact_group: contact_group
+      icon: icon
       iframe: iframe
-      quick_action: quick_action
-      related_link: related_link
-      icon_links: icon_links
-      subhead: subhead
     target_bundles_drag_drop:
-      1up_stacked_band:
+      action_address:
         weight: 32
         enabled: false
-      2up_stacked_band:
+      action_address_info:
         weight: 33
         enabled: false
-      action_address:
+      action_area:
         weight: 34
         enabled: false
-      action_address_info:
+      action_step:
         weight: 35
         enabled: false
-      action_area:
+      action_step_numbered:
         weight: 36
         enabled: false
-      action_step:
+      action_step_numbered_list:
         weight: 37
         enabled: false
-      action_step_numbered:
+      activities:
         weight: 38
         enabled: false
-      action_step_numbered_list:
+      activity:
         weight: 39
         enabled: false
       callout_alert:
@@ -73,15 +65,9 @@ settings:
       contact:
         weight: 44
         enabled: false
-      activities:
-        weight: 44
-        enabled: false
-      activity:
-        weight: 45
-        enabled: false
       contact_group:
-        enabled: true
         weight: 45
+        enabled: false
       contact_info:
         weight: 46
         enabled: false
@@ -95,8 +81,8 @@ settings:
         weight: 49
         enabled: false
       icon:
+        enabled: true
         weight: 50
-        enabled: false
       iframe:
         enabled: true
         weight: 51
@@ -110,23 +96,17 @@ settings:
         weight: 54
         enabled: false
       quick_action:
-        enabled: true
         weight: 55
-      related_link:
-        enabled: true
-        weight: 56
-      rich_text:
-        weight: 57
         enabled: false
-      icon_link:
+      related_link:
+        weight: 56
+        enabled: false
+      rich_text:
         weight: 57
         enabled: false
       slideshow:
         weight: 58
         enabled: false
-      icon_links:
-        enabled: true
-        weight: 58
       stacked_band:
         weight: 59
         enabled: false
@@ -134,8 +114,8 @@ settings:
         weight: 60
         enabled: false
       subhead:
-        enabled: true
         weight: 61
+        enabled: false
       video:
         weight: 62
         enabled: false

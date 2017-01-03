@@ -177,3 +177,15 @@ Feature: Paragraph type definitions
       | field             | widget     |
       | field-time        | Textfield  |
 
+  Scenario: Verify that the icon_links paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "icon_links" paragraph has the fields:
+      | field            | widget      |
+      | field-icon-link  | Paragraphs  |
+
+  Scenario: Verify that the icon_link paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "icon_link" paragraph has the fields:
+      | field                | widget      |
+      | field-para-icon-term | Select list |
+      | field-link-single    | Link        |
