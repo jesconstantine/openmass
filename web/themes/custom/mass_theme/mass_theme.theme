@@ -553,7 +553,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $subhead = $build;
       }
       // Check paragraph type for stacked band.
-      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band') {
+      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band' || $paragraph->getType() == 'search_band') {
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
         $band = $view_builder->view($paragraph, 'stacked');
         $bands[$delta][] = $subhead;
@@ -996,6 +996,16 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
     'href' => $url->getUrl()->toString(),
     'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Deliver a image style uri to our search band twig template.
+ */
+function mass_theme_preprocess_paragraph__search_band(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
 }
 
 /**

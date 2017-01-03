@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Theme override to display Search band on Stacked Layout content type.
+ *
+ * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ *
+ * @copyright Copyright (c) 2016 Palantir.net
+ */
+#}
+<section class="ma__search-banner">
+  <style>
+    .ma__search-banner {
+      background-image: url('{{ search800x400_image_url }}');
+    }
+
+    @media (min-width: 801px) {
+      .ma__search-banner {
+        background-image: url('{{ file_url(content.field_image['#items'].entity.uri.value) }}');
+      }
+    }
+  </style>
+  <div class="ma__search-banner__container">
+    <h1 class="ma__search-banner__title">{{ content.field_title|field_value }}</h1>
+    <div class="ma__search-banner__intro">{{ content.field_description|field_value }}</div>
+    <form class="ma__search-banner__form" action="">
+      <div class="ma__search-banner__input">
+        <label for="text-input">Search</label>
+        <input class="" name="GUID138490237" id="GUID138490237" type="text" placeholder="Search..." data-type="text">
+      </div>
+      <button class="ma__search-banner__button" type="submit">
+        <span>Search</span>
+        <svg focusable="false" role="presentation" class="ma__button-search__icon">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
+        </svg>
+      </button>
+    </form>
+    <div class="ma__search-banner__links">
+      <section class="ma__helpful-links ma__helpful-links--columns">
+        <h3 class="ma__comp-heading ma__comp-heading--yellow ma__comp-heading--centered">
+          {{ content.field_link['#title'] }}
+        </h3>
+         {{ content.field_link }}
+      </section>
+    </div>
+  </div>
+  <div class="ma__search-banner__image-credit">
+    <div class="ma__search-banner__credits-container">
+      <div class="ma__search-banner__icon">
+        <svg focusable="false" role="presentation" class="svg-marker">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#marker"></use>
+        </svg>
+      </div>
+      <div class="ma__search-banner__image-name">{{ content.field_image['#items'].alt }}</div>
+      <div class="ma__search-banner__image-author">{{ content.field_image['#items'].alt }}</div>
+    </div>
+  </div>
+</section>
