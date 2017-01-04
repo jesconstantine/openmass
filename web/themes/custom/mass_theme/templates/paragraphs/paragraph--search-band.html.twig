@@ -51,8 +51,8 @@
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#marker"></use>
         </svg>
       </div>
-      <div class="ma__search-banner__image-name">{{ content.field_image['#items'].alt }}</div>
-      <div class="ma__search-banner__image-author">{{ content.field_image['#items'].alt }}</div>
+      <div class="ma__search-banner__image-name">{{ content.field_name|field_value }}</div>
+      <div class="ma__search-banner__image-author">{{ content.field_caption|field_value  }}</div>
     </div>
   </div>
 </section>

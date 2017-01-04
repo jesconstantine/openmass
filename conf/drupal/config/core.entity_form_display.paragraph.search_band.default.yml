@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.browse_files
+    - field.field.paragraph.search_band.field_caption
     - field.field.paragraph.search_band.field_description
     - field.field.paragraph.search_band.field_image
     - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_name
     - field.field.paragraph.search_band.field_title
     - paragraphs.paragraphs_type.search_band
   module:
@@ -18,8 +20,15 @@ targetEntityType: paragraph
 bundle: search_band
 mode: default
 content:
-  field_description:
+  field_caption:
     weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_description:
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -38,14 +47,21 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_link:
-    weight: 3
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-  field_title:
+  field_name:
     weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_title:
+    weight: 3
     settings:
       size: 60
       placeholder: ''

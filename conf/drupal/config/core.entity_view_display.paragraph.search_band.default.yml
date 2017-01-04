@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.search_band.field_caption
     - field.field.paragraph.search_band.field_description
     - field.field.paragraph.search_band.field_image
     - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_name
     - field.field.paragraph.search_band.field_title
     - image.style.hero800x400
     - paragraphs.paragraphs_type.search_band
@@ -17,8 +19,15 @@ targetEntityType: paragraph
 bundle: search_band
 mode: default
 content:
-  field_description:
+  field_caption:
     weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_description:
+    weight: 4
     label: hidden
     settings:
       link_to_entity: false
@@ -33,7 +42,7 @@ content:
     third_party_settings: {  }
     type: image
   field_link:
-    weight: 3
+    weight: 5
     label: above
     settings:
       trim_length: 80
@@ -43,8 +52,15 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link_separate
-  field_title:
+  field_name:
     weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_title:
+    weight: 3
     label: hidden
     settings:
       link_to_entity: false
