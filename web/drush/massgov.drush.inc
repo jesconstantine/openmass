@@ -11,7 +11,8 @@ function massgov_drush_command() {
     ),
     'required-arguments' => TRUE,
     'options' => array(
-      'cache-rebuild' => 'Set to 0 in order to bypass the cache-rebuild on Prod.'
+      'cache-rebuild' => 'Set to 0 in order to bypass the cache-rebuild on Prod.',
+      'maint' => 'Set to 0 in order to bypass maintenance mode enable/disable.',
     ),
     'drush dependencies' => array('acapi'),
     'bootstrap' => DRUSH_BOOTSTRAP_NONE,
@@ -45,12 +46,14 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   ));
 
 
-  // Turn on Maint mode
-  $args = array('system.maintenance_mode', 1);
-  $options = array('format' => 'integer');
-  $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
-  massgov_check_drush_error($return);
-  drush_log(dt("Maintenance mode enabled in $target."), 'success');
+  if (drush_get_option('maint', TRUE)) {
+    // Turn on Maint mode
+    $args = array('system.maintenance_mode', 1);
+    $options = array('format' => 'integer');
+    $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
+    massgov_check_drush_error($return);
+    drush_log(dt("Maintenance mode enabled in $target."), 'success');
+  }
 
   // Backup Prod DB if needed.
   if ($to_prod) {
@@ -116,12 +119,14 @@ function drush_massgov_ma_deploy($target, $git_ref) {
 
   // @todo Disable System Notification block
 
-  // Disable Maintenance mode.
-  $args = array('system.maintenance_mode', 0);
-  $options = array('format' => 'integer');
-  $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
-  massgov_check_drush_error($return);
-  drush_log(dt("Maintenance mode disabled in $target."), 'success');
+  if (drush_get_option('maint', TRUE)) {
+    // Disable Maintenance mode.
+    $args = array('system.maintenance_mode', 0);
+    $options = array('format' => 'integer');
+    $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
+    massgov_check_drush_error($return);
+    drush_log(dt("Maintenance mode disabled in $target."), 'success');
+  }
 }
 
 /**
