@@ -68,9 +68,7 @@ function drush_massgov_ma_deploy($target, $git_ref) {
     $args = array('massgov');
     $backup = $cloudapi->createDatabaseBackup($site, 'prod', $db_name);
     $id = $backup->id();
-    if (wait_for_task_to_complete($cloudapi, $site, $id)) {
-      drush_log('Backup of Prod complete - Task '. $id, 'success');
-    }
+    wait_for_task_to_complete($cloudapi, $site, $id);
   }
   else {
     $database = $cloudapi->copyDatabase($site, $db_name, 'prod', $target);
@@ -79,17 +77,13 @@ function drush_massgov_ma_deploy($target, $git_ref) {
     $files = $cloudapi->copyFiles($site, 'prod', $target);
 
     $id = $database->id();
-    if (wait_for_task_to_complete($cloudapi, $site, $id)) {
-      drush_log("Database copy from Prod to $target complete - Task ". $id, 'success');
-    }
+    wait_for_task_to_complete($cloudapi, $site, $id);
   }
 
   // Deploy the new code.
   $code = $cloudapi->pushCode($site, $target, $git_ref);
   $id = $code->id();
-  if (wait_for_task_to_complete($cloudapi, $site, $id)) {
-    drush_log("$git_ref deployed to $target - Task ". $id, 'success');
-  }
+  wait_for_task_to_complete($cloudapi, $site, $id);
 
   // Run any pending DB updates
   // This goes before config import per https://www.drupal.org/node/2628144
@@ -151,12 +145,13 @@ function wait_for_task_to_complete(CloudApiClient $cloudapi, $site, $id) {
       $task_status = $cloudapi->task($site, $id);
       if ($task_status->state() == 'done') {
         $task_complete = TRUE;
+        drush_log(dt('!desc is complete: Task !task_id.', array('!desc' => $task_status->description(), '!task_id' => $id)), 'success');
       }
       elseif ($task_status->state() == 'failed') {
-        throw new Exception("Task $id failed:\n". $task_status->logs());
+        throw new Exception(dt("!desc - Task !task_id failed:\n!logs", array('!desc' => $task_status->description(), '!task_id' => $id, $task_status->logs())));
       }
       else {
-        drush_log(dt('Will re-check for task !task_id completion in 5 seconds.', array('!task_id' => $id)), 'notice');
+        drush_log(dt('!desc: Will re-check Task !task_id for completion in 5 seconds.', array('!desc' => $task_status->description(), '!task_id' => $id)), 'notice');
         sleep(5);
       }
     } catch (Guzzle\Http\Exception\ServerErrorResponseException $e) {
