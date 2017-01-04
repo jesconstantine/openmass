@@ -4,10 +4,10 @@ use Acquia\Cloud\Api\CloudApiClient;
 
 function massgov_drush_command() {
   $items['ma-deploy'] = array(
-    'description' => 'Deploy code and database (if needed). Perform config-import, updb, and similar tasks.',
+    'description' => 'Deploy code and database (if needed). If deploying to prod, creates DB backup beforehand. Otherwise, copies Prod DB to target environment and then runs config import, updb, varnish purge, etc.',
     'arguments' => array(
       'target' => 'Target environment. Recognized values: stage, cd, prod',
-      'git-ref' => 'Tag or branch to deploy.',
+      'git-ref' => 'Tag or branch to deploy. Must be a fully built codebase (i.e. after composer install).',
     ),
     'required-arguments' => TRUE,
     'options' => array(
@@ -151,7 +151,7 @@ function wait_for_task_to_complete(CloudApiClient $cloudapi, $site, $id) {
         throw new Exception("Task $id failed:\n". $task_status->logs());
       }
       else {
-        drush_log(dt('Will re-check for task !task_id completion in 5 seconds.', array('!task_id' => $id)), 'ok');
+        drush_log(dt('Will re-check for task !task_id completion in 5 seconds.', array('!task_id' => $id)), 'notice');
         sleep(5);
       }
     } catch (Guzzle\Http\Exception\ServerErrorResponseException $e) {
@@ -166,6 +166,13 @@ function wait_for_task_to_complete(CloudApiClient $cloudapi, $site, $id) {
   return $task_complete;
 }
 
+/**
+ * Throws an exception if a remote Drush call experiened an error.
+ *
+ * @param $return
+ *  A return object from drush_invoke_process().
+ * @throws \Exception
+ */
 function massgov_check_drush_error($return) {
   if (!$return) {
     throw new Exception('Failure in drush_invoke_process()');
