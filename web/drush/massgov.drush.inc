@@ -1,5 +1,7 @@
 <?php
 
+use Acquia\Cloud\Api\CloudApiClient;
+
 function massgov_drush_command() {
   $items['ma-deploy'] = array(
     'description' => 'Deploy code and database (if needed). Perform config-import, updb, and similar tasks.',
@@ -8,7 +10,9 @@ function massgov_drush_command() {
       'git-ref' => 'Tag or branch to deploy.',
     ),
     'required-arguments' => TRUE,
-    'options' => array(),
+    'options' => array(
+      'cache-rebuild' => 'Set to 0 in order to bypass the cache-rebuild on Prod.'
+    ),
     'drush dependencies' => array('acapi'),
     'bootstrap' => DRUSH_BOOTSTRAP_NONE,
     'examples' => array(
@@ -26,67 +30,89 @@ function drush_massgov_ma_deploy_validate($target) {
 
 function drush_massgov_ma_deploy($target, $git_ref) {
   $to_prod = $target == 'prod';
-  $alias_target =  '@massgov.'. $target;
-  $options_cloudapi = array(
-    'format' => 'json',
-  );
+  $alias_target =  "@massgov.$target";
+  $site = 'prod:massgov';
+  $db_name = 'massgov';
+
+  // Build Cloud API client connection.
+  $cloudapi = CloudApiClient::factory(array(
+    // Easiest way to provide creds is to run `drush ac-api-login` once, before running ma-deploy
+    //
+    // These acapi_get_option() calls are the only dependency on acapi.drush.inc and
+    // the ~/.acquia/cloudapi.conf file. We could remove the dependency.
+    'username' => acapi_get_option('email'),
+    'password' => acapi_get_option('key'),
+  ));
+
 
   // Turn on Maint mode
   $args = array('system.maintenance_mode', 1);
   $options = array('format' => 'integer');
   $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
-  massgov_check_error($return);
+  massgov_check_drush_error($return);
+  drush_log(dt("Maintenance mode enabled in $target."), 'success');
 
   // Backup Prod DB if needed.
   if ($to_prod) {
-    // cache-rebuild empties cache-* tables.
-    $args = $options = array();
-    $return = drush_invoke_process($alias_target, 'cache-rebuild', $args, $options);
-    massgov_check_error($return);
+    if (drush_get_option('cache-rebuild', TRUE)) {
+      // cache-rebuild empties cache-* tables.
+      $args = $options = array();
+      $return = drush_invoke_process($alias_target, 'cache-rebuild', $args, $options);
+      massgov_check_drush_error($return);
+      drush_log(dt("Cache rebuilt in Prod."), 'success');
+    }
 
     $args = array('massgov');
-    $return = drush_invoke_process($alias_target, 'ac-database-instance-backup', $args, $options_cloudapi);
-    massgov_check_error($return);
-    $json = $return['object']['output'];
-    $data = json_decode($json);
-    $task_backup = $data->id;
-    massgov_wait($task_backup, $options_cloudapi);
+    $backup = $cloudapi->createDatabaseBackup($site, 'prod', $db_name);
+    $id = $backup->id();
+    if (wait_for_task_to_complete($cloudapi, $site, $id)) {
+      drush_log('Backup of Prod complete - Task '. $id, 'success');
+    }
   }
   else {
-    // Copy Prod DB to target.
-    $args = array('massgov', $target);
-    $return = drush_invoke_process('@massgov.prod', 'ac-database-copy', $args, $options_cloudapi);
-    massgov_check_error($return);
-    $task_db = $return['object']['id'];
+    $database = $cloudapi->copyDatabase($site, $db_name, 'prod', $target);
 
     // Copy Prod files to target.
-    $args = array($target);
-    $return = drush_invoke_process('@massgov.prod', 'ac-files-copy', $args, $options_cloudapi);
-    massgov_check_error($return);
+    $files = $cloudapi->copyFiles($site, 'prod', $target);
 
-    // Make sure DB copy is complete before proceeding. Files are less important.
-    massgov_wait($task_db, $options_cloudapi);
+    $id = $database->id();
+    if (wait_for_task_to_complete($cloudapi, $site, $id)) {
+      drush_log("Database copy from Prod to $target complete - Task ". $id, 'success');
+    }
   }
 
   // Deploy the new code.
-  $args = array($git_ref);
-  $return = drush_invoke_process($alias_target, 'ac-code-path-deploy', $args, $options_cloudapi);
-  massgov_check_error($return);
+  $code = $cloudapi->pushCode($site, $target, $git_ref);
+  $id = $code->id();
+  if (wait_for_task_to_complete($cloudapi, $site, $id)) {
+    drush_log("$git_ref deployed to $target - Task ". $id, 'success');
+  }
 
   // Run any pending DB updates
   // This goes before config import per https://www.drupal.org/node/2628144
   $options = array('entity-updates' => TRUE);
   $return = drush_invoke_process($alias_target, 'updb', $args, $options);
-  massgov_check_error($return);
+  massgov_check_drush_error($return);
+  drush_log(dt("Database and entity updates completed in $target."), 'success');
 
   // Import new config
-  $return = drush_invoke_process($alias_target, 'cimy');
-  massgov_check_error($return);
+  // These options can be removed once /drush/drushrc.php is deployed everywhere.
+  $options = [
+    'include' => '../vendor/previousnext/drush_cmi_tools',
+    'source' => '../conf/drupal/config',
+    'delete-list' => '../conf/drupal/delete.yml',
+  ];
+  $return = drush_invoke_process($alias_target, 'cimy', [], $options);
+  massgov_check_drush_error($return);
+  drush_log(dt("Configuration imported in $target."), 'success');
 
   // Purge Varnish cache.
-  $args = array();
-  $return = drush_invoke_process($alias_target, 'ac-domain-purge', $args, $options_cloudapi);
-  massgov_check_error($return);
+  // Get a list of all an environment's domains.
+  $domains = $cloudapi->domains($site, $target);
+  foreach ($domains as $domain) {
+    $cloudapi->purgeVarnishCache($site, $target, $domain);
+    drush_log(dt("Purged Varnish cache for %s in %s environment.", $domain, $target), 'success');
+  }
 
   // @todo Disable System Notification block
 
@@ -94,26 +120,46 @@ function drush_massgov_ma_deploy($target, $git_ref) {
   $args = array('system.maintenance_mode', 0);
   $options = array('format' => 'integer');
   $return = drush_invoke_process($alias_target, 'state-set', $args, $options);
-  massgov_check_error($return);
+  massgov_check_drush_error($return);
+  drush_log(dt("Maintenance mode disabled in $target."), 'success');
 }
 
-function massgov_wait($task_id, $options_cloudapi) {
-  while (TRUE) {
-    $return = drush_invoke_process($alias, 'ac-task-info', array($task_id), $options_cloudapi);
-    massgov_check_error($return);
-    $json = $return['object']['output'];
-    $data = json_decode($json);
-    if (!empty($data->completed)) {
-      break;
-    }
-    else {
-      drush_log(dt('Will re-check for task !task_id completion in 10 seconds.', array('!task_id' => $task_id)), 'ok');
-      sleep(10);
+/**
+ * Pause until a given task is completed.
+ *
+ * This function handles Cloud API 503 errors, and will ignore up to five 503s
+ * before failing.
+ *
+ * @param int $id
+ *   The task ID.
+ */
+function wait_for_task_to_complete($cloudapi, $site, $id = 0) {
+  $task_complete = FALSE;
+  $cloud_api_failures = 0;
+
+  while ($task_complete !== TRUE) {
+    try {
+      $task_status = $cloudapi->task($site, $id);
+      if ($task_status->state() == 'done') {
+        $task_complete = TRUE;
+      }
+      else {
+        drush_log(dt('Will re-check for task !task_id completion in 5 seconds.', array('!task_id' => $id)), 'ok');
+        sleep(5);
+      }
+    } catch (Guzzle\Http\Exception\ServerErrorResponseException $e) {
+      if ($e->getCode() == 503) {
+        $cloud_api_failures++;
+        if ($cloud_api_failures >= 5) {
+          throw new Exception('Cloud API returned 5 or more 503s, indicating failure to complete.');
+        }
+      }
     }
   }
+  return $task_complete;
 }
 
-function massgov_check_error($return) {
+function massgov_check_drush_error($return) {
   if (!$return) {
     throw new Exception('Failure in drush_invoke_process()');
   }

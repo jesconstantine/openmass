@@ -93,6 +93,7 @@
     "require": {
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
+        "acquia/acquia-sdk-php": "*",
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
