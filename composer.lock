@@ -4,42 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d6b51626927184116ff2a675e98a99a",
-    "content-hash": "041ec915c77557297266873144430dd4",
+    "hash": "897a887df75da6c928d758ba6a3dcf86",
+    "content-hash": "c5115ee66495c9973e000159fa886afa",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
-            "version": "0.5.1",
+            "version": "0.10.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/acquia-sdk-php.git",
-                "reference": "406c6641b957bafe7a0cf266c206a7cbd2aeae08"
+                "reference": "9129fe6c92fefeb3209f83860f09ec0183005bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/acquia-sdk-php/zipball/406c6641b957bafe7a0cf266c206a7cbd2aeae08",
-                "reference": "406c6641b957bafe7a0cf266c206a7cbd2aeae08",
+                "url": "https://api.github.com/repos/acquia/acquia-sdk-php/zipball/9129fe6c92fefeb3209f83860f09ec0183005bb1",
+                "reference": "9129fe6c92fefeb3209f83860f09ec0183005bb1",
                 "shasum": ""
             },
             "require": {
-                "cpliakas/psolr": "0.3.*",
-                "guzzle/guzzle": "~3.0",
-                "lstrojny/fxmlrpc": "0.8.*",
-                "php": ">=5.3.0"
+                "cpliakas/psolr": ">=0.4",
+                "guzzle/service": "~3.0",
+                "lstrojny/fxmlrpc": ">=0.8,<0.9",
+                "pear-pear.php.net/net_dns2": "1.3.2",
+                "php": ">=5.3.0",
+                "symfony/filesystem": "~2.0"
             },
             "replace": {
                 "acquia/acquia-sdk-php-cloud-api": "self.version",
+                "acquia/acquia-sdk-php-cloud-db": "self.version",
                 "acquia/acquia-sdk-php-cloud-env": "self.version",
+                "acquia/acquia-sdk-php-cloud-memcache": "self.version",
                 "acquia/acquia-sdk-php-common": "self.version",
+                "acquia/acquia-sdk-php-env": "self.version",
+                "acquia/acquia-sdk-php-json": "self.version",
                 "acquia/acquia-sdk-php-network": "self.version",
+                "acquia/acquia-sdk-php-rest": "self.version",
                 "acquia/acquia-sdk-php-search": "self.version"
             },
             "require-dev": {
+                "guzzle/plugin-mock": "~3.0",
                 "pdepend/pdepend": "~1.0",
                 "phploc/phploc": "~2.0",
                 "phpmd/phpmd": "~1.0",
                 "phpunit/phpunit": "~3.0",
                 "satooshi/php-coveralls": "*",
+                "scrutinizer/ocular": "~1.0",
                 "sebastian/phpcpd": "~2.0"
             },
             "type": "library",
@@ -63,7 +72,7 @@
             "keywords": [
                 "acquia"
             ],
-            "time": "2014-01-26 21:24:20"
+            "time": "2015-03-10 14:41:58"
         },
         {
             "name": "asm89/stack-cors",
@@ -591,16 +600,16 @@
         },
         {
             "name": "cpliakas/psolr",
-            "version": "0.3.2",
+            "version": "0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cpliakas/psolr.git",
-                "reference": "9410d60df1738a270140575ec6065d7d62339bc3"
+                "reference": "b3dff7658c88f5c56d6012c170faf215acf3c698"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cpliakas/psolr/zipball/9410d60df1738a270140575ec6065d7d62339bc3",
-                "reference": "9410d60df1738a270140575ec6065d7d62339bc3",
+                "url": "https://api.github.com/repos/cpliakas/psolr/zipball/b3dff7658c88f5c56d6012c170faf215acf3c698",
+                "reference": "b3dff7658c88f5c56d6012c170faf215acf3c698",
                 "shasum": ""
             },
             "require": {
@@ -639,7 +648,7 @@
             "keywords": [
                 "solr"
             ],
-            "time": "2013-10-08 14:22:32"
+            "time": "2014-02-18 12:53:55"
         },
         {
             "name": "cweagans/composer-patches",
@@ -4022,6 +4031,35 @@
             "time": "2016-11-23 20:25:02"
         },
         {
+            "name": "pear-pear.php.net/Net_DNS2",
+            "version": "1.3.2",
+            "dist": {
+                "type": "file",
+                "url": "https://pear.php.net/get/Net_DNS2-1.3.2.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.1.2.0"
+            },
+            "replace": {
+                "pear-pear/net_dns2": "== 1.3.2.0"
+            },
+            "type": "pear-library",
+            "autoload": {
+                "classmap": [
+                    ""
+                ]
+            },
+            "include-path": [
+                "/"
+            ],
+            "license": [
+                "BSD License"
+            ],
+            "description": "Provides (roughly) the same functionality as Net_DNS, but using PHP5 objects, exceptions for error handling, better sockets support.\n\nThis release is (in most cases) 2x - 10x faster than Net_DNS, as well as includes more RR's (including DNSSEC RR's), and improved sockets and streams support."
+        },
+        {
             "name": "pear/archive_tar",
             "version": "1.4.2",
             "source": {
@@ -5194,7 +5232,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",

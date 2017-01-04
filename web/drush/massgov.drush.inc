@@ -130,10 +130,14 @@ function drush_massgov_ma_deploy($target, $git_ref) {
  * This function handles Cloud API 503 errors, and will ignore up to five 503s
  * before failing.
  *
+ * @param \Acquia\Cloud\Api\CloudApiClient $cloudapi
+ * @param $site
  * @param int $id
  *   The task ID.
+ * @return bool
+ * @throws \Exception
  */
-function wait_for_task_to_complete($cloudapi, $site, $id = 0) {
+function wait_for_task_to_complete(CloudApiClient $cloudapi, $site, $id) {
   $task_complete = FALSE;
   $cloud_api_failures = 0;
 
@@ -142,6 +146,9 @@ function wait_for_task_to_complete($cloudapi, $site, $id = 0) {
       $task_status = $cloudapi->task($site, $id);
       if ($task_status->state() == 'done') {
         $task_complete = TRUE;
+      }
+      elseif ($task_status->state() == 'failed') {
+        throw new Exception("Task $id failed:\n". $task_status->logs());
       }
       else {
         drush_log(dt('Will re-check for task !task_id completion in 5 seconds.', array('!task_id' => $id)), 'ok');
