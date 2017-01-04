@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-curl -X POST --data-urlencode 'payload={"channel": "#ci", "username": "webhookbot", "text": "Built ${PIPELINE_GIT_HEAD_REF} and saved as ${PIPELINE_DEPLOY_VCS_PATH}", "icon_emoji": ":ghost:"}' https://hooks.slack.com/services/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
