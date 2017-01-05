@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8abef4635d070011e84a52cccb7cfc4",
+    "content-hash": "e02fcb5f53f462cc7b3e99872820c163",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -2169,6 +2169,31 @@
             "time": "2016-09-22 23:47:27"
         },
         {
+            "name": "drupal/libraries",
+            "version": "dev-8.x-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/libraries",
+                "reference": "5e7ea584db3e5d9aa5acac130bda1359ad048f5c"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Allows version-dependent and shared usage of external libraries.",
+            "homepage": "http://drupal.org/project/libraries",
+            "time": "2017-01-04 16:26:54"
+        },
+        {
             "name": "drupal/metatag",
             "version": "8.1.0-beta11",
             "source": {
@@ -2560,6 +2585,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-4.x": "8.4.x-dev"
+                },
+                "patches_applied": {
+                    "Add hook uninstall - Remove config values from DB": "https://www.drupal.org/files/issues/2840479-delete-config-from-db.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
