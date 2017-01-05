@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_alert
     - node.type.emergency_alerts
@@ -260,6 +261,41 @@ display:
     display_options:
       display_extenders: {  }
       block_description: 'Emergency Alert Banner'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_alert'
+  page_landing:
+    display_plugin: page
+    id: page_landing
+    display_title: Page
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: alerts
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: title
+              rendered: true
+              rendered_strip: true
+          row_class: ''
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: full
     cache_metadata:
       max-age: -1
       contexts:
