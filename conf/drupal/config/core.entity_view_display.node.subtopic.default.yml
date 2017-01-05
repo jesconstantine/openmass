@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.subtopic.field_featured_mobile_image
     - field.field.node.subtopic.field_image_credit
     - field.field.node.subtopic.field_lede
+    - field.field.node.subtopic.field_metatags
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
     - image.style.hero800x400

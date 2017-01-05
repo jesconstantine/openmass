@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.icon_links
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.quick_action
+    - paragraphs.paragraphs_type.related_content
     - paragraphs.paragraphs_type.related_link
     - paragraphs.paragraphs_type.subhead
   module:
@@ -33,6 +34,7 @@ settings:
       related_link: related_link
       icon_links: icon_links
       subhead: subhead
+      related_content: related_content
     target_bundles_drag_drop:
       1up_stacked_band:
         weight: 32
@@ -112,13 +114,16 @@ settings:
       quick_action:
         enabled: true
         weight: 55
+      emergency_alert:
+        weight: 55
+        enabled: false
       related_link:
         enabled: true
         weight: 56
-      rich_text:
+      icon_link:
         weight: 57
         enabled: false
-      icon_link:
+      rich_text:
         weight: 57
         enabled: false
       slideshow:
@@ -139,4 +144,7 @@ settings:
       video:
         weight: 62
         enabled: false
+      related_content:
+        enabled: true
+        weight: 67
 field_type: entity_reference_revisions
