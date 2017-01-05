@@ -490,10 +490,13 @@ function mass_theme_preprocess_html(&$variables) {
  * Remove page search if we're using our search band in stacked layout.
  */
 function mass_theme_preprocess_page(&$variables) {
-  $node = $variables['node'];
-  // If we're using search band, lets tell page twig about it.
-  if ($variables['node']->search_band)
-  $variables['search_band'] = $variables['node']->search_band;
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $node = $variables['node'];
+    // If we're using search band, lets tell page twig about it.
+    if ($variables['node']->search_band) {
+      $variables['search_band'] = $variables['node']->search_band;
+    }
+  }
 }
 
 /**
@@ -572,7 +575,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $build = $view_builder->view($paragraph, 'stacked');
         $subhead = $build;
       }
-      // Check paragraph type for stacked band.
+      // Check paragraph type for stacked bands.
       if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band' || $paragraph->getType() == 'search_band') {
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
         $band = $view_builder->view($paragraph, 'stacked');
@@ -1032,6 +1035,22 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
 function mass_theme_preprocess_paragraph__search_band(&$variables) {
   $paragraph = $variables['paragraph'];
   $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
+
+  $items = [];
+  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
+    $popular_searches = $variables['paragraph']->get('field_link');
+
+    // Roll up our popular searches links for search band.
+    foreach ($popular_searches as $link) {
+      $items[] = [
+        'href' => $link->getUrl()->toString(),
+        'text' => $link->getValue()['title'],
+        'chevron' => 'true',
+      ];
+    }
+  }
+
+  $variables['items'] = $items;
 }
 
 /**

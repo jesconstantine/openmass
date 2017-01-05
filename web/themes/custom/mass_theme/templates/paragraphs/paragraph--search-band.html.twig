@@ -1,58 +1,74 @@
 {#
 /**
  * @file
- * Theme override to display Search band on Stacked Layout content type.
+ * Default theme implementation to display a paragraph.
  *
- * Uses 'extend' methods from http://www.stevector.com/2013/10/make-your-drupal-8-theme-easier-to-maintain-with-this-one-weird-trick-twigs-extends-concept/
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   - id: The paragraph ID.
+ *   - bundle: The type of the paragraph, for example, "image" or "text".
+ *   - authorid: The user ID of the paragraph author.
+ *   - createdtime: Formatted creation date. Preprocess functions can
+ *     reformat it by calling format_date() with the desired parameters on
+ *     $variables['paragraph']->getCreatedTime().
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
  *
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<section class="ma__search-banner">
-  <style>
-    .ma__search-banner {
-      background-image: url('{{ search800x400_image_url }}');
-    }
-
-    @media (min-width: 801px) {
-      .ma__search-banner {
-        background-image: url('{{ file_url(content.field_image['#items'].entity.uri.value) }}');
+{%
+set searchBanner = {
+  'bgWide': search800x400_image_url,
+  'bgNarrow': file_url(content.field_image['#items'].entity.uri.value),
+  'imageName': content.field_name|field_value,
+  'imageAuthor': content.field_caption|field_value,
+  'form': {
+    'path': '@molecules/search-banner-form.twig',
+    'content': {
+      'action': '/search',
+      'buttonText': 'Search',
+      'inputText': {
+        'labelText': 'Search',
+        'required': false,
+        'id': 'GUID138490237',
+        'placeholder': 'Search...'
       }
     }
-  </style>
-  <div class="ma__search-banner__container">
-    <h1 class="ma__search-banner__title">{{ content.field_title|field_value }}</h1>
-    <div class="ma__search-banner__intro">{{ content.field_description|field_value }}</div>
-    <form class="ma__search-banner__form" action="">
-      <div class="ma__search-banner__input">
-        <label for="text-input">Search</label>
-        <input class="" name="GUID138490237" id="GUID138490237" type="text" placeholder="Search..." data-type="text">
-      </div>
-      <button class="ma__search-banner__button" type="submit">
-        <span>Search</span>
-        <svg focusable="false" role="presentation" class="ma__button-search__icon">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
-        </svg>
-      </button>
-    </form>
-    <div class="ma__search-banner__links">
-      <section class="ma__helpful-links ma__helpful-links--columns">
-        <h3 class="ma__comp-heading ma__comp-heading--yellow ma__comp-heading--centered">
-          {{ content.field_link['#title'] }}
-        </h3>
-         {{ content.field_link }}
-      </section>
-    </div>
-  </div>
-  <div class="ma__search-banner__image-credit">
-    <div class="ma__search-banner__credits-container">
-      <div class="ma__search-banner__icon">
-        <svg focusable="false" role="presentation" class="svg-marker">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#marker"></use>
-        </svg>
-      </div>
-      <div class="ma__search-banner__image-name">{{ content.field_name|field_value }}</div>
-      <div class="ma__search-banner__image-author">{{ content.field_caption|field_value  }}</div>
-    </div>
-  </div>
-</section>
+  },
+  'title': content.field_title|field_value,
+  'intro': content.field_description|field_value,
+  'helpfulLinks': {
+    'columns': 'true',
+    'compHeading': {
+      'title': content.field_link['#title'],
+      'sub': 'true',
+      'color': 'yellow',
+      'centered': 'true'
+    },
+    'items': items
+  }
+}
+%}
+{% include '@organisms/by-author/search-banner.twig' %}
