@@ -1,8 +1,9 @@
-uuid: ba373497-58fb-418d-975c-3078aeb9d9a5
+uuid: ab0712a7-d8ea-40b8-a7bc-b454b37646b7
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.emergency_alert_banner
     - field.field.paragraph.emergency_alert.field_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
@@ -11,18 +12,11 @@ dependencies:
   module:
     - datetime
     - link
-    - text
-id: paragraph.emergency_alert.default
+id: paragraph.emergency_alert.emergency_alert_banner
 targetEntityType: paragraph
 bundle: emergency_alert
-mode: default
+mode: emergency_alert_banner
 content:
-  field_content:
-    weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
   field_emergency_alert_link:
     weight: 2
     label: hidden
@@ -51,4 +45,5 @@ content:
     type: datetime_custom
 hidden:
   created: true
+  field_content: true
   uid: true

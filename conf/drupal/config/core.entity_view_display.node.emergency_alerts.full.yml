@@ -1,24 +1,25 @@
-uuid: 26b53ee6-0d46-4845-960d-4dbfab8f0223
+uuid: 54a34777-4613-49eb-b6fd-81d1f2417dfe
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.emergency_alerts.field_alert
     - node.type.emergency_alerts
   module:
     - entity_reference_revisions
     - user
-id: node.emergency_alerts.default
+id: node.emergency_alerts.full
 targetEntityType: node
 bundle: emergency_alerts
-mode: default
+mode: full
 content:
   field_alert:
     type: entity_reference_revisions_entity_view
     weight: 101
     label: hidden
     settings:
-      view_mode: default
+      view_mode: emergency_alert_full
       link: ''
     third_party_settings: {  }
   workbench_moderation_control:
