@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "897a887df75da6c928d758ba6a3dcf86",
-    "content-hash": "c5115ee66495c9973e000159fa886afa",
+    "content-hash": "f8abef4635d070011e84a52cccb7cfc4",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -116,6 +115,17 @@
                 "stack"
             ],
             "time": "2016-08-01 12:05:04"
+        },
+        {
+            "name": "blakestein/datalayer",
+            "version": "master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blakestein/drupal-datalayer-d8.git",
+                "reference": "master"
+            },
+            "type": "drupal-module",
+            "time": "2017-01-05 00:00:58"
         },
         {
             "name": "christian-riesen/base32",
@@ -8606,6 +8616,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "blakestein/datalayer": 20,
         "desandro/imagesloaded": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
