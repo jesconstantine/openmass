@@ -40,6 +40,13 @@ set pageHeader = {
   {% if content.field_agency_links|render|trim is not empty %}
     {{content.field_agency_links }}
   {% endif %}
+  {% if content.field_details|render|trim is not empty %}
+    <section class="ma__link-list">
+      <div class="ma__link-list__container">
+        {{content.field_details }}
+      </div>
+    </section>
+  {% endif %}
 {% endblock %}
 {% block postContent %}
   {% if content.field_image_credit is not empty %}

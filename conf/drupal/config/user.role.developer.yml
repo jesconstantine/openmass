@@ -161,6 +161,7 @@ permissions:
   156: 'edit any error_page content'
   157: 'create interstitial content'
   158: 'edit any interstitial content'
+  159: 'access flood unblock'
   159: 'delete any error_page content'
   160: 'delete own error_page content'
   161: 'delete error_page revisions'
