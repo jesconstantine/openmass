@@ -15,6 +15,7 @@ dependencies:
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.pull_quote
+    - paragraphs.paragraphs_type.related_content
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
   module:
@@ -45,6 +46,7 @@ settings:
       pull_quote: pull_quote
       rich_text: rich_text
       stat: stat
+      related_content: related_content
     target_bundles_drag_drop:
       1up_stacked_band:
         weight: 32
@@ -88,12 +90,18 @@ settings:
       contact_group:
         weight: 45
         enabled: false
+      activities:
+        weight: 46
+        enabled: false
       contact_info:
         weight: 46
         enabled: false
       file_download:
         enabled: true
         weight: 47
+      activity:
+        weight: 47
+        enabled: false
       full_bleed:
         weight: 48
         enabled: false
@@ -115,6 +123,9 @@ settings:
       pull_quote:
         enabled: true
         weight: 54
+      emergency_alert:
+        weight: 55
+        enabled: false
       quick_action:
         weight: 55
         enabled: false
@@ -133,10 +144,19 @@ settings:
       stat:
         enabled: true
         weight: 60
+      icon_link:
+        weight: 60
+        enabled: false
       subhead:
+        weight: 61
+        enabled: false
+      icon_links:
         weight: 61
         enabled: false
       video:
         weight: 62
         enabled: false
+      related_content:
+        enabled: true
+        weight: 67
 field_type: entity_reference_revisions

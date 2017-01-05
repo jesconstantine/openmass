@@ -24,11 +24,7 @@ dependencies:
     - npm install -g eslint@v2.13.1
 
   cache_directories:
-    - vendor
-    - web/core
-    - web/modules/contrib
-    - web/profiles/contrib
-    - ~/.composer
+    - ~/.composer/cache
 
 test:
   pre:
