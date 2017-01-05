@@ -229,7 +229,6 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
     if ($paragraph->getType() == 'search_band') {
       // if we have a search band, lets our node object and node template know.
-      $node->search_band = TRUE;
       $variables['search_band'] = TRUE;
     }
   }
@@ -493,8 +492,10 @@ function mass_theme_preprocess_page(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node = $variables['node'];
     // If we're using search band, lets tell page twig about it.
-    if ($variables['node']->search_band) {
-      $variables['search_band'] = $variables['node']->search_band;
+    foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
+      if ($paragraph->getType() == 'search_band') {
+        $variables['search_band'] = TRUE;
+      }
     }
   }
 }
