@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.emergency_alert.field_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
     - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
@@ -10,12 +11,20 @@ dependencies:
   module:
     - datetime
     - link
+    - text
     - workbench_moderation
 id: paragraph.emergency_alert.default
 targetEntityType: paragraph
 bundle: emergency_alert
 mode: default
 content:
+  field_content:
+    weight: 9
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
   field_emergency_alert_link:
     weight: 8
     settings:
