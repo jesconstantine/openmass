@@ -1036,6 +1036,13 @@ function mass_theme_preprocess_paragraph__search_band(&$variables) {
   $paragraph = $variables['paragraph'];
   $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
 
+  // Grab node title incase we don't have a title in band.
+  $node = \Drupal::request()->attributes->get('node');
+  if ($node) {
+    $variables['title'] = $node->getTitle();
+    $variables['intro'] = $node->field_lede->value;
+  }
+
   $items = [];
   if (!$variables['paragraph']->get('field_link')->isEmpty()) {
     $popular_searches = $variables['paragraph']->get('field_link');
