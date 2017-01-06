@@ -102,14 +102,14 @@
           "source": {
             "url": "https://github.com/blakestein/drupal-datalayer-d8.git",
             "type": "git",
-            "reference": "master"
+            "reference": "3b2ffa7"
           }
         }
       }
     ],
     "require": {
         "acquia/acquia-sdk-php": "0.10.7",
-        "blakestein/datalayer": "dev-master",
+        "blakestein/datalayer": "master",
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
         "desandro/imagesloaded": "dev-master",
