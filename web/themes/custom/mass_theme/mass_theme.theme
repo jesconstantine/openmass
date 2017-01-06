@@ -441,10 +441,43 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
         );
       }
 
+      $field_alert_content = $paragraph->get('field_emergency_alert_content');
+      $items = array();
+
+      if ($field_alert_content->count() > 0) {
+        $items = $field_alert_content->referencedEntities();
+      }
+
+//      if (!empty($items)) {
+//        foreach ($items as $id => $item) {
+//          $list[$id] = array();
+//          $field_title = $item->get('field_title');
+//          $field_content = $item->get('field_content');
+//
+//          if ($field_title->count() > 0) {
+//            $title = $field_title->first()->getValue();
+//            $list[$id]['title'] = $title['value'];
+//          }
+//
+//          if ($field_content->count() > 0) {
+//            $content = $field_content->first()->getValue();
+//            $list[$id]['rteElements'][] = array(
+//                'path' => '@atoms/11-text/paragraph.twig',
+//                'data' => array(
+//                    'paragraph' => array(
+//                        'text' => $content['value'],
+//                    ),
+//                ),
+//            );
+//          }
+//        }
+//      }
+
       $alerts[] = array(
         'message' => $paragraph->get('field_emergency_alert_message')->value,
         'timeStamp' => $timestamp,
         'link' => $link,
+        'content' => $items,
       );
 
       $delta++;
