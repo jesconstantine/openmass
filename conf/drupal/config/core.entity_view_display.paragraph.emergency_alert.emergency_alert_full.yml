@@ -4,35 +4,37 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.emergency_alert_full
-    - field.field.paragraph.emergency_alert.field_content
+    - field.field.paragraph.emergency_alert.field_emergency_alert_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
     - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
     - paragraphs.paragraphs_type.emergency_alert
   module:
     - datetime
+    - entity_reference_revisions
     - link
-    - text
 id: paragraph.emergency_alert.emergency_alert_full
 targetEntityType: paragraph
 bundle: emergency_alert
 mode: emergency_alert_full
 content:
-  field_content:
+  field_emergency_alert_content:
+    type: entity_reference_revisions_entity_view
     weight: 3
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    type: text_default
   field_emergency_alert_link:
     weight: 2
     label: hidden
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     type: link
   field_emergency_alert_message:
