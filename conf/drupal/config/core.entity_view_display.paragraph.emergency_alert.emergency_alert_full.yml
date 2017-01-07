@@ -12,7 +12,6 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
-    - link
 id: paragraph.emergency_alert.emergency_alert_full
 targetEntityType: paragraph
 bundle: emergency_alert
@@ -20,23 +19,12 @@ mode: emergency_alert_full
 content:
   field_emergency_alert_content:
     type: entity_reference_revisions_entity_view
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  field_emergency_alert_link:
-    weight: 2
-    label: hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
   field_emergency_alert_message:
     weight: 0
     label: hidden
@@ -54,4 +42,5 @@ content:
     type: datetime_custom
 hidden:
   created: true
+  field_emergency_alert_link: true
   uid: true
