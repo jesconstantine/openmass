@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.emergency_alert_banner
+    - field.field.paragraph.emergency_alert.field_emergency_alert_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
     - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
@@ -44,4 +45,5 @@ content:
     type: datetime_custom
 hidden:
   created: true
+  field_emergency_alert_content: true
   uid: true
