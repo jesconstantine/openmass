@@ -41,9 +41,11 @@
 
 
 {# Render alert instances #}
-{#{% for item in items|first %}#}
-  {{ items|first.content }}
-{#{% endfor %}#}
+
+{# Just render the content of the first alert instance #}
+{{ items|first.content }}
+
+{# For all subsequent intances, render a divider above alert content #}
 {% for item in items[1:last] %}
   {% include "@atoms/divider.twig" %}
   {{ item.content }}
