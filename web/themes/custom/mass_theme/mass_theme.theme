@@ -398,94 +398,78 @@ function mass_theme_preprocess_node_topic(&$variables) {
  * Node alert (banner) alterations.
  */
 function mass_theme_preprocess_node_emergency_alerts(&$variables) {
-  $node = $variables['node'];
+  if ('teaser' == $variables['view_mode']) {
+    $node = $variables['node'];
 
-  // Create and populate the data object which the template is expecting.
-  $emergency_alerts = array();
-  // Set alert id = node updated time.
-  $emergency_alerts['id'] = $node->get('changed')->value;
+    // Create and populate the data object which the template is expecting.
+    $emergency_alerts = array();
+    // Set alert id = node updated time.
+    $emergency_alerts['id'] = $node->get('changed')->value;
 
-  // Set banner accordion button text (css will format).
-  $emergency_alerts['buttonAlert']['hideText'] = 'hide';
-  $emergency_alerts['buttonAlert']['showText'] = 'show';
-  $emergency_alerts['buttonAlert']['text'] = 'alerts';
+    // Set banner accordion button text (css will format).
+    $emergency_alerts['buttonAlert']['hideText'] = 'hide';
+    $emergency_alerts['buttonAlert']['showText'] = 'show';
+    $emergency_alerts['buttonAlert']['text'] = 'alerts';
 
-  // Set alert banner headline = node title.
-  $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
+    // Set alert banner headline = node title.
+    $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
 
-  // Get the alert paragraph field.
-  $field_alert = $node->get('field_alert');
+    // Get the alert paragraph field.
+    $field_alert = $node->get('field_alert');
 
-  // Iterate through alert paragraph instances.
-  // Populate alerts array with individual alert content.
-  if ($field_alert->count() > 0) {
-    $delta = 0;
-    $alerts = array();
+    // Iterate through alert paragraph instances.
+    // Populate alerts array with individual alert content.
+    if ($field_alert->count() > 0) {
+      $delta = 0;
+      $alerts = array();
 
-    foreach ($field_alert->referencedEntities() as $paragraph) {
+      foreach ($field_alert->referencedEntities() as $paragraph) {
 
-      // Format the alert timestamp to match new date format that meets spec.
-      $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
-      $raw_timestamp = strtotime($raw_timestamp_str);
-      $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
+        // Format the alert timestamp to match new date format that meets spec.
+        $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+        $raw_timestamp = strtotime($raw_timestamp_str);
+        $timestamp = \Drupal::service('date.formatter')
+            ->format($raw_timestamp, 'decimal_short_date_time');
 
-      // Populate optional alert "Read More" link.
-      $url = $paragraph->get('field_emergency_alert_link')->first();
-      $link = '';
-      if ($url) {
-        $link = array(
-          'chevron' => 'true',
-          'text' => $url->getValue()['title'],
-          'href' => $url->getUrl()->toString(),
-          'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+        // Populate optional alert "Read More" link.
+        $url = $paragraph->get('field_emergency_alert_link')->first();
+        $link = '';
+        if ($url) {
+          $link = array(
+              'chevron' => 'true',
+              'text' => $url->getValue()['title'],
+              'href' => $url->getUrl()->toString(),
+              'type' => (UrlHelper::isExternal($url->getUrl()
+                  ->toString())) ? 'external' : 'internal',
+          );
+        }
+
+        $alerts[] = array(
+            'message' => $paragraph->get('field_emergency_alert_message')->value,
+            'timeStamp' => $timestamp,
+            'link' => $link,
         );
+
+        $delta++;
       }
 
-      $field_alert_content = $paragraph->get('field_emergency_alert_content');
-      $items = array();
+      $emergency_alerts['alerts'] = $alerts;
 
-      if ($field_alert_content->count() > 0) {
-        $items = $field_alert_content->referencedEntities();
-      }
-
-//      if (!empty($items)) {
-//        foreach ($items as $id => $item) {
-//          $list[$id] = array();
-//          $field_title = $item->get('field_title');
-//          $field_content = $item->get('field_content');
-//
-//          if ($field_title->count() > 0) {
-//            $title = $field_title->first()->getValue();
-//            $list[$id]['title'] = $title['value'];
-//          }
-//
-//          if ($field_content->count() > 0) {
-//            $content = $field_content->first()->getValue();
-//            $list[$id]['rteElements'][] = array(
-//                'path' => '@atoms/11-text/paragraph.twig',
-//                'data' => array(
-//                    'paragraph' => array(
-//                        'text' => $content['value'],
-//                    ),
-//                ),
-//            );
-//          }
-//        }
-//      }
-
-      $alerts[] = array(
-        'message' => $paragraph->get('field_emergency_alert_message')->value,
-        'timeStamp' => $timestamp,
-        'link' => $link,
-        'content' => $items,
-      );
-
-      $delta++;
+      // Make emergency alerts data object available in template.
+      $variables['emergencyAlerts'] = $emergency_alerts;
     }
+  }
+  if ('full' == $variables['view_mode']) {
+    $node = $variables['node'];
 
-    $emergency_alerts['alerts'] = $alerts;
+    // Create and populate the data object which the template is expecting.
+    $emergency_alerts = array();
+    // Set alert id = node updated time.
+    $emergency_alerts['id'] = $node->get('changed')->value;
 
-    // Make emergency alerts data object available in template.
+    // Set alert banner headline = node title.
+    $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
+
     $variables['emergencyAlerts'] = $emergency_alerts;
   }
 }
