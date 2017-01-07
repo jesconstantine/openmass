@@ -39,7 +39,14 @@
  */
 #}
 
-{# Render alert contents #}
-{% for item in items %}
+
+{# Render alert instances #}
+{#{% for item in items|first %}#}
+  {{ items|first.content }}
+{#{% endfor %}#}
+{% for item in items[1:last] %}
+  {% include "@atoms/divider.twig" %}
   {{ item.content }}
 {% endfor %}
+
+

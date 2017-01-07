@@ -39,7 +39,14 @@
  */
 #}
 
-{# Render alert contents #}
-{% for item in items %}
-  {{ item.content }}
-{% endfor %}
+    {# Render alert contents #}
+    {% for item in items %}
+      {# Treat the individual alert title with yello compHeading pattern #}
+      {%
+        set compHeading = {
+          "title": item.content,
+          "color": "yellow",
+        }
+      %}
+      {% include "@atoms/04-headings/comp-heading.twig" %}
+    {% endfor %}

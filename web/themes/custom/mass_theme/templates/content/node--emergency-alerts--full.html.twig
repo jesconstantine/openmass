@@ -86,32 +86,7 @@
 {% endblock %}
 
 {% block pageContent %}
-  {# Iterate through individual alerts #}
-  {% for alert in emergencyAlerts.alerts %}
-    {# Treat the individual alert title with yello compHeading pattern #}
-    {%
-      set compHeading = {
-        "title": alert.message,
-        "color": "yellow",
-        "id": alert.timeStamp
-      }
-    %}
-    {% include "@atoms/04-headings/comp-heading.twig" %}
-
-    {# Treat the individual alert timestamp with the callout time pattern #}
-    {%
-      set calloutTime = {
-        "text": "Updated: " ~ alert.timeStamp,
-      }
-    %}
-    {% include "@organisms/by-author/callout-time.twig" %}
-
-    {% for item in alert.content %}
-      {{ item.content }}
-    {% endfor %}
-
-    {% include "@atoms/divider.twig" %}
-  {% endfor %}
+  {{ content.field_alert }}
 {% endblock %}
 
 {% block sidebar %}

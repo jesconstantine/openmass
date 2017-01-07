@@ -39,7 +39,13 @@
  */
 #}
 
-{# Render alert contents #}
-{% for item in items %}
-  {{ item.content }}
-{% endfor %}
+    {# Render alert contents #}
+    {% for item in items %}
+      {# Treat the individual alert timestamp with the callout time pattern #}
+      {%
+        set calloutTime = {
+          "text": "Updated: " ~ item.content['#markup'],
+        }
+      %}
+      {% include "@organisms/by-author/callout-time.twig" %}
+    {% endfor %}
