@@ -398,7 +398,6 @@ function mass_theme_preprocess_node_topic(&$variables) {
  * Node alert (banner) alterations.
  */
 function mass_theme_preprocess_node_emergency_alerts(&$variables) {
-  if ('teaser' == $variables['view_mode']) {
     $node = $variables['node'];
 
     // Create and populate the data object which the template is expecting.
@@ -427,18 +426,30 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
 
         // Format the alert timestamp to match new date format that meets spec.
         $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+        $timezone = 'America/New_York';
+//        $date = new DateTime($raw_timestamp_str, new DateTimeZone($timezone));
         $raw_timestamp = strtotime($raw_timestamp_str);
         $timestamp = \Drupal::service('date.formatter')
-            ->format($raw_timestamp, 'decimal_short_date_time');
+            ->format($raw_timestamp,'decimal_short_date_time','',$timezone);
 
-        // Populate optional alert "Read More" link.
+        // Get the alert optional "read more" link.
         $url = $paragraph->get('field_emergency_alert_link')->first();
         $link = '';
         if ($url) {
+          $href = $url->getUrl()->toString();
+          // Get the uuid of the alert instance
+          $alert_instance_id = $paragraph->get('id')->first()->value;
+
+          // Target individual alert on alert landing page links.
+          if ('/alerts' == $href) {
+            $href .= '#' . $alert_instance_id;
+          }
+
+          //Populate optional alert "Read More" link data object
           $link = array(
               'chevron' => 'true',
               'text' => $url->getValue()['title'],
-              'href' => $url->getUrl()->toString(),
+              'href' => $href,
               'type' => (UrlHelper::isExternal($url->getUrl()
                   ->toString())) ? 'external' : 'internal',
           );
@@ -458,20 +469,6 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       // Make emergency alerts data object available in template.
       $variables['emergencyAlerts'] = $emergency_alerts;
     }
-  }
-  if ('full' == $variables['view_mode']) {
-    $node = $variables['node'];
-
-    // Create and populate the data object which the template is expecting.
-    $emergency_alerts = array();
-    // Set alert id = node updated time.
-    $emergency_alerts['id'] = $node->get('changed')->value;
-
-    // Set alert banner headline = node title.
-    $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
-
-    $variables['emergencyAlerts'] = $emergency_alerts;
-  }
 }
 
 /**
