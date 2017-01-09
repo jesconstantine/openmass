@@ -398,6 +398,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
  * Node alert (banner) alterations.
  */
 function mass_theme_preprocess_node_emergency_alerts(&$variables) {
+  if ('teaser' == $variables['view_mode']) {
     $node = $variables['node'];
 
     // Create and populate the data object which the template is expecting.
@@ -430,7 +431,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
 //        $date = new DateTime($raw_timestamp_str, new DateTimeZone($timezone));
         $raw_timestamp = strtotime($raw_timestamp_str);
         $timestamp = \Drupal::service('date.formatter')
-            ->format($raw_timestamp,'decimal_short_date_time','',$timezone);
+            ->format($raw_timestamp, 'decimal_short_date_time', '', $timezone);
 
         // Get the alert optional "read more" link.
         $url = $paragraph->get('field_emergency_alert_link')->first();
@@ -469,6 +470,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
       // Make emergency alerts data object available in template.
       $variables['emergencyAlerts'] = $emergency_alerts;
     }
+  }
 }
 
 /**

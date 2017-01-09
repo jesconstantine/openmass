@@ -72,14 +72,11 @@
 
 {% extends 'node.html.twig' %}
 
-{#See mass_theme_preprocess_node_emergency_alerts()#}
-{% set emergencyAlerts = emergencyAlerts %}
-
-{# Set the alert group title as the page title #}
+{# Set the alert headline as the page title #}
 {% block preContent %}
   {%
     set pageHeader = {
-        "title": emergencyAlerts.emergencyHeader.title,
+        "title": node.label,
       }
   %}
   {% include "@organisms/by-template/page-header.twig" %}
