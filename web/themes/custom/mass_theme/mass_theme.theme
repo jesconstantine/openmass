@@ -427,11 +427,11 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
 
         // Format the alert timestamp to match new date format that meets spec.
         $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+        // Tell PHP that the timestamp is currently in UTC
+        $dateTime = new DateTime($raw_timestamp_str, new DateTimeZone('UTC'));
         $timezone = 'America/New_York';
-//        $date = new DateTime($raw_timestamp_str, new DateTimeZone($timezone));
-        $raw_timestamp = strtotime($raw_timestamp_str);
-        $timestamp = \Drupal::service('date.formatter')
-            ->format($raw_timestamp, 'decimal_short_date_time', '', $timezone);
+        $dateTime->setTimeZone(new DateTimeZone($timezone));
+        $timestamp = $dateTime->format('m.d.y, g:i a');
 
         // Get the alert optional "read more" link.
         $url = $paragraph->get('field_emergency_alert_link')->first();
