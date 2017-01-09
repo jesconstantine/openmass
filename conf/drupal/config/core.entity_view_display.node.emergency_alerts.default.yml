@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.emergency_alerts.field_action_sidebar
     - field.field.node.emergency_alerts.field_alert
     - node.type.emergency_alerts
   module:
@@ -13,6 +14,14 @@ targetEntityType: node
 bundle: emergency_alerts
 mode: default
 content:
+  field_action_sidebar:
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
   field_alert:
     type: entity_reference_revisions_entity_view
     weight: 101
