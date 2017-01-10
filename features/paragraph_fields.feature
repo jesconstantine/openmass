@@ -53,6 +53,7 @@ Feature: Paragraph type definitions
     Given I am logged in as a user with the "administrator" role
     Then the "emergency_alert" paragraph has the fields:
       | field                           | widget        |
+      | field-emergency-alert-content   | Paragraphs    |
       | field-emergency-alert-link      | Link          |
       | field-emergency-alert-message   | Textfield     |
       | field-emergency-alert-timestamp | Date and Time |

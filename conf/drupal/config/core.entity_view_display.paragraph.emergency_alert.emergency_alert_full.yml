@@ -1,8 +1,9 @@
-uuid: ba373497-58fb-418d-975c-3078aeb9d9a5
+uuid: aba56ed9-fcf9-4c95-84e1-cad3377bbfdd
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.emergency_alert_full
     - field.field.paragraph.emergency_alert.field_emergency_alert_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
@@ -11,31 +12,19 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
-    - link
-id: paragraph.emergency_alert.default
+id: paragraph.emergency_alert.emergency_alert_full
 targetEntityType: paragraph
 bundle: emergency_alert
-mode: default
+mode: emergency_alert_full
 content:
   field_emergency_alert_content:
     type: entity_reference_revisions_entity_view
-    weight: 3
-    label: above
+    weight: 2
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  field_emergency_alert_link:
-    weight: 2
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
   field_emergency_alert_message:
     weight: 0
     label: hidden
@@ -47,10 +36,11 @@ content:
     weight: 1
     label: hidden
     settings:
-      timezone_override: ''
+      timezone_override: America/New_York
       date_format: 'm.d.y, g:i a'
     third_party_settings: {  }
     type: datetime_custom
 hidden:
   created: true
+  field_emergency_alert_link: true
   uid: true
