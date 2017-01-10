@@ -45,6 +45,10 @@
             "url": "git@github.com:palantirnet/palantir-behat-extension.git"
         },
         {
+            "type": "pear",
+            "url": "https://pear.php.net"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "previousnext/drush_cmi_tools",
@@ -93,6 +97,7 @@
     "require": {
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
+        "acquia/acquia-sdk-php": "0.10.7",
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
@@ -104,6 +109,7 @@
         "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
+        "drupal/encrypt": "dev-8.x-3.x#19cda8cf22bfe7d020b819a7cfddf2e4883b78a8",
         "drupal/entity_browser": "8.1.x-dev",
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
@@ -130,7 +136,7 @@
         "drupal/workbench_moderation": "^8.1",
         "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
-        "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
+        "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
         "palantirnet/mayflower-artifacts": "^2.2",
         "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
@@ -182,7 +188,8 @@
                 "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
             },
             "drupal/workbench_moderation": {
-                "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
+                "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch",
+                "Removes second occurrence of 'arguments: ['@entity.manager']' (It was defined twice)": "https://www.drupal.org/files/issues/2796871-1-workbench_moderation-paramconvertor.patch"
             },
             "drupal/google_map_field": {
               "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"

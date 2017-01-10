@@ -4,9 +4,76 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb574af09e6cae8289f698b189b270dc",
-    "content-hash": "543f2e63185cf8f9a4025fec387e7384",
+    "hash": "897a887df75da6c928d758ba6a3dcf86",
+    "content-hash": "c5115ee66495c9973e000159fa886afa",
     "packages": [
+        {
+            "name": "acquia/acquia-sdk-php",
+            "version": "0.10.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acquia/acquia-sdk-php.git",
+                "reference": "9129fe6c92fefeb3209f83860f09ec0183005bb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/acquia/acquia-sdk-php/zipball/9129fe6c92fefeb3209f83860f09ec0183005bb1",
+                "reference": "9129fe6c92fefeb3209f83860f09ec0183005bb1",
+                "shasum": ""
+            },
+            "require": {
+                "cpliakas/psolr": ">=0.4",
+                "guzzle/service": "~3.0",
+                "lstrojny/fxmlrpc": ">=0.8,<0.9",
+                "pear-pear.php.net/net_dns2": "1.3.2",
+                "php": ">=5.3.0",
+                "symfony/filesystem": "~2.0"
+            },
+            "replace": {
+                "acquia/acquia-sdk-php-cloud-api": "self.version",
+                "acquia/acquia-sdk-php-cloud-db": "self.version",
+                "acquia/acquia-sdk-php-cloud-env": "self.version",
+                "acquia/acquia-sdk-php-cloud-memcache": "self.version",
+                "acquia/acquia-sdk-php-common": "self.version",
+                "acquia/acquia-sdk-php-env": "self.version",
+                "acquia/acquia-sdk-php-json": "self.version",
+                "acquia/acquia-sdk-php-network": "self.version",
+                "acquia/acquia-sdk-php-rest": "self.version",
+                "acquia/acquia-sdk-php-search": "self.version"
+            },
+            "require-dev": {
+                "guzzle/plugin-mock": "~3.0",
+                "pdepend/pdepend": "~1.0",
+                "phploc/phploc": "~2.0",
+                "phpmd/phpmd": "~1.0",
+                "phpunit/phpunit": "~3.0",
+                "satooshi/php-coveralls": "*",
+                "scrutinizer/ocular": "~1.0",
+                "sebastian/phpcpd": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Acquia": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://github.com/acquia/acquia-sdk-php/graphs/contributors"
+                }
+            ],
+            "description": "The Acquia SDK for PHP allows developers to build applications on top of Acquia services.",
+            "homepage": "https://github.com/acquia/acquia-sdk-php",
+            "keywords": [
+                "acquia"
+            ],
+            "time": "2015-03-10 14:41:58"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.0.0",
@@ -530,6 +597,58 @@
             "description": "Drush task for Phing",
             "homepage": "https://github.com/continuousphp/phing-drush-task",
             "time": "2016-07-04 20:39:23"
+        },
+        {
+            "name": "cpliakas/psolr",
+            "version": "0.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cpliakas/psolr.git",
+                "reference": "b3dff7658c88f5c56d6012c170faf215acf3c698"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cpliakas/psolr/zipball/b3dff7658c88f5c56d6012c170faf215acf3c698",
+                "reference": "b3dff7658c88f5c56d6012c170faf215acf3c698",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/service": "~3.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "pdepend/pdepend": "~1.0",
+                "phploc/phploc": "~2.0",
+                "phpunit/phpunit": "~3.0",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PSolr": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Pliakas",
+                    "email": "opensource@chrispliakas.com",
+                    "role": "Project lead"
+                },
+                {
+                    "name": "See contributors",
+                    "homepage": "https://github.com/cpliakas/psolr/graphs/contributors"
+                }
+            ],
+            "description": "A PHP client for Apache Solr.",
+            "homepage": "https://github.com/cpliakas/psolr",
+            "keywords": [
+                "solr"
+            ],
+            "time": "2014-02-18 12:53:55"
         },
         {
             "name": "cweagans/composer-patches",
@@ -1464,6 +1583,8 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
+                    "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
+                    "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch",
                     "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
                 }
             },
@@ -1669,17 +1790,11 @@
         },
         {
             "name": "drupal/encrypt",
-            "version": "8.3.0-alpha1",
+            "version": "dev-8.x-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/encrypt",
-                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/encrypt-8.x-3.0-alpha1.zip",
-                "reference": "0b2e4419aa5cf31bbd244e6904e470c87ed6f4d0",
-                "shasum": null
+                "reference": "19cda8cf22bfe7d020b819a7cfddf2e4883b78a8"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1697,7 +1812,7 @@
             ],
             "description": "Provides an API for two-way encryption.",
             "homepage": "https://www.drupal.org/project/encrypt",
-            "time": "2016-02-26 14:58:40"
+            "time": "2016-08-05 15:43:56"
         },
         {
             "name": "drupal/entity_browser",
@@ -1903,7 +2018,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/flood_unblock-8.x-1.0.zip",
-                "reference": null,
+                "reference": "6bc688e416430c0529caf18e4ed1959773095961",
                 "shasum": null
             },
             "require": {
@@ -2743,7 +2858,8 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
+                    "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch",
+                    "Removes second occurrence of 'arguments: ['@entity.manager']' (It was defined twice)": "https://www.drupal.org/files/issues/2796871-1-workbench_moderation-paramconvertor.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3018,6 +3134,102 @@
                 "shasum": null
             },
             "type": "library"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle3.git",
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/0645b70d953bc1c067bbc8d5bc53194706b628d9",
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": "~2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "~1.3",
+                "monolog/monolog": "~1.0",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "~1.0",
+                "symfony/class-loader": "~2.1",
+                "zendframework/zend-cache": "2.*,<2.3",
+                "zendframework/zend-log": "2.*,<2.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Guzzle 5 has moved to a new package name. The package you have installed, Guzzle 3, is deprecated."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "PHP HTTP client. This library is deprecated in favor of https://packagist.org/packages/guzzlehttp/guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "abandoned": "guzzlehttp/guzzle",
+            "time": "2015-03-18 18:23:50"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3379,6 +3591,68 @@
             "time": "2015-04-20 18:58:01"
         },
         {
+            "name": "lstrojny/fxmlrpc",
+            "version": "0.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lstrojny/fxmlrpc.git",
+                "reference": "7b9756f5f98102be170bc798781da2eef78ab977"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lstrojny/fxmlrpc/zipball/7b9756f5f98102be170bc798781da2eef78ab977",
+                "reference": "7b9756f5f98102be170bc798781da2eef78ab977",
+                "shasum": ""
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "guzzle/guzzle": "*",
+                "kriswallsmith/buzz": "*",
+                "monolog/monolog": "*",
+                "php": ">=5.3.0",
+                "phpunit/phpunit": "3.*",
+                "psr/log": "*",
+                "zendframework/zend-http": "2.0.*",
+                "zendframework/zend-log": "2.0.*",
+                "zendframework/zendframework1": "1.*"
+            },
+            "suggest": {
+                "ext-http": "Use ext/http as HTTP client",
+                "guzzle/guzzle": "To integrate Guzzle as HTTP client",
+                "kriswallsmith/buzz": "To integrate Buzz as HTTP client",
+                "monolog/monolog": "To integrate monolog as logger",
+                "zendframework/zend-http": "To use ZF2 Zend\\Http\\Client as HTTP client",
+                "zendframework/zend-log": "To use ZF2 Zend\\Log\\Logger as a logger",
+                "zendframework/zendframework1": "To use ZF1 Zend_Http_Client as HTTP client"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "fXmlRpc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Strojny",
+                    "email": "lstrojny@php.net",
+                    "homepage": "http://usrportage.de"
+                }
+            ],
+            "description": "Fast and tiny XML/RPC client with bridges for various HTTP clients",
+            "keywords": [
+                "api",
+                "performance",
+                "rpc",
+                "xml",
+                "xmlrpc"
+            ],
+            "time": "2013-10-04 23:29:35"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.2.2",
             "source": {
@@ -3449,12 +3723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikeyp/google_tag.git",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da"
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/4c35b508650f3268012abd4afbe4e309eb5297da",
-                "reference": "4c35b508650f3268012abd4afbe4e309eb5297da",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/3caa4f0b7f008576936ab7501d483bfcf58a4764",
+                "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -3466,7 +3740,7 @@
                 "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
                 "issues": "https://github.com/mikeyp/google_tag/issues"
             },
-            "time": "2016-06-15 22:09:45"
+            "time": "2016-10-17 15:47:26"
         },
         {
             "name": "nikic/php-parser",
@@ -3806,6 +4080,35 @@
             ],
             "description": "Official version of pdepend to be handled with Composer",
             "time": "2016-11-23 20:25:02"
+        },
+        {
+            "name": "pear-pear.php.net/Net_DNS2",
+            "version": "1.3.2",
+            "dist": {
+                "type": "file",
+                "url": "https://pear.php.net/get/Net_DNS2-1.3.2.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.1.2.0"
+            },
+            "replace": {
+                "pear-pear/net_dns2": "== 1.3.2.0"
+            },
+            "type": "pear-library",
+            "autoload": {
+                "classmap": [
+                    ""
+                ]
+            },
+            "include-path": [
+                "/"
+            ],
+            "license": [
+                "BSD License"
+            ],
+            "description": "Provides (roughly) the same functionality as Net_DNS, but using PHP5 objects, exceptions for error handling, better sockets support.\n\nThis release is (in most cases) 2x - 10x faster than Net_DNS, as well as includes more RR's (including DNSSEC RR's), and improved sockets and streams support."
         },
         {
             "name": "pear/archive_tar",
@@ -4980,7 +5283,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -7251,12 +7554,12 @@
             "version": "0.11.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hechoendrupal/DrupalConsole.git",
+                "url": "https://github.com/hechoendrupal/drupal-console.git",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "shasum": ""
             },
@@ -8361,6 +8664,7 @@
     "stability-flags": {
         "desandro/imagesloaded": 20,
         "drupal/draggableviews": 20,
+        "drupal/encrypt": 20,
         "drupal/entity_browser": 20,
         "drupal/file_browser": 20,
         "drupal/restrict_by_ip": 20,

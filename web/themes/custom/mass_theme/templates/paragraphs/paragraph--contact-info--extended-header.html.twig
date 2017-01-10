@@ -40,14 +40,14 @@
 #}
 <div class="ma__contact-group">
   {% if content.field_type|render|trim is not empty %}
-    <h6 class="ma__contact-group__name">
+    <h5 class="ma__contact-group__name">
       {% if svg_type is not empty %}
         <svg focusable="false" role="presentation" class="{{ svg_type.class }}">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{directory}}/images/svg-sprite.svg#{{ svg_type.svg }}"></use>
         </svg>
       {% endif %}
       <span>{{ content.field_type|field_value }}</span>
-    </h6>
+    </h5>
   {% endif %}
   {% if content.field_address|render|trim is not empty %}
     <p>{{ content.field_address|field_value }}</p>
