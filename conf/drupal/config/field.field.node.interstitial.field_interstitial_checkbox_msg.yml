@@ -10,8 +10,8 @@ field_name: field_interstitial_checkbox_msg
 entity_type: node
 bundle: interstitial
 label: 'Checkbox message'
-description: ''
 required: false
+description: '<p>Use this message to explain that when checked, the visitor will no longer be redirected to this interstitial page when clicking on a link for <em>classic mass.gov</em> content.</p>'
 translatable: false
 default_value: {  }
 default_value_callback: ''
