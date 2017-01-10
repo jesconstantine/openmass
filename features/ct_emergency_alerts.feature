@@ -37,3 +37,7 @@ Feature: Emergency Alert Content type
     Given I am logged in as a user with the "emergency_alert_publisher" role
     When I go to "node/add/emergency_alerts"
     Then the response status code should be 200
+
+  Scenario: Verify Emergency Alert Landing Page can render
+    When I go to "alerts"
+    Then the response status code should be 200
