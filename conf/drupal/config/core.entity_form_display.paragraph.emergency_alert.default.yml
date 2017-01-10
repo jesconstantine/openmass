@@ -25,7 +25,7 @@ content:
       title: 'Alert Content'
       title_plural: 'Alert Contents'
       edit_mode: preview
-      add_mode: dropdown
+      add_mode: button
       form_display_mode: default
     third_party_settings: {  }
   field_emergency_alert_link:
