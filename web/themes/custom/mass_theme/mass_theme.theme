@@ -106,7 +106,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
 
-  //TODO: determine if we need another ImageStyle
+  // TODO: determine if we need another ImageStyle.
   if ($node->field_featured_mobile_image->entity) {
     $variables['mobile800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
   }
@@ -431,7 +431,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
 
         // Format the alert timestamp to match new date format that meets spec.
         $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
-        // Tell PHP that the timestamp is currently in UTC
+        // Tell PHP that the timestamp is currently in UTC.
         $dateTime = new DateTime($raw_timestamp_str, new DateTimeZone('UTC'));
         $timezone = 'America/New_York';
         $dateTime->setTimeZone(new DateTimeZone($timezone));
@@ -442,7 +442,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
         $link = '';
         if ($url) {
           $href = $url->getUrl()->toString();
-          // Get the uuid of the alert instance
+          // Get the uuid of the alert instance.
           $alert_instance_id = $paragraph->get('id')->first()->value;
 
           // Target individual alert on alert landing page links.
@@ -450,20 +450,20 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
             $href .= '#' . $alert_instance_id;
           }
 
-          //Populate optional alert "Read More" link data object
+          // Populate optional alert "Read More" link data object.
           $link = array(
-              'chevron' => 'true',
-              'text' => $url->getValue()['title'],
-              'href' => $href,
-              'type' => (UrlHelper::isExternal($url->getUrl()
-                  ->toString())) ? 'external' : 'internal',
+            'chevron' => 'true',
+            'text' => $url->getValue()['title'],
+            'href' => $href,
+            'type' => (UrlHelper::isExternal($url->getUrl()
+              ->toString())) ? 'external' : 'internal',
           );
         }
 
         $alerts[] = array(
-            'message' => $paragraph->get('field_emergency_alert_message')->value,
-            'timeStamp' => $timestamp,
-            'link' => $link,
+          'message' => $paragraph->get('field_emergency_alert_message')->value,
+          'timeStamp' => $timestamp,
+          'link' => $link,
         );
 
         $delta++;
