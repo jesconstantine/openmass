@@ -20,8 +20,6 @@ Feature: Error Page Content type
 
   Scenario: Verify that these roles cannot create error page content
     Given I am logged in as a user with the "content_team" role
-    Given I am logged in as a user with the "content_user" role
-    Given I am logged in as a user with the "content_editor" role
     When I go to "node/add/error_page"
     Then the response status code should be 403
 
