@@ -11,9 +11,9 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "preferred-install": "dist",
     "config": {
-        "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": "true"
     },
     "repositories": [
         {
@@ -201,9 +201,6 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
-            },
-            "drupal/restrict_by_ip": {
-                "Add hook uninstall - Remove config values from DB": "https://www.drupal.org/files/issues/2840479-delete-config-from-db.patch"
             }
         }
     }

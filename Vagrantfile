@@ -10,7 +10,6 @@ end
 # tunables
 project     = 'mass'
 hostname    = "#{project}.local"
-extra_hosts = ["edit.mass.local"]
 # end tunables
 
 Vagrant.configure(2) do |config|
@@ -33,8 +32,6 @@ Vagrant.configure(2) do |config|
 
         box.vm.hostname = "#{hostname}"
         box.vm.network :private_network, :auto_network => true
-
-        box.hostmanager.aliases = extra_hosts
 
         box.vm.synced_folder ".", "/vagrant", :disabled => true
         box.vm.synced_folder ".", "/var/www/#{hostname}", :nfs => true

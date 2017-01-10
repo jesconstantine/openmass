@@ -63,12 +63,3 @@ function mass_utility_update_8001(&$sandbox) {
     }
   }
 }
-
-/**
- * Remove Restrict By IP module.
- */
-function mass_utility_update_8002() {
-  if (\Drupal::service('module_handler')->moduleExists('restrict_by_ip')) {
-    \Drupal::service('module_installer')->uninstall(['restrict_by_ip']);
-  }
-}
