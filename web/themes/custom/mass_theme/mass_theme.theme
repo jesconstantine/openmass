@@ -360,27 +360,27 @@ function mass_theme_preprocess_node_topic(&$variables) {
     // Get our subtopics (sections) view.
     $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
     $sections = array();
-    // Roll this up and give the twig tpl what it expects.
+    // Roll up the list of subtopics and give the twig tpl the links it expects.
     foreach ($view_results as $key => $row) {
       $links = array();
       // Wrap up our links for each subtopic.
       foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-        // Check the value of the field for either a direct input or a node.
-        if (strpos($link->uri, 'entity') !== FALSE) {
-          if(Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
-            $nid = explode('/', $link->uri)[1];
+        // Set default value.
+        $link_path = Url::fromUri($link->uri);
+
+        // If this is a link to a node, check for an external_url.
+        // @todo: find a better way to test for node links.
+        if (Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
+          $nid = explode('/', $link->uri)[1];
+          $linked_node = Node::load($nid);
+          // Check that we have a node and that it has an external_url field.
+          if ($linked_node && $linked_node->hasField('field_external_url')) {
+            $external_link = $linked_node->get('field_external_url')->uri;
+            //  Check the external url field value is not empty.
+            if (!empty($external_link)) {
+              $link_path = $external_link;
+            }
           }
-          $section_link_node = \Drupal\node\Entity\Node::load($nid);
-          $external_link = $section_link_node->get('field_external_url')->uri;
-          //  Check the external url field value is not empty
-          if ($external_link !== '') {
-            $link_path = $external_link;
-          } else {
-            $link_path = Url::fromUri($link->uri);
-          }
-        } else {
-        // Use the direct output value.
-          $link_path = Url::fromUri($link->uri);
         }
         $links[] = array('text' => $link->title, 'href' => $link_path);
       }
