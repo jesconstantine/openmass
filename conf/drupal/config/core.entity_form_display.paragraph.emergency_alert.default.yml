@@ -1,0 +1,53 @@
+uuid: f9c1a12d-c845-4609-ba8b-e60aa0c37f1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.emergency_alert.field_emergency_alert_content
+    - field.field.paragraph.emergency_alert.field_emergency_alert_link
+    - field.field.paragraph.emergency_alert.field_emergency_alert_message
+    - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
+    - paragraphs.paragraphs_type.emergency_alert
+  module:
+    - datetime
+    - link
+    - paragraphs
+    - workbench_moderation
+id: paragraph.emergency_alert.default
+targetEntityType: paragraph
+bundle: emergency_alert
+mode: default
+content:
+  field_emergency_alert_content:
+    type: entity_reference_paragraphs
+    weight: 9
+    settings:
+      title: 'Alert Content'
+      title_plural: 'Alert Contents'
+      edit_mode: preview
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  field_emergency_alert_link:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_emergency_alert_message:
+    weight: 6
+    settings:
+      size: 80
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_emergency_alert_timestamp:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+hidden:
+  created: true
+  status: true
+  uid: true

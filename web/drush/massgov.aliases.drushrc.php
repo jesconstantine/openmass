@@ -4,6 +4,28 @@ if (!isset($drush_major_version)) {
   $drush_version_components = explode('.', DRUSH_VERSION);
   $drush_major_version = $drush_version_components[0];
 }
+// Site massgov, environment cd
+$aliases['cd'] = array(
+  'root' => '/var/www/html/massgov.cd/docroot',
+  'ac-site' => 'massgov',
+  'ac-env' => 'cd',
+  'ac-realm' => 'prod',
+  'uri' => 'massgovcd.prod.acquia-sites.com',
+  'remote-host' => 'staging-21435.prod.hosting.acquia.com',
+  'remote-user' => 'massgov.cd',
+  'path-aliases' => array(
+    '%drush-script' => 'drush' . $drush_major_version,
+  )
+);
+$aliases['cd.livedev'] = array(
+  'parent' => '@massgov.cd',
+  'root' => '/mnt/gfs/massgov.cd/livedev/docroot',
+);
+
+if (!isset($drush_major_version)) {
+  $drush_version_components = explode('.', DRUSH_VERSION);
+  $drush_major_version = $drush_version_components[0];
+}
 // Site massgov, environment dev
 $aliases['dev'] = array(
   'root' => '/var/www/html/massgov.dev/docroot',

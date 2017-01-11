@@ -59,6 +59,10 @@
 <!-- google custom search styles, overrides pilot css to display search form in header -->
 <link rel="stylesheet" href="/modules/custom/mass_search/css/gcse-search.css"/>
 
+    <!-- Begin Emergency Alerts banner view embed (see html preprocess) -->
+    {{ alerts_banner_view }}
+    <!-- End Emergency Alerts banner view embed -->
+
 <!-- Begin .header -->
 <header class="ma__header">
     <a class="ma__header__skip-nav" href="#main-content">skip to main content</a>
@@ -83,20 +87,6 @@
                   <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
                 </svg>
               </button>
-              {# @TODO abstract this JS away #}
-              <script type="text/javascript">
-                (function(){
-                  // ****** Mobile Search button should open mobile menu ******
-                  var mobileSearchButton = document.querySelector(".ma__header__search .ma__header-search .ma__button-search");
-
-                  if(null !== mobileSearchButton){
-                    mobileSearchButton.addEventListener("click", function(event) {
-                      event.preventDefault();
-                      document.querySelector("body").classList.toggle("show-menu");
-                    });
-                  }
-                })();
-              </script>
             </section>
         </div>
     </div>
@@ -801,13 +791,17 @@
 	}
 
 	.fsPage label {
-	    margin-bottom: 0;
+	    margin-bottom: 0.5em;
 	}
+    .fsLabel {
+        font-weight: 500;
+        margin-bottom: 0.5em;
+    }
 	.fsPage textarea {
 	    width: 100%;
 	}
 	.fsPage .fsRowBody {
-	    margin-bottom: 1em;
+	    margin-bottom: 1.75em;
 	}
 	.fsPage .fsSupporting {
 	    padding-top: 0.5em;
@@ -819,8 +813,8 @@
 	}
 
 	</style>
-	<div class="ma__feedback-form__overlay" id="feedback">
-	    <div class="ma__feedback-form__container">
+	<div class="ma__feedback-form__overlay " id="feedback">
+	    <div class="ma__feedback-form__container ma__form--light">
 		<header class="ma__feedback-form__header">
 		    <h2 class="ma__feedback-form__title">We Want to Hear From You</h2>
 		    <p class="ma__feedback-form__description">Mass.gov is for you, and we want to know what you think about it.</p>

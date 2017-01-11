@@ -45,6 +45,10 @@
             "url": "git@github.com:palantirnet/palantir-behat-extension.git"
         },
         {
+            "type": "pear",
+            "url": "https://pear.php.net"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "previousnext/drush_cmi_tools",
@@ -93,6 +97,7 @@
     "require": {
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
+        "acquia/acquia-sdk-php": "0.10.7",
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
@@ -100,13 +105,16 @@
         "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
+        "drupal/config_log": "8.*",
         "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
+        "drupal/encrypt": "dev-8.x-3.x#19cda8cf22bfe7d020b819a7cfddf2e4883b78a8",
         "drupal/entity_browser": "8.1.x-dev",
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/flood_unblock": "^8.1",
         "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
@@ -125,10 +133,10 @@
         "drupal/twig_tweak": "^8.1",
         "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
-        "drupal/config_log": "8.*",
+        "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
-        "mikeyp/google_tag": "dev-8.x-1.x#4c35b508650f3268012abd4afbe4e309eb5297da",
-        "palantirnet/mayflower-artifacts": "^2.1",
+        "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
+        "palantirnet/mayflower-artifacts": "^2.2",
         "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
@@ -175,10 +183,12 @@
         "patches": {
             "drupal/core": {
                 "Remove drupal.js error. (https://www.drupal.org/node/2661880)": "https://www.drupal.org/files/issues/quickedit-undefined-attr-2661880-14.patch",
-                "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch"
+                "Don't break if telephone number is less than 6 digits. (https://www.drupal.org/node/2575577#comment-11750724)": "https://www.drupal.org/files/issues/2575577-11.patch",
+                "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
             },
             "drupal/workbench_moderation": {
-                "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch"
+                "Fix type errors from WorkbenchModeration edit tab labeling (https://www.drupal.org/node/2769119#comment-11624207)": "https://www.drupal.org/files/issues/workbench_moderation-edit_tab-2769119-6.patch",
+                "Removes second occurrence of 'arguments: ['@entity.manager']' (It was defined twice)": "https://www.drupal.org/files/issues/2796871-1-workbench_moderation-paramconvertor.patch"
             },
             "drupal/google_map_field": {
               "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
@@ -191,9 +201,6 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
-            },
-            "drupal/core": {
-              "Replace (in ajax_view.js) $.size with .length since .size is deprecated.": "https://www.drupal.org/files/issues/drupal-8.3.x-remove-jquery-size-for-ajax_view-2828140-3_0.patch"
             }
         }
     }

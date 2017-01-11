@@ -18,7 +18,7 @@ Feature: Content Management
 
   Scenario: Verify that content team user has broad permission to deal with all content and can use workbench
     Given I am logged in as a user with the "content_team" role
-    Then I should have the "administer nodes, revert all revisions, create url aliases" permissions
+    Then I should have the "administer nodes, revert all revisions" permissions
     And I should have the "use workbench_tabs, view any unpublished content, view moderation states, view latest version" permissions
 
   Scenario: Verify that content team user does not have permission to change site code or administer users
@@ -49,6 +49,11 @@ Feature: Content Management
   Scenario: Verify content team user can create section landing content
     Given I am logged in as a user with the "content_team" role
     When I go to "node/add/section_landing"
+    Then the response status code should be 200
+
+  Scenario: Verify content team user can create stacked layout content
+    Given I am logged in as a user with the "content_team" role
+    When I go to "node/add/stacked_layout"
     Then the response status code should be 200
 
   Scenario: Verify content team user can create subtopic content

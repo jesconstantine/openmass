@@ -15,10 +15,12 @@ dependencies:
     - field.field.node.action.field_alert_text
     - field.field.node.action.field_contact_group
     - field.field.node.action.field_external_url
+    - field.field.node.action.field_funnel_endpoint_term
     - field.field.node.action.field_header_cta
     - field.field.node.action.field_lede
     - field.field.node.action.field_metatags
     - field.field.node.action.field_search
+    - field.field.node.action.field_type_term
     - node.type.action
   module:
     - field_group
@@ -67,6 +69,7 @@ third_party_settings:
         - group_alert
         - group_external
         - group_search
+        - group_meta_info
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -147,6 +150,20 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+    group_meta_info:
+      children:
+        - field_funnel_endpoint_term
+        - field_type_term
+      parent_name: group_form
+      weight: 8
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: false
+      label: 'Meta Info'
 _core:
   default_config_hash: P56WtT_6IidOSdmY0-9-aO8273_mW11WlvIyFa_9nBc
 id: node.action.default
@@ -228,6 +245,11 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_funnel_endpoint_term:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
   field_header_cta:
     type: entity_reference_paragraphs
     weight: 5
@@ -257,6 +279,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+  field_type_term:
+    weight: 35
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'Indicate type (E.g. “How To”)'
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   title:
     type: string_textfield
     weight: 1

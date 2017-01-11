@@ -7,6 +7,7 @@ global-styling:
       css/pilot-generated.css: {}
       overrides/css/action-finder.css: {}
       overrides/css/basic-html.css: {}
+      overrides/css/contact-group.css: {}
   js:
     libraries/jquery_once/jquery.once.min.js: {}
     overrides/js/env-drupal.js: {}
