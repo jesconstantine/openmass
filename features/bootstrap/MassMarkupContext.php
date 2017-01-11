@@ -135,6 +135,6 @@ class MassMarkupContext extends MarkupContext
   public function iShouldSeeTheCorrectMarkupForTheRelatedGuides()
   {
     $this->assertRegionElement('div.ma__suggested-pages__container > h2.ma__suggested-pages__title', 'guide_related_guides');
-    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > h4.ma__illustrated-link__title', 'guide_related_guides');
+    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > div.ma__illustrated-link__title', 'guide_related_guides');
   }
 }

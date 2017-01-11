@@ -95,9 +95,9 @@
         }
     ],
     "require": {
+        "acquia/acquia-sdk-php": "0.10.7",
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
-        "acquia/acquia-sdk-php": "0.10.7",
         "desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
@@ -136,7 +136,7 @@
         "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
-        "palantirnet/mayflower-artifacts": "^2.2",
+        "palantirnet/mayflower-artifacts": ">=2.2 <3.0.0",
         "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
