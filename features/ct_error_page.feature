@@ -8,7 +8,7 @@ Feature: Error Page Content type
     Then the content type "error_page" has the fields:
     | field                   | tag        | type          | multivalue | required |
     | field-error-code        | input      | text          | false      | false    |
-    | field-error-label       | input      | text          | false      | true     |
+    | field-error-label       | input      | text          | false      | false     |
     | field-error-title       | input      | text          | false      | true     |
     | field-error-message     | textarea   | text          | false      | true     |
     | field-include-search    | input      | checkbox      | false      | false    |
