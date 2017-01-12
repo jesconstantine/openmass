@@ -492,9 +492,11 @@ function mass_theme_preprocess_page(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node = $variables['node'];
     // If we're using search band, lets tell page twig about it.
-    foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
-      if ($paragraph->getType() == 'search_band') {
-        $variables['search_band'] = TRUE;
+    if ($node->hasField('field_bands') && $node->get('field_bands')->count() > 0) {
+      foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
+        if ($paragraph->getType() == 'search_band') {
+          $variables['search_band'] = TRUE;
+        }
       }
     }
   }
