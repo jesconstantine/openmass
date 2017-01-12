@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_alert
     - node.type.emergency_alerts
@@ -260,6 +261,54 @@ display:
     display_options:
       display_extenders: {  }
       block_description: 'Emergency Alert Banner'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_alert'
+  page_landing:
+    display_plugin: page
+    id: page_landing
+    display_title: Page
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: alerts
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: title
+              rendered: true
+              rendered_strip: true
+          row_class: ''
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+        empty: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: full
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: 'Emergency Alert Landing Page (No Results)'
+          empty: true
+          tokenize: false
+          content: "<section class=\"ma__page-header\">\n  <div class=\"ma__page-header__content\">\n    <h1 class=\"ma__page-header__title\">There are no active alerts</h1>\n  </div>\n</section>\n<div class=\"main-content main-content--two\">\n  <div class=\"page-content\">\n     <h2>Mass.Gov will display an alert notification in the following situations:</h2>\n\n<ul><li>Declaration of <a href=\"http://www.mass.gov/eopss/agencies/mema/state-of-emergency.html\" class=\"titlelink\">state of emergency</a></li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/emergencies/\" class=\"titlelink\">Natural disasters</a></li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/emergencies/terrorism/\" class=\"titlelink\">Terrorism</a></li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/emergencies/hazmat/\" class=\"titlelink\">Hazardous materials incidents</a></li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/emergencies/\" class=\"titlelink\">Extreme weather</a>/state government closings</li><li><a href=\"http://www.mass.gov/eopss/crime-prev-personal-sfty/amber-alert/\" class=\"titlelink\">Amber alerts</a> (when authorized by the Massachusetts State Police)</li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/emergencies/public-health-emergencies/\" class=\"titlelink\">Public health emergencies</a></li><li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/evacuation/\" class=\"titlelink\">Evacuations</a></li></ul>\n\n<p>The <a href=\"http://www.mass.gov/eopss/agencies/mema/\" class=\"titlelink\">Massachusetts Emergency Management Agency (MEMA)</a> works with local emergency managers, other state agencies, private organizations, and the federal government to identify the extent of a disaster, respond as much as possible to calls for threats to personal safety and health, and maintain order. MEMA is also responsible for authorizing many statewide alerts.</p>\n\n<p>When authorized, alerts appear on the <a href=\"/\">Mass.Gov homepage</a> and on all executive department agency web pages. Non-executive department agencies may opt in to the Alert system if they wish.</p>\n\n<p>At the local level, your fire department, <a href=\"http://www.mass.gov/eopss/crime-prev-personal-sfty/report-emergency/lpd-contact/\">police department</a>, emergency medical services (EMS) provider, public health department, and other local government representatives work together with MEMA to identify the extent of a disaster, respond as much as possible to calls for threats to personal safety and health, and maintain order.</p>\n</div>\n  <aside class=\"sidebar\">\n<section class=\"ma__sidebar-promo\">\n    <h3 class=\"ma__sidebar-heading\">Key Resources</h3>\t\n<div class=\"ma__sidebar-promo__content\">\t\n<ul>\t\n  <li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/be-informed/211.html\" class=\"titlelink\">Call 2-1-1</a></li>\n  <li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/be-informed/\" class=\"titlelink\">Be Informed and Receive Alerts</a></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.weather.gov/\" class=\"flag_link titlelink\">National Weather Service (NWS)</a></span></li>\n  <li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/\" class=\"titlelink\">Be Prepared</a></li>\n  <li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/shelter-in-place/\" class=\"titlelink\">Sheltering in Place</a></li>\n  <li><a href=\"http://www.mass.gov/eopss/agencies/mema/be-prepared/be-informed/massachusetts-alerts.html\" class=\"titlelink\">Massachusetts Alerts</a></li>\n  </ul>\n</div>\n</section>\n\n<section class=\"ma__sidebar-promo\">\n    <h3 class=\"ma__sidebar-heading\">Key Agencies</h3>\t\n<div class=\"ma__sidebar-promo__content\">\t\t\t\n<ul>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/eopss/agencies/mema/\" class=\"flag_link titlelink\">Mass. Emergency Management Agency (MEMA)</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/eohhs/gov/departments/dph/\" class=\"flag_link titlelink\">Dept. of Public Health (DPH)</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/eohhs\" class=\"flag_link titlelink\">Exec. Ofc. of Health &amp; Human Services (EOHHS)</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/eopss/agencies/msp/\" class=\"flag_link titlelink\">Mass. State Police</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/governor\" class=\"flag_link titlelink\">Office of the Governor</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/ocabr/government/oca-agencies/doi-lp/\" class=\"flag_link titlelink\">Div. of Insurance (DOI)</a></span></li>\n  <li><span class=\"lead_snippet\"><a href=\"http://www.mass.gov/eopss\" class=\"flag_link titlelink\">Exec. Ofc. of Public Safety &amp; Security (EOPSS)</a></span></li>\t\t\t\t\t\t\n</ul>\n</div>\n</section>\n  </aside>\n</div>\n"
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
