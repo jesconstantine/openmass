@@ -52,8 +52,8 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) && 'prod' == $_ENV['AH_SITE_ENV
     '10.20.0.0/16',     // Virtual machine addresses
     '146.243.0.0/16',   // MassIT VPN
     '170.63.0.0/16',    // MassIT VPN
-    '65.204.38.243/16', // MassIT VPN
-    '65.204.38.3/16',   // MassIT VPN
+    '65.204.38.243/32', // MassIT VPN
+    '65.204.38.3/32',   // MassIT VPN
     '63.250.249.138/32',// Palantir VPN
     '104.247.39.34/32', // From here to end are Acquia internal
     '40.130.238.138/32',
