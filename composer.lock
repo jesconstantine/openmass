@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fec948841becd994b932e8ab54ede55",
+    "hash": "3e96d30a9a5ee10d268b89d04d3018c0",
+    "content-hash": "cd368333dc1fc582caa8371b43bcca18",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -282,7 +283,6 @@
                 }
             ],
             "description": "Modern task runner",
-            "abandoned": "consolidation/robo",
             "time": "2016-04-13 20:14:17"
         },
         {
@@ -1231,7 +1231,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.7.zip",
-                "reference": "535f27b1ee669e277e52390a198a1605192bbe88",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1344,7 +1344,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/components-8.x-1.0.zip",
-                "reference": "d6f3df460ca16373782f442ca92f9c251fbf311b",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1406,7 +1406,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_log-8.x-1.1.zip",
-                "reference": "61eab9371412932f98d1dc87fc1fc3c98e2960c4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1621,7 +1621,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/crazyegg-8.x-1.0-rc1.zip",
-                "reference": "63c7c14ffa7cf9ec7a34a5d0de8a6e511518e4d0",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1727,7 +1727,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha3.zip",
-                "reference": "1bfd486a92f81cb1dfb249b1d723e359683ff2c4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1874,7 +1874,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta2.zip",
-                "reference": "0a8d4b38b1a16c8c929ad941b4e3be2925fbcc3f",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1937,7 +1937,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/field_group-8.x-1.0-rc6.zip",
-                "reference": "acd3aaef1d0c9822b81ce7fdff8a12ef3844b4e1",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2017,7 +2017,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/flood_unblock-8.x-1.0.zip",
-                "reference": "6bc688e416430c0529caf18e4ed1959773095961",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2074,7 +2074,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.1.zip",
-                "reference": "b1f2ad3990ed8a89d24f2a4acf8eef04d3065d52",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2512,7 +2512,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.0-alpha1.zip",
-                "reference": "f88e28a5033d2a9952929faff6fa59764583b80c",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2778,7 +2778,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/twig_tweak-8.x-1.4.zip",
-                "reference": "d13f2323ae7a70dfe3fd0909961a1755ef9a21a7",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -3726,7 +3726,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/3caa4f0b7f008576936ab7501d483bfcf58a4764",
+                "url": "https://api.github.com/repos/mikeyp/google_tag/zipball/6a3c3e7914114cddc55536253c64b3ff2e9df772",
                 "reference": "3caa4f0b7f008576936ab7501d483bfcf58a4764",
                 "shasum": ""
             },
@@ -3850,16 +3850,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "2.2.1",
+            "version": "3.1.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "5b8402537b40c97e4ef61ebc54f2320cfae2a2c7"
+                "reference": "e036d0cac8eb8c75578d9203fdc723eb5e5cde6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/5b8402537b40c97e4ef61ebc54f2320cfae2a2c7",
-                "reference": "5b8402537b40c97e4ef61ebc54f2320cfae2a2c7",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/e036d0cac8eb8c75578d9203fdc723eb5e5cde6d",
+                "reference": "e036d0cac8eb8c75578d9203fdc723eb5e5cde6d",
                 "shasum": ""
             },
             "type": "library",
@@ -3874,10 +3874,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/2.2.1",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.1.0-alpha2",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-01-09T16:53:33+00:00"
+            "time": "2017-01-12 18:08:30"
         },
         {
             "name": "palantirnet/the-build",
@@ -3928,7 +3928,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/9a8f954a26355f13f8d69d6bcb8b7929528859fd",
+                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/cee6a7362afe95d758824184303e861902b4bd86",
                 "reference": "9a8f954a26355f13f8d69d6bcb8b7929528859fd",
                 "shasum": ""
             },
