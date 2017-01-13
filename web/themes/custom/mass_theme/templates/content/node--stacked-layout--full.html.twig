@@ -42,13 +42,17 @@ set suggestedPages = {
   {# include 'organisms-breadcrumbs' with {breadcrumb:{class:'ma__breadcrumbs--page'}} #}
   {# Breadcrumbs have been descoped from pilot, but they'd go here #}
   {# drupal_block('breadcrumbs') #}
-  {% if content.field_action_header|field_value is not empty or content.field_header_cta|field_value is not empty %}
-      {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
-  {% else %}
-      {% include '@organisms/by-template/illustrated-header.twig' %}
-  {% endif %}
-  {% if content.field_action_banner|render|trim is not empty %}
-      {{ content.field_action_banner|field_value }}
+
+  {# if search band exists we remove all other header things. #}
+  {% if search_band == false %}
+    {% if content.field_action_header|field_value is not empty or content.field_header_cta|field_value is not empty %}
+        {% include "@mass_theme/includes/organisms-page-action-header.html.twig" %}
+    {% else %}
+        {% include '@organisms/by-template/illustrated-header.twig' %}
+    {% endif %}
+    {% if content.field_action_banner|render|trim is not empty %}
+        {{ content.field_action_banner|field_value }}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
