@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e96d30a9a5ee10d268b89d04d3018c0",
-    "content-hash": "cd368333dc1fc582caa8371b43bcca18",
+    "hash": "cb2ef44018ca49a91b859bdd442d3376",
+    "content-hash": "8d85c8869a58a2019e645770023348c3",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -283,6 +283,7 @@
                 }
             ],
             "description": "Modern task runner",
+            "abandoned": "consolidation/robo",
             "time": "2016-04-13 20:14:17"
         },
         {
@@ -1231,7 +1232,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.7.zip",
-                "reference": null,
+                "reference": "535f27b1ee669e277e52390a198a1605192bbe88",
                 "shasum": null
             },
             "require": {
@@ -1344,7 +1345,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/components-8.x-1.0.zip",
-                "reference": null,
+                "reference": "d6f3df460ca16373782f442ca92f9c251fbf311b",
                 "shasum": null
             },
             "require": {
@@ -1406,7 +1407,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_log-8.x-1.1.zip",
-                "reference": null,
+                "reference": "61eab9371412932f98d1dc87fc1fc3c98e2960c4",
                 "shasum": null
             },
             "require": {
@@ -1621,7 +1622,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/crazyegg-8.x-1.0-rc1.zip",
-                "reference": null,
+                "reference": "63c7c14ffa7cf9ec7a34a5d0de8a6e511518e4d0",
                 "shasum": null
             },
             "require": {
@@ -1727,7 +1728,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha3.zip",
-                "reference": null,
+                "reference": "1bfd486a92f81cb1dfb249b1d723e359683ff2c4",
                 "shasum": null
             },
             "require": {
@@ -1874,7 +1875,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta2.zip",
-                "reference": null,
+                "reference": "0a8d4b38b1a16c8c929ad941b4e3be2925fbcc3f",
                 "shasum": null
             },
             "require": {
@@ -1937,7 +1938,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/field_group-8.x-1.0-rc6.zip",
-                "reference": null,
+                "reference": "acd3aaef1d0c9822b81ce7fdff8a12ef3844b4e1",
                 "shasum": null
             },
             "require": {
@@ -2017,7 +2018,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/flood_unblock-8.x-1.0.zip",
-                "reference": null,
+                "reference": "6bc688e416430c0529caf18e4ed1959773095961",
                 "shasum": null
             },
             "require": {
@@ -2074,7 +2075,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.1.zip",
-                "reference": null,
+                "reference": "b1f2ad3990ed8a89d24f2a4acf8eef04d3065d52",
                 "shasum": null
             },
             "require": {
@@ -2512,7 +2513,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "f88e28a5033d2a9952929faff6fa59764583b80c",
                 "shasum": null
             },
             "require": {
@@ -2570,7 +2571,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/restui-8.x-1.13.zip",
-                "reference": null,
+                "reference": "ada367e7a26fff7dc0340f07ab504c9d9020e957",
                 "shasum": null
             },
             "require": {
@@ -2778,7 +2779,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/twig_tweak-8.x-1.4.zip",
-                "reference": null,
+                "reference": "d13f2323ae7a70dfe3fd0909961a1755ef9a21a7",
                 "shasum": null
             },
             "require": {
