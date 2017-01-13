@@ -142,7 +142,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     $sections[] = array(
       'catIcon' => array(
         'icon' => $icon_path,
-        'small' => 'TRUE',
+        'small' => 'true',
       ),
       'title' => array(
         'href' => 'node/' . $row->_entity->get('nid')->value,

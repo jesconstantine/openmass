@@ -1,22 +1,22 @@
-uuid: 77503b28-a1a8-4276-bbfb-e76d75f313f2
+uuid: 927da54f-2a15-45d6-a4cf-14dacfcaad45
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - system.menu.pilot-menu
+    - system.menu.main
   module:
     - system
   theme:
     - mass_theme
-id: pilotmenu
+id: mainnavigation
 theme: mass_theme
-region: '-1'
+region: header
 weight: -4
 provider: null
-plugin: 'system_menu_block:pilot-menu'
+plugin: 'system_menu_block:main'
 settings:
-  id: 'system_menu_block:pilot-menu'
-  label: 'Pilot Menu'
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
   provider: system
   label_display: '0'
   level: 1

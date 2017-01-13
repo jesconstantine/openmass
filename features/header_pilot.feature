@@ -11,8 +11,6 @@ Feature: Pilot Header
 
     | link                    |
     | Go to classic Mass.gov  |
-    | Common Actions          |
-    | Feedback                |
 
   Scenario: Verify the header markup is correct
     Given I am an anonymous user
