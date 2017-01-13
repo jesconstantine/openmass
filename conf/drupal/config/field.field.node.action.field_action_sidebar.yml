@@ -7,6 +7,7 @@ dependencies:
     - node.type.action
     - paragraphs.paragraphs_type.callout_button
     - paragraphs.paragraphs_type.contact_group
+    - paragraphs.paragraphs_type.icon_links
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.quick_action
     - paragraphs.paragraphs_type.related_link
@@ -33,6 +34,7 @@ settings:
       callout_button: callout_button
       related_link: related_link
       quick_action: quick_action
+      icon_links: icon_links
     target_bundles_drag_drop:
       action_step:
         weight: 11
@@ -88,22 +90,55 @@ settings:
       location_information:
         weight: 32
         enabled: false
+      slideshow:
+        weight: 34
+        enabled: false
       icon:
         weight: 34
         enabled: false
-      slideshow:
-        weight: 34
+      1up_stacked_band:
+        weight: 35
         enabled: false
       related_link:
         enabled: true
         weight: 37
-      quick_action:
-        enabled: true
-        weight: 38
+      2up_stacked_band:
+        weight: 37
+        enabled: false
       video:
         weight: 38
         enabled: false
+      quick_action:
+        enabled: true
+        weight: 38
       map:
         weight: 41
+        enabled: false
+      activities:
+        weight: 43
+        enabled: false
+      activity:
+        weight: 44
+        enabled: false
+      callout_alert:
+        weight: 45
+        enabled: false
+      completion_time:
+        weight: 48
+        enabled: false
+      hours:
+        weight: 54
+        enabled: false
+      icon_link:
+        weight: 56
+        enabled: false
+      icon_links:
+        enabled: true
+        weight: 58
+      pull_quote:
+        weight: 62
+        enabled: false
+      stacked_band:
+        weight: 67
         enabled: false
 field_type: entity_reference_revisions

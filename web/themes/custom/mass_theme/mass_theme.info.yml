@@ -11,11 +11,15 @@ libraries:
 base theme: stable
 
 regions:
+  emergency_alert: Emergency Alert
   header: Header
+  pre_content: Pre Content
   content: Content
+  post_content: Post Content
   section_topics: Section topics
   footer: Footer
   footer_navigation: Footer Navigation
+  footer_social: Footer Social
 libraries-override:
   core/jquery: mass_theme/js-vendor
 

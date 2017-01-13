@@ -9,7 +9,7 @@ id: node.stacked_layout.field_label
 field_name: field_label
 entity_type: node
 bundle: stacked_layout
-label: Label
+label: 'Label or Acronym'
 description: ''
 required: false
 translatable: false

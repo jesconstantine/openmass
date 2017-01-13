@@ -1,0 +1,30 @@
+uuid: c040c32d-aecd-4a3f-82a1-8784dd3ef734
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.emergency_alerts.field_alert
+    - node.type.emergency_alerts
+  module:
+    - entity_reference_revisions
+    - user
+id: node.emergency_alerts.teaser
+targetEntityType: node
+bundle: emergency_alerts
+mode: teaser
+content:
+  field_alert:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: emergency_alert_banner
+      link: ''
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  links: true

@@ -45,6 +45,10 @@
             "url": "git@github.com:palantirnet/palantir-behat-extension.git"
         },
         {
+            "type": "pear",
+            "url": "https://pear.php.net"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "previousnext/drush_cmi_tools",
@@ -91,6 +95,7 @@
         }
     ],
     "require": {
+        "acquia/acquia-sdk-php": "0.10.7",
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
         "desandro/imagesloaded": "dev-master",
@@ -100,6 +105,7 @@
         "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
+        "drupal/config_log": "8.*",
         "drupal/core": "^8.2.3",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
@@ -108,6 +114,7 @@
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
+        "drupal/flood_unblock": "^8.1",
         "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
@@ -120,16 +127,17 @@
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
         "drupal/restrict_by_ip": "8.4.x-dev",
+        "drupal/restui": "^8.1",
         "drupal/seckit": "8.1.0-alpha2",
         "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
         "drupal/twig_tweak": "^8.1",
         "drupal/username_enumeration_prevention": "8.1.0-beta1",
         "drupal/workbench_moderation": "^8.1",
-        "drupal/config_log": "8.*",
+        "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
-        "palantirnet/mayflower-artifacts": "^2.2",
+        "palantirnet/mayflower-artifacts": "~3.0",
         "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",

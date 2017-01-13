@@ -1,0 +1,104 @@
+uuid: f3b3517c-09ff-4eeb-99e8-83c5dfc0de55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.emergency_alerts.field_action_sidebar
+    - field.field.node.emergency_alerts.field_alert
+    - node.type.emergency_alerts
+  module:
+    - field_group
+    - paragraphs
+    - workbench_moderation
+third_party_settings:
+  field_group:
+    group_emergency_alert_s_:
+      children:
+        - group_headline
+        - group_alerts
+        - group_sidebar
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: 'Emergency Alert(s)'
+    group_headline:
+      children:
+        - title
+      parent_name: group_emergency_alert_s_
+      weight: 1
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Headline
+    group_alerts:
+      children:
+        - field_alert
+      parent_name: group_emergency_alert_s_
+      weight: 2
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Alerts
+    group_sidebar:
+      children:
+        - field_action_sidebar
+      parent_name: group_emergency_alert_s_
+      weight: 3
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Sidebar
+id: node.emergency_alerts.default
+targetEntityType: node
+bundle: emergency_alerts
+mode: default
+content:
+  field_action_sidebar:
+    weight: 4
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: preview
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_alert:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: preview
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 100
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

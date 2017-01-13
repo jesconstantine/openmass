@@ -8,7 +8,7 @@ Feature: Error Page Content type
     Then the content type "error_page" has the fields:
     | field                   | tag        | type          | multivalue | required |
     | field-error-code        | input      | text          | false      | false    |
-    | field-error-label       | input      | text          | false      | true     |
+    | field-error-label       | input      | text          | false      | false     |
     | field-error-title       | input      | text          | false      | true     |
     | field-error-message     | textarea   | text          | false      | true     |
     | field-include-search    | input      | checkbox      | false      | false    |
@@ -20,8 +20,6 @@ Feature: Error Page Content type
 
   Scenario: Verify that these roles cannot create error page content
     Given I am logged in as a user with the "content_team" role
-    Given I am logged in as a user with the "content_user" role
-    Given I am logged in as a user with the "content_editor" role
     When I go to "node/add/error_page"
     Then the response status code should be 403
 

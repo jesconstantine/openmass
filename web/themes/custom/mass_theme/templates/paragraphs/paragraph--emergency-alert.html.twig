@@ -38,4 +38,17 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% include "@organisms/by-author/callout-time.twig" with calloutTime %}
+
+{# Treat the individual alert title with yellow compHeading pattern #}
+{%
+  set compHeading = {
+    "title": content.field_emergency_alert_message|field_value,
+    "color": "yellow",
+    "id": paragraph.id(),
+  }
+%}
+{% include "@atoms/04-headings/comp-heading.twig" %}
+
+{{ content.field_emergency_alert_timestamp }}
+
+{{ content.field_emergency_alert_content }}
