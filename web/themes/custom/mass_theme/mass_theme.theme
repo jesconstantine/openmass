@@ -141,7 +141,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     }
     $sections[] = array(
       'catIcon' => array(
-        'svg' => $icon_path,
+        'icon' => $icon_path,
         'small' => 'TRUE',
       ),
       'title' => array(
