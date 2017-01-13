@@ -69,18 +69,13 @@
  */
 #}
 {%
-  set decorativeLink = {
-    'type': link_type,
-    'href': link_url,
-    'text': link_title
-  }
+set illustratedLink = {
+  'text': label|field_value,
+  'type': content.field_label|field_value,
+  'href': url,
+  'image': file_url(node.field_photo.entity.fileuri)
+}
 %}
-<li class="ma__action-finder__item {{decorativeLink.image ? 'ma__action-finder__item--image' : 'ma__action-finder__item--text'}}">
- {% if decorativeLink.image %}
-   {% set illustratedLink = decorativeLink %}
-   {% include "@molecules/illustrated-link.twig" %}
- {% else %}
-   {% set calloutLink = decorativeLink %}
-   {% include "@molecules/callout-link.twig" %}
- {% endif %}
+<li class="ma__action-finder__item {{ content.field_photo|render ? 'ma__action-finder__item--image' : 'ma__action-finder__item--text' }}">
+  {% include "@molecules/illustrated-link.twig" %}
 </li>
