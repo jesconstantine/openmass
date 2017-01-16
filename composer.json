@@ -92,10 +92,24 @@
               "type": "zip"
             }
           }
+        },
+      {
+        "type": "package",
+        "package": {
+          "name": "blakestein/datalayer",
+          "version": "master",
+          "type": "drupal-module",
+          "source": {
+            "url": "https://github.com/blakestein/drupal-datalayer-d8.git",
+            "type": "git",
+            "reference": "3b2ffa7"
+          }
         }
+      }
     ],
     "require": {
         "acquia/acquia-sdk-php": "0.10.7",
+        "blakestein/datalayer": "master",
         "composer/installers": "^1.0",
         "cweagans/composer-patches": "~1.0",
         "desandro/imagesloaded": "dev-master",
@@ -118,6 +132,7 @@
         "drupal/ga_login": "8.*",
         "drupal/google_map_field": "8.*",
         "drupal/imagick": "8.*",
+        "drupal/libraries": "8.*",
         "drupal/metatag": "^8.1",
         "drupal/migrate_plus": "^8.3",
         "drupal/migrate_source_csv": "^8.2",

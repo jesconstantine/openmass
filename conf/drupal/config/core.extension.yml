@@ -12,6 +12,7 @@ module:
   contextual: 0
   crazyegg: 0
   ctools: 0
+  datalayer: 0
   datetime: 0
   dblog: 0
   devel: 0
@@ -43,6 +44,7 @@ module:
   inline_form_errors: 0
   key: 0
   kint: 0
+  libraries: 0
   link: 0
   mass_content: 0
   mass_entityreference: 0
