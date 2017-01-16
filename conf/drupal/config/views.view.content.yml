@@ -2,6 +2,17 @@ uuid: a17d5009-45c3-413a-89f4-55817a01145e
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.action
+    - node.type.agency
+    - node.type.emergency_alerts
+    - node.type.error_page
+    - node.type.interstitial
+    - node.type.page
+    - node.type.section_landing
+    - node.type.stacked_layout
+    - node.type.subtopic
+    - node.type.topic
   module:
     - node
     - user
@@ -419,9 +430,20 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            all: all
+            agency: agency
+            page: page
+            emergency_alerts: emergency_alerts
+            error_page: error_page
+            interstitial: interstitial
+            action: action
+            section_landing: section_landing
+            stacked_layout: stacked_layout
+            subtopic: subtopic
+            topic: topic
           group: 1
-          exposed: true
+          exposed: false
           expose:
             operator_id: type_op
             label: 'Content type'

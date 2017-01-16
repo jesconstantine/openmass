@@ -10,7 +10,6 @@ end
 # tunables
 project     = 'mass'
 hostname    = "#{project}.local"
-extra_hosts = ["edit.mass.local"]
 # end tunables
 
 Vagrant.configure(2) do |config|
@@ -21,7 +20,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "#{project}" do |box|
 
         box.vm.box = "palantir/drupalbox"
-        box.vm.box_version = ">= 0.2.2, < 1.0.0"
+        box.vm.box_version = ">= 0.2.4, < 1.0.0"
 
         box.vm.provider "vmware_fusion" do |v|
             v.vmx["memsize"] = "2048"
@@ -33,8 +32,6 @@ Vagrant.configure(2) do |config|
 
         box.vm.hostname = "#{hostname}"
         box.vm.network :private_network, :auto_network => true
-
-        box.hostmanager.aliases = extra_hosts
 
         box.vm.synced_folder ".", "/vagrant", :disabled => true
         box.vm.synced_folder ".", "/var/www/#{hostname}", :nfs => true

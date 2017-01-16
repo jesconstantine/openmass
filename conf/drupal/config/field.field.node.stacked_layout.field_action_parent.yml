@@ -1,0 +1,28 @@
+uuid: aa28391f-6222-4840-8fbe-783e70725341
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_action_parent
+    - node.type.stacked_layout
+    - node.type.subtopic
+id: node.stacked_layout.field_action_parent
+field_name: field_action_parent
+entity_type: node
+bundle: stacked_layout
+label: Parent
+description: 'Select existing content that this is attached to.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      subtopic: subtopic
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

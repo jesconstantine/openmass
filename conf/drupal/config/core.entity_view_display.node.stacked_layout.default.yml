@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
@@ -41,6 +42,13 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+  field_action_parent:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   field_bands:
     type: entity_reference_revisions_entity_view
     weight: 5

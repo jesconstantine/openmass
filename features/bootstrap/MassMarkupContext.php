@@ -21,8 +21,9 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('.ma__header__container > .ma__header__logo > .ma__site-logo > a', 'header');
     $this->assertRegionElement('nav.ma__header__nav > .ma__header__button-container > .ma__header__back-button', 'header');
     $this->assertRegionElement('nav.ma__header__nav > .ma__header__button-container > .ma__header__menu-button', 'header');
-    $this->assertRegionElement('nav.ma__header__nav > .ma__header__nav-container > .ma__header__main-nav > .ma__main-nav > ul.ma__main-nav__items', 'header');
-    $this->assertRegionElement('ul.ma__main-nav__items > li.ma__main-nav__item > a.ma__main-nav__top-link', 'header');
+    $this->assertRegionElement('nav.ma__header__nav > .ma__header__nav-container > .ma__header__main-nav > .ma__main-nav', 'header');
+    //$this->assertRegionElement('nav.ma__header__nav > .ma__header__nav-container > .ma__header__main-nav > .ma__main-nav > ul.ma__main-nav__items', 'header');
+    //$this->assertRegionElement('ul.ma__main-nav__items > li.ma__main-nav__item > a.ma__main-nav__top-link', 'header');
   }
 
   /**
@@ -135,6 +136,6 @@ class MassMarkupContext extends MarkupContext
   public function iShouldSeeTheCorrectMarkupForTheRelatedGuides()
   {
     $this->assertRegionElement('div.ma__suggested-pages__container > h2.ma__suggested-pages__title', 'guide_related_guides');
-    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > h4.ma__illustrated-link__title', 'guide_related_guides');
+    $this->assertRegionElement('div.ma__suggested-pages__container > .ma__suggested-pages__items .ma__suggested-pages__item.ma__suggested-pages__item--guide > .ma__illustrated-link > .ma__illustrated-link__content > div.ma__illustrated-link__title', 'guide_related_guides');
   }
 }

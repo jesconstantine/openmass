@@ -31,6 +31,14 @@ Feature: Paragraph type definitions
       | field                            | widget                    |
       | field-action-step-numbered-items | Paragraphs                |
 
+  Scenario: Verify that the action_set paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "action_set" paragraph has the fields:
+      | field                  | widget                    |
+      | field-related-content  | Autocomplete              |
+      | field-featured-content | Autocomplete              |
+      | field-image            | Entity browser            |
+
   Scenario: Verify that the callout_link paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
     Then the "callout_link" paragraph has the fields:
@@ -53,6 +61,7 @@ Feature: Paragraph type definitions
     Given I am logged in as a user with the "administrator" role
     Then the "emergency_alert" paragraph has the fields:
       | field                           | widget        |
+      | field-emergency-alert-content   | Paragraphs    |
       | field-emergency-alert-link      | Link          |
       | field-emergency-alert-message   | Textfield     |
       | field-emergency-alert-timestamp | Date and Time |
@@ -94,6 +103,17 @@ Feature: Paragraph type definitions
     Then the "rich_text" paragraph has the fields:
       | field      | widget                    |
       | field-body | Text area (multiple rows) |
+
+  Scenario: Verify that the action_set paragraph type has the correct field configuration
+    Given I am logged in as a user with the "administrator" role
+    Then the "search_band" paragraph has the fields:
+      | field                  | widget                    |
+      | field-image            | Entity browser            |
+      | field-caption          | Textfield                 |
+      | field-name             | Textfield                 |
+      | field-description      | Textfield                 |
+      | field-link             | Link                      |
+      | field-title            | Textfield                 |
 
   Scenario: Verify that the stat paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role

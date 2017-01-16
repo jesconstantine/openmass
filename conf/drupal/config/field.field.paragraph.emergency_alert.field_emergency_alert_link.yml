@@ -12,7 +12,7 @@ field_name: field_emergency_alert_link
 entity_type: paragraph
 bundle: emergency_alert
 label: 'Emergency Alert Link'
-description: '<p>Use this optional field to link to an internal or external webpage which provides more information for this individual alert.</p>'
+description: "<p>Use this optional field to link to an internal or external webpage which provides more information for this individual alert.</p>\r\n<p><big>Note:</big> If you want to link to the full view of this alert on the alert landing page, write \"/alerts\" as the URL value.</p>"
 required: false
 translatable: false
 default_value: {  }

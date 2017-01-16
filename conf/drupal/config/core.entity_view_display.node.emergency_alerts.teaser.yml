@@ -19,10 +19,12 @@ content:
     weight: 0
     label: hidden
     settings:
-      view_mode: default
+      view_mode: emergency_alert_banner
       link: ''
     third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   links: true

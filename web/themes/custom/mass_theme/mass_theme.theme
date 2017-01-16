@@ -12,6 +12,7 @@ use Drupal\block\Entity\Block;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Component\Utility\Unicode;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -95,7 +96,6 @@ function mass_theme_preprocess_node(&$variables) {
  */
 function mass_theme_preprocess_node_section_landing(&$variables) {
   $node = $variables['node'];
-  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
 
   // This is a required icon field, but lets check.
   if (array_key_exists('0', $node->get('field_icon_term')->referencedEntities())) {
@@ -105,6 +105,11 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 
   if ($node->field_featured_image->entity) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
+  }
+
+  // TODO: determine if we need another ImageStyle.
+  if ($node->field_featured_mobile_image->entity) {
+    $variables['mobile800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
   }
 
   // Get our subtopics (sections) view.
@@ -136,8 +141,8 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     }
     $sections[] = array(
       'catIcon' => array(
-        'svg' => $icon_path,
-        'small' => 'TRUE',
+        'icon' => $icon_path,
+        'small' => 'true',
       ),
       'title' => array(
         'href' => 'node/' . $row->_entity->get('nid')->value,
@@ -225,6 +230,13 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   $node = $variables['node'];
   $image_field = $node->get('field_photo');
   $field_related_content = $node->get('field_related_content');
+
+  foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
+    if ($paragraph->getType() == 'search_band') {
+      // if we have a search band, lets our node object and node template know.
+      $variables['search_band'] = TRUE;
+    }
+  }
 
   if ($image_field->count() > 0) {
     $values = $image_field->getValue();
@@ -355,12 +367,29 @@ function mass_theme_preprocess_node_topic(&$variables) {
     // Get our subtopics (sections) view.
     $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
     $sections = array();
-    // Roll this up and give the twig tpl what it expects.
+    // Roll up the list of subtopics and give the twig tpl the links it expects.
     foreach ($view_results as $key => $row) {
       $links = array();
       // Wrap up our links for each subtopic.
       foreach ($row->_entity->get('field_topic_callout_links') as $link) {
-        $links[] = array('text' => $link->title, 'href' => Url::fromUri($link->uri));
+        // Set default value.
+        $link_path = Url::fromUri($link->uri);
+
+        // If this is a link to a node, check for an external_url.
+        // @todo: find a better way to test for node links.
+        if (Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
+          $nid = explode('/', $link->uri)[1];
+          $linked_node = Node::load($nid);
+          // Check that we have a node and that it has an external_url field.
+          if ($linked_node && $linked_node->hasField('field_external_url')) {
+            $external_link = $linked_node->get('field_external_url')->uri;
+            //  Check the external url field value is not empty.
+            if (!empty($external_link)) {
+              $link_path = $external_link;
+            }
+          }
+        }
+        $links[] = array('text' => $link->title, 'href' => $link_path);
       }
       // Wrap up each section with links.
       $sections[] = array(
@@ -398,62 +427,78 @@ function mass_theme_preprocess_node_topic(&$variables) {
  * Node alert (banner) alterations.
  */
 function mass_theme_preprocess_node_emergency_alerts(&$variables) {
-  $node = $variables['node'];
+  if ('teaser' == $variables['view_mode']) {
+    $node = $variables['node'];
 
-  // Create and populate the data object which the template is expecting.
-  $emergency_alerts = array();
-  // Set alert id = node updated time.
-  $emergency_alerts['id'] = $node->get('changed')->value;
+    // Create and populate the data object which the template is expecting.
+    $emergency_alerts = array();
+    // Set alert id = node updated time.
+    $emergency_alerts['id'] = $node->get('changed')->value;
 
-  // Set banner accordion button text (css will format).
-  $emergency_alerts['buttonAlert']['hideText'] = 'hide';
-  $emergency_alerts['buttonAlert']['showText'] = 'show';
-  $emergency_alerts['buttonAlert']['text'] = 'alerts';
+    // Set banner accordion button text (css will format).
+    $emergency_alerts['buttonAlert']['hideText'] = 'hide';
+    $emergency_alerts['buttonAlert']['showText'] = 'show';
+    $emergency_alerts['buttonAlert']['text'] = 'alerts';
 
-  // Set alert banner headline = node title.
-  $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
+    // Set alert banner headline = node title.
+    $emergency_alerts['emergencyHeader']['title'] = $node->get('title')->value;
 
-  // Get the alert paragraph field.
-  $field_alert = $node->get('field_alert');
+    // Get the alert paragraph field.
+    $field_alert = $node->get('field_alert');
 
-  // Iterate through alert paragraph instances.
-  // Populate alerts array with individual alert content.
-  if ($field_alert->count() > 0) {
-    $delta = 0;
-    $alerts = array();
+    // Iterate through alert paragraph instances.
+    // Populate alerts array with individual alert content.
+    if ($field_alert->count() > 0) {
+      $delta = 0;
+      $alerts = array();
 
-    foreach ($field_alert->referencedEntities() as $paragraph) {
+      foreach ($field_alert->referencedEntities() as $paragraph) {
 
-      // Format the alert timestamp to match new date format that meets spec.
-      $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
-      $raw_timestamp = strtotime($raw_timestamp_str);
-      $timestamp = \Drupal::service('date.formatter')->format($raw_timestamp, 'decimal_short_date_time');
+        // Format the alert timestamp to match new date format that meets spec.
+        $raw_timestamp_str = $paragraph->get('field_emergency_alert_timestamp')->value;
+        // Tell PHP that the timestamp is currently in UTC.
+        $dateTime = new DateTime($raw_timestamp_str, new DateTimeZone('UTC'));
+        $timezone = 'America/New_York';
+        $dateTime->setTimeZone(new DateTimeZone($timezone));
+        $timestamp = $dateTime->format('m.d.y, g:i a');
 
-      // Populate optional alert "Read More" link.
-      $url = $paragraph->get('field_emergency_alert_link')->first();
-      $link = '';
-      if ($url) {
-        $link = array(
-          'chevron' => 'true',
-          'text' => $url->getValue()['title'],
-          'href' => $url->getUrl()->toString(),
-          'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
+        // Get the alert optional "read more" link.
+        $url = $paragraph->get('field_emergency_alert_link')->first();
+        $link = '';
+        if ($url) {
+          $href = $url->getUrl()->toString();
+          // Get the uuid of the alert instance.
+          $alert_instance_id = $paragraph->get('id')->first()->value;
+
+          // Target individual alert on alert landing page links.
+          if ('/alerts' == $href) {
+            $href .= '#' . $alert_instance_id;
+          }
+
+          // Populate optional alert "Read More" link data object.
+          $link = array(
+            'chevron' => 'true',
+            'text' => $url->getValue()['title'],
+            'href' => $href,
+            'type' => (UrlHelper::isExternal($url->getUrl()
+              ->toString())) ? 'external' : 'internal',
+          );
+        }
+
+        $alerts[] = array(
+          'message' => $paragraph->get('field_emergency_alert_message')->value,
+          'timeStamp' => $timestamp,
+          'link' => $link,
         );
+
+        $delta++;
       }
 
-      $alerts[] = array(
-        'message' => $paragraph->get('field_emergency_alert_message')->value,
-        'timeStamp' => $timestamp,
-        'link' => $link,
-      );
+      $emergency_alerts['alerts'] = $alerts;
 
-      $delta++;
+      // Make emergency alerts data object available in template.
+      $variables['emergencyAlerts'] = $emergency_alerts;
     }
-
-    $emergency_alerts['alerts'] = $alerts;
-
-    // Make emergency alerts data object available in template.
-    $variables['emergencyAlerts'] = $emergency_alerts;
   }
 }
 
@@ -473,6 +518,25 @@ function mass_theme_preprocess_html(&$variables) {
 
   if ($is_front_page) {
     $variables['alerts_banner_view'] = views_embed_view('emergency_alert', 'block_banner');
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Remove page search if we're using our search band in stacked layout.
+ */
+function mass_theme_preprocess_page(&$variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $node = $variables['node'];
+    // If we're using search band, lets tell page twig about it.
+    if ($node->hasField('field_bands') && $node->get('field_bands')->count() > 0) {
+      foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
+        if ($paragraph->getType() == 'search_band') {
+          $variables['hideHeaderSearch'] = TRUE;
+        }
+      }
+    }
   }
 }
 
@@ -553,7 +617,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $subhead = $build;
       }
       // Check paragraph type for stacked band.
-      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band') {
+      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band' || $paragraph->getType() == 'action_set' || $paragraph->getType() == 'search_band') {
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
         $band = $view_builder->view($paragraph, 'stacked');
         $bands[$delta][] = $subhead;
@@ -561,6 +625,12 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Since we've entered our subhead, clear it out.
         $subhead = [];
       }
+
+      // If we have a search band, lets hide jump links.
+      if ($paragraph->getType() == 'search_band') {
+        $variables['search_band'] = TRUE;
+      }
+
       $delta++;
     }
     $variables['bands'] = $bands;
@@ -901,6 +971,78 @@ function mass_theme_preprocess_paragraph(&$variables) {
  *
  * Break out url pieces for callout link paragraphs.
  */
+function mass_theme_preprocess_paragraph__action_set(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $field_featured_items = $paragraph->get('field_featured_content');
+  $featured_links = array();
+  $image_url = '';
+
+  // Get field labels for twig.
+  $variables['featuredHeading'] = $field_featured_items->getFieldDefinition()->getLabel();
+
+  // Get Featured links.
+  if ($field_featured_items->count() > 0) {
+    $featured_items = $field_featured_items->referencedEntities();
+  }
+
+  if (!empty($featured_items)) {
+    foreach ($featured_items as $id => $item) {
+      if ($item->hasField('field_external_url')) {
+        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+      }
+      if ($item->hasField('field_photo')) {
+        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
+      }
+      $featured_links[] = array(
+        'image' => $image_url ? $image_url : '',
+        'text'  => $item->getTitle(),
+        'type'  => $external_url ? 'external' : 'internal',
+        'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
+      );
+    }
+    $variables['featuredLinks'] = $featured_links;
+  }
+
+  $field_link_items = $paragraph->get('field_related_content');
+  $links = array();
+
+  $variables['generalHeading'] = $field_link_items->getFieldDefinition()->getLabel();
+
+  // Get All Actions & Guides links.
+  if ($field_link_items->count() > 0) {
+    $link_items = $field_link_items->referencedEntities();
+  }
+
+  if (!empty($link_items)) {
+    foreach ($link_items as $id => $item) {
+      if ($item->hasField('field_external_url')) {
+        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+      }
+      if ($item->hasField('field_photo')) {
+        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
+      }
+      $links[] = array(
+        'image' => $image_url ? $image_url : '',
+        'text'  => $item->getTitle(),
+        'type'  => $external_url ? 'external' : 'internal',
+        'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
+      );
+    }
+    $variables['links'] = $links;
+  }
+
+  // Get our background image.
+  if ($paragraph->get('field_image')->entity) {
+    $variables['bgWide'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->get('field_image')->entity->getFileUri());
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for callout link paragraphs.
+ */
 function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
   $paragraph = $variables['paragraph'];
   $field_action_step_numbered_items = $paragraph->get('field_action_step_numbered_items');
@@ -996,6 +1138,39 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
     'href' => $url->getUrl()->toString(),
     'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Deliver a image style uri to our search band twig template.
+ */
+function mass_theme_preprocess_paragraph__search_band(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
+
+  // Grab node title incase we don't have a title in band.
+  $node = \Drupal::request()->attributes->get('node');
+  if ($node) {
+    $variables['title'] = $node->getTitle();
+    $variables['intro'] = $node->field_lede->value;
+  }
+
+  $items = [];
+  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
+    $popular_searches = $variables['paragraph']->get('field_link');
+
+    // Roll up our popular searches links for search band.
+    foreach ($popular_searches as $link) {
+      $items[] = [
+        'href' => $link->getUrl()->toString(),
+        'text' => $link->getValue()['title'],
+        'chevron' => 'true',
+      ];
+    }
+  }
+
+  $variables['items'] = $items;
 }
 
 /**

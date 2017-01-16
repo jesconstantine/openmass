@@ -3,18 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.emergency_alert.field_emergency_alert_content
     - field.field.paragraph.emergency_alert.field_emergency_alert_link
     - field.field.paragraph.emergency_alert.field_emergency_alert_message
     - field.field.paragraph.emergency_alert.field_emergency_alert_timestamp
     - paragraphs.paragraphs_type.emergency_alert
   module:
     - datetime
+    - entity_reference_revisions
     - link
 id: paragraph.emergency_alert.default
 targetEntityType: paragraph
 bundle: emergency_alert
 mode: default
 content:
+  field_emergency_alert_content:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_emergency_alert_link:
     weight: 2
     label: hidden

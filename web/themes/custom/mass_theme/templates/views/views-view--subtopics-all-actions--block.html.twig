@@ -53,10 +53,10 @@
   </header>
 
   {% if attachment_before|render|trim %}
-    <div class="ma__action-finder__category">{{ 'Featured:'|t }}</div>
+    <h3 class="ma__action-finder__category">{{ 'Featured:'|t }}</h3>
     {{ attachment_before }}
   {% endif %}
-
-  <div class="ma__action-finder__category">{{ 'All Actions &amp; Guides:'|t }}</div>
+  
+  <h3 class="ma__action-finder__category">{{ 'Actions &amp; Guides:'|t }}</h3>
   {{ rows }}
 </div>

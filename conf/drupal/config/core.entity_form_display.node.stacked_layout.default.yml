@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.browse_files_modal
+    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
@@ -123,6 +124,14 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     type: entity_reference_paragraphs
+  field_action_parent:
+    weight: 112
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_bands:
     type: entity_reference_paragraphs
     weight: 11

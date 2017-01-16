@@ -19,7 +19,9 @@ content:
 hidden:
   field_action_banner: true
   field_action_header: true
+  field_action_parent: true
   field_bands: true
+  field_funnel_endpoint_term: true
   field_header_cta: true
   field_label: true
   field_lede: true
@@ -27,3 +29,4 @@ hidden:
   field_photo: true
   field_related_content: true
   field_related_guides: true
+  field_type_term: true

@@ -11,9 +11,9 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "preferred-install": "dist",
     "config": {
-        "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": "true"
     },
     "repositories": [
         {
@@ -142,6 +142,7 @@
         "drupal/pathauto": "^8.1",
         "drupal/redirect": "8.*",
         "drupal/restrict_by_ip": "8.4.x-dev",
+        "drupal/restui": "^8.1",
         "drupal/seckit": "8.1.0-alpha2",
         "drupal/security_review": "8.1.x-dev",
         "drupal/twig_field_value": "^8.1",
@@ -151,7 +152,7 @@
         "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "^4.3",
         "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
-        "palantirnet/mayflower-artifacts": "^2.2",
+        "palantirnet/mayflower-artifacts": "~3.1",
         "palantirnet/the-build": "dev-37-admin-username",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
@@ -216,9 +217,6 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
-            },
-            "drupal/restrict_by_ip": {
-                "Add hook uninstall - Remove config values from DB": "https://www.drupal.org/files/issues/2840479-delete-config-from-db.patch"
             }
         }
     }

@@ -1,0 +1,73 @@
+uuid: ca25e0a6-183a-497b-a202-b409bd62f559
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.browse_files_modal
+    - field.field.paragraph.search_band.field_caption
+    - field.field.paragraph.search_band.field_description
+    - field.field.paragraph.search_band.field_image
+    - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_name
+    - field.field.paragraph.search_band.field_title
+    - paragraphs.paragraphs_type.search_band
+  module:
+    - entity_browser
+    - link
+    - workbench_moderation
+id: paragraph.search_band.default
+targetEntityType: paragraph
+bundle: search_band
+mode: default
+content:
+  field_caption:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_description:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_image:
+    weight: 0
+    settings:
+      entity_browser: browse_files_modal
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      preview_image_style: thumbnail
+      field_widget_edit: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_browser_file
+  field_link:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true

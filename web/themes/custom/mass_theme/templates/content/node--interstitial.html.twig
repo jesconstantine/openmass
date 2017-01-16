@@ -21,11 +21,11 @@
       'message': content.field_message|field_value,
       'href': 'http://www.mass.gov',
       'submit': 'Continue',
-      'back': 'Cancel',
+      'back': 'Back',
       'inputCheckbox': {
         'value': 'hide-transition-page',
         'id': 'hide-transition-page',
-        'label': 'Got it, don\'t show me this page again',
+        'label': content.field_interstitial_checkbox_msg|field_value,
         'checked': '',
       }
     }
