@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - node.type.stacked_layout
     - node.type.subtopic
     - node.type.topic
   module:
@@ -372,6 +373,8 @@ display:
         style: false
         row: false
         fields: false
+        filters: false
+        filter_groups: false
       row:
         type: 'entity:node'
         options:
@@ -426,6 +429,63 @@ display:
           separator: ', '
           field_api_classes: false
       display_description: ''
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            stacked_layout: stacked_layout
+            subtopic: subtopic
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -631,14 +691,14 @@ display:
   subtopic_reorder:
     display_plugin: page
     id: subtopic_reorder
-    display_title: 'Reorder Subtopics'
+    display_title: 'Reorder Callout Cards'
     position: 3
     display_options:
       display_extenders: {  }
-      path: node/%node/reorder-subtopics
+      path: node/%node/reorder-callout-cards
       menu:
         type: tab
-        title: 'Reorder Subtopics'
+        title: 'Reorder Callout Cards'
         description: ''
         expanded: false
         parent: ''
@@ -652,6 +712,65 @@ display:
           offset: 0
       defaults:
         pager: false
+        filters: false
+        filter_groups: false
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            stacked_layout: stacked_layout
+            subtopic: subtopic
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:

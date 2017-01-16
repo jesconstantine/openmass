@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Contains mass_utility.module.
+ *
+ * Copyright 2017 Palantir.net, Inc.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function mass_utility_form_views_form_subtopics_subtopic_reorder_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add custom submit handler to invalidate cache tags for
+  // "node/%nid%/reorder-callout-cards".
+  // With hook_form_BASE_FORM_ID_alter() this code has to be used for doing so.
+  // For a similar code example (observe at the end of function):
+  // @see https://api.drupal.org/api/drupal/core!modules!menu_ui!menu_ui.module/function/menu_ui_form_node_form_alter/8.0.x
+  foreach (array_keys($form['actions']) as $action) {
+    if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+      $form['actions'][$action]['#submit'][] = 'mass_utility_invalidate_tags_submit';
+    }
+  }
+}
+
+/**
+ * Form submission handler to invalidate cache tags.
+ */
+function mass_utility_invalidate_tags_submit($form, FormStateInterface $form_state) {
+  // When saving order of callout links the the cache tags for the node are
+  // invalidated to allow the user see the changes without having to clear
+  // the cache.
+  $form_id_parts = explode('_', $form_state->getValue('form_id'));
+  $nid = end($form_id_parts);
+  if (ctype_digit($nid)) {
+    Cache::invalidateTags(['node:' . $nid]);
+  }
+}
