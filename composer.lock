@@ -2586,6 +2586,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-4.x": "8.4.x-dev"
+                },
+                "patches_applied": {
+                    "Add hook uninstall - Remove config values from DB": "https://www.drupal.org/files/issues/2840479-delete-config-from-db.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3887,16 +3890,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.1.0-alpha2",
+            "version": "3.1.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "e036d0cac8eb8c75578d9203fdc723eb5e5cde6d"
+                "reference": "28380859eaf376f6d7834204522986f2a2b89cf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/e036d0cac8eb8c75578d9203fdc723eb5e5cde6d",
-                "reference": "e036d0cac8eb8c75578d9203fdc723eb5e5cde6d",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/28380859eaf376f6d7834204522986f2a2b89cf4",
+                "reference": "28380859eaf376f6d7834204522986f2a2b89cf4",
                 "shasum": ""
             },
             "type": "library",
@@ -3911,10 +3914,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.1.0-alpha2",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.1.0-alpha",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-01-12 18:08:30"
+            "time": "2017-01-05 15:12:14"
         },
         {
             "name": "palantirnet/the-build",
