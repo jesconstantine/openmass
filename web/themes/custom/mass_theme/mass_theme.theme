@@ -1688,5 +1688,5 @@ function mass_theme_preprocess_paragraph__icon_links(&$variables) {
     }
   }
 
-  $variables['icon_links']['items'] = $items;
+  $variables['iconLinks']['items'] = $items;
 }
