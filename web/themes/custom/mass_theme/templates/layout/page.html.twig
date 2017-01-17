@@ -68,7 +68,7 @@
       </div>
       {# end "atoms-site-logo" #}
     </div>
-    {% if not hideHeaderSearch %}
+    {% if not search_header_suppression_flag %}
       <div class="ma__header__search js-header-search-menu">
         <section class="ma__header-search">
           {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
