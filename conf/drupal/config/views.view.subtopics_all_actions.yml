@@ -489,7 +489,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: contains
+          operator: allwords
           value: ''
           group: 1
           exposed: true
@@ -511,6 +511,7 @@ display:
               content_editor: '0'
               developer: '0'
               administrator: '0'
+              emergency_alert_publisher: '0'
           is_grouped: false
           group_info:
             label: ''
