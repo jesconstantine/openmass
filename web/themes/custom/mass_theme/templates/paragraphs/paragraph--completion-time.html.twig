@@ -38,17 +38,9 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{# There is no molecule or atom for this. It is wrapped in the guide-section organism. #}
-<div class="ma__stacked-row-section__container">
-  <div class="ma__stacked-row-section__title">
-    {% set compHeading = {
-      "title": content.field_title|field_value,
-      "sub": "",
-      "color": "",
-      "id": title_clean,
-      "centered": "false"
-    }
-    %}
-    {% include "@atoms/04-headings/comp-heading.twig" %}
-  </div>
-</div>
+{%
+set calloutTime =  {
+  'text': content.field_time|field_value
+}
+%}
+{% include "@organisms/by-author/callout-time.twig" %}
