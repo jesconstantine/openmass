@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.subtopic.field_featured_mobile_image
     - field.field.node.subtopic.field_image_credit
     - field.field.node.subtopic.field_lede
+    - field.field.node.subtopic.field_map_locations
     - field.field.node.subtopic.field_metatags
     - field.field.node.subtopic.field_topic_callout_links
     - field.field.node.subtopic.field_topic_parent
@@ -92,6 +93,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+  field_map_locations:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_metatags:
     type: metatag_firehose
     weight: 13

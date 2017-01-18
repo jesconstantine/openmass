@@ -1,0 +1,30 @@
+uuid: 911491df-d91b-4f63-8558-9203f0c693c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_locations
+    - node.type.action
+    - node.type.stacked_layout
+    - node.type.subtopic
+id: node.subtopic.field_map_locations
+field_name: field_map_locations
+entity_type: node
+bundle: subtopic
+label: 'Map Locations'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      action: action
+      stacked_layout: stacked_layout
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: action
+field_type: entity_reference
