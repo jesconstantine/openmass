@@ -44,6 +44,8 @@ function mass_utility_invalidate_tags_submit($form, FormStateInterface $form_sta
  * Implements hook_views_query_alter().
  */
 function mass_utility_views_query_alter($view, $query) {
+  // Assures that the featured content listed in front-end belongs to
+  // node (Subtopic) being viewed.
   if ($view->id() == 'subtopics_all_actions' && $view->current_display == 'attachment_1') {
     $query->addWhereExpression(2, "field_featured_content_node_field_data.nid = node__field_action_parent.field_action_parent_target_id");
   }
