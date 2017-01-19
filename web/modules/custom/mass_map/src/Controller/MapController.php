@@ -12,29 +12,36 @@ use Drupal\paragraphs\Entity\Paragraph;
  */
 class MapController extends ControllerBase {
 
-  /**
-   * Content.
-   *
-   * @return array
-   *   Render array that calls returns a list of locations
-   */
+    /**
+     * Content for the map pages.
+     *
+     * @param $latitude
+     *   Latitude for the center of the map.
+     * @param $longitude
+     *   Longitude for the center of the map.
+     * @param $id
+     *   Subtopic nid with a list of locations.
+     * @return array
+     *   Render array that returns a list of locations.
+     */
   public function content($latitude, $longitude, $id) {
     $markup = '';
+
+    // Get Locations from the given subtopic.
     $node_storage = \Drupal::entityManager()->getStorage('node');
     $node = $node_storage->load($id);
-
     $ids = array();
-
     foreach ($node->field_map_locations as $location){
         $ids[] = $location->getValue()['target_id'];
     }
 
+    // Use the ids to get location info.
     $locations = $this->get_locations($ids);
 
+    // Output addresses to map page.
     foreach ($locations as $location){
       $markup .= "<li>" . $location['address'] . "</li>";
     }
-
     $markup = "<ul>" . $markup . "</ul>";
     $markup = "<h2>Map Page</h2>" . $markup;
 
@@ -65,6 +72,7 @@ class MapController extends ControllerBase {
       if ($node->getType() == 'action') {
         $locations[$node->nid->value] = $this->get_action_location($node);
       }
+      // Extract location info from stacked layout.
       if ($node->getType() == 'stacked_layout') {
         $locations[$node->nid->value] = $this->get_stacked_layout_location($node);
       }
@@ -103,8 +111,8 @@ class MapController extends ControllerBase {
               break;
           }
       }
+      // If it is not in the header get map point from the details field.
       if (empty($location)) {
-          // Get point for map from the details field.
           foreach ($node->field_action_details as $detail_id) {
               $detail = Paragraph::load($detail_id->target_id);
               if ($detail->getType() == 'map') {
@@ -165,6 +173,7 @@ class MapController extends ControllerBase {
         $address = NULL;
         $location = NULL;
 
+        // Get address from header if it has one.
         foreach ($node->field_action_header as $header_id) {
             $header = Paragraph::load($header_id->target_id);
             if ($group_address = $this->get_address_contact_group($header)) {
@@ -173,6 +182,7 @@ class MapController extends ControllerBase {
             }
         }
         foreach ($node->field_bands as $band_id) {
+            //search the main field of the bands for location and address information.
             $band = Paragraph::load($band_id->target_id);
             foreach ($band->field_main as $band_main_id) {
                 $band_main = Paragraph::load($band_main_id->target_id);
@@ -188,6 +198,7 @@ class MapController extends ControllerBase {
                     }
                 }
             }
+            // Check the right rail of 2up bands for address info.
             if (empty($address) && $band->getType() == '2up_stacked_band') {
                 foreach ($band->field_right_rail as $band_rail_id) {
                     $band_rail = Paragraph::load($band_rail_id->target_id);
@@ -206,10 +217,19 @@ class MapController extends ControllerBase {
         );
     }
 
+    /**
+     * Get address out of a contact group if it contains one.
+     *
+     * @param $contact_group
+     *  The contact group paragraph object.
+     * @return string
+     *  The address if the group contains one.
+     */
     private function get_address_contact_group($contact_group){
         $address = NULL;
         foreach ($contact_group->field_contact_info as $contact_info_id) {
             $contact_info = Paragraph::load($contact_info_id->target_id);
+            // Check contact info paragraph for address.
             if ($contact_info->field_address) {
                 $address = $contact_info->field_address->value;
                 break;
