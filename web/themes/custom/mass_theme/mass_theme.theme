@@ -257,6 +257,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
+          'image' => mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo'),
         ),
       );
     }
