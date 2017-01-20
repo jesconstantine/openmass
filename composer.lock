@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75892571dd37bfc2bacda204642f0eb2",
-    "content-hash": "77c20c0660c2c35fc8242c85780fd3be",
+    "hash": "35863405df0a597e79594edf0a62b244",
+    "content-hash": "681fe93214a9305733d4f54735dde8ee",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1836,7 +1836,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.0-beta4.zip",
-                "reference": null,
+                "reference": "63e4d36afc0b13e05dba5a6da5fae9afb4c0e233",
                 "shasum": null
             },
             "require": {
@@ -1854,6 +1854,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Fix duplicated image selection when click use selected button": "https://www.drupal.org/files/issues/prevent-duplication.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3924,16 +3927,16 @@
         },
         {
             "name": "palantirnet/the-build",
-            "version": "dev-37-admin-username",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "5245299ce63ea806cb0159680950320d4de05988"
+                "reference": "5a6c3bc81a278c6c611fc06f7aa34bf9ef8a87e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/5245299ce63ea806cb0159680950320d4de05988",
-                "reference": "5245299ce63ea806cb0159680950320d4de05988",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/5a6c3bc81a278c6c611fc06f7aa34bf9ef8a87e8",
+                "reference": "5a6c3bc81a278c6c611fc06f7aa34bf9ef8a87e8",
                 "shasum": ""
             },
             "require": {
@@ -3944,9 +3947,17 @@
                 "phing/phing": "^2.14",
                 "phpmd/phpmd": "^2.4"
             },
+            "bin": [
+                "bin/the-build-installer"
+            ],
             "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TheBuild\\": "src/"
+                }
+            },
             "license": [
-                "proprietary"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -3954,12 +3965,12 @@
                     "email": "info@palantir.net"
                 }
             ],
-            "description": "Drupal build tasks for our projects.",
+            "description": "Phing build tasks for Drupal projects.",
             "support": {
-                "source": "https://github.com/palantirnet/the-build/tree/37-admin-username",
+                "source": "https://github.com/palantirnet/the-build/tree/1.3.1",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2016-12-01 13:44:01"
+            "time": "2017-01-18 22:47:28"
         },
         {
             "name": "palantirnet/the-vagrant",
@@ -8712,7 +8723,6 @@
         "drupal/security_review": 20,
         "drupal/xmlsitemap": 20,
         "mikeyp/google_tag": 20,
-        "palantirnet/the-build": 20,
         "palantirnet/the-vagrant": 20,
         "palantirnet/workbench_tabs": 20,
         "composer/composer": 20,
