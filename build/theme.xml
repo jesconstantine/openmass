@@ -16,6 +16,7 @@
 
     <target name="theme-install">
         <phingcall target="theme-artifacts-install">
+
         </phingcall>
     </target>
 
@@ -25,6 +26,7 @@
         <includeresource mode="copy" source="${theme.artifact.root_dir}/images" dest="${custom_theme}/images" />
         <includeresource mode="copy" source="${theme.artifact.root_dir}/fonts" dest="${custom_theme}/fonts" />
 
+        <mkdir dir="${custom_theme}/patterns" />
         <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/00-base" dest="${custom_theme}/patterns/base" />
         <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/01-atoms" dest="${custom_theme}/patterns/atoms" />
         <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/02-molecules" dest="${custom_theme}/patterns/molecules" />
