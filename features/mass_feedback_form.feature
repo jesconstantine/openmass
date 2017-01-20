@@ -28,6 +28,5 @@ Feature: Mass Feedback Form
   Scenario: Verify Mass Feedback Form does not show on homepage
     Given I am an anonymous user
     When I am on the homepage
-    Then I should not see text matching "Online Form - Feedback - Multi Page"
-
+    Then I should not see two feedback forms
 

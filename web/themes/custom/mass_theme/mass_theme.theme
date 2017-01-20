@@ -22,7 +22,7 @@ function mass_theme_theme_suggestions_alter(array &$suggestions, array $variable
 
   // For the pilot static homepage, we need to be able to theme a specific node
   // as the front page.
-  if( $node = \Drupal::routeMatch()->getParameter('node') && in_array('html__front', $suggestions)){
+  if ($node = \Drupal::routeMatch()->getParameter('node') && in_array('html__front', $suggestions)) {
     $node = \Drupal::routeMatch()->getParameter('node');
     $suggestions[] = 'html__node__' . $node->id();
   }
