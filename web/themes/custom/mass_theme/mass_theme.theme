@@ -990,7 +990,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
   if (!empty($featured_items)) {
     foreach ($featured_items as $id => $item) {
       if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+        $external_url = $item->get('field_external_url')->uri;
       }
       if ($item->hasField('field_photo')) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
@@ -1018,7 +1018,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
   if (!empty($link_items)) {
     foreach ($link_items as $id => $item) {
       if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+        $external_url = $item->get('field_external_url')->uri;
       }
       if ($item->hasField('field_photo')) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
