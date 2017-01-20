@@ -124,7 +124,7 @@
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
         "drupal/encrypt": "dev-8.x-3.x#19cda8cf22bfe7d020b819a7cfddf2e4883b78a8",
-        "drupal/entity_browser": "8.1.x-dev",
+        "drupal/entity_browser": "^8.1",
         "drupal/entity_reference_revisions": "~8.1.0",
         "drupal/field_group": "8.*",
         "drupal/file_browser": "8.1.x-dev",
@@ -217,7 +217,11 @@
             },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
+            },
+            "drupal/entity_browser": {
+                "Fix duplicated image selection when click use selected button": "https://www.drupal.org/files/issues/prevent-duplication.patch"
             }
+
         }
     }
 }
