@@ -66,6 +66,24 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * @Then I should not see two feedback forms
+   */
+  public function iShouldNotSeeTwoFeedbackForms()
+  {
+    $general = '#Online Form - Feedback - Multi Page#i';
+    $homepage = '#Online Form - Feedback - Homepage#i';
+    $actual = $this->getSession()->getPage()->getText();
+
+    if (preg_match($general, $actual) === 1) {
+      $this->assertSession()->pageTextNotMatches($homepage);
+    }
+
+    if (preg_match($homepage, $actual) === 1) {
+      $this->assertSession()->pageTextNotMatches($general);
+    }
+  }
+
+  /**
    * Asserts a content type has a title and
    * fields provided in the form of a given type:
    * | field               | tag      | type  | multivalue | required |
