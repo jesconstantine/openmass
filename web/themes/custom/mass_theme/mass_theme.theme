@@ -233,7 +233,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
 
   foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
     if ($paragraph->getType() == 'search_band') {
-      // if we have a search band, lets our node object and node template know.
+      // If we have a search band, lets our node object and node template know.
       $variables['search_band'] = TRUE;
     }
   }
@@ -378,13 +378,13 @@ function mass_theme_preprocess_node_topic(&$variables) {
 
         // If this is a link to a node, check for an external_url.
         // @todo: find a better way to test for node links.
-        if (Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
+        if (Unicode::strpos($link->uri, 'entity:node/') !== FALSE) {
           $nid = explode('/', $link->uri)[1];
           $linked_node = Node::load($nid);
           // Check that we have a node and that it has an external_url field.
           if ($linked_node && $linked_node->hasField('field_external_url')) {
             $external_link = $linked_node->get('field_external_url')->uri;
-            //  Check the external url field value is not empty.
+            // Check the external url field value is not empty.
             if (!empty($external_link)) {
               $link_path = $external_link;
             }
