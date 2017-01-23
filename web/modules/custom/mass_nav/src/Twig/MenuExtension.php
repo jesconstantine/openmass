@@ -12,14 +12,14 @@ class MenuExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return array(
-      new \Twig_SimpleFunction('render_menu', array($this, 'render_menu'), array('is_safe' => array('html'))),
+      new \Twig_SimpleFunction('render_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function render_menu($menu_name) {
+  public function renderMenu($menu_name) {
     $menu_tree = \Drupal::menuTree();
 
     // Build the typical default set of menu tree parameters.
