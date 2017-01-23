@@ -699,8 +699,8 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     $variables['relatedActions'] = $links;
   }
 
+
   if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
-    $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
     $groups = array();
     $order = array();
     $delta = 0;
@@ -857,7 +857,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       // Do we have fax numbers? If so, display them under one icon.
       if (!empty($fax_details) && $value == 'fax') {
         $groups[] = array(
-          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'icon'    => '@atoms/05-icons/svg-fax-icon.twig',
           'name'    => 'Fax',
           'items'   => $fax_details,
         );
