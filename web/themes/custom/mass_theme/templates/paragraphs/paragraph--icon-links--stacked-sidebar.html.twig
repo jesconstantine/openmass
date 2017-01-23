@@ -38,13 +38,5 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{# Delete the following lines when atom is created. Read below ... #}
-{% for item in icon_links.items %}
-  <pre>{{ item.icon ~ ' | ' ~ item.link.href ~ ' | ' ~ item.link.text }}</pre>
-{% endfor %}
 
-{#
-   Here we should call the icon-link atom.
-   @see https://jira.state.ma.us/browse/MGRP-300
-{% include "@atoms/04-headings/social_links.twig" %}
-#}
+{% include "@molecules/icon-links.twig" %}

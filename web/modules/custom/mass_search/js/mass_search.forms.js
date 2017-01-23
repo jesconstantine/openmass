@@ -25,7 +25,7 @@
      * - with english language
      * - with minimalist theme
      */
-    google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
+    google.load('search', '1', {language: 'en', nocss: true});
 
     /** setOnLoadCallback(callback, @BOOLEAN runOnDomLoad) */
     google.setOnLoadCallback(function () {
@@ -150,6 +150,20 @@
 
       // Customize "no results" message
       mobileSearchControl.setNoResultsString(noResultsString);
+
+
+      // Add classes to <form>.
+      var searchForm = document.querySelector('form.gsc-search-box');
+      if (searchForm !== null) {
+        searchForm.classList.add('ma__form');
+        searchForm.classList.add('js-header-search-form');
+      }
+      // Add classes to <input>.
+      var inputField = document.querySelector('input.gsc-input');
+      if (inputField !== null) {
+        inputField.classList.add('ma__header-search__input');
+        inputField.placeholder = 'What can we help you find?';
+      }
 
     }, true);
   }

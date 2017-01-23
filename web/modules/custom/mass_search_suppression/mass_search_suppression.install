@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for Mass Search Suppression module.
+ *
+ * Copyright 2017 Palantir.net, Inc.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function mass_search_suppression_uninstall() {
+  // Remove module config values from DB.
+  \Drupal::service('config.factory')->getEditable('mass_search_suppression.settings')->delete();
+}

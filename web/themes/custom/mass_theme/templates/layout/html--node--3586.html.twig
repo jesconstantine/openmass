@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/index-generated.css?1474397330" media="all"/>
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/base-theme-generated.css?1474397330" media="all"/>
+    <link rel="stylesheet" href="/themes/custom/mass_theme/css/pilot-generated.css?1474397330" media="all"/>
 
     <script src="/themes/custom/mass_theme/js/vendor/modernizr.js"></script>
 
@@ -76,7 +77,8 @@
                 </a>
             </div>
         </div>
-        <div class="ma__header__search js-header-search-menu" style="display:inline-block;">
+        {% if not search_header_suppression_flag %}
+          <div class="ma__header__search js-header-search-menu" style="display:inline-block;">
             <section class="ma__header-search">
               {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
               {# mobile-only faux search button that opens mobile menu on click #}
@@ -87,9 +89,11 @@
                 </svg>
               </button>
             </section>
-        </div>
+          </div>
+        {% endif %}
     </div>
-    <nav class="ma__header__nav">
+    <nav class="ma__header__nav" aria-labelledby="main_navigation">
+        <h2 id="main_navigation" class="visually-hidden">Main Navigation</h2>
         <div class="ma__header__button-container js-sticky-header">
             <button class="ma__header__back-button js-close-sub-nav"><span>Back</span></button>
             <button class="ma__header__menu-button js-header-menu-button">
@@ -104,38 +108,8 @@
             </div>
             <div class="ma__header__main-nav">
                 <section class="ma__main-nav">
-                    <ul class="ma__main-nav__items js-main-nav">
-                        <li class="ma__main-nav__item  has-subnav js-main-nav-toggle">
-                            <a class="ma__main-nav__top-link" href="#commonaction" title="Common Actions">Common Actions</a>
-                            <div class="ma__main-nav__subitems js-main-nav-content is-closed">
-                                <ul class="ma__main-nav__container">
-                                    <li class="ma__main-nav__subitem"><a href="#commonaction" class="ma__main-nav__link">Common
-                                            Actions</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="get-parking-pass-state-parks" class="ma__main-nav__link">Get a parking pass for state parks</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="buy-freshwater-fishing-license" class="ma__main-nav__link">Buy a freshwater fishing license</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="apply-nursing-license-new-graduate" class="ma__main-nav__link">Apply for a nursing license as a new graduate</a>
-                                    </li>
-                                    <li class="ma__main-nav__subitem"><a href="convert-out-state-nursing-license-reciprocity" class="ma__main-nav__link">Convert an out-of-state nursing license (reciprocity)</a>
-                                    </li>
-                                    <li class="ma__main-nav__subitem"><a href="register-your-business" class="ma__main-nav__link">Register your business</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="apply-masshealth-individual-or-family" class="ma__main-nav__link">Apply for MassHealth as an individual or a family</a></li>
-                                    <li class="ma__main-nav__subitem"><a href="file-unemployment" class="ma__main-nav__link">File for unemployment</a>
-                                    </li>
-                                    <li class="ma__main-nav__subitem"><a href="apply-snap-benefits-food-stamps" class="ma__main-nav__link">Apply for SNAP benefits (food stamps)</a>
-                                    </li>
-                                    <li class="ma__main-nav__subitem"><a href="get-child-support-order" class="ma__main-nav__link">Get a child support order</a>
-                                    </li>
-                                    <li class="ma__main-nav__subitem"><a href="respond-jury-duty-summons" class="ma__main-nav__link">Respond to a jury duty summons</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="ma__main-nav__item  js-main-nav-top-link">
-                            <a class="ma__main-nav__top-link" href="#feedback" title="Feedback">Feedback</a>
-                        </li>
-                    </ul>
+                  {{ render_menu('main') }}
                 </section>
-
             </div>
             <div class="ma__header__utility-nav">
                 <section class="ma__utility-nav js-util-nav">
@@ -874,7 +848,7 @@
                     {% include "@mass_theme/includes/molecules-social-links.html.twig" %}
             </div>
             <div class="ma__footer__copyright">
-                <p><b>&copy; 2016 Commonwealth of Massachusetts.</b></p>
+                <p><b>&copy; 2017 Commonwealth of Massachusetts.</b></p>
                 <p>Mass.gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</p>
                 <a href="/privacypolicy">Mass.gov Privacy Policy</a>
                 {#
