@@ -3,6 +3,7 @@ admin_overrides:
   css:
     theme:
       overrides/css/action-node-form.css: {}
+      overrides/css/images.css: {}
   js:
     # We need to hardcode the key here. If you're wanting to make changes to
     # this file, please see the template file at:
