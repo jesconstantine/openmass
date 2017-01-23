@@ -1042,6 +1042,66 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * Process 3 up text.
+ */
+function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $rows = $paragraph->get('field_3_up_rows');
+  $list = array();
+
+  if ($rows->count() > 0) {
+    $items = $rows->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    $list = [];
+    foreach ($items as $id => $item) {
+      $field_heading = $item->get('field_heading')->first()->getValue();
+      $field_content = $item->get('field_content')->first()->view('full');
+
+      // Break out our paragraphs and render the field - it might have an image.
+      $paragraph_tags = explode("<p>", str_replace("</p>", "", render($field_content)));
+
+      // Reset our array.
+      $paragraphs = [];
+      foreach ($paragraph_tags as $paragraph_tag) {
+        if (!empty($paragraph_tag)) {
+          $paragraphs[] = array(
+            'path' => '@atoms/11-text/paragraph.twig',
+            'data' => array(
+              'paragraph' => array(
+                'text' => trim(str_replace("<p>", "", $paragraph_tag)),
+              ),
+            ),
+          );
+        }
+      }
+
+      $list['column' . ++$id] = array(
+        array(
+          'path' => '@atoms/04-headings/column-heading.twig',
+          'data' => array(
+            'columnHeading' => array(
+              'text' => $field_heading['value'],
+            ),
+          ),
+        ),
+        array(
+          'path' => '@organisms/by-author/rich-text.twig',
+          'data' => array(
+            'rteElements' => $paragraphs,
+          ),
+        ),
+      );
+    }
+  }
+
+  $variables['splitColumns'] = $list;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
  * Break out url pieces for callout link paragraphs.
  */
 function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
