@@ -14,9 +14,6 @@
     <import file="vendor/palantirnet/the-build/tasks/code_review/phplint.xml" />
     <import file="vendor/palantirnet/the-build/tasks/code_review/phpmd.xml" />
 
-    <!-- Include theme.xml -->
-    <import file="build/theme.xml" />
-
     <!-- Custom targets for this project. -->
     <import file="build/mass.xml" />
     <import file="build/mass-build.xml" />
@@ -25,8 +22,6 @@
     <target name="build" description="Build the application.">
         <phingcall target="drupal-build" />
         <phingcall target="mass-install-libraries" />
-
-        <phingcall target="theme-install" />
     </target>
 
 

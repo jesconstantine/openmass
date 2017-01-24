@@ -135,3 +135,16 @@ Then `vagrant up` may have failed half way through. When this happens, the `vagr
 ### Could not build, phing error
 
 If you try to build the site and get a phing saying the Drupal site could not be built, but you were recently building it successfully, you may need to run `composer install`. If you switch branches and the new branch has a composer dependency that you don't have installed on your branch, phing complains loudly.
+
+### Windows troubleshooting
+
+- All host machine command line steps should be done from an elevated (admin) prompt.
+- Make sure that you have run `git config --local core.symlinks true` to enable symlinks when
+you checkout the repository.
+- If the symlinks from the theme to the patternlab assets are not working after running composer, 
+delete the non-working symlinks and git checkout again.
+- You will find it helpful to copy web/.gitattributes to the root of the project.  [@todo - add this to the automation]
+- The Vagrantfile will required edits to run on Windows: 
+   - Run the ansible_local provisioner instead of ansible. 
+   - Do not disable the vagrant directory.
+   - Depending on whether your computer has ntfs support, you may need to change the settings for the share.
