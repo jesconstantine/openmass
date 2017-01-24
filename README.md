@@ -25,7 +25,6 @@ Before you can install the site, you'll need to make sure that you have access t
 1. Place the resulting directory within this project's "artifacts" directory (create it if it doesn't exist)
 1. You should now have your Acquia Cloud credentials available at "${build.dir}/artifacts/acquiacloud" (which will have two subdirectories: .acquia and .drush)
 
-*If you don't have access to Acquia and would like to install with a clean database, you can call `phing clean-install` instead of `install` anywhere phing would try to do an install for you. If so, you must run the `migrate` task as well. *
 
 ## Getting Started
 
@@ -38,7 +37,7 @@ Before you can install the site, you'll need to make sure that you have access t
   ```
     vagrant ssh
     cd /var/www/mass.local
-    vendor/bin/phing build install migrate
+    vendor/bin/phing build install
   ```
 
 3. Visit [mass.local](http://mass.local) in your browser of choice.
@@ -104,7 +103,7 @@ Sometimes it is appropriate to configure specific Drupal variables in Drupal's `
 
 ### Adding or altering configuration
 
-Many features will require edits to site configuration, such as adding new content types or altering the configuration of fields.  When you commit your changes, you must be careful only to add or edit the configuration you intend to alter.  This is made difficult by the fact that not all of the site's configuration is stored in code. 
+Many features will require edits to site configuration, such as adding new content types or altering the configuration of fields.  When you commit your changes, you must be careful only to add or edit the configuration you intend to alter.  This is made difficult by the fact that not all of the site's configuration is stored in code.
 * After performing a `drush config-export` NEVER perform a `git add .` or a `git add conf/drupal*`
 * All changes to config yml files should be added carefully and individually.
 * Suggested approach to make this process a bit easier:

@@ -166,10 +166,6 @@ ${modified_files}
             <property name="build.env" value="vagrant" />
         </phing>
 
-        <phing target="migrate" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
-            <property name="build.env" value="vagrant" />
-        </phing>
-
         <!-- Dump the database; sets the Drupal admin password from above. -->
         <phing target="drupal-dump-db" phingfile="${build.dir}/build.xml" inheritAll="false" dir="${build.dir}" haltonfailure="true">
             <property name="build.env" value="vagrant" />
