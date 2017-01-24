@@ -698,8 +698,6 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     // Send array to twig.
     $variables['relatedActions'] = $links;
   }
-
-
   if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
     $groups = array();
     $order = array();
