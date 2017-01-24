@@ -41,4 +41,5 @@ Feature: Topic Content type
     And I am viewing a "topic" content:
       | title           | Test topic           |
       | field_icon_term | Behat Test: Building |
-    Then I should see the link "Reorder Callout Cards"
+    Then I should see the link "Reorder Subtopics"
+

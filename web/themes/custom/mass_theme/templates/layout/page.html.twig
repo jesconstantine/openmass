@@ -68,19 +68,17 @@
       </div>
       {# end "atoms-site-logo" #}
     </div>
-    {% if not search_header_suppression_flag %}
-      <div class="ma__header__search js-header-search-menu">
-        <section class="ma__header-search">
-          {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
-          <button class="ma__button-search">
-            <span>Search</span>
-            <svg role="img" class="ma__button-search__icon">
-              <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
-            </svg>
-          </button>
-        </section>
-      </div>
-    {% endif %}
+    <div class="ma__header__search js-header-search-menu">
+      <section class="ma__header-search">
+        {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
+        <button class="ma__button-search">
+          <span>Search</span>
+          <svg role="img" class="ma__button-search__icon">
+            <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
+          </svg>
+        </button>
+      </section>
+    </div>
   </div>
   {{ page.header }}
 </header>

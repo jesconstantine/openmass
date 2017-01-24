@@ -17,9 +17,23 @@
         <resolvepath propertyname="vendor_path" file="vendor" />
         <resolvepath propertyname="libraries_path" file="${drupal.root}/libraries" />
 
-        <includeresource mode="copy" source="${vendor_path}/desandro/imagesloaded" dest="${libraries_path}/imagesloaded" />
-        <includeresource mode="copy" source="${vendor_path}/desandro/masonry" dest="${libraries_path}/masonry" />
-        <includeresource mode="copy" source="${vendor_path}/enyo/dropzone" dest="${libraries_path}/dropzone" />
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/desandro/imagesloaded" />
+            <property name="resource_dest" value="${libraries_path}/imagesloaded" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/desandro/masonry" />
+            <property name="resource_dest" value="${libraries_path}/masonry" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${vendor_path}/enyo/dropzone" />
+            <property name="resource_dest" value="${libraries_path}/dropzone" />
+        </phing>
     </target>
 
 </project>

@@ -149,7 +149,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     $sections[] = array(
       'catIcon' => array(
         'icon' => $icon_path,
-        'small' => 'true',
+        'small' => 'TRUE',
       ),
       'title' => array(
         'href' => 'node/' . $row->_entity->get('nid')->value,
@@ -238,13 +238,6 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   $image_field = $node->get('field_photo');
   $field_related_content = $node->get('field_related_content');
 
-  foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
-    if ($paragraph->getType() == 'search_band') {
-      // If we have a search band, lets our node object and node template know.
-      $variables['search_band'] = TRUE;
-    }
-  }
-
   if ($image_field->count() > 0) {
     $values = $image_field->getValue();
     $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
@@ -264,7 +257,6 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
-          'image' => mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo'),
         ),
       );
     }
@@ -385,13 +377,13 @@ function mass_theme_preprocess_node_topic(&$variables) {
 
         // If this is a link to a node, check for an external_url.
         // @todo: find a better way to test for node links.
-        if (Unicode::strpos($link->uri, 'entity:node/') !== FALSE) {
+        if (Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
           $nid = explode('/', $link->uri)[1];
           $linked_node = Node::load($nid);
           // Check that we have a node and that it has an external_url field.
           if ($linked_node && $linked_node->hasField('field_external_url')) {
             $external_link = $linked_node->get('field_external_url')->uri;
-            // Check the external url field value is not empty.
+            //  Check the external url field value is not empty.
             if (!empty($external_link)) {
               $link_path = $external_link;
             }
@@ -530,25 +522,6 @@ function mass_theme_preprocess_html(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_page().
- *
- * Remove page search if we're using our search band in stacked layout.
- */
-function mass_theme_preprocess_page(&$variables) {
-  if ($node = \Drupal::routeMatch()->getParameter('node')) {
-    $node = $variables['node'];
-    // If we're using search band, lets tell page twig about it.
-    if ($node->hasField('field_bands') && $node->get('field_bands')->count() > 0) {
-      foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
-        if ($paragraph->getType() == 'search_band') {
-          $variables['hideHeaderSearch'] = TRUE;
-        }
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_field().
  */
 function mass_theme_preprocess_field(&$variables, $hook) {
@@ -625,7 +598,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $subhead = $build;
       }
       // Check paragraph type for stacked band.
-      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band' || $paragraph->getType() == 'action_set' || $paragraph->getType() == 'search_band') {
+      if ($paragraph->getType() == '1up_stacked_band' || $paragraph->getType() == '2up_stacked_band') {
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
         $band = $view_builder->view($paragraph, 'stacked');
         $bands[$delta][] = $subhead;
@@ -633,12 +606,6 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         // Since we've entered our subhead, clear it out.
         $subhead = [];
       }
-
-      // If we have a search band, lets hide jump links.
-      if ($paragraph->getType() == 'search_band') {
-        $variables['search_band'] = TRUE;
-      }
-
       $delta++;
     }
     $variables['bands'] = $bands;
@@ -979,138 +946,6 @@ function mass_theme_preprocess_paragraph(&$variables) {
  *
  * Break out url pieces for callout link paragraphs.
  */
-function mass_theme_preprocess_paragraph__action_set(&$variables) {
-  $paragraph = $variables['paragraph'];
-
-  $field_featured_items = $paragraph->get('field_featured_content');
-  $featured_links = array();
-  $image_url = '';
-
-  // Get field labels for twig.
-  $variables['featuredHeading'] = $field_featured_items->getFieldDefinition()->getLabel();
-
-  // Get Featured links.
-  if ($field_featured_items->count() > 0) {
-    $featured_items = $field_featured_items->referencedEntities();
-  }
-
-  if (!empty($featured_items)) {
-    foreach ($featured_items as $id => $item) {
-      if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->uri;
-      }
-      if ($item->hasField('field_photo')) {
-        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
-      }
-      $featured_links[] = array(
-        'image' => $image_url ? $image_url : '',
-        'text'  => $item->getTitle(),
-        'type'  => $external_url ? 'external' : 'internal',
-        'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
-      );
-    }
-    $variables['featuredLinks'] = $featured_links;
-  }
-
-  $field_link_items = $paragraph->get('field_related_content');
-  $links = array();
-
-  $variables['generalHeading'] = $field_link_items->getFieldDefinition()->getLabel();
-
-  // Get All Actions & Guides links.
-  if ($field_link_items->count() > 0) {
-    $link_items = $field_link_items->referencedEntities();
-  }
-
-  if (!empty($link_items)) {
-    foreach ($link_items as $id => $item) {
-      if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->uri;
-      }
-      if ($item->hasField('field_photo')) {
-        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
-      }
-      $links[] = array(
-        'image' => $image_url ? $image_url : '',
-        'text'  => $item->getTitle(),
-        'type'  => $external_url ? 'external' : 'internal',
-        'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
-      );
-    }
-    $variables['links'] = $links;
-  }
-
-  // Get our background image.
-  if ($paragraph->get('field_image')->entity) {
-    $variables['bgWide'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->get('field_image')->entity->getFileUri());
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- * Process 3 up text.
- */
-function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $rows = $paragraph->get('field_3_up_rows');
-  $list = array();
-
-  if ($rows->count() > 0) {
-    $items = $rows->referencedEntities();
-  }
-
-  if (!empty($items)) {
-    $list = [];
-    foreach ($items as $id => $item) {
-      $field_heading = $item->get('field_heading')->first()->getValue();
-      $field_content = $item->get('field_content')->first()->view('full');
-
-      // Break out our paragraphs and render the field - it might have an image.
-      $paragraph_tags = explode("<p>", str_replace("</p>", "", render($field_content)));
-
-      // Reset our array.
-      $paragraphs = [];
-      foreach ($paragraph_tags as $paragraph_tag) {
-        if (!empty($paragraph_tag)) {
-          $paragraphs[] = array(
-            'path' => '@atoms/11-text/paragraph.twig',
-            'data' => array(
-              'paragraph' => array(
-                'text' => trim(str_replace("<p>", "", $paragraph_tag)),
-              ),
-            ),
-          );
-        }
-      }
-
-      $list['column' . ++$id] = array(
-        array(
-          'path' => '@atoms/04-headings/column-heading.twig',
-          'data' => array(
-            'columnHeading' => array(
-              'text' => $field_heading['value'],
-            ),
-          ),
-        ),
-        array(
-          'path' => '@organisms/by-author/rich-text.twig',
-          'data' => array(
-            'rteElements' => $paragraphs,
-          ),
-        ),
-      );
-    }
-  }
-
-  $variables['splitColumns'] = $list;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- * Break out url pieces for callout link paragraphs.
- */
 function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
   $paragraph = $variables['paragraph'];
   $field_action_step_numbered_items = $paragraph->get('field_action_step_numbered_items');
@@ -1206,39 +1041,6 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
     'href' => $url->getUrl()->toString(),
     'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
   ];
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- * Deliver a image style uri to our search band twig template.
- */
-function mass_theme_preprocess_paragraph__search_band(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
-
-  // Grab node title incase we don't have a title in band.
-  $node = \Drupal::request()->attributes->get('node');
-  if ($node) {
-    $variables['title'] = $node->getTitle();
-    $variables['intro'] = $node->field_lede->value;
-  }
-
-  $items = [];
-  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
-    $popular_searches = $variables['paragraph']->get('field_link');
-
-    // Roll up our popular searches links for search band.
-    foreach ($popular_searches as $link) {
-      $items[] = [
-        'href' => $link->getUrl()->toString(),
-        'text' => $link->getValue()['title'],
-        'chevron' => 'true',
-      ];
-    }
-  }
-
-  $variables['items'] = $items;
 }
 
 /**
@@ -1756,5 +1558,5 @@ function mass_theme_preprocess_paragraph__icon_links(&$variables) {
     }
   }
 
-  $variables['iconLinks']['items'] = $items;
+  $variables['icon_links']['items'] = $items;
 }

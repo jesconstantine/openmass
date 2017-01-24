@@ -7,13 +7,12 @@ dependencies:
     - field.storage.node.field_lede
     - field.storage.node.field_search
     - node.type.action
-    - node.type.stacked_layout
   module:
     - node
     - text
     - user
 id: subtopics_all_actions
-label: 'Subtopic Actions and Guides'
+label: 'Subtopics all actions'
 module: views
 description: ''
 tag: ''
@@ -406,43 +405,12 @@ display:
           id: type
           table: node_field_data
           field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
           value:
             action: action
-            stacked_layout: stacked_layout
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          group: 1
         field_featured_content_target_id:
           id: field_featured_content_target_id
           table: node__field_featured_content
@@ -489,7 +457,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: allwords
+          operator: contains
           value: ''
           group: 1
           exposed: true
@@ -511,7 +479,6 @@ display:
               content_editor: '0'
               developer: '0'
               administrator: '0'
-              emergency_alert_publisher: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -637,43 +604,12 @@ display:
           id: type
           table: node_field_data
           field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
           value:
             action: action
-            stacked_layout: stacked_layout
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          group: 1
       defaults:
         filters: false
         filter_groups: false
@@ -731,7 +667,7 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: 'All Actions & Guides'
+    display_title: Block
     position: 4
     display_options:
       display_extenders: {  }
@@ -1055,7 +991,6 @@ display:
           plugin_id: field
       defaults:
         fields: false
-      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

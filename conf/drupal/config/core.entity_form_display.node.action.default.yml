@@ -177,7 +177,7 @@ content:
     settings:
       title: Molecule
       title_plural: Molecules
-      edit_mode: open
+      edit_mode: preview
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }

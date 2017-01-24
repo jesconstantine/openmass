@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.paragraph.field_main
     - paragraphs.paragraphs_type.1up_stacked_band
-    - paragraphs.paragraphs_type.3_up_content
     - paragraphs.paragraphs_type.action_step
     - paragraphs.paragraphs_type.action_step_numbered
     - paragraphs.paragraphs_type.action_step_numbered_list
@@ -41,7 +40,6 @@ settings:
       callout_alert: callout_alert
       callout_link: callout_link
       completion_time: completion_time
-      3_up_content: 3_up_content
       file_download: file_download
       iframe: iframe
       map: map
@@ -83,36 +81,27 @@ settings:
       callout_link:
         enabled: true
         weight: 42
-      3_up_text:
-        weight: 43
-        enabled: false
       completion_time:
         enabled: true
         weight: 43
       contact:
         weight: 44
         enabled: false
-      3_up_content:
-        enabled: true
-        weight: 44
       contact_group:
         weight: 45
-        enabled: false
-      contact_info:
-        weight: 46
         enabled: false
       activities:
         weight: 46
         enabled: false
-      action_set:
-        weight: 47
-        enabled: false
-      activity:
-        weight: 47
+      contact_info:
+        weight: 46
         enabled: false
       file_download:
         enabled: true
         weight: 47
+      activity:
+        weight: 47
+        enabled: false
       full_bleed:
         weight: 48
         enabled: false
@@ -134,10 +123,10 @@ settings:
       pull_quote:
         enabled: true
         weight: 54
-      quick_action:
+      emergency_alert:
         weight: 55
         enabled: false
-      emergency_alert:
+      quick_action:
         weight: 55
         enabled: false
       related_link:
@@ -170,7 +159,4 @@ settings:
       related_content:
         enabled: true
         weight: 67
-      search_band:
-        weight: 75
-        enabled: false
 field_type: entity_reference_revisions

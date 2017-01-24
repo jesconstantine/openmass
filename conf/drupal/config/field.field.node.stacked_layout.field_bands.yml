@@ -7,8 +7,6 @@ dependencies:
     - node.type.stacked_layout
     - paragraphs.paragraphs_type.1up_stacked_band
     - paragraphs.paragraphs_type.2up_stacked_band
-    - paragraphs.paragraphs_type.action_set
-    - paragraphs.paragraphs_type.search_band
     - paragraphs.paragraphs_type.subhead
   module:
     - entity_reference_revisions
@@ -28,9 +26,7 @@ settings:
     target_bundles:
       1up_stacked_band: 1up_stacked_band
       2up_stacked_band: 2up_stacked_band
-      action_set: action_set
       subhead: subhead
-      search_band: search_band
     target_bundles_drag_drop:
       action_address:
         weight: 24
@@ -56,13 +52,13 @@ settings:
       contact:
         weight: 31
         enabled: false
-      contact_group:
+      completion_time:
         weight: 32
         enabled: false
       1up_stacked_band:
         enabled: true
         weight: 32
-      completion_time:
+      contact_group:
         weight: 32
         enabled: false
       2up_stacked_band:
@@ -89,16 +85,16 @@ settings:
       map:
         weight: 39
         enabled: false
-      callout_alert:
-        weight: 40
-        enabled: false
       quick_action:
         weight: 40
         enabled: false
-      related_link:
-        weight: 41
+      callout_alert:
+        weight: 40
         enabled: false
       callout_button:
+        weight: 41
+        enabled: false
+      related_link:
         weight: 41
         enabled: false
       rich_text:
@@ -107,9 +103,6 @@ settings:
       slideshow:
         weight: 43
         enabled: false
-      action_set:
-        enabled: true
-        weight: 44
       stat:
         weight: 44
         enabled: false
@@ -119,40 +112,13 @@ settings:
       video:
         weight: 46
         enabled: false
-      activities:
-        weight: 46
-        enabled: false
-      activity:
-        weight: 47
-        enabled: false
       stacked_band:
         weight: 47
-        enabled: false
-      activities:
-        weight: 48
-        enabled: false
-      activity:
-        weight: 49
         enabled: false
       hours:
         weight: 49
         enabled: false
       pull_quote:
         weight: 54
-        enabled: false
-      emergency_alert:
-        weight: 55
-        enabled: false
-      icon_link:
-        weight: 60
-        enabled: false
-      icon_links:
-        weight: 61
-        enabled: false
-      search_band:
-        enabled: true
-        weight: 69
-      related_content:
-        weight: 70
         enabled: false
 field_type: entity_reference_revisions

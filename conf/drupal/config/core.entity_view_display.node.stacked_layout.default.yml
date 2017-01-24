@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
@@ -14,14 +13,11 @@ dependencies:
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
-    - field.field.node.stacked_layout.field_topic_callout_links
-    - field.field.node.stacked_layout.field_topic_parent
     - field.field.node.stacked_layout.field_type_term
     - node.type.stacked_layout
   module:
     - entity_reference_revisions
     - image
-    - link
     - metatag
     - user
 id: node.stacked_layout.default
@@ -45,13 +41,6 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
-  field_action_parent:
-    weight: 108
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   field_bands:
     type: entity_reference_revisions_entity_view
     weight: 5
@@ -97,24 +86,6 @@ content:
     type: image
   field_related_content:
     weight: 6
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_topic_callout_links:
-    weight: 112
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-  field_topic_parent:
-    weight: 111
     label: above
     settings:
       link: true

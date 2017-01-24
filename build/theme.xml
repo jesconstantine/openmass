@@ -16,24 +16,114 @@
 
     <target name="theme-install">
         <phingcall target="theme-artifacts-install">
+            <property name="css_source" value="${theme.artifact.root_dir}/css" />
+            <property name="css_dest" value="${custom_theme}/css" />
 
+            <property name="js_source" value="${theme.artifact.root_dir}/js" />
+            <property name="js_dest" value="${custom_theme}/js" />
+
+            <property name="imgs_source" value="${theme.artifact.root_dir}/images" />
+            <property name="imgs_dest" value="${custom_theme}/images" />
+
+            <property name="fonts_source" value="${theme.artifact.root_dir}/fonts" />
+            <property name="fonts_dest" value="${custom_theme}/fonts" />
+
+            <!-- Configure our base -->
+            <property name="twig_base_source" value="${theme.twig.artifact.root_dir}/00-base" />
+            <property name="twig_base_dest" value="${custom_theme}/patterns/base" />
+
+            <!-- Configure our atoms -->
+            <property name="twig_atom_source" value="${theme.twig.artifact.root_dir}/01-atoms" />
+            <property name="twig_atom_dest" value="${custom_theme}/patterns/atoms" />
+
+            <!-- Configure our molecules -->
+            <property name="twig_molecules_source" value="${theme.twig.artifact.root_dir}/02-molecules" />
+            <property name="twig_molecules_dest" value="${custom_theme}/patterns/molecules" />
+
+            <!-- Configure our organisms -->
+            <property name="twig_organisms_source" value="${theme.twig.artifact.root_dir}/03-organisms" />
+            <property name="twig_organisms_dest" value="${custom_theme}/patterns/organisms" />
+
+            <!-- Configure our templates -->
+            <property name="twig_templates_source" value="${theme.twig.artifact.root_dir}/04-templates" />
+            <property name="twig_templates_dest" value="${custom_theme}/patterns/templates" />
+
+            <!-- Configure our pages -->
+            <property name="twig_pages_source" value="${theme.twig.artifact.root_dir}/05-pages" />
+            <property name="twig_pages_dest" value="${custom_theme}/patterns/pages" />
+
+            <!-- Configure our pilot -->
+            <property name="twig_pilot_source" value="${theme.twig.artifact.root_dir}/06-pilot" />
+            <property name="twig_pilot_dest" value="${custom_theme}/patterns/pilot" />
         </phingcall>
     </target>
 
     <target name="theme-artifacts-install">
-        <includeresource mode="copy" source="${theme.artifact.root_dir}/css" dest="${custom_theme}/css" />
-        <includeresource mode="copy" source="${theme.artifact.root_dir}/js" dest="${custom_theme}/js" />
-        <includeresource mode="copy" source="${theme.artifact.root_dir}/images" dest="${custom_theme}/images" />
-        <includeresource mode="copy" source="${theme.artifact.root_dir}/fonts" dest="${custom_theme}/fonts" />
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${css_source}" />
+            <property name="resource_dest" value="${css_dest}" />
+        </phing>
 
-        <mkdir dir="${custom_theme}/patterns" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/00-base" dest="${custom_theme}/patterns/base" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/01-atoms" dest="${custom_theme}/patterns/atoms" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/02-molecules" dest="${custom_theme}/patterns/molecules" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/03-organisms" dest="${custom_theme}/patterns/organisms" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/04-templates" dest="${custom_theme}/patterns/templates" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/05-pages" dest="${custom_theme}/patterns/pages" />
-        <includeresource mode="copy" source="${theme.twig.artifact.root_dir.relative}/06-pilot" dest="${custom_theme}/patterns/pilot" />
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${js_source}" />
+            <property name="resource_dest" value="${js_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${imgs_source}" />
+            <property name="resource_dest" value="${imgs_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${fonts_source}" />
+            <property name="resource_dest" value="${fonts_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_base_source}" />
+            <property name="resource_dest" value="${twig_base_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_atom_source}" />
+            <property name="resource_dest" value="${twig_atom_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_molecules_source}" />
+            <property name="resource_dest" value="${twig_molecules_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_organisms_source}" />
+            <property name="resource_dest" value="${twig_organisms_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_templates_source}" />
+            <property name="resource_dest" value="${twig_templates_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_pages_source}" />
+            <property name="resource_dest" value="${twig_pages_dest}" />
+        </phing>
+
+        <phing phingfile="${phing.dir.boilerplate}/lib/artifacts.xml" target="include-resource" inheritAll="false" dir=".">
+            <property name="artifact_mode" value="${build.artifact_mode}" />
+            <property name="resource_source" value="${twig_pilot_source}" />
+            <property name="resource_dest" value="${twig_pilot_dest}" />
+        </phing>
     </target>
 
 </project>

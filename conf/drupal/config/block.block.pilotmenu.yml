@@ -1,6 +1,6 @@
 uuid: 77503b28-a1a8-4276-bbfb-e76d75f313f2
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.pilot-menu
@@ -10,8 +10,8 @@ dependencies:
     - mass_theme
 id: pilotmenu
 theme: mass_theme
-region: '-1'
-weight: -4
+region: header
+weight: -1
 provider: null
 plugin: 'system_menu_block:pilot-menu'
 settings:

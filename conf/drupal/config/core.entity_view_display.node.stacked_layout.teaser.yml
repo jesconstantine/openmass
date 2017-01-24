@@ -4,45 +4,22 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.stacked_layout.field_action_banner
-    - field.field.node.stacked_layout.field_action_header
-    - field.field.node.stacked_layout.field_bands
-    - field.field.node.stacked_layout.field_funnel_endpoint_term
-    - field.field.node.stacked_layout.field_header_cta
-    - field.field.node.stacked_layout.field_label
-    - field.field.node.stacked_layout.field_lede
-    - field.field.node.stacked_layout.field_metatags
-    - field.field.node.stacked_layout.field_photo
-    - field.field.node.stacked_layout.field_related_content
-    - field.field.node.stacked_layout.field_topic_callout_links
-    - field.field.node.stacked_layout.field_topic_parent
-    - field.field.node.stacked_layout.field_type_term
     - node.type.stacked_layout
   module:
-    - link
     - user
 id: node.stacked_layout.teaser
 targetEntityType: node
 bundle: stacked_layout
 mode: teaser
 content:
-  field_topic_callout_links:
-    type: link
-    weight: 0
-    label: hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
+  links:
+    weight: 100
+  workbench_moderation_control:
+    weight: -20
 hidden:
   field_action_banner: true
   field_action_header: true
-  field_action_parent: true
   field_bands: true
-  field_funnel_endpoint_term: true
   field_header_cta: true
   field_label: true
   field_lede: true
@@ -50,7 +27,3 @@ hidden:
   field_photo: true
   field_related_content: true
   field_related_guides: true
-  field_topic_parent: true
-  field_type_term: true
-  links: true
-  workbench_moderation_control: true
