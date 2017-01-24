@@ -38,28 +38,29 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<div class="multi-row-content">
-{% set links = [] %}
-{% for key,value in subheads %}
-  {%
-    set link = [{
-      'text': value,
-      'href': key,
-    }]
-  %}
-  {% set links = links|merge(link) %}
-{% endfor %}
-{%
-  set jumpLinks = {
-    'title': 'In this guide'|t,
-    'links': links,
-  }
-%}
-{% include '@organisms/by-template/jump-links.twig' %}
-
+<div class="stacked-row-content">
+  {% if search_band == false %}
+    {% set links = [] %}
+    {% for key,value in subheads %}
+      {%
+        set link = [{
+          'text': value,
+          'href': key,
+        }]
+      %}
+      {% set links = links|merge(link) %}
+    {% endfor %}
+    {%
+      set jumpLinks = {
+        'title': 'In this guide'|t,
+        'links': links,
+      }
+    %}
+    {% include '@organisms/by-template/jump-links.twig' %}
+  {% endif %}
 {# Render band #}
 {% for band in bands %}
-  <section class="ma__multi-row-section">
+  <section class="ma__stacked-row-section">
     {{ band }}
   </section>
 {% endfor %}

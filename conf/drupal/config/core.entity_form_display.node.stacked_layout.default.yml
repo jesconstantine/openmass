@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.browse_files_modal
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
+    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_bands
     - field.field.node.stacked_layout.field_funnel_endpoint_term
     - field.field.node.stacked_layout.field_header_cta
@@ -14,11 +15,14 @@ dependencies:
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
+    - field.field.node.stacked_layout.field_topic_callout_links
+    - field.field.node.stacked_layout.field_topic_parent
     - field.field.node.stacked_layout.field_type_term
     - node.type.stacked_layout
   module:
     - entity_browser
     - field_group
+    - link
     - metatag
     - paragraphs
     - workbench_moderation
@@ -28,8 +32,9 @@ third_party_settings:
       children:
         - group_primary_content
         - group_bands
-        - group_extended_header
         - group_meta_info
+        - group_extended_header
+        - group_org_landing_page
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -45,6 +50,8 @@ third_party_settings:
         - field_label
         - field_lede
         - field_photo
+        - field_related_content
+        - field_action_parent
       parent_name: group_node_edit_form
       weight: 108
       label: 'Primary Content'
@@ -75,7 +82,7 @@ third_party_settings:
         - field_action_banner
         - field_header_cta
       parent_name: group_node_edit_form
-      weight: 110
+      weight: 111
       label: 'Extended Header'
       format_type: tab
       format_settings:
@@ -98,6 +105,20 @@ third_party_settings:
         description: ''
         required_fields: false
       label: 'Meta Info'
+    group_org_landing_page:
+      children:
+        - field_topic_parent
+        - field_topic_callout_links
+      parent_name: group_node_edit_form
+      weight: 112
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Org Landing Page'
 id: node.stacked_layout.default
 targetEntityType: node
 bundle: stacked_layout
@@ -123,6 +144,14 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     type: entity_reference_paragraphs
+  field_action_parent:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_bands:
     type: entity_reference_paragraphs
     weight: 11
@@ -180,7 +209,22 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_related_content:
-    weight: 110
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_topic_callout_links:
+    weight: 116
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_topic_parent:
+    weight: 115
     settings:
       match_operator: CONTAINS
       size: 60

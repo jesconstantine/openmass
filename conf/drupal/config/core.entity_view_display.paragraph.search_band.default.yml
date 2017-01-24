@@ -1,0 +1,71 @@
+uuid: 25afa994-5df6-4a06-9d78-e0ed6e0502a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.search_band.field_caption
+    - field.field.paragraph.search_band.field_description
+    - field.field.paragraph.search_band.field_image
+    - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_name
+    - field.field.paragraph.search_band.field_title
+    - image.style.hero800x400
+    - paragraphs.paragraphs_type.search_band
+  module:
+    - image
+    - link
+id: paragraph.search_band.default
+targetEntityType: paragraph
+bundle: search_band
+mode: default
+content:
+  field_caption:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_description:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: hero800x400
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_link:
+    weight: 5
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link_separate
+  field_name:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true
