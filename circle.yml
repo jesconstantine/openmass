@@ -7,6 +7,10 @@ machine:
     version: 0.12.17
   environment:
     PALANTIR_ENVIRONMENT: circle
+    PATH: ${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:$PATH
+    DB_DB: circle_test
+    DB_USER: ubuntu
+    DB_PASS:
 
 dependencies:
   pre:
@@ -19,6 +23,7 @@ dependencies:
     # Generate a GitHub token per project and add it to the CircleCI environment variables using the web UI.
     - composer config --global github-oauth.github.com $GITHUB_TOKEN
 
+
   override:
     - composer install --no-interaction
     - npm install -g eslint@v2.13.1
@@ -28,7 +33,10 @@ dependencies:
 
 test:
   pre:
-    - vendor/bin/phing build clean-install
+    - cd web && drush -yv sql-sync @massgov.prod @self
+    - cd web && drush -y rsync @massgov.prod:%files @self:%files
+    - cd web && drush -yv updatedb
+    - cd web && drush -yv --include=../vendor/previousnext/drush_cmi_tools cimy
 
   override:
-    - vendor/bin/phing test
+    - phing test
