@@ -74,6 +74,11 @@ table.gsc-search-box td.gsc-input {
   padding: 0;
   width: 14% !important;
 }
+
+.gsc-search-box {
+  position: relative;
+}
+
 .cse input.gsc-search-button, .gsc-search-box input.gsc-search-button {
   display: block;
   height: 46px;
@@ -84,7 +89,7 @@ table.gsc-search-box td.gsc-input {
   background: #ffffff url("/modules/custom/mass_search/images/search.svg") no-repeat 78px center;
   border: 2px solid #dcdcdc;
   color: #43956f;
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
   font-weight: 700;
   font-size: 14px;
   line-height: 1.15;
@@ -162,7 +167,7 @@ body.search-results-page .gstl_50.gssb_c[style] {
 
 .gsq_a span {
   color: #535353 !important;
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
   font-size: 18px;
   font-weight: 600;
 }
@@ -195,7 +200,7 @@ body.search-results-page .gstl_50.gssb_c[style] {
 /* autocomplete promotion link */
 .gsc-completion-title {
   color: #14558f !important;
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
   font-weight: 700 !important;
   font-size: 18px !important;
 }
@@ -220,13 +225,13 @@ body.search-results-page .gstl_50.gssb_c[style] {
 */
 .gsc-control-cse {
   /*font-family: Arial, sans-serif;*/
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
   border-color: #FFFFFF;
   background-color: #FFFFFF;
 }
 .gsc-control-cse .gsc-table-result {
   /*font-family: Arial, sans-serif;*/
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
 }
 
 .gsc-above-wrapper-area,
@@ -405,7 +410,7 @@ a.gsc-trailing-more-results:link {
   letter-spacing: .09em;
   padding-bottom: .5em;
   text-transform: uppercase;
-  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif"
+  font-family: "Texta",, "Helvetica", "Arial", "sans-serif"
 }
 
 /* promoted result container */
@@ -530,7 +535,7 @@ a.gsc-trailing-more-results:link {
   font-size: 1.5rem !important;
   line-height: 1.214287 !important;
   font-weight: 500 !important;
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
   color: #fff !important;
   border-bottom: 3px solid transparent;
   padding-top: 3px;
@@ -583,7 +588,7 @@ a.gsc-trailing-more-results:link {
   font-size: 1rem !important;
   line-height: 1.214287 !important;
   font-weight: 200 !important;
-  font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+  font-family: "Texta","Helvetica","Arial","sans-serif";
 }
 
 /* standard result container */
@@ -631,7 +636,7 @@ a.gsc-trailing-more-results:link {
     line-height: 1.3 !important;
     margin-bottom: .5em !important;
     font-weight: 700 !important;
-    font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+    font-family: "Texta","Helvetica","Arial","sans-serif";
     color: #14558f !important;
     border-bottom: 3px solid transparent;
     padding-top: 3px;
@@ -654,7 +659,7 @@ a.gsc-trailing-more-results:link {
 
 .cse .gs-result .gs-snippet, .gs-result .gs-snippet, .cse .gs-spelling-original, .gs-spelling-original {
   font-weight: 400;
-  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
   color: #535353 !important;
   font-size: 22px !important;
   font-size: 1.375rem !important;
@@ -664,14 +669,14 @@ a.gsc-trailing-more-results:link {
 .cse .gs-result.gs-promotion .gs-snippet, .gs-result.gs-promotion .gs-snippet, .cse .gs-spelling-original, .gs-spelling-original {
   color: #ffffff!important;
   font-weight: 200;
-  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
   font-size: 20px !important;
   line-height: 1.5 !important;
 }
 
 .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet, .gs-fileFormatType {
   color: #535353 !important;
-  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif";
+  font-family: "Texta",, "Helvetica", "Arial", "sans-serif";
 }
 
 div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
@@ -707,7 +712,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
   margin-top: 0 !important;
   color: #14558f !important;
   font-weight: 200;
-  font-family: "Texta", "Century Gothic", "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
   font-size: 20px !important;
   line-height: 1.5 !important;
   border-top: 2px solid rgb(220,220,220) !important;
@@ -840,7 +845,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
     right: 0;
     top: 0;
     font-weight: 700;
-    font-family: "Texta","Century Gothic","Helvetica","Arial","sans-serif";
+    font-family: "Texta","Helvetica","Arial","sans-serif";
     background: #ffffff url("/modules/custom/mass_search/images/search.svg") no-repeat 78px center;
     border-radius: 0;
     color: #43956f;
