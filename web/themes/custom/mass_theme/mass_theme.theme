@@ -995,6 +995,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($featured_items)) {
     foreach ($featured_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
         $external_url = $item->get('field_external_url')->uri;
       }
@@ -1002,7 +1003,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
       }
       $featured_links[] = array(
-        'image' => $image_url ? $image_url : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
@@ -1023,6 +1024,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($link_items)) {
     foreach ($link_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
         $external_url = $item->get('field_external_url')->uri;
       }
@@ -1030,7 +1032,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
       }
       $links[] = array(
-        'image' => $image_url ? $image_url : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
