@@ -1246,13 +1246,21 @@ function mass_theme_preprocess_paragraph__search_band(&$variables) {
  * Break out url pieces for callout button paragraphs.
  */
 function mass_theme_preprocess_paragraph__callout_button(&$variables) {
-  $url = $variables['paragraph']->get('field_link')->first();
 
-  $variables['buttonMinor'] = [
-    'text' => $url->getValue()['title'],
-    'link' => $url->getUrl()->toString(),
-    'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
-  ];
+  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
+    $links = $variables['paragraph']->get('field_link');
+    $items = [];
+
+    foreach ($links as $link) {
+      $items[] = [
+        'text' => $link->getValue()['title'],
+        'href' => $link->getUrl()->toString(),
+        'type' => (UrlHelper::isExternal($link->getUrl()->toString())) ? 'external' : 'internal',
+      ];
+    }
+
+    $variables['buttonMinors'] = $items;
+  }
 }
 
 /**
