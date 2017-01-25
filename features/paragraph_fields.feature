@@ -112,7 +112,7 @@ Feature: Paragraph type definitions
       | field-caption          | Textfield                 |
       | field-name             | Textfield                 |
       | field-description      | Textfield                 |
-      | field-link             | Link                      |
+      | field-link-six         | Link                      |
       | field-title            | Textfield                 |
 
   Scenario: Verify that the stat paragraph type has the correct field configuration
