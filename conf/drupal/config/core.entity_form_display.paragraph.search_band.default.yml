@@ -7,7 +7,7 @@ dependencies:
     - field.field.paragraph.search_band.field_caption
     - field.field.paragraph.search_band.field_description
     - field.field.paragraph.search_band.field_image
-    - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_link_six
     - field.field.paragraph.search_band.field_name
     - field.field.paragraph.search_band.field_title
     - paragraphs.paragraphs_type.search_band
@@ -46,8 +46,8 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_browser_file
-  field_link:
-    weight: 5
+  field_link_six:
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
