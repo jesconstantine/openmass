@@ -1064,9 +1064,7 @@ function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
   if (!empty($items)) {
     $list = [];
     foreach ($items as $id => $item) {
-      $field_heading = $item->get('field_heading')->first()->getValue();
-      $field_content = $item->get('field_content')->first()->view('full');
-
+      $field_content = $item->get('field_content')->view('full');
       // Break out our paragraphs and render the field - it might have an image.
       $paragraph_tags = explode("<p>", str_replace("</p>", "", render($field_content)));
 
@@ -1090,7 +1088,7 @@ function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
           'path' => '@atoms/04-headings/column-heading.twig',
           'data' => array(
             'columnHeading' => array(
-              'text' => $field_heading['value'],
+              'text' => $item->get('field_heading')->value,
             ),
           ),
         ),
