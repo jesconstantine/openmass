@@ -55,15 +55,15 @@
   {% elseif content.field_phone|render|trim is not empty %}
     <div>
       {% if content.field_label|render|trim is not empty %}
-        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+        <span class="ma__contact-group__label">{{ content.field_label|field_value }}:</span>
       {% endif %}
       {% if paragraph.field_type.value == 'phone' %}
-        <a href="tel:{{ content.field_phone|field_value }}" class="ma__header-contact__value ma__header-contact__value--phone">{{ content.field_phone|field_value }}</a>
+        <a href="tel:{{ content.field_phone|field_value }}" class="ma__content-link ma__content-link--phone">{{ content.field_phone|field_value }}</a>
       {% else %}
         {{ content.field_phone|field_value }}
       {% endif %}
       {% if content.field_caption|render|trim is not empty %}
-        <div class="ma__header-contact__details">
+        <div class="ma__contact-group__details">
           {{ content.field_caption|field_value }}
         </div>
       {% endif %}
@@ -71,11 +71,11 @@
   {% elseif content.field_email|render|trim is not empty %}
     <div>
       {% if content.field_label|render|trim is not empty %}
-        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+        <span class="ma__contact-group__label">{{ content.field_label|field_value }}:</span>
       {% endif %}
-      {{ content.field_email|field_value }}
+      <a href="mailto:{{ content.field_email|field_value }}" class="ma__content-link">{{ content.field_email|field_value }}</a>
       {% if content.field_caption|render|trim is not empty %}
-        <div class="ma__header-contact__details">
+        <div class="ma__contact-group__details">
           {{ content.field_caption|field_value }}
         </div>
       {% endif %}
@@ -83,11 +83,11 @@
   {% elseif content.field_link|render|trim is not empty %}
     <div>
       {% if content.field_label|render|trim is not empty %}
-        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+        <span class="ma__contact-group__label">{{ content.field_label|field_value }}:</span>
       {% endif %}
       {{ content.field_link|field_value }}
       {% if content.field_caption|render|trim is not empty %}
-        <div class="ma__header-contact__details">
+        <div class="ma__contact-group__details">
           {{ content.field_caption|field_value }}
         </div>
       {% endif %}
@@ -95,11 +95,11 @@
   {% elseif content.field_branch_locations|render|trim is not empty %}
     <div>
       {% if content.field_label|render|trim is not empty %}
-        <span class="ma__header-contact__label">{{ content.field_label|field_value }}:</span>
+        <span class="ma__contact-group__label">{{ content.field_label|field_value }}:</span>
       {% endif %}
       {{ content.field_branch_locations|field_value }}
       {% if content.field_caption|render|trim is not empty %}
-        <div class="ma__header-contact__details">
+        <div class="ma__contact-group__details">
           {{ content.field_caption|field_value }}
         </div>
       {% endif %}
