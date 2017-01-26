@@ -110,5 +110,8 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_action_parent: true
   field_funnel_endpoint_term: true
+  field_topic_callout_links: true
+  field_topic_parent: true
   field_type_term: true

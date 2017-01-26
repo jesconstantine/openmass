@@ -212,6 +212,9 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_action_parent: true
+  field_topic_callout_links: true
+  field_topic_parent: true
   path: true
   promote: true
   sticky: true
