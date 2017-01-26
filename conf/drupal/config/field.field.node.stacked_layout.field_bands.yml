@@ -119,12 +119,6 @@ settings:
       video:
         weight: 46
         enabled: false
-      activities:
-        weight: 46
-        enabled: false
-      activity:
-        weight: 47
-        enabled: false
       stacked_band:
         weight: 47
         enabled: false
