@@ -109,6 +109,7 @@ third_party_settings:
       children:
         - field_topic_callout_links
         - field_topic_parent
+        - field_action_parent
       parent_name: group_node_edit_form
       weight: 112
       format_type: tab
@@ -144,6 +145,11 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     type: entity_reference_paragraphs
+  field_action_parent:
+    type: options_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   field_bands:
     type: entity_reference_paragraphs
     weight: 11
@@ -241,7 +247,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_action_parent: true
   path: true
   promote: true
   sticky: true

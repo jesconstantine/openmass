@@ -31,7 +31,7 @@ bundle: stacked_layout
 mode: default
 content:
   field_action_banner:
-    weight: 12
+    weight: 13
     label: above
     settings:
       view_mode: extended_header
@@ -39,13 +39,21 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
   field_action_header:
-    weight: 11
+    weight: 12
     label: above
     settings:
       view_mode: extended_header
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+  field_action_parent:
+    type: entity_reference_entity_view
+    weight: 10
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   field_bands:
     type: entity_reference_revisions_entity_view
     weight: 6
@@ -55,7 +63,7 @@ content:
       link: ''
     third_party_settings: {  }
   field_header_cta:
-    weight: 13
+    weight: 14
     label: above
     settings:
       view_mode: extended_header
@@ -76,7 +84,7 @@ content:
     third_party_settings: {  }
     type: basic_string
   field_metatags:
-    weight: 10
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -133,6 +141,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_action_parent: true
   field_funnel_endpoint_term: true
   field_type_term: true
