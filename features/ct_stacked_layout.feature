@@ -26,3 +26,7 @@ Feature: Stacked Layout Content type
       | field_related_content | Behat Test: Related stacked layout |
     Then I should see the correct markup for the illustrated header
     And I should see the correct markup for the related guides
+
+  Scenario: Verify that pathauto patterns are applied to Stacked Layout nodes.
+    Given I am viewing an "stacked_layout" content with the title "Run the Test Suite"
+    Then I am on "run-test-suite"
