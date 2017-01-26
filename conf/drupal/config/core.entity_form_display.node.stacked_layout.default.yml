@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.browse_files_modal
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
+    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_bands
     - field.field.node.stacked_layout.field_funnel_endpoint_term
     - field.field.node.stacked_layout.field_header_cta
@@ -14,6 +15,8 @@ dependencies:
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
+    - field.field.node.stacked_layout.field_topic_callout_links
+    - field.field.node.stacked_layout.field_topic_parent
     - field.field.node.stacked_layout.field_type_term
     - field.field.node.stacked_layout.field_use_alt_header
     - node.type.stacked_layout
@@ -22,6 +25,7 @@ dependencies:
     - field_group
     - metatag
     - paragraphs
+    - redirect
     - workbench_moderation
 third_party_settings:
   field_group:
@@ -31,6 +35,7 @@ third_party_settings:
         - group_bands
         - group_meta_info
         - group_extended_header
+        - group_org_landing_page
       parent_name: ''
       weight: 0
       label: 'Node Edit Form'
@@ -77,7 +82,7 @@ third_party_settings:
         - field_action_banner
         - field_header_cta
       parent_name: group_node_edit_form
-      weight: 110
+      weight: 111
       label: 'Extended Header'
       format_type: tab
       format_settings:
@@ -100,6 +105,20 @@ third_party_settings:
         description: ''
         required_fields: false
       label: 'Meta Info'
+    group_org_landing_page:
+      children:
+        - field_topic_callout_links
+        - field_topic_parent
+      parent_name: group_node_edit_form
+      weight: 112
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Org Landing Page'
 id: node.stacked_layout.default
 targetEntityType: node
 bundle: stacked_layout
@@ -189,6 +208,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_topic_callout_links:
+    type: redirect_source
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_topic_parent:
+    type: options_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
   field_type_term:
     weight: 113
     settings:
@@ -213,8 +242,6 @@ content:
 hidden:
   created: true
   field_action_parent: true
-  field_topic_callout_links: true
-  field_topic_parent: true
   path: true
   promote: true
   sticky: true
