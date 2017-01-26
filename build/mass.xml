@@ -8,18 +8,4 @@
     <target name="tmp">
         <echo>Mass.gov!</echo>
     </target>
-
-
-    <target name="mass-install-libraries">
-        <delete dir="${build.dir}/${drupal.root}/libraries/" />
-        <mkdir dir="${build.dir}/${drupal.root}/libraries/" />
-
-        <resolvepath propertyname="vendor_path" file="vendor" />
-        <resolvepath propertyname="libraries_path" file="${drupal.root}/libraries" />
-
-        <includeresource mode="copy" source="${vendor_path}/desandro/imagesloaded" dest="${libraries_path}/imagesloaded" />
-        <includeresource mode="copy" source="${vendor_path}/desandro/masonry" dest="${libraries_path}/masonry" />
-        <includeresource mode="copy" source="${vendor_path}/enyo/dropzone" dest="${libraries_path}/dropzone" />
-    </target>
-
 </project>

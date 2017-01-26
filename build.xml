@@ -21,7 +21,6 @@
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
         <phingcall target="drupal-build" />
-        <phingcall target="mass-install-libraries" />
     </target>
 
 
@@ -29,14 +28,12 @@
     <target name="install" description="Install the application.">
         <phingcall target="install-from-acquia" />
         <phingcall target="mass-local-modules" />
-        <phingcall target="mass-set-api-keys" />
         <drush command="cron" />
     </target>
 
     <target name="clean-install" description="Initialize a new copy of the site without a canonical DB.">
         <phingcall target="drupal-install" />
         <phingcall target="mass-local-modules" />
-        <phingcall target="mass-set-api-keys" />
     </target>
 
     <!-- Target: test -->

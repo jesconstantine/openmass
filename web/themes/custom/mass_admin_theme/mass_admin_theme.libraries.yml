@@ -4,11 +4,6 @@ admin_overrides:
     theme:
       overrides/css/action-node-form.css: {}
       overrides/css/images.css: {}
-  js:
-    # We need to hardcode the key here. If you're wanting to make changes to
-    # this file, please see the template file at:
-    # conf/mass_admin_theme.libraries.yml.template
-    //maps.googleapis.com/maps/api/js?key=AIzaSyD5HXUVAA4VyRXVX50taVe2hDY8hy2JSdA: { type: external }
 entity_embed_dialog:
   version: 1.x
   js:

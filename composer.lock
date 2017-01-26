@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35863405df0a597e79594edf0a62b244",
-    "content-hash": "681fe93214a9305733d4f54735dde8ee",
+    "content-hash": "d64a97fc2e9c8c90187fd7bf65b8c58a",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -707,42 +706,14 @@
         },
         {
             "name": "desandro/imagesloaded",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/desandro/imagesloaded.git",
-                "reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22"
-            },
+            "version": "4.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/desandro/imagesloaded/zipball/0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
-                "reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
-                "shasum": ""
+                "url": "https://github.com/desandro/masonry/archive/v4.1.1.zip",
+                "reference": null,
+                "shasum": null
             },
-            "type": "component",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David DeSandro",
-                    "homepage": "http://desandro.com/",
-                    "role": "developer"
-                }
-            ],
-            "description": "JavaScript is all like _You images done yet or what?_",
-            "homepage": "http://imagesloaded.desandro.com",
-            "keywords": [
-                "dom",
-                "images",
-                "javascript",
-                "jquery-plugin",
-                "library",
-                "loaded",
-                "ui"
-            ],
-            "time": "2016-09-02 02:03:18"
+            "type": "drupal-library"
         },
         {
             "name": "desandro/masonry",
@@ -753,7 +724,7 @@
                 "reference": null,
                 "shasum": null
             },
-            "type": "library"
+            "type": "drupal-library"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2086,16 +2057,16 @@
         },
         {
             "name": "drupal/google_map_field",
-            "version": "8.1.1",
+            "version": "8.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/google_map_field",
-                "reference": "b1f2ad3990ed8a89d24f2a4acf8eef04d3065d52"
+                "reference": "c5e70c59c81b3912bc2627e2b454188305168865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.1.zip",
-                "reference": "b1f2ad3990ed8a89d24f2a4acf8eef04d3065d52",
+                "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.2.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2106,9 +2077,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
-                },
-                "patches_applied": {
-                    "Creating a setting for the google api key. (https://www.drupal.org/node/2759953)": "https://www.drupal.org/files/issues/setting-for-google-api-key-2759953.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -2117,7 +2085,7 @@
             ],
             "description": "Defines a field type for Google Maps.",
             "homepage": "https://www.drupal.org/project/google_map_field",
-            "time": "2016-02-13 21:01:10"
+            "time": "2016-12-06T16:49:28+00:00"
         },
         {
             "name": "drupal/imagick",
@@ -3178,7 +3146,7 @@
                 "reference": null,
                 "shasum": null
             },
-            "type": "library"
+            "type": "drupal-library"
         },
         {
             "name": "guzzle/guzzle",
@@ -7600,7 +7568,7 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2016-05-21 00:49:42"
+            "time": "2016-05-21T00:49:42+00:00"
         },
         {
             "name": "drupal/console",
@@ -7727,7 +7695,7 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "http://drupal.org/project/devel",
-            "time": "2016-12-04 14:31:11"
+            "time": "2016-12-04T14:31:11+00:00"
         },
         {
             "name": "drupal/drupal-driver",
@@ -8715,7 +8683,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "desandro/imagesloaded": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
         "drupal/file_browser": 20,
