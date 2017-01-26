@@ -978,6 +978,110 @@ function mass_theme_preprocess_paragraph(&$variables) {
  *
  * Break out url pieces for callout link paragraphs.
  */
+function mass_theme_preprocess_paragraph__related_content(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $field_related_content_items = $paragraph->get('field_related_content');
+
+  // Get Related items.
+  if ($field_related_content_items->count() > 0) {
+    $related_items = $field_related_content_items->referencedEntities();
+  }
+
+  if (!empty($related_items)) {
+    $nodes = [];
+    $types = [];
+    $total_count = count($related_items);
+
+    foreach ($related_items as $id => $item) {
+      // Default icon for content without icons but using the Topic card.
+      $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
+      $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
+
+      if ($item->hasField('field_icon_term')) {
+        $item->{'icon'} = icon_path($item->get('field_icon_term')->value);
+      }
+
+      if ($item->hasField('field_topic_callout_links')) {
+        $links = [];
+        foreach ($item->get('field_topic_callout_links') as $link) {
+          $link_path = Url::fromUri($link->uri);
+          if (Unicode::strpos($link->uri, 'entity:node/') !== FALSE) {
+            $nid = explode('/', $link->uri)[1];
+            $linked_node = Node::load($nid);
+            // Check that we have a node and that it has an external_url field.
+            if ($linked_node && $linked_node->hasField('field_external_url')) {
+              $external_link = $linked_node->get('field_external_url')->uri;
+              // Check the external url field value is not empty.
+              if (!empty($external_link)) {
+                $link_path = $external_link;
+              }
+            }
+          }
+          $links[] = array('text' => $link->title, 'href' => $link_path);
+        }
+        // Get links for our topic cards.
+        $item->{'links'} = $links;
+      }
+      $nodes[] = $item;
+      $types[] = $item->getType();
+    }
+  }
+
+  $contentTypes = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
+
+  $contentTypesList = [];
+
+  // Get our content types list.
+  foreach ($contentTypes as $contentType) {
+    $contentTypesList[$contentType->id()] = 0;
+  }
+
+  // Merge in our content types with totals so we don't have to check indexs.
+  $total_type_with_count = array_merge($contentTypesList, array_count_values($types));
+
+  $variables['layout'] = _get_layout($total_type_with_count, $total_count);
+  $variables['items'] = $nodes;
+}
+
+/**
+ * Provide the desired design layout for related things.
+ *
+ * @param array $total_type_with_count
+ *   A list of all content types with counts of how many.
+ * @param int $total_count
+ *   The total count of referenced nodes.
+ *
+ * @return string
+ *   The twig layout to be used.
+ */
+function _get_layout($total_type_with_count, $total_count) {
+  // Tests for using bullets.
+  if (
+    $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'bullets';
+  }
+  // Tests for using Action Card layout.
+  if (
+    $total_type_with_count['action'] == $total_count ||
+    $total_type_with_count['action'] + $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'actionCards';
+  }
+  // Tests for using Topic Card layout.
+  if (
+    $total_type_with_count['topic'] + $total_type_with_count['subtopic'] == $total_count ||
+    $total_type_with_count['topic'] + $total_type_with_count['subtopic'] + $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'topicCards';
+  }
+
+  return 'bullets';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for callout link paragraphs.
+ */
 function mass_theme_preprocess_paragraph__action_set(&$variables) {
   $paragraph = $variables['paragraph'];
 
