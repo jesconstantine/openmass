@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.stacked_layout.field_action_parent
     - field.field.node.stacked_layout.field_action_banner
     - field.field.node.stacked_layout.field_action_header
     - field.field.node.stacked_layout.field_bands
@@ -14,14 +13,12 @@ dependencies:
     - field.field.node.stacked_layout.field_metatags
     - field.field.node.stacked_layout.field_photo
     - field.field.node.stacked_layout.field_related_content
-    - field.field.node.stacked_layout.field_topic_callout_links
-    - field.field.node.stacked_layout.field_topic_parent
     - field.field.node.stacked_layout.field_type_term
+    - field.field.node.stacked_layout.field_use_alt_header
     - node.type.stacked_layout
   module:
     - entity_reference_revisions
     - image
-    - link
     - metatag
     - user
 id: node.stacked_layout.default
@@ -30,7 +27,7 @@ bundle: stacked_layout
 mode: default
 content:
   field_action_banner:
-    weight: 109
+    weight: 10
     label: above
     settings:
       view_mode: extended_header
@@ -38,30 +35,23 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
   field_action_header:
-    weight: 108
+    weight: 9
     label: above
     settings:
       view_mode: extended_header
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
-  field_action_parent:
-    weight: 108
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   field_bands:
     type: entity_reference_revisions_entity_view
-    weight: 5
+    weight: 6
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
   field_header_cta:
-    weight: 110
+    weight: 11
     label: above
     settings:
       view_mode: extended_header
@@ -69,26 +59,26 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
   field_label:
-    weight: 2
+    weight: 3
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_lede:
-    weight: 3
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_metatags:
-    weight: 7
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
   field_photo:
-    weight: 4
+    weight: 5
     label: above
     settings:
       image_style: ''
@@ -96,36 +86,27 @@ content:
     third_party_settings: {  }
     type: image
   field_related_content:
-    weight: 6
+    weight: 7
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_topic_callout_links:
-    weight: 112
+  field_use_alt_header:
+    weight: 0
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    type: link
-  field_topic_parent:
-    weight: 111
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
+    type: boolean
   links:
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   workbench_moderation_control:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
 hidden:
