@@ -148,6 +148,7 @@ body.search-results-page .gstl_50.gssb_c[style] {
 
 .gssb_e {
   box-shadow: none !important; /* search results page autocomplete */
+  background: #fff;
 }
 
 .gssb_a:hover {
@@ -246,16 +247,8 @@ body.search-results-page .gstl_50.gssb_c[style] {
 /* ------------------------------
     tabs
  ------------------------------ */
-.gsc-tabHeader.gsc-tabhInactive {
-  border-color: #333333;
-  background-color: #333333;
-}
-.gsc-tabHeader.gsc-tabhActive {
-  border-color: #777777;
-  background-color: #999999;
-}
-.gsc-tabsArea {
-  border-color: #333333;
+.gsc-tabHeader {
+  display: none;
 }
 
 /* ------------------------------
@@ -371,6 +364,11 @@ a.gsc-trailing-more-results:link {
   color: #405372;
 }
 
+.gsc-thumbnail-inside,
+.gs-watermark {
+  display: none;
+}
+
 /* ------------------------------
     custom override
  ------------------------------ */
@@ -410,7 +408,7 @@ a.gsc-trailing-more-results:link {
   letter-spacing: .09em;
   padding-bottom: .5em;
   text-transform: uppercase;
-  font-family: "Texta",, "Helvetica", "Arial", "sans-serif"
+  font-family: "Texta", "Helvetica", "Arial", "sans-serif";
 }
 
 /* promoted result container */
@@ -455,10 +453,11 @@ a.gsc-trailing-more-results:link {
       display: inline-block;
       margin-top: 1em;
       margin-bottom: 8em !important;
-      width: 395px; /* magic number: full container width, / 3, minus the margin * 2 */
+      width: calc( 33% - 1.2em);
       vertical-align: top;
       margin-left: 2em !important;
-      height: 180px;
+      height: auto;
+      min-height: 200px;
       border-bottom: 0 !important;
     }
   }
@@ -659,7 +658,7 @@ a.gsc-trailing-more-results:link {
 
 .cse .gs-result .gs-snippet, .gs-result .gs-snippet, .cse .gs-spelling-original, .gs-spelling-original {
   font-weight: 400;
-  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta", "Helvetica", "Arial", "sans-serif" !important;
   color: #535353 !important;
   font-size: 22px !important;
   font-size: 1.375rem !important;
@@ -669,14 +668,14 @@ a.gsc-trailing-more-results:link {
 .cse .gs-result.gs-promotion .gs-snippet, .gs-result.gs-promotion .gs-snippet, .cse .gs-spelling-original, .gs-spelling-original {
   color: #ffffff!important;
   font-weight: 200;
-  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta", "Helvetica", "Arial", "sans-serif" !important;
   font-size: 20px !important;
   line-height: 1.5 !important;
 }
 
 .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet, .gs-fileFormatType {
   color: #535353 !important;
-  font-family: "Texta",, "Helvetica", "Arial", "sans-serif";
+  font-family: "Texta", "Helvetica", "Arial", "sans-serif";
 }
 
 div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
@@ -712,7 +711,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
   margin-top: 0 !important;
   color: #14558f !important;
   font-weight: 200;
-  font-family: "Texta",, "Helvetica", "Arial", "sans-serif" !important;
+  font-family: "Texta", "Helvetica", "Arial", "sans-serif" !important;
   font-size: 20px !important;
   line-height: 1.5 !important;
   border-top: 2px solid rgb(220,220,220) !important;
@@ -727,6 +726,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
     border: 0;
     text-decoration: none !important;
     font-weight: 400;
+    display: inline-block;
 }
 
 .cse .gsc-results .gsc-cursor-box .gsc-cursor-page.gsc-cursor-current-page, .gsc-results .gsc-cursor-box .gsc-cursor-page.gsc-cursor-current-page {
@@ -814,6 +814,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
   padding-right: 85px;
   padding-left: 17px;
   width: 100%;
+  background: #fff;
   border: 2px solid #dcdcdc;
 }
 
