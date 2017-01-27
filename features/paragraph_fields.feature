@@ -174,7 +174,6 @@ Feature: Paragraph type definitions
     Then the "related_link" paragraph has the fields:
       | field             | widget     |
       | field-link        | Link       |
-      | field-description | Textfield  |
 
   Scenario: Verify that the hours paragraph type has the correct field configuration
     Given I am logged in as a user with the "administrator" role
