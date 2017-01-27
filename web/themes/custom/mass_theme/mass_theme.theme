@@ -1143,6 +1143,16 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
       );
     }
     $variables['links'] = $links;
+
+    if (!empty($paragraph->get('field_link_single')->uri)) {
+      $seeAll = array(
+        'type'  => UrlHelper::isExternal($paragraph->get('field_link_single')->uri) ? 'external' : 'internal',
+        'href'  => Url::fromUri($paragraph->get('field_link_single')->uri),
+        'text'  => $paragraph->get('field_link_single')->title,
+        'info' => '',
+      );
+      $variables['seeAll'] = $seeAll;
+    }
   }
 
   // Get our background image.

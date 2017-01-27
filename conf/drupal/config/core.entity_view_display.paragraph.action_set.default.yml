@@ -5,11 +5,13 @@ dependencies:
   config:
     - field.field.paragraph.action_set.field_featured_content
     - field.field.paragraph.action_set.field_image
+    - field.field.paragraph.action_set.field_link_single
     - field.field.paragraph.action_set.field_related_content
     - image.style.hero800x400
     - paragraphs.paragraphs_type.action_set
   module:
     - image
+    - link
 id: paragraph.action_set.default
 targetEntityType: paragraph
 bundle: action_set
@@ -30,6 +32,17 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+  field_link_single:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
   field_related_content:
     weight: 2
     label: above

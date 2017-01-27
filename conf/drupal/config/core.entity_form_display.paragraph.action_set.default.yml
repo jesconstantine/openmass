@@ -6,10 +6,12 @@ dependencies:
     - entity_browser.browser.browse_files_modal
     - field.field.paragraph.action_set.field_featured_content
     - field.field.paragraph.action_set.field_image
+    - field.field.paragraph.action_set.field_link_single
     - field.field.paragraph.action_set.field_related_content
     - paragraphs.paragraphs_type.action_set
   module:
     - entity_browser
+    - link
     - workbench_moderation
 id: paragraph.action_set.default
 targetEntityType: paragraph
@@ -36,6 +38,13 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_browser_file
+  field_link_single:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
   field_related_content:
     weight: 8
     settings:
