@@ -641,6 +641,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       $delta++;
     }
+    $variables['use_alt_header'] = $element['#object']->field_use_alt_header->get(0)->value;
     $variables['bands'] = $bands;
   }
 
