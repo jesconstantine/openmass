@@ -23,9 +23,9 @@ dependencies:
   module:
     - entity_browser
     - field_group
+    - link
     - metatag
     - paragraphs
-    - redirect
     - workbench_moderation
 third_party_settings:
   field_group:
@@ -108,8 +108,8 @@ third_party_settings:
       label: 'Meta Info'
     group_org_landing_page:
       children:
-        - field_topic_callout_links
         - field_topic_parent
+	- field_topic_callout_links
       parent_name: group_node_edit_form
       weight: 112
       format_type: tab
@@ -215,14 +215,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_topic_callout_links:
-    type: redirect_source
-    weight: 0
-    settings: {  }
+    type: link_default
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_topic_parent:
-    type: options_select
+    type: entity_reference_autocomplete
     weight: 1
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_type_term:
     weight: 113
