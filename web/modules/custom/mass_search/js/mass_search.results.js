@@ -88,6 +88,7 @@
       // Match heights of suggested blocks
       jQuery(window).resize(debounce(sizeSuggestedBlocks, 500));
       sizeSuggestedBlocks();
+
       /**
        * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
        */
