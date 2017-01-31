@@ -55,6 +55,27 @@
    */
   Drupal.behaviors.massSearchResults = {};
   Drupal.behaviors.massSearchResults.attach = function (context) {
+    function debounce(fn, delay) {
+      var timer = null;
+      return function () {
+        var context = this;
+        var args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          fn.apply(context, args);
+        }, delay);
+      };
+    }
+
+    function sizeSuggestedBlocks() {
+      var $promos = jQuery('.gsc-webResult.gsc-result.gsc-promotion');
+      $promos.height('auto');
+      var heights = $promos.map(function (i, el) {
+        return jQuery(el).height();
+      });
+      var maxHeight = Math.max.apply(null, heights);
+      $promos.height(maxHeight);
+    }
 
     // If google.search module is loaded
     if (window.google.search) {
@@ -62,6 +83,11 @@
       // add class to <body> so we can target autocomplete table in css for this page
       document.body.setAttribute('class', 'search-results-page');
 
+
+
+      // Match heights of suggested blocks
+      jQuery(window).resize(debounce(sizeSuggestedBlocks, 500));
+      sizeSuggestedBlocks();
       /**
        * setOnLoadCallback(callback, @BOOLEAN runOnDomLoad)
        */
@@ -129,8 +155,13 @@
           resultsPageSearchControl.execute(urlParams[queryParamName]);
         }
 
+        // Set initial sizing of promoted blocks.
+        // This is awful but it's seems that we don't have a handle on a decent callback.
+        setTimeout(function () { sizeSuggestedBlocks(); }, 2000);
+
       }, true); // google.search onLoadCallback
     } // endif window.google.search
+
   }; // Drupal.behaviors.massSearchResults.attach
 
   /**

@@ -418,7 +418,7 @@ a.gsc-trailing-more-results:link {
     border-left: 0 !important;
     background-color: #43956f !important;
     color: #fff !important;
-    padding: 2em 2.1em 2em; /* add right padding because arrow icon is bg image */
+    padding: 1em 1.7em; /* add right padding because arrow icon is bg image */
     min-height: 125px;
     display: block;
     margin: 1em 0 !important;
@@ -457,7 +457,7 @@ a.gsc-trailing-more-results:link {
       vertical-align: top;
       margin-left: 2em !important;
       height: auto;
-      min-height: 300px;
+      /*min-height: 300px;*/
       border-bottom: 0 !important;
     }
   }
