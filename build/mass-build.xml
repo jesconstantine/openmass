@@ -61,7 +61,7 @@
 
       <!-- Which environment will we be pulling from? -->
       <property name="deploy.site_alias" value="@massgov.test" />
-      <input propertyname="deploy.site_alias" validargs="@massgov.dev,@massgov.cd,@massgov.test">Acquia environment to pull from? </input>
+      <input propertyname="deploy.site_alias" validargs="@massgov.dev,@massgov.cd,@massgov.test,@massgov.feature1,@massgov.feature2,@massgov.feature3">Acquia environment to pull from? </input>
 
       <!-- Which environment will we be pulling from? -->
       <input propertyname="deploy.backup_local_database" validargs="yes,no" defaultValue="no">Backup your local database? </input>
@@ -99,8 +99,6 @@
             <option name="sanitize-password">admin</option>
             <option name="sanitize-email">user+%uid@localhost</option>
           </drush>
-
-          <phingcall target="mass-update-admin-username" />
 
           <drush command="upwd">
             <option name="password">admin</option>
@@ -165,50 +163,5 @@
         <param>mass_utility</param>
         <param>migrate_tools</param>
     </drush>
-  </target>
-
-  <target name="mass-set-api-keys" description="Update API Keys.">
-    <fail unless="api_keys.google.maps" />
-
-    <!-- Rewrite the theme registry. -->
-    <echo>Updating the Google Maps API Key in the theme file.</echo>
-    <copy
-      file="${build.dir}/conf/mass_admin_theme.libraries.yml.template"
-      tofile="${build.dir}/web/themes/custom/mass_admin_theme/mass_admin_theme.libraries.yml"
-      overwrite="true">
-        <filterchain>
-            <replacetokens begintoken="{{" endtoken="}}">
-                <token key="placeholder-key" value="${api_keys.google.maps}" />
-            </replacetokens>
-        </filterchain>
-    </copy>
-    <drush command="config-set" assume="yes">
-        <param>google_map_field.settings</param>
-        <param>google_map_field_apikey</param>
-        <param>${api_keys.google.maps}</param>
-    </drush>
-    <drush command="config-set" assume="yes">
-        <param>google_map_field.settings</param>
-        <param>google_map_field_auth_method</param>
-        <param>1</param>
-    </drush>
-  </target>
-
-  <target name="mass-update-admin-username" description="Update admin user name.">
-    <echo>Updating administrator user name.</echo>
-
-    <!-- Since Circle doesn't have a db password, we need to conditionally pass
-         the password parameter to the mysql command. -->
-    <if>
-      <equals arg1="${drupal.database.password}" arg2="" />
-      <then>
-        <property name="local_db_password" value="" />
-      </then>
-      <else>
-        <property name="local_db_password" value="-p${drupal.database.password}" />
-      </else>
-    </if>
-
-    <exec command="mysql -u ${drupal.database.username} ${local_db_password} ${drupal.database.database} -e &quot;UPDATE users_field_data SET name = &apos;${drupal.admin.user_name}&apos; WHERE uid = 1;&quot;" logoutput="true" checkreturn="true"/>
   </target>
 </project>

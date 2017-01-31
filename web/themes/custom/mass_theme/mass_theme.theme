@@ -20,6 +20,13 @@ use Drupal\Component\Utility\Unicode;
 function mass_theme_theme_suggestions_alter(array &$suggestions, array $variables) {
   $original_theme_hook = $variables['theme_hook_original'];
 
+  // For the pilot static homepage, we need to be able to theme a specific node
+  // as the front page.
+  if ($node = \Drupal::routeMatch()->getParameter('node') && in_array('html__front', $suggestions)) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $suggestions[] = 'html__node__' . $node->id();
+  }
+
   if (isset($variables['element']) && isset($variables['element']['#id'])) {
     $suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#id']);
 
@@ -233,7 +240,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
 
   foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
     if ($paragraph->getType() == 'search_band') {
-      // if we have a search band, lets our node object and node template know.
+      // If we have a search band, lets our node object and node template know.
       $variables['search_band'] = TRUE;
     }
   }
@@ -257,6 +264,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
+          'image' => mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo'),
         ),
       );
     }
@@ -377,13 +385,13 @@ function mass_theme_preprocess_node_topic(&$variables) {
 
         // If this is a link to a node, check for an external_url.
         // @todo: find a better way to test for node links.
-        if (Unicode::strpos($link->uri,'entity:node/') !== FALSE) {
+        if (Unicode::strpos($link->uri, 'entity:node/') !== FALSE) {
           $nid = explode('/', $link->uri)[1];
           $linked_node = Node::load($nid);
           // Check that we have a node and that it has an external_url field.
           if ($linked_node && $linked_node->hasField('field_external_url')) {
             $external_link = $linked_node->get('field_external_url')->uri;
-            //  Check the external url field value is not empty.
+            // Check the external url field value is not empty.
             if (!empty($external_link)) {
               $link_path = $external_link;
             }
@@ -633,6 +641,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       $delta++;
     }
+    $variables['use_alt_header'] = $element['#object']->field_use_alt_header->get(0)->value;
     $variables['bands'] = $bands;
   }
 
@@ -692,7 +701,6 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   }
 
   if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
-    $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
     $groups = array();
     $order = array();
     $delta = 0;
@@ -849,7 +857,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       // Do we have fax numbers? If so, display them under one icon.
       if (!empty($fax_details) && $value == 'fax') {
         $groups[] = array(
-          'icon'    => '@atoms/05-icons/svg-phone.twig',
+          'icon'    => '@atoms/05-icons/svg-fax-icon.twig',
           'name'    => 'Fax',
           'items'   => $fax_details,
         );
@@ -971,6 +979,110 @@ function mass_theme_preprocess_paragraph(&$variables) {
  *
  * Break out url pieces for callout link paragraphs.
  */
+function mass_theme_preprocess_paragraph__related_content(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $field_related_content_items = $paragraph->get('field_related_content');
+
+  // Get Related items.
+  if ($field_related_content_items->count() > 0) {
+    $related_items = $field_related_content_items->referencedEntities();
+  }
+
+  if (!empty($related_items)) {
+    $nodes = [];
+    $types = [];
+    $total_count = count($related_items);
+
+    foreach ($related_items as $id => $item) {
+      // Default icon for content without icons but using the Topic card.
+      $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
+      $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
+
+      if ($item->hasField('field_icon_term')) {
+        $item->{'icon'} = icon_path($item->get('field_icon_term')->value);
+      }
+
+      if ($item->hasField('field_topic_callout_links')) {
+        $links = [];
+        foreach ($item->get('field_topic_callout_links') as $link) {
+          $link_path = Url::fromUri($link->uri);
+          if (Unicode::strpos($link->uri, 'entity:node/') !== FALSE) {
+            $nid = explode('/', $link->uri)[1];
+            $linked_node = Node::load($nid);
+            // Check that we have a node and that it has an external_url field.
+            if ($linked_node && $linked_node->hasField('field_external_url')) {
+              $external_link = $linked_node->get('field_external_url')->uri;
+              // Check the external url field value is not empty.
+              if (!empty($external_link)) {
+                $link_path = $external_link;
+              }
+            }
+          }
+          $links[] = array('text' => $link->title, 'href' => $link_path);
+        }
+        // Get links for our topic cards.
+        $item->{'links'} = $links;
+      }
+      $nodes[] = $item;
+      $types[] = $item->getType();
+    }
+  }
+
+  $contentTypes = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
+
+  $contentTypesList = [];
+
+  // Get our content types list.
+  foreach ($contentTypes as $contentType) {
+    $contentTypesList[$contentType->id()] = 0;
+  }
+
+  // Merge in our content types with totals so we don't have to check indexs.
+  $total_type_with_count = array_merge($contentTypesList, array_count_values($types));
+
+  $variables['layout'] = _get_layout($total_type_with_count, $total_count);
+  $variables['items'] = $nodes;
+}
+
+/**
+ * Provide the desired design layout for related things.
+ *
+ * @param array $total_type_with_count
+ *   A list of all content types with counts of how many.
+ * @param int $total_count
+ *   The total count of referenced nodes.
+ *
+ * @return string
+ *   The twig layout to be used.
+ */
+function _get_layout($total_type_with_count, $total_count) {
+  // Tests for using bullets.
+  if (
+    $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'bullets';
+  }
+  // Tests for using Action Card layout.
+  if (
+    $total_type_with_count['action'] == $total_count ||
+    $total_type_with_count['action'] + $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'actionCards';
+  }
+  // Tests for using Topic Card layout.
+  if (
+    $total_type_with_count['topic'] + $total_type_with_count['subtopic'] == $total_count ||
+    $total_type_with_count['topic'] + $total_type_with_count['subtopic'] + $total_type_with_count['stacked_layout'] == $total_count) {
+    return 'topicCards';
+  }
+
+  return 'bullets';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Break out url pieces for callout link paragraphs.
+ */
 function mass_theme_preprocess_paragraph__action_set(&$variables) {
   $paragraph = $variables['paragraph'];
 
@@ -988,14 +1100,15 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($featured_items)) {
     foreach ($featured_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+        $external_url = $item->get('field_external_url')->uri;
       }
       if ($item->hasField('field_photo')) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
       }
       $featured_links[] = array(
-        'image' => $image_url ? $image_url : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
@@ -1016,26 +1129,95 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($link_items)) {
     foreach ($link_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
-        $external_url = $item->get('field_external_url')->first()->getValue()['uri'];
+        $external_url = $item->get('field_external_url')->uri;
       }
       if ($item->hasField('field_photo')) {
         $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
       }
       $links[] = array(
-        'image' => $image_url ? $image_url : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
       );
     }
     $variables['links'] = $links;
+
+    if (!empty($paragraph->get('field_link_single')->uri)) {
+      $seeAll = array(
+        'type'  => UrlHelper::isExternal($paragraph->get('field_link_single')->uri) ? 'external' : 'internal',
+        'href'  => Url::fromUri($paragraph->get('field_link_single')->uri),
+        'text'  => $paragraph->get('field_link_single')->title,
+        'info' => '',
+      );
+      $variables['seeAll'] = $seeAll;
+    }
   }
 
   // Get our background image.
   if ($paragraph->get('field_image')->entity) {
     $variables['bgWide'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->get('field_image')->entity->getFileUri());
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Process 3 up text.
+ */
+function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $rows = $paragraph->get('field_3_up_rows');
+  $list = array();
+
+  if ($rows->count() > 0) {
+    $items = $rows->referencedEntities();
+  }
+
+  if (!empty($items)) {
+    $list = [];
+    foreach ($items as $id => $item) {
+      $field_content = $item->get('field_content')->view('full');
+      // Break out our paragraphs and render the field - it might have an image.
+      $paragraph_tags = explode("<p>", str_replace("</p>", "", render($field_content)));
+
+      // Reset our array.
+      $paragraphs = [];
+      foreach ($paragraph_tags as $paragraph_tag) {
+        if (!empty($paragraph_tag)) {
+          $paragraphs[] = array(
+            'path' => '@atoms/11-text/paragraph.twig',
+            'data' => array(
+              'paragraph' => array(
+                'text' => trim(str_replace("<p>", "", $paragraph_tag)),
+              ),
+            ),
+          );
+        }
+      }
+
+      $list['column' . ++$id] = array(
+        array(
+          'path' => '@atoms/04-headings/column-heading.twig',
+          'data' => array(
+            'columnHeading' => array(
+              'text' => $item->get('field_heading')->value,
+            ),
+          ),
+        ),
+        array(
+          'path' => '@organisms/by-author/rich-text.twig',
+          'data' => array(
+            'rteElements' => $paragraphs,
+          ),
+        ),
+      );
+    }
+  }
+
+  $variables['splitColumns'] = $list;
 }
 
 /**
@@ -1157,8 +1339,8 @@ function mass_theme_preprocess_paragraph__search_band(&$variables) {
   }
 
   $items = [];
-  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
-    $popular_searches = $variables['paragraph']->get('field_link');
+  if (!$variables['paragraph']->get('field_link_six')->isEmpty()) {
+    $popular_searches = $variables['paragraph']->get('field_link_six');
 
     // Roll up our popular searches links for search band.
     foreach ($popular_searches as $link) {
@@ -1179,13 +1361,21 @@ function mass_theme_preprocess_paragraph__search_band(&$variables) {
  * Break out url pieces for callout button paragraphs.
  */
 function mass_theme_preprocess_paragraph__callout_button(&$variables) {
-  $url = $variables['paragraph']->get('field_link')->first();
 
-  $variables['buttonMinor'] = [
-    'text' => $url->getValue()['title'],
-    'link' => $url->getUrl()->toString(),
-    'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
-  ];
+  if (!$variables['paragraph']->get('field_link')->isEmpty()) {
+    $links = $variables['paragraph']->get('field_link');
+    $items = [];
+
+    foreach ($links as $link) {
+      $items[] = [
+        'text' => $link->getValue()['title'],
+        'href' => $link->getUrl()->toString(),
+        'type' => (UrlHelper::isExternal($link->getUrl()->toString())) ? 'external' : 'internal',
+      ];
+    }
+
+    $variables['buttonMinors'] = $items;
+  }
 }
 
 /**

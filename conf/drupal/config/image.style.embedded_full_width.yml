@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: embedded_full_width
-label: 'Embedded full width'
+label: 'Full width'
 effects:
   22a86527-4f6e-4c7f-82f8-107a9a147705:
     uuid: 22a86527-4f6e-4c7f-82f8-107a9a147705

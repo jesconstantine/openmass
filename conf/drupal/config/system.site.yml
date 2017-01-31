@@ -3,9 +3,9 @@ name: mass
 mail: admin@example.com
 slogan: ''
 page:
-  403: ''
-  404: ''
-  front: /node
+  403: /node/3331
+  404: /node/3326
+  front: /node/3586
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

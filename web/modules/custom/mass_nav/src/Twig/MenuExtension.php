@@ -2,27 +2,24 @@
 
 namespace Drupal\mass_nav\Twig;
 
-use Drupal\Component\Utility\SafeMarkup;
 /**
  * My menu extension.
  */
 class MenuExtension extends \Twig_Extension {
 
   /**
-   * In this function we can declare the extension function
+   * In this function we can declare the extension function.
    */
-
-  public function getFunctions()
-  {
+  public function getFunctions() {
     return array(
-      new \Twig_SimpleFunction('render_menu', array($this, 'render_menu'), array('is_safe' => array('html'))),
+      new \Twig_SimpleFunction('render_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function render_menu($menu_name) {
+  public function renderMenu($menu_name) {
     $menu_tree = \Drupal::menuTree();
 
     // Build the typical default set of menu tree parameters.
@@ -43,6 +40,7 @@ class MenuExtension extends \Twig_Extension {
     // Finally, build a renderable array from the transformed tree.
     $menu = $menu_tree->build($tree);
 
-    return  array('#markup' => drupal_render($menu));
+    return array('#markup' => drupal_render($menu));
   }
+
 }

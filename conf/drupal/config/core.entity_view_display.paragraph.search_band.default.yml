@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.search_band.field_caption
     - field.field.paragraph.search_band.field_description
     - field.field.paragraph.search_band.field_image
-    - field.field.paragraph.search_band.field_link
+    - field.field.paragraph.search_band.field_link_six
     - field.field.paragraph.search_band.field_name
     - field.field.paragraph.search_band.field_title
     - image.style.hero800x400
@@ -41,17 +41,17 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_link:
-    weight: 5
+  field_link_six:
+    weight: 6
     label: above
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    type: link_separate
+    type: link
   field_name:
     weight: 1
     label: hidden

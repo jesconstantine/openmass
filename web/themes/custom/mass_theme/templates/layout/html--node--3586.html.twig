@@ -27,7 +27,7 @@
 
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/index-generated.css?1474397330" media="all"/>
     <link rel="stylesheet" href="/themes/custom/mass_theme/css/base-theme-generated.css?1474397330" media="all"/>
-    <link rel="stylesheet" href="/themes/custom/mass_theme/css/pilot-generated.css?1474397330" media="all"/>
+    <link rel="stylesheet" href="/themes/custom/mass_theme/overrides/css/back-to.css?1474397330" media="all"/>
 
     <script src="/themes/custom/mass_theme/js/vendor/modernizr.js"></script>
 
@@ -55,7 +55,7 @@
     <img aria-hidden="true" alt="icon-sprite" src="/themes/custom/mass_theme/images/svg-sprite.svg" style="display:none" />
 
 
-<link href="/themes/custom/mass_theme/css/pilot-generated.css" rel="stylesheet"/>
+{# <link href="/themes/custom/mass_theme/css/pilot-generated.css" rel="stylesheet"/> #}
 <!-- google custom search styles, overrides pilot css to display search form in header -->
 <link rel="stylesheet" href="/modules/custom/mass_search/css/gcse-search.css"/>
 
@@ -92,7 +92,8 @@
           </div>
         {% endif %}
     </div>
-    <nav class="ma__header__nav">
+    <nav class="ma__header__nav" aria-labelledby="main_navigation">
+        <h2 id="main_navigation" class="visually-hidden">Main Navigation</h2>
         <div class="ma__header__button-container js-sticky-header">
             <button class="ma__header__back-button js-close-sub-nav"><span>Back</span></button>
             <button class="ma__header__menu-button js-header-menu-button">

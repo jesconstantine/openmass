@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.stacked_layout.field_topic_callout_links
     - field.field.node.stacked_layout.field_topic_parent
     - field.field.node.stacked_layout.field_type_term
+    - field.field.node.stacked_layout.field_use_alt_header
     - node.type.stacked_layout
   module:
     - entity_browser
@@ -46,11 +47,11 @@ third_party_settings:
         classes: ''
     group_primary_content:
       children:
+        - field_use_alt_header
         - title
         - field_label
         - field_lede
         - field_photo
-        - field_related_content
         - field_action_parent
       parent_name: group_node_edit_form
       weight: 108
@@ -145,16 +146,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_paragraphs
   field_action_parent:
-    weight: 6
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    type: options_select
+    weight: 120
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
   field_bands:
     type: entity_reference_paragraphs
-    weight: 11
+    weight: 3
     settings:
       title: Molecule
       title_plural: Molecules
@@ -178,14 +176,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_paragraphs
   field_label:
-    weight: 2
+    weight: 117
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_lede:
-    weight: 3
+    weight: 118
     settings:
       rows: 5
       placeholder: ''
@@ -197,7 +195,7 @@ content:
     third_party_settings: {  }
     type: metatag_firehose
   field_photo:
-    weight: 4
+    weight: 119
     settings:
       entity_browser: browse_files_modal
       field_widget_edit: true
@@ -209,7 +207,7 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_related_content:
-    weight: 5
+    weight: 110
     settings:
       match_operator: CONTAINS
       size: 60
@@ -217,20 +215,20 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_topic_callout_links:
-    weight: 116
+    type: link_default
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
   field_topic_parent:
-    weight: 115
+    type: entity_reference_autocomplete
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
   field_type_term:
     weight: 113
     settings:
@@ -239,9 +237,15 @@ content:
       placeholder: 'Indicate type (E.g. “How To”)'
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_use_alt_header:
+    weight: 115
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
   title:
     type: string_textfield
-    weight: 1
+    weight: 116
     settings:
       size: 60
       placeholder: ''

@@ -1,4 +1,4 @@
-uuid: 30a12b6f-136b-47ad-9c25-592209d78514
+uuid: 18226ed0-e5bc-4916-afe1-8ed321efd766
 langcode: en
 status: true
 dependencies:
@@ -12,7 +12,7 @@ type: google_map_field
 settings: {  }
 module: google_map_field
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

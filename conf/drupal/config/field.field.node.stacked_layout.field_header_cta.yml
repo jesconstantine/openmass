@@ -7,6 +7,7 @@ dependencies:
     - node.type.stacked_layout
     - paragraphs.paragraphs_type.icon
     - paragraphs.paragraphs_type.iframe
+    - paragraphs.paragraphs_type.image
   module:
     - entity_reference_revisions
 id: node.stacked_layout.field_header_cta
@@ -25,6 +26,7 @@ settings:
     target_bundles:
       icon: icon
       iframe: iframe
+      image: image
     target_bundles_drag_drop:
       action_address:
         weight: 32
@@ -62,11 +64,23 @@ settings:
       completion_time:
         weight: 43
         enabled: false
+      1up_stacked_band:
+        weight: 43
+        enabled: false
       contact:
         weight: 44
         enabled: false
+      2up_stacked_band:
+        weight: 44
+        enabled: false
+      3_up_content:
+        weight: 45
+        enabled: false
       contact_group:
         weight: 45
+        enabled: false
+      3_up_text:
+        weight: 46
         enabled: false
       contact_info:
         weight: 46
@@ -79,6 +93,9 @@ settings:
         enabled: false
       hours:
         weight: 49
+        enabled: false
+      action_set:
+        weight: 50
         enabled: false
       icon:
         enabled: true
@@ -118,5 +135,23 @@ settings:
         enabled: false
       video:
         weight: 62
+        enabled: false
+      emergency_alert:
+        weight: 63
+        enabled: false
+      icon_link:
+        weight: 68
+        enabled: false
+      icon_links:
+        weight: 69
+        enabled: false
+      image:
+        enabled: true
+        weight: 71
+      related_content:
+        weight: 76
+        enabled: false
+      search_band:
+        weight: 79
         enabled: false
 field_type: entity_reference_revisions

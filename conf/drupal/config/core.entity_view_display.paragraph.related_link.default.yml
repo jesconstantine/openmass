@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.related_link.field_description
     - field.field.paragraph.related_link.field_link
     - paragraphs.paragraphs_type.related_link
   module:
@@ -13,13 +12,6 @@ targetEntityType: paragraph
 bundle: related_link
 mode: default
 content:
-  field_description:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_link:
     weight: 0
     label: hidden

@@ -151,14 +151,19 @@
       // Customize "no results" message
       mobileSearchControl.setNoResultsString(noResultsString);
 
+
       // Add classes to <form>.
       var searchForm = document.querySelector('form.gsc-search-box');
-      searchForm.classList.add('ma__form');
-      searchForm.classList.add('js-header-search-form');
+      if (searchForm !== null) {
+        searchForm.classList.add('ma__form');
+        searchForm.classList.add('js-header-search-form');
+      }
       // Add classes to <input>.
       var inputField = document.querySelector('input.gsc-input');
-      inputField.classList.add('ma__header-search__input');
-      inputField.placeholder = 'What can we help you find?';
+      if (inputField !== null) {
+        inputField.classList.add('ma__header-search__input');
+        inputField.placeholder = 'What can we help you find?';
+      }
 
     }, true);
   }

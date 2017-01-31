@@ -14,9 +14,6 @@
     <import file="vendor/palantirnet/the-build/tasks/code_review/phplint.xml" />
     <import file="vendor/palantirnet/the-build/tasks/code_review/phpmd.xml" />
 
-    <!-- Include theme.xml -->
-    <import file="build/theme.xml" />
-
     <!-- Custom targets for this project. -->
     <import file="build/mass.xml" />
     <import file="build/mass-build.xml" />
@@ -24,9 +21,6 @@
     <!-- Default target: build -->
     <target name="build" description="Build the application.">
         <phingcall target="drupal-build" />
-        <phingcall target="mass-install-libraries" />
-
-        <phingcall target="theme-install" />
     </target>
 
 
@@ -34,46 +28,13 @@
     <target name="install" description="Install the application.">
         <phingcall target="install-from-acquia" />
         <phingcall target="mass-local-modules" />
-        <phingcall target="mass-set-api-keys" />
         <drush command="cron" />
     </target>
 
     <target name="clean-install" description="Initialize a new copy of the site without a canonical DB.">
         <phingcall target="drupal-install" />
-        <phingcall target="mass-update-admin-username" />
         <phingcall target="mass-local-modules" />
-        <phingcall target="mass-set-api-keys" />
     </target>
-
-    <!-- Target: migrate -->
-    <target name="migrate" description="Run the migrations.">
-        <!-- Make sure the 'migration' user exists. -->
-        <drush command="user-create" haltonerror="false">
-            <param>migration</param>
-        </drush>
-        <drush command="user-block">
-            <param>migration</param>
-        </drush>
-        <drush command="user-add-role">
-            <param>administrator</param>
-            <param>migration</param>
-        </drush>
-
-        <!-- Reinstall the migration module to get the latest config. -->
-        <!-- <drush command="pm-uninstall" assume="yes">
-            <param>mass_content</param>
-        </drush>
-        <drush command="pm-enable" assume="yes">
-            <param>mass_content</param>
-        </drush>
-
-        <drush command="migrate-import">
-            <option name="group" value="mass_content" />
-            <option name="update" />
-            <option name="user" value="migration" />
-        </drush> -->
-    </target>
-
 
     <!-- Target: test -->
     <target name="test" description="Run all the tests.">

@@ -8,9 +8,6 @@ libraries:
 
 base theme: seven
 
-libraries-override:
-  google_map_field/google-map-apis: false
-
 regions:
   header: 'Header'
   pre_content: 'Pre-content'

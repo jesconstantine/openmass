@@ -38,4 +38,6 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% include "@atoms/01-buttons/button-link2-sm.twig" with buttonMinor %}
+{% for buttonMinor in buttonMinors %}
+  {% include "@atoms/01-buttons/button-link2-sm.twig" with buttonMinor %}
+{% endfor %}
