@@ -74,9 +74,7 @@
           {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-header-search-form" } %}
           <button class="ma__button-search">
             <span>Search</span>
-            <svg role="img" class="ma__button-search__icon">
-              <use xlink:href="/{{directory}}/images/svg-sprite.svg#search"></use>
-            </svg>
+            {% include '@atoms/05-icons/svg-search.twig' ignore missing %}
           </button>
         </section>
       </div>
@@ -106,8 +104,8 @@
   <footer role="contentinfo">
     <footer class="ma__footer js-footer">
       <button class="ma__footer__back2top js-back2top">
-	       {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}
-	       <span>Top</span>
+        {% include '@atoms/05-icons/svg-arrow.twig' ignore missing %}
+        <span>Top</span>
       </button>
       <div class="ma__footer__container">
         {{ page.footer }}

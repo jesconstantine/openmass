@@ -13,7 +13,7 @@
 <div class="ma__download__item">
   <div class="ma__download__icon">
     {% set iconName = download.iconName %}
-    {% include active_theme_path() ~ "/images/svg-sprite/" ~ iconName ~ ".svg" ignore missing %}
+    {% include '@atoms/05-icons/svg-' ~ iconName|lower ~ '.twig' ignore missing %}
   </div>
   <h5 class="ma__download__title">
     <a href="{{ download.link }}">{{ download.linktext }}</a> <span>({{ download.filetype|upper }} {{ download.size }})</span>

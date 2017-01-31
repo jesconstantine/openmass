@@ -14,5 +14,4 @@
 #}
 
 {% set decorativeLink = fieldLink %}
-
-{% include directory ~ "/templates/includes/atoms-decorative-link.html.twig" with decorativeLink %}
+{% include '@atoms/decorative-link.twig' ignore missing with decorativeLink %}

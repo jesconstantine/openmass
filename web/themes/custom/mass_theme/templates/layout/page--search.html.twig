@@ -95,7 +95,7 @@
   <footer role="contentinfo">
     <footer class="ma__footer js-footer">
       <button class="ma__footer__back2top js-back2top">
-	       {% include directory ~ "/templates/includes/atoms-svg.html.twig" with {'iconName':'arrow'} %}
+        {% include '@atoms/05-icons/svg-arrow.twig' ignore missing %}
 	       <span>Top</span>
       </button>
       <div class="ma__footer__container">
@@ -122,6 +122,5 @@
 
       </div>
     </footer>
-
   </footer>
 {% endif %}
