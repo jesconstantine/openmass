@@ -6,6 +6,4 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<svg focusable="false" role="presentation" class="svg-{{iconName}}">
-  <use xlink:href="{{'/' ~ directory}}/images/svg-sprite.svg#{{iconName}}"></use>
-</svg>
+{% include '@atoms/05-icons/svg-' ~ iconName|lower ~ '.twig' ignore missing %}

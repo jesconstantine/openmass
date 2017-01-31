@@ -682,7 +682,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $nid = $element[$delta]['#url']->getRouteParameters()['node'];
         $node = \Drupal::entityManager()->getStorage('node')->load($nid);
 
-        if ($node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
+        if (!is_null($node) && $node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
           $url = $node->get('field_external_url')->uri;
         }
       }

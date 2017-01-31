@@ -27,13 +27,7 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% if svg_type == 'location' %}
-  {% set class = 'svg-loc-' ~ sprite_name %}
-  {% include active_theme_path() ~ '/images/svg-sprite/' ~ sprite_name ~ '.svg' ignore missing %}
-{% else %}
-  {% set class = 'svg-' ~ sprite_name %}
-  {% include active_theme_path() ~ '/images/svg-sprite/' ~ sprite_name ~ '.svg' ignore missing %}
-{% endif %}
+{% include '@atoms/05-icons/svg-' ~ sprite_name|lower ~ '.twig' ignore missing %}
 <svg focusable="false" role="presentation" class="{{ class }}">
   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ url }}"></use>
 </svg>

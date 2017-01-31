@@ -13,8 +13,9 @@
   <div class="ma__page-banner__container">
     <div class="ma__page-banner__content">
       <div class="ma__page-banner__icon">
+        {% include '@atoms/05-icons/svg-restore.twig' ignore missing %}
         {% if bannerData.icon|trim %}
-          {% include active_theme_path() ~ "/images/svg-sprite/" ~ bannerData.icon ~ ".svg" ignore missing %}
+          {% include '@atoms/05-icons/svg-' ~ bannerData.icon|lower ~ '.twig' ignore missing %}
         {% endif %}
       </div>
       <h1 class="ma__page-banner__title">{{ label|field_value }}</h1>
