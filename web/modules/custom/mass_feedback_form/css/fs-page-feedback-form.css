@@ -9,10 +9,11 @@
 }
 
 form#fsForm2521317{
-    max-width: 25em;
-    padding-bottom:40px;
-    margin: 0px auto;
-
+    border: 2px solid #dcdcdc;
+    background: #ffffff;
+    max-width: 35em;
+    padding: 2.5em;
+    margin: 0px auto 2em;
 }
 
 input#fsSubmitButton2521317{
@@ -57,6 +58,7 @@ div.fsValidationError label.fsLabel{
 }
 .fsPage textarea {
     width: 100%;
+    font-size: 1rem;
 }
 .fsPage .fsRowBody {
     margin-bottom: 1em;
@@ -70,11 +72,29 @@ div.fsValidationError label.fsLabel{
     max-width: 100%;
 }
 
-.fsForm hr
-{
-    background-image: -webkit-linear-gradient(315deg, transparent 3px, rgba(67, 149, 111, 0.5) 3px, rgba(67, 149, 111, 0.5) 49%, transparent 51%), -webkit-linear-gradient(135deg, transparent 3px, rgba(67, 149, 111, 0.5) 3px, rgba(67, 149, 111, 0.5) 49%, transparent 51%);
-    background-image: linear-gradient(135deg, transparent 3px, rgba(67, 149, 111, 0.5) 3px, rgba(67, 149, 111, 0.5) 49%, transparent 51%), linear-gradient(-45deg, transparent 3px, rgba(67, 149, 111, 0.5) 3px, rgba(67, 149, 111, 0.5) 49%, transparent 51%);
-    height: 3px;
-    border: none;
-    width: 25%;
+.fsPage legend.fsLabel {
+  font-weight: 700;
+}
+
+.fsPage label.fsLabel {
+  font-weight: 300;
+}
+
+.fsPage div.fsCounter {
+  width: 100% !important;
+  font-family: "Texta","Helvetica","Arial","sans-serif";
+}
+
+.fsPage .fsSubmitButton:hover {
+  cursor: pointer;
+}
+
+.fsForm hr {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  form#fsForm2521317 {
+    padding: 1.5em;
+  }
 }
