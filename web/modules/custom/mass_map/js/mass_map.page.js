@@ -3,9 +3,9 @@
         attach: function (context, settings) {
             var mapId = "main-content";
             var locations = drupalSettings.locations;
-            console.log(locations);
+
             // Using once() to apply the myCustomBehaviour effect when you want to do just run one function.
-            $(context).find('#'+mapId).once('#'+mapId).addClass('mass-map-processed').each(function () {
+            $(context).find('#' + mapId).once('#' + mapId).addClass('mass-map-processed').each(function () {
                 $(this).height('500px');
                 var mapProp= {
                     center:new google.maps.LatLng(42.4072107,-71.3824374),
@@ -16,6 +16,8 @@
                 var infowindow = new google.maps.InfoWindow();
                 // Create the list element:
                 var locList = document.createElement('ul');
+                $('#' + mapId).append("<ul class='map-list'></ul>");
+
 
                 for (var key in locations) {
                     if (locations.hasOwnProperty(key)) {
@@ -28,22 +30,14 @@
                         //extend the bounds to include each marker's position
                         bounds.extend(marker.position);
 
-                        var locListItem = document.createElement('li');
-                        var locAddress = document.createElement('div');
-
-                        locAddress.appendChild(document.createTextNode(loc['address']));
-                        locListItem.appendChild(locAddress);
-
                         google.maps.event.addListener(marker, 'click', (function(marker) {
                             return function() {
                                 infowindow.setContent(locAddress);
                                 infowindow.open(map, marker);
                             }
                         })(marker));
-
-                        console.log(loc['address']);
-
-                        locList.appendChild(locListItem);
+                        // append our list to our ul.
+                        $('.map-list').append('<li><div>' + loc['address'] + '</div></li>');
                     }
                 }
                 //now fit the map to the newly inclusive bounds
