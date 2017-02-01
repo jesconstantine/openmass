@@ -15,10 +15,6 @@ class MapController extends ControllerBase {
   /**
    * Content for the map pages.
    *
-   * @param int $latitude
-   *   Latitude for the center of the map.
-   * @param int $longitude
-   *   Longitude for the center of the map.
    * @param int $id
    *   Subtopic nid with a list of locations.
    *
