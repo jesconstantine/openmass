@@ -47,6 +47,7 @@ class MapController extends ControllerBase {
     $markup = "<h2>Map Page</h2>" . $markup;
 
     return [
+      '#theme' => 'map_page',
       '#attached' => array(
         'library' => array(
           'mass_map/mass-map-page-renderer',

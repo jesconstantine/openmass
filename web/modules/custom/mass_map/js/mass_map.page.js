@@ -1,11 +1,11 @@
 (function ($, Drupal) {
     Drupal.behaviors.massMap = {
         attach: function (context, settings) {
-            var mapId = "main-content";
+            var mapId = ".gmap";
             var locations = drupalSettings.locations;
 
             // Using once() to apply the myCustomBehaviour effect when you want to do just run one function.
-            $(context).find('#' + mapId).once('#' + mapId).addClass('mass-map-processed').each(function () {
+            $(context).find(mapId).once(mapId).addClass('mass-map-processed').each(function () {
                 $(this).height('500px');
                 var mapProp= {
                     center:new google.maps.LatLng(42.4072107,-71.3824374),
@@ -15,8 +15,8 @@
                 var bounds = new google.maps.LatLngBounds();
                 var infowindow = new google.maps.InfoWindow();
                 // Create the list element:
-                var locList = document.createElement('ul');
-                $('#' + mapId).append("<ul class='map-list'></ul>");
+
+                $('.loclist').append("<ul class='map-list'></ul>");
 
 
                 for (var key in locations) {
@@ -42,9 +42,6 @@
                 }
                 //now fit the map to the newly inclusive bounds
                 map.fitBounds(bounds);
-
-                document.getElementById(mapId).appendChild(locList);
-
             });
         }
     };
