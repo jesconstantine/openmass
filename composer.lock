@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d64a97fc2e9c8c90187fd7bf65b8c58a",
+    "content-hash": "059e46f8709776b038c3f7db6f7aace6",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -2113,7 +2113,7 @@
             ],
             "description": "Defines a field type for Google Maps.",
             "homepage": "https://www.drupal.org/project/google_map_field",
-            "time": "2016-12-06T16:49:28+00:00"
+            "time": "2016-12-06 16:49:28"
         },
         {
             "name": "drupal/imagick",
@@ -7596,7 +7596,7 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2016-05-21T00:49:42+00:00"
+            "time": "2016-05-21 00:49:42"
         },
         {
             "name": "drupal/console",
@@ -7723,7 +7723,7 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "http://drupal.org/project/devel",
-            "time": "2016-12-04T14:31:11+00:00"
+            "time": "2016-12-04 14:31:11"
         },
         {
             "name": "drupal/drupal-driver",
@@ -8711,6 +8711,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "desandro/imagesloaded": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
         "drupal/file_browser": 20,

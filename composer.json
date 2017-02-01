@@ -52,7 +52,8 @@
             "type": "package",
             "package": {
                 "name": "desandro/imagesloaded",
-                "version": "dev-dc089d",
+                "version": "dev-master",
+                "type": "drupal-library",
                 "source": {
                     "url": "https://github.com/desandro/imagesloaded.git",
                     "type": "git",
