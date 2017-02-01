@@ -47,11 +47,13 @@ class MapController extends ControllerBase {
     $markup = "<h2>Map Page</h2>" . $markup;
 
     return [
-      '#locations' => $locations,
       '#attached' => array(
         'library' => array(
           'mass_map/mass-map-page-renderer',
           'mass_map/mass-google-map-apis',
+        ),
+        'drupalSettings' => array(
+          'locations' => $locations,
         ),
       ),
     ];
