@@ -129,8 +129,14 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
     // Wrap up our links for each subtopic.
     if ($row->_entity->hasField('field_common_content')) {
       foreach ($row->_entity->get('field_common_content')->referencedEntities() as $link) {
+        $is_external = FALSE;
+        if ($link->getType() == 'action') {
+          if (isset($link->get('field_external_url')[0])) {
+            $is_external = TRUE;
+          }
+        }
         // If we have an external URL, lets use that instead of internal paths.
-        if (isset($link->get('field_external_url')[0])) {
+        if ($is_external) {
           $external_link = $link->get('field_external_url')->first()->getValue();
           $link_path = $external_link['uri'];
         }
@@ -641,7 +647,11 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
       $delta++;
     }
-    $variables['use_alt_header'] = $element['#object']->field_use_alt_header->get(0)->value;
+    $use_alt_header = FALSE;
+    if (isset($element['#object']->get('field_use_alt_header')[0])) {
+      $use_alt_header = $element['#object']->field_use_alt_header->get(0)->value;
+    }
+    $variables['use_alt_header'] = $use_alt_header;
     $variables['bands'] = $bands;
   }
 
