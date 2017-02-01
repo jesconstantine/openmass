@@ -1,0 +1,10 @@
+<?php
+
+function mass_map_theme() {
+  $theme['map_page'] = [
+    'variables' => ['map' => NULL],
+    'template' => 'map'
+  ];
+
+  return $theme;
+}

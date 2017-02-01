@@ -25,7 +25,7 @@ class MapController extends ControllerBase {
    * @return array
    *   Render array that returns a list of locations.
    */
-  public function content($latitude, $longitude, $id) {
+  public function content($id) {
     $markup = '';
 
     // Get Locations from the given subtopic.
@@ -38,13 +38,6 @@ class MapController extends ControllerBase {
 
     // Use the ids to get location info.
     $locations = $this->getLocations($ids);
-
-    // Output addresses to map page.
-    foreach ($locations as $location) {
-      $markup .= "<li>" . $location['address'] . "</li>";
-    }
-    $markup = "<ul>" . $markup . "</ul>";
-    $markup = "<h2>Map Page</h2>" . $markup;
 
     return [
       '#theme' => 'map_page',
@@ -76,17 +69,21 @@ class MapController extends ControllerBase {
     $locations = array();
 
     foreach ($nodes as $node) {
-      $address = NULL;
-      $location = NULL;
+      $nid = $node->nid->value;
 
       // Extract location info from right rail layout.
       if ($node->getType() == 'action') {
-        $locations[$node->nid->value] = $this->getActionLocation($node);
+        $locations[$nid] = $this->getActionLocation($node);
       }
       // Extract location info from stacked layout.
       if ($node->getType() == 'stacked_layout') {
-        $locations[$node->nid->value] = $this->getStackedLayoutLocation($node);
+        $locations[$nid] = $this->getStackedLayoutLocation($node);
       }
+
+      // Get the node title as a link to the node.
+      $locations[$nid]['titleLink'] = $node->toLink()->toString();
+      // Get the description for the node.
+      $locations[$nid]['lede'] = $node->field_lede->value;
 
     }
 
