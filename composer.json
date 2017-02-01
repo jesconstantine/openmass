@@ -52,11 +52,11 @@
             "type": "package",
             "package": {
                 "name": "desandro/imagesloaded",
-                "version": "4.1.1",
-                "type": "drupal-library",
-                "dist": {
-                    "url": "https://github.com/desandro/masonry/archive/v4.1.1.zip",
-                    "type": "zip"
+		"version": "dev-dc089d",
+		"source": {
+		    "url": "https://github.com/desandro/imagesloaded.git",
+		    "type": "git",
+		    "reference": "dc089d"
                 }
             }
         },
@@ -114,7 +114,7 @@
         "blakestein/datalayer": "master",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "~1.0",
-        "desandro/imagesloaded": "^4.1",
+	"desandro/imagesloaded": "dev-master",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
         "drupal/acquia_connector": "^8.1",

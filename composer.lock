@@ -706,14 +706,42 @@
         },
         {
             "name": "desandro/imagesloaded",
-            "version": "4.1.1",
+	    "version": "dev-master",
+	    "source": {
+		"type": "git",
+		"url": "https://github.com/desandro/imagesloaded.git",
+		"reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22"
+	    },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/desandro/masonry/archive/v4.1.1.zip",
-                "reference": null,
-                "shasum": null
+		"url": "https://api.github.com/repos/desandro/imagesloaded/zipball/0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
+		"reference": "0ef317ae94f3e89a95ca6af93fab7a16f84d5e22",
+		"shasum": ""
             },
-            "type": "drupal-library"
+	    "type": "drupal-library",
+	    "notification-url": "https://packagist.org/downloads/",
+	    "license": [
+		"MIT"
+	    ],
+	    "authors": [
+		{
+		    "name": "David DeSandro",
+		    "homepage": "http://desandro.com/",
+		    "role": "developer"
+		}
+	    ],
+	    "description": "JavaScript is all like _You images done yet or what?_",
+	    "homepage": "http://imagesloaded.desandro.com",
+	    "keywords": [
+		"dom",
+		"images",
+		"javascript",
+		"jquery-plugin",
+		"library",
+		"loaded",
+		"ui"
+	    ],
+	    "time": "2016-09-02 02:03:18"
         },
         {
             "name": "desandro/masonry",
