@@ -49,10 +49,11 @@
             "url": "https://pear.php.net"
         },
         {
-            "type": "package",
-            "package": {
-                "name": "desandro/imagesloaded",
-		"version": "dev-dc089d",
+	    "type": "package",
+	    "package": {
+		"name": "desandro/imagesloaded",
+		"version": "dev-master",
+		"type": "drupal-library",
 		"source": {
 		    "url": "https://github.com/desandro/imagesloaded.git",
 		    "type": "git",
