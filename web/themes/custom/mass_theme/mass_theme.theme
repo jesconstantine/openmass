@@ -681,7 +681,6 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#url']->isRouted()) {
         $nid = $element[$delta]['#url']->getRouteParameters()['node'];
         $node = \Drupal::entityManager()->getStorage('node')->load($nid);
-
         if (!is_null($node) && $node->hasField('field_external_url') && !empty($node->get('field_external_url')->uri)) {
           $url = $node->get('field_external_url')->uri;
         }
@@ -1329,7 +1328,8 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
  */
 function mass_theme_preprocess_paragraph__search_band(&$variables) {
   $paragraph = $variables['paragraph'];
-  $variables['search800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($paragraph->field_image->entity->getFileUri());
+  $image = isset($paragraph->field_image->entity) ? $paragraph->field_image->entity : NULL;
+  $variables['search800x400_image_url'] = $image ? ImageStyle::load('hero800x400')->buildUrl($image->getFileUri()) : NULL;
 
   // Grab node title incase we don't have a title in band.
   $node = \Drupal::request()->attributes->get('node');
@@ -1367,11 +1367,15 @@ function mass_theme_preprocess_paragraph__callout_button(&$variables) {
     $items = [];
 
     foreach ($links as $link) {
-      $items[] = [
-        'text' => $link->getValue()['title'],
-        'href' => $link->getUrl()->toString(),
-        'type' => (UrlHelper::isExternal($link->getUrl()->toString())) ? 'external' : 'internal',
-      ];
+      // If the linked item was deleted, $link may not exist.
+      if ($link) {
+        $items[] = [
+          'text' => $link->getValue()['title'],
+          'href' => $link->getUrl()->toString(),
+          'type' => (UrlHelper::isExternal($link->getUrl()
+            ->toString())) ? 'external' : 'internal',
+        ];
+      }
     }
 
     $variables['buttonMinors'] = $items;
