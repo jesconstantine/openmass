@@ -418,7 +418,7 @@ a.gsc-trailing-more-results:link {
     border-left: 0 !important;
     background-color: #43956f !important;
     color: #fff !important;
-    padding: 2em 2.1em 2em; /* add right padding because arrow icon is bg image */
+    padding: 1em 1.7em; /* add right padding because arrow icon is bg image */
     min-height: 125px;
     display: block;
     margin: 1em 0 !important;
@@ -452,12 +452,12 @@ a.gsc-trailing-more-results:link {
     .gsc-webResult.gsc-result.gsc-promotion:hover {
       display: inline-block;
       margin-top: 1em;
-      margin-bottom: 8em !important;
+      margin-bottom: 4em !important;
       width: calc( 33% - 1.2em);
       vertical-align: top;
       margin-left: 2em !important;
       height: auto;
-      min-height: 200px;
+      /*min-height: 300px;*/
       border-bottom: 0 !important;
     }
   }
@@ -709,6 +709,7 @@ div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
 }
 .gsc-results .gsc-cursor-box {
   margin-top: 0 !important;
+  padding-top: 1rem;
   color: #14558f !important;
   font-weight: 200;
   font-family: "Texta", "Helvetica", "Arial", "sans-serif" !important;

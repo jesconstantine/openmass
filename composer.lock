@@ -8706,9 +8706,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/draggableviews": 20,
-        "drupal/encrypt": 20,
-        "drupal/file_browser": 20,
+	"drupal/draggableviews": 20,
+	"drupal/encrypt": 20,
+	"drupal/file_browser": 20,
         "drupal/restrict_by_ip": 20,
         "drupal/security_review": 20,
         "drupal/xmlsitemap": 20,
