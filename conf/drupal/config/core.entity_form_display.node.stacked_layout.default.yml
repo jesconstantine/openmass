@@ -109,7 +109,7 @@ third_party_settings:
     group_org_landing_page:
       children:
         - field_topic_parent
-	- field_topic_callout_links
+        - field_topic_callout_links
       parent_name: group_node_edit_form
       weight: 112
       format_type: tab
