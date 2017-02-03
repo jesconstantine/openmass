@@ -45,9 +45,7 @@
       <div class="ma__header-contact__column">
         <div class="ma__header-contact__list">
           <h6 class="ma__header-contact__name">
-            <svg focusable="false" role="presentation" class="svg-phone">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ base_path ~ directory }}/images/svg-sprite.svg#phone"></use>
-            </svg>
+            {% include '@atoms/05-icons/svg-phone.twig' ignore missing %}
             <span>{{ 'Phone'|t }}</span>
           </h6>
           <div>
@@ -62,9 +60,7 @@
       <div class="ma__header-contact__column">
         <div class="ma__header-contact__list">
           <h6 class="ma__header-contact__name">
-            <svg focusable="false" role="presentation" class="svg-laptop">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/{{ base_path ~ directory }}/images/svg-sprite.svg#laptop"></use>
-            </svg>
+            {% include '@atoms/05-icons/svg-laptop.twig' ignore missing %}
             <span>{{ 'Online'|t }}</span>
           </h6>
           <div>

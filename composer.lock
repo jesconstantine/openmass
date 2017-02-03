@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d64a97fc2e9c8c90187fd7bf65b8c58a",
+    "content-hash": "6a187930962f9369bc00b80f4831783f",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -706,14 +706,37 @@
         },
         {
             "name": "desandro/imagesloaded",
-            "version": "4.1.1",
+            "version": "v4.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/desandro/masonry/archive/v4.1.1.zip",
+                "url": "https://github.com/desandro/imagesloaded/archive/v4.1.1.zip",
                 "reference": null,
                 "shasum": null
             },
-            "type": "drupal-library"
+            "type": "drupal-library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David DeSandro",
+                    "homepage": "http://desandro.com/",
+                    "role": "developer"
+                }
+            ],
+            "description": "JavaScript is all like _You images done yet or what?_",
+            "homepage": "http://imagesloaded.desandro.com",
+            "keywords": [
+                "dom",
+                "images",
+                "javascript",
+                "jquery-plugin",
+                "library",
+                "loaded",
+                "ui"
+            ],
+            "time": "2016-08-28 14:48:10"
         },
         {
             "name": "desandro/masonry",
@@ -2066,7 +2089,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/google_map_field-8.x-1.2.zip",
-                "reference": null,
+                "reference": "c5e70c59c81b3912bc2627e2b454188305168865",
                 "shasum": null
             },
             "require": {
@@ -2085,7 +2108,7 @@
             ],
             "description": "Defines a field type for Google Maps.",
             "homepage": "https://www.drupal.org/project/google_map_field",
-            "time": "2016-12-06T16:49:28+00:00"
+            "time": "2016-12-06 16:49:28"
         },
         {
             "name": "drupal/imagick",
@@ -7568,19 +7591,19 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2016-05-21T00:49:42+00:00"
+            "time": "2016-05-21 00:49:42"
         },
         {
             "name": "drupal/console",
             "version": "0.11.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hechoendrupal/DrupalConsole.git",
+                "url": "https://github.com/hechoendrupal/drupal-console.git",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console/zipball/e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "reference": "e0912b0f52455542d18d39f12387f297ec0f6cac",
                 "shasum": ""
             },
@@ -7695,7 +7718,7 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "http://drupal.org/project/devel",
-            "time": "2016-12-04T14:31:11+00:00"
+            "time": "2016-12-04 14:31:11"
         },
         {
             "name": "drupal/drupal-driver",
@@ -8683,9 +8706,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/draggableviews": 20,
-        "drupal/encrypt": 20,
-        "drupal/file_browser": 20,
+	"drupal/draggableviews": 20,
+	"drupal/encrypt": 20,
+	"drupal/file_browser": 20,
         "drupal/restrict_by_ip": 20,
         "drupal/security_review": 20,
         "drupal/xmlsitemap": 20,

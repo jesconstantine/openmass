@@ -40,3 +40,8 @@ Feature: Section Landing Content type
       | title           | Behat Test: Section Landing |
       | field_icon_term | Behat Test: Building        |
     Then I should see the link "Reorder Topics"
+
+  Scenario: Verify that section links are present with correct markup.
+    Given default test content exists
+    When I visit the test "section_landing" "Behat Test: Working"
+    Then I should see the correct markup for the section links

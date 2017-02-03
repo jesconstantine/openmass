@@ -44,13 +44,14 @@ class MassMarkupContext extends MarkupContext
   public function iShouldSeeTheCorrectMarkupForTheSectionLinks()
   {
     $this->assertRegionElement('.ma__section-links__content', 'section_links');
-    $this->assertRegionElement('.ma__section-links__icon', 'section_links');
+    $this->assertRegionElement('.ma__section-links__icon > .ma__category-icon > svg', 'section_links');
     $this->assertRegionElement('.ma__section-links__title', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content', 'section_links');
-    $this->assertRegionElement('.ma__section-links__title > a', 'section_links');
+    $this->assertRegionElement('.ma__section-links__title > .ma__decorative-link > a', 'section_links');
+    $this->assertRegionElement('.ma__section-links__title > .ma__decorative-link > a > svg', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content > .ma__section-links__description', 'section_links');
-    $this->assertRegionElement('.ma__section-links__toggle-content  h4.ma__section-links__mobile-title', 'section_links');
-    $this->assertRegionElement('.ma__section-links__toggle-content  h4.ma__section-links__mobile-title > a', 'section_links');
+    $this->assertRegionElement('.ma__section-links__toggle-content .ma__section-links__mobile-title > .ma__decorative-link svg', 'section_links');
+    $this->assertRegionElement('.ma__section-links__toggle-content .ma__section-links__items > .ma__section-links__item > a', 'section_links');
   }
 
   /**

@@ -9,8 +9,8 @@ dependencies:
     - mass_theme
 id: pagefeedbackform
 theme: mass_theme
-region: footer
-weight: 0
+region: post_content
+weight: -5
 provider: null
 plugin: page_feedback_form
 settings:
