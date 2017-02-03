@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * @file
+ * Contains mass_map.module.
+ */
+
+/**
+ * Implements hook_theme()
+ */
 function mass_map_theme() {
   $theme['map_page'] = [
     'variables' => ['map' => NULL],
-    'template' => 'map'
+    'template' => 'map',
   ];
 
   return $theme;
