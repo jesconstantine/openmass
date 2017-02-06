@@ -34,7 +34,11 @@
             bounds.extend(marker.position);
 
             // Get information about the location.
-            var locInfo = loc['titleLink'] + '<div>' + loc['address'] + '</div><div>' + loc['lede'] + '</div>';
+            var locInfo = loc['titleLink'] + '<div>' + loc['address'] + '</div>';
+
+            if (loc['lede'] != null) {
+              locInfo = locInfo + '<div>' + loc['lede'] + '</div>';
+            }
 
             // Add information to the info windo of that marker.
             google.maps.event.addListener(marker, 'click', (function (marker, locInfo) {
