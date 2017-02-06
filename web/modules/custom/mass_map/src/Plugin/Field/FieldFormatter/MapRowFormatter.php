@@ -52,7 +52,7 @@ class MapRowFormatter extends FormatterBase {
         ),
         'drupalSettings' => array(
           'locations' => $locations,
-          'nodeId' => $items->getEntity()->id(),
+          'nodeId' => \Drupal::routeMatch()->getRawParameter('node'),
         ),
       ),
     ];
