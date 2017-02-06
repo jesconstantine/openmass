@@ -32,8 +32,9 @@ class MapController extends ControllerBase {
       $ids[] = $location->getValue()['target_id'];
     }
 
+    $location_fetcher = new MapLocationFetcher();
     // Use the ids to get location info.
-    $locations = MapLocationFetcher::getLocations($ids);
+    $locations = $location_fetcher->getLocations($ids);
 
     return [
       '#theme' => 'map_page',
