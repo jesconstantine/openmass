@@ -23,7 +23,6 @@ class MapController extends ControllerBase {
    *   Render array that returns a list of locations.
    */
   public function content($id) {
-    dpm($id);
 
     $ids = $this->getMapLocationIds($id);
 
@@ -45,11 +44,17 @@ class MapController extends ControllerBase {
     ];
   }
 
+  /**
+   * @param int $id
+   *  The nid that contains a map row paragraph.
+   *
+   * @return array
+   *  A list of location node ids.
+   */
   private function getMapLocationIds($id) {
     // Get Locations from the given subtopic.
     $node_storage = \Drupal::entityManager()->getStorage('node');
     $node = $node_storage->load($id);
-    dpm($node);
 
     // Extract location info from right rail layout.
     if ($node->getType() == 'action') {
@@ -63,17 +68,18 @@ class MapController extends ControllerBase {
   }
 
   /**
-   * Get location information from Right Rail node.
+   * Get location ids from Right Rail node.
    *
    * @param object $node
    *   Right Rail node.
    *
    * @return array
-   *   And array containing the address and location information.
+   *   And array containing location ids.
    */
   private function getActionLocationIds($node) {
     $locationIds = array();
 
+    // Get map row out of the details paragraph.
     foreach ($node->field_action_details as $detail_id) {
       $detail = Paragraph::load($detail_id->target_id);
       if ($detail->getType() == 'map_row') {
@@ -88,19 +94,19 @@ class MapController extends ControllerBase {
   }
 
   /**
-   * Get location information from Stacked Layout node.
+   * Get location ids from Stacked Layout node.
    *
    * @param object $node
    *   Stacked Layout node.
    *
    * @return array
-   *   And array containing the address and location information.
+   *   And array containing location ids.
    */
   private function getStackedLayoutLocationIds($node) {
     $locationIds = array();
 
     foreach ($node->field_bands as $band_id) {
-      // Search the main bands field for location and address information.
+      // Search the main bands field a map row.
       $band = Paragraph::load($band_id->target_id);
       foreach ($band->field_main as $band_main_id) {
         $band_main = Paragraph::load($band_main_id->target_id);
