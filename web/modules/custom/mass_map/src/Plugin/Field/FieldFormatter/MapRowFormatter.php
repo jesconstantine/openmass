@@ -4,6 +4,7 @@ namespace Drupal\mass_map\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\mass_map\MapLocationFetcher;
 
 /**
  * Plugin implementation of the 'Random_default' formatter.
@@ -51,6 +52,7 @@ class MapRowFormatter extends FormatterBase {
         ),
         'drupalSettings' => array(
           'locations' => $locations,
+          'nodeId' => $items->getEntity()->id(),
         ),
       ),
     ];

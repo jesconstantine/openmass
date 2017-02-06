@@ -2,7 +2,7 @@
   'use strict';
   Drupal.behaviors.massMap = {
     attach: function (context, settings) {
-      var mapId = '.gmap';
+      var mapId = '.paragraph--type--map-row';
       var locations = drupalSettings.locations;
 
       // Using once() to apply the myCustomBehaviour effect when you want to do just run one function.
@@ -51,6 +51,8 @@
         }
         // now fit the map to the newly inclusive bounds
         map.fitBounds(bounds);
+
+        $(this).append('<a href="/map/' + drupalSettings.nodeId + '">See a list of all locations</a>');
       });
     }
   };
