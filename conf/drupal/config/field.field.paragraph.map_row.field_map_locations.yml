@@ -1,18 +1,18 @@
-uuid: 911491df-d91b-4f63-8558-9203f0c693c2
+uuid: e35e6173-c2f2-4824-b155-d851a6c8359f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_map_locations
+    - field.storage.paragraph.field_map_locations
     - node.type.action
     - node.type.stacked_layout
-    - node.type.subtopic
-id: node.subtopic.field_map_locations
+    - paragraphs.paragraphs_type.map_row
+id: paragraph.map_row.field_map_locations
 field_name: field_map_locations
-entity_type: node
-bundle: subtopic
+entity_type: paragraph
+bundle: map_row
 label: 'Map Locations'
-description: ''
+description: 'Nodes with location information (a map paragraph and address), will be rendered as markers on a map.'
 required: false
 translatable: false
 default_value: {  }

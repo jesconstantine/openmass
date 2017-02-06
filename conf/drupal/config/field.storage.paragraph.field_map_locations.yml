@@ -1,12 +1,13 @@
-uuid: 1fc1790d-6ec2-4b9d-b760-2c29ed8ce4eb
+uuid: c0c0e0e0-4b63-4da2-8544-ad32e478c3e1
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_map_locations
+    - paragraphs
+id: paragraph.field_map_locations
 field_name: field_map_locations
-entity_type: node
+entity_type: paragraph
 type: entity_reference
 settings:
   target_type: node
