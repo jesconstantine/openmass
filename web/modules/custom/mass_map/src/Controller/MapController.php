@@ -23,7 +23,6 @@ class MapController extends ControllerBase {
    *   Render array that returns a list of locations.
    */
   public function content($id) {
-    $markup = '';
 
     // Get Locations from the given subtopic.
     $node_storage = \Drupal::entityManager()->getStorage('node');
@@ -49,6 +48,5 @@ class MapController extends ControllerBase {
       ),
     ];
   }
-
 
 }

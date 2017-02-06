@@ -39,8 +39,6 @@ class MapRowFormatter extends FormatterBase {
       $location_ids[] = $item->target_id;
     }
 
-
-
     // Use the ids to get location info.
     $locations = MapLocationFetcher::getLocations($location_ids);
 
