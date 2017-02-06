@@ -45,11 +45,13 @@ class MapController extends ControllerBase {
   }
 
   /**
+   * Get a list of location ids from the parent id.
+   *
    * @param int $id
-   *  The nid that contains a map row paragraph.
+   *   The nid that contains a map row paragraph.
    *
    * @return array
-   *  A list of location node ids.
+   *   A list of location node ids.
    */
   private function getMapLocationIds($id) {
     // Get Locations from the given subtopic.
