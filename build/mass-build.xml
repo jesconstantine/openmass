@@ -16,7 +16,7 @@
       <if>
           <available file="${build.test_output}" type="dir" />
           <then>
-              <property name="behat.args" value="--strict --format=junit --out=${build.test_output}/behat" />
+              <property name="behat.args" value="--strict --verbose=2 --format=junit --out=${build.test_output}/behat" />
           </then>
           <else>
               <property name="behat.args" value="" />
