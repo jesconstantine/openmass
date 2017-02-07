@@ -39,4 +39,4 @@ test:
     - cd web && drush -yv --include=../vendor/previousnext/drush_cmi_tools cimy
 
   override:
-    - phing -debug test
+    - phing -verbose test
