@@ -202,12 +202,12 @@
       // If there are promoted results.
       if (numPromotions) {
         // Append promotions message content to announcement.
-        announcement += numPromotions + ' suggestions and '; // 3.
+        announcement += numPromotions + ' suggested links and '; // 3.
 
-        // Prepend first promoted result with visually hidden <h3> landmark.
-        var promotedResultsHeading = document.createElement('h3');
+        // Prepend first promoted result with visually hidden <h2> landmark.
+        var promotedResultsHeading = document.createElement('h2');
         promotedResultsHeading.setAttribute('class', 'ma__search-heading');
-        promotedResultsHeading.textContent = 'Suggestions';
+        promotedResultsHeading.textContent = 'Suggested Links';
         searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
       }
 
@@ -244,10 +244,10 @@
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
-      // Prepend regular results with visually hidden <h3> landmark.
-      var regularResultsHeading = document.createElement('h3');
+      // Prepend regular results with visually hidden <h2> landmark.
+      var regularResultsHeading = document.createElement('h2');
       regularResultsHeading.setAttribute('class', 'ma__search-heading');
-      regularResultsHeading.textContent = 'Results';
+      regularResultsHeading.textContent = 'Search Results';
       searchResults.insertBefore(regularResultsHeading, regularResults); // 6.
     }
 
