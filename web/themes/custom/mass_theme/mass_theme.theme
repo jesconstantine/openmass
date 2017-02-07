@@ -543,6 +543,12 @@ function mass_theme_preprocess_html(&$variables) {
 function mass_theme_preprocess_page(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node = $variables['node'];
+
+    // When loading a revision only the nid is returned. We need the object.
+    if (ctype_digit($node)) {
+      $node = Node::load($node);
+    }
+
     // If we're using search band, lets tell page twig about it.
     if ($node->hasField('field_bands') && $node->get('field_bands')->count() > 0) {
       foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
@@ -1864,6 +1870,12 @@ function icon_path($icon) {
 function mass_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
   $node = \Drupal::request()->attributes->get('node');
+
+  // When loading a revision only the nid is returned. We need the object.
+  if (ctype_digit($node)) {
+    $node = Node::load($node);
+  }
+
   if ($node) {
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }
