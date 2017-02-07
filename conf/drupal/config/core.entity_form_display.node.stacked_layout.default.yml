@@ -69,7 +69,7 @@ third_party_settings:
         - field_bands
       parent_name: group_node_edit_form
       weight: 109
-      label: Bands
+      label: Rows
       format_type: tab
       format_settings:
         formatter: closed
