@@ -255,6 +255,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
     $values = $image_field->getValue();
     $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
     $variables['image_alt'] = $values[0]['alt'];
+    $variables['image_url_teaser_simple'] = mass_theme_get_field_image_url($node, 'thumbnail_130x160', 'field_photo');
   }
 
   if ($field_related_content->count() > 0) {
