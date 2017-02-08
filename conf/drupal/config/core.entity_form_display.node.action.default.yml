@@ -127,7 +127,7 @@ third_party_settings:
         - field_action_header
         - field_action_banner
         - field_header_cta
-	- field_image_credit
+        - field_image_credit
       parent_name: group_form
       weight: 2
       label: 'Extended Header'
