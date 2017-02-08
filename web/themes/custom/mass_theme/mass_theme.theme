@@ -1084,10 +1084,38 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
       $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
       $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
 
-      if ($item->hasField('field_icon_term')) {
-        $item->{'icon'} = icon_path($item->get('field_icon_term')->value);
+      // Grab our icon.
+      // Topics have an icon field.
+      if ($item->hasField('field_icon_term') && array_key_exists('0', $item->get('field_icon_term')->referencedEntities())) {
+        $icon = $item->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        $item->{'icon'} = icon_path($icon);
+      }
+      // Subtopics don't have an icons field, so lets use it parent ref.
+      if ($item->hasField('field_topic_parent') && array_key_exists('0', $item->get('field_topic_parent')->referencedEntities())) {
+        $icon = $item->get('field_topic_parent')->referencedEntities()[0]->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        $item->{'icon'} = icon_path($icon);
       }
 
+      // Topics don't have topic callouts, so we use common content for links.
+      if ($item->hasField('field_common_content')) {
+        $links = [];
+        foreach ($item->get('field_common_content')->referencedEntities() as $link) {
+          // Get aliased path.
+          $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $link->get('nid')->value);
+          if ($link && $link->hasField('field_external_url')) {
+            $external_link = $link->get('field_external_url')->uri;
+            // Check the external url field value is not empty.
+            if (!empty($external_link)) {
+              $link_path = $external_link;
+            }
+          }
+          $links[] = array('text' => $link->getTitle(), 'href' => $link_path);
+        }
+        // Get links for our topic cards.
+        $item->{'links'} = $links;
+      }
+
+      // Subtopics have topic callout links.
       if ($item->hasField('field_topic_callout_links')) {
         $links = [];
         foreach ($item->get('field_topic_callout_links') as $link) {
@@ -1109,6 +1137,7 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
         // Get links for our topic cards.
         $item->{'links'} = $links;
       }
+
       $nodes[] = $item;
       $types[] = $item->getType();
     }
