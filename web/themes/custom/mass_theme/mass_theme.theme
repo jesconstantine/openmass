@@ -67,6 +67,51 @@ function mass_theme_preprocess_block(&$variables) {
  * Implements hook_preprocess_menu().
  */
 function mass_theme_preprocess_menu(&$variables) {
+  // Use this formatting for Utility nav.
+  if ($variables['menu_name'] == 'utility') {
+    foreach ($variables['items'] as &$item) {
+      $ref_node = $item['url']->getRouteParameters();
+      // Load it up and get the field.
+      if ($node = Node::load($ref_node['node'])) {
+        $icon = '';
+        // Get icon.
+        if ($node->hasField('field_icon_term') && array_key_exists('0', $node->get('field_icon_term')->referencedEntities())) {
+          $icon = $node->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        }
+        // Get links.
+        $links = [];
+        if ($node->hasField('field_links')) {
+          foreach ($node->get('field_links') as $link) {
+            $links[] = array(
+              'type' => UrlHelper::isExternal($link->uri) ? 'external' : 'internal',
+              'text' => $link->title,
+              'href' => $link->uri,
+            );
+          }
+        }
+        $items[] = array(
+          'text'      => $item['title'],
+          'icon'      => icon_path($icon),
+          'closeText' => t('Close'),
+          'panel'     => array(
+            'description' => array(
+              'rteElements' => array([
+                'path' => '@atoms/11-text/paragraph.twig',
+                'data' => array(
+                  'paragraph' => array(
+                    'text' => $node->hasField('body') ? strip_tags($node->body->value, '<br><a><b>') : '',
+                  ),
+                ),
+              ]
+              ),
+            ),
+            'links' => $links,
+          ),
+        );
+      }
+    }
+    $variables['items'] = $items;
+  }
   // Use this formatting for Main Nav aka Topic Nav.
   if ($variables['menu_name'] == 'main') {
     $mainNav = [];
@@ -520,8 +565,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
             'chevron' => 'true',
             'text' => $url->getValue()['title'],
             'href' => $href,
-            'type' => (UrlHelper::isExternal($url->getUrl()
-              ->toString())) ? 'external' : 'internal',
+            'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
           );
         }
 

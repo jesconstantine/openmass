@@ -33,8 +33,7 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-{% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('aria-labelledby', 'class') }} class="ma__header__nav {{ attributes.class }}">
+<nav class="ma__header__nav" role="navigation" aria-labelledby="main_navigation" id="main-navigation">
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
@@ -60,5 +59,8 @@
       {% block content %}
         {{ content }}
       {% endblock %}
+    </div>
+    <div class="ma__header__utility-nav">
+      {{ render_menu('utility') }}
     </div>
 </nav>
