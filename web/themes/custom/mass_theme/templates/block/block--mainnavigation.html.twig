@@ -56,11 +56,9 @@
       </section>
     </div>
     <div class="ma__header__main-nav">
-      <section class="ma__main-nav" id="{{ heading_id }}">
-        {# Menu. #}
-        {% block content %}
-          {{ content }}
-        {% endblock %}
-      </section>
+      {# Main Menu aka Topic Menu #}
+      {% block content %}
+        {{ content }}
+      {% endblock %}
     </div>
 </nav>

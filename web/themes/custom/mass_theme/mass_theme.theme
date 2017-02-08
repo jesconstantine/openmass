@@ -64,6 +64,32 @@ function mass_theme_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_menu().
+ */
+function mass_theme_preprocess_menu(&$variables) {
+  // Use this formatting for Main Nav aka Topic Nav.
+  if ($variables['menu_name'] == 'main') {
+    $mainNav = [];
+    foreach ($variables['items'] as &$item) {
+      $subNav = [];
+      foreach ($item['below'] as $link) {
+        $subNav[] = array(
+          'href' => $link['url'],
+          'text' => $link['title'],
+        );
+      }
+      $mainNav[] = array(
+        'href'   => $item['url'],
+        'text'   => $item['title'],
+        'active' => $item['in_active_trail'],
+        'subNav' => $subNav,
+      );
+    }
+    $variables['mainNav'] = $mainNav;
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function mass_theme_preprocess_node(&$variables) {
