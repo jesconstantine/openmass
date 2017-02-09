@@ -153,6 +153,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
       $icon_path = icon_path($icon);
     }
     $sections[] = array(
+      'id' => $row->_entity->get('nid')->value,
       'catIcon' => array(
         'icon' => $icon_path,
         'small' => 'true',
@@ -407,6 +408,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
       }
       // Wrap up each section with links.
       $sections[] = array(
+        'id' => $row->_entity->get('nid')->value,
         'title' => array(
           'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_entity->get('nid')->value),
           'text' => $row->_entity->get('title')->value,
@@ -1443,9 +1445,8 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
  * Default template: link-formatter-link-separate.html.twig.
  */
 function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
-  $url = $variables['url_title'];
   $variables['fieldLink']['text'] = $variables['title'];
-  $variables['fieldLink']['href'] = $url;
+  $variables['fieldLink']['href'] = $variables['url'];
   $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
 }
 
