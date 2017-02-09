@@ -10,7 +10,7 @@ field_name: field_caption
 entity_type: paragraph
 bundle: search_band
 label: 'Background image credit'
-description: 'e.g. By Sir Mix Allot'
+description: 'e.g. "By Sir Mix Allot"'
 required: false
 translatable: true
 default_value: {  }
