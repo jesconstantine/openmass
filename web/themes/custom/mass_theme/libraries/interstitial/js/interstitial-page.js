@@ -11,7 +11,7 @@
     var destination = 'http://www.mass.gov/portal';
     parser.href = givenURL;
     if (parser.hostname === 'www.mass.gov' || parser.hostname === 'mass.gov') {
-      destination = parser.hostname;
+      destination = givenURL;
     }
     return destination;
   }
