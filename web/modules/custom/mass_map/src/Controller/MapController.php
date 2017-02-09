@@ -93,8 +93,6 @@ class MapController extends ControllerBase {
         }
       }
     }
-
-
     return $locationIds;
   }
 
