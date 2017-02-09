@@ -1445,9 +1445,8 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
  * Default template: link-formatter-link-separate.html.twig.
  */
 function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
-  $url = $variables['url_title'];
   $variables['fieldLink']['text'] = $variables['title'];
-  $variables['fieldLink']['href'] = $url;
+  $variables['fieldLink']['href'] = $variables['url'];
   $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
 }
 
