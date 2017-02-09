@@ -18,10 +18,10 @@ set pageHeader = {
   "title": label|field_value,
   "subTitle": content.field_lede|field_value,
   rteElements: [{
-    'path': '@atoms/11-text/paragraph.twig',
+    'path': '@atoms/11-text/raw-html.twig',
     'data': {
-      'paragraph': {
-        'text': content.field_description|field_value
+      'rawHtml': {
+        'content': content.field_description|field_value
       }
     },
   }]

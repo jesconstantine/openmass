@@ -326,6 +326,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
     $values = $image_field->getValue();
     $variables['image_url'] = mass_theme_get_field_image_url($node, 'illustrated_header', 'field_photo');
     $variables['image_alt'] = $values[0]['alt'];
+    $variables['image_url_teaser_simple'] = mass_theme_get_field_image_url($node, 'thumbnail_130x160', 'field_photo');
   }
 
   if ($field_related_content->count() > 0) {
@@ -1302,10 +1303,10 @@ function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
       foreach ($paragraph_tags as $paragraph_tag) {
         if (!empty($paragraph_tag)) {
           $paragraphs[] = array(
-            'path' => '@atoms/11-text/paragraph.twig',
+            'path' => '@atoms/11-text/raw-html.twig',
             'data' => array(
-              'paragraph' => array(
-                'text' => trim(str_replace("<p>", "", $paragraph_tag)),
+              'rawHtml' => array(
+                'content' => trim(str_replace("<p>", "", $paragraph_tag)),
               ),
             ),
           );
@@ -1360,12 +1361,12 @@ function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables)
       }
 
       if ($field_content->count() > 0) {
-        $content = $field_content->first()->getValue();
+        $content = $field_content->first()->view('full');
         $list[$id]['rteElements'][] = array(
-          'path' => '@atoms/11-text/paragraph.twig',
+          'path' => '@atoms/11-text/raw-html.twig',
           'data' => array(
-            'paragraph' => array(
-              'text' => $content['value'],
+            'rawHtml' => array(
+              'content' => $content,
             ),
           ),
         );
