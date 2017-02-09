@@ -153,6 +153,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
       $icon_path = icon_path($icon);
     }
     $sections[] = array(
+      'id' => $row->_entity->get('nid')->value,
       'catIcon' => array(
         'icon' => $icon_path,
         'small' => 'true',
@@ -407,6 +408,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
       }
       // Wrap up each section with links.
       $sections[] = array(
+        'id' => $row->_entity->get('nid')->value,
         'title' => array(
           'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_entity->get('nid')->value),
           'text' => $row->_entity->get('title')->value,
