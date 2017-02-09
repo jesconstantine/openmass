@@ -10,7 +10,7 @@ field_name: field_description
 entity_type: paragraph
 bundle: search_band
 label: Description
-description: 'E.g. "What would you like to do?"'
+description: 'E.g. What would you like to do?'
 required: false
 translatable: true
 default_value: {  }

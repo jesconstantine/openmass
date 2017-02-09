@@ -27,10 +27,10 @@ set illustratedHeader = {
     'title': label|field_value,
     'subTitle': '',
     'rteElements': [{
-      'path': '@atoms/11-text/paragraph.twig',
+      'path': '@atoms/11-text/raw-html.twig',
       'data': {
-        'paragraph' : {
-          'text': content.field_lede|field_value
+        'rawHtml' : {
+          'content': content.field_lede|field_value
         }
       }
     }],
