@@ -82,15 +82,18 @@ class MapController extends ControllerBase {
     $locationIds = array();
 
     // Get map row out of the details paragraph.
-    foreach ($node->field_action_details as $detail_id) {
-      $detail = Paragraph::load($detail_id->target_id);
-      if ($detail->getType() == 'map_row') {
-        foreach ($detail->field_map_locations as $location) {
-          $locationIds[] = $location->target_id;
+    if (!empty($node->field_action_details)) {
+      foreach ($node->field_action_details as $detail_id) {
+        $detail = Paragraph::load($detail_id->target_id);
+        if ($detail->getType() == 'map_row') {
+          foreach ($detail->field_map_locations as $location) {
+            $locationIds[] = $location->target_id;
+          }
+          break;
         }
-        break;
       }
     }
+
 
     return $locationIds;
   }
@@ -107,16 +110,20 @@ class MapController extends ControllerBase {
   private function getStackedLayoutLocationIds($node) {
     $locationIds = array();
 
-    foreach ($node->field_bands as $band_id) {
-      // Search the main bands field a map row.
-      $band = Paragraph::load($band_id->target_id);
-      foreach ($band->field_main as $band_main_id) {
-        $band_main = Paragraph::load($band_main_id->target_id);
-        if ($band_main->getType() == 'map_row') {
-          foreach ($band_main->field_map_locations as $location) {
-            $locationIds[] = $location->target_id;
+    if (!empty($node->field_bands)) {
+      foreach ($node->field_bands as $band_id) {
+        // Search the main bands field a map row.
+        $band = Paragraph::load($band_id->target_id);
+        if (!empty($band->field_main)) {
+          foreach ($band->field_main as $band_main_id) {
+            $band_main = Paragraph::load($band_main_id->target_id);
+            if ($band_main->getType() == 'map_row') {
+              foreach ($band_main->field_map_locations as $location) {
+                $locationIds[] = $location->target_id;
+              }
+              break;
+            }
           }
-          break;
         }
       }
     }
