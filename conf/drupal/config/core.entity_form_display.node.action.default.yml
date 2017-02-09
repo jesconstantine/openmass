@@ -293,7 +293,7 @@ content:
     settings:
       match_operator: CONTAINS
       size: 60
-      placeholder: 'Indicate type (E.g. How To)'
+      placeholder: 'Indicate type (E.g. “How To”)'
     third_party_settings: {  }
     type: entity_reference_autocomplete
   title:
