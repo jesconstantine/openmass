@@ -19,7 +19,7 @@ field_name: field_right_rail
 entity_type: paragraph
 bundle: 2up_stacked_band
 label: 'Right rail'
-description: 'This will take up 30% of this band.'
+description: 'This will take up 30% of this row.'
 required: false
 translatable: false
 default_value: {  }
