@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.action.field_external_url
     - field.field.node.action.field_funnel_endpoint_term
     - field.field.node.action.field_header_cta
+    - field.field.node.action.field_image_credit
     - field.field.node.action.field_lede
     - field.field.node.action.field_metatags
     - field.field.node.action.field_search
@@ -126,6 +127,7 @@ third_party_settings:
         - field_action_header
         - field_action_banner
         - field_header_cta
+        - field_image_credit
       parent_name: group_form
       weight: 2
       label: 'Extended Header'
@@ -260,6 +262,13 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  field_image_credit:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_lede:
     weight: 2
     settings:

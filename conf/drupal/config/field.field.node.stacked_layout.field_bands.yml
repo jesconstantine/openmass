@@ -16,7 +16,7 @@ id: node.stacked_layout.field_bands
 field_name: field_bands
 entity_type: node
 bundle: stacked_layout
-label: Bands
+label: Rows
 description: ''
 required: false
 translatable: false

@@ -3,4 +3,4 @@ langcode: en
 status: true
 dependencies: {  }
 id: 1up_stacked_band
-label: '1up Stacked Band'
+label: '1up Stacked Row'
