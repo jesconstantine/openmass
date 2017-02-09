@@ -25,7 +25,7 @@ When a deployment is needed, the following things must happen to the existing co
 
 Any deployment process, whether scripted or done by handed, must execute these steps in this order to be successful.
 
-# Promoting Deployment Artifacts
+# Promoting Deployment Artifacts  
 
 ## To Dev
 Deploying to the dev environment involves building a full Drupal Deployment Artifact locally (by pulling the database and files from canonical, then running processes on them) and then putting all three components of the artifact in the dev environment at once.
