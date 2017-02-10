@@ -16,10 +16,10 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
-<div class="main-content {{ content.field_right_rail|render|trim is not empty ? 'main-content--two' : '' }}">
-  <main class="page-content">
+<div class="main-content {{ content.field_right_rail|render|trim is not empty ? 'main-content--two' : 'main-content--full' }}">
+  <div class="page-content">
     {{ content.field_main|field_value }}
-  </main>
+  </div>
   {% if content.field_right_rail|render|trim is not empty %}
     <aside class="sidebar">
       {{ content.field_right_rail|field_value }}

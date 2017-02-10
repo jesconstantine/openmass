@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 name: Type
 vid: type
-description: 'The content type you are prototyping. (E.g. How To or Location Page)'
+description: 'The content type you are prototyping. (E.g. “How To” or “Location Page”)'
 hierarchy: 0
 weight: 0

@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.action.field_alert_text
     - field.field.node.action.field_external_url
     - field.field.node.action.field_header_cta
+    - field.field.node.action.field_image_credit
     - field.field.node.action.field_lede
     - field.field.node.action.field_metatags
     - field.field.node.action.field_search
@@ -89,6 +90,13 @@ content:
     settings:
       view_mode: extended_header
       link: ''
+    third_party_settings: {  }
+  field_image_credit:
+    type: string
+    weight: 10
+    label: hidden
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
   field_lede:
     type: basic_string

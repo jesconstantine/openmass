@@ -10,7 +10,7 @@ field_name: field_name
 entity_type: paragraph
 bundle: search_band
 label: 'Background image location'
-description: 'e.g. MIT Media Lab'
+description: 'e.g. "MIT Media Lab"'
 required: false
 translatable: true
 default_value: {  }

@@ -18,7 +18,7 @@ set pageBanner = {
   'titleSubText': node.field_label.value ? "(" ~ node.field_label.value ~ ")" : ''
 }
 %}
-{%  
+{%
 set illustratedHeader = {
   'bgTitle': image_alt,
   'bgImage': image_url,
@@ -86,6 +86,9 @@ set suggestedPages = {
 {% endblock %}
 
 {% block postContent %}
+  {% if content.field_image_credit is not empty %}
+    {{ content.field_image_credit }}
+  {% endif %}
   {% if related_content is not empty %}
     {% include '@custom_includes/organisms-suggested-pages.html.twig' with suggestedPages %}
   {% endif %}

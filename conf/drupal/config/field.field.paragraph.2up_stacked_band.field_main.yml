@@ -26,7 +26,7 @@ field_name: field_main
 entity_type: paragraph
 bundle: 2up_stacked_band
 label: Main
-description: 'This will take up 70% of this band.'
+description: 'This will take up 70% of this row.'
 required: false
 translatable: true
 default_value: {  }

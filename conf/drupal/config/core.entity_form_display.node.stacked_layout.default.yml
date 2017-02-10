@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.stacked_layout.field_bands
     - field.field.node.stacked_layout.field_funnel_endpoint_term
     - field.field.node.stacked_layout.field_header_cta
+    - field.field.node.stacked_layout.field_image_credit
     - field.field.node.stacked_layout.field_label
     - field.field.node.stacked_layout.field_lede
     - field.field.node.stacked_layout.field_metatags
@@ -69,7 +70,7 @@ third_party_settings:
         - field_bands
       parent_name: group_node_edit_form
       weight: 109
-      label: Bands
+      label: Rows
       format_type: tab
       format_settings:
         formatter: closed
@@ -82,6 +83,7 @@ third_party_settings:
         - field_action_header
         - field_action_banner
         - field_header_cta
+        - field_image_credit
       parent_name: group_node_edit_form
       weight: 111
       label: 'Extended Header'
@@ -175,6 +177,13 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     type: entity_reference_paragraphs
+  field_image_credit:
+    weight: 115
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_label:
     weight: 117
     settings:
@@ -234,7 +243,7 @@ content:
     settings:
       match_operator: CONTAINS
       size: 60
-      placeholder: 'Indicate type (E.g. How To)'
+      placeholder: 'Indicate type (E.g. “How To”)'
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_use_alt_header:

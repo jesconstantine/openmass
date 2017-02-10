@@ -36,8 +36,10 @@
       <ul>
     {% endif %}
     {% for item in items %}
+      {% set iconAltText = ('Follow us on ' ~ item.title)|t %}
       <li{{ item.attributes.addClass('ma__social-links__item') }} >
         <a href="{{ item.url }}" class="ma__social-links__link">
+          <span class="visually-hidden">{{ iconAltText }}</span>
           {% include '@atoms/05-icons/svg-' ~ item.title|lower ~ '.twig' ignore missing %}
         </a>
       </li>

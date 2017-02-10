@@ -67,7 +67,6 @@ module:
   migrate_tools: 0
   node: 0
   options: 0
-  page_cache: 0
   paragraphs: 0
   password_policy: 0
   password_policy_characters: 0
