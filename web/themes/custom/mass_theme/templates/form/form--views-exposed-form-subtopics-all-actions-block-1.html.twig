@@ -12,8 +12,14 @@
  * @copyright Copyright (c) 2016 Palantir.net
  */
 #}
+{%
+  set classes = [
+    'ma__form',
+    'ma__form--light'
+  ]
+%}
 <div class="view-filters">
-  <form{{ attributes }}>
+  <form{{ attributes.addClass(classes) }}>
     {{ children }}
   </form>
 </div>

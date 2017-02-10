@@ -202,12 +202,12 @@
       // If there are promoted results.
       if (numPromotions) {
         // Append promotions message content to announcement.
-        announcement += numPromotions + ' suggestions and '; // 3.
+        announcement += numPromotions + ' suggested links and '; // 3.
 
-        // Prepend first promoted result with visually hidden <h3> landmark.
-        var promotedResultsHeading = document.createElement('h3');
+        // Prepend first promoted result with visually hidden <h2> landmark.
+        var promotedResultsHeading = document.createElement('h2');
         promotedResultsHeading.setAttribute('class', 'ma__search-heading');
-        promotedResultsHeading.textContent = 'Suggestions';
+        promotedResultsHeading.textContent = 'Suggested Links';
         searchResults.insertBefore(promotedResultsHeading, promotions[0]); // 5.
       }
 
@@ -215,25 +215,39 @@
       var currentPageNode = searchResults.querySelector('div.gsc-cursor-page.gsc-cursor-current-page');
       var currentPage = currentPageNode.textContent;
 
-      // Add current pagination link text for screen readers
+      currentPageNode.setAttribute('aria-selected', 'true');
+
+      // Add current pagination link text for screen readers.
+
+      // Create text which will describe current result page link.
       var currentPageDescribedBy = document.createElement('div');
       currentPageDescribedBy.setAttribute('id', 'ma-current-search-page');
-      currentPageDescribedBy.style.display = 'none';
+      currentPageDescribedBy.setAttribute('class', 'visually-hidden');
       currentPageDescribedBy.textContent = 'current results page';
-
       searchResults.appendChild(currentPageDescribedBy);
       currentPageNode.setAttribute('aria-describedby', 'ma-current-search-page');
 
+      // Create heading which describes search results page navigation group.
+      var resultsPageLinksDescribedBy = document.createElement('h2');
+      resultsPageLinksDescribedBy.setAttribute('id', 'ma-search-results-navigation');
+      resultsPageLinksDescribedBy.setAttribute('class', 'visually-hidden');
+      resultsPageLinksDescribedBy.textContent = 'Search Results Navigation';
+
+      // Insert search results page navigation heading before navigation links group.
+      var searchResultsNavigation = searchResults.querySelector('div.gsc-cursor');
+      var firstNavigationDiv = searchResultsNavigation.firstElementChild;
+      searchResultsNavigation.insertBefore(resultsPageLinksDescribedBy, firstNavigationDiv);
+      searchResultsNavigation.setAttribute('aria-describedby', 'ma-search-results-navigation');
 
       // Append regular results message content, with the context of the current page, to announcement.
       announcement += 'search results page ' + currentPage; // 4.
 
       // Query dom for first regular search result container.
       var regularResults = searchResults.querySelector('div.gsc-webResult.gsc-result:not(.gsc-promotion)');
-      // Prepend regular results with visually hidden <h3> landmark.
-      var regularResultsHeading = document.createElement('h3');
+      // Prepend regular results with visually hidden <h2> landmark.
+      var regularResultsHeading = document.createElement('h2');
       regularResultsHeading.setAttribute('class', 'ma__search-heading');
-      regularResultsHeading.textContent = 'Results';
+      regularResultsHeading.textContent = 'Search Results';
       searchResults.insertBefore(regularResultsHeading, regularResults); // 6.
     }
 
