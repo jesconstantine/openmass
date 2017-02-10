@@ -85,7 +85,7 @@ function mass_theme_preprocess_menu(&$variables) {
             $links[] = array(
               'type' => UrlHelper::isExternal($link->uri) ? 'external' : 'internal',
               'text' => $link->title,
-              'href' => $link->uri,
+              'href' => UrlHelper::isExternal($link->uri) ? $link->uri : Url::fromUri($link->uri),
             );
           }
         }
