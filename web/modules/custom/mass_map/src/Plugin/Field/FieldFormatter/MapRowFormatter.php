@@ -45,6 +45,7 @@ class MapRowFormatter extends FormatterBase {
     $locations = $location_fetcher->getLocations($location_ids);
 
     return [
+      '#theme' => 'map_row',
       '#attached' => array(
         'library' => array(
           'mass_map/mass-map-field-renderer',

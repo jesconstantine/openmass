@@ -2,7 +2,7 @@
   'use strict';
   Drupal.behaviors.massMap = {
     attach: function (context, settings) {
-      var mapId = '.paragraph--type--map-row';
+      var mapId = '.js-google-map';
       var locations = drupalSettings.locations;
 
       // Using once() to apply the myCustomBehaviour effect when you want to do just run one function.
@@ -47,12 +47,13 @@
                 infowindow.open(map, marker);
               };
             })(marker, locInfo));
+            // append our list to our ul.
           }
         }
+        $('.ma__content-link').attr('href', '/map/' + drupalSettings.nodeId);
+
         // now fit the map to the newly inclusive bounds
         map.fitBounds(bounds);
-
-        $(this).append('<a href="/map/' + drupalSettings.nodeId + '">See a list of all locations</a>');
       });
     }
   };
