@@ -84,3 +84,7 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) && 'prod' == $_ENV['AH_SITE_ENV
   $config['restrict_by_ip.settings']['header'] = 'AH_Client_IP';
 }
 
+// Set variable to indicate if we are in "Edit Domain".
+// @see https://kbv2.acquia.com/articles/best-practices-setting-edit-domain
+$forwarded_host = (empty($_SERVER['HTTP_X_FORWARDED_HOST'])) ? $_SERVER['HTTP_HOST'] : $_SERVER['HTTP_X_FORWARDED_HOST'];
+$config['is_edit_domain'] = (strpos($forwarded_host, 'edit') !== FALSE) ? TRUE : FALSE;
