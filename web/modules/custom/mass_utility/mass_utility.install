@@ -131,3 +131,24 @@ function mass_utility_update_8002(&$sandbox) {
     ))->save();
   }
 }
+
+/**
+ * Re-install XML-Sitemap to re-generate right context values.
+ */
+function mass_utility_update_8003(&$sandbox) {
+  // We can not remove only site id config. This will not work since there
+  // is no context generated.
+  $module_handler = \Drupal::service('module_handler');
+  $module_installer = \Drupal::service('module_installer');
+
+  // Uninstall module to clean up config.
+  if ($module_handler->moduleExists('xmlsitemap')) {
+    $module_installer->uninstall(['xmlsitemap']);
+  }
+
+  // Install module and the context will be generated with right
+  // values for domain.
+  if (!$module_handler->moduleExists('xmlsitemap')) {
+    $module_installer->install(['xmlsitemap']);
+  }
+}

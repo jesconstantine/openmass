@@ -1,4 +1,5 @@
 module:
+  access_unpublished: 0
   acquia_connector: 0
   automated_cron: 0
   block: 0
@@ -50,6 +51,7 @@ module:
   mass_entityreference: 0
   mass_feedback_form: 0
   mass_formatters: 0
+  mass_map: 0
   mass_nav: 0
   mass_search: 0
   mass_search_suppression: 0
