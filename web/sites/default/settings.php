@@ -16,7 +16,7 @@ $databases['default']['default'] = array(
 $config_directories = array();
 $config_directories[CONFIG_SYNC_DIRECTORY] = '../conf/drupal/config';
 
-$settings['hash_salt'] = '${drupal.hash_salt}';
+$settings['hash_salt'] = 'temporary';
 $settings['update_free_access'] = FALSE;
 $settings['container_yamls'][] = __DIR__ . '/services.yml';
 $settings['file_public_path'] = 'sites/default/files';
