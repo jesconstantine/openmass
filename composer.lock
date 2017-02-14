@@ -3889,16 +3889,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.2.3-alpha-5",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "63484155a91abe21a7d4df7476566901bb4e5260"
+                "reference": "c7f612bcdf99d2ee3d86cdba3220972ae03069ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/63484155a91abe21a7d4df7476566901bb4e5260",
-                "reference": "63484155a91abe21a7d4df7476566901bb4e5260",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/c7f612bcdf99d2ee3d86cdba3220972ae03069ed",
+                "reference": "c7f612bcdf99d2ee3d86cdba3220972ae03069ed",
                 "shasum": ""
             },
             "type": "library",
@@ -3913,10 +3913,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.2.3-alpha-5",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.3.0",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-02-09T19:04:16+00:00"
+            "time": "2017-02-13T18:42:43+00:00"
         },
         {
             "name": "palantirnet/the-build",
