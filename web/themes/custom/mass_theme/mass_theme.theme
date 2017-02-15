@@ -108,7 +108,7 @@ function mass_theme_preprocess_menu(&$variables) {
                     'text' => $node->hasField('body') ? strip_tags($node->body->value, '<br><a><b>') : '',
                   ),
                 ),
-              ]
+              ],
               ),
             ),
             'links' => $links,
@@ -616,6 +616,11 @@ function mass_theme_preprocess_html(&$variables) {
 
   if ($is_front_page) {
     $variables['alerts_banner_view'] = views_embed_view('emergency_alert', 'block_banner');
+    // Add a body class if this is the front.
+    $variables['attributes']['class'][] = 'is-front';
+  }
+  else {
+    $variables['attributes']['class'][] = 'not-front';
   }
 
   // Add social media links for the organization info in page-meta.html.twig.
@@ -649,7 +654,7 @@ function mass_theme_preprocess_html(&$variables) {
  * Supplements page meta data from metatags.
  *
  * @param array &$page_meta_data
- *    Array of pageMetaData to be used by templates/includes/page-meta.html.twig.
+ *    Array of pageMetaData used by templates/includes/page-meta.html.twig.
  * @param array $map
  *    Array that maps metatags to page_meta_data keys in form tag=>key.
  *    Defaults to 'siteDescription'=>'siteDescription'.
