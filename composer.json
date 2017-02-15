@@ -224,7 +224,7 @@
                 "Fix duplicated image selection when click use selected button": "https://www.drupal.org/files/issues/prevent-duplication.patch"
             },
             "drupal/access_unpublished": {
-              "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-use_workbench_moderation_drafts_latest_version-2848938-2.patch"
+              "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-integration_with_workbench_moderation_module-2848938-4.patch"
             }
 
         }
