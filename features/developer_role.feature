@@ -1,5 +1,5 @@
 @api
-Feature: Content Management
+Feature: Developer
   As a security minded individual,
   I want a developer role to do everything an admin can do except: manage users, themes, modules, and update the site
   so I can have granular roles and permissions.
