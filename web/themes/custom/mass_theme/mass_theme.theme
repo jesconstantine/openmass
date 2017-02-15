@@ -1537,6 +1537,7 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
 function mass_theme_preprocess_paragraph__search_band(&$variables) {
   $paragraph = $variables['paragraph'];
   $image = isset($paragraph->field_image->entity) ? $paragraph->field_image->entity : NULL;
+  $variables['search1600x400_image_url'] = $image ? ImageStyle::load('hero1600x800')->buildUrl($image->getFileUri()) : NULL;
   $variables['search800x400_image_url'] = $image ? ImageStyle::load('hero800x400')->buildUrl($image->getFileUri()) : NULL;
 
   // Grab node title incase we don't have a title in band.
