@@ -1812,9 +1812,6 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
  * Process various fields for downloads.
  */
 function mass_theme_preprocess_paragraph__file_download(&$variables) {
-  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
-  $path = DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/';
-
   $paragraph = $variables['paragraph'];
   $action_downloads = array();
   $field_downloads = $paragraph->get('field_downloads');
@@ -1827,9 +1824,6 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
 
   if (!empty($files)) {
     foreach ($files as $id => $file) {
-      // Default icon.
-      $icon = '@atoms/05-icons/svg-doc-generic.twig';
-
       // Get the human readable file size.
       $bytes = $file->getSize();
       $readable_size = format_size($bytes);
@@ -1851,13 +1845,11 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       $file_info = new SplFileInfo($filename);
       $file_extension = $file_info->getExtension();
 
-      // Check if icon template exists.
-      if (file_exists($path . '05-icons/svg-doc-' . strtolower($file_extension) . '.twig')) {
-        $icon = '@atoms/05-icons/svg-doc-' . $file_extension . '.twig';
-      }
+      // Set the icon name.
+      $icon_name = 'doc-' . $file_extension;
 
       $action_downloads[] = array(
-        'icon' => $icon,
+        'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,

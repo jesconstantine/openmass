@@ -15,7 +15,6 @@ dependencies:
     - paragraphs.paragraphs_type.hours
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
-    - paragraphs.paragraphs_type.map_row
     - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.stat
@@ -52,7 +51,6 @@ settings:
       hours: hours
       activities: activities
       pull_quote: pull_quote
-      map_row: map_row
     target_bundles_drag_drop:
       action_step:
         enabled: true
@@ -120,12 +118,12 @@ settings:
       hours:
         enabled: true
         weight: 37
-      icon:
-        weight: 38
-        enabled: false
       activities:
         enabled: true
         weight: 38
+      icon:
+        weight: 38
+        enabled: false
       activity:
         weight: 39
         enabled: false
@@ -135,52 +133,16 @@ settings:
       quick_action:
         weight: 42
         enabled: false
-      related_link:
-        weight: 43
-        enabled: false
       completion_time:
         weight: 43
         enabled: false
-      1up_stacked_band:
-        weight: 44
-        enabled: false
-      2up_stacked_band:
-        weight: 45
+      related_link:
+        weight: 43
         enabled: false
       slideshow:
         weight: 45
         enabled: false
-      3_up_content:
-        weight: 46
-        enabled: false
-      3_up_text:
-        weight: 47
-        enabled: false
-      action_set:
-        weight: 51
-        enabled: false
       stacked_band:
         weight: 59
-        enabled: false
-      emergency_alert:
-        weight: 64
-        enabled: false
-      icon_link:
-        weight: 69
-        enabled: false
-      icon_links:
-        weight: 70
-        enabled: false
-      image:
-        weight: 72
-        enabled: false
-      map_row:
-        enabled: true
-        weight: 75
-      related_content:
-        weight: 78
-        enabled: false
-      search_band:
-        weight: 81
         enabled: false
 field_type: entity_reference_revisions

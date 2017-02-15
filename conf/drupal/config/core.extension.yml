@@ -51,7 +51,6 @@ module:
   mass_entityreference: 0
   mass_feedback_form: 0
   mass_formatters: 0
-  mass_map: 0
   mass_nav: 0
   mass_search: 0
   mass_search_suppression: 0
