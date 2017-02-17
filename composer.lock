@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7e8b6790347eedeea64c69868caf618",
+    "content-hash": "8161f36a3adde7e11a2e61b309cfe85f",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -606,7 +606,7 @@
             ],
             "description": "Drush task for Phing",
             "homepage": "https://github.com/continuousphp/phing-drush-task",
-            "time": "2016-07-04 20:39:23"
+            "time": "2016-07-04T20:39:23+00:00"
         },
         {
             "name": "cpliakas/psolr",
@@ -713,30 +713,7 @@
                 "reference": null,
                 "shasum": null
             },
-            "type": "drupal-library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David DeSandro",
-                    "homepage": "http://desandro.com/",
-                    "role": "developer"
-                }
-            ],
-            "description": "JavaScript is all like _You images done yet or what?_",
-            "homepage": "http://imagesloaded.desandro.com",
-            "keywords": [
-                "dom",
-                "images",
-                "javascript",
-                "jquery-plugin",
-                "library",
-                "loaded",
-                "ui"
-            ],
-            "time": "2016-08-28T14:48:10+00:00"
+            "type": "drupal-library"
         },
         {
             "name": "desandro/masonry",
@@ -1225,6 +1202,31 @@
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
             "time": "2016-04-13T15:46:44+00:00"
+        },
+        {
+            "name": "drupal/access_unpublished",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/access_unpublished.git",
+                "reference": "61f4e1704ff2497ab87dcf29f6566392d447685a"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Grants access to view unpublished content to anyone who has a unique URL and appropriate permissions.",
+            "homepage": "https://www.drupal.org/project/access_unpublished",
+            "time": "2017-01-26 16:59:48"
         },
         {
             "name": "drupal/acquia_connector",
@@ -1720,7 +1722,7 @@
             ],
             "description": "Complete rewrite of D7 draggableviews",
             "homepage": "https://www.drupal.org/project/draggableviews",
-            "time": "2016-10-21 18:47:50"
+            "time": "2016-10-21T18:47:50+00:00"
         },
         {
             "name": "drupal/dropzonejs",
@@ -3776,7 +3778,7 @@
                 "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
                 "issues": "https://github.com/mikeyp/google_tag/issues"
             },
-            "time": "2016-10-17 15:47:26"
+            "time": "2016-10-17T15:47:26+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3887,16 +3889,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.2.3-alpha-5",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "63484155a91abe21a7d4df7476566901bb4e5260"
+                "reference": "c7f612bcdf99d2ee3d86cdba3220972ae03069ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/63484155a91abe21a7d4df7476566901bb4e5260",
-                "reference": "63484155a91abe21a7d4df7476566901bb4e5260",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/c7f612bcdf99d2ee3d86cdba3220972ae03069ed",
+                "reference": "c7f612bcdf99d2ee3d86cdba3220972ae03069ed",
                 "shasum": ""
             },
             "type": "library",
@@ -3911,11 +3913,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.2.3-alpha-5",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.3.0",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-02-09T19:04:16+00:00"
+            "time": "2017-02-13T18:42:43+00:00"
         },
         {
             "name": "palantirnet/the-build",
@@ -3996,7 +3997,7 @@
                 "source": "https://github.com/palantirnet/the-vagrant/tree/0.5.1",
                 "issues": "https://github.com/palantirnet/the-vagrant/issues"
             },
-            "time": "2016-12-01 19:32:09"
+            "time": "2016-12-01T19:32:09+00:00"
         },
         {
             "name": "palantirnet/workbench_tabs",
@@ -4036,7 +4037,7 @@
                 "source": "https://github.com/palantirnet/workbench_tabs/tree/8.x-1.x",
                 "issues": "https://github.com/palantirnet/workbench_tabs/issues"
             },
-            "time": "2016-10-06 15:35:09"
+            "time": "2016-10-06T15:35:09+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4464,7 +4465,7 @@
                 }
             ],
             "description": "VersionControl_Git is a library that provides OO interface to handle Git repository.",
-            "time": "2015-11-04 13:03:54"
+            "time": "2015-11-04T13:03:54+00:00"
         },
         {
             "name": "phing/phing",
@@ -7592,7 +7593,7 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2016-05-21 00:49:42"
+            "time": "2016-05-21T00:49:42+00:00"
         },
         {
             "name": "drupal/console",
@@ -8213,7 +8214,7 @@
                 "source": "https://github.com/palantirnet/palantir-behat-extension/tree/drupal8",
                 "issues": "https://github.com/palantirnet/palantir-behat-extension/issues"
             },
-            "time": "2016-08-23 21:16:00"
+            "time": "2016-08-23T21:16:00+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -8707,6 +8708,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/access_unpublished": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
         "drupal/file_browser": 20,

@@ -65,6 +65,77 @@ function mass_theme_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_menu().
+ */
+function mass_theme_preprocess_menu(&$variables) {
+  // Use this formatting for Utility nav.
+  if ($variables['menu_name'] == 'utility') {
+    foreach ($variables['items'] as &$item) {
+      $ref_node = $item['url']->getRouteParameters();
+      // Load it up and get the field.
+      if ($node = Node::load($ref_node['node'])) {
+        $icon = '';
+        // Get icon.
+        if ($node->hasField('field_icon_term') && array_key_exists('0', $node->get('field_icon_term')->referencedEntities())) {
+          $icon = $node->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        }
+        // Get links.
+        $links = [];
+        if ($node->hasField('field_links')) {
+          foreach ($node->get('field_links') as $link) {
+            $links[] = array(
+              'type' => UrlHelper::isExternal($link->uri) ? 'external' : 'internal',
+              'text' => $link->title,
+              'href' => UrlHelper::isExternal($link->uri) ? $link->uri : Url::fromUri($link->uri),
+            );
+          }
+        }
+        $items[] = array(
+          'text'      => $item['title'],
+          'icon'      => icon_path($icon),
+          'closeText' => t('Close'),
+          'panel'     => array(
+            'description' => array(
+              'rteElements' => array([
+                'path' => '@atoms/11-text/paragraph.twig',
+                'data' => array(
+                  'paragraph' => array(
+                    'text' => $node->hasField('body') ? strip_tags($node->body->value, '<br><a><b>') : '',
+                  ),
+                ),
+              ]
+              ),
+            ),
+            'links' => $links,
+          ),
+        );
+      }
+    }
+    $variables['items'] = $items;
+  }
+  // Use this formatting for Main Nav aka Topic Nav.
+  if ($variables['menu_name'] == 'main') {
+    $mainNav = [];
+    foreach ($variables['items'] as &$item) {
+      $subNav = [];
+      foreach ($item['below'] as $link) {
+        $subNav[] = array(
+          'href' => $link['url'],
+          'text' => $link['title'],
+        );
+      }
+      $mainNav[] = array(
+        'href'   => $item['url'],
+        'text'   => $item['title'],
+        'active' => $item['in_active_trail'],
+        'subNav' => $subNav,
+      );
+    }
+    $variables['mainNav'] = $mainNav;
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function mass_theme_preprocess_node(&$variables) {
@@ -498,8 +569,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
             'chevron' => 'true',
             'text' => $url->getValue()['title'],
             'href' => $href,
-            'type' => (UrlHelper::isExternal($url->getUrl()
-              ->toString())) ? 'external' : 'internal',
+            'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
           );
         }
 
@@ -621,6 +691,12 @@ function mass_theme_add_metatag_data(&$page_meta_data, $map = array(), $meta_are
 function mass_theme_preprocess_page(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node = $variables['node'];
+
+    // When loading a revision only the nid is returned. We need the object.
+    if (ctype_digit($node)) {
+      $node = Node::load($node);
+    }
+
     // If we're using search band, lets tell page twig about it.
     if ($node->hasField('field_bands') && $node->get('field_bands')->count() > 0) {
       foreach ($node->get('field_bands')->referencedEntities() as $paragraph) {
@@ -1086,10 +1162,38 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
       $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
       $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
 
-      if ($item->hasField('field_icon_term')) {
-        $item->{'icon'} = icon_path($item->get('field_icon_term')->value);
+      // Grab our icon.
+      // Topics have an icon field.
+      if ($item->hasField('field_icon_term') && array_key_exists('0', $item->get('field_icon_term')->referencedEntities())) {
+        $icon = $item->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        $item->{'icon'} = icon_path($icon);
+      }
+      // Subtopics don't have an icons field, so lets use it parent ref.
+      if ($item->hasField('field_topic_parent') && array_key_exists('0', $item->get('field_topic_parent')->referencedEntities())) {
+        $icon = $item->get('field_topic_parent')->referencedEntities()[0]->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+        $item->{'icon'} = icon_path($icon);
       }
 
+      // Topics don't have topic callouts, so we use common content for links.
+      if ($item->hasField('field_common_content')) {
+        $links = [];
+        foreach ($item->get('field_common_content')->referencedEntities() as $link) {
+          // Get aliased path.
+          $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $link->get('nid')->value);
+          if ($link && $link->hasField('field_external_url')) {
+            $external_link = $link->get('field_external_url')->uri;
+            // Check the external url field value is not empty.
+            if (!empty($external_link)) {
+              $link_path = $external_link;
+            }
+          }
+          $links[] = array('text' => $link->getTitle(), 'href' => $link_path);
+        }
+        // Get links for our topic cards.
+        $item->{'links'} = $links;
+      }
+
+      // Subtopics have topic callout links.
       if ($item->hasField('field_topic_callout_links')) {
         $links = [];
         foreach ($item->get('field_topic_callout_links') as $link) {
@@ -1111,6 +1215,7 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
         // Get links for our topic cards.
         $item->{'links'} = $links;
       }
+
       $nodes[] = $item;
       $types[] = $item->getType();
     }
@@ -1941,6 +2046,12 @@ function icon_path($icon) {
 function mass_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
   $node = \Drupal::request()->attributes->get('node');
+
+  // When loading a revision only the nid is returned. We need the object.
+  if (ctype_digit($node)) {
+    $node = Node::load($node);
+  }
+
   if ($node) {
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }

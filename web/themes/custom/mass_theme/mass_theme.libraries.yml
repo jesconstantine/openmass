@@ -7,7 +7,6 @@ global-styling:
       overrides/css/action-finder.css: {}
       overrides/css/basic-html.css: {}
       overrides/css/contact-group.css: {}
-      overrides/css/back-to.css: {}
   js:
     libraries/jquery_once/jquery.once.min.js: {}
     overrides/js/env-drupal.js: {}

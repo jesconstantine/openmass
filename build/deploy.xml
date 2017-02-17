@@ -134,6 +134,7 @@ ${modified_files}
 
         <!-- Dump properties for user review -->
         <echoproperties prefix="deploy." />
+        <echo>acquia.branch=${acquia.branch}</echo>
 
         <input propertyname="confirm" validargs="yes,no">Are you damn sure? </input>
         <if>

@@ -117,6 +117,7 @@
         "desandro/imagesloaded": "^4.1",
         "desandro/masonry": "^4.1",
         "drupal-composer/drupal-scaffold": "^1.0",
+        "drupal/access_unpublished": "8.1.x-dev",
         "drupal/acquia_connector": "^8.1",
         "drupal/acquia_purge": "^8.1",
         "drupal/components": "^8.1",
@@ -154,7 +155,7 @@
         "drupal/xmlsitemap": "8.1.x-dev",
         "enyo/dropzone": "4.3.0",
         "mikeyp/google_tag": "dev-8.x-1.x#3caa4f0b7f008576936ab7501d483bfcf58a4764",
-        "palantirnet/mayflower-artifacts": "3.2.3-alpha-5",
+        "palantirnet/mayflower-artifacts": "^3.3",
         "palantirnet/the-build": "^1.3",
         "palantirnet/the-vagrant": "dev-master",
         "palantirnet/workbench_tabs": "dev-8.x-1.x",
@@ -197,8 +198,7 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"],
-            "web/libraries/dropzone": ["enyo/dropzone"]
+            "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "patches": {
             "drupal/core": {
@@ -221,6 +221,9 @@
             },
             "drupal/entity_browser": {
                 "Fix duplicated image selection when click use selected button": "https://www.drupal.org/files/issues/prevent-duplication.patch"
+            },
+            "drupal/access_unpublished": {
+              "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-use_workbench_moderation_drafts_latest_version-2848938-2.patch"
             }
 
         }
