@@ -1,11 +1,35 @@
-<section class="ma__mapped-locations">
-  <div class="ma__mapped-locations__header">
-    <h2 class="ma__comp-heading">All Locations</h2>
-    <a class="ma__content-link ma__content-link--chevron" href="#"><span>See a list of all locations</span></a>
-  </div>
-  <div class="ma__mapped-locations__map">
-    <div class="ma__google-map" aria-hidden="true" role="presentation">
-      <div class="ma__google-map__map js-google-map"></div>
+{%
+set mappedLocations = {
+  'compHeading': {
+    'title': 'Locations',
+    'sub': '',
+    'color': '',
+    'id': '',
+    'centered': ''
+  },
+  'link': {
+    'href': '#',
+    'text':'Location details',
+    'chevron': 'true'
+  },
+  'googleMap': locationListing['googleMap']
+}
+%}
+<section class='ma__mapped-locations'>
+  {% if mappedLocations.compHeading or mappedLocations.link %}
+    <div class='ma__mapped-locations__header'>
+      {% if mappedLocations.compHeading %}
+        {% set compHeading = mappedLocations.compHeading %}
+        {% include '@atoms/04-headings/comp-heading.twig' %}
+      {% endif %}
+      {% if mappedLocations.link %}
+        {% set link = mappedLocations.link %}
+        {% include '@atoms/11-text/link.twig' %}
+      {% endif %}
     </div>
+  {% endif %}
+  <div class='ma__mapped-locations__map'>
+    {% set googleMap = mappedLocations.googleMap %}
+    {% include '@molecules/google-map.twig' %}
   </div>
 </section>

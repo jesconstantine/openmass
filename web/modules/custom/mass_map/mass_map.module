@@ -10,11 +10,15 @@
  */
 function mass_map_theme() {
   $theme['map_page'] = [
-    'variables' => ['map' => NULL],
+    'variables' => [
+      'locationListing' => [],
+    ],
     'template' => 'map-page',
   ];
   $theme['map_row'] = [
-    'variables' => ['map' => NULL],
+    'variables' => [
+      'locationListing' => [],
+    ],
     'template' => 'map-row',
   ];
   return $theme;

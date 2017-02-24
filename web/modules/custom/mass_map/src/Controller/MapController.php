@@ -32,6 +32,7 @@ class MapController extends ControllerBase {
 
     return [
       '#theme' => 'map_page',
+      '#locationListing' => $locations,
       '#attached' => array(
         'library' => array(
           'mass_map/mass-map-page-renderer',

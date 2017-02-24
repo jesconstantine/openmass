@@ -12,7 +12,8 @@
         // Create a map with its center at the center of MA
         var mapProp = {
           center: new google.maps.LatLng(42.4072107, -71.3824374),
-          zoom: 8
+          zoom: 8,
+          scrollwheel: false
         };
         var map = new google.maps.Map($(this)[0], mapProp);
         // Keep track of the bounds so we can adjust based on markers.
@@ -21,33 +22,29 @@
         var infowindow = new google.maps.InfoWindow();
 
         // Go over list of locations,.
-        for (var key in locations) {
-          if (locations.hasOwnProperty(key)) {
-            var loc = locations[key];
+        for (var key in locations.googleMap.markers) {
+          if (locations.googleMap.markers.hasOwnProperty(key)) {
+            var infoWindowData = infoWindow(locations.googleMap.markers[key].infoWindow);
             // Set the marker of the location.
             var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(loc['location']['lat'], loc['location']['lon'])
+              position: new google.maps.LatLng(
+                locations.googleMap.markers[key].position.lat,
+                locations.googleMap.markers[key].position.lng),
+              _windowInfo: infoWindowData,
+              _nid: key
             });
             marker.setMap(map);
 
             // extend the bounds to include each marker's position
             bounds.extend(marker.position);
 
-            // Get information about the location.
-            var locInfo = loc['titleLink'] + '<div>' + loc['address'] + '</div>';
-
-            if (loc['lede'] != null) {
-              locInfo = locInfo + '<div>' + loc['lede'] + '</div>';
-            }
-
             // Add information to the info windo of that marker.
-            google.maps.event.addListener(marker, 'click', (function (marker, locInfo) {
+            google.maps.event.addListener(marker, 'click', (function (marker, infoWindowData) {
               return function () {
-                infowindow.setContent(locInfo);
+                infowindow.setContent(infoWindowData);
                 infowindow.open(map, marker);
               };
-            })(marker, locInfo));
-            // append our list to our ul.
+            })(marker, infoWindowData));
           }
         }
         $('.ma__content-link').attr('href', '/map/' + drupalSettings.nodeId);
@@ -58,3 +55,15 @@
     }
   };
 })(jQuery, Drupal);
+
+var infoWindow = function (infoWindow) {
+  'use strict';
+  var info = '';
+  // infoWindow data.
+  if (infoWindow.name) {info += '<h3 class="ma__info-window__name">' + infoWindow.name + '</h3>';}
+  if (infoWindow.address) {info += '<p class="ma__info-window__address">' + infoWindow.address + '</p>';}
+  if (infoWindow.phone) {info += '<div class="ma__info-window__phone"><span class="ma__info-window__label">Phone:&nbsp;</span><a class="ma__info-window__phone" href="tel:' + infoWindow.phone + '">' + infoWindow.phone + '</a></div>';}
+  if (infoWindow.email) {info += '<div class="ma__info-window__email"><span class="ma__info-window__label">Email:&nbsp;</span><a class="ma__info-window__email" href="mailto:' + infoWindow.email + '">' + infoWindow.email + '</a></div>';}
+  info = '<section class="ma__info-window">' + info + '</section>';
+  return info;
+};
