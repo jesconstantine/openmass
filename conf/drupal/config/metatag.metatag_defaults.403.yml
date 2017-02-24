@@ -7,5 +7,8 @@ _core:
 id: '403'
 label: '403 access denied'
 tags:
+  robots: 'noindex, noarchive'
   canonical_url: '[site:url]'
   shortlink: '[site:url]'
+  description: 'The page you were trying to view is no longer available, has moved, or this page was reached in error.'
+  title: 'Access Denied (error) | [site:name]'

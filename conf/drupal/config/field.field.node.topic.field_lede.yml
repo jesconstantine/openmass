@@ -10,7 +10,7 @@ field_name: field_lede
 entity_type: node
 bundle: topic
 label: Lede
-description: ''
+description: 'The lede text is displayed below the title on the Topic pages. This text will also be displayed in search engines to help searchers understand what the page content is about.'
 required: false
 translatable: true
 default_value: {  }
