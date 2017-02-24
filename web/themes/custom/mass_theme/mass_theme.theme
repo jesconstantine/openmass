@@ -1628,7 +1628,7 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
 function mass_theme_preprocess_link_formatter_link_separate(&$variables) {
   $variables['fieldLink']['text'] = $variables['title'];
   $variables['fieldLink']['href'] = $variables['url'];
-  $variables['fieldLink']['type'] = UrlHelper::isExternal($url) ? 'external' : 'internal';
+  $variables['fieldLink']['type'] = $variables['url']->isExternal() ? 'external' : 'internal';
 }
 
 /**
