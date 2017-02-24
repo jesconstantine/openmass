@@ -724,7 +724,7 @@
                 "reference": null,
                 "shasum": null
             },
-            "type": "library"
+            "type": "drupal-library"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3175,7 +3175,7 @@
                 "reference": null,
                 "shasum": null
             },
-            "type": "library"
+            "type": "drupal-library"
         },
         {
             "name": "guzzle/guzzle",
