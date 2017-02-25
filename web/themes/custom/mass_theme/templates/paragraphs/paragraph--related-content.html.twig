@@ -71,7 +71,7 @@
               'text': item.label,
               'type': item.field_label,
               'href': item.node_path,
-              'image': file_url(item.field_photo.entity.fileuri)
+              'image': item.image_thumbnail_url
             }
             %}
             {% include "@molecules/illustrated-link.twig" with illustratedLink %}
