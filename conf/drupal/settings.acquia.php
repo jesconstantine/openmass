@@ -46,12 +46,13 @@ if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) 
 }
 
 // IP-PROTECT PRODUCTION SITE
-if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) && 'prod' == $_ENV['AH_SITE_ENVIRONMENT']) {
+// uncomment to enforce IP restrictions in PROD
+/*if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) && 'prod' == $_ENV['AH_SITE_ENVIRONMENT']) {
   // All IPs must be in CIDR format, including single address IPs.
   $ips = array(
     '10.20.0.0/16',     // Virtual machine addresses
     '146.243.0.0/16',   // MassIT VPN
-    '170.63.0.0/16',    // MassIT VPN
+    '170.63.0.0/16',    // MassIT VPN TODO: this currently includes MASSIT WIFI
     '65.204.38.243/32', // MassIT VPN
     '65.204.38.3/32',   // MassIT VPN
     '63.250.249.138/32',// Palantir VPN
@@ -82,5 +83,5 @@ if (!$cli && isset($_ENV['AH_SITE_ENVIRONMENT']) && 'prod' == $_ENV['AH_SITE_ENV
     }
   }
   $config['restrict_by_ip.settings']['header'] = 'AH_Client_IP';
-}
+}*/
 
