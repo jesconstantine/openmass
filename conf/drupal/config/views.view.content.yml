@@ -13,6 +13,7 @@ dependencies:
     - node.type.stacked_layout
     - node.type.subtopic
     - node.type.topic
+    - node.type.utility_drawer
   module:
     - node
     - user
@@ -433,8 +434,9 @@ display:
             stacked_layout: stacked_layout
             subtopic: subtopic
             topic: topic
+            utility_drawer: utility_drawer
           group: 1
-          exposed: false
+          exposed: true
           expose:
             operator_id: type_op
             label: 'Content type'
@@ -448,8 +450,11 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              content_team: '0'
+              developer: '0'
               administrator: '0'
-            reduce: false
+              emergency_alert_publisher: '0'
+            reduce: true
           is_grouped: false
           group_info:
             label: ''
