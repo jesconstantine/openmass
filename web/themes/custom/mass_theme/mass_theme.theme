@@ -1750,7 +1750,6 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
 
   $svg_types = array(
     'phone' => array('class' => 'svg-phone', 'svg' => 'phone'),
-    'fax' => array('class' => 'svg-fax-icon', 'svg' => 'fax-icon'),
     'laptop' => array('class' => 'svg-laptop', 'svg' => 'laptop'),
     'mail' => array('class' => 'svg-mail', 'svg' => 'mail'),
     'profile' => array('class' => 'svg-profile', 'svg' => 'profile'),
@@ -1763,12 +1762,9 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
     $svg_type = '';
 
     switch ($type['value']) {
-      case 'phone':
-        $svg_type = $svg_types['phone'];
-        break;
-
+      case 'phone';
       case 'fax':
-        $svg_type = $svg_types['fax'];
+        $svg_type = $svg_types['phone'];
         break;
 
       case 'online':
