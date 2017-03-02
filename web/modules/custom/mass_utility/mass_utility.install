@@ -152,3 +152,13 @@ function mass_utility_update_8003(&$sandbox) {
     $module_installer->install(['xmlsitemap']);
   }
 }
+
+/**
+ * Select default languages.
+ */
+function mass_utility_update_8004(&$sandbox) {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('mass_theme.settings');
+  $config->set('languages', ['ar','es','fr','pt','ht','it','km','ko','ru','vi','zh']);
+  $config->save(TRUE);
+}

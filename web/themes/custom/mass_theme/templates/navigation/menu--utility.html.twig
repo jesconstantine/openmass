@@ -20,7 +20,7 @@
 #}
 {# This will need to come from theme settings. #}
 {%
-set googleLanguages = "ar,es,fr,pt,ht,it,km,ko,ru,vi,zh-CN"
+set googleLanguages = languages
 %}
 {%
 set utilityNav = {
@@ -28,19 +28,6 @@ set utilityNav = {
     labelText: 'Language:',
     id: 'lang-select',
     name: 'lang-select',
-    options: [{
-      text: 'Default language: English',
-      value: 'en'
-    },{
-      text: 'Fran&#231;ais',
-      value: 'fr'
-    },{
-      text: 'Deutsch',
-      value: 'de'
-    },{
-      text: 'Espa&#241;ol',
-      value: 'es'
-    }]
   },
   items: items
 }

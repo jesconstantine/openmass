@@ -30,6 +30,11 @@ Feature: Content Management
     And I am on "admin/content"
     Then I should see the link "Add content"
 
+  Scenario: Verify content team user cannot create / edit / delete users
+    Given I am logged in as a user with the "content_team" role
+    When I go to "admin/people"
+    Then the response status code should be 403
+
   #http response 200 is a successful response
   Scenario: Verify content team user can create action content
     Given I am logged in as a user with the "content_team" role
@@ -65,6 +70,7 @@ Feature: Content Management
     Given I am logged in as a user with the "content_team" role
     When I go to "node/add/topic"
     Then the response status code should be 200
+
 
 
 
