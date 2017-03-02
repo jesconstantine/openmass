@@ -131,8 +131,8 @@
     </footer>
     <script>
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,es,fr,pt,ht,it,km,ko,ru,vi,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-        document.querySelector('#google_translate_element').classList.add('has-rendered');
+        new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: '{{ languages }}', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        document.querySelector('#google_translate_element') !== null ? document.querySelector('#google_translate_element').classList.add('has-rendered') : '';
       }
       (function() {
         var script = document.createElement('script');

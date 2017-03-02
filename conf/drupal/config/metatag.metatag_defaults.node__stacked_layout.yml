@@ -1,21 +1,20 @@
-uuid: f5d4fcb4-1cad-4fbb-afa1-a2e2a9c8ab75
+uuid: 1742b286-081a-4cdd-a3d4-3da5db5fca34
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: ydpmSCtxLjO9xqkBxObkeYx0Bf2dkW-d8bB_6Q1Ggjs
-id: node
-label: Content
+id: node__stacked_layout
+label: 'Content: Stacked Layout'
 tags:
-  description: '[node:summary]'
+  description: '[node:field_lede]'
   title: '[node:title] | [site:name]'
   og_title: '[node:title]'
-  og_description: '[node:summary]'
+  og_description: '[node:field_lede]'
   og_type: website
   og_site_name: '[site:name]'
   og_url: '[node:url]'
   twitter_cards_page_url: '[node:url]'
   twitter_cards_type: summary
+  twitter_cards_description: '[node:field_lede]'
   twitter_cards_site_id: '16264003'
   twitter_cards_title: '[node:title]'
   twitter_cards_site: '@massgov'

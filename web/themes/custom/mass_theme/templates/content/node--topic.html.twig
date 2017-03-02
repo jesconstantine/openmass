@@ -41,9 +41,14 @@ set topActions = {
 %}
 {%
 set sectionThreeUp = {
-  'title': label|field_value,
+  'compHeading': {
+    'title': 'More in ' ~ node.title.value,
+    'sub': '',
+    'color': '',
+    'id': '',
+    'centered': 'true'
+  },
   'sections': sections,
-  'centered': 'true'
 }
 %}
 

@@ -14,6 +14,7 @@ dependencies:
     - paragraphs.paragraphs_type.file_download
     - paragraphs.paragraphs_type.iframe
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.map_row
     - paragraphs.paragraphs_type.pull_quote
     - paragraphs.paragraphs_type.related_content
     - paragraphs.paragraphs_type.rich_text
@@ -47,6 +48,7 @@ settings:
       rich_text: rich_text
       stat: stat
       related_content: related_content
+      map_row: map_row
     target_bundles_drag_drop:
       1up_stacked_band:
         weight: 32
@@ -96,10 +98,16 @@ settings:
       contact_info:
         weight: 46
         enabled: false
+      3_up_content:
+        weight: 46
+        enabled: false
       file_download:
         enabled: true
         weight: 47
       activity:
+        weight: 47
+        enabled: false
+      3_up_text:
         weight: 47
         enabled: false
       full_bleed:
@@ -114,6 +122,9 @@ settings:
       iframe:
         enabled: true
         weight: 51
+      action_set:
+        weight: 51
+        enabled: false
       location_information:
         weight: 52
         enabled: false
@@ -147,10 +158,10 @@ settings:
       icon_link:
         weight: 60
         enabled: false
-      subhead:
+      icon_links:
         weight: 61
         enabled: false
-      icon_links:
+      subhead:
         weight: 61
         enabled: false
       video:
@@ -159,4 +170,13 @@ settings:
       related_content:
         enabled: true
         weight: 67
+      image:
+        weight: 72
+        enabled: false
+      map_row:
+        enabled: true
+        weight: 75
+      search_band:
+        weight: 81
+        enabled: false
 field_type: entity_reference_revisions
