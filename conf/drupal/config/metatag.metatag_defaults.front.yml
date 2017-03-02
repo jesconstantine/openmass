@@ -9,3 +9,16 @@ label: 'Front page'
 tags:
   canonical_url: '[site:url]'
   shortlink: '[site:url]'
+  description: '[site:slogan]'
+  title: '[site:name]'
+  og_title: Mass.gov
+  og_description: '[site:slogan]'
+  og_type: website
+  og_site_name: '[site:name]'
+  og_url: 'https://pilot.mass.gov'
+  twitter_cards_page_url: 'https://pilot.mass.gov'
+  twitter_cards_type: summary
+  twitter_cards_description: '[site:slogan]'
+  twitter_cards_site_id: '16264003'
+  twitter_cards_title: '[site:name]'
+  twitter_cards_site: '@massgov'

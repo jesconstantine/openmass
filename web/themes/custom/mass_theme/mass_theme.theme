@@ -68,6 +68,11 @@ function mass_theme_preprocess_block(&$variables) {
  * Implements hook_preprocess_menu().
  */
 function mass_theme_preprocess_menu(&$variables) {
+  // Get Theme settings languages if available.
+  if (theme_get_setting('languages', 'mass_theme')) {
+    $variables['languages'] = implode(',', array_filter(theme_get_setting('languages', 'mass_theme')));
+  }
+
   // Use this formatting for Utility nav.
   if ($variables['menu_name'] == 'utility') {
     foreach ($variables['items'] as &$item) {
@@ -689,6 +694,11 @@ function mass_theme_add_metatag_data(&$page_meta_data, $map = array(), $meta_are
  * Remove page search if we're using our search band in stacked layout.
  */
 function mass_theme_preprocess_page(&$variables) {
+  // Get Theme settings languages if available.
+  if (theme_get_setting('languages', 'mass_theme')) {
+    $variables['languages'] = implode(',', array_filter(theme_get_setting('languages', 'mass_theme')));
+  }
+
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node = $variables['node'];
 
@@ -1522,6 +1532,7 @@ function mass_theme_preprocess_paragraph__callout_alert(&$variables) {
 function mass_theme_preprocess_paragraph__search_band(&$variables) {
   $paragraph = $variables['paragraph'];
   $image = isset($paragraph->field_image->entity) ? $paragraph->field_image->entity : NULL;
+  $variables['search1600x400_image_url'] = $image ? ImageStyle::load('hero1600x800')->buildUrl($image->getFileUri()) : NULL;
   $variables['search800x400_image_url'] = $image ? ImageStyle::load('hero800x400')->buildUrl($image->getFileUri()) : NULL;
 
   // Grab node title incase we don't have a title in band.
@@ -1812,6 +1823,9 @@ function mass_theme_preprocess_paragraph__action_address(&$variables) {
  * Process various fields for downloads.
  */
 function mass_theme_preprocess_paragraph__file_download(&$variables) {
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+  $path = DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/';
+
   $paragraph = $variables['paragraph'];
   $action_downloads = array();
   $field_downloads = $paragraph->get('field_downloads');
@@ -1824,6 +1838,9 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
 
   if (!empty($files)) {
     foreach ($files as $id => $file) {
+      // Default icon.
+      $icon = '@atoms/05-icons/svg-doc-generic.twig';
+
       // Get the human readable file size.
       $bytes = $file->getSize();
       $readable_size = format_size($bytes);
@@ -1845,11 +1862,13 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
       $file_info = new SplFileInfo($filename);
       $file_extension = $file_info->getExtension();
 
-      // Set the icon name.
-      $icon_name = 'doc-' . $file_extension;
+      // Check if icon template exists.
+      if (file_exists($path . '05-icons/svg-doc-' . strtolower($file_extension) . '.twig')) {
+        $icon = '@atoms/05-icons/svg-doc-' . $file_extension . '.twig';
+      }
 
       $action_downloads[] = array(
-        'icon' => '@atoms/05-icons/svg-' . $icon_name . '.twig',
+        'icon' => $icon,
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,
@@ -2081,4 +2100,167 @@ function mass_theme_preprocess_paragraph__icon_links(&$variables) {
   }
 
   $variables['iconLinks']['items'] = $items;
+}
+
+/**
+ * Language config for Google translate.
+ */
+function _googletranslate_options_languages() {
+  $language_codes = array(
+    'aa' => 'Afar' ,
+    'ab' => 'Abkhazian' ,
+    'af' => 'Afrikaans' ,
+    'am' => 'Amharic' ,
+    'ar' => 'Arabic' ,
+    'as' => 'Assamese' ,
+    'ay' => 'Aymara' ,
+    'az' => 'Azerbaijani' ,
+    'ba' => 'Bashkir' ,
+    'be' => 'Byelorussian' ,
+    'bg' => 'Bulgarian' ,
+    'bh' => 'Bihari' ,
+    'bi' => 'Bislama' ,
+    'bn' => 'Bengali/Bangla' ,
+    'bo' => 'Tibetan' ,
+    'br' => 'Breton' ,
+    'ca' => 'Catalan' ,
+    'co' => 'Corsican' ,
+    'cs' => 'Czech' ,
+    'cy' => 'Welsh' ,
+    'da' => 'Danish' ,
+    'de' => 'German' ,
+    'dz' => 'Bhutani' ,
+    'el' => 'Greek' ,
+    'eo' => 'Esperanto' ,
+    'es' => 'Spanish' ,
+    'et' => 'Estonian' ,
+    'eu' => 'Basque' ,
+    'fa' => 'Persian' ,
+    'fi' => 'Finnish' ,
+    'fj' => 'Fiji' ,
+    'fo' => 'Faeroese' ,
+    'fr' => 'French' ,
+    'fy' => 'Frisian' ,
+    'ga' => 'Irish' ,
+    'gd' => 'Scots/Gaelic' ,
+    'gl' => 'Galician' ,
+    'gn' => 'Guarani' ,
+    'gu' => 'Gujarati' ,
+    'ha' => 'Hausa' ,
+    'hi' => 'Hindi' ,
+    'hr' => 'Croatian' ,
+    'hu' => 'Hungarian' ,
+    'hy' => 'Armenian' ,
+    'ia' => 'Interlingua' ,
+    'ie' => 'Interlingue' ,
+    'ik' => 'Inupiak' ,
+    'in' => 'Indonesian' ,
+    'is' => 'Icelandic' ,
+    'it' => 'Italian' ,
+    'iw' => 'Hebrew' ,
+    'ja' => 'Japanese' ,
+    'ji' => 'Yiddish' ,
+    'jw' => 'Javanese' ,
+    'ka' => 'Georgian' ,
+    'kk' => 'Kazakh' ,
+    'kl' => 'Greenlandic' ,
+    'km' => 'Cambodian' ,
+    'kn' => 'Kannada' ,
+    'ko' => 'Korean' ,
+    'ks' => 'Kashmiri' ,
+    'ku' => 'Kurdish' ,
+    'ky' => 'Kirghiz' ,
+    'la' => 'Latin' ,
+    'ln' => 'Lingala' ,
+    'lo' => 'Laothian' ,
+    'lt' => 'Lithuanian' ,
+    'lv' => 'Latvian/Lettish' ,
+    'mg' => 'Malagasy' ,
+    'mi' => 'Maori' ,
+    'mk' => 'Macedonian' ,
+    'ml' => 'Malayalam' ,
+    'mn' => 'Mongolian' ,
+    'mo' => 'Moldavian' ,
+    'mr' => 'Marathi' ,
+    'ms' => 'Malay' ,
+    'mt' => 'Maltese' ,
+    'my' => 'Burmese' ,
+    'na' => 'Nauru' ,
+    'ne' => 'Nepali' ,
+    'nl' => 'Dutch' ,
+    'no' => 'Norwegian' ,
+    'oc' => 'Occitan' ,
+    'om' => '(Afan)/Oromoor/Oriya' ,
+    'pa' => 'Punjabi' ,
+    'pl' => 'Polish' ,
+    'ps' => 'Pashto/Pushto' ,
+    'pt' => 'Portuguese' ,
+    'qu' => 'Quechua' ,
+    'rm' => 'Rhaeto-Romance' ,
+    'rn' => 'Kirundi' ,
+    'ro' => 'Romanian' ,
+    'ru' => 'Russian' ,
+    'rw' => 'Kinyarwanda' ,
+    'sa' => 'Sanskrit' ,
+    'sd' => 'Sindhi' ,
+    'sg' => 'Sangro' ,
+    'sh' => 'Serbo-Croatian' ,
+    'si' => 'Singhalese' ,
+    'sk' => 'Slovak' ,
+    'sl' => 'Slovenian' ,
+    'sm' => 'Samoan' ,
+    'sn' => 'Shona' ,
+    'so' => 'Somali' ,
+    'sq' => 'Albanian' ,
+    'sr' => 'Serbian' ,
+    'ss' => 'Siswati' ,
+    'st' => 'Sesotho' ,
+    'su' => 'Sundanese' ,
+    'sv' => 'Swedish' ,
+    'sw' => 'Swahili' ,
+    'ta' => 'Tamil' ,
+    'te' => 'Tegulu' ,
+    'tg' => 'Tajik' ,
+    'th' => 'Thai' ,
+    'ti' => 'Tigrinya' ,
+    'tk' => 'Turkmen' ,
+    'tl' => 'Tagalog' ,
+    'tn' => 'Setswana' ,
+    'to' => 'Tonga' ,
+    'tr' => 'Turkish' ,
+    'ts' => 'Tsonga' ,
+    'tt' => 'Tatar' ,
+    'tw' => 'Twi' ,
+    'uk' => 'Ukrainian' ,
+    'ur' => 'Urdu' ,
+    'uz' => 'Uzbek' ,
+    'vi' => 'Vietnamese' ,
+    'vo' => 'Volapuk' ,
+    'wo' => 'Wolof' ,
+    'xh' => 'Xhosa' ,
+    'yo' => 'Yoruba' ,
+    'zh' => 'Chinese' ,
+    'zu' => 'Zulu' ,
+  );
+  return $language_codes;
+}
+
+/**
+ * Add languages to theme settings.
+ */
+function mass_theme_form_system_theme_settings_alter(&$form, $form_state) {
+  $languages = _googletranslate_options_languages();
+
+  $form['mass_theme_settings'] = array(
+    '#type'  => 'details',
+    '#title' => t('Languages'),
+    '#open'  => TRUE,
+  );
+
+  $form['mass_theme_settings']['languages'] = array(
+    '#type'          => 'checkboxes',
+    '#options'       => $languages,
+    '#title'         => t('Choose google translate languages?'),
+    '#default_value' => theme_get_setting('languages', 'mass_theme'),
+  );
 }
