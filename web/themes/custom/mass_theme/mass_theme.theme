@@ -1169,10 +1169,8 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
 
     foreach ($related_items as $id => $item) {
       // Default icon for content without icons but using the Topic card.
-      /** @var \Drupal\node\Entity\Node $item */
       $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
       $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
-      $item->{'image_thumbnail_url'} = $item->hasField('field_photo') ? mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo') : '';
 
       // Grab our icon.
       // Topics have an icon field.
@@ -1292,6 +1290,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   $field_featured_items = $paragraph->get('field_featured_content');
   $featured_links = array();
+  $image_url = '';
 
   // Get field labels for twig.
   $variables['featuredHeading'] = $field_featured_items->getFieldDefinition()->getLabel();
@@ -1303,12 +1302,15 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($featured_items)) {
     foreach ($featured_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
         $external_url = $item->get('field_external_url')->uri;
       }
-
+      if ($item->hasField('field_photo')) {
+        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
+      }
       $featured_links[] = array(
-        'image' => $item->hasField('field_photo') ? mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo') : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
@@ -1329,12 +1331,15 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 
   if (!empty($link_items)) {
     foreach ($link_items as $id => $item) {
+      $image_url = '';
       if ($item->hasField('field_external_url')) {
         $external_url = $item->get('field_external_url')->uri;
       }
-
+      if ($item->hasField('field_photo')) {
+        $image_url = mass_theme_get_field_image_url($item, '', 'field_photo');
+      }
       $links[] = array(
-        'image' => $item->hasField('field_photo') ? mass_theme_get_field_image_url($item, 'thumbnail_130x160', 'field_photo') : '',
+        'image' => !empty($image_url) ? $image_url : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
