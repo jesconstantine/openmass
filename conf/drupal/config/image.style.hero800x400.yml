@@ -1,9 +1,7 @@
 uuid: 07a76eb1-944e-4b99-aa18-7620f49a18a5
 langcode: en
 status: true
-dependencies:
-  module:
-    - imagick
+dependencies: {  }
 name: hero800x400
 label: Hero800x400
 effects:
@@ -14,12 +12,3 @@ effects:
     data:
       width: 800
       height: 400
-  9d20ec4b-9124-452e-85f8-bb98c767844c:
-    uuid: 9d20ec4b-9124-452e-85f8-bb98c767844c
-    id: image_blur
-    weight: 2
-    data:
-      type: '2'
-      radius: '18'
-      sigma: '12'
-      angle: '0'
