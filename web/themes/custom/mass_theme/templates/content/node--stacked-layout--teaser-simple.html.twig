@@ -76,6 +76,4 @@ set illustratedLink = {
   'image': image_url_teaser_simple
 }
 %}
-<li class="ma__action-finder__item {{ content.field_photo|render ? 'ma__action-finder__item--image' : 'ma__action-finder__item--text' }}">
-  {% include "@molecules/illustrated-link.twig" %}
-</li>
+{% include "@molecules/illustrated-link.twig" %}
