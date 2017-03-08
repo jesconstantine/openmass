@@ -432,6 +432,10 @@ function mass_theme_preprocess_node_topic(&$variables) {
     $variables['hero800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_image->entity->getFileUri());
   }
 
+  if ($node->field_featured_mobile_image->entity) {
+    $variables['mobile800x400_image_url'] = ImageStyle::load('hero800x400')->buildUrl($node->field_featured_mobile_image->entity->getFileUri());
+  }
+
   if ($variables['view_mode'] == 'full') {
     // Get our callout links view.
     $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
