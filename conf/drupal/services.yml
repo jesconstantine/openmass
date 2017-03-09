@@ -3,8 +3,8 @@ parameters:
   session.storage.options:
     gc_probability: 1
     gc_divisor: 100
-    gc_maxlifetime: 200000
-    cookie_lifetime: 2000000
+    gc_maxlifetime: 43200
+    cookie_lifetime: 43200
   twig.config:
     debug: ${drupal.twig.debug}
     auto_reload: null

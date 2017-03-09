@@ -1,14 +1,3 @@
-{% set urlDomain = pageMetaData.urlDomain %}
-{% set urlPath = pageMetaData.urlPath %}
-{% set socialMediaLinks = pageMetaData.socialMediaLinks %}
-{% set logoSrc = pageMetaData.logoSrc %}
-{% set siteName = pageMetaData.siteName %}
-{% set siteAltName = pageMetaData.siteAltName %}
-{% set siteDescription = pageMetaData.siteDescription %}
-{% set siteKeywords = pageMetaData.siteKeywords %}
-{% set siteCopyright = pageMetaData.siteCopyright %}
-{% set orgName = pageMetaData.orgName %}
-
 {#
   SITE LEVEL DATA:
   WEBSITE
@@ -16,20 +5,20 @@
   - about can be added when its content is ready.
   - keywords can be added when its content is ready.
 #}
-{% if schemaPageType == "Home" %}
+{% if pageMetaData.schemaPageType == "Home" %}
     <script type="application/ld+json">
         {
           "@context": "http://schema.org",
           "@type": "WebSite",
-          "url": "{{ urlDomain }}",
-          "name": "{{ siteName }}",
-          "alternateName": "{{ siteAltName }}", {% if siteDescription %}
-          "about": "{{ siteDescription }}",{% endif %}
-          "copyrightHolder": "{{ siteCopyright }}", {% if siteKeywords %}
-          "keywords": "{{ siteKeywords }}",{% endif %}
+          "url": "{{ pageMetaData.urlDomain }}",
+          "name": "{{ pageMetaData.siteName }}",
+          "alternateName": "{{ pageMetaData.siteAltName }}", {% if pageMetaData.siteDescription %}
+          "about": "{{ pageMetaData.siteDescription }}",{% endif %}
+          "copyrightHolder": "{{ pageMetaData.siteCopyright }}", {% if pageMetaData.siteKeywords %}
+          "keywords": "{{ pageMetaData.siteKeywords }}",{% endif %}
           "potentialAction": {
              "@type": "SearchAction",
-             "target": "{{ urlDomain }}/search?q={search_term_string}",
+             "target": "{{ pageMetaData.urlDomain }}/search?q={search_term_string}",
              "query-input": "required name=search_term_string"}
         }
     </script>
@@ -43,11 +32,11 @@
       {
           "@context": "http://schema.org",
           "@type": "Organization",
-          "url": "{{ urlDomain }}",
-          {% if logoSrc %}"logo": "{{ urlDomain ~ '/' ~ directory ~ logoSrc }}",{% endif %}
-          "name": "{{ orgName }}"{% if socialMediaLinks %},
+          "url": "{{ pageMetaData.urlDomain }}",
+          {% if pageMetaData.logoSrc %}"logo": "{{ pageMetaData.urlDomain ~ '/' ~ directory ~ pageMetaData.logoSrc }}",{% endif %}
+          "name": "{{ pageMetaData.orgName }}"{% if pageMetaData.socialMediaLinks %},
           "sameAs":
-            {{ socialMediaLinks|raw }}
+            {{ pageMetaData.socialMediaLinks|raw }}
             {% endif %}
       }
     </script>
@@ -63,20 +52,20 @@
       {
           "@context": "http://schema.org",
           "@type": "WPHeader",
-          "@id": "{{ urlDomain ~ urlPath ~ '#header' }}"
+          "@id": "{{ pageMetaData.urlDomain ~ pageMetaData.urlPath ~ '#header' }}"
       }
     </script>
     <script type="application/ld+json">
       {
           "@context": "http://schema.org",
           "@type": "WPFooter",
-          "@id": "{{ urlDomain ~ urlPath ~ '#footer' }}"
+          "@id": "{{ pageMetaData.urlDomain ~ pageMetaData.urlPath ~ '#footer' }}"
       }
     </script>
     <script type="application/ld+json">
         {
           "@context": "http://schema.org",
           "@type": "SiteNavigationElement",
-          "@id": "{{ urlDomain ~ urlPath ~ '#block-mainnavigation'}}"
+          "@id": "{{ pageMetaData.urlDomain ~ pageMetaData.urlPath ~ '#main-navigation'}}"
         }
     </script>

@@ -1,6 +1,6 @@
 favicon:
-  mimetype: image/vnd.microsoft.icon
-  path: ''
+  mimetype: image/png
+  path: themes/custom/mass_theme/images/stateseal.png
   url: ''
   use_default: true
 features:
