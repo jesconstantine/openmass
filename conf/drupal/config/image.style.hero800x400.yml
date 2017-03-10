@@ -14,8 +14,8 @@ effects:
     data:
       width: 800
       height: 400
-  9d20ec4b-9124-452e-85f8-bb98c767844c:
-    uuid: 9d20ec4b-9124-452e-85f8-bb98c767844c
+  56175716-3117-493f-b487-e5667aeba0d9:
+    uuid: 56175716-3117-493f-b487-e5667aeba0d9
     id: image_blur
     weight: 2
     data:
