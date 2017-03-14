@@ -16,12 +16,12 @@ class MapLocationFetcher {
    * Get location information from nodes.
    *
    * @param array $nids
-   *    A list of nodes containing locations.
+   *   A list of nodes containing locations.
    *
    * @return array
-   *    An array of location data and addresses keyed by the nid it belongs to.
+   *   An array of location data and addresses keyed by the nid it belongs to.
    */
-  public function getLocations($nids) {
+  public function getLocations(array $nids) {
     $node_storage = \Drupal::entityManager()->getStorage('node');
     $nodes = $node_storage->loadMultiple($nids);
 
@@ -379,6 +379,8 @@ class MapLocationFetcher {
    *
    * @param object $contact_group
    *   The contact group paragraph object.
+   * @param string $field
+   *   The machine name for the field in the contact group paragraph.
    *
    * @return string
    *   The contact data if the group contains one.
