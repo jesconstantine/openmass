@@ -8,7 +8,7 @@
 #
 for server in massgov.prod@web-21429.prod.hosting.acquia.com massgov.prod@web-21430.prod.hosting.acquia.com massgov.prod@web-21431.prod.hosting.acquia.com massgov.prod@web-21432.prod.hosting.acquia.com
 do
-  ssh $server drush @massgov.prod --uri=https://pilot.mass.gov/ ev '\Drupal\Core\PhpStorage\PhpStorageFactory::get\("twig"\)->deleteAll\(\);'
+  ssh $server drush --root=/var/www/html/massgov.prod/docroot --uri=https://pilot.mass.gov/ ev '\Drupal\Core\PhpStorage\PhpStorageFactory::get\("twig"\)->deleteAll\(\);'
   # capture return code
   RC=$?
   # test for return code. 0 is success

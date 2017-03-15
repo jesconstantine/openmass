@@ -75,12 +75,10 @@
     'text': link_title
   }
 %}
-<li class="ma__action-finder__item {{decorativeLink.image ? 'ma__action-finder__item--image' : 'ma__action-finder__item--text'}}">
- {% if decorativeLink.image %}
-   {% set illustratedLink = decorativeLink %}
-   {% include "@molecules/illustrated-link.twig" %}
- {% else %}
-   {% set calloutLink = decorativeLink %}
-   {% include "@molecules/callout-link.twig" %}
- {% endif %}
-</li>
+{% if decorativeLink.image %}
+ {% set illustratedLink = decorativeLink %}
+ {% include "@molecules/illustrated-link.twig" %}
+{% else %}
+ {% set calloutLink = decorativeLink %}
+ {% include "@molecules/callout-link.twig" %}
+{% endif %}

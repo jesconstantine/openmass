@@ -28,7 +28,7 @@
     <target name="install" description="Install the application.">
         <phingcall target="install-from-acquia" />
         <phingcall target="mass-local-modules" />
-        <drush command="cron" />
+        <!-- <drush command="cron" /> -->
     </target>
 
     <target name="clean-install" description="Initialize a new copy of the site without a canonical DB.">
