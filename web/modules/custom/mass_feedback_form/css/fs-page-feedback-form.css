@@ -13,7 +13,7 @@ form#fsForm2521317{
     background: #ffffff;
     max-width: 35em;
     padding: 2.5em;
-    margin: 2em auto 2em;
+    margin: auto;
 }
 
 input#fsSubmitButton2521317{
@@ -43,6 +43,17 @@ div.fsValidationError label.fsLabel{
     border: 2px solid #f34343;
 }
 
+section.ma__suggested-pages + #feedback {
+    background: #f2f2f2;
+}
+
+div#feedback {
+    background: white;
+}
+
+.fsBody{
+    padding: 2.5em 0;
+}
 .fsBody .fsPagination {
     text-align: right;
     margin: 0;
