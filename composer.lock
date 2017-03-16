@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "11bb2e15c4ca4a5ca2b275eaa51cdc7b",
-
+    "hash": "f25260a12afd9e82ead258b8d6a6159b",
+    "content-hash": "f6723e9c93d36a079b0241912bd92c45",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1322,7 +1321,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/klausi/coder/zipball/b08682bd939cf7d3ac7034bee792aa17f80e19d7",
                 "reference": "b08682bd939cf7d3ac7034bee792aa17f80e19d7",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
@@ -1334,7 +1333,7 @@
                 "phpunit/phpunit": ">=3.7"
             },
             "type": "library",
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
@@ -1622,7 +1621,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-11-16 18:45:36"
+            "time": "2017-03-15 20:19:51"
         },
         {
             "name": "drupal/crazyegg",
@@ -3895,16 +3894,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3"
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
-                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0630368953c60aba3104a994c8c81df9162fa0c3",
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3",
                 "shasum": ""
             },
             "type": "library",
@@ -3919,10 +3918,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.0",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.1",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-15 14:43:56"
+            "time": "2017-03-16 21:26:45"
         },
         {
             "name": "palantirnet/the-build",
@@ -3977,17 +3976,20 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-vagrant.git",
-                "reference": "9a8f954a26355f13f8d69d6bcb8b7929528859fd"
+                "reference": "cee6a7362afe95d758824184303e861902b4bd86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/9a8f954a26355f13f8d69d6bcb8b7929528859fd",
-                "reference": "9a8f954a26355f13f8d69d6bcb8b7929528859fd",
+                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/cee6a7362afe95d758824184303e861902b4bd86",
+                "reference": "cee6a7362afe95d758824184303e861902b4bd86",
                 "shasum": ""
             },
             "require": {
                 "phing/phing": "^2.14"
             },
+            "bin": [
+                "bin/the-vagrant-installer"
+            ],
             "type": "library",
             "license": [
                 "proprietary"
@@ -4000,10 +4002,10 @@
             ],
             "description": "Install a vagrant environment into a project.",
             "support": {
-                "source": "https://github.com/palantirnet/the-vagrant/tree/0.5.1",
+                "source": "https://github.com/palantirnet/the-vagrant/tree/0.6.0",
                 "issues": "https://github.com/palantirnet/the-vagrant/issues"
             },
-            "time": "2016-12-01 19:32:09"
+            "time": "2017-01-13 16:06:20"
         },
         {
             "name": "palantirnet/workbench_tabs",
