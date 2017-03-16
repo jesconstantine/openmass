@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7283e3e262c3b899185418159c0c739b",
-    "content-hash": "0b889b77b169dbbd1759bd58b7ec2c0e",
+    "hash": "a9146bb78ce73a4712347010a53a1e7e",
+    "content-hash": "99cec23f93d4d31fe35c9b144114f1db",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1222,7 +1222,7 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-use_workbench_moderation_drafts_latest_version-2848938-2.patch"
+                    "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-integration_with_workbench_moderation_module-2848938-4.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3894,16 +3894,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.4.1",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "d55aa8c16b4797328150387b6e39fda827108196"
+                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/d55aa8c16b4797328150387b6e39fda827108196",
-                "reference": "d55aa8c16b4797328150387b6e39fda827108196",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
+                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
                 "shasum": ""
             },
             "type": "library",
@@ -3918,10 +3918,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.4.1",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.0",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-02 16:06:41"
+            "time": "2017-03-15 14:43:56"
         },
         {
             "name": "palantirnet/the-build",
@@ -4039,7 +4039,7 @@
             "description": "Display Drupal's local task tabs and status messages in a consistent location on all pages.",
             "homepage": "https://github.com/palantirnet/workbench_tabs",
             "support": {
-                "source": "https://github.com/palantirnet/workbench_tabs/tree/8.x-1.x",
+                "source": "https://github.com/palantirnet/workbench_tabs/tree/1.0.1",
                 "issues": "https://github.com/palantirnet/workbench_tabs/issues"
             },
             "time": "2016-10-06 15:35:09"
