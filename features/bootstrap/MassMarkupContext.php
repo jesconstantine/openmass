@@ -51,7 +51,7 @@ class MassMarkupContext extends MarkupContext
     $this->assertRegionElement('.ma__section-links__title > .ma__decorative-link > a > svg', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content > .ma__section-links__description', 'section_links');
     $this->assertRegionElement('.ma__section-links__toggle-content .ma__section-links__mobile-title > .ma__decorative-link svg', 'section_links');
-    $this->assertRegionElement('.ma__section-links__toggle-content .ma__section-links__items > .ma__section-links__item > a', 'section_links');
+    $this->assertRegionElement('.ma__section-links__toggle-content .ma__section-links__items > .ma__section-links__item > .ma__decorative-link a', 'section_links');
   }
 
   /**
