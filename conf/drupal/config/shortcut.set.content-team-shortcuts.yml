@@ -1,0 +1,6 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: content-team-shortcuts
+label: 'Content Team Shortcuts'

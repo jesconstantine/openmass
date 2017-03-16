@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7283e3e262c3b899185418159c0c739b",
-    "content-hash": "0b889b77b169dbbd1759bd58b7ec2c0e",
+    "hash": "f25260a12afd9e82ead258b8d6a6159b",
+    "content-hash": "f6723e9c93d36a079b0241912bd92c45",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1222,7 +1222,7 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-use_workbench_moderation_drafts_latest_version-2848938-2.patch"
+                    "Allow to view unpublished content moderated using Workbench Moderation": "https://www.drupal.org/files/issues/access_unpublished-integration_with_workbench_moderation_module-2848938-4.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1441,16 +1441,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.2.3",
+            "version": "8.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "63b3346647a7e43bcde3947a3aea02eabdf8fa56"
+                "reference": "5d3fb8a93514f23198ac6848b2679ef1026d2326"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/63b3346647a7e43bcde3947a3aea02eabdf8fa56",
-                "reference": "63b3346647a7e43bcde3947a3aea02eabdf8fa56",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/5d3fb8a93514f23198ac6848b2679ef1026d2326",
+                "reference": "5d3fb8a93514f23198ac6848b2679ef1026d2326",
                 "shasum": ""
             },
             "require": {
@@ -1462,7 +1462,7 @@
                 "egulias/email-validator": "1.2.*",
                 "guzzlehttp/guzzle": "^6.2.1",
                 "masterminds/html5": "~2.1",
-                "paragonie/random_compat": "~1.0",
+                "paragonie/random_compat": "^1|^2",
                 "php": ">=5.5.9",
                 "stack/builder": "1.0.*",
                 "symfony-cmf/routing": "~1.4",
@@ -1589,7 +1589,7 @@
                 "jcalderonzumba/gastonjs": "~1.0.2",
                 "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
                 "mikey179/vfsstream": "~1.2",
-                "phpunit/phpunit": "~4.8",
+                "phpunit/phpunit": ">=4.8.28 <5",
                 "symfony/css-selector": "~2.8"
             },
             "type": "drupal-core",
@@ -1621,7 +1621,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-11-16 18:45:36"
+            "time": "2017-03-15 20:19:51"
         },
         {
             "name": "drupal/crazyegg",
@@ -3894,16 +3894,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.4.1",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "d55aa8c16b4797328150387b6e39fda827108196"
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/d55aa8c16b4797328150387b6e39fda827108196",
-                "reference": "d55aa8c16b4797328150387b6e39fda827108196",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0630368953c60aba3104a994c8c81df9162fa0c3",
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3",
                 "shasum": ""
             },
             "type": "library",
@@ -3918,10 +3918,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.4.1",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.1",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-02 16:06:41"
+            "time": "2017-03-16 21:26:45"
         },
         {
             "name": "palantirnet/the-build",
@@ -3976,17 +3976,20 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:palantirnet/the-vagrant.git",
-                "reference": "9a8f954a26355f13f8d69d6bcb8b7929528859fd"
+                "reference": "cee6a7362afe95d758824184303e861902b4bd86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/9a8f954a26355f13f8d69d6bcb8b7929528859fd",
-                "reference": "9a8f954a26355f13f8d69d6bcb8b7929528859fd",
+                "url": "https://api.github.com/repos/palantirnet/the-vagrant/zipball/cee6a7362afe95d758824184303e861902b4bd86",
+                "reference": "cee6a7362afe95d758824184303e861902b4bd86",
                 "shasum": ""
             },
             "require": {
                 "phing/phing": "^2.14"
             },
+            "bin": [
+                "bin/the-vagrant-installer"
+            ],
             "type": "library",
             "license": [
                 "proprietary"
@@ -3999,10 +4002,10 @@
             ],
             "description": "Install a vagrant environment into a project.",
             "support": {
-                "source": "https://github.com/palantirnet/the-vagrant/tree/0.5.1",
+                "source": "https://github.com/palantirnet/the-vagrant/tree/0.6.0",
                 "issues": "https://github.com/palantirnet/the-vagrant/issues"
             },
-            "time": "2016-12-01 19:32:09"
+            "time": "2017-01-13 16:06:20"
         },
         {
             "name": "palantirnet/workbench_tabs",
@@ -4039,7 +4042,7 @@
             "description": "Display Drupal's local task tabs and status messages in a consistent location on all pages.",
             "homepage": "https://github.com/palantirnet/workbench_tabs",
             "support": {
-                "source": "https://github.com/palantirnet/workbench_tabs/tree/8.x-1.x",
+                "source": "https://github.com/palantirnet/workbench_tabs/tree/1.0.1",
                 "issues": "https://github.com/palantirnet/workbench_tabs/issues"
             },
             "time": "2016-10-06 15:35:09"
