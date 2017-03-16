@@ -123,7 +123,7 @@
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/config_log": "8.*",
-        "drupal/core": "^8.2.3",
+        "drupal/core": "^8.2.7",
         "drupal/crazyegg": "8.*",
         "drupal/draggableviews": "8.1.x-dev",
         "drupal/encrypt": "dev-8.x-3.x#19cda8cf22bfe7d020b819a7cfddf2e4883b78a8",
