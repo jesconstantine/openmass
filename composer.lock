@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "11bb2e15c4ca4a5ca2b275eaa51cdc7b",
+    "hash": "f25260a12afd9e82ead258b8d6a6159b",
+    "content-hash": "f6723e9c93d36a079b0241912bd92c45",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1318,8 +1319,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/klausi/coder/zipball/564a361274d8234d36385766f063ca89c4184479",
-                "reference": "564a361274d8234d36385766f063ca89c4184479",
+                "url": "https://api.github.com/repos/klausi/coder/zipball/b08682bd939cf7d3ac7034bee792aa17f80e19d7",
+                "reference": "b08682bd939cf7d3ac7034bee792aa17f80e19d7",
                 "shasum": ""
             },
             "require": {
@@ -1332,7 +1333,7 @@
                 "phpunit/phpunit": ">=3.7 <6"
             },
             "type": "library",
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
@@ -1620,7 +1621,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-02-01T17:03:36+00:00"
+            "time": "2017-03-15 20:19:51"
         },
         {
             "name": "drupal/crazyegg",
@@ -3900,16 +3901,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3"
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
-                "reference": "ee0f6396e1d8a308015c9375b10f3b9d03dff1c3",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0630368953c60aba3104a994c8c81df9162fa0c3",
+                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3",
                 "shasum": ""
             },
             "type": "library",
@@ -3924,10 +3925,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.0",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.1",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-15 14:43:56"
+            "time": "2017-03-16 21:26:45"
         },
         {
             "name": "palantirnet/the-build",
