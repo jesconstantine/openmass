@@ -13,6 +13,7 @@ module:
   contextual: 0
   crazyegg: 0
   ctools: 0
+  dblog: 0
   datalayer: 0
   datetime: 0
   devel: 0
@@ -57,7 +58,9 @@ module:
   mass_styles: 0
   mass_types: 0
   mass_utility: 0
+  mass_validation: 0
   mass_workbench_ui: 0
+  mayflower: 0
   menu_ui: 0
   metatag: 0
   metatag_open_graph: 0
