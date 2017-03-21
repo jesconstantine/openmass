@@ -51,7 +51,7 @@
  */
 #}
 {{ page.emergency_alert }}
-<header class="ma__header">
+<header id="header" class="ma__header">
   <a href="#main-content" class="ma__header__skip-nav visually-hidden focusable">
     {{ 'Skip to main content'|t }}
   </a>
@@ -101,33 +101,33 @@
 </main>
 
 {% if page.footer or page.footer_navigation %}
-  <footer role="contentinfo">
-    <footer class="ma__footer js-footer">
-      <button class="ma__footer__back2top js-back2top">
-        {% include '@atoms/05-icons/svg-arrow.twig' ignore missing %}
-        <span>Top</span>
-      </button>
+    <footer id="footer" class="ma__footer js-footer" role="contentinfo">
       <div class="ma__footer__container">
         {{ page.footer }}
         {{ page.footer_navigation }}
-      	<section class="ma__footer__info">
-      	  <div class="ma__footer__logo">
-      	    <div class="ma__site-logo">
-      	      <a href="/" title="Mass Gov home page">
-      		      <img src="{{ base_path ~ directory }}/images/stateseal.png" alt="Mass Gov" width="100" height="100">
-      	      </a>
-      	    </div>
-      	  </div>
-      	  <div class="ma__footer__social">
+        <section class="ma__footer__info">
+          <div class="ma__footer__logo">
+            <div class="ma__site-logo">
+              <a href="/" title="Mass Gov home page">
+                <img src="{{ base_path ~ directory }}/images/stateseal.png" alt="Mass Gov" width="100" height="100">
+              </a>
+            </div>
+          </div>
+          <div class="ma__footer__social">
             {{ page.footer_social }}
-      	  </div>
-      	  <div class="ma__footer__copyright">
-      	    <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
-      	    <p>Mass.gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</p>
-      	    <a href="/privacypolicy">Mass.gov Privacy Policy</a>
-      	  </div>
-      	</section>
+          </div>
+          <div class="ma__footer__copyright">
+            <p><b>© {{ "now"|date("Y") }} Commonwealth of Massachusetts.</b></p>
+            <p>Mass.gov&#x00AE; is a registered service mark of the Commonwealth of Massachusetts.</p>
+            <a href="/privacypolicy">Mass.gov Privacy Policy</a>
+          </div>
+        </section>
       </div>
+      <button class="ma__footer__back2top js-back2top">
+        {% include '@atoms/05-icons/svg-arrow.twig' ignore missing %}
+        <span aria-hidden="true">Top</span>
+        <span class="visually-hidden">Go to the top of the page</span>
+      </button>
     </footer>
     <script>
       function googleTranslateElementInit() {
@@ -142,5 +142,4 @@
         element.append(script);
       })();
     </script>
-  </footer>
 {% endif %}
