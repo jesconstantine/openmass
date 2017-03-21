@@ -21,6 +21,11 @@ if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/${acquia.accountname}/${acquia.accountname}-settings.inc';
 }
 
+// Include deployment identifier to invalidate internal twig cache.
+if (file_exists($app_root . '/' . $site_path '/deployment_id.php')) {
+  require $app_root . '/' . $site_path '/deployment_id.php';
+}
+
 // Use our own config sync directory.
 $config_directories = array();
 $config_directories[CONFIG_SYNC_DIRECTORY] = '${drupal.config_sync_directory}';
