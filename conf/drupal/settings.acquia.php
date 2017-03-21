@@ -22,8 +22,8 @@ if (file_exists('/var/www/site-php')) {
 }
 
 // Include deployment identifier to invalidate internal twig cache.
-if (file_exists($app_root . '/' . $site_path '/deployment_id.php')) {
-  require $app_root . '/' . $site_path '/deployment_id.php';
+if (file_exists($app_root . '/' . $site_path . '/deployment_id.php')) {
+  require $app_root . '/' . $site_path . '/deployment_id.php';
 }
 
 // Use our own config sync directory.
