@@ -217,6 +217,9 @@
             "drupal/password_policy": {
               "Removes field updates from the install file. (https://www.drupal.org/node/2771129#comment-11792230)": "https://www.drupal.org/files/issues/password-policy-remove-install-2771129-5.patch"
             },
+            "drupal/tfa": {
+                "Drush sanitize plugin for TFA user data. (https://www.drupal.org/node/2862312)": "https://www.drupal.org/files/issues/drush_27.patch"
+            },
             "drupal/username_enumeration_prevention": {
                 "Fix install error": "https://www.drupal.org/files/issues/username_enumeration_prevention_requirements_severity-2823440-1.patch"
             },
