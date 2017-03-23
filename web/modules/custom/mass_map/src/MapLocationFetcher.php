@@ -16,12 +16,12 @@ class MapLocationFetcher {
    * Get location information from nodes.
    *
    * @param array $nids
-   *    A list of nodes containing locations.
+   *   A list of nodes containing locations.
    *
    * @return array
-   *    An array of location data and addresses keyed by the nid it belongs to.
+   *   An array of location data and addresses keyed by the nid it belongs to.
    */
-  public function getLocations($nids) {
+  public function getLocations(array $nids) {
     $node_storage = \Drupal::entityManager()->getStorage('node');
     $nodes = $node_storage->loadMultiple($nids);
 
@@ -30,7 +30,7 @@ class MapLocationFetcher {
     $locations['form'] = array(
       'action' => '#',
       'inputs' => array(
-        '0' => array(
+        array(
           'path' => '@molecules/field-submit.twig',
           'data' => array(
             'fieldSubmit' => array(
@@ -90,7 +90,7 @@ class MapLocationFetcher {
       // Get the description for the node.
       $locations['imagePromos'][$nid]['description'] = array(
         'rteElements' => array(
-          '0' => array(
+          array(
             'path' => '@atoms/11-text/raw-html.twig',
             'data' => array(
               'rawHtml' => array(
@@ -120,6 +120,7 @@ class MapLocationFetcher {
         );
       }
     }
+
     return $locations;
   }
 
@@ -183,6 +184,7 @@ class MapLocationFetcher {
    *   And array containing the address information.
    */
   private function getActionContacts($node) {
+    $contacts = array();
     $address = NULL;
     $email = NULL;
     $phone = NULL;
@@ -192,15 +194,7 @@ class MapLocationFetcher {
     if (!empty($node->field_action_header)) {
       foreach ($node->field_action_header as $header_id) {
         $header = Paragraph::load($header_id->target_id);
-        if ($group_phone = $this->getDataContactGroup($header, 'field_phone')) {
-          $phone = $group_phone;
-        }
-        if ($group_email = $this->getDataContactGroup($header, 'field_email')) {
-          $email = $group_email;
-        }
-        if ($group_address = $this->getDataContactGroup($header, 'field_address')) {
-          $address = $group_address;
-        }
+        $contacts = $this->getContactData($header);
       }
     }
     if (empty($address) && !empty($node->field_contact_group)) {
@@ -208,15 +202,7 @@ class MapLocationFetcher {
       foreach ($node->field_contact_group as $group_id) {
         $group = Paragraph::load($group_id->target_id);
         if ($group->getType() == 'contact_group') {
-          if ($group_phone = $this->getDataContactGroup($group, 'field_phone')) {
-            $phone = $group_phone;
-          }
-          if ($group_email = $this->getDataContactGroup($group, 'field_email')) {
-            $email = $group_email;
-          }
-          if ($group_address = $this->getDataContactGroup($group, 'field_address')) {
-            $address = $group_address;
-          }
+          $contacts = $this->getContactData($group);
         }
       }
     }
@@ -225,31 +211,12 @@ class MapLocationFetcher {
       foreach ($node->field_action_sidebar as $sidebar_id) {
         $sidebar = Paragraph::load($sidebar_id->target_id);
         if ($sidebar->getType() == 'contact_group') {
-          if ($group_phone = $this->getDataContactGroup($sidebar, 'field_phone')) {
-            $phone = $group_phone;
-          }
-          if ($group_email = $this->getDataContactGroup($sidebar, 'field_email')) {
-            $email = $group_email;
-          }
-          if ($group_address = $this->getDataContactGroup($sidebar, 'field_address')) {
-            $address = $group_address;
-          }
+          $contacts = $this->getContactData($sidebar);
         }
       }
     }
-    return array(
-      'location' => array(
-        'text' => $address,
-        'map'  => 'true',
-      ),
-      'infoWindow' => array(
-        'name'     => '',
-        'phone'    => $phone,
-        'fax'      => '',
-        'email'    => $email,
-        'address'  => $address,
-      ),
-    );
+
+    return $this->formatContacts($contacts);
   }
 
   /**
@@ -299,6 +266,7 @@ class MapLocationFetcher {
    *   And array containing the address information.
    */
   private function getStackedLayoutContacts($node) {
+    $contacts = array();
     $address = NULL;
     $email = NULL;
     $phone = NULL;
@@ -307,15 +275,7 @@ class MapLocationFetcher {
     if (!empty($node->field_action_header)) {
       foreach ($node->field_action_header as $header_id) {
         $header = Paragraph::load($header_id->target_id);
-        if ($group_phone = $this->getDataContactGroup($header, 'field_phone')) {
-          $phone = $group_phone;
-        }
-        if ($group_email = $this->getDataContactGroup($header, 'field_email')) {
-          $email = $group_email;
-        }
-        if ($group_address = $this->getDataContactGroup($header, 'field_address')) {
-          $address = $group_address;
-        }
+        $contacts = $this->getContactData($header);
       }
     }
     if (!empty($node->field_bands)) {
@@ -326,15 +286,7 @@ class MapLocationFetcher {
           foreach ($band->field_main as $band_main_id) {
             $band_main = Paragraph::load($band_main_id->target_id);
             if ($band_main->getType() == 'contact_group') {
-              if ($group_phone = $this->getDataContactGroup($band_main, 'field_phone')) {
-                $phone = $group_phone;
-              }
-              if ($group_email = $this->getDataContactGroup($band_main, 'field_email')) {
-                $email = $group_email;
-              }
-              if ($group_address = $this->getDataContactGroup($band_main, 'field_address')) {
-                $address = $group_address;
-              }
+              $contacts = $this->getContactData($band_main);
             }
           }
         }
@@ -344,34 +296,14 @@ class MapLocationFetcher {
             foreach ($band->field_right_rail as $band_rail_id) {
               $band_rail = Paragraph::load($band_rail_id->target_id);
               if ($band_rail->getType() == 'contact_group') {
-                if ($group_phone = $this->getDataContactGroup($band_rail, 'field_phone')) {
-                  $phone = $group_phone;
-                }
-                if ($group_email = $this->getDataContactGroup($band_rail, 'field_email')) {
-                  $email = $group_email;
-                }
-                if ($group_address = $this->getDataContactGroup($band_rail, 'field_address')) {
-                  $address = $group_address;
-                }
+                $contacts = $this->getContactData($band_rail);
               }
             }
           }
         }
       }
     }
-    return array(
-      'location' => array(
-        'text' => $address,
-        'map'  => 'true',
-      ),
-      'infoWindow' => array(
-        'name'     => '',
-        'phone'    => $phone,
-        'fax'      => '',
-        'email'    => $email,
-        'address'  => $address,
-      ),
-    );
+    return $this->formatContacts($contacts);
   }
 
   /**
@@ -379,6 +311,8 @@ class MapLocationFetcher {
    *
    * @param object $contact_group
    *   The contact group paragraph object.
+   * @param string $field
+   *   The machine field name.
    *
    * @return string
    *   The contact data if the group contains one.
@@ -395,6 +329,51 @@ class MapLocationFetcher {
       }
     }
     return $data;
+  }
+
+  /**
+   * Get Contact data.
+   *
+   * @param object $region
+   *   The region of the paragraph object.
+   *
+   * @return array
+   *   And array containing contact data.
+   */
+  private function getContactData($region) {
+    $fields = array('field_phone', 'field_email', 'field_address');
+    $contacts = array();
+
+    foreach ($fields as $field) {
+      $contacts[$field] = $this->getDataContactGroup($region, $field);
+    }
+
+    return $contacts;
+  }
+
+  /**
+   * Format Contacts.
+   *
+   * @param array $contacts
+   *   Contacts data.
+   *
+   * @return array
+   *   And structured array containing location and infoWindow data.
+   */
+  private function formatContacts(array $contacts) {
+    return array(
+      'location' => array(
+        'text' => isset($contacts['field_address']) ? $contacts['field_address'] : '',
+        'map'  => 'true',
+      ),
+      'infoWindow' => array(
+        'name'     => '',
+        'phone'    => isset($contacts['field_phone']) ? $contacts['field_phone'] : '',
+        'fax'      => '',
+        'email'    => isset($contacts['field_email']) ? $contacts['field_email'] : '',
+        'address'  => isset($contacts['field_address']) ? $contacts['field_address'] : '',
+      ),
+    );
   }
 
 }
