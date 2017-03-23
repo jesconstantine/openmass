@@ -25,7 +25,9 @@ id: node.org_page.teaser
 targetEntityType: node
 bundle: org_page
 mode: teaser
-content: {  }
+content:
+  workbench_moderation_control:
+    weight: -20
 hidden:
   body: true
   field_action_set__bg_narrow: true

@@ -143,6 +143,7 @@
         "drupal/paragraphs": "~8.1.0",
         "drupal/password_policy": "8.3.0-alpha2",
         "drupal/pathauto": "^8.1",
+        "drupal/rabbit_hole": "1.x-dev",
         "drupal/redirect": "8.*",
         "drupal/restrict_by_ip": "8.4.x-dev",
         "drupal/restui": "^8.1",

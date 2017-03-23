@@ -13,9 +13,9 @@ module:
   contextual: 0
   crazyegg: 0
   ctools: 0
-  dblog: 0
   datalayer: 0
   datetime: 0
+  dblog: 0
   devel: 0
   draggableviews: 0
   dropzonejs: 0
@@ -76,11 +76,13 @@ module:
   password_policy_characters: 0
   password_policy_length: 0
   path: 0
+  rabbit_hole: 0
   rdf: 0
   redirect: 0
   rest: 0
   restrict_by_ip: 0
   restui: 0
+  rh_node: 0
   seckit: 0
   security_review: 0
   serialization: 0

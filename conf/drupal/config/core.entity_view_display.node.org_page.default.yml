@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.org_page.field_ref_actions_3
     - field.field.node.org_page.field_ref_actions_6
     - field.field.node.org_page.field_ref_card_view_6
+    - field.field.node.org_page.field_ref_contact_info
     - field.field.node.org_page.field_ref_orgs
     - field.field.node.org_page.field_social_links
     - field.field.node.org_page.field_sub_brand
@@ -101,6 +102,13 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+  field_ref_contact_info:
+    weight: 116
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   field_ref_orgs:
     weight: 115
     label: hidden
@@ -143,6 +151,10 @@ content:
     type: string
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
     settings: {  }
     third_party_settings: {  }
 hidden: {  }
