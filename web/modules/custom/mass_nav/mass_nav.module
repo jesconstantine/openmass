@@ -13,7 +13,7 @@
 function mass_nav_menu_local_tasks_alter(&$data, $route_name) {
 
   // All local tasks that could display the subtopic reorder view.
-  $node_tabs = array(
+  $node_tabs = [
     'entity.node.edit_form',
     'entity.node.canonical',
     'entity.node.delete_form',
@@ -23,18 +23,18 @@ function mass_nav_menu_local_tasks_alter(&$data, $route_name) {
     'entity.node.devel_tokens',
     'entity.node.version_history',
     'entity.node.latest_version',
-  );
+  ];
 
   // If we are on a local node task.
   if (in_array($route_name, $node_tabs)) {
     $node = \Drupal::routeMatch()->getParameter('node');
     // And it is not a topic.
-    if (!in_array($node->getType(), array('topic'))) {
+    if (!in_array($node->getType(), ['topic'])) {
       // Remove the subtopic reorder view.
       unset($data['tabs'][0]['views_view:view.subtopics.subtopic_reorder']);
     }
     // And it is not a topic.
-    if (!in_array($node->getType(), array('section_landing'))) {
+    if (!in_array($node->getType(), ['section_landing'])) {
       // Remove the subtopic reorder view.
       unset($data['tabs'][0]['views_view:view.ordered_topics.topic_reorder']);
     }

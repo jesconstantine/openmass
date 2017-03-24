@@ -19,23 +19,23 @@ function mayflower_theme($existing, $type, $theme, $path) {
 
   $patterns = mayflower_patternlibrary_paths();
 
-  return array(
-    'action_seq_list' => array(
-      'variables' => array('actionSeqLists' => NULL),
+  return [
+    'action_seq_list' => [
+      'variables' => ['actionSeqLists' => NULL],
       'template' => 'action-seq-list',
       'path' => $patterns['molecules'],
-    ),
-    'action_activities' => array(
-      'variables' => array('actionActivities' => NULL),
+    ],
+    'action_activities' => [
+      'variables' => ['actionActivities' => NULL],
       'template' => 'action-activities',
       'path' => $patterns['molecules'],
-    ),
-    'callout_links' => array(
-      'variables' => array('calloutLinks' => NULL),
+    ],
+    'callout_links' => [
+      'variables' => ['calloutLinks' => NULL],
       'template' => 'callout-links',
       'path' => $patterns['organisms'] . '/by-author',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -46,12 +46,12 @@ function mayflower_theme($existing, $type, $theme, $path) {
  */
 function mayflower_patternlibrary_paths() {
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
-  return array(
+  return [
     'atoms' => $theme_path . '/patterns/atoms',
     'molecules' => $theme_path . '/patterns/molecules',
     'organisms' => $theme_path . '/patterns/organisms',
     'pages' => $theme_path . '/patterns/pages',
-  );
+  ];
 }
 
 /**
@@ -88,16 +88,16 @@ function mayflower_preprocess_image(array &$variables) {
 function mayflower_prepare_stacked_row_sections($entity) {
   // @todo conform with  widgets[] in mass_theme_preprocess_node_org_page
   // ^^ Let the node preprocess configure the necessary child patterns.
-  $sections = array();
+  $sections = [];
 
-  $map = array(
-    'text' => array('body'),
-    'social' => array('field_social_links'),
-    'featuredActions' => array('field_ref_actions_3'),
-    'allActions' => array('field_ref_actions_6'),
-    'featuredTopics' => array('field_ref_card_view_6'),
-    'relatedLinks' => array('field_ref_orgs'),
-  );
+  $map = [
+    'text' => ['body'],
+    'social' => ['field_social_links'],
+    'featuredActions' => ['field_ref_actions_3'],
+    'allActions' => ['field_ref_actions_6'],
+    'featuredTopics' => ['field_ref_card_view_6'],
+    'relatedLinks' => ['field_ref_orgs'],
+  ];
 
   // Determines which fieldnames to use from the map.
   $fields = Helper::getMappedFields($entity, $map);
@@ -106,72 +106,72 @@ function mayflower_prepare_stacked_row_sections($entity) {
     $sideBarSocial = '';
 
     if ($entity->$fields['social']->getValue()) {
-      $sideBarSocial = array(
-        array(
+      $sideBarSocial = [
+        [
           'path' => '@atoms/04-headings/sidebar-heading.twig',
           'data' => Atoms::prepareSidebarHeading(t('Social')),
-        ),
-        array(
+        ],
+        [
           'path' => '@molecules/icon-links.twig',
           'data' => Molecules::prepareIconLinks($entity, 'social'),
-        ),
-      );
+        ],
+      ];
     }
 
-    $sections[] = array(
+    $sections[] = [
       'title' => $entity->$fields['text']->getFieldDefinition()->getLabel(),
-      'pageContent' => array(
-        array(
+      'pageContent' => [
+        [
           'path' => '@organisms/by-author/rich-text.twig',
           'data' => Atoms::preparePageContentParagraph($entity->$fields['text']),
-        ),
-      ),
+        ],
+      ],
       'sideBar' => $sideBarSocial,
-    );
+    ];
   }
 
   if ($entity->$fields['featuredActions']->getValue() || $entity->$fields['allActions']->getValue()) {
-    $action_finder_options = array(
+    $action_finder_options = [
       // @todo refactor the strings below to be corresponding field label values
       'title' => t('What Would You Like to Do?'),
       'featuredHeading' => t('Featured:'),
       'generalHeading' => t('How-Tos & Guides:'),
-    );
+    ];
 
-    $sections[] = array(
-      'pageContent' => array(
-        array(
+    $sections[] = [
+      'pageContent' => [
+        [
           'path' => '@organisms/by-author/action-finder.twig',
           'data' => Organisms::prepareActionFinder($entity, $action_finder_options),
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   if ($entity->$fields['featuredTopics']->getValue()) {
-    $sections[] = array(
-      'pageContent' => array(
-        array(
+    $sections[] = [
+      'pageContent' => [
+        [
           'path' => '@organisms/by-author/sections-three-up.twig',
           // @todo Pass $options[] as 2nd arg for prepare functions
           // Keep the label value as the array item value.
           'data' => Organisms::prepareSectionThreeUp($entity->$fields['featuredTopics']->referencedEntities(), $entity->$fields['featuredTopics']->getFieldDefinition()->getLabel()),
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   if ($entity->$fields['relatedLinks']->getValue()) {
-    $sections[] = array(
-      'pageContent' => array(
-        array(
+    $sections[] = [
+      'pageContent' => [
+        [
           'path' => '@organisms/by-author/link-list.twig',
           // @todo Pass $options[] as 2nd arg for prepare functions
           // @todo Use field label vs string (need to update field label value)
           'data' => Organisms::prepareLinkList($entity->$fields['relatedLinks']->referencedEntities(), t('Related Organizations')),
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   return $sections;
@@ -187,7 +187,7 @@ function mayflower_prepare_stacked_row_sections($entity) {
  *   Return structured sections.
  */
 function mayflower_prepare_topic_cards($entity) {
-  $sections = array();
+  $sections = [];
 
   // Get links for each Topic.
   foreach ($entity as $node) {
@@ -195,12 +195,12 @@ function mayflower_prepare_topic_cards($entity) {
     $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
 
     // Roll up the list of subtopics.
-    $links = array();
+    $links = [];
     foreach ($view_results as $key => $row) {
-      $links[] = array(
+      $links[] = [
         'href' => $row->_entity->toURL()->toString(),
         'text' => $row->_entity->get('title')->value,
-      );
+      ];
     }
     $sections[] = Molecules::prepareSectionLink($node, $links);
   }

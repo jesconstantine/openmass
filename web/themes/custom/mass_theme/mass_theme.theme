@@ -24,11 +24,11 @@ use Drupal\mayflower\Prepare\Organisms;
  */
 function mass_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
   // Build a map of paragraph types and the twig files they map to.
-  $map = array(
+  $map = [
     'action_step_numbered_list' => 'action_seq_list',
     'activities' => 'action_activities',
     'callout_link' => 'callout_links',
-  );
+  ];
 
   // Add the appropriate theme suggestions.
   if (array_key_exists($variables['elements']['#paragraph']->getType(), $map)) {
@@ -44,10 +44,10 @@ function mass_theme_theme_suggestions_paragraph_alter(array &$suggestions, array
 function mass_theme_preprocess_callout_links(&$variables) {
   $paragraph = $variables['elements']['#paragraph'];
 
-  $variables = array(
+  $variables = [
     'theme_hook_original' => $variables['theme_hook_original'],
     'calloutLinks' => Molecules::prepareCalloutLinks($paragraph),
-  );
+  ];
 
 }
 
@@ -60,10 +60,10 @@ function mass_theme_preprocess_action_seq_list(&$variables) {
   $paragraph = $variables['elements']['#paragraph'];
 
   // Sets the variable structure required for action-seq-list.twig.
-  $variables = array(
+  $variables = [
     'theme_hook_original' => $variables['theme_hook_original'],
     'actionSeqLists' => Molecules::prepareActionSeqList($paragraph),
-  );
+  ];
 }
 
 /**
@@ -72,7 +72,7 @@ function mass_theme_preprocess_action_seq_list(&$variables) {
  * @see patterns/molecules/action-activities.twig
  */
 function mass_theme_preprocess_action_activities(&$variables) {
-  $action_activities = array();
+  $action_activities = [];
   $parent_paragraph = $variables['elements']['#paragraph'];
 
   $field_activities = $parent_paragraph->get('field_activities');
@@ -82,7 +82,7 @@ function mass_theme_preprocess_action_activities(&$variables) {
   }
 
   foreach ($items as $id => $item) {
-    $activity = array();
+    $activity = [];
     $activity['title'] = $item->get('field_title')->view('full');
     $activity['description'] = $item->get('field_teaser')->view('full');
 
@@ -102,10 +102,10 @@ function mass_theme_preprocess_action_activities(&$variables) {
     $action_activities[] = $activity;
   }
 
-  $variables = array(
+  $variables = [
     'theme_hook_original' => $variables['theme_hook_original'],
     'actionActivities' => $action_activities,
-  );
+  ];
 }
 
 /**
@@ -147,38 +147,38 @@ function mass_theme_preprocess_node_org_page(&$variables) {
   $node = $variables['node'];
 
   // Set static pageBanner properties to pass to prepare function.
-  $pageBanner_options = array(
+  $pageBanner_options = [
     "size" => "large",
     "icon" => NULL,
-  );
+  ];
 
   // Make pageBanner data object available in twig template.
   $variables['pageBanner'] = Organisms::preparePageBanner($node, $pageBanner_options);
 
   // Set static actionHeader properties to pass to prepare function.
-  $actionHeader_options = array(
+  $actionHeader_options = [
     // @todo Consider making this site-builder configurable vs hard-coded
     'divider' => TRUE,
-  );
+  ];
 
   // Prepare widgets that can be passed to the actionHeader.
-  $widgets = array();
+  $widgets = [];
 
   // Prepare the option array for the organization image widget.
-  $org_image_options = array(
+  $org_image_options = [
     'style' => 'organization_logo',
     'height' => '',
     'width' => 230,
-  );
+  ];
 
   // Prepares the organization logo to use the mayflower image component.
   if ($org_logo = Atoms::prepareImage($node, $org_image_options)) {
-    $widgets[] = array(
+    $widgets[] = [
       'path' => '@atoms/09-media/image.twig',
-      'data' => array(
+      'data' => [
         'image' => $org_logo,
-      ),
-    );
+      ],
+    ];
   }
 
   // Prepare the actionHeader data object.
@@ -230,32 +230,32 @@ function mass_theme_preprocess_menu(&$variables) {
         $links = [];
         if ($node->hasField('field_links')) {
           foreach ($node->get('field_links') as $link) {
-            $links[] = array(
+            $links[] = [
               'type' => UrlHelper::isExternal($link->uri) ? 'external' : 'internal',
               'text' => $link->title,
               'href' => UrlHelper::isExternal($link->uri) ? $link->uri : Url::fromUri($link->uri),
-            );
+            ];
           }
         }
-        $items[] = array(
+        $items[] = [
           'text'      => $item['title'],
           'icon'      => icon_path($icon),
           'closeText' => t('Close'),
-          'panel'     => array(
-            'description' => array(
-              'rteElements' => array([
+          'panel'     => [
+            'description' => [
+              'rteElements' => [[
                 'path' => '@atoms/11-text/paragraph.twig',
-                'data' => array(
-                  'paragraph' => array(
+                'data' => [
+                  'paragraph' => [
                     'text' => $node->hasField('body') ? strip_tags($node->body->value, '<br><a><b>') : '',
-                  ),
-                ),
+                  ],
+                ],
               ],
-              ),
-            ),
+              ],
+            ],
             'links' => $links,
-          ),
-        );
+          ],
+        ];
       }
     }
     $variables['items'] = $items;
@@ -266,17 +266,17 @@ function mass_theme_preprocess_menu(&$variables) {
     foreach ($variables['items'] as &$item) {
       $subNav = [];
       foreach ($item['below'] as $link) {
-        $subNav[] = array(
+        $subNav[] = [
           'href' => $link['url'],
           'text' => $link['title'],
-        );
+        ];
       }
-      $mainNav[] = array(
+      $mainNav[] = [
         'href'   => $item['url'],
         'text'   => $item['title'],
         'active' => $item['in_active_trail'],
         'subNav' => $subNav,
-      );
+      ];
     }
     $variables['mainNav'] = $mainNav;
   }
@@ -340,11 +340,11 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
 
   // Get our subtopics (sections) view.
   $view_results = views_get_view_result('ordered_topics', 'ordered_topic_list_block', $node->id());
-  $sections = array();
+  $sections = [];
   // Roll this up and give the twig tpl what it expects.
   foreach ($view_results as $key => $row) {
     $icon_path = '';
-    $links = array();
+    $links = [];
     // Wrap up our links for each subtopic.
     if ($row->_entity->hasField('field_common_content')) {
       foreach ($row->_entity->get('field_common_content')->referencedEntities() as $link) {
@@ -362,7 +362,7 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
         else {
           $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $link->get('nid')->value);
         }
-        $links[] = array('text' => $link->get('title')->value, 'href' => $link_path);
+        $links[] = ['text' => $link->get('title')->value, 'href' => $link_path];
       }
     }
 
@@ -371,19 +371,19 @@ function mass_theme_preprocess_node_section_landing(&$variables) {
       $icon = $row->_entity->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
       $icon_path = icon_path($icon);
     }
-    $sections[] = array(
+    $sections[] = [
       'id' => $row->_entity->get('nid')->value,
-      'catIcon' => array(
+      'catIcon' => [
         'icon' => $icon_path,
         'small' => 'true',
-      ),
-      'title' => array(
+      ],
+      'title' => [
         'href' => 'node/' . $row->_entity->get('nid')->value,
         'text' => $row->_entity->get('title')->value,
-      ),
+      ],
       'description' => $row->_entity->get('field_lede')->value,
       'links' => $links,
-    );
+    ];
   }
   // Send to twig.
   $variables['sections'] = $sections;
@@ -399,10 +399,10 @@ function mass_theme_preprocess_node_action(&$variables) {
 
   if ($variables['view_mode'] == 'full') {
     $field_action_parent = $node->get('field_action_parent');
-    $taxonomy_terms = array();
+    $taxonomy_terms = [];
     foreach ($field_action_parent->referencedEntities() as $term) {
       $link_path = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $term->get('nid')->value);
-      $taxonomy_terms[] = array('url' => $link_path, 'term' => $term->get('title')->value);
+      $taxonomy_terms[] = ['url' => $link_path, 'term' => $term->get('title')->value];
     }
     $variables['taxonomyTerms'] = $taxonomy_terms;
 
@@ -412,7 +412,7 @@ function mass_theme_preprocess_node_action(&$variables) {
     if ($field_action_sidebar->count() > 0) {
       $delta = 0;
       $quick_actions_section = FALSE;
-      $quick_actions = array();
+      $quick_actions = [];
 
       foreach ($field_action_sidebar->referencedEntities() as $paragraph) {
         $paragraph->getType();
@@ -483,17 +483,17 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
   }
 
   if (!empty($items)) {
-    $related_content = array();
+    $related_content = [];
     foreach ($items as $item) {
-      $related_content[] = array(
-        'link' => array(
+      $related_content[] = [
+        'link' => [
           'type' => 'internal',
           'quickaction' => 'FALSE',
           'href' => $item->url(),
           'text' => $item->getTitle(),
           'image' => Helper::getFieldImageUrl($item, 'thumbnail_130x160', 'field_photo'),
-        ),
-      );
+        ],
+      ];
     }
     $variables['related_content'] = $related_content;
   }
@@ -581,7 +581,7 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($variables['view_mode'] == 'full') {
     // Get our callout links view.
     $view_results = views_get_view_result('callout_links', 'block_callout_links', $node->id());
-    $callout_links = array();
+    $callout_links = [];
 
     // Roll this up and give the twig tpl what it expects.
     foreach ($view_results as $key => $row) {
@@ -591,24 +591,24 @@ function mass_theme_preprocess_node_topic(&$variables) {
       if ($row->_relationship_entities['field_common_content']->hasField('field_external_url')) {
         $external_url = $row->_relationship_entities['field_common_content']->get('field_external_url')->getValue();
       }
-      $callout_links[] = array(
-        'calloutLink' => array(
+      $callout_links[] = [
+        'calloutLink' => [
           'type'        => (!empty($external_url[0]['uri'])) ? 'external' : '',
           'quickaction' => 'FALSE',
           'href'        => (!empty($external_url[0]['uri'])) ? $external_url[0]['uri'] : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_relationship_entities['field_common_content']->get('nid')->value),
           'text'        => $row->_relationship_entities['field_common_content']->get('title')->value,
-        ),
-      );
+        ],
+      ];
     }
     // Send to twig.
     $variables['calloutLinks'] = $callout_links;
 
     // Get our subtopics (sections) view.
     $view_results = views_get_view_result('subtopics', 'ordered_subtopic_list_block', $node->id());
-    $sections = array();
+    $sections = [];
     // Roll up the list of subtopics and give the twig tpl the links it expects.
     foreach ($view_results as $key => $row) {
-      $links = array();
+      $links = [];
       // Wrap up our links for each subtopic.
       foreach ($row->_entity->get('field_topic_callout_links') as $link) {
         // Set default value.
@@ -628,18 +628,18 @@ function mass_theme_preprocess_node_topic(&$variables) {
             }
           }
         }
-        $links[] = array('text' => $link->title, 'href' => $link_path);
+        $links[] = ['text' => $link->title, 'href' => $link_path];
       }
       // Wrap up each section with links.
-      $sections[] = array(
+      $sections[] = [
         'id' => $row->_entity->get('nid')->value,
-        'title' => array(
+        'title' => [
           'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->_entity->get('nid')->value),
           'text' => $row->_entity->get('title')->value,
-        ),
+        ],
         'description' => $row->_entity->get('field_lede')->value,
         'links' => $links,
-      );
+      ];
     }
     // Send to twig.
     $variables['sections'] = $sections;
@@ -648,13 +648,13 @@ function mass_theme_preprocess_node_topic(&$variables) {
   if ($variables['view_mode'] == 'teaser') {
     // Get our subtopics from view.
     $view_results = views_get_view_result('subtopics', 'section_links', $node->id());
-    $links = array();
+    $links = [];
     // Roll this up for our twig template.
     foreach ($view_results as $key => $row) {
-      $links[] = array(
+      $links[] = [
         'href' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $row->node_nid),
         'text' => $row->_entity->get('title')->value,
-      );
+      ];
     }
     // Send to twig.
     $variables['links'] = $links;
@@ -671,7 +671,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
     $node = $variables['node'];
 
     // Create and populate the data object which the template is expecting.
-    $emergency_alerts = array();
+    $emergency_alerts = [];
     // Set alert id = node updated time.
     $emergency_alerts['id'] = $node->get('changed')->value;
 
@@ -690,7 +690,7 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
     // Populate alerts array with individual alert content.
     if ($field_alert->count() > 0) {
       $delta = 0;
-      $alerts = array();
+      $alerts = [];
 
       foreach ($field_alert->referencedEntities() as $paragraph) {
 
@@ -716,19 +716,19 @@ function mass_theme_preprocess_node_emergency_alerts(&$variables) {
           }
 
           // Populate optional alert "Read More" link data object.
-          $link = array(
+          $link = [
             'chevron' => 'true',
             'text' => $url->getValue()['title'],
             'href' => $href,
             'type' => (UrlHelper::isExternal($url->getUrl()->toString())) ? 'external' : 'internal',
-          );
+          ];
         }
 
-        $alerts[] = array(
+        $alerts[] = [
           'message' => $paragraph->get('field_emergency_alert_message')->value,
           'timeStamp' => $timestamp,
           'link' => $link,
-        );
+        ];
 
         $delta++;
       }
@@ -775,7 +775,7 @@ function mass_theme_preprocess_html(&$variables) {
   // Normally we would use theme_get_setting('logo.url')
   $logoSrc = "/images/stateseal-color.png";
   // Pass Schema.org markup data to page-meta.html.twig.
-  $variables['pageMetaData'] = array(
+  $variables['pageMetaData'] = [
     'urlDomain' => \Drupal::request()->getSchemeAndHttpHost(),
     'socialMediaLinks' => json_encode($socialMedia, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
     'urlPath' => \Drupal::request()->getBaseUrl() . \Drupal::request()->getPathInfo(),
@@ -787,7 +787,7 @@ function mass_theme_preprocess_html(&$variables) {
     'siteCopyright' => 'Commonwealth of Massachusetts',
     'orgName' => 'Commonwealth of Massachusetts',
     'schemaPageType' => $is_front_page ? 'Home' : '',
-  );
+  ];
   mass_theme_add_metatag_data($variables['pageMetaData']);
 }
 
@@ -803,16 +803,16 @@ function mass_theme_preprocess_html(&$variables) {
  *   The part of the metadata attachments array to search in.
  *   Defaults to html_head.
  */
-function mass_theme_add_metatag_data(array &$page_meta_data, array $map = array(), $meta_area = 'html_head') {
+function mass_theme_add_metatag_data(array &$page_meta_data, array $map = [], $meta_area = 'html_head') {
   // Code largely copied from metatag.module/metatag_preprocess_html()
   if (!function_exists('metatag_is_current_route_supported') || !metatag_is_current_route_supported()) {
     return;
   }
 
   if (empty($map)) {
-    $map = array(
+    $map = [
       'siteDescription' => 'siteDescription',
-    );
+    ];
   }
 
   $attachments = drupal_static('metatag_attachments');
@@ -992,7 +992,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     }
   }
   if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'related_link') {
-    $links = array();
+    $links = [];
     $delta = 0;
     // Wrap up our related links.
     while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
@@ -1006,13 +1006,13 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         }
       }
 
-      $links[] = array(
-        'link' => array(
+      $links[] = [
+        'link' => [
           'text' => $element[$delta]['#title'],
           'href' => $url,
           'type' => (UrlHelper::isExternal($url)) ? 'external' : 'internal',
-        ),
-      );
+        ],
+      ];
       $delta++;
     }
     // Send array to twig.
@@ -1020,8 +1020,8 @@ function mass_theme_preprocess_field(&$variables, $hook) {
   }
 
   if (($element['#view_mode'] == 'sidebar' || $element['#view_mode'] == 'stacked_sidebar') && $element['#bundle'] == 'contact_group') {
-    $groups = array();
-    $order = array();
+    $groups = [];
+    $order = [];
     $delta = 0;
 
     // Wrap up our contact groups.
@@ -1030,14 +1030,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'phone') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our phone numbers.
-        $phone_details[] = array(
+        $phone_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
-          'link'    => str_replace(array('+', '-'), '', filter_var($element[$delta]['#paragraph']->get('field_phone')->value, FILTER_SANITIZE_NUMBER_INT)),
+          'link'    => str_replace(['+', '-'], '', filter_var($element[$delta]['#paragraph']->get('field_phone')->value, FILTER_SANITIZE_NUMBER_INT)),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1045,14 +1045,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'fax') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our fax numbers.
-        $fax_details[] = array(
+        $fax_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_phone')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_phone')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1066,14 +1066,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
         }
 
-        $online_details[] = array(
+        $online_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $value,
           'rawVal'  => '',
           'link'    => $link,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1087,14 +1087,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           $link = $element[$delta]['#paragraph']->get('field_branch_locations')->first()->getValue()['uri'];
         }
 
-        $branch_location_details[] = array(
+        $branch_location_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $value,
           'rawVal'  => '',
           'link'    => $link,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => 'online',
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1102,14 +1102,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
       if ($element[$delta]['#paragraph']->get('field_type')->value == 'email') {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
         // Wrap up all our emails.
-        $email_details[] = array(
+        $email_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_email')->value,
           'rawVal'  => $element[$delta]['#paragraph']->get('field_email')->value,
           'link'    => $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1118,14 +1118,14 @@ function mass_theme_preprocess_field(&$variables, $hook) {
         $order[$delta] = $element[$delta]['#paragraph']->get('field_type')->value;
 
         // Wrap up all our addresses.
-        $address_details[] = array(
+        $address_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_address')->value,
           'rawVal'  => '',
           'link'    => 'https://maps.google.com/?q=' . urlencode($element[$delta]['#paragraph']->get('field_address')->value),
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => 'address',
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1140,7 +1140,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           $value = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['title'];
           $link = $element[$delta]['#paragraph']->get('field_link')->first()->getValue()['uri'];
         }
-        $other_details[] = array(
+        $other_details[] = [
           'label'   => $element[$delta]['#paragraph']->get('field_label')->value,
           'value'   => $element[$delta]['#paragraph']->get('field_phone')->value .
           $value .
@@ -1152,7 +1152,7 @@ function mass_theme_preprocess_field(&$variables, $hook) {
           $element[$delta]['#paragraph']->get('field_email')->value,
           'details' => $element[$delta]['#paragraph']->get('field_caption')->value,
           'type'    => $element[$delta]['#paragraph']->get('field_type')->value,
-        );
+        ];
         $delta++;
         continue;
       }
@@ -1167,59 +1167,59 @@ function mass_theme_preprocess_field(&$variables, $hook) {
     foreach ($order as $value) {
       // Do we have phone numbers? If so, display them under one icon.
       if (!empty($phone_details) && $value == 'phone') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-phone.twig',
           'name'    => 'Phone',
           'items'   => $phone_details,
-        );
+        ];
       }
       // Do we have fax numbers? If so, display them under one icon.
       if (!empty($fax_details) && $value == 'fax') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-fax-icon.twig',
           'name'    => 'Fax',
           'items'   => $fax_details,
-        );
+        ];
       }
       // Do we have emails? If so, display them under one icon.
       if (!empty($email_details) && $value == 'email') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-laptop.twig',
           'name'    => 'Online',
           'items'   => $email_details,
-        );
+        ];
       }
       // Do we have online links? If so, display them under one icon.
       if (!empty($online_details) && $value == 'online') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-laptop.twig',
           'name'    => 'Online',
           'items'   => $online_details,
-        );
+        ];
       }
       // Do we have branch location links? If so, display them under one icon.
       if (!empty($branch_location_details) && $value == 'branch_location') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-profile.twig',
           'name'    => 'Branch Location',
           'items'   => $branch_location_details,
-        );
+        ];
       }
       // Do we have address? If so, display them under one icon.
       if (!empty($address_details) && $value == 'mail') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-mail.twig',
           'name'    => 'Address',
           'items'   => $address_details,
-        );
+        ];
       }
       // Do we have other details? If so, display them under one icon.
       if (!empty($other_details) && $value == 'other') {
-        $groups[] = array(
+        $groups[] = [
           'icon'    => '@atoms/05-icons/svg-marker.twig',
           'name'    => 'Other',
           'items'   => $other_details,
-        );
+        ];
       }
     }
     // Send to twig template.
@@ -1228,21 +1228,21 @@ function mass_theme_preprocess_field(&$variables, $hook) {
 
   // Populate helpful links array.
   if ($element['#field_name'] == 'field_helpful_links') {
-    $helpful_links = array();
-    $helpful_links['compHeading'] = array(
+    $helpful_links = [];
+    $helpful_links['compHeading'] = [
       'title' => $element['#title'],
       'sub' => 'true',
       'color' => 'yellow',
-    );
-    $links = array();
+    ];
+    $links = [];
     $delta = 0;
     // Wrap up our helpful links.
     while (!empty($element[$delta]) && !isset($element[$delta]['#type'])) {
-      $links[] = array(
+      $links[] = [
         'chevron' => 'true',
         'text' => $element[$delta]['#title'],
         'href' => $element[$delta]['#url_title'],
-      );
+      ];
       $delta++;
     }
     $helpful_links['items'] = $links;
@@ -1344,7 +1344,7 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
               $link_path = $external_link;
             }
           }
-          $links[] = array('text' => $link->getTitle(), 'href' => $link_path);
+          $links[] = ['text' => $link->getTitle(), 'href' => $link_path];
         }
         // Get links for our topic cards.
         $item->{'links'} = $links;
@@ -1367,7 +1367,7 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
               }
             }
           }
-          $links[] = array('text' => $link->title, 'href' => $link_path);
+          $links[] = ['text' => $link->title, 'href' => $link_path];
         }
         // Get links for our topic cards.
         $item->{'links'} = $links;
@@ -1436,7 +1436,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
   $paragraph = $variables['paragraph'];
 
   $field_featured_items = $paragraph->get('field_featured_content');
-  $featured_links = array();
+  $featured_links = [];
   $image_url = '';
 
   // Get field labels for twig.
@@ -1454,18 +1454,18 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
         $external_url = $item->get('field_external_url')->uri;
       }
 
-      $featured_links[] = array(
+      $featured_links[] = [
         'image' => $item->hasField('field_photo') ? Helper::getFieldImageUrl($item, 'thumbnail_130x160', 'field_photo') : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
-      );
+      ];
     }
     $variables['featuredLinks'] = $featured_links;
   }
 
   $field_link_items = $paragraph->get('field_related_content');
-  $links = array();
+  $links = [];
 
   $variables['generalHeading'] = $field_link_items->getFieldDefinition()->getLabel();
 
@@ -1481,22 +1481,22 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
         $external_url = $item->get('field_external_url')->uri;
       }
 
-      $links[] = array(
+      $links[] = [
         'image' => $item->hasField('field_photo') ? Helper::getFieldImageUrl($item, 'thumbnail_130x160', 'field_photo') : '',
         'text'  => $item->getTitle(),
         'type'  => $external_url ? 'external' : 'internal',
         'href'  => $external_url ? $external_url : \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value),
-      );
+      ];
     }
     $variables['links'] = $links;
 
     if (!empty($paragraph->get('field_link_single')->uri)) {
-      $seeAll = array(
+      $seeAll = [
         'type'  => UrlHelper::isExternal($paragraph->get('field_link_single')->uri) ? 'external' : 'internal',
         'href'  => Url::fromUri($paragraph->get('field_link_single')->uri),
         'text'  => $paragraph->get('field_link_single')->title,
         'info' => '',
-      );
+      ];
       $variables['seeAll'] = $seeAll;
     }
   }
@@ -1515,7 +1515,7 @@ function mass_theme_preprocess_paragraph__action_set(&$variables) {
 function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
   $paragraph = $variables['paragraph'];
   $rows = $paragraph->get('field_3_up_rows');
-  $list = array();
+  $list = [];
 
   if ($rows->count() > 0) {
     $items = $rows->referencedEntities();
@@ -1532,33 +1532,33 @@ function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
       $paragraphs = [];
       foreach ($paragraph_tags as $paragraph_tag) {
         if (!empty($paragraph_tag)) {
-          $paragraphs[] = array(
+          $paragraphs[] = [
             'path' => '@atoms/11-text/raw-html.twig',
-            'data' => array(
-              'rawHtml' => array(
+            'data' => [
+              'rawHtml' => [
                 'content' => trim(str_replace("<p>", "", $paragraph_tag)),
-              ),
-            ),
-          );
+              ],
+            ],
+          ];
         }
       }
 
-      $list['column' . ++$id] = array(
-        array(
+      $list['column' . ++$id] = [
+        [
           'path' => '@atoms/04-headings/column-heading.twig',
-          'data' => array(
-            'columnHeading' => array(
+          'data' => [
+            'columnHeading' => [
               'text' => $item->get('field_heading')->value,
-            ),
-          ),
-        ),
-        array(
+            ],
+          ],
+        ],
+        [
           'path' => '@organisms/by-author/rich-text.twig',
-          'data' => array(
+          'data' => [
             'rteElements' => $paragraphs,
-          ),
-        ),
-      );
+          ],
+        ],
+      ];
     }
   }
 
@@ -1573,7 +1573,7 @@ function mass_theme_preprocess_paragraph__3_up_content(&$variables) {
 function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables) {
   $paragraph = $variables['paragraph'];
   $field_action_step_numbered_items = $paragraph->get('field_action_step_numbered_items');
-  $list = array();
+  $list = [];
 
   if ($field_action_step_numbered_items->count() > 0) {
     $items = $field_action_step_numbered_items->referencedEntities();
@@ -1581,7 +1581,7 @@ function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables)
 
   if (!empty($items)) {
     foreach ($items as $id => $item) {
-      $list[$id] = array();
+      $list[$id] = [];
       $field_title = $item->get('field_title');
       $field_content = $item->get('field_content');
 
@@ -1592,14 +1592,14 @@ function mass_theme_preprocess_paragraph__action_step_numbered_list(&$variables)
 
       if ($field_content->count() > 0) {
         $content = $field_content->first()->view('full');
-        $list[$id]['rteElements'][] = array(
+        $list[$id]['rteElements'][] = [
           'path' => '@atoms/11-text/raw-html.twig',
-          'data' => array(
-            'rawHtml' => array(
+          'data' => [
+            'rawHtml' => [
               'content' => $content,
-            ),
-          ),
-        );
+            ],
+          ],
+        ];
       }
     }
   }
@@ -1701,16 +1701,16 @@ function mass_theme_preprocess_paragraph__full_bleed(&$variables) {
         if ($item->getType() == 'slideshow') {
           $image_field = $item->get('field_slideshow');
           $image_count = $image_field->count();
-          $images = array();
+          $images = [];
           foreach ($image_field as $id => $image) {
             $value = $image->getValue();
             $image_small = Helper::getFieldImageUrl($item, 'action_banner_small', 'field_slideshow', $id);
             $image_large = Helper::getFieldImageUrl($item, 'action_banner_large', 'field_slideshow', $id);
-            $images[$id] = array(
+            $images[$id] = [
               'image' => $image_small,
               'imageLarge' => $image_large,
               'alt' => $value['alt'],
-            );
+            ];
           }
 
           $variables['images'] = $images;
@@ -1798,10 +1798,10 @@ function mass_theme_add_regions_to_node($allowed_regions, &$variables) {
     // Load region blocks.
     $blocks = \Drupal::entityTypeManager()
       ->getStorage('block')
-      ->loadByProperties(array('theme' => $theme, 'region' => $region));
+      ->loadByProperties(['theme' => $theme, 'region' => $region]);
 
     // Capture viewable blocks and their settings to $build.
-    $build = array();
+    $build = [];
     foreach ($blocks as $key => $block) {
       if ($block->access('view')) {
         $block = Block::load($key);
@@ -1847,12 +1847,12 @@ function mass_theme_preprocess_paragraph__contact_info(&$variables) {
     $variables['address_url'] = $address_url;
   }
 
-  $svg_types = array(
-    'phone' => array('class' => 'svg-phone', 'svg' => 'phone'),
-    'laptop' => array('class' => 'svg-laptop', 'svg' => 'laptop'),
-    'mail' => array('class' => 'svg-mail', 'svg' => 'mail'),
-    'profile' => array('class' => 'svg-profile', 'svg' => 'profile'),
-  );
+  $svg_types = [
+    'phone' => ['class' => 'svg-phone', 'svg' => 'phone'],
+    'laptop' => ['class' => 'svg-laptop', 'svg' => 'laptop'],
+    'mail' => ['class' => 'svg-mail', 'svg' => 'mail'],
+    'profile' => ['class' => 'svg-profile', 'svg' => 'profile'],
+  ];
 
   $field_type = $paragraph->get('field_type');
 
@@ -1926,7 +1926,7 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
   $path = DRUPAL_ROOT . '/' . $theme_path . '/patterns/atoms/';
 
   $paragraph = $variables['paragraph'];
-  $action_downloads = array();
+  $action_downloads = [];
   $field_downloads = $paragraph->get('field_downloads');
   $files = '';
 
@@ -1966,13 +1966,13 @@ function mass_theme_preprocess_paragraph__file_download(&$variables) {
         $icon = '@atoms/05-icons/svg-doc-' . $file_extension . '.twig';
       }
 
-      $action_downloads[] = array(
+      $action_downloads[] = [
         'icon' => $icon,
         'text' => $link_text,
         'href' => $url,
         'size' => $readable_size,
         'type' => $file_extension,
-      );
+      ];
     }
   }
   $variables['actionDownloads'] = $action_downloads;
@@ -2102,7 +2102,7 @@ function mass_theme_preprocess_views_view_list(&$variables) {
   $rows = $variables['rows'];
 
   if ($view->storage->id() == 'subtopics_all_actions') {
-    $nodes = array();
+    $nodes = [];
 
     foreach ($rows as $row) {
       $result = $row['content']['#row'];
@@ -2125,10 +2125,10 @@ function mass_theme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   if ($form['#id'] == 'views-exposed-form-subtopics-all-actions-block-1') {
     if (isset($form['actions']['submit']['#attributes'])) {
       $attributes = $form['actions']['submit']['#attributes'];
-      $form['actions']['submit']['#attributes'] = $attributes + array('data-theming-id' => 'filter-submit');
+      $form['actions']['submit']['#attributes'] = $attributes + ['data-theming-id' => 'filter-submit'];
     }
     else {
-      $form['actions']['submit']['#attributes'] = array('data-theming-id' => 'filter-submit');
+      $form['actions']['submit']['#attributes'] = ['data-theming-id' => 'filter-submit'];
     }
   }
 }
@@ -2205,7 +2205,7 @@ function mass_theme_preprocess_paragraph__icon_links(&$variables) {
  * Language config for Google translate.
  */
 function mass_theme_googletranslate_options_languages() {
-  $language_codes = array(
+  $language_codes = [
     'aa' => 'Afar' ,
     'ab' => 'Abkhazian' ,
     'af' => 'Afrikaans' ,
@@ -2340,7 +2340,7 @@ function mass_theme_googletranslate_options_languages() {
     'yo' => 'Yoruba' ,
     'zh' => 'Chinese' ,
     'zu' => 'Zulu' ,
-  );
+  ];
   return $language_codes;
 }
 
@@ -2350,16 +2350,16 @@ function mass_theme_googletranslate_options_languages() {
 function mass_theme_form_system_theme_settings_alter(&$form, $form_state) {
   $languages = mass_theme_googletranslate_options_languages();
 
-  $form['mass_theme_settings'] = array(
+  $form['mass_theme_settings'] = [
     '#type'  => 'details',
     '#title' => t('Languages'),
     '#open'  => TRUE,
-  );
+  ];
 
-  $form['mass_theme_settings']['languages'] = array(
+  $form['mass_theme_settings']['languages'] = [
     '#type'          => 'checkboxes',
     '#options'       => $languages,
     '#title'         => t('Choose google translate languages?'),
     '#default_value' => theme_get_setting('languages', 'mass_theme'),
-  );
+  ];
 }

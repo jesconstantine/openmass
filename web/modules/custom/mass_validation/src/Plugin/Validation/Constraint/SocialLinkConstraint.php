@@ -44,9 +44,9 @@ class SocialLinkConstraint extends Constraint {
    */
   public function __construct($options = NULL) {
     if (NULL !== $options && !is_array($options)) {
-      $options = array(
+      $options = [
         'social_link' => $options,
-      );
+      ];
     }
 
     parent::__construct($options);

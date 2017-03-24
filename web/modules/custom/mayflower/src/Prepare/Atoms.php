@@ -33,9 +33,9 @@ class Atoms {
   public static function prepareImage($entity, $options) {
     $image = '';
 
-    $map = array(
-      'image' => array('field_sub_brand'),
-    );
+    $map = [
+      'image' => ['field_sub_brand'],
+    ];
 
     // Determines which field names to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
@@ -44,12 +44,12 @@ class Atoms {
       // Get image alt text from entity (set to '' on falsey return).
       $image_alt = $entity->$fields['image']->alt ?: '';
 
-      $image = array(
+      $image = [
         'alt' => $image_alt,
         'src' => $src,
         'height' => $options['height'],
         'width' => $options['width'],
-      );
+      ];
     }
 
     return $image;
@@ -78,21 +78,21 @@ class Atoms {
    *    ]
    */
   public static function preparePageContentParagraph($entity) {
-    $paragraphs = array();
+    $paragraphs = [];
 
     foreach ($entity as $paragraph) {
-      $paragraphs[] = array(
+      $paragraphs[] = [
         'path' => '@atoms/11-text/raw-html.twig',
-        'data' => array(
-          'rawHtml' => array(
+        'data' => [
+          'rawHtml' => [
             'content' => $paragraph->view(),
-          ),
-        ),
-      );
+          ],
+        ],
+      ];
     }
-    return array(
+    return [
       'rteElements' => $paragraphs,
-    );
+    ];
   }
 
   /**
@@ -112,11 +112,11 @@ class Atoms {
    *    ]
    */
   public static function prepareSidebarHeading($text) {
-    return array(
-      'sidebarHeading' => array(
+    return [
+      'sidebarHeading' => [
         'title' => $text,
-      ),
-    );
+      ],
+    ];
   }
 
 }

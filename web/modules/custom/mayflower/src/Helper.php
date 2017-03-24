@@ -50,7 +50,7 @@ class Helper {
    *   The array which contains the fields used by this pattern.
    */
   public static function getMappedFields($entity, array $map) {
-    $fields = array();
+    $fields = [];
     // Determines which field names to use from the map.
     // @todo refactor to make use array functions (map, filter, reduce)
     foreach ($map as $id => $key) {
@@ -124,10 +124,10 @@ class Helper {
     else {
       // External URL field is non-existent or empty, get Node path alias.
       $url = $entity->toURL();
-      return array(
+      return [
         'href' => $url->toString(),
         'type' => 'internal',
-      );
+      ];
     }
   }
 
@@ -144,7 +144,7 @@ class Helper {
    */
   public static function separatedLinks($entity, $field_name) {
     $links = $entity->get($field_name);
-    $items = array();
+    $items = [];
 
     foreach ($links as $link) {
       $items[] = Helper::separatedLink($link);
@@ -164,11 +164,11 @@ class Helper {
    */
   public static function separatedLink($link) {
     $url = $link->getUrl();
-    return array(
+    return [
       'text' => $link->getValue()['title'],
       'href' => $url->toString(),
       'type' => (UrlHelper::isExternal($url->toString())) ? 'external' : 'internal',
-    );
+    ];
   }
 
   /**
@@ -183,7 +183,7 @@ class Helper {
    *   Returns the full render array of the field.
    */
   public static function fieldFullView($entity, $field_name) {
-    $field_array = array();
+    $field_array = [];
     $field = $entity->get($field_name);
 
     if ($field->count() > 0) {
@@ -207,7 +207,7 @@ class Helper {
   public static function getReferencedEntitiesFromField($entity, $reference_field) {
     // Retrieves the featured actions referenced from the entity field.
     $field = $entity->get($reference_field);
-    $referenced_items = array();
+    $referenced_items = [];
     if ($field->count() > 0) {
       $referenced_items = $field->referencedEntities();
     }
@@ -230,7 +230,7 @@ class Helper {
    */
   public static function getMappedReferenceFields(array $referenced_entities, array $referenced_fields_map) {
     // @todo determine if this can be combined with mayflower_get_mapped_fields
-    $referenced_fields = array();
+    $referenced_fields = [];
     // Determines the field names to use on the referenced entity.
     foreach ($referenced_fields_map as $id => $key) {
       foreach ($key as $field) {
@@ -257,7 +257,7 @@ class Helper {
    */
   public static function populateActionFinderLinks(array $referenced_entities, array $referenced_fields) {
     // Populate links array.
-    $links = array();
+    $links = [];
     if (!empty($referenced_entities)) {
       foreach ($referenced_entities as $item) {
 
@@ -278,12 +278,12 @@ class Helper {
         }
         $url = Helper::getEntityUrl($item, $ext_url_field);
 
-        $links[] = array(
+        $links[] = [
           'image' => $image,
           'text' => $item->$referenced_fields['text']->value,
           'type' => $url['type'],
           'href' => $url['href'],
-        );
+        ];
       }
     }
 

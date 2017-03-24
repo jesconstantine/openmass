@@ -44,8 +44,8 @@ function mass_validation_entity_bundle_field_info_alter(&$fields, EntityTypeInte
   /** @var Drupal\field\Entity\FieldConfig $field_social_links */
   if ($entity_type->id() == 'node' && array_key_exists('field_social_links', $fields) && !empty($fields['field_social_links'])) {
     $field_social_links = &$fields['field_social_links'];
-    $field_social_links->addConstraint('SocialLink', array(
-      'allowedValues' => array(
+    $field_social_links->addConstraint('SocialLink', [
+      'allowedValues' => [
         'twitter.com',
         'flickr.com',
         'facebook.com',
@@ -53,7 +53,7 @@ function mass_validation_entity_bundle_field_info_alter(&$fields, EntityTypeInte
         'linkedin.com',
         'youtube.com',
         'blog.mass.gov',
-      ),
-    ));
+      ],
+    ]);
   }
 }

@@ -35,11 +35,11 @@ class PreventEmptyImageConstraint extends CompositeConstraintBase {
    * {@inheritdoc}
    */
   public function coversFields() {
-    return array(
+    return [
       'field_ref_actions_3',
       'field_ref_actions_6',
       'field_action_set__bg_wide',
-    );
+    ];
   }
 
 }

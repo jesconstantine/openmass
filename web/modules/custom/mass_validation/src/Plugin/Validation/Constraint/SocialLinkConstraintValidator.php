@@ -44,7 +44,7 @@ class SocialLinkConstraintValidator extends ConstraintValidator {
 
       // If we have an invalid link then add violation.
       if (is_array($invalid_link)) {
-        $this->context->addViolation($constraint->message, array('%social_link_url' => $invalid_link['uri'], '%social_link_title' => $invalid_link['title']));
+        $this->context->addViolation($constraint->message, ['%social_link_url' => $invalid_link['uri'], '%social_link_title' => $invalid_link['title']]);
       }
     }
   }

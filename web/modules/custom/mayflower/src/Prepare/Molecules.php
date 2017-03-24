@@ -34,12 +34,12 @@ class Molecules {
    *   ], ...]
    */
   public static function prepareActionSeqList($entity) {
-    $actionSeqLists = array();
+    $actionSeqLists = [];
 
     // Creates a map of fields on the parent entity.
-    $map = array(
-      'reference' => array('field_action_step_numbered_items'),
-    );
+    $map = [
+      'reference' => ['field_action_step_numbered_items'],
+    ];
 
     // Determines which fieldnames to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
@@ -48,10 +48,10 @@ class Molecules {
     $items = Helper::getReferencedEntitiesFromField($entity, $fields['reference']);
 
     // Creates a map of fields that are on the referenced entitiy.
-    $referenced_fields_map = array(
-      'title'   => array('field_title'),
-      'content' => array('field_content'),
-    );
+    $referenced_fields_map = [
+      'title'   => ['field_title'],
+      'content' => ['field_content'],
+    ];
 
     // Determines the fieldsnames to use on the refrenced entity.
     $referenced_fields = Helper::getMappedReferenceFields($items, $referenced_fields_map);
@@ -59,16 +59,16 @@ class Molecules {
     // Creates the actionSeqLists array structure.
     if (!empty($items)) {
       foreach ($items as $id => $item) {
-        $actionSeqLists[$id] = array();
+        $actionSeqLists[$id] = [];
         $actionSeqLists[$id]['title'] = Helper::fieldFullView($item, $referenced_fields['title']);
-        $actionSeqLists[$id]['rteElements'][] = array(
+        $actionSeqLists[$id]['rteElements'][] = [
           'path' => '@atoms/11-text/paragraph.twig',
-          'data' => array(
-            'paragraph' => array(
+          'data' => [
+            'paragraph' => [
               'text' => Helper::fieldFullView($item, $referenced_fields['content']),
-            ),
-          ),
-        );
+            ],
+          ],
+        ];
       }
     }
 
@@ -93,9 +93,9 @@ class Molecules {
    *    ], ...]
    */
   public static function prepareCalloutLinks($entity) {
-    $map = array(
-      'link' => array('field_link'),
-    );
+    $map = [
+      'link' => ['field_link'],
+    ];
 
     // Determines which fieldnames to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
@@ -130,10 +130,10 @@ class Molecules {
    *    ]
    */
   public static function prepareIconLinks($entity, $options) {
-    $items = array();
-    $map = array(
-      'socialLinks' => array('field_social_links'),
-    );
+    $items = [];
+    $map = [
+      'socialLinks' => ['field_social_links'],
+    ];
 
     // Determines which fieldnames to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
@@ -142,7 +142,7 @@ class Molecules {
     $links = Helper::separatedLinks($entity, $fields['socialLinks']);
 
     // Get icons for social links.
-    $services = array(
+    $services = [
       'twitter',
       'facebook',
       'flickr',
@@ -150,7 +150,7 @@ class Molecules {
       'linkedin',
       'google',
       'instagram',
-    );
+    ];
 
     foreach ($links as $link) {
       $icon = '';
@@ -162,17 +162,17 @@ class Molecules {
         }
       }
 
-      $items[] = array(
+      $items[] = [
         'icon' => Helper::getIconPath($icon),
         'link' => $link,
-      );
+      ];
     }
 
-    return array(
-      'iconLinks' => array(
+    return [
+      'iconLinks' => [
         'items' => $items,
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -213,19 +213,19 @@ class Molecules {
   public static function prepareSectionLink($entity, array $links) {
     $index = &drupal_static(__FUNCTION__);
     $index++;
-    return array(
+    return [
       'id' => 'section_link_' . $index,
-      'catIcon' => array(
+      'catIcon' => [
         'icon' => Helper::getIconPath($entity->field_icon_term->referencedEntities()[0]->get('field_sprite_name')->value),
         'small' => 'true',
-      ),
-      'title' => array(
+      ],
+      'title' => [
         'href' => '#',
         'text' => $entity->getTitle(),
-      ),
+      ],
       'description' => $entity->field_lede->value,
       'links' => $links,
-    );
+    ];
   }
 
 }

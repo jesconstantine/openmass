@@ -51,24 +51,24 @@ class Organisms {
    *    ]
    */
   public static function prepareActionFinder($entity, array $options) {
-    $map = array(
-      'bgWide' => array('field_action_set__bg_wide'),
-      'bgNarrow' => array('field_action_set__bg_narrow'),
-      'featured_actions' => array('field_ref_actions_3'),
-      'all_actions' => array('field_ref_actions_6'),
-      'see_all' => array('field_link'),
-    );
+    $map = [
+      'bgWide' => ['field_action_set__bg_wide'],
+      'bgNarrow' => ['field_action_set__bg_narrow'],
+      'featured_actions' => ['field_ref_actions_3'],
+      'all_actions' => ['field_ref_actions_6'],
+      'see_all' => ['field_link'],
+    ];
 
     // Determines which field names to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
 
     // Creates a map of fields that are on the referenced entity.
-    $referenced_fields_map = array(
-      'image' => array('field_photo'),
-      'text' => array('title', 'field_title'),
-      'external' => array('field_external_url'),
-      'href' => array(),
-    );
+    $referenced_fields_map = [
+      'image' => ['field_photo'],
+      'text' => ['title', 'field_title'],
+      'external' => ['field_external_url'],
+      'href' => [],
+    ];
 
     $featured_heading = '';
     $featured_links = '';
@@ -106,8 +106,8 @@ class Organisms {
     }
 
     // Build actionFinder data array.
-    return array(
-      'actionFinder' => array(
+    return [
+      'actionFinder' => [
         'title' => $options["title"],
         'featuredHeading' => $featured_heading,
         'generalHeading' => $all_heading,
@@ -116,8 +116,8 @@ class Organisms {
         'seeAll' => $see_all,
         'featuredLinks' => $featured_links,
         'links' => $links,
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -156,27 +156,27 @@ class Organisms {
    */
   public static function prepareActionHeader($entity, $options, $widgets) {
     // Create the map of all possible field names to use.
-    $map = array(
-      'title' => array('title'),
-      'titleNote' => array('field_title_sub_text'),
-      'subTitle' => array('field_sub_title'),
-    );
+    $map = [
+      'title' => ['title'],
+      'titleNote' => ['field_title_sub_text'],
+      'subTitle' => ['field_sub_title'],
+    ];
 
     // Determines which field names to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
 
     // Create the actionHeader data structure.
-    $actionHeader = array(
-      'pageHeader' => array(
+    $actionHeader = [
+      'pageHeader' => [
         'title' => $entity->$fields['title']->value,
         'titleNote' => $entity->$fields['titleNote']->value,
         'subTitle' => $entity->$fields['subTitle']->value,
-      ),
+      ],
       'divider' => $options['divider'],
       // TODO: Create the prepare functions for the contactUs component.
-      'contactUs' => array(),
+      'contactUs' => [],
       'widgets' => $widgets,
-    );
+    ];
 
     return $actionHeader;
   }
@@ -205,20 +205,20 @@ class Organisms {
     // @todo Use $options[] as 2nd parameter in prepare functions
 
     // Roll up the link list.
-    $links = array();
+    $links = [];
     foreach ($entity as $link) {
-      $links[] = array(
+      $links[] = [
         'url' => $link->toURL()->toString(),
         'text' => $link->get('title')->value,
-      );
+      ];
     }
 
-    return array(
-      'linkList' => array(
+    return [
+      'linkList' => [
         'title' => $title,
         'links' => $links,
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -243,15 +243,15 @@ class Organisms {
    *    ]
    */
   public static function preparePageBanner($entity, $options) {
-    $pageBanner = array();
+    $pageBanner = [];
 
     // Create the map of all possible field names to use.
-    $map = array(
-      'title' => array('title'),
-      'title_sub_text' => array('field_title_sub_text'),
-      'bg_wide' => array('field_bg_wide'),
-      'bg_narrow' => array('field_bg_narrow'),
-    );
+    $map = [
+      'title' => ['title'],
+      'title_sub_text' => ['field_title_sub_text'],
+      'bg_wide' => ['field_bg_wide'],
+      'bg_narrow' => ['field_bg_narrow'],
+    ];
 
     // Determines which field names to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
@@ -291,18 +291,18 @@ class Organisms {
   public static function prepareSectionThreeUp($entity, $title) {
     // @todo Use $options[] as 2nd parameter in prepare functions
 
-    return array(
-      'sectionThreeUp' => array(
-        'compHeading' => array(
+    return [
+      'sectionThreeUp' => [
+        'compHeading' => [
           'title' => $title,
           'sub' => '',
           'color' => '',
           'id' => '',
           'centered' => '',
-        ),
+        ],
         'sections' => mayflower_prepare_topic_cards($entity),
-      ),
-    );
+      ],
+    ];
   }
 
 }
