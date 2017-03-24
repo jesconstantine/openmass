@@ -1600,23 +1600,10 @@ function mass_theme_preprocess_paragraph__search_band(&$variables) {
     $popular_searches = $variables['paragraph']->get('field_link_six');
 
     // Roll up our popular searches links for search band.
-    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
     foreach ($popular_searches as $link) {
-      // Check for type-assisted node (External Action).
-      $url = $link->getUrl();
-      $href = $url->toString();
-      $text = empty($link->title) ? $url->toString() : $link->title;
-      if (!$url->isExternal()) {
-        $referenced_node = Node::load($url->getRouteParameters()['node']);
-        $text = empty($link->title) ? $referenced_node->getTitle() : $link->title;
-        if ($referenced_node->hasField('field_external_url') && !$referenced_node->get('field_external_url')->isEmpty()) {
-          $href = $referenced_node->get('field_external_url')->uri;
-        }
-      }
-
       $items[] = [
-        'href' => $href,
-        'text' => $text,
+        'href' => $link->getUrl()->toString(),
+        'text' => $link->getValue()['title'],
         'chevron' => 'true',
       ];
     }
