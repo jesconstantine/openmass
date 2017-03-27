@@ -29,13 +29,13 @@ class Link extends LinkFormatter {
 
     foreach ($elements as &$element) {
       $options = $element['#options'];
-      $attributes = array();
+      $attributes = [];
 
       if (array_key_exists('attributes', $options)) {
         $attributes = $options['attributes'];
       }
 
-      $element['#options']['attributes'] = $attributes + array('class' => $classes);
+      $element['#options']['attributes'] = $attributes + ['class' => $classes];
     }
 
     return $elements;
@@ -45,9 +45,9 @@ class Link extends LinkFormatter {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'classes' => '',
-    ) + parent::defaultSettings();
+    ] + parent::defaultSettings();
   }
 
   /**
@@ -68,7 +68,7 @@ class Link extends LinkFormatter {
    */
   public function settingsSummary() {
     $summary = parent::settingsSummary();
-    $summary[] = t('Additional classes: %classes', array('%classes' => $this->getSetting('classes')));
+    $summary[] = t('Additional classes: %classes', ['%classes' => $this->getSetting('classes')]);
 
     return $summary;
   }

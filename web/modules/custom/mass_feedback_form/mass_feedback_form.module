@@ -30,13 +30,13 @@ function mass_feedback_form_help($route_name, RouteMatchInterface $route_match) 
  * Define twig template for feedback form block, called by PageFeedbackForm.
  */
 function mass_feedback_form_theme() {
-  return array(
-    'block__mass_feedback_form' => array(
+  return [
+    'block__mass_feedback_form' => [
       'render element' => 'elements',
       'template' => 'block--mass-feedback-form',
       'base hook' => 'block',
-    ),
-  );
+    ],
+  ];
 }
 
 /**

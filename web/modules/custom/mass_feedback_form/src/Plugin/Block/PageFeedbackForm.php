@@ -18,9 +18,9 @@ class PageFeedbackForm extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return array(
+    return [
       '#theme' => 'block--mass-feedback-form',
-    );
+    ];
   }
 
 }

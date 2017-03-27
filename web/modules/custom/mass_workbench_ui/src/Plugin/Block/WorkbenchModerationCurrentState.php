@@ -24,12 +24,12 @@ class WorkbenchModerationCurrentState extends BlockBase {
     $nid = \Drupal::routeMatch()->getRawParameter('node');
 
     // Cache the block based on node id and url.
-    $block = array(
-      '#cache' => array(
-        'contexts' => array('url.path'),
-        'tags' => array('node:' . $nid),
-      ),
-    );
+    $block = [
+      '#cache' => [
+        'contexts' => ['url.path'],
+        'tags' => ['node:' . $nid],
+      ],
+    ];
 
     // Get the state for the latest revision.
     if (\Drupal::routeMatch()->getRouteName() == 'entity.node.latest_version') {
@@ -67,11 +67,11 @@ class WorkbenchModerationCurrentState extends BlockBase {
       return AccessResult::forbidden();
     }
 
-    $routes = array(
+    $routes = [
       'entity.node.canonical',
       'entity.node.latest_version',
       'entity.node.revision',
-    );
+    ];
 
     // Only show on node pages.
     if (in_array($route_name, $routes)) {

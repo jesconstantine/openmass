@@ -32,14 +32,14 @@ class SettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL) {
     $config = $this->config('mass_search_suppression.settings');
-    $form['suppression_urls'] = array(
+    $form['suppression_urls'] = [
       '#type' => 'textarea',
       '#rows' => 5,
-      '#attributes' => array('placeholder' => t('Enter one path per line.')),
+      '#attributes' => ['placeholder' => t('Enter one path per line.')],
       '#title' => $this->t('Pages not showing Search Header'),
       '#description' => $this->t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. An example path is /user/* for every user page. &lt;front&gt; is the front page."),
       '#default_value' => $config->get('suppression_urls'),
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }
