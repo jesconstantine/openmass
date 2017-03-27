@@ -492,6 +492,7 @@ function mass_theme_preprocess_node_stacked_layout(&$variables) {
           'href' => $item->url(),
           'text' => $item->getTitle(),
           'image' => Helper::getFieldImageUrl($item, 'thumbnail_130x160', 'field_photo'),
+          'label' => trim($item->get('field_label')->value) == 'Guide' ? 'Guide:' : '',
         ),
       );
     }
@@ -762,6 +763,11 @@ function mass_theme_preprocess_html(&$variables) {
 
   if ($is_front_page) {
     $variables['alerts_banner_view'] = views_embed_view('emergency_alert', 'block_banner');
+    // Add a body class if this is the front.
+    $variables['attributes']['class'][] = 'is-front';
+  }
+  else {
+    $variables['attributes']['class'][] = 'not-front';
   }
 
   // Add social media links for the organization info in page-meta.html.twig.
@@ -1314,10 +1320,18 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
     $total_count = count($related_items);
 
     foreach ($related_items as $id => $item) {
+      /** @var Drupal\node\Entity\Node $item */
       // Default icon for content without icons but using the Topic card.
       $item->{'icon'} = '@atoms/05-icons/svg-marker.twig';
       $item->{'node_path'} = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $item->get('nid')->value);
       $item->{'image_thumbnail_url'} = $item->hasField('field_photo') ? Helper::getFieldImageUrl($item, 'thumbnail_130x160', 'field_photo') : '';
+
+      // For Stacked Layout, if label or acronym is Guide then the label
+      // should be "Guide:".
+      if ($item->getType() == 'stacked_layout') {
+        $label = $item->get('field_label')->isEmpty() ? '' : $item->get('field_label')->value;
+        $item->{'label_text'} = $label == 'Guide' ? 'Guide:' : '';
+      }
 
       // Grab our icon.
       // Topics have an icon field.
@@ -1325,9 +1339,11 @@ function mass_theme_preprocess_paragraph__related_content(&$variables) {
         $icon = $item->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
         $item->{'icon'} = icon_path($icon);
       }
-      // Subtopics don't have an icons field, so lets use it parent ref.
-      if ($item->hasField('field_topic_parent') && array_key_exists('0', $item->get('field_topic_parent')->referencedEntities())) {
-        $icon = $item->get('field_topic_parent')->referencedEntities()[0]->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+      // Subtopics don't have an icons field, so lets use its topic parent ref.
+      // field_topic_parent references to Stacked Layout and Topic content.
+      // Only Topic content has field_icon_term field.
+      if ($item->hasField('field_topic_parent') && !$item->get('field_topic_parent')->isEmpty()) {
+        $icon = _mass_theme_get_topic_parent_icon($item);
         $item->{'icon'} = icon_path($icon);
       }
 
@@ -1425,6 +1441,39 @@ function _get_layout(array $total_type_with_count, $total_count) {
   }
 
   return 'bullets';
+}
+
+/**
+ * Return the parent topic icon.
+ *
+ * It solves the case when a direct parent doesn't have a field_icon_term.
+ * Recursively look for the right node with the icon or return empty string
+ * if there is no one.
+ *
+ * @param Drupal\node\Entity\Node $item
+ *   The node to get value from.
+ *
+ * @return string
+ *   Return icon or empty string.
+ */
+function _mass_theme_get_topic_parent_icon(Node $item) {
+  /** @var Drupal\Core\Field\EntityReferenceFieldItemList $parents */
+  $parents = $item->get('field_topic_parent');
+  foreach ($parents->referencedEntities() as $parent) {
+    if ($parent->getType() == 'topic') {
+      return $parent->get('field_icon_term')->referencedEntities()[0]->get('field_sprite_name')->value;
+    }
+  }
+
+  // If no topic found, then look for parents of parent.
+  foreach ($parents->referencedEntities() as $parent) {
+    if ($parent->hasField('field_topic_parent') && !$parent->get('field_topic_parent')->isEmpty()) {
+      _mass_theme_get_topic_parent_icon($parent);
+    }
+  }
+
+  // If no topic parent was found return empty string.
+  return '';
 }
 
 /**
