@@ -3,7 +3,8 @@ Administrative Notes for OpenMass project
 Fetching DB/files from the Mass project
 -------------
 - drush sql-sync --sanitize @massgov.prod @self && drush sql-dump --gzip
-- drush rsync @massgov.prod:%files @self:%files
+- drush rsync @massgov.prod:%files @self:%files && make-a-tarball
+- [Push both tarballs above to S3](https://console.aws.amazon.com/s3/buckets/openmass/?region=us-east-1&tab=overview)
 
 Fetching new code from Mass project
 -------------
