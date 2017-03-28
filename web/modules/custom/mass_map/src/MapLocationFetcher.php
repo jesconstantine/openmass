@@ -16,50 +16,50 @@ class MapLocationFetcher {
    * Get location information from nodes.
    *
    * @param array $nids
-   *    A list of nodes containing locations.
+   *   A list of nodes containing locations.
    *
    * @return array
-   *    An array of location data and addresses keyed by the nid it belongs to.
+   *   An array of location data and addresses keyed by the nid it belongs to.
    */
-  public function getLocations($nids) {
+  public function getLocations(array $nids) {
     $node_storage = \Drupal::entityManager()->getStorage('node');
     $nodes = $node_storage->loadMultiple($nids);
 
-    $locations = array();
+    $locations = [];
 
-    $locations['form'] = array(
+    $locations['form'] = [
       'action' => '#',
-      'inputs' => array(
-        '0' => array(
+      'inputs' => [
+        '0' => [
           'path' => '@molecules/field-submit.twig',
-          'data' => array(
-            'fieldSubmit' => array(
-              'inputText'     => array(
+          'data' => [
+            'fieldSubmit' => [
+              'inputText'     => [
                 'labelText'   => 'Filter by city, town or zipcode',
                 'required'    => 'false',
                 'id'          => 'filter-by-location',
                 'name'        => 'filter-by-location',
                 'placeholder' => '',
-              ),
-              'buttonSearch' => array(
+              ],
+              'buttonSearch' => [
                 'text' => 'Update',
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
 
-    $locations['activeFilters'] = array(
+    $locations['activeFilters'] = [
       'nearby' => '02155',
-    );
+    ];
 
     // mapProp.
     $locations['googleMap']['map']['zoom'] = 16;
-    $locations['googleMap']['map']['center'] = array(
+    $locations['googleMap']['map']['center'] = [
       'lat' => '42.4072107',
       'lng' => '-71.3824374',
-    );
+    ];
 
     foreach ($nodes as $node) {
       $nid = $node->nid->value;
@@ -81,43 +81,43 @@ class MapLocationFetcher {
       unset($locations['imagePromos'][$nid]['infoWindow']);
 
       // Get the node title and link.
-      $locations['imagePromos'][$nid]['title'] = array(
+      $locations['imagePromos'][$nid]['title'] = [
         'text' => $node->getTitle(),
         'href' => $node->toUrl()->toString(),
         'type' => '',
-      );
+      ];
 
       // Get the description for the node.
-      $locations['imagePromos'][$nid]['description'] = array(
-        'rteElements' => array(
-          '0' => array(
+      $locations['imagePromos'][$nid]['description'] = [
+        'rteElements' => [
+          '0' => [
             'path' => '@atoms/11-text/raw-html.twig',
-            'data' => array(
-              'rawHtml' => array(
+            'data' => [
+              'rawHtml' => [
                 'content' => $node->field_lede->value,
-              ),
-            ),
-          ),
-        ),
-      );
+              ],
+            ],
+          ],
+        ],
+      ];
 
       // Get the link for the node.
-      $locations['imagePromos'][$nid]['link'] = array(
+      $locations['imagePromos'][$nid]['link'] = [
         'text' => "Directions",
         'href' => 'https://www.google.com/maps/place/' . $locations['imagePromos'][$nid]['location']['text'],
         'type' => "external",
         'info' => '',
-      );
+      ];
 
       // Get image.
       $locations['imagePromos'][$nid]['image'] = '';
       if ($node->hasField('field_photo') && $node->get('field_photo')->referencedEntities()) {
         $locations['googleMap']['markers'][$nid]['infoWindow']['image'] = ImageStyle::load('thumbnail_190_107')->buildUrl($node->get('field_photo')->referencedEntities()[0]->getFileUri());
-        $locations['imagePromos'][$nid]['image'] = array(
+        $locations['imagePromos'][$nid]['image'] = [
           'image' => ImageStyle::load('thumbnail_190_107')->buildUrl($node->get('field_photo')->referencedEntities()[0]->getFileUri()),
           'text'  => $node->getTitle(),
           'href'  => '',
-        );
+        ];
       }
     }
     return $locations;
@@ -164,13 +164,13 @@ class MapLocationFetcher {
         }
       }
     }
-    return array(
-      'position' => array(
+    return [
+      'position' => [
         'lat' => $location['lat'],
         'lng' => $location['lon'],
-      ),
+      ],
       'label' => "",
-    );
+    ];
   }
 
   /**
@@ -237,19 +237,19 @@ class MapLocationFetcher {
         }
       }
     }
-    return array(
-      'location' => array(
+    return [
+      'location' => [
         'text' => $address,
         'map'  => 'true',
-      ),
-      'infoWindow' => array(
+      ],
+      'infoWindow' => [
         'name'     => '',
         'phone'    => $phone,
         'fax'      => '',
         'email'    => $email,
         'address'  => $address,
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -280,13 +280,13 @@ class MapLocationFetcher {
         }
       }
     }
-    return array(
-      'position' => array(
+    return [
+      'position' => [
         'lat' => $location['lat'],
         'lng' => $location['lon'],
-      ),
+      ],
       'label' => "",
-    );
+    ];
   }
 
   /**
@@ -359,19 +359,19 @@ class MapLocationFetcher {
         }
       }
     }
-    return array(
-      'location' => array(
+    return [
+      'location' => [
         'text' => $address,
         'map'  => 'true',
-      ),
-      'infoWindow' => array(
+      ],
+      'infoWindow' => [
         'name'     => '',
         'phone'    => $phone,
         'fax'      => '',
         'email'    => $email,
         'address'  => $address,
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -379,6 +379,8 @@ class MapLocationFetcher {
    *
    * @param object $contact_group
    *   The contact group paragraph object.
+   * @param string $field
+   *   The machine name for the field in the contact group paragraph.
    *
    * @return string
    *   The contact data if the group contains one.

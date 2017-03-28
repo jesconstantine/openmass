@@ -20,7 +20,7 @@ dependencies:
     - composer config --global github-oauth.github.com $GITHUB_TOKEN
 
   override:
-    - composer install
+    - composer install --no-interaction
     - npm install -g eslint@v2.13.1
 
   cache_directories:

@@ -37,6 +37,7 @@
  *
  * @copyright Copyright (c) 2016 Palantir.net
  */
+ 'content': {% include directory ~ "/templates/includes/molecules-header-search.html.twig" with { 'searchFormId': "cse-search-band-search-form" } %}
 #}
 {%
 set searchBanner = {
@@ -45,17 +46,9 @@ set searchBanner = {
   'imageName': content.field_name|field_value,
   'imageAuthor': content.field_caption|field_value,
   'form': {
-    'path': '@molecules/search-banner-form.twig',
+    'path': '@custom_includes/molecules-header-search.html.twig',
     'content': {
-      'action': '/search',
-      'buttonText': 'Search',
-      'inputText': {
-        'labelText': 'Search',
-        'required': false,
-        'name': 'q',
-        'id': 'GUID138490237',
-        'placeholder': 'Search...'
-      }
+      searchFormId: 'cse-search-band-search-form'
     }
   },
   'title': content.field_title|field_value ? content.field_title|field_value : title,

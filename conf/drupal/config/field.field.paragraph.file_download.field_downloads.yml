@@ -19,7 +19,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: action/downloads
-  file_extensions: 'pdf docx xlsx'
+  file_extensions: 'pdf docx xlsx rtf xls txt ppt pptx odt ods odp'
   max_filesize: ''
   description_field: true
   handler: 'default:file'

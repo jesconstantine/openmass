@@ -11,9 +11,9 @@ class MenuExtension extends \Twig_Extension {
    * In this function we can declare the extension function.
    */
   public function getFunctions() {
-    return array(
-      new \Twig_SimpleFunction('render_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
-    );
+    return [
+      new \Twig_SimpleFunction('render_menu', [$this, 'renderMenu'], ['is_safe' => ['html']]),
+    ];
   }
 
   /**
@@ -29,18 +29,18 @@ class MenuExtension extends \Twig_Extension {
     $tree = $menu_tree->load($menu_name, $parameters);
 
     // Transform the tree using the manipulators you want.
-    $manipulators = array(
+    $manipulators = [
       // Only show links that are accessible for the current user.
-      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
+      ['callable' => 'menu.default_tree_manipulators:checkAccess'],
       // Use the default sorting of menu links.
-      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
-    );
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+    ];
     $tree = $menu_tree->transform($tree, $manipulators);
 
     // Finally, build a renderable array from the transformed tree.
     $menu = $menu_tree->build($tree);
 
-    return array('#markup' => drupal_render($menu));
+    return ['#markup' => drupal_render($menu)];
   }
 
 }

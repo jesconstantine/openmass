@@ -151,18 +151,98 @@
       // Customize "no results" message
       mobileSearchControl.setNoResultsString(noResultsString);
 
+      /**
+       * Creates an instance of the CustomSearchControl object,
+       * which represents a Custom Search Element. Calling this
+       * constructor initializes the Custom Search service and UI.
+       */
+      var searchBandSearchControl = new google.search.CustomSearchControl(cx, customSearchOptions);
 
-      // Add classes to <form>.
-      var searchForm = document.querySelector('form.gsc-search-box');
-      if (searchForm !== null) {
-        searchForm.classList.add('ma__form');
-        searchForm.classList.add('js-header-search-form');
+      /**
+       * set search results set size
+       * options:
+       * - integer between 1-20,
+       * - google.search.Search. SMALL||LARGE _RESULTSET (google determines usually 8||16)
+       * - google.search.Search.FILETERED_CSE_RESULTSET (google determines, up to 10results, 10 pages)
+       */
+      searchBandSearchControl.setResultSetSize(20);
+
+      /**
+       * Draw header search form with draw options
+       * See .draw() at: https://developers.google.com/custom-search/docs/js/cselement-reference#csedrawoptions-el
+       */
+      var searchBandOptions = new google.search.DrawOptions();
+
+      /**
+       * only draw search form (results are handled in mass_search
+       * module route teamplte mass-search.html.twig )
+       *
+       * set search results route and search term query
+       */
+      searchBandOptions.enableSearchboxOnly('/search', 'q');
+
+      /**
+       * enable autocomplete (see options above: autoCompleteOptions)
+       */
+      searchBandOptions.setAutoComplete(true);
+
+      /**
+       * Displays the search form (when it exists, IE not on results page).
+       * Calling this method is the final step in activating a Custom Search
+       * Element object, and it produces the UI and search containers.
+       *
+       * .draw(selector, options)
+       */
+      var searchBandSearchExists = document.getElementById('cse-search-band-search-form');
+
+      if (searchBandSearchExists) {
+        searchBandSearchControl.draw('cse-search-band-search-form', searchBandOptions);
+      }
+
+      // Customize "no results" message
+      searchBandSearchControl.setNoResultsString(noResultsString);
+
+      // Remove class on form for search banner <form>.
+      var bannerSearchForm = document.querySelector('.ma__search-banner form.gsc-search-box');
+      if (bannerSearchForm !== null) {
+        bannerSearchForm.classList.remove('gsc-search-box');
+      }
+
+      // Add classes to form parent for search banner <form>.
+      var bannerSearchFormParent = document.querySelector('#cse-search-band-search-form');
+      if (bannerSearchFormParent !== null) {
+        bannerSearchFormParent.classList.add('ma__search-banner__form');
+      }
+
+      // Add classes to <input>.
+      var bannerInputField = document.querySelector('.ma__search-banner td.gsc-input');
+      if (bannerInputField !== null) {
+        bannerInputField.classList.add('ma__search-banner__input');
+        var bannerTextInput = document.querySelector('.ma__search-banner td.gsc-input input');
+        bannerTextInput.classList.remove('gsc-input');
+        bannerTextInput.placeholder = 'Search...';
+      }
+
+      // Add classes to <button>.
+      var bannerSubmitField = document.querySelector('.ma__search-banner td.gsc-search-button');
+      if (bannerSubmitField !== null) {
+        var bannerSubmitInput = document.querySelector('.ma__search-banner td.gsc-search-button input');
+        bannerSubmitField.classList.add('ma__search-banner__button');
+        bannerSubmitField.classList.remove('gsc-search-button');
+        bannerSubmitInput.placeholder = 'Search...';
+      }
+
+      // Add classes to header <form>.
+      var headerSearchForm = document.querySelector('.ma__header form.gsc-search-box');
+      if (headerSearchForm !== null) {
+        headerSearchForm.classList.add('ma__form');
+        headerSearchForm.classList.add('js-header-search-form');
       }
       // Add classes to <input>.
-      var inputField = document.querySelector('input.gsc-input');
-      if (inputField !== null) {
-        inputField.classList.add('ma__header-search__input');
-        inputField.placeholder = 'What can we help you find?';
+      var headerInputField = document.querySelector('.ma__header input.gsc-input');
+      if (headerInputField !== null) {
+        headerInputField.classList.add('ma__header-search__input');
+        headerInputField.placeholder = 'What can we help you find?';
       }
 
     }, true);
