@@ -11,7 +11,7 @@ id: node.org_page.field_bg_wide
 field_name: field_bg_wide
 entity_type: node
 bundle: org_page
-label: 'Header Image '
+label: 'Banner Image (Desktop)'
 description: 'Your header image needs to be a minimum of 1600x400.'
 required: true
 translatable: false

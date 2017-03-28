@@ -47,8 +47,7 @@ third_party_settings:
       label: 'Node Edit Form'
     group_banner:
       children:
-        - title
-        - field_title_sub_text
+        - group_organization_name
         - field_bg_wide
         - field_bg_narrow
       parent_name: group_node_edit_form
@@ -57,7 +56,7 @@ third_party_settings:
       format_settings:
         label: Banner
         formatter: closed
-        description: 'These fields are used to make the visual banner across the top of your organization page. See <a href="http://mayflower.digital.mass.gov/?p=organisms-page-banner-large" target="_blank">here</a> for an example of what it will look like when completely filled out.'
+        description: ''
         required_fields: true
         id: ''
         classes: ''
@@ -125,6 +124,25 @@ third_party_settings:
         description: ''
         required_fields: true
       label: Other
+    group_organization_name:
+      children:
+        - title
+        - field_title_sub_text
+      parent_name: group_banner
+      weight: 8
+      format_type: html_element
+      format_settings:
+        label: 'Organization Name'
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Organization Name'
 id: node.org_page.default
 targetEntityType: node
 bundle: org_page
@@ -163,7 +181,7 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_bg_narrow:
-    weight: 4
+    weight: 12
     settings:
       entity_browser: browse_files_modal
       field_widget_remove: true
@@ -175,7 +193,7 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
   field_bg_wide:
-    weight: 3
+    weight: 11
     settings:
       entity_browser: browse_files_modal
       field_widget_remove: true
@@ -239,7 +257,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_social_links:
-    weight: 8
+    weight: 9
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -265,7 +283,7 @@ content:
     third_party_settings: {  }
     type: string_textarea
   field_title_sub_text:
-    weight: 2
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -273,7 +291,7 @@ content:
     type: string_textfield
   title:
     type: string_textfield
-    weight: 1
+    weight: 9
     settings:
       size: 60
       placeholder: ''
