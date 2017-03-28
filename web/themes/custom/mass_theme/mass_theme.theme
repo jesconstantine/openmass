@@ -18,6 +18,7 @@ use Drupal\mayflower\Helper;
 use Drupal\mayflower\Prepare\Atoms;
 use Drupal\mayflower\Prepare\Molecules;
 use Drupal\mayflower\Prepare\Organisms;
+use Drupal\mayflower\Prepare\Schemas;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -33,6 +34,21 @@ function mass_theme_theme_suggestions_paragraph_alter(array &$suggestions, array
   // Add the appropriate theme suggestions.
   if (array_key_exists($variables['elements']['#paragraph']->getType(), $map)) {
     $suggestions[] = $map[$variables['elements']['#paragraph']->getType()];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function mass_theme_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  // Build a map of paragraph types and the twig files they map to.
+  $map = array(
+    'contact_information' => 'contact_us',
+  );
+
+  // Add the appropriate theme suggestions.
+  if (array_key_exists($variables['elements']['#node']->getType(), $map)) {
+    $suggestions[] = $map[$variables['elements']['#node']->getType()];
   }
 }
 
@@ -185,6 +201,8 @@ function mass_theme_preprocess_node_org_page(&$variables) {
   $variables['actionHeader'] = Organisms::prepareActionHeader($node, $actionHeader_options, $widgets);
   // Make stacked section data object available in twig template.
   $variables['stackedRowSections'] = mayflower_prepare_stacked_row_sections($node);
+  // Prepare the schema.governmentOrganization data object.
+  $variables['schema'] = Schemas::prepareGovernmentOrganization($variables);
 }
 
 /**
@@ -780,9 +798,11 @@ function mass_theme_preprocess_html(&$variables) {
   // The colored state seal to be used by search engines.
   // Normally we would use theme_get_setting('logo.url')
   $logoSrc = "/images/stateseal-color.png";
+  $hostname = \Drupal::request()->getSchemeAndHttpHost();
   // Pass Schema.org markup data to page-meta.html.twig.
-  $variables['pageMetaData'] = array(
-    'urlDomain' => \Drupal::request()->getSchemeAndHttpHost(),
+  $metadata = array(
+    'id' => $hostname . "/#organization",
+    'urlDomain' => $hostname,
     'socialMediaLinks' => json_encode($socialMedia, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
     'urlPath' => \Drupal::request()->getBaseUrl() . \Drupal::request()->getPathInfo(),
     'logoSrc' => $logoSrc,
@@ -794,50 +814,9 @@ function mass_theme_preprocess_html(&$variables) {
     'orgName' => 'Commonwealth of Massachusetts',
     'schemaPageType' => $is_front_page ? 'Home' : '',
   );
-  mass_theme_add_metatag_data($variables['pageMetaData']);
-}
+  Helper::addMetatagData($metadata);
 
-/**
- * Supplements page meta data from metatags.
- *
- * @param array &$page_meta_data
- *   Array of pageMetaData used by templates/includes/page-meta.html.twig.
- * @param array $map
- *   Array that maps metatags to page_meta_data keys in form tag=>key.
- *   Defaults to 'siteDescription'=>'siteDescription'.
- * @param string $meta_area
- *   The part of the metadata attachments array to search in.
- *   Defaults to html_head.
- */
-function mass_theme_add_metatag_data(array &$page_meta_data, array $map = array(), $meta_area = 'html_head') {
-  // Code largely copied from metatag.module/metatag_preprocess_html()
-  if (!function_exists('metatag_is_current_route_supported') || !metatag_is_current_route_supported()) {
-    return;
-  }
-
-  if (empty($map)) {
-    $map = array(
-      'siteDescription' => 'siteDescription',
-    );
-  }
-
-  $attachments = drupal_static('metatag_attachments');
-  if (is_null($attachments)) {
-    $attachments = metatag_get_tags_from_route();
-  }
-
-  if (!$attachments || empty($attachments['#attached'][$meta_area])) {
-    return;
-  }
-
-  foreach ($attachments['#attached'][$meta_area] as $metatag) {
-    $tag_name = $metatag[1];
-    if (isset($map[$tag_name])) {
-      // It's safe to access the value directly because it was already
-      // processed in MetatagManager::generateElements().
-      $page_meta_data[$map[$tag_name]] = $metatag[0]['#attributes']['content'];
-    }
-  }
+  $variables['pageMetaData'] = $metadata;
 }
 
 /**

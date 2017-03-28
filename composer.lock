@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2428bee6f08aa373618bc1c8dae1964",
+    "content-hash": "f972d9338c913bc1418e622b8e0d8b8c",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -1930,6 +1930,50 @@
             "time": "2016-11-28T20:35:38+00:00"
         },
         {
+            "name": "drupal/field_tokens",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_tokens",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_tokens-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": "35e88fbcfa4fe3769062bb0cf41d52a09fc25c1f"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1454639340"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                }
+            ],
+            "description": "Adds formatted field and field property tokens.",
+            "homepage": "https://www.drupal.org/project/field_tokens",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_tokens"
+            }
+        },
+        {
             "name": "drupal/file_browser",
             "version": "dev-8.x-1.x",
             "source": {
@@ -2741,6 +2785,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Drush sanitize plugin for TFA user data. (https://www.drupal.org/node/2862312)": "https://www.drupal.org/files/issues/drush_27.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -2749,7 +2796,7 @@
             ],
             "description": "Pluggable provider of second factor authentication for Drupal",
             "homepage": "https://www.drupal.org/project/tfa",
-            "time": "2016-08-23T20:32:20+00:00"
+            "time": "2016-08-23 20:32:20"
         },
         {
             "name": "drupal/token",
@@ -3903,16 +3950,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.5.1",
+            "version": "3.6.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3"
+                "reference": "33d9958c56fcc821452e07b45c1fac3c930ffd07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0630368953c60aba3104a994c8c81df9162fa0c3",
-                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/33d9958c56fcc821452e07b45c1fac3c930ffd07",
+                "reference": "33d9958c56fcc821452e07b45c1fac3c930ffd07",
                 "shasum": ""
             },
             "type": "library",
@@ -3927,10 +3974,10 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.1",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.6.0-alpha",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-16T21:26:45+00:00"
+            "time": "2017-03-21T11:11:53+00:00"
         },
         {
             "name": "palantirnet/the-build",
@@ -8794,6 +8841,7 @@
         "drupal/access_unpublished": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
+        "drupal/field_tokens": 10,
         "drupal/file_browser": 20,
         "drupal/rabbit_hole": 20,
         "drupal/restrict_by_ip": 20,
