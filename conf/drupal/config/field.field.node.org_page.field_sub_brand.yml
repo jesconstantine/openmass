@@ -11,8 +11,8 @@ id: node.org_page.field_sub_brand
 field_name: field_sub_brand
 entity_type: node
 bundle: org_page
-label: 'Organization Logo'
-description: 'Your organization''s logo, if you have one. It will be scaled down to 230px wide, so your logo should look good at that resolution if you want to add it.'
+label: 'Logo (Optional)'
+description: "Logos should have a white or transparent background. Your logo should be at least 230 pixels wide.\r\nThis area is only for organization-specific logos (not the state seal)."
 required: false
 translatable: false
 default_value: {  }

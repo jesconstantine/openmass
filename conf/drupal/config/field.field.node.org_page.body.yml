@@ -12,7 +12,7 @@ field_name: body
 entity_type: node
 bundle: org_page
 label: 'Who We Serve'
-description: 'Describe your services and the types of people who may need to utilize your organization''s services. This will help readers identify if they''ve found the page they are looking for or not.'
+description: 'Describe the people or groups that your organization serves and describe how they are affected. Include key highlights of services provided but no comprehensive lists.'
 required: false
 translatable: true
 default_value: {  }
