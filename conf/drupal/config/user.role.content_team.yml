@@ -100,3 +100,4 @@ permissions:
   99: 'delete terms in icons'
   100: 'edit terms in icons'
   101: 'switch shortcut sets'
+  102: 'access draggableviews'
