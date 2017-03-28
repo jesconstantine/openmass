@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_ref_links
     - node.type.contact_information
     - paragraphs.paragraphs_type.links
+    - paragraphs.paragraphs_type.online_email
   module:
     - entity_reference_revisions
 id: node.contact_information.field_ref_links
@@ -23,6 +24,7 @@ settings:
   handler_settings:
     target_bundles:
       links: links
+      online_email: online_email
     target_bundles_drag_drop:
       1up_stacked_band:
         weight: 47
@@ -132,9 +134,15 @@ settings:
       pull_quote:
         weight: 82
         enabled: false
+      map_row:
+        weight: 82
+        enabled: false
       quick_action:
         weight: 83
         enabled: false
+      online_email:
+        enabled: true
+        weight: 83
       related_content:
         weight: 84
         enabled: false
@@ -149,9 +157,6 @@ settings:
         enabled: false
       slideshow:
         weight: 88
-        enabled: false
-      stacked_band:
-        weight: 89
         enabled: false
       stat:
         weight: 90

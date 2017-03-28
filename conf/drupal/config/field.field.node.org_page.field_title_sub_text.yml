@@ -9,8 +9,8 @@ id: node.org_page.field_title_sub_text
 field_name: field_title_sub_text
 entity_type: node
 bundle: org_page
-label: Acronym
-description: 'The acronym is an optional element that will be displayed after the title of the organization. It should be used if your organization is commonly known by or refers to itself by an abbreviation of the organization. For example, "Executive Office of Health and Human Services" may be referred to as EOHHS.'
+label: 'Acronym (Optional)'
+description: 'The acronym is an optional element that will be displayed after the title of the organization. It should be used if your organization is commonly known by or refers to itself by an abbreviation of the organization. For example, "Executive Office of Health and Human Services" may be referred to as EOHHS. Add an acronym only if it''s in common use.'
 required: false
 translatable: false
 default_value: {  }

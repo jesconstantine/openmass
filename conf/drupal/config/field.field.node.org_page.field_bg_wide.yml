@@ -11,8 +11,8 @@ id: node.org_page.field_bg_wide
 field_name: field_bg_wide
 entity_type: node
 bundle: org_page
-label: 'Header Image '
-description: 'Your header image needs to be a minimum of 1600x400.'
+label: 'Banner Image (Desktop)'
+description: 'Please add the image you have chosen from the <a href="https://www.dropbox.com/s/zs4xtbcsgehi7av/Final%20Org%20page%20images.zip?dl=0" target="_blank">selection of Organization page images</a>. If you want to add your own image, it should have an aspect ratio of 4:1 and be a minimum of 1600 x 400 pixels. Images using a different ratio will be cropped, and smaller images will be distorted.'
 required: true
 translatable: false
 default_value: {  }

@@ -49,3 +49,6 @@ component-libraries:
   pilot:
     paths:
       - patterns/pilot
+  meta:
+    paths:
+      - patterns/meta

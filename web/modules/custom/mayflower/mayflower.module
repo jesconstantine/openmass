@@ -35,6 +35,11 @@ function mayflower_theme($existing, $type, $theme, $path) {
       'template' => 'callout-links',
       'path' => $patterns['organisms'] . '/by-author',
     ],
+    'contact_us' => [
+      'variables' => ['contactUs' => NULL],
+      'template' => 'contact-us',
+      'path' => $patterns['molecules'],
+    ],
   ];
 }
 
@@ -67,11 +72,26 @@ function mayflower_patternlibrary_paths() {
  *   - image_style: An optional image style.
  *   - url: An optional \Drupal\Core\Url object.
  */
-function mayflower_preprocess_image(array &$variables) {
+function mayflower_preprocess_image(&$variables) {
   $variables['image']['src'] = $variables['uri'];
   $variables['image']['alt'] = $variables['alt'];
   $variables['image']['height'] = $variables['height'];
   $variables['image']['width'] = $variables['width'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * @see patterns/molecules/contact-us.twig
+ */
+function mayflower_preprocess_contact_us(&$variables) {
+  $node = $variables['elements']['#node'];
+
+  // Sets the variable structure required for action-seq-list.twig.
+  $variables = [
+    'theme_hook_original' => $variables['theme_hook_original'],
+    'contactUs' => Molecules::prepareContactUs($node, ['display_title' => TRUE]),
+  ];
 }
 
 /**

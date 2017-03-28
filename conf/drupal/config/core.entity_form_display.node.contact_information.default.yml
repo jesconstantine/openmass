@@ -20,11 +20,11 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 10
     settings: {  }
     third_party_settings: {  }
   field_display_title:
-    weight: 1
+    weight: 35
     settings:
       size: 60
       placeholder: ''
@@ -32,7 +32,7 @@ content:
     type: string_textfield
   field_ref_address:
     type: entity_reference_paragraphs
-    weight: 7
+    weight: 31
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -42,7 +42,7 @@ content:
     third_party_settings: {  }
   field_ref_fax_number:
     type: entity_reference_paragraphs
-    weight: 10
+    weight: 34
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -52,7 +52,7 @@ content:
     third_party_settings: {  }
   field_ref_links:
     type: entity_reference_paragraphs
-    weight: 9
+    weight: 33
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -62,7 +62,7 @@ content:
     third_party_settings: {  }
   field_ref_phone_number:
     type: entity_reference_paragraphs
-    weight: 8
+    weight: 32
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -72,31 +72,31 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 30
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 15
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 16
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60

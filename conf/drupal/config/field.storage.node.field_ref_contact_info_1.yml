@@ -1,16 +1,15 @@
-uuid: bd556935-2038-46a1-8d95-846654c03be2
+uuid: 7e955788-fd32-46cf-8f76-0cbb878b18f4
 langcode: en
 status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: V6eOjJIHeisIzuUmdrpAI-oHgmzwKOEBOtXYIU4Jg4s
-id: node.field_agency_email
-field_name: field_agency_email
+id: node.field_ref_contact_info_1
+field_name: field_ref_contact_info_1
 entity_type: node
-type: email
-settings: {  }
+type: entity_reference
+settings:
+  target_type: node
 module: core
 locked: false
 cardinality: 1

@@ -160,10 +160,19 @@ class Organisms {
       'title' => ['title'],
       'titleNote' => ['field_title_sub_text'],
       'subTitle' => ['field_sub_title'],
+      'contactUs' => ['field_ref_contact_info'],
     ];
 
     // Determines which field names to use from the map.
     $fields = Helper::getMappedFields($entity, $map);
+
+    $contactUs = [];
+
+    $contact_items = Helper::getReferencedEntitiesFromField($entity, $fields['contactUs']);
+
+    foreach ($contact_items as $contact_item) {
+      $contactUs = Molecules::prepareContactUs($contact_item, ['display_title' => FALSE]);
+    }
 
     // Create the actionHeader data structure.
     $actionHeader = [
@@ -173,8 +182,7 @@ class Organisms {
         'subTitle' => $entity->$fields['subTitle']->value,
       ],
       'divider' => $options['divider'],
-      // TODO: Create the prepare functions for the contactUs component.
-      'contactUs' => [],
+      'contactUs' => $contactUs,
       'widgets' => $widgets,
     ];
 
@@ -182,12 +190,60 @@ class Organisms {
   }
 
   /**
+   * Returns the variables structure required to render a sidebarContact.
+   *
+   * @param object $entity
+   *   The object that contains the necessary fields.
+   *
+   * @see @organisms/by-author/sidebar-contact.twig
+   *
+   * @return array
+   *   Returns an array of items.
+   *   'sidebarContact': array(
+   *      'coloredHeading': array(
+   *        'text': string / required,
+   *        'color': string / optional
+   *      ),
+   *      'items': array(
+   *         contactUs see @molecules/contact-us
+   *      ).
+   */
+  public static function prepareSidebarContact($entity) {
+    $items = [];
+
+    // Create the map of all possible field names to use.
+    $map = [
+      'items' => ['field_ref_contact_info_1'],
+    ];
+
+    // Determines which field names to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    $contactUs = [];
+
+    $ref_items = Helper::getReferencedEntitiesFromField($entity, $fields['items']);
+
+    foreach ($ref_items as $item) {
+      $items[] = ['contactUs' => Molecules::prepareContactUs($item, ['display_title' => TRUE])];
+    }
+
+    // Create the actionHeader data structure.
+    $sidebarContact = [
+      'coloredHeading' => [
+        'text' => t('Contact'),
+        'color' => 'green',
+      ],
+      'items' => $items,
+    ];
+
+    return $sidebarContact;
+  }
+
+  /**
    * Returns the variables structure required to render link list.
    *
    * @param object $entity
    *   The object that contains the fields.
-   * @param string $title
-   *   Section title.
    *
    * @see @organisms/by-author/link-list.twig
    *

@@ -1,16 +1,14 @@
-uuid: 03b8eb25-6e52-4d53-9f29-8fa352969982
+uuid: 99b5b58f-9e2c-4cf3-9168-f3ac4dfa48c3
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.agency
-_core:
-  default_config_hash: g5EAVxlSUzed5-o2RYuL6D-kHp4ub7vfbJ-YVaOo0LA
-id: node.agency.title
+    - node.type.org_page
+id: node.org_page.title
 field_name: title
 entity_type: node
-bundle: agency
-label: Name
+bundle: org_page
+label: 'Full Name'
 description: ''
 required: true
 translatable: true

@@ -312,7 +312,7 @@ class MapLocationFetcher {
    * @param object $contact_group
    *   The contact group paragraph object.
    * @param string $field
-   *   The machine field name.
+   *   The machine name for the field in the contact group paragraph.
    *
    * @return string
    *   The contact data if the group contains one.
