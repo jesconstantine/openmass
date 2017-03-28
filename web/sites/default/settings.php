@@ -18,7 +18,7 @@ $config_directories[CONFIG_SYNC_DIRECTORY] = '../conf/drupal/config';
 
 $settings['hash_salt'] = 'temporary';
 $settings['update_free_access'] = FALSE;
-$settings['container_yamls'][] = __DIR__ . '/services.yml';
+$settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['file_public_path'] = 'sites/default/files';
 $settings['file_private_path'] = '';
 
@@ -29,18 +29,31 @@ if (file_exists('/var/www/site-php')) {
   // @todo Is this needed?
   $settings['cache']['default'] = 'cache.backend.database';
   $settings['trusted_host_patterns'] = array(
-    '^${acquia.accountname}dev.prod.acquia-sites.com',
-    '^${acquia.accountname}stg.prod.acquia-sites.com',
+    'massgovdev.prod.acquia-sites.com',
+    'massgovstg.prod.acquia-sites.com',
+    'massgovcd.prod.acquia-sites.com',
+    '^pilot\.mass\.gov$',
   );
+
+  // Include the Acquia database connection and other config.
+  if (file_exists('/var/www/site-php')) {
+    require '/var/www/site-php/massgov/massgov-settings.inc';
+  }
+
+  // Include deployment identifier to invalidate internal twig cache.
+  if (file_exists($app_root . '/' . $site_path . '/deployment_id.php')) {
+    require $app_root . '/' . $site_path . '/deployment_id.php';
+  }
 
   // Make sure Drush keeps working.
 // Modified from function drush_verify_cli()
   $cli = (php_sapi_name() == 'cli');
 
 // PASSWORD-PROTECT NON-PRODUCTION SITES (i.e. staging/dev)
+  // PASSWORD-PROTECT NON-PRODUCTION SITES (i.e. staging/dev)
   if (!$cli && (isset($_ENV['AH_NON_PRODUCTION']) && $_ENV['AH_NON_PRODUCTION'])) {
-    $username = 'palantir';
-    $password = 'some mediocre password';
+    $username = 'massgov';
+    $password = 'for the commonwealth';
     if (!(isset($_SERVER['PHP_AUTH_USER']) && ($_SERVER['PHP_AUTH_USER']==$username && $_SERVER['PHP_AUTH_PW']==$password))) {
       header('WWW-Authenticate: Basic realm="This site is protected"');
       header('HTTP/1.0 401 Unauthorized');
@@ -49,6 +62,4 @@ if (file_exists('/var/www/site-php')) {
       exit;
     }
   }
-
-  require '/var/www/site-php/${acquia.accountname}/${acquia.accountname}-settings.inc';
 }
