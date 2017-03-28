@@ -11,7 +11,11 @@
 {%
 set backgroundImage = mobile800x400_image_url ?? hero800x400_image_url
 %}
-{%
+{#
+  Hiding breadcrumb since we will want these breadcrumbs back in the future
+  refs https://jira.state.ma.us/browse/MGRP-1767
+#}
+{#
 set breadcrumbs = {
   'light': "",
   'links': [{
@@ -23,7 +27,7 @@ set breadcrumbs = {
     'href': url
   }]
 }
-%}
+#}
 {%
 set pageBanner = {
   'icon': icon,
@@ -56,7 +60,8 @@ set sectionThreeUp = {
 
 {# Take our blocks from node.html.twig and extend them to get our wrapping divs #}
 {% block preContent %}
-  {% include "@organisms/by-template/breadcrumbs.twig" %}
+  {# Breadcrumbs have been descoped from pilot, but they'd go here #}
+  {# include "@organisms/by-template/breadcrumbs.twig"#}
   {% include "@organisms/by-template/page-banner.twig" %}
 {% endblock %}
 

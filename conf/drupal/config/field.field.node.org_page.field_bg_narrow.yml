@@ -11,7 +11,7 @@ id: node.org_page.field_bg_narrow
 field_name: field_bg_narrow
 entity_type: node
 bundle: org_page
-label: 'Header Image (Mobile)'
+label: 'Banner Image (Mobile)'
 description: 'The mobile-optimized background image needs to be a minimum of 800x400.'
 required: false
 translatable: false

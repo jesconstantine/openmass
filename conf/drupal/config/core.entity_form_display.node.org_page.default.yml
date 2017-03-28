@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.org_page.field_bg_narrow
     - field.field.node.org_page.field_bg_wide
     - field.field.node.org_page.field_link
+    - field.field.node.org_page.field_metatags
     - field.field.node.org_page.field_ref_actions_3
     - field.field.node.org_page.field_ref_actions_6
     - field.field.node.org_page.field_ref_card_view_6
@@ -24,6 +25,7 @@ dependencies:
     - entity_browser
     - field_group
     - link
+    - metatag
     - text
     - workbench_moderation
 third_party_settings:
@@ -31,8 +33,7 @@ third_party_settings:
     group_node_edit_form:
       children:
         - group_banner
-        - group_header
-        - group_who_we_serve
+        - group_overview
         - group_actions
         - group_other
       parent_name: ''
@@ -54,43 +55,13 @@ third_party_settings:
       weight: 20
       format_type: tab
       format_settings:
-        label: Banner
+        label: 'Title Banner'
         formatter: closed
         description: 'These fields are used to make the visual banner across the top of your organization page. See <a href="http://mayflower.digital.mass.gov/?p=organisms-page-banner-large" target="_blank">here</a> for an example of what it will look like when completely filled out.'
         required_fields: true
         id: ''
         classes: ''
-      label: Banner
-    group_header:
-      children:
-        - field_sub_brand
-        - field_sub_title
-      parent_name: group_node_edit_form
-      weight: 21
-      format_type: tab
-      format_settings:
-        label: Header
-        formatter: closed
-        description: 'These fields make up the primary information for your organization. See <a href="http://mayflower.digital.mass.gov/?p=organisms-action-header" target="_blank">here</a> for an example of what this will look like when completed.'
-        required_fields: true
-        id: ''
-        classes: ''
-      label: Header
-    group_who_we_serve:
-      children:
-        - body
-        - field_social_links
-      parent_name: group_node_edit_form
-      weight: 22
-      format_type: tab
-      format_settings:
-        label: 'Who We Serve'
-        formatter: closed
-        description: 'This two-column area gives you the opportunity to describe your primary audience and what you do. It allows visitors to self-identify as someone needing to engage with your organization. It also gives you the opportunity to display your social media profiles in the sidebar. See <a href="http://mayflower.digital.mass.gov/?p=organisms-stacked-row-section" target="_blank">here</a> for an example two-column text element.'
-        required_fields: true
-        id: ''
-        classes: ''
-      label: 'Who We Serve'
+      label: 'Title Banner'
     group_actions:
       children:
         - field_action_set__bg_wide
@@ -99,7 +70,7 @@ third_party_settings:
         - field_ref_actions_6
         - field_link
       parent_name: group_node_edit_form
-      weight: 23
+      weight: 24
       format_type: tab
       format_settings:
         label: Actions
@@ -114,7 +85,24 @@ third_party_settings:
         - field_ref_card_view_6
         - field_ref_orgs
       parent_name: group_node_edit_form
-      weight: 24
+      weight: 25
+      format_type: tab
+      format_settings:
+        label: More
+        formatter: closed
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: More
+    group_overview:
+      children:
+        - field_sub_brand
+        - field_sub_title
+        - body
+        - field_social_links
+      parent_name: group_node_edit_form
+      weight: 22
       format_type: tab
       format_settings:
         id: ''
@@ -122,7 +110,7 @@ third_party_settings:
         formatter: closed
         description: ''
         required_fields: true
-      label: Other
+      label: Overview
 id: node.org_page.default
 targetEntityType: node
 bundle: org_page
@@ -130,7 +118,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 30
     settings:
       rows: 9
       placeholder: ''
@@ -191,6 +179,11 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_metatags:
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
   field_ref_actions_3:
     weight: 4
     settings:
@@ -232,7 +225,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_social_links:
-    weight: 8
+    weight: 31
     settings:
       placeholder_url: ''
       placeholder_title: ''

@@ -9,8 +9,8 @@ id: node.org_page.field_sub_title
 field_name: field_sub_title
 entity_type: node
 bundle: org_page
-label: Lede
-description: 'A description of your organization in one paragraph with no formatting.'
+label: 'Short Description'
+description: 'A 1-2 sentence description that summarizes the organization''s high-level work.'
 required: true
 translatable: false
 default_value: {  }
