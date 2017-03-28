@@ -2,7 +2,7 @@ Administrative Notes for OpenMass project
 
 Fetching DB/files from the Mass project
 -------------
-- drush sql-sync @massgov.prod @self && drush sql-dump --gzip
+- drush sql-sync --sanitize @massgov.prod @self && drush sql-dump --gzip
 - drush rsync @massgov.prod:%files @self:%files
 
 Fetching new code from Mass project
