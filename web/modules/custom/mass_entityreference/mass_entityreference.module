@@ -39,10 +39,10 @@ function mass_entityreference_form_node_action_edit_form_alter(&$form, FormState
  *
  * @param array $form
  *   The form.
- * @param array $form_state
+ * @param Drupal\Core\Form\FormStateInterface $form_state
  *   The form state.
  */
-function _form_validation_action_subtopic_parent(array $form, array $form_state) {
+function _form_validation_action_subtopic_parent(array $form, FormStateInterface $form_state) {
   // Get the current nid.
   $current_node_id = \Drupal::routeMatch()->getRawParameter('node');
 
