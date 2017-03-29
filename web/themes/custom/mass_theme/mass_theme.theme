@@ -2292,7 +2292,7 @@ function _googletranslate_options_languages() {
     'wo' => 'Wolof' ,
     'xh' => 'Xhosa' ,
     'yo' => 'Yoruba' ,
-    'zh' => 'Chinese' ,
+    'zh-CN' => 'Chinese' ,
     'zu' => 'Zulu' ,
   ];
   return $language_codes;
