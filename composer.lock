@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f972d9338c913bc1418e622b8e0d8b8c",
+    "content-hash": "45e91359b4e05c1055c80c3d08fa7bdb",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -126,6 +126,60 @@
             },
             "type": "drupal-module",
             "time": "2017-01-05 00:00:58"
+        },
+        {
+            "name": "christian-riesen/base32",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ChristianRiesen/base32.git",
+                "reference": "0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa",
+                "reference": "0a31e50c0fa9b1692d077c86ac188eecdcbaf7fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "satooshi/php-coveralls": "0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Base32\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Riesen",
+                    "email": "chris.riesen@gmail.com",
+                    "homepage": "http://christianriesen.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Base32 encoder/decoder according to RFC 4648",
+            "homepage": "https://github.com/ChristianRiesen/base32",
+            "keywords": [
+                "base32",
+                "decode",
+                "encode",
+                "rfc4648"
+            ],
+            "time": "2016-05-05T11:49:03+00:00"
         },
         {
             "name": "christian-riesen/otp",
@@ -606,16 +660,16 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6"
+                "reference": "b3036f23b73570ab5d869e345277786c8eb248a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
-                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/b3036f23b73570ab5d869e345277786c8eb248a9",
+                "reference": "b3036f23b73570ab5d869e345277786c8eb248a9",
                 "shasum": ""
             },
             "require": {
@@ -646,7 +700,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2016-12-01T01:19:32+00:00"
+            "time": "2017-03-19T18:18:52+00:00"
         },
         {
             "name": "desandro/imagesloaded",
@@ -3981,21 +4035,21 @@
         },
         {
             "name": "palantirnet/the-build",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/palantirnet/the-build.git",
-                "reference": "a6e9eabfe6fd28126c4d205ffae4678ebc1095d8"
+                "reference": "0b51fc5b3ab42a41b641018d0758bd43a7d2cf48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/a6e9eabfe6fd28126c4d205ffae4678ebc1095d8",
-                "reference": "a6e9eabfe6fd28126c4d205ffae4678ebc1095d8",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/0b51fc5b3ab42a41b641018d0758bd43a7d2cf48",
+                "reference": "0b51fc5b3ab42a41b641018d0758bd43a7d2cf48",
                 "shasum": ""
             },
             "require": {
                 "continuousphp/phing-drush-task": "dev-master",
-                "drupal/coder": "^8.2",
+                "drupal/coder": "*",
                 "nilportugues/php_todo": "^1.0",
                 "pear/versioncontrol_git": "@dev",
                 "phing/phing": "^2.14",
@@ -4021,10 +4075,10 @@
             ],
             "description": "Phing build tasks for Drupal projects.",
             "support": {
-                "source": "https://github.com/palantirnet/the-build/tree/develop",
+                "source": "https://github.com/palantirnet/the-build/tree/1.4.1",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2017-03-14T15:42:03+00:00"
+            "time": "2017-03-29T18:20:06+00:00"
         },
         {
             "name": "palantirnet/the-vagrant",
@@ -4069,12 +4123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/palantirnet/workbench_tabs.git",
-                "reference": "4c20cee5920e08f63efbf1db44edc8992cb44aa0"
+                "reference": "a3e81da8c077101765c2760586aa2e8b366e6754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/workbench_tabs/zipball/4c20cee5920e08f63efbf1db44edc8992cb44aa0",
-                "reference": "4c20cee5920e08f63efbf1db44edc8992cb44aa0",
+                "url": "https://api.github.com/repos/palantirnet/workbench_tabs/zipball/a3e81da8c077101765c2760586aa2e8b366e6754",
+                "reference": "a3e81da8c077101765c2760586aa2e8b366e6754",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4101,7 +4155,7 @@
                 "source": "https://github.com/palantirnet/workbench_tabs/tree/8.x-1.x",
                 "issues": "https://github.com/palantirnet/workbench_tabs/issues"
             },
-            "time": "2016-10-06T15:35:09+00:00"
+            "time": "2017-03-29T16:26:53+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
