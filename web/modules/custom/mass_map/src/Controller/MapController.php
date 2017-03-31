@@ -33,15 +33,15 @@ class MapController extends ControllerBase {
     return [
       '#theme' => 'map_page',
       '#locationListing' => $locations,
-      '#attached' => array(
-        'library' => array(
+      '#attached' => [
+        'library' => [
           'mass_map/mass-map-page-renderer',
           'mass_map/mass-google-map-apis',
-        ),
-        'drupalSettings' => array(
+        ],
+        'drupalSettings' => [
           'locations' => $locations,
-        ),
-      ),
+        ],
+      ],
     ];
   }
 
@@ -80,7 +80,7 @@ class MapController extends ControllerBase {
    *   And array containing location ids.
    */
   private function getActionLocationIds($node) {
-    $locationIds = array();
+    $locationIds = [];
 
     // Get map row out of the details paragraph.
     if (!empty($node->field_action_details)) {
@@ -107,7 +107,7 @@ class MapController extends ControllerBase {
    *   And array containing location ids.
    */
   private function getStackedLayoutLocationIds($node) {
-    $locationIds = array();
+    $locationIds = [];
 
     if (!empty($node->field_bands)) {
       foreach ($node->field_bands as $band_id) {

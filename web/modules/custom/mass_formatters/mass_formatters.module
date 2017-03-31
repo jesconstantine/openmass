@@ -11,5 +11,5 @@
  * Implements hook_theme().
  */
 function mass_formatters_theme() {
-  return array();
+  return [];
 }

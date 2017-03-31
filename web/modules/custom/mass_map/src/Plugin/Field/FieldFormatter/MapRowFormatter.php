@@ -23,7 +23,7 @@ class MapRowFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = array();
+    $summary = [];
 
     $summary[] = t('Embed Google Map with location markers.');
 
@@ -34,7 +34,7 @@ class MapRowFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $location_ids = array();
+    $location_ids = [];
 
     foreach ($items as $delta => $item) {
       $location_ids[] = $item->target_id;
@@ -47,16 +47,16 @@ class MapRowFormatter extends FormatterBase {
     return [
       '#theme' => 'map_row',
       '#locationListing' => $locations,
-      '#attached' => array(
-        'library' => array(
+      '#attached' => [
+        'library' => [
           'mass_map/mass-map-field-renderer',
           'mass_map/mass-google-map-apis',
-        ),
-        'drupalSettings' => array(
+        ],
+        'drupalSettings' => [
           'locations' => $locations,
           'nodeId' => \Drupal::routeMatch()->getRawParameter('node'),
-        ),
-      ),
+        ],
+      ],
     ];
   }
 

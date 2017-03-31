@@ -35,15 +35,15 @@ class EntityReferenceSelectAutocompleteWidget extends EntityReferenceAutocomplet
       $options[$node_name] = $node_labels[$node_name];
     }
     // Add a select list to filter autocomplete results.
-    $parent['widget']['filter_select'] = array(
+    $parent['widget']['filter_select'] = [
       '#type' => 'select',
       '#title' => $this->t('Filter by Type'),
       '#multiple' => TRUE,
       '#options' => $options,
-      '#ajax' => array(
-        'callback' => array(get_class($this), 'setFilterSelect'),
-      ),
-    );
+      '#ajax' => [
+        'callback' => [get_class($this), 'setFilterSelect'],
+      ],
+    ];
 
     // Unset any previously saved filters when the form is constructed.
     user_cookie_save(['autocomplete_select_filter' => NULL]);
@@ -74,7 +74,7 @@ class EntityReferenceSelectAutocompleteWidget extends EntityReferenceAutocomplet
     $selection_settings = $this->getFieldSetting('handler_settings') + ['match_operator' => $this->getSetting('match_operator')];
 
     // Use the custom form element so autocomplete results are not cached.
-    $element += array(
+    $element += [
       '#type' => 'entity_autocomplete_filter',
       '#target_type' => $this->getFieldSetting('target_type'),
       '#selection_handler' => $this->getFieldSetting('handler'),
@@ -86,16 +86,16 @@ class EntityReferenceSelectAutocompleteWidget extends EntityReferenceAutocomplet
       '#default_value' => isset($referenced_entities[$delta]) ? $referenced_entities[$delta] : NULL,
       '#size' => $this->getSetting('size'),
       '#placeholder' => $this->getSetting('placeholder'),
-    );
+    ];
 
     if ($this->getSelectionHandlerSetting('auto_create') && ($bundle = $this->getAutocreateBundle())) {
-      $element['#autocreate'] = array(
+      $element['#autocreate'] = [
         'bundle' => $bundle,
         'uid' => ($entity instanceof EntityOwnerInterface) ? $entity->getOwnerId() : \Drupal::currentUser()->id(),
-      );
+      ];
     }
 
-    return array('target_id' => $element);
+    return ['target_id' => $element];
   }
 
   /**
@@ -105,7 +105,7 @@ class EntityReferenceSelectAutocompleteWidget extends EntityReferenceAutocomplet
     $field_name = $this->fieldDefinition->getName();
 
     // Extract the values from $form_state->getValues().
-    $path = array_merge($form['#parents'], array($field_name));
+    $path = array_merge($form['#parents'], [$field_name]);
     $key_exists = NULL;
     $values = NestedArray::getValue($form_state->getValues(), $path, $key_exists);
 
