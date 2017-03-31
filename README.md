@@ -14,12 +14,12 @@
 1. Import the database `drush sql-query --file=/path/to/tarball`
 1. Unzip uploaded_files.tar.gz into sites/default/files
 1. Disable Mass-specific modules - `drush pm-uninstall tfa,acquia_connector,acquia_purge,datalayer,password_policy,seckit,security_review,username_enumeration_prevention,restrict_by_ip`
-1. `cd web && drush runserver`
-3. Visit 127.0.0.1:8888
+1. Start a development web server `cd web && drush runserver`
+1. To get a URL for logging as the superuser `drush uli --uri=http://127.0.0.1:8888`
 
 ## Roadmap
 
--  One day soon, this platform will install without using a database as a seed.
+- One day soon, this platform will install without using a database as a seed.
 - One day soon, we will have regular contributor calls to work on the platform
 
 ## Credits
