@@ -111,6 +111,8 @@ class Molecules {
    *
    * @param object $entity
    *   The object that contains the fields.
+   * @param array $options
+   *   An array containing options.
    *
    * @see @molecules/icon-links.twig
    *
@@ -127,7 +129,7 @@ class Molecules {
    *      ], ...]
    *    ]
    */
-  public static function prepareIconLinks($entity, $options) {
+  public static function prepareIconLinks($entity, array $options) {
     $items = [];
     $map = [
       'socialLinks' => ['field_social_links'],
@@ -178,6 +180,8 @@ class Molecules {
    *
    * @param object $entity
    *   The object that contains the title/lede fields.
+   * @param array $links
+   *   Array that contains title, url and type (external, internal).
    *
    * @see @molecules/section-links.twig
    *
@@ -206,7 +210,7 @@ class Molecules {
    *      }]
    *    }
    */
-  public static function prepareSectionLink($entity, $links) {
+  public static function prepareSectionLink($entity, array $links) {
     $index = &drupal_static(__FUNCTION__);
     $index++;
     return [
@@ -254,7 +258,7 @@ class Molecules {
    *      }]
    *    }
    */
-  public static function prepareContactGroup($entities, $options, &$contactInfo) {
+  public static function prepareContactGroup(array $entities, array $options, array &$contactInfo) {
     $type = $options['type'];
 
     switch ($type) {
@@ -390,7 +394,7 @@ class Molecules {
    *     ]
    *   )
    */
-  public static function prepareContactUs($entity, $options) {
+  public static function prepareContactUs($entity, array $options) {
     $title = '';
 
     // Create contactInfo object for governmentOrg schema.

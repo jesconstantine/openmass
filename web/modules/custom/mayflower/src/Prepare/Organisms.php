@@ -244,6 +244,8 @@ class Organisms {
    *
    * @param object $entity
    *   The object that contains the fields.
+   * @param string $title
+   *   The title of the list.
    *
    * @see @organisms/by-author/link-list.twig
    *

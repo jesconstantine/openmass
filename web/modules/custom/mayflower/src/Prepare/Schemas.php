@@ -44,7 +44,7 @@ class Schemas {
    *      ]
    *   }
    */
-  public static function prepareGovernmentOrganization($variables) {
+  public static function prepareGovernmentOrganization(array $variables) {
 
     $metatags = Helper::addMetatagData(['description' => '']);
 
@@ -110,7 +110,7 @@ class Schemas {
    *      "https://blog.mass.gov/hhs"
    *   ]
    */
-  protected static function prepareSameAs($socialLinks) {
+  protected static function prepareSameAs(array $socialLinks) {
     $sameAs = [];
     foreach ($socialLinks as $link) {
       if (array_key_exists('href', $link['link'])) {
@@ -135,7 +135,7 @@ class Schemas {
    *      "email": "email@email.com",
    *   ]
    */
-  protected static function prepareContactInfo($schemaContactInfo) {
+  protected static function prepareContactInfo(array $schemaContactInfo) {
     $contactInfo = [];
 
     $contactInfo["address"] = trim(preg_replace('/\s+/', ' ', $schemaContactInfo['address']));

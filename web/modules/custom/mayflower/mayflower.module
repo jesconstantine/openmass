@@ -72,7 +72,7 @@ function mayflower_patternlibrary_paths() {
  *   - image_style: An optional image style.
  *   - url: An optional \Drupal\Core\Url object.
  */
-function mayflower_preprocess_image(&$variables) {
+function mayflower_preprocess_image(array &$variables) {
   $variables['image']['src'] = $variables['uri'];
   $variables['image']['alt'] = $variables['alt'];
   $variables['image']['height'] = $variables['height'];
