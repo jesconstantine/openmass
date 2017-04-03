@@ -129,7 +129,7 @@ class Molecules {
    *      ], ...]
    *    ]
    */
-  public static function prepareIconLinks($entity, array $options) {
+  public static function prepareIconLinks($entity, array $options = []) {
     $items = [];
     $map = [
       'socialLinks' => ['field_social_links'],

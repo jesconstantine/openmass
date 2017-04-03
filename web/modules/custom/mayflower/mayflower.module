@@ -133,7 +133,7 @@ function mayflower_prepare_stacked_row_sections($entity) {
         ],
         [
           'path' => '@molecules/icon-links.twig',
-          'data' => Molecules::prepareIconLinks($entity, 'social'),
+          'data' => Molecules::prepareIconLinks($entity),
         ],
       ];
     }
