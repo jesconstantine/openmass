@@ -1,6 +1,0 @@
-uuid: f185980e-fec2-4668-bdea-d78276d405c4
-langcode: en
-status: true
-dependencies: {  }
-id: completion_time
-label: 'Completion Time'

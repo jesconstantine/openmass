@@ -1,8 +1,0 @@
-uuid: a3fa1eaa-1b00-44b6-a4fd-f10de37f069a
-langcode: en
-status: true
-dependencies: {  }
-id: pilot-menu
-label: 'Pilot Menu'
-description: 'Menu containing pilot actions and basic links.'
-locked: false
