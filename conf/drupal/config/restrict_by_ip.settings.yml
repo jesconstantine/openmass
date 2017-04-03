@@ -1,7 +1,0 @@
-header: REMOTE_ADDR
-error_page: login-restricted
-login_range: ''
-user: {  }
-role: {  }
-_core:
-  default_config_hash: 2Ky-6xcX40iQE5FmHKS5o1M4BxT3ZtGROhqUmzC7kxA
