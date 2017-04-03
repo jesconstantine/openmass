@@ -7,6 +7,8 @@ Fetching DB/files from the Mass project
 - drush pm-uninstall ga_login,tfa,encrypt,password_policy_characters,password_policy_length,password_policy,restrict_by_ip,acquia_connector,crazyegg,google_tag,security_review,seckit,datalayer,username_enumeration_prevention
 - drush sql-dump --result=file=dump.sql --gzip
 - drush rsync @massgov.prod:%files @self:%files && make-a-tarball
+- delete any dirs containing derivative files (css/js/styes)
+- tar -cvzf files.tar.gz .
 
 Fetching new code from Mass project
 -------------
