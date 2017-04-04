@@ -23,4 +23,8 @@ Making a new OpenMass release
 - Release notes may be built from the commits on massgov/develop 
 - Create a new release via Github releases
 - Push both tarballs to a Github release or [S3](https://console.aws.amazon.com/s3/buckets/openmass/?region=us-east-1&tab=overview)
+
+Differences from Mass.Gov
+---------
+- palantir/thebuild is a private repo so we omit it from our composer.json and we don't ship with a composer.lock for this reason (this may change).
  
