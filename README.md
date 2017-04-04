@@ -26,4 +26,3 @@ The following is just one way to install OpenMass. Customize to taste.
 
 ## Credits
 - Built by MassIT for the Commonwealth of Massachusetts
-- Maintained by Moshe Weitzman <weitzman@tejasa.com>
