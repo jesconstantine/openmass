@@ -160,3 +160,4 @@ content:
     third_party_settings: {  }
 hidden:
   field_metatags: true
+  field_ref_contact_info: true
