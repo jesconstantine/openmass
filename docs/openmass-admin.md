@@ -4,7 +4,7 @@ Fetching DB/files from the Mass project
 -------------
 - drush sql-sync --sanitize @massgov.prod @self
 - drush config-delete encrypt.profile.two_factor_auth
-- drush pm-uninstall ga_login,tfa,encrypt,password_policy_characters,password_policy_length,password_policy,restrict_by_ip,acquia_connector,crazyegg,google_tag,security_review,seckit,datalayer,username_enumeration_prevention
+- drush pm-uninstall ga_login,tfa,encrypt,password_policy_characters,password_policy_length,password_policy,restrict_by_ip,acquia_connector,crazyegg,google_tag,security_review,seckit,datalayer,username_enumeration_prevention,flood_unblock
 - drush sql-dump --result=file=dump.sql --gzip
 - drush rsync @massgov.prod:%files @self:%files && make-a-tarball
 - delete any dirs containing derivative files (css/js/styes)
