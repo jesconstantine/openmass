@@ -11,6 +11,8 @@
 The following is just one way to install OpenMass. Customize to taste.
 
 1. Get the latest code, database, and uploaded files tarball from https://github.com/massgov/openmass/releases
+1. You may find it convenient to create an "artifacts" directory in your project root to store the database dump.  Files in this directory will be ignored by Git.
+1. Extract the files tarball to web/sites/default/files
 1. `composer install`. Your codebase is now assembled.
 1. Configure web/sites/default/settings.php for your database.
 1. `cd web`

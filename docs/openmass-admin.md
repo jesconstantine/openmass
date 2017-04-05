@@ -8,6 +8,8 @@ Fetching DB/files from the Mass project
 - drush sql-dump --result=file=dump.sql --gzip
 - drush rsync @massgov.prod:%files @self:%files && make-a-tarball
 - delete any dirs containing derivative files (css/js/styes)
+- clean up the symlinks
+- consider removing silly files: .DS_Store, etc.
 - tar -cvzf files.tar.gz .
 
 Fetching new code from Mass project
@@ -26,5 +28,4 @@ Making a new OpenMass release
 
 Differences from Mass.Gov
 ---------
-- palantir/thebuild is a private repo so we omit it from our composer.json and we don't ship with a composer.lock for this reason (this may change).
- 
+- Mass.Gov incorporates a number of security enhancements.  This project omits the configuration of those enhancements on the theory that any organization should implement its own policies.   
