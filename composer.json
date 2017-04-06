@@ -1,12 +1,12 @@
 {
-    "name": "palantirnet/mass",
+    "name": "massgov/openmass",
     "description": "A Drupal 8 project for the Commonwealth of Massachusetts.",
     "type": "project",
-    "license": "proprietary",
+    "license": "[TBD]",
     "authors": [
         {
-            "name": "Palantir.net",
-            "email": "info@palantir.net"
+            "name": "MassIT",
+            "email": "admin@example.com"
         }
     ],
     "minimum-stability": "dev",

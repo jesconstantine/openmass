@@ -77,10 +77,12 @@ AddEncoding gzip svgz
    RewriteRule ^ - [E=protossl:s]
 
   # Redirect HTTP to HTTPS
-  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} ^(prod|test|dev|cd)$ [NC]
-  RewriteCond %{HTTPS} off
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Un-comment the following line to make the SSH requirement depend on Acquia environment.
+  # RewriteCond %{ENV:AH_SITE_ENVIRONMENT} ^(prod|test|dev)$ [NC]
+  # Un-comment the following lines to force HTTPS:
+  # RewriteCond %{HTTPS} off
+  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Make sure Authorization HTTP header is available to PHP
   # even when running as CGI or FastCGI.

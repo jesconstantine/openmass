@@ -95,7 +95,8 @@
       google.setOnLoadCallback(function () {
 
         // Define google custom search engine id.
-        var cx = '010551267445528504028:ivl9x2rf5e8';
+          // @TODO: INSERT KEY FOR CUSTOM SEARCH ENGINE
+          var cx = '';
 
         // Set custom search options.
         var customSearchOptions = {};

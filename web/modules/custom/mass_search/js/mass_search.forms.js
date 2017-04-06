@@ -31,7 +31,8 @@
     google.setOnLoadCallback(function () {
 
       /* search engine id */
-      var cx = '010551267445528504028:ivl9x2rf5e8';
+      // @TODO: INSERT KEY FOR CUSTOM SEARCH ENGINE
+      var cx = '';
 
       /* set string for message when no results are returned */
       var noResultsString = 'Sorry, we couldn\'t find any results for your query.  Please try searching with different words.';
