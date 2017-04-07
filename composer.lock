@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c055f3d82e1bbb0dcc3d4c1aa4f0b035",
+    "content-hash": "45e91359b4e05c1055c80c3d08fa7bdb",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
@@ -604,7 +604,7 @@
             ],
             "description": "Drush task for Phing",
             "homepage": "https://github.com/continuousphp/phing-drush-task",
-            "time": "2016-07-04 20:39:23"
+            "time": "2016-07-04T20:39:23+00:00"
         },
         {
             "name": "cpliakas/psolr",
@@ -660,16 +660,16 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6"
+                "reference": "b3036f23b73570ab5d869e345277786c8eb248a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
-                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/b3036f23b73570ab5d869e345277786c8eb248a9",
+                "reference": "b3036f23b73570ab5d869e345277786c8eb248a9",
                 "shasum": ""
             },
             "require": {
@@ -700,7 +700,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2016-12-01T01:19:32+00:00"
+            "time": "2017-03-19T18:18:52+00:00"
         },
         {
             "name": "desandro/imagesloaded",
@@ -1984,6 +1984,50 @@
             "time": "2016-11-28T20:35:38+00:00"
         },
         {
+            "name": "drupal/field_tokens",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_tokens",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_tokens-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": "35e88fbcfa4fe3769062bb0cf41d52a09fc25c1f"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1454639340"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                }
+            ],
+            "description": "Adds formatted field and field property tokens.",
+            "homepage": "https://www.drupal.org/project/field_tokens",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_tokens"
+            }
+        },
+        {
             "name": "drupal/file_browser",
             "version": "dev-8.x-1.x",
             "source": {
@@ -2544,6 +2588,64 @@
             "time": "2016-10-26T12:16:03+00:00"
         },
         {
+            "name": "drupal/rabbit_hole",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/rabbit_hole",
+                "reference": "95dae1a1d9a893e59eef36b04c959a8e1d1ebf41"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/file_entity": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1+3-dev",
+                    "datestamp": "1486216083"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Dylan Donkersgoed",
+                    "homepage": "https://www.drupal.org/user/2803351"
+                },
+                {
+                    "name": "Odd Hill",
+                    "homepage": "https://www.drupal.org/user/789934"
+                },
+                {
+                    "name": "mparker17",
+                    "homepage": "https://www.drupal.org/user/536298"
+                },
+                {
+                    "name": "olofjohansson",
+                    "homepage": "https://www.drupal.org/user/1198438"
+                },
+                {
+                    "name": "shumushin",
+                    "homepage": "https://www.drupal.org/user/22093"
+                }
+            ],
+            "description": "Change what happens when viewing entities, e.g. redirect node types that users shouldn't see",
+            "homepage": "https://www.drupal.org/project/rabbit_hole",
+            "support": {
+                "source": "https://cgit.drupalcode.org/rabbit_hole",
+                "issues": "https://www.drupal.org/project/issues/rabbit_hole"
+            },
+            "time": "2017-02-09 02:36:09"
+        },
+        {
             "name": "drupal/redirect",
             "version": "8.1.0-alpha1",
             "source": {
@@ -2737,6 +2839,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Drush sanitize plugin for TFA user data. (https://www.drupal.org/node/2862312)": "https://www.drupal.org/files/issues/drush_27.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -3788,7 +3893,7 @@
                 "source": "https://github.com/mikeyp/google_tag/tree/8.x-1.x",
                 "issues": "https://github.com/mikeyp/google_tag/issues"
             },
-            "time": "2016-10-17 15:47:26"
+            "time": "2016-10-17T15:47:26+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3899,16 +4004,16 @@
         },
         {
             "name": "palantirnet/mayflower-artifacts",
-            "version": "3.5.1",
+            "version": "3.6.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massgov/mayflower-artifacts.git",
-                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3"
+                "reference": "33d9958c56fcc821452e07b45c1fac3c930ffd07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/0630368953c60aba3104a994c8c81df9162fa0c3",
-                "reference": "0630368953c60aba3104a994c8c81df9162fa0c3",
+                "url": "https://api.github.com/repos/massgov/mayflower-artifacts/zipball/33d9958c56fcc821452e07b45c1fac3c930ffd07",
+                "reference": "33d9958c56fcc821452e07b45c1fac3c930ffd07",
                 "shasum": ""
             },
             "type": "library",
@@ -3923,28 +4028,28 @@
             ],
             "description": "This repository is the product of the built artifact from massgov/mayflower",
             "support": {
-                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.5.1",
+                "source": "https://github.com/massgov/mayflower-artifacts/tree/3.6.0-alpha",
                 "issues": "https://github.com/massgov/mayflower-artifacts/issues"
             },
-            "time": "2017-03-16T21:26:45+00:00"
+            "time": "2017-03-21T11:11:53+00:00"
         },
         {
             "name": "palantirnet/the-build",
-            "version": "1.3.3",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:palantirnet/the-build.git",
-                "reference": "0cb93c18f66537b5a64ca6bbf2743fb77be4dc65"
+                "url": "https://github.com/palantirnet/the-build.git",
+                "reference": "0b51fc5b3ab42a41b641018d0758bd43a7d2cf48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/0cb93c18f66537b5a64ca6bbf2743fb77be4dc65",
-                "reference": "0cb93c18f66537b5a64ca6bbf2743fb77be4dc65",
+                "url": "https://api.github.com/repos/palantirnet/the-build/zipball/0b51fc5b3ab42a41b641018d0758bd43a7d2cf48",
+                "reference": "0b51fc5b3ab42a41b641018d0758bd43a7d2cf48",
                 "shasum": ""
             },
             "require": {
                 "continuousphp/phing-drush-task": "dev-master",
-                "drupal/coder": "^8.2",
+                "drupal/coder": "*",
                 "nilportugues/php_todo": "^1.0",
                 "pear/versioncontrol_git": "@dev",
                 "phing/phing": "^2.14",
@@ -3970,17 +4075,17 @@
             ],
             "description": "Phing build tasks for Drupal projects.",
             "support": {
-                "source": "https://github.com/palantirnet/the-build/tree/1.3.3",
+                "source": "https://github.com/palantirnet/the-build/tree/1.4.1",
                 "issues": "https://github.com/palantirnet/the-build/issues"
             },
-            "time": "2017-02-09T20:03:21+00:00"
+            "time": "2017-03-29T18:20:06+00:00"
         },
         {
             "name": "palantirnet/the-vagrant",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:palantirnet/the-vagrant.git",
+                "url": "https://github.com/palantirnet/the-vagrant.git",
                 "reference": "cee6a7362afe95d758824184303e861902b4bd86"
             },
             "dist": {
@@ -4010,7 +4115,7 @@
                 "source": "https://github.com/palantirnet/the-vagrant/tree/0.6.0",
                 "issues": "https://github.com/palantirnet/the-vagrant/issues"
             },
-            "time": "2017-01-13 16:06:20"
+            "time": "2017-01-13T16:06:20+00:00"
         },
         {
             "name": "palantirnet/workbench_tabs",
@@ -4018,12 +4123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/palantirnet/workbench_tabs.git",
-                "reference": "4c20cee5920e08f63efbf1db44edc8992cb44aa0"
+                "reference": "a3e81da8c077101765c2760586aa2e8b366e6754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/palantirnet/workbench_tabs/zipball/4c20cee5920e08f63efbf1db44edc8992cb44aa0",
-                "reference": "4c20cee5920e08f63efbf1db44edc8992cb44aa0",
+                "url": "https://api.github.com/repos/palantirnet/workbench_tabs/zipball/a3e81da8c077101765c2760586aa2e8b366e6754",
+                "reference": "a3e81da8c077101765c2760586aa2e8b366e6754",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4050,7 +4155,7 @@
                 "source": "https://github.com/palantirnet/workbench_tabs/tree/8.x-1.x",
                 "issues": "https://github.com/palantirnet/workbench_tabs/issues"
             },
-            "time": "2016-10-06 15:35:09"
+            "time": "2017-03-29T16:26:53+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -4540,7 +4645,7 @@
                 }
             ],
             "description": "VersionControl_Git is a library that provides OO interface to handle Git repository.",
-            "time": "2015-11-04 13:03:54"
+            "time": "2015-11-04T13:03:54+00:00"
         },
         {
             "name": "phing/phing",
@@ -6483,16 +6588,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9935b662e24d6e634da88901ab534cc12e8c728f"
+                "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9935b662e24d6e634da88901ab534cc12e8c728f",
-                "reference": "9935b662e24d6e634da88901ab534cc12e8c728f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
+                "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
                 "shasum": ""
             },
             "require": {
@@ -6501,12 +6606,12 @@
             "require-dev": {
                 "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.2"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.32-dev"
+                    "dev-master": "1.33-dev"
                 }
             },
             "autoload": {
@@ -6541,7 +6646,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-02-27T00:07:03+00:00"
+            "time": "2017-03-22T15:40:09+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -7666,7 +7771,7 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2016-05-21 00:49:42"
+            "time": "2016-05-21T00:49:42+00:00"
         },
         {
             "name": "drupal/console",
@@ -8056,22 +8161,23 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.1.0",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c"
+                "reference": "e3c9bccdc38bbd09bcac0131c00f3be58368b416"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
-                "reference": "48817e5f95c9d29e11513f12e43cc0223fa5eb6c",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/e3c9bccdc38bbd09bcac0131c00f3be58368b416",
+                "reference": "e3c9bccdc38bbd09bcac0131c00f3be58368b416",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.1",
                 "json-schema/json-schema-test-suite": "1.2.0",
                 "phpdocumentor/phpdocumentor": "~2",
                 "phpunit/phpunit": "^4.8.22"
@@ -8118,7 +8224,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-02-22T03:28:16+00:00"
+            "time": "2017-03-22T22:43:35+00:00"
         },
         {
             "name": "padraic/humbug_get_contents",
@@ -8234,7 +8340,7 @@
             "version": "dev-drupal8",
             "source": {
                 "type": "git",
-                "url": "git@github.com:palantirnet/palantir-behat-extension.git",
+                "url": "https://github.com/palantirnet/palantir-behat-extension.git",
                 "reference": "8893b7f73f716658051b3c0c7625235e5a0956d6"
             },
             "dist": {
@@ -8287,7 +8393,7 @@
                 "source": "https://github.com/palantirnet/palantir-behat-extension/tree/drupal8",
                 "issues": "https://github.com/palantirnet/palantir-behat-extension/issues"
             },
-            "time": "2016-08-23 21:16:00"
+            "time": "2016-08-23T21:16:00+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -8789,7 +8895,9 @@
         "drupal/access_unpublished": 20,
         "drupal/draggableviews": 20,
         "drupal/encrypt": 20,
+        "drupal/field_tokens": 10,
         "drupal/file_browser": 20,
+        "drupal/rabbit_hole": 20,
         "drupal/restrict_by_ip": 20,
         "drupal/security_review": 20,
         "drupal/xmlsitemap": 20,
