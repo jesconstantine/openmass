@@ -28,6 +28,9 @@ component-libraries:
   custom_includes:
     paths:
       - templates/includes
+  custom_templates:
+    paths:
+      - templates
   base:
     paths:
       - patterns/base
