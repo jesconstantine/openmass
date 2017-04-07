@@ -96,7 +96,9 @@
     </div>
     {% if _sidebar is not empty %}
       <div class="sidebar">
-        {{ _sidebar|raw }}
+        {% block sidebar %}
+          {{ _sidebar|raw }}
+        {% endblock %}
       </div>
     {% endif %}
   </div>

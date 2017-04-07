@@ -49,7 +49,7 @@ class Molecules {
 
     // Creates a map of fields that are on the referenced entitiy.
     $referenced_fields_map = [
-      'title'   => ['field_title'],
+      'title' => ['field_title'],
       'content' => ['field_content'],
     ];
 
@@ -181,7 +181,7 @@ class Molecules {
    * @param object $entity
    *   The object that contains the title/lede fields.
    * @param array $links
-   *   Array that contains title, url and type (external, internal).
+   *   The array of links.
    *
    * @see @molecules/section-links.twig
    *
@@ -452,6 +452,353 @@ class Molecules {
       'title' => $title,
       'groups' => $groups,
     ];
+  }
+
+  /**
+   * Returns the variables structure required to render actionActivities.
+   *
+   * @param object $entities
+   *   An array of objects that contains the fields.
+   *
+   * @see @molecules/action-activities.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "title": "Order a MassParks Pass online through Reserve America",
+   *      "into": "",
+   *      "id": "unique identifier",
+   *      "path": ""
+   *      "data": ""
+   *    ], ...]
+   */
+  public static function prepareActionActivities($entities) {
+    $actionActivities = [];
+
+    // Activities section.
+    foreach ($entities as $entity) {
+      $activityEntity = $entity->entity;
+
+      // Creates a map of fields that are on the entitiy.
+      $map = [
+        'image' => ['field_image'],
+        'title' => ['field_title'],
+        'lede' => ['field_lede'],
+      ];
+
+      // Determines which fieldnames to use from the map.
+      $fields = Helper::getMappedFields($activityEntity, $map);
+
+      $actionActivities[] = [
+        'image' => Helper::getFieldImageUrl($activityEntity, 'activities_image', $fields['image']),
+        'alt' => $activityEntity->$fields['image']->alt,
+        'title' => Helper::fieldValue($activityEntity, $fields['title']),
+        'description' => Helper::fieldValue($activityEntity, $fields['lede']),
+        'linkTitle' => '',
+        'href' => '',
+      ];
+    }
+
+    return [
+      'title' => t('Activities'),
+      'into' => '',
+      'id' => t('activities'),
+      'path' => '@molecules/action-activities.twig',
+      'data' => [
+        'actionActivities' => $actionActivities,
+      ],
+    ];
+  }
+
+  /**
+   * Returns the variables structure required to render googleMap.
+   *
+   * @param object $entities
+   *   The object that contains the fields.
+   *
+   * @see @molecules/google-map.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "map": "Order a MassParks Pass online through Reserve America",
+   *      "markers": "",
+   *    ], ...]
+   */
+  public static function prepareGoogleMapFromContacts($entities) {
+
+    $phone_numbers = [];
+    $fax_numbers = [];
+    $markers = [];
+    $links = [];
+
+    foreach ($entities as $entity) {
+
+      $ref_1 = $entity->entity;
+
+      $map_ref = [
+        'phone_numbers' => ['field_ref_phone_number'],
+        'fax_numbers' => ['field_ref_fax_number'],
+        'links' => ['field_ref_links'],
+        'addresses' => ['field_ref_address'],
+      ];
+
+      // Determines which field names to use from the map.
+      $fields = Helper::getMappedFields($entity->entity, $map_ref);
+
+      // Get phone numbers.
+      foreach ($ref_1->$fields['phone_numbers'] as $phone) {
+        $phoneEntity = $phone->entity;
+
+        // Creates a map of fields that are on the entitiy.
+        $map = [
+          'phone' => ['field_phone'],
+        ];
+
+        // Determines which fieldnames to use from the map.
+        $field = Helper::getMappedFields($phoneEntity, $map);
+        $phone_numbers[] = Helper::fieldValue($phoneEntity, $field['phone']);
+      }
+
+      // Get fax numbers.
+      foreach ($ref_1->$fields['fax_numbers'] as $fax) {
+        $faxEntity = $fax->entity;
+
+        // Creates a map of fields that are on the entitiy.
+        $map = [
+          'fax' => ['field_fax'],
+        ];
+
+        // Determines which fieldnames to use from the map.
+        $field = Helper::getMappedFields($faxEntity, $map);
+        $fax_numbers[] = Helper::fieldValue($faxEntity, $field['fax']);
+      }
+
+      // Get links.
+      foreach ($ref_1->$fields['links'] as $link) {
+        foreach ($link->entity->field_link_single as $linkData) {
+          $links[] = $linkData->getValue()['title'];
+        }
+      }
+
+      // Get Address and Map info.
+      foreach ($ref_1->$fields['addresses'] as $index => $address) {
+        $addressEntity = $address->entity;
+
+        // Creates a map of fields that are on the entitiy.
+        $map = [
+          'lat_lng' => ['field_lat_long'],
+          'address' => ['field_address_text'],
+          'label' => ['field_label'],
+        ];
+
+        // Determines which fieldnames to use from the map.
+        $address_fields = Helper::getMappedFields($addressEntity, $map);
+
+        $data[] = [
+          0 => $addressEntity->$address_fields['lat_lng']->lat,
+          1 => $addressEntity->$address_fields['lat_lng']->lon,
+        ];
+
+        $markers[] = [
+          'position' => [
+            'lat' => $addressEntity->$address_fields['lat_lng']->lat,
+            'lng' => $addressEntity->$address_fields['lat_lng']->lon,
+          ],
+          'infoWindow' => [
+            'name' => Helper::fieldValue($addressEntity, $address_fields['label']),
+            'phone' => isset($phone_numbers[$index]) ? $phone_numbers[$index] : '',
+            'fax' => isset($fax_numbers[$index]) ? $fax_numbers[$index] : '',
+            'email' => isset($links[$index]) ? $links[$index] : '',
+            'address' => Helper::fieldValue($addressEntity, $address_fields['address']),
+          ],
+          'label' => ++$index,
+        ];
+
+        // Since we just want to display the FIRST Address and info.
+        // This was an addition.
+        break;
+      }
+    }
+
+    // mapProp.
+    $actionMap['map']['zoom'] = 12;
+
+    if (empty($data)) {
+      return FALSE;
+    }
+
+    $centers = Helper::getCenterFromDegrees($data);
+
+    $actionMap['map']['center'] = [
+      'lat' => $centers[0],
+      'lng' => $centers[1],
+    ];
+
+    $actionMap['markers'] = $markers;
+
+    return $actionMap;
+  }
+
+  /**
+   * Returns the variables structure required to render googleMap.
+   *
+   * @param array $entities
+   *   An array of entities.
+   *
+   * @see @molecules/google-map.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "map": "Order a MassParks Pass online through Reserve America",
+   *      "markers": "",
+   *    ], ...]
+   */
+  public static function prepareGoogleMap(array $entities) {
+    $markers = [];
+
+    foreach ($entities as $index => $marker) {
+      $data[] = [
+        0 => $marker->lat,
+        1 => $marker->lon,
+      ];
+
+      $markers[] = [
+        'position' => [
+          'lat' => $marker->lat,
+          'lng' => $marker->lon,
+        ],
+        'label' => ++$index,
+        'infoWindow' => [
+          'name' => $marker->name,
+          'phone' => '',
+          'fax' => '',
+          'email' => '',
+          'address' => '',
+        ],
+      ];
+    }
+
+    // mapProp.
+    $actionMap['map']['zoom'] = 12;
+
+    if (empty($data)) {
+      return FALSE;
+    }
+
+    $centers = Helper::getCenterFromDegrees($data);
+
+    $actionMap['map']['center'] = [
+      'lat' => $centers[0],
+      'lng' => $centers[1],
+    ];
+
+    $actionMap['markers'] = $markers;
+
+    return $actionMap;
+  }
+
+  /**
+   * Returns the variables structure required to render googleMapSection.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   *
+   * @see @molecules/action-map.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "path": "@molecules/action-map.twig",
+   *      "data": "[actionMap",
+   */
+  public static function prepareGoogleMapSection($entity) {
+    return [
+      'title' => '',
+      'into' => '',
+      'id' => '',
+      'path' => '@molecules/action-map.twig',
+      'data' => [
+        'actionMap' => Molecules::prepareGoogleMap($entity),
+      ],
+    ];
+  }
+
+  /**
+   * Returns the variables structure required to render widgets.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   * @param string $type
+   *   The type of widget to produce.
+   *
+   * @see @molecules/action-WIDGET.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "path": "@molecules/action-WIDGET.twig",
+   *      "data": [ 'widget' ],
+   *    ], ...]
+   */
+  public static function prepareWidgets($entity, $type) {
+    $widgets = [];
+
+    // Create widgets.
+    foreach ($entity as $widget) {
+      $widgets[] = [
+        'path' => '@molecules/action-' . $type . '.twig',
+        'data' => [
+          'action' . $type => [
+            'name' => [
+              'type' => '',
+              'href' => '#',
+              'text' => '',
+              'property' => '',
+            ],
+            'date' => '',
+            'description' => '',
+          ],
+        ],
+      ];
+    }
+
+    return $widgets;
+  }
+
+  /**
+   * Returns the variables structure required to render locationIcons.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   *
+   * @see @molecules/location-icons.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [[
+   *      "path": "@molecules/icons.twig",
+   *      "name": "Taxo name",
+   *    ], ...]
+   */
+  public static function prepareLocationIcons($entity) {
+    $icons = [];
+    $map = [
+      'icons' => ['field_location_icons'],
+    ];
+
+    // Determines which fieldnames to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    // Roll up icons from taxo.
+    foreach ($entity->$fields['icons'] as $icon) {
+      $icons[] = [
+        'path' => Helper::getIconPath($icon->entity->get('field_sprite_name')->value),
+        'name' => $icon->entity->getName(),
+      ];
+    }
+    return $icons;
   }
 
 }

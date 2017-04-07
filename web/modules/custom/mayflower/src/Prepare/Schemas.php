@@ -45,7 +45,6 @@ class Schemas {
    *   }
    */
   public static function prepareGovernmentOrganization(array $variables) {
-
     $metatags = Helper::addMetatagData(['description' => '']);
 
     // @TODO find a shared location for this, we'll need them in every schema.
@@ -68,7 +67,7 @@ class Schemas {
     $schema['governmentOrganization']['alternateName'] = array_key_exists('titleSubText', $variables['pageBanner']) ? $variables['pageBanner']['titleSubText'] : '';
 
     // Use first line of optional "who we serve" as disambiguating description.
-    if (array_key_exists('title', $variables['stackedRowSections'][0]) && $variables['stackedRowSections'][0]['title'] === "Who We Serve") {
+    if (isset($variables['stackedRowSections'][0]) && array_key_exists('title', $variables['stackedRowSections'][0]) && $variables['stackedRowSections'][0]['title'] === "Who We Serve") {
       $schema['governmentOrganization']['disambiguatingDescription'] = array_key_exists('rawHtml', $variables['stackedRowSections'][0]['pageContent'][0]['data']['rteElements'][0]['data']) ? Helper::getFirstParagraph($variables['stackedRowSections'][0]['pageContent'][0]['data']['rteElements'][0]['data']['rawHtml']['content']['#text']) : '';
     }
 
@@ -89,7 +88,7 @@ class Schemas {
       Schemas::prepareContactInfo($variables['actionHeader']['contactUs']['schemaContactInfo']) : '';
 
     // Get the social media links, if that component was used.
-    if (array_key_exists('sideBar', $variables['stackedRowSections'][0]) && !empty($variables['stackedRowSections'][0]['sideBar'])) {
+    if (isset($variables['stackedRowSections'][0]) && array_key_exists('sideBar', $variables['stackedRowSections'][0]) && !empty($variables['stackedRowSections'][0]['sideBar'])) {
       $schema['governmentOrganization']['sameAs'] = array_key_exists('iconLinks', $variables['stackedRowSections'][0]['sideBar'][1]['data']) ? Schemas::prepareSameAs($variables['stackedRowSections'][0]['sideBar'][1]['data']['iconLinks']['items']) : '';
     }
 

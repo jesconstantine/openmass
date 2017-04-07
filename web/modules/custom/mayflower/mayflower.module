@@ -125,7 +125,7 @@ function mayflower_prepare_stacked_row_sections($entity) {
   if ($entity->$fields['text']->getValue()) {
     $sideBarSocial = '';
 
-    if ($entity->$fields['social']->getValue()) {
+    if (Helper::isFieldPopulated($entity, $fields['social'])) {
       $sideBarSocial = [
         [
           'path' => '@atoms/04-headings/sidebar-heading.twig',

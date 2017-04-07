@@ -20,11 +20,11 @@
   {% endif %}
 {% endblock %}
 {% block main %}
-<div class="stacked-row-content">
-  {% for stackedRowSection in stackedRowSections %}
-    {% include "@organisms/by-author/stacked-row-section.twig" %}
-  {% endfor %}
-</div>
+  <div class="stacked-row-content">
+    {% for stackedRowSection in stackedRowSections %}
+      {% include "@organisms/by-author/stacked-row-section.twig" %}
+    {% endfor %}
+  </div>
 {% endblock %}
 {% block postContent %}
 {% endblock %}

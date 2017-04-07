@@ -50,7 +50,7 @@ class Organisms {
    *      ], ... ]
    *    ]
    */
-  public static function prepareActionFinder($entity, array $options) {
+  public static function prepareActionFinder($entity, array $options = []) {
     $map = [
       'bgWide' => ['field_action_set__bg_wide'],
       'bgNarrow' => ['field_action_set__bg_narrow'],
@@ -160,7 +160,7 @@ class Organisms {
       'title' => ['title'],
       'titleNote' => ['field_title_sub_text'],
       'subTitle' => ['field_sub_title'],
-      'contactUs' => ['field_ref_contact_info'],
+      'contactUs' => ['field_ref_contact_info_1'],
     ];
 
     // Determines which field names to use from the map.
@@ -177,9 +177,9 @@ class Organisms {
     // Create the actionHeader data structure.
     $actionHeader = [
       'pageHeader' => [
-        'title' => $entity->$fields['title']->value,
-        'titleNote' => $entity->$fields['titleNote']->value,
-        'subTitle' => $entity->$fields['subTitle']->value,
+        'title' => isset($entity->$fields['title']) ? $entity->$fields['title']->value : '',
+        'titleNote' => isset($fields['titleNote']) ? $entity->$fields['titleNote']->value : '',
+        'subTitle' => isset($fields['subTitle']) ? $entity->$fields['subTitle']->value : '',
       ],
       'divider' => $options['divider'],
       'contactUs' => $contactUs,
@@ -194,6 +194,8 @@ class Organisms {
    *
    * @param object $entity
    *   The object that contains the necessary fields.
+   * @param array $options
+   *   An array of options for sidebar contact.
    *
    * @see @organisms/by-author/sidebar-contact.twig
    *
@@ -208,12 +210,12 @@ class Organisms {
    *         contactUs see @molecules/contact-us
    *      ).
    */
-  public static function prepareSidebarContact($entity) {
+  public static function prepareSidebarContact($entity, array $options = []) {
     $items = [];
 
     // Create the map of all possible field names to use.
     $map = [
-      'items' => ['field_ref_contact_info_1'],
+      'items' => ['field_ref_contact_info'],
     ];
 
     // Determines which field names to use from the map.
@@ -231,7 +233,7 @@ class Organisms {
     $sidebarContact = [
       'coloredHeading' => [
         'text' => t('Contact'),
-        'color' => 'green',
+        'color' => isset($options['color']) ? $options['color'] : '',
       ],
       'items' => $items,
     ];
@@ -240,12 +242,47 @@ class Organisms {
   }
 
   /**
+   * Returns the variables structure required to render a sidebarWidget.
+   *
+   * @param object $entity
+   *   The object that contains the necessary fields.
+   * @param string $title
+   *   The title displayed above widgets.
+   * @param string $type
+   *   The type of widgets to create.
+   *
+   * @see @organisms/by-author/sidebar-widget.twig
+   *
+   * @return array
+   *   Returns an array of items.
+   *   'sidebarContact': array(
+   *      'coloredHeading': array(
+   *        'text': string / required,
+   *        'color': string / optional
+   *      ),
+   *      'items': array(
+   *         contactUs see @molecules/action-WIDGET
+   *      ).
+   */
+  public static function prepareSidebarWidget($entity, $title, $type) {
+    $items = [];
+
+    return [
+      'coloredHeading' => [
+        'text' => $title,
+        'color' => '',
+      ],
+      'items' => Molecules::prepareWidgets($items, $type),
+    ];
+  }
+
+  /**
    * Returns the variables structure required to render link list.
    *
    * @param object $entity
    *   The object that contains the fields.
    * @param string $title
-   *   The title of the list.
+   *   The title of the group.
    *
    * @see @organisms/by-author/link-list.twig
    *
@@ -300,7 +337,7 @@ class Organisms {
    *      "titleSubText": "(EOHHS)"
    *    ]
    */
-  public static function preparePageBanner($entity, $options) {
+  public static function preparePageBanner($entity, $options = NULL) {
     $pageBanner = [];
 
     // Create the map of all possible field names to use.
@@ -361,6 +398,283 @@ class Organisms {
         'sections' => mayflower_prepare_topic_cards($entity),
       ],
     ];
+  }
+
+  /**
+   * Returns the variables structure required for QuickActions.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   * @param object $options
+   *   The object that contains static data and other options.
+   *
+   * @see @organsms/by-author/quick-actions.twig
+   *
+   * @return array
+   *   Returns structured array.
+   */
+  public static function prepareQuickActions($entity, $options = NULL) {
+    $links = [];
+
+    // Create the map of all possible field names to use.
+    $map = [
+      'links' => ['field_links'],
+    ];
+
+    // Determines which field names to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    // Get related locations.
+    foreach ($entity->$fields['links'] as $link) {
+      $links[] = Helper::separatedLink($link);
+    }
+
+    return [
+      'coloredHeading' => [
+        'text' => 'Quick Actions',
+        'color' => 'green',
+      ],
+      'sidebarHeading' => '',
+      'links' => $links,
+    ];
+  }
+
+  /**
+   * Returns the variables structure required for SuggestedPages.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   * @param object $options
+   *   The object that contains static data and other options.
+   *
+   * @see @organsms/by-author/suggested-pages.twig
+   *
+   * @return array
+   *   Returns structured array.
+   */
+  public static function prepareSuggestedPages($entity, $options = NULL) {
+    $pages = [];
+
+    // Create the map of all possible field names to use.
+    $map = [
+      'items' => ['field_related_locations'],
+    ];
+
+    // Determines which field names to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    if ($entity->$fields['items']->isEmpty() || !method_exists($entity, 'hasField')) {
+      return FALSE;
+    }
+
+    // Get related locations.
+    foreach ($entity->$fields['items'] as $item) {
+      $ref_entity = $item->entity;
+
+      if (!method_exists($ref_entity, 'hasField')) {
+        return FALSE;
+      }
+
+      // Creates a map of fields that are on the entitiy.
+      $ref_map = [
+        'image' => ['field_bg_wide'],
+      ];
+
+      // Determines which fieldnames to use from the map.
+      $field = Helper::getMappedFields($ref_entity, $ref_map);
+
+      $pages[] = [
+        'image' => Helper::getFieldImageUrl($ref_entity, isset($options['style']) ? $options['style'] : '', $field['image']),
+        'altTag' => $ref_entity->alt,
+        'link' => [
+          'type' => 'internal',
+          'href' => $ref_entity->toURL()->toString(),
+          'text' => $ref_entity->getTitle(),
+        ],
+      ];
+    }
+
+    return [
+      'title' => isset($options['title']) ? $options['title'] : '',
+      'buttonMinor' => [
+        'href' => '',
+        'text' => '',
+      ],
+      'pages' => $pages,
+    ];
+  }
+
+  /**
+   * Returns the variables structure required for ActionDetails.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   * @param object $options
+   *   The object that contains static data and other options.
+   *
+   * @see @organsms/by-author/action-details
+   *
+   * @return array
+   *   Returns structured array.
+   */
+  public static function prepareActionDetails($entity, $options = NULL) {
+    $sections = [];
+
+    // Create the map of all possible field names to use.
+    $map = [
+      'overview' => ['field_overview'],
+      'hours' => ['field_hours'],
+      'parking' => ['field_parking'],
+      'markers' => ['field_maps'],
+      'activities' => ['field_location_activity_detail'],
+      'facilities' => ['field_facilities'],
+      'accessibility' => ['field_accessibility'],
+      'restrictions' => ['field_restrictions'],
+      'services' => ['field_services'],
+      'information' => ['field_more_information'],
+    ];
+
+    // Determines which field names to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    // Overview section.
+    if (Helper::isFieldPopulated($entity, $fields['overview'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_overview']);
+    }
+
+    // Hours section.
+    if (Helper::isFieldPopulated($entity, $fields['hours'])) {
+      $sections[] = Helper::buildHours($entity->$fields['hours'], 'right');
+    }
+
+    // Parking section.
+    if (Helper::isFieldPopulated($entity, $fields['parking'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_parking']);
+    }
+
+    // Activities section.
+    if (Helper::isFieldPopulated($entity, $fields['activities'])) {
+      $sections[] = Molecules::prepareActionActivities($entity->$fields['activities']);
+    }
+
+    // Facilities section.
+    if (Helper::isFieldPopulated($entity, $fields['facilities'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_facilities']);
+    }
+
+    // Services section.
+    if (Helper::isFieldPopulated($entity, $fields['services'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_services']);
+    }
+
+    // Accessibility section.
+    if (Helper::isFieldPopulated($entity, $fields['accessibility'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_accessibility']);
+    }
+
+    // Restrictions section.
+    if (Helper::isFieldPopulated($entity, $fields['restrictions'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_restrictions']);
+    }
+
+    // More info section.
+    if (Helper::isFieldPopulated($entity, $fields['information'])) {
+      $sections[] = Organisms::prepareRichText($entity, ['field' => 'field_more_information']);
+    }
+
+    return [
+      'sections' => $sections,
+    ];
+  }
+
+  /**
+   * Returns the variables structure required to render a location banner.
+   *
+   * @param object $entity
+   *   The object that contains the necessary fields.
+   * @param object $options
+   *   The object that contains static data and other options.
+   *
+   * @see @organisms/by-template/location-banner.twig
+   *
+   * @return array
+   *   Returns an array of items that contains:
+   *    [
+   *      "bgTitle":"Mt Greylock State Park"
+   *      "bgWide":"/assets/images/placeholder/1600x400.png"
+   *      "bgNarrow":"/assets/images/placeholder/800x400.png",
+   *      "actionMap": "map",
+   *    ]
+   */
+  public static function prepareLocationBanner($entity, $options = NULL) {
+    $locationBanner = [];
+
+    // Create the map of all possible field names to use.
+    $map = [
+      'markers' => ['field_maps'],
+      'bg_wide' => ['field_bg_wide'],
+      'bg_narrow' => ['field_bg_narrow'],
+      'contact_info' => ['field_ref_contact_info_1'],
+    ];
+
+    // Determines which field names to use from the map.
+    $fields = Helper::getMappedFields($entity, $map);
+
+    $locationBanner['bgTitle'] = "";
+    // Use helper function to get the image url of a given image style.
+    $locationBanner['bgWide'] = Helper::getFieldImageUrl($entity, 'action_banner_large', $fields['bg_wide']);
+    $locationBanner['bgNarrow'] = Helper::getFieldImageUrl($entity, 'action_banner_small', $fields['bg_narrow']);
+
+    // @TODO: We need to also send in Address, Phone, and other info.
+    // Map.
+    $locationBanner['actionMap'] = Molecules::prepareGoogleMapFromContacts($entity->$fields['contact_info']);
+
+    return $locationBanner;
+  }
+
+  /**
+   * Returns the variables structure required for richText.
+   *
+   * @param object $entity
+   *   The object that contains the fields.
+   * @param array $options
+   *   This is an array of field names.
+   *
+   * @see @organsms/by-author/rich-text.twig
+   *
+   * @return array
+   *   Returns structured array.
+   */
+  public static function prepareRichText($entity, array $options = []) {
+    $richTextWithTitle = [];
+
+    foreach ($options as $field) {
+      if (Helper::isFieldPopulated($entity, $field)) {
+        $richTextWithTitle = [
+          'title' => $entity->$field->getFieldDefinition()->getLabel(),
+          'into' => "",
+          'id' => $entity->$field->getFieldDefinition()->getLabel(),
+          'path' => '@organisms/by-author/rich-text.twig',
+          'data' => [
+            'richText' => [
+              'property' => 'description',
+              'rteElements' => [
+                [
+                  'path' => '@atoms/11-text/paragraph.twig',
+                  'data' => [
+                    'paragraph' => [
+                      'text' => $entity->$field->value,
+                    ],
+                  ],
+                ],
+              ],
+            ],
+          ],
+        ];
+      }
+    }
+
+    return $richTextWithTitle;
   }
 
 }

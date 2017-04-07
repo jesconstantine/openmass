@@ -214,6 +214,24 @@ class Helper {
   }
 
   /**
+   * Helper function to get the value of a referenced field.
+   *
+   * @param object $field
+   *   Send a field object.
+   * @param string $referenced_field
+   *   Name of the referenced field.
+   *
+   * @return array
+   *   The value of the referenced field.
+   */
+  public static function getReferenceField($field, $referenced_field) {
+    if (method_exists($field, 'referencedEntities') && isset($field->referencedEntities()[0]) && $field->referencedEntities()[0]->hasField($referenced_field)) {
+      return $field->referencedEntities()[0]->get($referenced_field)->value;
+    }
+    return FALSE;
+  }
+
+  /**
    * Helper function to provide a value for a field.
    *
    * @param object $entity
@@ -494,6 +512,127 @@ class Helper {
     }
 
     return $metadata;
+  }
+
+  /**
+   * Returns the center lat/lng of a map.
+   *
+   * @param array $data
+   *   Array of coords for each marker.
+   *
+   * @return array
+   *   Return an array with center lat and lng.
+   */
+  public static function getCenterFromDegrees(array $data) {
+    if (!is_array($data)) {
+      return FALSE;
+    }
+    $num_coords = count($data);
+    $iX = 0.0;
+    $iY = 0.0;
+    $iZ = 0.0;
+    foreach ($data as $coord) {
+      $lat = $coord[0] * pi() / 180;
+      $lon = $coord[1] * pi() / 180;
+      $a = cos($lat) * cos($lon);
+      $b = cos($lat) * sin($lon);
+      $c = sin($lat);
+      $iX += $a;
+      $iY += $b;
+      $iZ += $c;
+    }
+    $iX /= $num_coords;
+    $iY /= $num_coords;
+    $iZ /= $num_coords;
+    $lon = atan2($iY, $iX);
+    $hyp = sqrt($iX * $iX + $iY * $iY);
+    $lat = atan2($iZ, $hyp);
+    return [
+      $lat * 180 / pi(),
+      $lon * 180 / pi(),
+    ];
+  }
+
+  /**
+   * Helper function to build Hours section.
+   *
+   * @param object $hours
+   *   Send a field object.
+   * @param string $align
+   *   Which way to align statsCallout.
+   *
+   * @return array
+   *   Return structured array.
+   */
+  public static function buildHours($hours, $align) {
+    $rteElements = [];
+
+    // Hours section.
+    foreach ($hours as $index => $hour) {
+      $entity = $hour->entity;
+
+      if (!method_exists($entity, 'hasField')) {
+        return FALSE;
+      }
+
+      // Creates a map of fields that are on the entitiy.
+      $map = [
+        'label' => ['field_label'],
+        'time' => ['field_time_frame'],
+        'hour' => ['field_hours'],
+      ];
+
+      // Determines which fieldnames to use from the map.
+      $field = Helper::getMappedFields($entity, $map);
+
+      // The first one is styled differently.
+      if ($index == 0) {
+        $rteElements[] = [
+          'path' => '@molecules/callout-stats.twig',
+          'data' => [
+            'statsCallout' => [
+              'pull' => $align,
+              'stat' => Helper::fieldValue($entity, $field['time']),
+              'content' => Helper::fieldValue($entity, $field['hour']),
+            ],
+          ],
+        ];
+        continue;
+      }
+
+      if (Helper::isFieldPopulated($entity, $field['label'])) {
+        $rteElements[] = [
+          'path' => '@atoms/04-headings/heading-4.twig',
+          'data' => [
+            'heading4' => [
+              'text' => Helper::fieldValue($entity, $field['label']),
+            ],
+          ],
+        ];
+      }
+
+      $rteElements[] = [
+        'path' => '@atoms/11-text/paragraph.twig',
+        'data' => [
+          'paragraph' => [
+            'text' => Helper::fieldValue($entity, $field['time']) . '<br/>' . Helper::fieldValue($entity, $field['hour']),
+          ],
+        ],
+      ];
+    }
+
+    return [
+      'title' => Helper::getReferenceField($hours, 'field_label'),
+      'into' => '',
+      'id' => Helper::getReferenceField($hours, 'field_label'),
+      'path' => '@organisms/by-author/rich-text.twig',
+      'data' => [
+        'richText' => [
+          'property' => '',
+          'rteElements' => $rteElements,
+        ],
+      ],
+    ];
   }
 
 }

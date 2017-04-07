@@ -279,7 +279,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
-   * Verify the field is an input field of the given type.
+   * Verify the field is an checkbox field of the given type.
    *
    * @param $field
    * @param $expectedType
