@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* MySQL
+* MySQL/MariaDB 
 * [git](https://git-scm.com/downloads)
 * [composer](https://getcomposer.org/)
 
@@ -21,8 +21,21 @@ The following is just one way to install OpenMass. Customize to taste.
 1. Start a development web server `../vendor/bin/drush runserver`
 1. To get a URL for logging in as a superuser `../vendor/bin/drush uli --uri=http://127.0.0.1:8888`
 
-## Roadmap
+## Customizing Look and Feel
+One innovative feature of this platform is its use of a [Pattern Lab](http://patternlab.io) style guide to theme most pages. Our Pattern Lab implementation, [Mayflower](https://github.com/massgov/mayflower), is a uniform look and feel for all web properties that serve Massachusetts. 
+ 
+#### Quick customization
+1. Fork the [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts) repo
+1. Edit to taste
+Edit composer.json to point to your fork
+ 
+#### Thorough customization
+1. Fork the mayflower repo
+1. Edit to taste
+1. Build a new Pattern lab style guide and save its output into a new "artifacts repo" which is referenced from your composer.json. Your artifacts repo should be laid out exactly like [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts). 
+ 
 
+## Roadmap
 - One day soon, this platform will install without using a database as a seed.
 - One day soon, we will have regular contributor calls to work on the platform
 
