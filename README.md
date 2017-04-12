@@ -32,7 +32,8 @@ Edit composer.json to point to your fork
 #### Thorough customization
 1. Fork the mayflower repo
 1. Edit to taste
-1. Build a new Pattern lab style guide and save its output into a new "artifacts repo" which is referenced from your composer.json. Your artifacts repo should be laid out exactly like [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts). 
+1. Build a new Pattern lab style guide and save its output into a new "artifacts repo". Your artifacts repo should be laid out exactly like [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts). 
+1. Change the mayflower-artifacts line in composer.json to point to your artifacts repository. 
  
 
 ## Roadmap
