@@ -26,15 +26,14 @@ One innovative feature of this platform is its use of a [Pattern Lab](http://pat
  
 #### Quick customization
 1. Fork the [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts) repo
-1. Edit to taste
-Edit composer.json to point to your fork
+1. Edit to taste. See the *assets*  directory for CSS files.
+1. Edit composer.json to point to your fork
  
 #### Thorough customization
-1. Fork the mayflower repo
-1. Edit to taste
-1. Build a new Pattern lab style guide and save its output into a new "artifacts repo". Your artifacts repo should be laid out exactly like [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts). 
+1. Fork the mayflower repo.
+1. Edit to taste. [This file](https://github.com/massgov/mayflower/blob/dev/styleguide/source/assets/scss/06-theme/00-base/_colors.scss) is for customizing colors.
+1. Build a new Pattern lab style guide (`gulp`) and save its output into a new "artifacts repo". Your artifacts repo should be laid out exactly like [mayflower-artifacts](https://github.com/massgov/mayflower-artifacts). 
 1. Change the mayflower-artifacts line in composer.json to point to your artifacts repository. 
- 
 
 ## Roadmap
 - One day soon, this platform will install without using a database as a seed.
