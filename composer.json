@@ -121,6 +121,7 @@
         "drupal/access_unpublished": "8.1.x-dev",
         "drupal/acquia_connector": "^8.1",
         "drupal/acquia_purge": "^8.1",
+        "drupal/clamav": "^1.0",
         "drupal/components": "^8.1",
         "drupal/config_installer": "^8.1",
         "drupal/config_log": "8.*",
