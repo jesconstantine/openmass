@@ -1,3 +1,9 @@
+/**
+ * @file
+ * Renders map on .js-google-map div for map page.
+ *
+ * Loads google maps results and filters (loads once)
+ */
 var gmarkers = [];
 
 (function ($, Drupal) {
