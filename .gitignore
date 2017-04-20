@@ -23,7 +23,7 @@ web/libraries/
 
 # Ignore regular Composer dependencies
 /vendor/
-.composer.lock
+composer.lock
 
 # Ignore npm dependencies
 node_modules/
