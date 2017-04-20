@@ -10,8 +10,7 @@ services.yml
 !conf/drupal/services.yml
 web/sites/*/files
 
-# Ignore virtual environment and artifacts
-.vagrant/
+# Ignore artifacts
 /artifacts/
 
 # Ignore Drupal contrib downloaded by Composer
@@ -24,6 +23,7 @@ web/libraries/
 
 # Ignore regular Composer dependencies
 /vendor/
+.composer.lock
 
 # Ignore npm dependencies
 node_modules/
@@ -33,10 +33,6 @@ npm-debug.log
 *.sass-cache/
 styleguide/*.sass-cache/
 styleguide/source/code/css/*.css
-
-# Ignore sculpin output
-styleguide/output_dev/
-styleguide/output_prod/
 
 # Ignore theme assets
 /web/themes/custom/mass_theme/css
